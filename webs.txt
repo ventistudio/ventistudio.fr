@@ -1,0 +1,12 @@
+/* TEAM */
+Mon rôle : Archonn, Artiste
+Mon nom : Hikari Umaishi
+Site : ventistudio.fr
+Localisation : L'internet, Peercom
+
+/* THANKS */
+Merci au différent membres de l'Umaishi Corp, VentiStudio, Retribution Studio, RushKA Studio.
+
+/* SITE */
+Dernière mise à jour : 2024/09/08
+Langage : HTML, CSS, JavaScript

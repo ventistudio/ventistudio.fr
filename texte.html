@@ -1,0 +1,200 @@
+<html><head><base href="https://ventistudio.fr/text-page">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Texte | VentiStudio</title>
+    <style>
+        :root {
+            --dark-bg: #0f0f14;
+            --purple: #8e4ec6;
+            --light-text: #ffffff;
+            --dark-text: #a9a9b2;
+            --accent: #ff7edb;
+            --input-bg: #1a1a24;
+            --button-bg: #3d3d56;
+        }
+
+        body {
+            font-family: 'Noto Sans', 'Noto Sans JP', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo svg {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+            fill: var(--accent);
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li a {
+            color: var(--dark-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--light-text);
+        }
+
+        main {
+            margin-top: 40px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .highlight {
+            background-color: var(--purple);
+            color: var(--light-text);
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+
+        blockquote {
+            border-left: 4px solid var(--accent);
+            padding-left: 20px;
+            margin-left: 0;
+            font-style: italic;
+            color: var(--dark-text);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: flex-start;
+                margin-top: 20px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2L1 21h22L12 2zm0 3.5L19.5 19h-15L12 5.5z"/>
+                </svg>
+                <span>VentiStudio</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/">Accueil</a></li>
+                    <li><a href="/publish">Contenu Approuvé</a></li>
+                    <li><a href="/wiki">Wiki</a></li>
+                    <li><a href="/music">Musique</a></li>
+                    <li><a href="/network">Réseau</a></li>
+                    <li><a href="/speedtest">Speedtest</a></li>
+                    <li><a href="/proxy">Proxy</a></li>
+                    <li><a href="/pip">Mode Pip</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <h1>Titre de la Page de Texte</h1>
+            
+            <p>Bienvenue sur cette page de texte de VentiStudio Social. Ici, nous explorons des idées, partageons des connaissances et encourageons la réflexion. Le texte est l'un des moyens les plus puissants de communiquer des idées complexes et de stimuler l'imagination.</p>
+
+            <p>Dans notre monde numérique en constante évolution, il est important de prendre le temps de <span class="highlight">lire attentivement</span> et de réfléchir profondément. Cette page est conçue pour offrir une expérience de lecture agréable et sans distraction, vous permettant de vous concentrer sur le contenu.</p>
+
+            <blockquote>
+                "Les mots sont, bien sûr, l'arme la plus puissante de l'arsenal de l'humanité." - Rudyard Kipling
+            </blockquote>
+
+            <p>Nous croyons en la puissance des mots pour inspirer, éduquer et connecter les gens. Que vous soyez ici pour apprendre, vous divertir ou simplement explorer de nouvelles idées, nous espérons que vous trouverez du contenu qui résonne avec vous.</p>
+
+            <p>N'hésitez pas à explorer d'autres sections de notre site pour découvrir une variété de contenus, allant des articles de wiki aux discussions sur la musique et bien plus encore. Votre voyage intellectuel ne fait que commencer !</p>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 VentiStudio. Tous droits réservés.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Script pour améliorer l'expérience de lecture
+        document.addEventListener('DOMContentLoaded', () => {
+            const paragraphs = document.querySelectorAll('p');
+            
+            paragraphs.forEach(p => {
+                p.addEventListener('click', () => {
+                    p.style.fontSize = '1.2em';
+                    p.style.transition = 'font-size 0.3s ease';
+                    
+                    setTimeout(() => {
+                        p.style.fontSize = '1.1em';
+                    }, 5000);
+                });
+            });
+
+            // Easter egg : clic sur le logo
+            const logo = document.querySelector('.logo');
+            let clickCount = 0;
+
+            logo.addEventListener('click', () => {
+                clickCount++;
+                if (clickCount === 5) {
+                    alert("Vous avez découvert un secret ! Bravo pour votre curiosité !");
+                    document.body.style.background = 'linear-gradient(45deg, var(--dark-bg), var(--purple))';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
