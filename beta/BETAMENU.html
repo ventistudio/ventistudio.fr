@@ -1,0 +1,302 @@
+<html><head><base href="https://minimalistefran%C3%A7ais.com/publish">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VentiStudio Social - Contenu Approuvé</title>
+    <style>
+        :root {
+            --dark-bg: #0f0f14;
+            --purple: #8e4ec6;
+            --light-text: #ffffff;
+            --dark-text: #a9a9b2;
+            --accent: #ff7edb;
+            --input-bg: #1a1a24;
+            --button-bg: #3d3d56;
+        }
+
+        body {
+            font-family: 'Noto Sans', 'Noto Sans JP', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .logo svg {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+            fill: var(--accent);
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        nav ul li a {
+            color: var(--dark-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 5px 10px;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            color: var(--light-text);
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 5px;
+        }
+
+        main {
+            margin-top: 40px;
+        }
+
+        h1 {
+            color: var(--accent);
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .content-item {
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .content-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .content-item img {
+            width: 100%;
+            height: 225px;
+            object-fit: cover;
+        }
+
+        .content-info {
+            padding: 15px;
+        }
+
+        .content-info h3 {
+            margin: 0;
+            font-size: 1em;
+            color: var(--light-text);
+        }
+
+        .content-info p {
+            margin: 10px 0 0;
+            font-size: 0.8em;
+            color: var(--dark-text);
+        }
+
+        .category-filter {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .category-btn {
+            padding: 8px 15px;
+            background-color: var(--button-bg);
+            color: var(--light-text);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 0.9em;
+        }
+
+        .category-btn:hover, .category-btn.active {
+            background-color: var(--purple);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 20px 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            header {
+                padding: 10px 0;
+            }
+
+            .logo {
+                margin-bottom: 10px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+
+            .content-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                gap: 10px;
+            }
+
+            .content-item img {
+                height: 180px;
+            }
+
+            .content-info h3 {
+                font-size: 0.9em;
+            }
+
+            .content-info p {
+                font-size: 0.7em;
+            }
+
+            .category-btn {
+                padding: 6px 12px;
+                font-size: 0.8em;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2L1 21h22L12 2zm0 3.5L19.5 19h-15L12 5.5z"/>
+                </svg>
+                <span>VentiStudio Social</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/">Accueil</a></li>
+                    <li><a href="/publish" class="active">Contenu Approuvé</a></li>
+                    <li><a href="/wiki">Wiki</a></li>
+                    <li><a href="/music">Musique</a></li>
+                    <li><a href="/network">Réseau</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <h1>Contenu Approuvé</h1>
+            
+            <div class="category-filter">
+                <button class="category-btn active" data-category="all">Tous</button>
+                <button class="category-btn" data-category="film">Films</button>
+                <button class="category-btn" data-category="animation">Animations</button>
+                <button class="category-btn" data-category="serie">Séries</button>
+                <button class="category-btn" data-category="musique">Musique</button>
+                <button class="category-btn" data-category="jeu">Jeux</button>
+                <button class="category-btn" data-category="logiciel">Logiciels</button>
+            </div>
+
+            <div class="content-grid" id="contentGrid">
+                <!-- Les éléments de contenu seront ajoutés ici dynamiquement -->
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2023 VentiStudio Social. Tous droits réservés.</p>
+        </footer>
+    </div>
+
+    <script>
+        const contentItems = [
+            { id: 1, title: "Inception", description: "Un film de science-fiction captivant", category: "film", image: "https://example.com/inception.jpg" },
+            { id: 2, title: "Breaking Bad", description: "Une série TV dramatique primée", category: "serie", image: "https://example.com/breaking-bad.jpg" },
+            { id: 3, title: "Spirited Away", description: "Un chef-d'œuvre de l'animation japonaise", category: "animation", image: "https://example.com/spirited-away.jpg" },
+            { id: 4, title: "Dark Side of the Moon", description: "Album emblématique de Pink Floyd", category: "musique", image: "https://example.com/dark-side.jpg" },
+            { id: 5, title: "The Witcher 3", description: "Un jeu de rôle épique", category: "jeu", image: "https://example.com/witcher3.jpg" },
+            { id: 6, title: "Adobe Photoshop", description: "Logiciel de retouche photo professionnel", category: "logiciel", image: "https://example.com/photoshop.jpg" },
+        ];
+
+        function createContentItem(item) {
+            return `
+                <div class="content-item" data-category="${item.category}" onclick="showDetails(${item.id})">
+                    <img src="${item.image}" alt="${item.title}">
+                    <div class="content-info">
+                        <h3>${item.title}</h3>
+                        <p>${item.description}</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        function showDetails(id) {
+            // Redirection vers la page de détails
+            window.location.href = `https://minimalistefrançais.com/details/${id}`;
+        }
+
+        function filterContent(category) {
+            const items = document.querySelectorAll('.content-item');
+            items.forEach(item => {
+                if (category === 'all' || item.dataset.category === category) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const contentGrid = document.getElementById('contentGrid');
+            contentItems.forEach(item => {
+                contentGrid.innerHTML += createContentItem(item);
+            });
+
+            const categoryButtons = document.querySelectorAll('.category-btn');
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    filterContent(button.dataset.category);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
