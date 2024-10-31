@@ -146,6 +146,7 @@ Laissez-moi vous présenter ma communauté, un espace où l'art et la créativit
       margin: 0;
       opacity: 0.8;
       font-size: 0.9rem;
+      color: var(--text);
     }
 
     @media (max-width: 768px) {
@@ -176,30 +177,107 @@ Laissez-moi vous présenter ma communauté, un espace où l'art et la créativit
     <div class="search-container">
       <input type="text" class="search-bar" placeholder="Rechercher un contenu...">
       <div class="filter-buttons">
-        <button class="filter-button active">Tout</button>
-        <button class="filter-button">Films</button>
-        <button class="filter-button">Séries</button>
-        <button class="filter-button">Animations</button>
-        <button class="filter-button">Musique</button>
-        <button class="filter-button">Jeux</button>
-        <button class="filter-button">Manga</button>
-        <button class="filter-button">Applications</button>
+        <button class="filter-button active" data-type="all">Tout</button>
+        <button class="filter-button" data-type="films">Films</button>
+        <button class="filter-button" data-type="series">Séries</button>
+        <button class="filter-button" data-type="animations">Animations</button>
+        <button class="filter-button" data-type="musique">Musique</button>
+        <button class="filter-button" data-type="jeux">Jeux</button>
+        <button class="filter-button" data-type="manga">Manga</button>
+        <button class="filter-button" data-type="applications">Applications</button>
       </div>
     </div>
   </section>
 
-  <div class="content-grid">
-    <a href="/contenu-approuve/1" class="content-card">
-      <img src="/contenu-approuve/1/image.ppg" alt="Affiche de la Séries - Style moderne" class="content-image">
-      <div class="content-info">
-        <h3>LE JEUX DE LA DAME</h3>
-        <p>Placée en orphelinat à 9 ans, Beth développe un talent étonnant pour les échecs... et une addiction aux tranquillisants verts données comme sédatifs aux enfants.</p>
-      </div>
-    </a>
-    <!-- Plus de cartes de contenu à ajouter dynamiquement -->
+  <div class="content-grid" id="content-grid">
   </div>
 
   <script>
+    const contentData = [
+      {
+        id: 1,
+        title: "LE JEUX DE LA DAME ",
+        description: "Placée en orphelinat à 9 ans, Beth développe un talent étonnant pour les échecs... et une addiction aux tranquillisants verts données comme sédatifs aux enfants.",
+        type: "films",
+        image: "/1/image.png"
+      },
+      {
+        id: 2,
+        title: "A SILENT VOICE",
+        description: "Nishimiya est une élève douce mais qui elle est harcelée par Ishida, car elle est sourde. Dénoncé, le garçon est à son tour rejeté par ses camarades. Des années plus tard, il apprend la langue des signes et part à la recherche de la jeune fille.",
+        type: "animations",
+        image: "/2/image.jpeg"
+      },
+      {
+        id: 3,
+        title: "text",
+        description: "text",
+        type: "text.type",
+        image: "/3/image.jpg"
+      }
+    ];
+
+    function createContentCard(content) {
+      return `
+        <a href="/contenu/${content.id}" class="content-card">
+          <img src="${content.image}" alt="Image de ${content.title}" class="content-image">
+          <div class="content-info">
+            <h3>${content.title}</h3>
+            <p>${content.description}</p>
+          </div>
+        </a>
+      `;
+    }
+
+    function updateDisplay(filteredContent) {
+      const contentGrid = document.getElementById('content-grid');
+      contentGrid.innerHTML = filteredContent.map(createContentCard).join('');
+    }
+
+    // Search and filter functionality
+    let currentFilter = 'all';
+    let currentSearch = '';
+
+    function filterContent() {
+      let filtered = contentData;
+      
+      // Apply type filter
+      if (currentFilter !== 'all') {
+        filtered = filtered.filter(item => item.type === currentFilter);
+      }
+      
+      // Apply search filter
+      if (currentSearch) {
+        filtered = filtered.filter(item => 
+          item.title.toLowerCase().includes(currentSearch.toLowerCase()) ||
+          item.type.toLowerCase().includes(currentSearch.toLowerCase())
+        );
+      }
+      
+      updateDisplay(filtered);
+    }
+
+    // Event listeners
+    const filterButtons = document.querySelectorAll('.filter-button');
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        currentFilter = button.dataset.type;
+        filterContent();
+      });
+    });
+
+    const searchBar = document.querySelector('.search-bar');
+    searchBar.addEventListener('input', (e) => {
+      currentSearch = e.target.value;
+      filterContent();
+    });
+
+    // Initial display
+    filterContent();
+
+    // Navbar scroll effect
     window.addEventListener('scroll', () => {
       const navbar = document.querySelector('.navbar');
       if (window.scrollY > 50) {
@@ -209,21 +287,6 @@ Laissez-moi vous présenter ma communauté, un espace où l'art et la créativit
         navbar.style.background = 'rgba(0,0,0,0.8)';
         navbar.style.boxShadow = 'none';
       }
-    });
-
-    const filterButtons = document.querySelectorAll('.filter-button');
-    filterButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        filterButtons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-        // Add filtering logic here
-      });
-    });
-
-    const searchBar = document.querySelector('.search-bar');
-    searchBar.addEventListener('input', (e) => {
-      const searchTerm = e.target.value.toLowerCase();
-      // Add search logic here
     });
   </script>
 </body></html>
