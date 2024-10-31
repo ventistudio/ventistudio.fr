@@ -1,0 +1,550 @@
+<html><head><base href="https://ventistudio.fr/preview">
+  <title>VentiStudio - Musique, Art & Technologie</title>
+  <link rel="icon" type="image/gif" href="favicon.png">
+  <meta property="og:title" content="Bienvenu sur VentiStudio">
+  <meta property="og:site_name" content="VentiStudio Komiyuniti">
+  <meta property="og:url" content="https://ventistudio.fr">
+  <meta property="og:description" content="Hey, je suis Hikari Umaishi (光馬石), mais je préfère que l'on m'appelle Hiuma (ヒウマ).
+Laissez-moi vous présenter ma communauté, un espace où l'art et la créativité se rencontrent.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://ventistudio.fr/favicon.gif">
+  <html lang="fr"></html>
+  <meta charset="utf-8">
+  <style>
+    :root {
+      --primary: #8b5cf6;
+      --dark: #1a1a1a;
+      --text: #ffffff;
+    }
+    
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--dark);
+      color: var(--text);
+    }
+
+    .navbar {
+      background: rgba(0,0,0,0.8);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: fixed;
+      width: 100%;
+      box-sizing: border-box;
+      z-index: 1000;
+    }
+
+    .logo {
+      width: 50px;
+      height: 50px;
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: rotate(360deg);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+      background: rgba(139, 92, 246, 0.1);
+    }
+
+    .hero {
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.7), var(--dark));
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(45deg, #8b5cf6, #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientShift 8s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-button {
+      background: linear-gradient(45deg, var(--primary), #ec4899);
+      color: white;
+      padding: 1rem 2.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+      display: inline-block;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      padding: 4rem 2rem;
+      background: linear-gradient(to bottom, var(--dark), #2d2d2d);
+    }
+
+    .feature-card {
+      background: rgba(255,255,255,0.05);
+      padding: 2rem;
+      border-radius: 12px;
+      text-align: center;
+      transition: transform 0.3s ease;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      background: rgba(255,255,255,0.08);
+    }
+
+    .feature-card h3 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+    }
+
+    /* Animation styles */
+    .celebration-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    /* Fireworks */
+    .firework {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      animation: explode 1s ease-out forwards;
+    }
+
+    @keyframes explode {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(30); opacity: 0; }
+    }
+
+    /* Snowflakes */
+    .snowflake {
+      position: absolute;
+      color: white;
+      font-size: 20px;
+      animation: fall 10s linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-100vh) rotate(0deg); }
+      100% { transform: translateY(100vh) rotate(360deg); }
+    }
+
+    /* Cherry blossoms */
+    .petal {
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background: pink;
+      border-radius: 150% 0 150% 0;
+      animation: windBlow 8s linear infinite;
+    }
+
+    @keyframes windBlow {
+      0% { transform: translate(-100vw, -50vh) rotate(0deg); }
+      100% { transform: translate(100vw, 50vh) rotate(720deg); }
+    }
+
+    /* Autumn leaves */
+    .leaf {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: #ff6b35;
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+      animation: falling 5s linear infinite;
+    }
+
+    @keyframes falling {
+      0% { transform: translateY(-100vh) rotate(0deg); }
+      100% { transform: translateY(100vh) rotate(360deg); }
+    }
+
+    .theme-preview {
+      padding: 2rem;
+      text-align: center;
+      background: rgba(0,0,0,0.5);
+      margin-top: 2rem;
+    }
+
+    .theme-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .theme-button {
+      background: linear-gradient(45deg, var(--primary), #ec4899);
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .theme-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 2px 8px rgba(139, 92, 246, 0.4);
+    }
+
+    /* Halloween elements */
+    .ghost {
+      position: absolute;
+      font-size: 30px;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    .celebration-message {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.8);
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      z-index: 1001;
+      text-align: center;
+      animation: fadeInOut 5s forwards;
+    }
+
+    @keyframes fadeInOut {
+      0% { opacity: 0; transform: translate(-50%, -20px); }
+      10% { opacity: 1; transform: translate(-50%, 0); }
+      90% { opacity: 1; transform: translate(-50%, 0); }
+      100% { opacity: 0; transform: translate(-50%, -20px); }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <img src="/favicon.png" alt="Logo VentiStudio - Design circulaire noir et blanc avec symboles français et japonais" class="logo">
+    <div class="nav-links">
+      <a href="/">Accueil</a>
+      <a href="/contenu-approuve">Contenu Approuvé</a>
+      <a href="/wiki">Wiki</a>
+      <a href="/staff">Staff</a>
+      <a href="/artiste">Artiste</a>
+      <a href="/pip">PIP</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <h1>Bienvenue sur VentiStudio</h1>
+    <p>Connectez-vous, créez et partagez dans un espace unique dédié aux passionnés de musique, d'art et de technologie.</p>
+    <a href="/" class="cta-button">Rejoignez-nous</a>
+  </section>
+
+  <div class="features">
+    <div class="feature-card">
+      <h3>Contenu Approuvé</h3>
+      <p>Découvrez du contenu vérifié et de qualité, sélectionné par notre communauté.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Wiki Collaboratif</h3>
+      <p>Participez à notre base de connaissances communautaire.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Espace Artiste</h3>
+      <p>Un lieu dédié aux créateurs pour partager leurs œuvres.</p>
+    </div>
+  </div>
+
+  <div class="theme-preview">
+    <h2>Prévisualisez nos thèmes saisonniers</h2>
+    <div class="theme-buttons">
+      <button class="theme-button" onclick="previewTheme('birthday')">Anniversaire VentiStudio (24 Sept)</button>
+      <button class="theme-button" onclick="previewTheme('halloween')">Halloween (31 Oct)</button>
+      <button class="theme-button" onclick="previewTheme('christmas')">Noël (25 Déc)</button>
+      <button class="theme-button" onclick="previewTheme('french')">Fête Nationale (14 Juil)</button>
+      <button class="theme-button" onclick="previewTheme('newyear')">Nouvel An</button>
+      <button class="theme-button" onclick="previewTheme('autumn')">Automne (9 Sept)</button>
+      <button class="theme-button" onclick="previewTheme('spring')">Printemps (20-21 Mars)</button>
+      <button class="theme-button" onclick="previewTheme('hikari')">Anniversaire Hikari (15 Déc)</button>
+      <button class="theme-button" onclick="clearTheme()">Effacer les effets</button>
+    </div>
+  </div>
+
+  <script>
+    window.addEventListener('scroll', () => {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 50) {
+        navbar.style.background = 'rgba(0,0,0,0.95)';
+        navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.3)';
+      } else {
+        navbar.style.background = 'rgba(0,0,0,0.8)';
+        navbar.style.boxShadow = 'none';
+      }
+    });
+
+    document.querySelectorAll('.feature-card').forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        card.style.transform = 'translateY(-10px)';
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'translateY(0)';
+      });
+    });
+
+    function createCelebration() {
+      const date = new Date();
+      const month = date.getMonth() + 1;
+      const day = date.getDate();
+      const dateString = `${month}-${day}`;
+      
+      const overlay = document.createElement('div');
+      overlay.className = 'celebration-overlay';
+      document.body.appendChild(overlay);
+
+      let message = '';
+      
+      switch(dateString) {
+        case '9-24':
+          message = 'Joyeux anniversaire VentiStudio ! 🎉';
+          createFireworks(overlay);
+          createConfetti(overlay);
+          break;
+          
+        case '10-31':
+          message = 'Joyeux Halloween ! 👻';
+          createHalloweenEffects(overlay);
+          break;
+          
+        case '12-25':
+          message = 'Joyeux Noël ! 🎄';
+          createSnowflakes(overlay);
+          break;
+          
+        case '7-14':
+          message = 'Vive la France ! 🇫🇷';
+          createFrenchFireworks(overlay);
+          break;
+          
+        case '9-9':
+          message = "C'est l'automne ! 🍂";
+          createAutumnLeaves(overlay);
+          break;
+          
+        case '3-20':
+        case '3-21':
+          message = 'Bienvenue au printemps ! 🌸';
+          createCherryBlossoms(overlay);
+          break;
+          
+        case '12-15':
+          message = "Joyeux anniversaire Hikari Umaishi ! 🎈";
+          createBirthdayEffects(overlay);
+          break;
+      }
+      
+      const isNewYear = (month === 12 && day >= 31) || (month === 1 && day <= 3);
+      if (isNewYear) {
+        message = 'Bonne année ! 🎊';
+        createFireworks(overlay);
+      }
+
+      if (message) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = 'celebration-message';
+        messageDiv.textContent = message;
+        document.body.appendChild(messageDiv);
+      }
+    }
+
+    function createFireworks(overlay) {
+      setInterval(() => {
+        const firework = document.createElement('div');
+        firework.className = 'firework';
+        firework.style.left = Math.random() * 100 + 'vw';
+        firework.style.top = Math.random() * 100 + 'vh';
+        firework.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+        overlay.appendChild(firework);
+        setTimeout(() => firework.remove(), 1000);
+      }, 300);
+    }
+
+    function createFrenchFireworks(overlay) {
+      const colors = ['#002395', '#ffffff', '#ED2939'];
+      setInterval(() => {
+        const firework = document.createElement('div');
+        firework.className = 'firework';
+        firework.style.left = Math.random() * 100 + 'vw';
+        firework.style.top = Math.random() * 100 + 'vh';
+        firework.style.background = colors[Math.floor(Math.random() * colors.length)];
+        overlay.appendChild(firework);
+        setTimeout(() => firework.remove(), 1000);
+      }, 300);
+    }
+
+    function createSnowflakes(overlay) {
+      setInterval(() => {
+        const snowflake = document.createElement('div');
+        snowflake.className = 'snowflake';
+        snowflake.textContent = '❄';
+        snowflake.style.left = Math.random() * 100 + 'vw';
+        overlay.appendChild(snowflake);
+        setTimeout(() => snowflake.remove(), 10000);
+      }, 200);
+    }
+
+    function createHalloweenEffects(overlay) {
+      setInterval(() => {
+        const ghost = document.createElement('div');
+        ghost.className = 'ghost';
+        ghost.textContent = '👻';
+        ghost.style.left = Math.random() * 100 + 'vw';
+        ghost.style.top = Math.random() * 100 + 'vh';
+        overlay.appendChild(ghost);
+        setTimeout(() => ghost.remove(), 4000);
+      }, 2000);
+    }
+
+    function createCherryBlossoms(overlay) {
+      setInterval(() => {
+        const petal = document.createElement('div');
+        petal.className = 'petal';
+        petal.style.top = Math.random() * 100 + 'vh';
+        overlay.appendChild(petal);
+        setTimeout(() => petal.remove(), 8000);
+      }, 200);
+    }
+
+    function createAutumnLeaves(overlay) {
+      setInterval(() => {
+        const leaf = document.createElement('div');
+        leaf.className = 'leaf';
+        leaf.style.left = Math.random() * 100 + 'vw';
+        overlay.appendChild(leaf);
+        setTimeout(() => leaf.remove(), 5000);
+      }, 200);
+    }
+
+    window.addEventListener('load', createCelebration);
+
+    function previewTheme(theme) {
+      // Clear existing effects
+      clearTheme();
+      
+      const overlay = document.createElement('div');
+      overlay.className = 'celebration-overlay';
+      document.body.appendChild(overlay);
+
+      let message = '';
+      
+      switch(theme) {
+        case 'birthday':
+          message = 'Joyeux anniversaire VentiStudio ! 🎉';
+          createFireworks(overlay);
+          break;
+        case 'halloween':
+          message = 'Joyeux Halloween ! 👻';
+          createHalloweenEffects(overlay);
+          break;
+        case 'christmas':
+          message = 'Joyeux Noël ! 🎄';
+          createSnowflakes(overlay);
+          break;
+        case 'french':
+          message = 'Vive la France ! 🇫🇷';
+          createFrenchFireworks(overlay);
+          break;
+        case 'newyear':
+          message = 'Bonne année ! 🎊';
+          createFireworks(overlay);
+          break;
+        case 'autumn':
+          message = "C'est l'automne ! 🍂";
+          createAutumnLeaves(overlay);
+          break;
+        case 'spring':
+          message = 'Bienvenue au printemps ! 🌸';
+          createCherryBlossoms(overlay);
+          break;
+        case 'hikari':
+          message = "Joyeux anniversaire Hikari Umaishi ! 🎈";
+          createFireworks(overlay);
+          break;
+      }
+
+      if (message) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = 'celebration-message';
+        messageDiv.textContent = message;
+        document.body.appendChild(messageDiv);
+      }
+    }
+
+    function clearTheme() {
+      const overlay = document.querySelector('.celebration-overlay');
+      if (overlay) overlay.remove();
+      const message = document.querySelector('.celebration-message');
+      if (message) message.remove();
+    }
+  </script>
+</body></html>

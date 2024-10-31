@@ -1,0 +1,170 @@
+<html><head><base href="https://ventistudio.fr/logo">
+  <title>VentiStudio - Animation & Events</title>
+  <link rel="icon" type="image/gif" href="favicon.png">
+  <meta property="og:title" content="Bienvenu sur VentiStudio">
+  <meta property="og:site_name" content="VentiStudio Komiyuniti">
+  <meta property="og:url" content="https://ventistudio.fr">
+  <meta property="og:description" content="Hey, je suis Hikari Umaishi (光馬石), mais je préfère que l'on m'appelle Hiuma (ヒウマ).
+Laissez-moi vous présenter ma communauté, un espace où l'art et la créativité se rencontrent.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://ventistudio.fr/favicon.gif">
+  <html lang="fr"></html>
+  <meta charset="utf-8">
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: #1a1a1a;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .logo-container {
+      position: relative;
+      width: 200px;
+      height: 200px;
+    }
+
+    .logo {
+      width: 100%;
+      height: 100%;
+      animation: rotate 10s linear infinite;
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .firework {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+    }
+
+    @keyframes explode {
+      0% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translate(var(--tx), var(--ty));
+        opacity: 0;
+      }
+    }
+
+    .snowflake {
+      position: absolute;
+      color: white;
+      font-size: 20px;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-100vh); }
+      100% { transform: translateY(100vh); }
+    }
+
+    .autumn-leaf {
+      position: absolute;
+      font-size: 24px;
+      animation: falling-leaf linear infinite;
+    }
+
+    @keyframes falling-leaf {
+      0% {
+        transform: translateY(-100vh) rotate(0deg);
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="logo-container">
+    <img src="/favicon.png" alt="Logo VentiStudio animé" class="logo">
+  </div>
+
+  <script>
+    function createFirework(color1, color2, color3) {
+      for(let i = 0; i < 50; i++) {
+        const firework = document.createElement('div');
+        firework.className = 'firework';
+        document.body.appendChild(firework);
+
+        const angle = (Math.PI * 2 * i) / 50;
+        const velocity = 5 + Math.random() * 15;
+        const tx = Math.cos(angle) * velocity * 50;
+        const ty = Math.sin(angle) * velocity * 50;
+
+        firework.style.left = window.innerWidth / 2 + 'px';
+        firework.style.top = window.innerHeight / 2 + 'px';
+        firework.style.backgroundColor = [color1, color2, color3][Math.floor(Math.random() * 3)];
+        firework.style.setProperty('--tx', tx + 'px');
+        firework.style.setProperty('--ty', ty + 'px');
+
+        firework.style.animation = 'explode 2s ease-out forwards';
+
+        firework.addEventListener('animationend', () => firework.remove());
+      }
+    }
+
+    function createSnowflakes() {
+      const snowflake = document.createElement('div');
+      snowflake.className = 'snowflake';
+      snowflake.innerHTML = '❄';
+      snowflake.style.left = Math.random() * window.innerWidth + 'px';
+      snowflake.style.animationDuration = 5 + Math.random() * 10 + 's';
+      document.body.appendChild(snowflake);
+      snowflake.addEventListener('animationend', () => snowflake.remove());
+    }
+
+    function createAutumnLeaves() {
+      const leaf = document.createElement('div');
+      leaf.className = 'autumn-leaf';
+      leaf.innerHTML = '🍁';
+      leaf.style.left = Math.random() * window.innerWidth + 'px';
+      leaf.style.animationDuration = 8 + Math.random() * 10 + 's';
+      document.body.appendChild(leaf);
+      leaf.addEventListener('animationend', () => leaf.remove());
+    }
+
+    function checkDate() {
+      const date = new Date();
+      const day = date.getDate();
+      const month = date.getMonth() + 1;
+
+      if(month === 9 && day === 24) {
+        setInterval(() => createFirework('#ff0000', '#00ff00', '#0000ff'), 1000);
+      }
+      else if(month === 7 && day === 14) {
+        setInterval(() => createFirework('#0000ff', '#ffffff', '#ff0000'), 1000);
+      }
+      else if(month === 10 && day === 31) {
+        document.body.style.background = '#000000';
+        setInterval(() => createFirework('#ff6600', '#800080', '#39ff14'), 1000);
+      }
+      else if(month === 12 && day === 25) {
+        setInterval(createSnowflakes, 200);
+      }
+      else if(month === 12 && day === 15) {
+        setInterval(() => createFirework('#ff1493', '#00ffff', '#ffff00'), 1000);
+      }
+      else if((month === 12 && day >= 31) || (month === 1 && day <= 3)) {
+        setInterval(() => createFirework('#ffd700', '#ff69b4', '#00ff00'), 1000);
+      }
+      else if(month === 9 && day === 9) {
+        setInterval(createAutumnLeaves, 200);
+      }
+      else if(month === 3 && (day === 20 || day === 21)) {
+        document.body.style.background = '#87ceeb';
+      }
+    }
+
+    checkDate();
+  </script>
+</body></html>
