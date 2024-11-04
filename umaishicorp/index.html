@@ -38,10 +38,33 @@ Laissez-moi vous présenter ma communauté, un espace où l'art et la créativit
       z-index: 1000;
     }
 
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+      background: rgba(139, 92, 246, 0.1);
+    }
+
     .logo {
       width: 50px;
       height: 50px;
       transition: transform 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: rotate(360deg);
     }
 
     .corporate-header {
@@ -104,6 +127,9 @@ Laissez-moi vous présenter ma communauté, un espace où l'art et la créativit
       .corporate-title {
         font-size: 2.5rem;
       }
+      .nav-links {
+        display: none;
+      }
       
       .subsidiaries {
         grid-template-columns: 1fr;
@@ -114,6 +140,13 @@ Laissez-moi vous présenter ma communauté, un espace où l'art et la créativit
 <body>
   <nav class="navbar">
     <img src="/favicon.png" alt="Logo VentiStudio - Design circulaire noir et blanc avec symboles français et japonais" class="logo">
+    <div class="nav-links">
+      <a href="/">VentiStudio</a>
+      <a href="/nexuslumina">Nexus Lumina</a>
+      <a href="/suboawards">Subo Awards</a>
+      <a href="/phareteikei">Phare Tei Kei</a>
+      <a href="/social/FiTsZ">FiTsZ (soon)</a>
+    </div>
   </nav>
 
   <header class="corporate-header">
