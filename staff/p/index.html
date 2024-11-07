@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html><head><base href="https://ventistudio.fr/staff/p/staffname">
+  <meta charset="utf-8">
+  <meta name="viewport">
+  <html lang="fr"></html>
+  <link rel="icon" type="image/gif" href="favicon.png">
+  <meta property="og:title" content="Bienvenu sur VentiStudio">
+  <meta property="og:site_name" content="VentiStudio Komiyuniti">
+  <meta property="og:url" content="https://ventistudio.fr">
+  <meta property="og:description" content="Hey, je suis Hikari Umaishi (光馬石), mais je préfère que l'on m'appelle Hiuma (ヒウマ).
+Laissez-moi vous présenter ma communauté, un espace où l'art et la créativité se rencontrent.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://ventistudio.fr/favicon.gif">
+  <title>VentiStudio - Page Artiste</title>
+  <style>
+    :root {
+      --primary: #8b5cf6;
+      --dark: #1a1a1a;
+      --text: #ffffff;
+    }
+    
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--dark);
+      color: var(--text);
+    }
+
+    .navbar {
+      background: rgba(0,0,0,0.8);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: fixed;
+      width: 100%;
+      box-sizing: border-box;
+      z-index: 1000;
+    }
+
+    .logo {
+      width: 50px;
+      height: 50px;
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: rotate(360deg);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+      background: rgba(139, 92, 246, 0.1);
+    }
+
+    .artist-profile {
+      padding: 120px 2rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .profile-header {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .profile-image {
+      width: 300px;
+      height: 300px;
+      border-radius: 8px;
+      object-fit: cover;
+      border: 2px solid var(--primary);
+    }
+
+    .profile-info h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+
+    .social-button {
+      padding: 0.5rem 1rem;
+      background: rgba(255,255,255,0.1);
+      border-radius: 4px;
+      text-decoration: none;
+      color: var(--text);
+      transition: all 0.3s;
+    }
+
+    .social-button:hover {
+      background: var(--primary);
+    }
+
+    .donate-button {
+      background: linear-gradient(45deg, #8b5cf6, #ec4899);
+      padding: 0.8rem 2rem;
+      border-radius: 6px;
+      text-decoration: none;
+      color: white;
+      display: inline-block;
+      margin-top: 1rem;
+      transition: all 0.3s;
+    }
+
+    .donate-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+    }
+
+    .creations {
+      margin-top: 3rem;
+    }
+
+    .creations h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: var(--primary);
+    }
+
+    .creation-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .creation-card {
+      background: rgba(255,255,255,0.05);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+
+    .creation-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    .creation-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .creation-info {
+      padding: 1rem;
+    }
+
+    .creation-info h3 {
+      margin: 0 0 0.5rem 0;
+      color: var(--primary);
+    }
+
+    .creation-info p {
+      margin: 0;
+      opacity: 0.8;
+      font-size: 0.9rem;
+    }
+
+    .bio {
+      margin: 2rem 0;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <img src="/favicon.png" alt="Logo VentiStudio - Design circulaire noir et blanc avec symboles français et japonais" class="logo">
+    <div class="nav-links">
+      <a href="/">Accueil</a>
+      <a href="/approvedcontent">Contenu Approuvé</a>
+      <a href="/wiki">Wiki</a>
+      <a href="/staff">Staff</a>
+      <a href="/artist">Artiste</a>
+      <a href="/pip">PIP</a>
+    </div>
+  </nav>
+
+  <main class="artist-profile">
+    <div class="profile-header">
+      <img src="/a/52f7ca83-9281-4dc5-a287-f9271abee3a9" alt="Photo de profil de l'artiste" class="profile-image">
+      <div class="profile-info">
+        <h1>Nom de l'Artiste</h1>
+        <div class="bio">
+          Artiste pluridisciplinaire basé à Paris, spécialisé dans la musique électronique et les arts numériques. 
+          Créateur depuis 2015, son travail explore les intersections entre son, image et technologie.
+        </div>
+        <div class="social-links">
+          <a href="https://twitter.com/artiste" class="social-button">Twitter</a>
+          <a href="https://instagram.com/artiste" class="social-button">Instagram</a>
+          <a href="https://soundcloud.com/artiste" class="social-button">SoundCloud</a>
+          <a href="https://youtube.com/artiste" class="social-button">YouTube</a>
+        </div>
+        <a href="https://ventistudio.com/donate" class="donate-button">Soutenir l'artiste</a>
+      </div>
+    </div>
+
+    <div class="creations">
+      <h2>Créations</h2>
+      <div class="creation-grid">
+        <div class="creation-card" onclick="window.location='https://ventistudio.com/creation/1'">
+          <img src="/a/52f7ca83-9281-4dc5-a287-f9271abee3a9" alt="Image de la création" class="creation-image">
+          <div class="creation-info">
+            <h3>Titre de la création</h3>
+            <p>Description courte de la création. Un aperçu du projet et de son concept.</p>
+          </div>
+        </div>
+        
+        <div class="creation-card" onclick="window.location='https://ventistudio.com/creation/2'">
+          <img src="/a/52f7ca83-9281-4dc5-a287-f9271abee3a9" alt="Image de la création" class="creation-image">
+          <div class="creation-info">
+            <h3>Autre création</h3>
+            <p>Une autre création intéressante de l'artiste avec sa description.</p>
+          </div>
+        </div>
+        
+        <div class="creation-card" onclick="window.location='https://ventistudio.com/creation/3'">
+          <img src="/a/52f7ca83-9281-4dc5-a287-f9271abee3a9" alt="Image de la création" class="creation-image">
+          <div class="creation-info">
+            <h3>Projet récent</h3>
+            <p>Le dernier projet en date de l'artiste, explorant de nouveaux horizons.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    window.addEventListener('scroll', () => {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 50) {
+        navbar.style.background = 'rgba(0,0,0,0.95)';
+        navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.3)';
+      } else {
+        navbar.style.background = 'rgba(0,0,0,0.8)';
+        navbar.style.boxShadow = 'none';
+      }
+    });
+
+    document.querySelectorAll('.creation-card').forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        card.style.transform = 'translateY(-5px)';
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'translateY(0)';
+      });
+    });
+  </script>
+</body></html>

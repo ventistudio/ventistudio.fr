@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html><head><base href="https://ventistudio.fr/error">
+  <meta charset="utf-8">
+  <meta name="viewport">
+  <html lang="fr"></html>
+  <link rel="icon" type="image/gif" href="favicon.png">
+  <meta property="og:title" content="Bienvenu sur VentiStudio">
+  <meta property="og:site_name" content="VentiStudio Komiyuniti">
+  <meta property="og:url" content="https://ventistudio.fr">
+  <meta property="og:description" content="Hey, je suis Hikari Umaishi (光馬石), mais je préfère que l'on m'appelle Hiuma (ヒウマ).
+Laissez-moi vous présenter ma communauté, un espace où l'art et la créativité se rencontrent.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://ventistudio.fr/favicon.gif">
+  <title>Erreur - VentiStudio</title>
+  <style>
+    :root {
+      --primary: #8b5cf6;
+      --dark: #1a1a1a;
+      --text: #ffffff;
+      --error-color: #ff0033;
+    }
+    
+    body {
+      margin: 0;
+      font-family: 'Courier New', monospace;
+      background: var(--dark);
+      color: var(--text);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .error-container {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      text-align: center;
+      animation: glitch 1s infinite;
+      position: relative;
+    }
+
+    .error-code {
+      font-size: 4rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px var(--error-color);
+      animation: textGlitch 3s infinite;
+    }
+
+    .error-message {
+      font-size: 1.5rem;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+      opacity: 0.8;
+    }
+
+    .back-home {
+      margin-top: 2rem;
+      padding: 1rem 2rem;
+      background: var(--error-color);
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: bold;
+      transition: all 0.3s;
+    }
+
+    .back-home:hover {
+      transform: scale(1.1);
+      background: #ff1a1a;
+    }
+
+    .glitch-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.1) 0px,
+        rgba(0, 0, 0, 0.1) 1px,
+        transparent 1px,
+        transparent 2px
+      );
+      animation: scan 8s linear infinite;
+    }
+
+    @keyframes glitch {
+      0% { transform: translate(0) }
+      20% { transform: translate(-2px, 2px) }
+      40% { transform: translate(-2px, -2px) }
+      60% { transform: translate(2px, 2px) }
+      80% { transform: translate(2px, -2px) }
+      100% { transform: translate(0) }
+    }
+
+    @keyframes textGlitch {
+      0% { text-shadow: 2px 2px var(--error-color) }
+      25% { text-shadow: -2px 2px #00ff00 }
+      50% { text-shadow: 2px -2px #0000ff }
+      75% { text-shadow: -2px -2px var(--error-color) }
+      100% { text-shadow: 2px 2px var(--error-color) }
+    }
+
+    @keyframes scan {
+      0% { transform: translateY(-100%) }
+      100% { transform: translateY(100%) }
+    }
+  </style>
+</head>
+<body>
+  <div class="glitch-overlay"></div>
+  <div class="error-container">
+    <div class="error-code" id="errorCode">Chargement...</div>
+    <div class="error-message" id="errorMessage">Analyse de l'erreur en cours...</div>
+    <a href="/" class="back-home">Retour à l'accueil</a>
+  </div>
+
+  <script>
+    function getErrorCode() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const errorCode = urlParams.get('code');
+      return errorCode;
+    }
+
+    function updateErrorDisplay() {
+      const errorCode = getErrorCode();
+      const errorCodeElement = document.getElementById('errorCode');
+      const errorMessageElement = document.getElementById('errorMessage');
+
+      if (errorCode) {
+        errorCodeElement.textContent = `CODE D'ERREUR ${errorCode}`;
+        errorMessageElement.textContent = `L'erreur http ${errorCode} s'est produite. Veuillez réessayer ultérieurement.`;
+      } else {
+        errorCodeElement.textContent = 'CODE LYOKO';
+        errorMessageElement.textContent = `Une erreur inconnue s'est produite dans le système. XANA semble avoir corrompu les données. L'équipe technique a été notifiée et travaille sur une solution.`;
+      }
+    }
+
+    window.addEventListener('load', updateErrorDisplay);
+
+    // Ajout d'effets de corruption supplémentaires
+    setInterval(() => {
+      const container = document.querySelector('.error-container');
+      const randomOffset = Math.random() * 10 - 5;
+      container.style.transform = `translate(${randomOffset}px, ${randomOffset}px)`;
+      
+      if (Math.random() > 0.95) {
+        container.style.filter = `hue-rotate(${Math.random() * 360}deg)`;
+        setTimeout(() => {
+          container.style.filter = 'none';
+        }, 100);
+      }
+    }, 100);
+  </script>
+</body></html>

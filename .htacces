@@ -1,0 +1,24 @@
+ErrorDocument 301 /Error
+ErrorDocument 302 /Error
+ErrorDocument 305 /Error
+ErrorDocument 306 /Error
+ErrorDocument 307 /Error
+ErrorDocument 308 /Error
+ErrorDocument 310 /Error
+
+ErrorDocument 401 /Error
+ErrorDocument 403 /Error
+ErrorDocument 404 /Error
+
+ErrorDocument 500 /Error
+ErrorDocument 501 /Error
+ErrorDocument 502 /Error
+ErrorDocument 503 /Error
+ErrorDocument 504 /Error
+ErrorDocument 505 /Error
+ErrorDocument 506 /Error
+ErrorDocument 507 /Error
+ErrorDocument 508 /Error
+ErrorDocument 509 /Error
+ErrorDocument 510 /Error
+ErrorDocument 511 /Error

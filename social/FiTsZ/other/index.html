@@ -1,0 +1,135 @@
+<html><head><base href="https://ventistudio.fr/social/FiTsZ/other">
+  <title>VentiStudio - Redirection</title>
+  <style>
+    :root {
+      --primary: #8b5cf6;
+      --dark: #1a1a1a;
+      --text: #ffffff;
+      --accent: #6366f1;
+    }
+    
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: var(--text);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      background: linear-gradient(45deg, #4c00ff, #ff0051);
+      background-size: 400% 400%;
+      animation: rainbow 10s linear infinite;
+    }
+
+    @keyframes rainbow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .redirect-container {
+      text-align: center;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      max-width: 500px;
+      width: 90%;
+    }
+
+    .logo {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 1rem;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: white;
+    }
+
+    p {
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+
+    .redirect-button {
+      background: var(--accent);
+      color: white;
+      padding: 1rem 2.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .redirect-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+      background: #5558e6;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 2px;
+      margin-top: 2rem;
+      overflow: hidden;
+    }
+
+    .progress {
+      height: 100%;
+      background: var(--accent);
+      width: 0%;
+      transition: width 3s linear;
+    }
+  </style>
+</head>
+<body>
+  <div class="redirect-container">
+    <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ffffff">
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+    </svg>
+    <h1>Redirection en cours</h1>
+    <p>Vous allez être redirigé vers la page demandée dans quelques secondes...</p>
+    <div class="progress-bar">
+      <div class="progress"></div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const progress = document.querySelector('.progress');
+    progress.style.width = '100%';
+    // Récupérez l'URL actuelle
+    const currentUrl = window.location.href;
+      
+    // Trouvez la position du caractère "?"
+    const questionMarkIndex = currentUrl.indexOf('?');
+       
+    if (questionMarkIndex !== -1) {
+    // Extrait le texte après le "?"
+    const queryString = currentUrl.substring(questionMarkIndex + 1);
+          
+    // Redirigez vers l'URL Discord appropriée
+    window.location.href = `${queryString}`;
+    } else {
+    // Redirigez vers une page par défaut si aucun texte n'est trouvé après le "?"
+    window.location.href = '/error';
+      }
+    });
+  </script>
+</body></html>
