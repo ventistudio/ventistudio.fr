@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html><head><base href="https://ventistudio.fr/social/FiTsZ">
+  <meta charset="utf-8">
+  <meta name="viewport">
+  <html lang="fr"></html>
+  <link rel="icon" type="image/gif" href="favicon.png">
+  <meta property="og:title" content="Bienvenu sur VentiStudio">
+  <meta property="og:site_name" content="VentiStudio Komiyuniti">
+  <meta property="og:url" content="https://ventistudio.fr">
+  <meta property="og:description" content="Hey, je suis Hikari Umaishi (光馬石), mais je préfère que l'on m'appelle Hiuma (ヒウマ).
+Laissez-moi vous présenter ma communauté, un espace où l'art et la créativité se rencontrent.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://ventistudio.fr/favicon.gif">
+  <title>NCC-74656 VOYAGEUR - VentiStudio</title>
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      color: #fff;
+      font-family: 'Courier New', monospace;
+      overflow-x: hidden;
+    }
+
+    .content {
+      padding: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+      animation: appear 1s ease-in;
+    }
+
+    .content.distort {
+      animation: distortAndVanish 3s forwards;
+    }
+
+    .message {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      display: none;
+      font-size: 1.5rem;
+      color: #4a9eff;
+      text-shadow: 0 0 10px #4a9eff;
+      opacity: 0;
+    }
+
+    .message.show {
+      display: block;
+      animation: messageAppear 2s forwards;
+    }
+
+    @keyframes appear {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes distortAndVanish {
+      0% {
+        transform: skew(0deg);
+        filter: blur(0);
+        opacity: 1;
+      }
+      50% {
+        transform: skew(20deg);
+        filter: blur(5px);
+        opacity: 0.5;
+      }
+      100% {
+        transform: skew(45deg);
+        filter: blur(20px);
+        opacity: 0;
+      }
+    }
+
+    @keyframes messageAppear {
+      from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
+
+    h1 {
+      color: #4a9eff;
+      border-bottom: 2px solid #4a9eff;
+      padding-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <h1>NCC-74656 VOYAGEUR</h1>
+    <p>Le USS Voyager (NCC-74656) est un vaisseau spatial de classe Intrepid appartenant à la Fédération des Planètes Unies. Sous le commandement du Capitaine Kathryn Janeway, ce vaisseau s'est retrouvé projeté dans le Quadrant Delta, à plus de 70 000 années-lumière de la Terre.</p>
+    <p>Caractéristiques techniques :</p>
+    <ul>
+      <li>Longueur : 344 mètres</li>
+      <li>Équipage : 141 membres</li>
+      <li>Vitesse maximale : Distorsion 9.975</li>
+      <li>Armement : 13 batteries de phaseurs, 4 lanceurs de torpilles</li>
+    </ul>
+    <p>Le Voyager est équipé des technologies les plus avancées de Starfleet, notamment un noyau de distorsion nouvelle génération et le premier système de bio-neural intégré.</p>
+  </div>
+
+  <div class="message">
+    La page semble être passée en distortion mais a disparu dans le fin fond de la galaxie dans le quadrant delta
+  </div>
+
+  <script>
+    setTimeout(() => {
+      document.querySelector('.content').classList.add('distort');
+      setTimeout(() => {
+        document.querySelector('.message').classList.add('show');
+      }, 2000);
+    }, 15000);
+  </script>
+</body></html>
