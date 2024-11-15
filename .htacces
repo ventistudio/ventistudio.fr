@@ -1,3 +1,8 @@
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule (.*) /error
+
 ErrorDocument 301 /error
 ErrorDocument 302 /error
 ErrorDocument 305 /error
@@ -20,3 +25,14 @@ ErrorDocument 508 /error
 ErrorDocument 509 /error
 ErrorDocument 510 /error
 ErrorDocument 511 /error
+
+RemoveType x-mapp-php4 .html
+
+deny from 5.136.0.0/13
+deny from 95.24.0.0/13
+deny from 176.208.0.0/13
+deny from 178.64.0.0/13
+deny from 3.0.0.0/8
+deny from 6.0.0.0/8
+deny from 7.0.0.0/8
+allow from all

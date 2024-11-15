@@ -1,4 +1,16 @@
-<html><head><base href="https://example.com">
+<!DOCTYPE html>
+<html><head><base href="https://ventistudio.fr/social/NCC-74656">
+  <meta charset="utf-8">
+  <meta name="viewport">
+  <html lang="fr"></html>
+  <link rel="icon" type="image/gif" href="favicon.png">
+  <meta property="og:title" content="Bienvenu sur VentiStudio">
+  <meta property="og:site_name" content="VentiStudio Komiyuniti">
+  <meta property="og:url" content="https://ventistudio.fr">
+  <meta property="og:description" content="Hey, je suis Hikari Umaishi (光馬石), mais je préfère que l'on m'appelle Hiuma (ヒウマ).
+Laissez-moi vous présenter ma communauté, un espace où l'art et la créativité se rencontrent.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://ventistudio.fr/favicon.gif">
   <title>VentiStudio - Redirection</title>
   <style>
     :root {
@@ -57,7 +69,7 @@
   <div class="redirect-container">
     <div class="spinner"></div>
     <h1>Redirection en cours...</h1>
-    <p>Vous allez être redirigé vers Discord</p>
+    <p>Vous allez être redirigé.</p>
   </div>
 
   <script>
@@ -67,10 +79,10 @@
       
       if (discordCode) {
         setTimeout(() => {
-          window.location.href = `https://discord.gg/${discordCode}`;
+          window.location.href = `${discordCode}`;
         }, 1500);
       } else {
-        document.querySelector('p').textContent = 'Erreur: Code Discord manquant';
+        document.querySelector('p').textContent = 'Erreur: 404';
       }
     });
   </script>
