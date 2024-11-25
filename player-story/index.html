@@ -1,0 +1,216 @@
+<html><head><base href="https://example.com">
+  <title>VentiStudio - Livres Numériques</title>
+  <style>
+    :root {
+      --primary: #8b5cf6;
+      --dark: #1a1a1a;
+      --text: #ffffff;
+    }
+    
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--dark);
+      color: var(--text);
+    }
+
+    .navbar {
+      background: rgba(0,0,0,0.8);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: fixed;
+      width: 100%;
+      box-sizing: border-box;
+      z-index: 1000;
+    }
+
+    .logo {
+      width: 50px;
+      height: 50px;
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: rotate(360deg);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+      background: rgba(139, 92, 246, 0.1);
+    }
+
+    .books-container {
+      padding: 100px 2rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .books-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .book-card {
+      background: rgba(255,255,255,0.05);
+      border-radius: 15px;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .book-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      background: rgba(255,255,255,0.08);
+    }
+
+    .book-cover {
+      width: 100%;
+      height: 400px;
+      background: linear-gradient(45deg, var(--primary), #ec4899);
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: rgba(255,255,255,0.8);
+    }
+
+    .book-info h3 {
+      margin: 0.5rem 0;
+      color: var(--primary);
+    }
+
+    .book-info p {
+      margin: 0.5rem 0;
+      opacity: 0.8;
+    }
+
+    .read-button {
+      background: linear-gradient(45deg, var(--primary), #ec4899);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-block;
+      margin-top: 1rem;
+      transition: all 0.3s;
+    }
+
+    .read-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      background: linear-gradient(45deg, #8b5cf6, #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      
+      .books-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <img src="/a/817235f7-4a22-4997-90db-79cfd213defc" alt="Logo VentiStudio - Design circulaire noir et blanc avec symboles français et japonais" class="logo">
+    <div class="nav-links">
+      <a href="/accueil">Accueil</a>
+      <a href="/contenu-approuve">Contenu Approuvé</a>
+      <a href="/wiki">Wiki</a>
+      <a href="/staff">Staff</a>
+      <a href="/artiste">Artiste</a>
+      <a href="/pip">PIP</a>
+    </div>
+  </nav>
+
+  <div class="books-container">
+    <h1 class="section-title">Bibliothèque Numérique</h1>
+    
+    <div class="books-grid">
+      <div class="book-card">
+        <div class="book-cover">📚</div>
+        <div class="book-info">
+          <h3>L'Art de la Programmation</h3>
+          <p>Auteur: Marie Dupont</p>
+          <p>Un guide complet pour maîtriser l'art de la programmation moderne.</p>
+          <a href="/livre/programmation" class="read-button">Lire maintenant</a>
+        </div>
+      </div>
+
+      <div class="book-card">
+        <div class="book-cover">🎨</div>
+        <div class="book-info">
+          <h3>Design Numérique</h3>
+          <p>Auteur: Jean Martin</p>
+          <p>Explorez les principes fondamentaux du design numérique contemporain.</p>
+          <a href="/livre/design" class="read-button">Lire maintenant</a>
+        </div>
+      </div>
+
+      <div class="book-card">
+        <div class="book-cover">🎵</div>
+        <div class="book-info">
+          <h3>Production Musicale</h3>
+          <p>Auteur: Sophie Lambert</p>
+          <p>Découvrez les secrets de la production musicale professionnelle.</p>
+          <a href="/livre/musique" class="read-button">Lire maintenant</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    window.addEventListener('scroll', () => {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 50) {
+        navbar.style.background = 'rgba(0,0,0,0.95)';
+        navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.3)';
+      } else {
+        navbar.style.background = 'rgba(0,0,0,0.8)';
+        navbar.style.boxShadow = 'none';
+      }
+    });
+
+    document.querySelectorAll('.book-card').forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        card.style.transform = 'translateY(-10px)';
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'translateY(0)';
+      });
+    });
+  </script>
+</body></html>
