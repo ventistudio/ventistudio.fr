@@ -12,274 +12,413 @@ Laissez-moi vous présenter ma communauté, un espace où l'art et la créativit
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://ventistudio.fr/favicon.gif">
   <title>VentiStudio - Snake</title>
-  <style>
-    :root {
-      --primary: #7B66FF;
-      --secondary: #2A2D3A;
-      --background: #1A1B26;
-      --text: #FFFFFF;
-      --hover: #9F86FF;
-      --accent1: #414868;
-      --accent2: #565f89;
-    }
+<style>
+  :root {
+    --primary: #7B66FF;
+    --secondary: #2A2D3A;
+    --background: #1A1B26;
+    --text: #FFFFFF;
+    --hover: #9F86FF;
+    --accent1: #414868;
+    --accent2: #565f89;
+    --snake-head: #b9aefd;
+    --snake-body: #7B66FF;
+    --power-speed: #FFD700;
+    --power-wall: #00FF00;
+    --power-points: #FF1493;
+  }
 
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: var(--background);
-      color: var(--text);
-      font-family: 'Inter', sans-serif;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--background);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 
-    #game-container {
-      position: relative;
-      width: 600px;
-      height: 400px;
-      margin: 20px auto;
-    }
+  #game-container {
+    position: relative;
+    width: 600px;
+    height: 400px;
+    margin: 20px auto;
+  }
 
-    canvas {
-      border: 2px solid var(--primary);
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(123, 102, 255, 0.3);
-    }
+  canvas {
+    border: 2px solid var(--primary);
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(123, 102, 255, 0.3);
+  }
 
-    .score {
-      position: absolute;
-      top: -40px;
-      left: 0;
-      font-size: 1.5em;
-      color: var(--text);
-    }
+  .score {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    font-size: 1.5em;
+    color: var(--text);
+  }
 
-    .controls {
-      margin-top: 20px;
-      text-align: center;
-    }
+  .power-ups {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    font-size: 1.2em;
+    color: var(--text);
+  }
 
-    .speed-controls {
-      margin: 20px 0;
-      text-align: center;
-    }
+  .controls {
+    margin-top: 20px;
+    text-align: center;
+  }
 
-    .btn {
-      background: var(--primary);
-      color: var(--text);
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 1.1em;
-      margin: 0 10px;
-      transition: all 0.3s ease;
-    }
+  .options {
+    margin: 20px 0;
+    text-align: center;
+  }
 
-    .btn:hover {
-      background: var(--hover);
-      transform: translateY(-2px);
-    }
+  .btn {
+    background: var(--primary);
+    color: var(--text);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    margin: 0 10px;
+    transition: all 0.3s ease;
+  }
 
-    .btn.active {
-      background: var(--hover);
-      box-shadow: 0 0 10px rgba(159, 134, 255, 0.5);
-    }
+  .btn:hover {
+    background: var(--hover);
+    transform: translateY(-2px);
+  }
 
-    .game-over {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: rgba(42, 45, 58, 0.9);
-      padding: 20px;
-      border-radius: 10px;
-      text-align: center;
-      display: none;
-    }
+  .btn.active {
+    background: var(--hover);
+    box-shadow: 0 0 10px rgba(159, 134, 255, 0.5);
+  }
 
-    .instructions {
-      margin-top: 20px;
-      text-align: center;
-      color: var(--accent2);
-    }
-  </style>
+  .game-over {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(42, 45, 58, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    display: none;
+  }
+
+  .instructions {
+    margin-top: 20px;
+    text-align: center;
+    color: var(--accent2);
+  }
+
+  #powerUpStatus {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 10px;
+  }
+
+  .power-indicator {
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: none;
+  }
+</style>
 </head>
 <body>
-  <div id="game-container">
-    <div class="score">Score: <span id="score">0</span></div>
-    <canvas id="gameCanvas" width="600" height="400"></canvas>
-    <div id="gameOver" class="game-over">
-      <h2>Game Over!</h2>
-      <p>Score final: <span id="finalScore">0</span></p>
-      <button class="btn" onclick="restartGame()">Rejouer</button>
-    </div>
+<div id="game-container">
+  <div class="score">Score: <span id="score">0</span></div>
+  <div class="power-ups" id="powerUpStatus">
+    <span class="power-indicator" id="speedBoost" style="background: var(--power-speed)">Vitesse</span>
+    <span class="power-indicator" id="wallPass" style="background: var(--power-wall)">Mur</span>
   </div>
-  
-  <div class="speed-controls">
-    <button class="btn speed-btn" data-speed="slow">Lent (x1)</button>
-    <button class="btn speed-btn active" data-speed="normal">Normal (x2)</button>
-    <button class="btn speed-btn" data-speed="fast">Rapide (x3)</button>
+  <canvas id="gameCanvas" width="600" height="400"></canvas>
+  <div id="gameOver" class="game-over">
+    <h2>Game Over!</h2>
+    <p>Score final: <span id="finalScore">0</span></p>
+    <button class="btn" onclick="restartGame()">Rejouer</button>
   </div>
+</div>
 
-  <div class="controls">
-    <button class="btn" onclick="startGame()">Nouvelle Partie</button>
-    <button class="btn" onclick="pauseGame()">Pause</button>
-  </div>
+<div class="options">
+  <button class="btn speed-btn" data-speed="slow">Lent (x1)</button>
+  <button class="btn speed-btn active" data-speed="normal">Normal (x2)</button>
+  <button class="btn speed-btn" data-speed="fast">Rapide (x3)</button>  
+  <button class="btn speed-btn" data-speed="fast">Pro (x5)</button>  
+  <button class="btn" id="myrtilleBtn">Mode Myrtille</button>
+</div>
 
-  <div class="instructions">
-    <p>Utilisez les flèches directionnelles pour diriger le serpent</p>
-  </div>
+<div class="controls">
+  <button class="btn" onclick="startGame()">Nouvelle Partie</button>
+  <button class="btn" onclick="pauseGame()">Pause</button>
+</div>
 
-  <script>
-    const canvas = document.getElementById('gameCanvas');
-    const ctx = canvas.getContext('2d');
-    let snake = [];
-    let food = {};
-    let direction = 'right';
-    let gameLoop;
-    let score = 0;
-    let isPaused = false;
-    const gridSize = 20;
+<div class="instructions">
+  <p>Utilisez les flèches directionnelles pour diriger le serpent</p>
+  <p>🟡 Bonus de vitesse | 🟢 Traverser les murs | 💗 Points bonus</p>
+</div>
 
-    const speeds = {
-      slow: { interval: 150, points: 10, label: 'Lent' },
-      normal: { interval: 100, points: 20, label: 'Normal' },
-      fast: { interval: 50, points: 30, label: 'Rapide' }
+<script>
+  const canvas = document.getElementById('gameCanvas');
+  const ctx = canvas.getContext('2d');
+  let snake = [];
+  let foods = [];
+  let direction = 'right';
+  let gameLoop;
+  let score = 0;
+  let isPaused = false;
+  const gridSize = 20;
+  let myrtilleMode = false;
+  let hasSpeedBoost = false;
+  let hasWallPass = false;
+
+  const speeds = {
+    slow: { interval: 150, points: 10 },
+    normal: { interval: 100, points: 20 },
+    fast: { interval: 50, points: 30 },
+    pro: { interval: 25, points: 50 },
+  };
+  let currentSpeed = 'normal';
+  let currentInterval = speeds.normal.interval;
+
+  const powerUps = {
+    speed: { color: '#FFD700', duration: 5000, probability: 0.5 },
+    wall: { color: '#00FF00', duration: 8000, probability: 0. },
+    points: { color: '#FF1493', points: 50, probability: 0.6 }
+  };
+
+  function initGame() {
+    snake = [
+      {x: 300, y: 200},
+      {x: 280, y: 200},
+      {x: 260, y: 200}
+    ];
+    direction = 'right';
+    score = 0;
+    foods = [];
+    createFood();
+    document.getElementById('score').textContent = score;
+    updatePowerUpDisplay();
+  }
+
+  function createFood() {
+    const powerUpType = Math.random() < 0.3 ? getRandomPowerUp() : 'normal';
+    const newFood = {
+      x: Math.floor(Math.random() * (canvas.width / gridSize)) * gridSize,
+      y: Math.floor(Math.random() * (canvas.height / gridSize)) * gridSize,
+      type: powerUpType
     };
-    let currentSpeed = 'normal';
+    foods.push(newFood);
+  }
 
-    function initGame() {
-      snake = [
-        {x: 300, y: 200},
-        {x: 280, y: 200},
-        {x: 260, y: 200}
-      ];
-      direction = 'right';
-      score = 0;
+  function getRandomPowerUp() {
+    const rand = Math.random();
+    if (rand < powerUps.speed.probability) return 'speed';
+    if (rand < powerUps.speed.probability + powerUps.wall.probability) return 'wall';
+    if (rand < powerUps.speed.probability + powerUps.wall.probability + powerUps.points.probability) return 'points';
+    return 'normal';
+  }
+
+  function drawGame() {
+    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--background');
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Draw snake
+    snake.forEach((segment, index) => {
+      if (index === 0) {
+        ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--snake-head');
+      } else {
+        ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--snake-body');
+      }
+      ctx.fillRect(segment.x, segment.y, gridSize - 2, gridSize - 2);
+    });
+
+    // Draw foods
+    foods.forEach(food => {
+      switch(food.type) {
+        case 'speed':
+          ctx.fillStyle = powerUps.speed.color;
+          break;
+        case 'wall':
+          ctx.fillStyle = powerUps.wall.color;
+          break;
+        case 'points':
+          ctx.fillStyle = powerUps.points.color;
+          break;
+        default:
+          ctx.fillStyle = '#FF6B6B';
+      }
+      ctx.fillRect(food.x, food.y, gridSize - 2, gridSize - 2);
+    });
+  }
+
+  function moveSnake() {
+    const head = {x: snake[0].x, y: snake[0].y};
+
+    switch(direction) {
+      case 'right': head.x += gridSize; break;
+      case 'left': head.x -= gridSize; break;
+      case 'up': head.y -= gridSize; break;
+      case 'down': head.y += gridSize; break;
+    }
+
+    // Wall collision check with wall pass power-up
+    if (hasWallPass) {
+      if (head.x >= canvas.width) head.x = 0;
+      if (head.x < 0) head.x = canvas.width - gridSize;
+      if (head.y >= canvas.height) head.y = 0;
+      if (head.y < 0) head.y = canvas.height - gridSize;
+    } else if (head.x >= canvas.width || head.x < 0 || head.y >= canvas.height || head.y < 0) {
+      gameOver();
+      return;
+    }
+
+    // Self collision check with myrtille mode
+    if (!myrtilleMode && snake.some(segment => segment.x === head.x && segment.y === head.y)) {
+      gameOver();
+      return;
+    }
+
+    snake.unshift(head);
+
+    // Food collision check
+    const foodIndex = foods.findIndex(food => food.x === head.x && food.y === head.y);
+    if (foodIndex !== -1) {
+      const food = foods[foodIndex];
+      foods.splice(foodIndex, 1);
+      
+      switch(food.type) {
+        case 'speed':
+          activateSpeedBoost();
+          break;
+        case 'wall':
+          activateWallPass();
+          break;
+        case 'points':
+          score += powerUps.points.points;
+          break;
+        default:
+          score += speeds[currentSpeed].points;
+      }
+      
       document.getElementById('score').textContent = score;
       createFood();
+    } else {
+      snake.pop();
     }
+  }
 
-    function createFood() {
-      food = {
-        x: Math.floor(Math.random() * (canvas.width / gridSize)) * gridSize,
-        y: Math.floor(Math.random() * (canvas.height / gridSize)) * gridSize
-      };
-    }
+  function activateSpeedBoost() {
+    hasSpeedBoost = true;
+    currentInterval = speeds[currentSpeed].interval / 2;
+    updateGameSpeed();
+    document.getElementById('speedBoost').style.display = 'inline-block';
+    setTimeout(() => {
+      hasSpeedBoost = false;
+      currentInterval = speeds[currentSpeed].interval;
+      updateGameSpeed();
+      document.getElementById('speedBoost').style.display = 'none';
+    }, powerUps.speed.duration);
+  }
 
-    function drawGame() {
-      ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--background');
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+  function activateWallPass() {
+    hasWallPass = true;
+    document.getElementById('wallPass').style.display = 'inline-block';
+    setTimeout(() => {
+      hasWallPass = false;
+      document.getElementById('wallPass').style.display = 'none';
+    }, powerUps.wall.duration);
+  }
 
-      snake.forEach((segment, index) => {
-        if (index === 0) {
-          ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--hover');
-        } else {
-          ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--primary');
-        }
-        ctx.fillRect(segment.x, segment.y, gridSize - 2, gridSize - 2);
-      });
+  function updatePowerUpDisplay() {
+    document.getElementById('speedBoost').style.display = hasSpeedBoost ? 'inline-block' : 'none';
+    document.getElementById('wallPass').style.display = hasWallPass ? 'inline-block' : 'none';
+  }
 
-      ctx.fillStyle = '#FF6B6B';
-      ctx.fillRect(food.x, food.y, gridSize - 2, gridSize - 2);
-    }
-
-    function moveSnake() {
-      const head = {x: snake[0].x, y: snake[0].y};
-
-      switch(direction) {
-        case 'right': head.x += gridSize; break;
-        case 'left': head.x -= gridSize; break;
-        case 'up': head.y -= gridSize; break;
-        case 'down': head.y += gridSize; break;
-      }
-
-      if (head.x >= canvas.width || head.x < 0 || head.y >= canvas.height || head.y < 0) {
-        gameOver();
-        return;
-      }
-
-      if (snake.some(segment => segment.x === head.x && segment.y === head.y)) {
-        gameOver();
-        return;
-      }
-
-      snake.unshift(head);
-
-      if (head.x === food.x && head.y === food.y) {
-        score += speeds[currentSpeed].points;
-        document.getElementById('score').textContent = score;
-        createFood();
-      } else {
-        snake.pop();
-      }
-    }
-
-    function gameOver() {
+  function updateGameSpeed() {
+    if (gameLoop) {
       clearInterval(gameLoop);
-      document.getElementById('gameOver').style.display = 'block';
-      document.getElementById('finalScore').textContent = score;
-    }
-
-    function startGame() {
-      document.getElementById('gameOver').style.display = 'none';
-      initGame();
-      if (gameLoop) clearInterval(gameLoop);
       gameLoop = setInterval(() => {
         if (!isPaused) {
           moveSnake();
           drawGame();
         }
-      }, speeds[currentSpeed].interval);
+      }, currentInterval);
     }
+  }
 
-    function restartGame() {
-      startGame();
-    }
+  function gameOver() {
+    clearInterval(gameLoop);
+    document.getElementById('gameOver').style.display = 'block';
+    document.getElementById('finalScore').textContent = score;
+  }
 
-    function pauseGame() {
-      isPaused = !isPaused;
-    }
+  function startGame() {
+    document.getElementById('gameOver').style.display = 'none';
+    initGame();
+    if (gameLoop) clearInterval(gameLoop);
+    gameLoop = setInterval(() => {
+      if (!isPaused) {
+        moveSnake();
+        drawGame();
+      }
+    }, currentInterval);
+  }
 
-    // Speed control buttons
-    document.querySelectorAll('.speed-btn').forEach(button => {
-      button.addEventListener('click', function() {
-        document.querySelectorAll('.speed-btn').forEach(btn => btn.classList.remove('active'));
-        this.classList.add('active');
-        currentSpeed = this.dataset.speed;
-        if (gameLoop) {
-          clearInterval(gameLoop);
-          gameLoop = setInterval(() => {
-            if (!isPaused) {
-              moveSnake();
-              drawGame();
-            }
-          }, speeds[currentSpeed].interval);
-        }
-      });
-    });
+  function restartGame() {
+    startGame();
+  }
 
-    document.addEventListener('keydown', (e) => {
-      switch(e.key) {
-        case 'ArrowRight':
-          if (direction !== 'left') direction = 'right';
-          break;
-        case 'ArrowLeft':
-          if (direction !== 'right') direction = 'left';
-          break;
-        case 'ArrowUp':
-          if (direction !== 'down') direction = 'up';
-          break;
-        case 'ArrowDown':
-          if (direction !== 'up') direction = 'down';
-          break;
+  function pauseGame() {
+    isPaused = !isPaused;
+  }
+
+  // Speed control buttons
+  document.querySelectorAll('.speed-btn').forEach(button => {
+    button.addEventListener('click', function() {
+      document.querySelectorAll('.speed-btn').forEach(btn => btn.classList.remove('active'));
+      this.classList.add('active');
+      currentSpeed = this.dataset.speed;
+      currentInterval = speeds[currentSpeed].interval;
+      if (!hasSpeedBoost) {
+        updateGameSpeed();
       }
     });
-    startGame();
-  </script>
+  });
+
+  // Myrtille mode toggle
+  document.getElementById('myrtilleBtn').addEventListener('click', function() {
+    myrtilleMode = !myrtilleMode;
+    this.classList.toggle('active');
+  });
+
+  document.addEventListener('keydown', (e) => {
+    switch(e.key) {
+      case 'ArrowRight':
+        if (direction !== 'left') direction = 'right';
+        break;
+      case 'ArrowLeft':
+        if (direction !== 'right') direction = 'left';
+        break;
+      case 'ArrowUp':
+        if (direction !== 'down') direction = 'up';
+        break;
+      case 'ArrowDown':
+        if (direction !== 'up') direction = 'down';
+        break;
+    }
+  });
+
+  startGame();
+</script>
 </body>
 </html>
