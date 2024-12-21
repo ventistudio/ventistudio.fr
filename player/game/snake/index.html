@@ -62,6 +62,11 @@ Laissez-moi vous présenter ma communauté, un espace où l'art et la créativit
       text-align: center;
     }
 
+    .speed-controls {
+      margin: 20px 0;
+      text-align: center;
+    }
+
     .btn {
       background: var(--primary);
       color: var(--text);
@@ -77,6 +82,11 @@ Laissez-moi vous présenter ma communauté, un espace où l'art et la créativit
     .btn:hover {
       background: var(--hover);
       transform: translateY(-2px);
+    }
+
+    .btn.active {
+      background: var(--hover);
+      box-shadow: 0 0 10px rgba(159, 134, 255, 0.5);
     }
 
     .game-over {
@@ -109,6 +119,12 @@ Laissez-moi vous présenter ma communauté, un espace où l'art et la créativit
     </div>
   </div>
   
+  <div class="speed-controls">
+    <button class="btn speed-btn" data-speed="slow">Lent (x1)</button>
+    <button class="btn speed-btn active" data-speed="normal">Normal (x2)</button>
+    <button class="btn speed-btn" data-speed="fast">Rapide (x3)</button>
+  </div>
+
   <div class="controls">
     <button class="btn" onclick="startGame()">Nouvelle Partie</button>
     <button class="btn" onclick="pauseGame()">Pause</button>
@@ -128,7 +144,13 @@ Laissez-moi vous présenter ma communauté, un espace où l'art et la créativit
     let score = 0;
     let isPaused = false;
     const gridSize = 20;
-    const speed = 100;
+
+    const speeds = {
+      slow: { interval: 150, points: 10, label: 'Lent' },
+      normal: { interval: 100, points: 20, label: 'Normal' },
+      fast: { interval: 50, points: 30, label: 'Rapide' }
+    };
+    let currentSpeed = 'normal';
 
     function initGame() {
       snake = [
@@ -150,11 +172,9 @@ Laissez-moi vous présenter ma communauté, un espace où l'art et la créativit
     }
 
     function drawGame() {
-      // Clear canvas
       ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--background');
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      // Draw snake
       snake.forEach((segment, index) => {
         if (index === 0) {
           ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--hover');
@@ -164,7 +184,6 @@ Laissez-moi vous présenter ma communauté, un espace où l'art et la créativit
         ctx.fillRect(segment.x, segment.y, gridSize - 2, gridSize - 2);
       });
 
-      // Draw food
       ctx.fillStyle = '#FF6B6B';
       ctx.fillRect(food.x, food.y, gridSize - 2, gridSize - 2);
     }
@@ -179,13 +198,11 @@ Laissez-moi vous présenter ma communauté, un espace où l'art et la créativit
         case 'down': head.y += gridSize; break;
       }
 
-      // Check collision with walls
       if (head.x >= canvas.width || head.x < 0 || head.y >= canvas.height || head.y < 0) {
         gameOver();
         return;
       }
 
-      // Check collision with self
       if (snake.some(segment => segment.x === head.x && segment.y === head.y)) {
         gameOver();
         return;
@@ -193,9 +210,8 @@ Laissez-moi vous présenter ma communauté, un espace où l'art et la créativit
 
       snake.unshift(head);
 
-      // Check if food is eaten
       if (head.x === food.x && head.y === food.y) {
-        score += 10;
+        score += speeds[currentSpeed].points;
         document.getElementById('score').textContent = score;
         createFood();
       } else {
@@ -218,7 +234,7 @@ Laissez-moi vous présenter ma communauté, un espace où l'art et la créativit
           moveSnake();
           drawGame();
         }
-      }, speed);
+      }, speeds[currentSpeed].interval);
     }
 
     function restartGame() {
@@ -228,6 +244,24 @@ Laissez-moi vous présenter ma communauté, un espace où l'art et la créativit
     function pauseGame() {
       isPaused = !isPaused;
     }
+
+    // Speed control buttons
+    document.querySelectorAll('.speed-btn').forEach(button => {
+      button.addEventListener('click', function() {
+        document.querySelectorAll('.speed-btn').forEach(btn => btn.classList.remove('active'));
+        this.classList.add('active');
+        currentSpeed = this.dataset.speed;
+        if (gameLoop) {
+          clearInterval(gameLoop);
+          gameLoop = setInterval(() => {
+            if (!isPaused) {
+              moveSnake();
+              drawGame();
+            }
+          }, speeds[currentSpeed].interval);
+        }
+      });
+    });
 
     document.addEventListener('keydown', (e) => {
       switch(e.key) {
@@ -245,8 +279,7 @@ Laissez-moi vous présenter ma communauté, un espace où l'art et la créativit
           break;
       }
     });
-
-    // Initialize the game when the page loads
     startGame();
   </script>
-</body></html>
+</body>
+</html>
