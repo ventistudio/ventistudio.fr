@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html><head><base href="https://ventistudio.fr/player/game/pacman">
+  <meta charset="utf-8">
+  <meta name="viewport">
+  <html lang="fr"></html>
+  <link rel="icon" type="image/png" href="favicon.ico">
+  <meta property="og:title" content="Bienvenu sur VentiStudio">
+  <meta property="og:site_name" content="VentiStudio Komiyuniti">
+  <meta property="og:url" content="https://ventistudio.fr">
+  <meta property="og:description" content="Hey, je suis Hikari Umaishi (光馬石), mais je préfère que l'on m'appelle Hiuma (ヒウマ).
+Laissez-moi vous présenter ma communauté, un espace où l'art et la créativité se rencontrent.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://ventistudio.fr/favicon.gif">
+  <title>VentiStudio - Pacman</title>
+<style>
+:root {
+  --primary: #7B66FF;
+  --secondary: #2A2D3A;
+  --background: #1A1B26;
+  --text: #FFFFFF;
+  --hover: #9F86FF;
+  --accent1: #414868;
+  --accent2: #565f89;
+  --pacman-yellow: #ffeb3b;
+  --ghost-red: #ff0000;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--background);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+#game-container {
+  margin: 20px;
+  position: relative;
+}
+
+#game-board {
+  background: black;
+  border: 3px solid var(--primary);
+  border-radius: 10px;
+}
+
+.wall {
+  background: blue;
+}
+
+.score-panel {
+  background: var(--secondary);
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px 0;
+  text-align: center;
+  font-size: 24px;
+}
+
+.controls {
+  margin: 20px 0;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.control-btn {
+  background: var(--primary);
+  border: none;
+  padding: 15px 30px;
+  border-radius: 25px;
+  color: var(--text);
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.control-btn:hover {
+  background: var(--hover);
+  transform: scale(1.05);
+}
+
+@media (max-width: 600px) {
+  #game-board {
+    width: 90vw !important;
+    height: 90vw !important;
+  }
+}
+</style>
+</head>
+<body>
+  <div class="score-panel">
+    Score: <span id="score">0</span>
+  </div>
+  
+  <div id="game-container">
+    <canvas id="game-board" width="400" height="400"></canvas>
+    <div id="game-over" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0,0,0,0.8); padding: 20px; border-radius: 10px; text-align: center;">
+      <h2>Game Over!</h2>
+      <p>Score: <span id="final-score">0</span></p>
+      <button class="control-btn" id="restart-btn">Play Again</button>
+    </div>
+  </div>
+  
+  <div class="controls">
+    <button class="control-btn" id="start-btn">Start Game</button>
+    <button class="control-btn" id="pause-btn">Pause</button>
+    <button class="control-btn" id="reset-btn">Reset</button>
+  </div>
+
+<script>const canvas = document.getElementById('game-board');
+const ctx = canvas.getContext('2d');
+const scoreElement = document.getElementById('score');
+const startBtn = document.getElementById('start-btn');
+const pauseBtn = document.getElementById('pause-btn');
+const resetBtn = document.getElementById('reset-btn');
+const gameOverScreen = document.getElementById('game-over');
+const finalScoreElement = document.getElementById('final-score');
+const restartBtn = document.getElementById('restart-btn');
+const GRID_SIZE = 20;
+const CELL_SIZE = canvas.width / GRID_SIZE;
+let score = 0;
+let gameLoop;
+let isPaused = false;
+let powerMode = false;
+let powerModeTimer = null;
+class Pacman {
+  constructor() {
+    this.x = CELL_SIZE;
+    this.y = CELL_SIZE;
+    this.direction = 'right';
+    this.nextDirection = 'right';
+    this.mouthOpen = true;
+    this.speed = CELL_SIZE;
+  }
+  draw() {
+    ctx.beginPath();
+    ctx.fillStyle = 'yellow';
+    const centerX = this.x + CELL_SIZE / 2;
+    const centerY = this.y + CELL_SIZE / 2;
+    const radius = CELL_SIZE / 2;
+    let startAngle, endAngle;
+    if (this.mouthOpen) {
+      switch (this.direction) {
+        case 'right':
+          startAngle = 0.2;
+          endAngle = 1.8 * Math.PI;
+          break;
+        case 'left':
+          startAngle = 1.2 * Math.PI;
+          endAngle = 0.8 * Math.PI;
+          break;
+        case 'up':
+          startAngle = 1.7 * Math.PI;
+          endAngle = 1.3 * Math.PI;
+          break;
+        case 'down':
+          startAngle = 0.7 * Math.PI;
+          endAngle = 0.3 * Math.PI;
+          break;
+      }
+    } else {
+      startAngle = 0;
+      endAngle = 2 * Math.PI;
+    }
+    ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+    ctx.lineTo(centerX, centerY);
+    ctx.fill();
+    ctx.closePath();
+  }
+  move() {
+    switch (this.direction) {
+      case 'right':
+        this.x += this.speed;
+        break;
+      case 'left':
+        this.x -= this.speed;
+        break;
+      case 'up':
+        this.y -= this.speed;
+        break;
+      case 'down':
+        this.y += this.speed;
+        break;
+    }
+    if (this.x >= canvas.width) this.x = 0;
+    if (this.x < 0) this.x = canvas.width - CELL_SIZE;
+    if (this.y >= canvas.height) this.y = 0;
+    if (this.y < 0) this.y = canvas.height - CELL_SIZE;
+    this.mouthOpen = !this.mouthOpen;
+  }
+}
+class Ghost {
+  constructor(color, behavior, startX, startY) {
+    this.x = startX;
+    this.y = startY;
+    this.color = color;
+    this.behavior = behavior;
+    this.speed = CELL_SIZE * 1.1;
+    this.direction = 'left';
+  }
+  draw() {
+    ctx.beginPath();
+    ctx.fillStyle = powerMode ? 'blue' : this.color;
+    ctx.arc(this.x + CELL_SIZE / 2, this.y + CELL_SIZE / 2, CELL_SIZE / 2, Math.PI, 0, false);
+    ctx.lineTo(this.x + CELL_SIZE, this.y + CELL_SIZE);
+    ctx.lineTo(this.x, this.y + CELL_SIZE);
+    ctx.closePath();
+    ctx.fill();
+    ctx.fillStyle = 'white';
+    ctx.beginPath();
+    ctx.arc(this.x + CELL_SIZE / 3, this.y + CELL_SIZE / 2, CELL_SIZE / 6, 0, Math.PI * 2);
+    ctx.arc(this.x + CELL_SIZE / 3 * 2, this.y + CELL_SIZE / 2, CELL_SIZE / 6, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = 'black';
+    ctx.beginPath();
+    ctx.arc(this.x + CELL_SIZE / 3, this.y + CELL_SIZE / 2, CELL_SIZE / 10, 0, Math.PI * 2);
+    ctx.arc(this.x + CELL_SIZE / 3 * 2, this.y + CELL_SIZE / 2, CELL_SIZE / 10, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  move(pacman) {
+    let targetX = pacman.x;
+    let targetY = pacman.y;
+    if (this.behavior === 'chase' && !powerMode) {
+      const distance = Math.sqrt(Math.pow(pacman.x - this.x, 2) + Math.pow(pacman.y - this.y, 2));
+      if (distance <= CELL_SIZE * 7) {
+        targetX = pacman.x;
+        targetY = pacman.y;
+      } else {
+        if (Math.random() < 0.1) {
+          targetX = Math.random() * canvas.width;
+          targetY = Math.random() * canvas.height;
+        }
+      }
+    } else if (this.behavior === 'predict' && !powerMode) {
+      const distance = Math.sqrt(Math.pow(pacman.x - this.x, 2) + Math.pow(pacman.y - this.y, 2));
+      if (distance <= CELL_SIZE * 10) {
+        switch (pacman.direction) {
+          case 'right':
+            targetX = pacman.x + CELL_SIZE * 6;
+            break;
+          case 'left':
+            targetX = pacman.x - CELL_SIZE * 6;
+            break;
+          case 'up':
+            targetY = pacman.y - CELL_SIZE * 6;
+            break;
+          case 'down':
+            targetY = pacman.y + CELL_SIZE * 6;
+            break;
+        }
+      } else {
+        if (Math.random() < 0.1) {
+          targetX = Math.random() * canvas.width;
+          targetY = Math.random() * canvas.height;
+        }
+      }
+    } else if (powerMode) {
+      targetX = this.x + (this.x - pacman.x);
+      targetY = this.y + (this.y - pacman.y);
+    }
+    let nextX = this.x;
+    let nextY = this.y;
+    const dx = targetX - this.x;
+    const dy = targetY - this.y;
+    if (Math.abs(dx) > Math.abs(dy)) {
+      nextX += dx > 0 ? this.speed : -this.speed;
+    } else {
+      nextY += dy > 0 ? this.speed : -this.speed;
+    }
+    if (nextX >= 0 && nextX <= canvas.width - CELL_SIZE) {
+      this.x = nextX;
+    }
+    if (nextY >= 0 && nextY <= canvas.height - CELL_SIZE) {
+      this.y = nextY;
+    }
+  }
+}
+class Dot {
+  constructor(x, y, isPowerDot = false) {
+    this.x = x;
+    this.y = y;
+    this.isEaten = false;
+    this.isPowerDot = isPowerDot;
+  }
+  draw() {
+    if (!this.isEaten) {
+      ctx.beginPath();
+      ctx.fillStyle = 'white';
+      const radius = this.isPowerDot ? CELL_SIZE / 3 : CELL_SIZE / 8;
+      ctx.arc(this.x + CELL_SIZE / 2, this.y + CELL_SIZE / 2, radius, 0, 2 * Math.PI);
+      ctx.fill();
+      ctx.closePath();
+    }
+  }
+}
+let pacman = new Pacman();
+let ghosts = [new Ghost('red', 'chase', canvas.width - CELL_SIZE * 2, CELL_SIZE * 2), new Ghost('pink', 'predict', canvas.width - CELL_SIZE * 2, canvas.height - CELL_SIZE * 2)];
+let dots = [];
+function initializeDots() {
+  dots = [];
+  for (let y = 0; y < GRID_SIZE; y++) {
+    for (let x = 0; x < GRID_SIZE; x++) {
+      if (x % 2 === 0 && y % 2 === 0) {
+        const isPowerDot = (x === 0 || x === GRID_SIZE - 2) && (y === 0 || y === GRID_SIZE - 2);
+        dots.push(new Dot(x * CELL_SIZE, y * CELL_SIZE, isPowerDot));
+      }
+    }
+  }
+}
+function checkCollisions() {
+  dots.forEach(dot => {
+    if (!dot.isEaten && pacman.x === dot.x && pacman.y === dot.y) {
+      dot.isEaten = true;
+      if (dot.isPowerDot) {
+        powerMode = true;
+        if (powerModeTimer) clearTimeout(powerModeTimer);
+        powerModeTimer = setTimeout(() => {
+          powerMode = false;
+        }, 10000);
+        score += 50;
+      } else {
+        score += 10;
+      }
+      scoreElement.textContent = score;
+    }
+  });
+  ghosts.forEach(ghost => {
+    const distance = Math.sqrt(Math.pow(ghost.x - pacman.x, 2) + Math.pow(pacman.y - ghost.y, 2));
+    if (distance < CELL_SIZE) {
+      if (powerMode) {
+        ghost.x = canvas.width - CELL_SIZE * 2;
+        ghost.y = canvas.height - CELL_SIZE * 2;
+        score += 200;
+        scoreElement.textContent = score;
+      } else {
+        clearInterval(gameLoop);
+        showGameOver();
+      }
+    }
+  });
+}
+function gameUpdate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.strokeStyle = 'blue';
+  ctx.lineWidth = 2;
+  ctx.strokeRect(0, 0, canvas.width, canvas.height);
+  dots.forEach(dot => dot.draw());
+  ghosts.forEach(ghost => {
+    ghost.move(pacman);
+    ghost.draw();
+  });
+  pacman.move();
+  pacman.draw();
+  checkCollisions();
+}
+function showGameOver() {
+  gameOverScreen.style.display = 'block';
+  finalScoreElement.textContent = score;
+}
+function resetGame() {
+  score = 0;
+  scoreElement.textContent = score;
+  powerMode = false;
+  if (powerModeTimer) clearTimeout(powerModeTimer);
+  if (gameLoop) clearInterval(gameLoop);
+  pacman = new Pacman();
+  ghosts = [
+    new Ghost('red', 'chase', canvas.width - CELL_SIZE * 2, CELL_SIZE * 2),
+    new Ghost('pink', 'predict', canvas.width - CELL_SIZE * 2, canvas.height - CELL_SIZE * 2)
+  ];
+  gameOverScreen.style.display = 'none';
+  initializeDots();
+  gameLoop = setInterval(gameUpdate, 200);
+}
+document.addEventListener('keydown', e => {
+  switch (e.key) {
+    case 'ArrowRight':
+      pacman.direction = 'right';
+      break;
+    case 'ArrowLeft':
+      pacman.direction = 'left';
+      break;
+    case 'ArrowUp':
+      pacman.direction = 'up';
+      break;
+    case 'ArrowDown':
+      pacman.direction = 'down';
+      break;
+  }
+});
+startBtn.addEventListener('click', resetGame);
+pauseBtn.addEventListener('click', () => {
+  if (isPaused) {
+    gameLoop = setInterval(gameUpdate, 200);
+    pauseBtn.textContent = 'Pause';
+  } else {
+    clearInterval(gameLoop);
+    pauseBtn.textContent = 'Resume';
+  }
+  isPaused = !isPaused;
+});
+resetBtn.addEventListener('click', resetGame);
+restartBtn.addEventListener('click', resetGame);
+initializeDots();
+pacman.draw();
+</script>
+
+</body></html>

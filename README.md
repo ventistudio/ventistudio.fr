@@ -1,37 +1,40 @@
-# VentiStudio : Une Plateforme 100% Open Source
+# VentiStudio : Une Plateforme Sécurisée et Transparente avec un Code 100% Open Source
 
-Bienvenue dans l'univers de **VentiStudio**, une plateforme innovante entièrement dédiée à l'open source et à la liberté numérique.
+**Umaishi Corp** est fier de vous présenter le code source de **VentiStudio.fr**, une plateforme innovante développée par RushKA, une filiale de l’Umaishi Corp.
 
-## Qu'est-ce que VentiStudio ?
+## VentiStudio, c'est quoi ?
 
-VentiStudio est bien plus qu'une simple plateforme. C'est un écosystème complet conçu pour offrir une expérience en ligne sécurisée, privée et totalement transparente. 
-Notre plateforme intègre des fonctionnalités variées.
+VentiStudio, ce n’est pas juste une plateforme : c’est un véritable écosystème pensé pour garantir une expérience en ligne sécurisée, respectueuse de votre vie privée et totalement transparente.  
+Avec des fonctionnalités variées et un code entièrement **open source**, nous nous engageons à offrir le meilleur à nos utilisateurs.
 
-## Pourquoi VentiStudio est-il totalement open source ?
+## Pourquoi avons-nous choisi l'Open Source ?
 
-Chez VentiStudio, nous croyons fermement en la puissance et l'importance de l'open source. 
-Voici pourquoi :
+Chez VentiStudio, nous croyons profondément aux valeurs de l'open source. Même si le contenu (hors code) de notre plateforme reste protégé par le droit d'auteur, notre choix de rendre le code accessible repose sur plusieurs raisons :
 
-1. **Transparence** : En étant open source, chaque ligne de notre code est accessible au public. 
-Cela signifie que n'importe qui peut examiner comment fonctionne notre plateforme, garantissant une totale transparence.
+1. **Transparence totale**  
+   En rendant chaque ligne de notre code visible, nous permettons à tous de comprendre le fonctionnement de la plateforme. Rien n’est caché.
 
-2. **Sécurité** : Avec de nombreux yeux sur notre code, les failles de sécurité potentielles peuvent être identifiées et corrigées rapidement. 
-Cela rend notre plateforme plus sûre pour tous les utilisateurs.
+2. **Sécurité renforcée**  
+   Grâce à la contribution de développeurs du monde entier, les éventuelles vulnérabilités sont rapidement détectées et corrigées, offrant une sécurité optimale à nos utilisateurs.
 
-3. **Innovation collaborative** : L'open source permet à des développeurs du monde entier de contribuer, apportant de nouvelles idées et améliorations constantes à notre plateforme.
+3. **Innovation partagée**  
+   L’open source invite à la collaboration. Chaque contribution enrichit la plateforme avec de nouvelles idées et des améliorations continues.
 
-4. **Liberté et contrôle** : Les utilisateurs ont la liberté de modifier et d'adapter VentiStudio à leurs besoins spécifiques, leur donnant un contrôle total sur leur expérience en ligne.
+4. **Liberté et contrôle**  
+   Nos utilisateurs peuvent adapter VentiStudio à leurs besoins, leur offrant ainsi une expérience entièrement personnalisée.
 
-5. **Éducation** : Notre code source ouvert sert d'outil d'apprentissage pour les développeurs en herbe, contribuant à l'éducation et à la croissance de la communauté tech.
+5. **Apprentissage pour tous**  
+   En rendant notre code disponible, nous contribuons à la formation des développeurs en herbe et encourageons l’échange au sein de la communauté technologique.
 
-## Notre engagement envers l'open source
+6. **Respect des droits d’auteur**  
+   Si notre code est ouvert, tout le contenu de la plateforme reste strictement protégé. Nous veillons à préserver les droits d’auteur et à valoriser le travail des créateurs.
 
-Chez VentiStudio, l'open source n'est pas seulement une caractéristique, c'est notre philosophie fondamentale. Nous nous engageons à maintenir notre plateforme 100% open source, encourageant la collaboration, l'innovation et la transparence à chaque étape de notre développement.
+## Notre engagement envers l’Open Source
 
-Nous croyons que l'avenir du web repose sur des plateformes ouvertes, transparentes et contrôlées par la communauté. 
+Pour nous, l’open source est bien plus qu’un choix, nous nous engageons à maintenir une plateforme ouverte, transparente et collaborative à chaque étape de son évolution.  
 ---
 
-*© 2024 VentiStudio. Tous droits réservés. Code source disponible sous licence [CC BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0/).*
-
-[VentiStudio](https://ventistudio.fr/)
-[AINA](https://wiki.ventistudio.fr/wiki/AINA), l'un des personnages de VentiStudio, serait fière de cette contribution à l'open source ! Et vous, qu'en pensez-vous ? 🌟
+*© 2024 VentiStudio. Tous droits réservés. Le code source est disponible sous licence [Kanae Aoki](https://ventistudio.fr/licence).*  
+[Découvrir VentiStudio](https://ventistudio.fr/)  
+---
+*VentiStudio - Copyright & P-Line 2023 - 2024, Tous droits réservés. Le code source est disponible sous licence [Kanae Aoki](https://ventistudio.fr/licence).*  

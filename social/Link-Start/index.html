@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html><head><base href="https://ventistudio.fr/social/Link-Start">
+  <meta charset="utf-8">
+  <meta name="viewport">
+  <html lang="fr"></html>
+  <link rel="icon" type="image/png" href="favicon.ico">
+  <meta property="og:title" content="Bienvenu sur VentiStudio">
+  <meta property="og:site_name" content="VentiStudio Komiyuniti">
+  <meta property="og:url" content="https://ventistudio.fr">
+  <meta property="og:description" content="Hey, je suis Hikari Umaishi (光馬石), mais je préfère que l'on m'appelle Hiuma (ヒウマ).
+Laissez-moi vous présenter ma communauté, un espace où l'art et la créativité se rencontrent.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://ventistudio.fr/favicon.gif">
+  <title>VentiStudio - Social</title>
+<style>
+:root {
+  --primary: #7B66FF;
+  --secondary: #2A2D3A;
+  --background: #1A1B26;
+  --text: #FFFFFF;
+  --sao-blue: #00B0FF;
+  --sao-green: #76FF03;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--background);
+  font-family: 'Inter', sans-serif;
+  color: var(--text);
+  overflow: hidden;
+}
+
+.redirect-container {
+  text-align: center;
+  padding: 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.logo {
+  width: 150px;
+  margin-bottom: 2rem;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.1); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.redirect-text {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  animation: glitch 1s linear infinite;
+  text-shadow: 0 0 10px var(--sao-blue);
+}
+
+.status-circles {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.status-circle {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--sao-blue);
+  animation: statusCheck 0.5s linear forwards;
+  opacity: 0;
+}
+
+@keyframes statusCheck {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+    background: var(--sao-green);
+  }
+}
+
+.countdown {
+  font-size: 1.5rem;
+  color: var(--sao-blue);
+  text-shadow: 0 0 5px var(--sao-blue);
+  margin-top: 2rem;
+}
+
+.link-start {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.line {
+  position: absolute;
+  background: linear-gradient(to bottom, transparent, var(--sao-blue), transparent);
+  width: 2px;
+  height: 100%;
+  animation: linkStart 2s linear infinite;
+  opacity: 0.5;
+}
+
+@keyframes linkStart {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+</style>
+</head>
+<body>
+  <div class="link-start" id="linkStart"></div>
+  <div class="redirect-container">
+    <img src="/favicon.avif" alt="VentiStudio Logo" class="logo">
+    <div class="redirect-text">Link Start!</div>
+    <div class="status-circles">
+      <div class="status-circle"></div>
+      <div class="status-circle"></div>
+      <div class="status-circle"></div>
+      <div class="status-circle"></div>
+      <div class="status-circle"></div>
+    </div>
+    <div class="countdown">Connexion dans <span id="timer">5</span> secondes</div>
+  </div>
+
+  <script>
+    // Create link start effect
+    const linkStart = document.getElementById('linkStart');
+    for(let i = 0; i < 20; i++) {
+      const line = document.createElement('div');
+      line.className = 'line';
+      line.style.left = `${Math.random() * 100}%`;
+      line.style.animationDelay = `${Math.random() * 2}s`;
+      linkStart.appendChild(line);
+    }
+
+    // Animate status circles
+    const circles = document.querySelectorAll('.status-circle');
+    circles.forEach((circle, index) => {
+      setTimeout(() => {
+        circle.style.animation = 'statusCheck 0.5s linear forwards';
+      }, index * 300);
+    });
+
+    function getRedirectUrl() {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get('redirect');
+    }
+
+    let timeLeft = 5;
+    const timerElement = document.getElementById('timer');
+    const redirectUrl = getRedirectUrl();
+
+    if (redirectUrl) {
+      const countdown = setInterval(() => {
+        timeLeft--;
+        timerElement.textContent = timeLeft;
+        
+        if (timeLeft <= 0) {
+          clearInterval(countdown);
+          window.location.href = redirectUrl;
+        }
+      }, 1000);
+    } else {
+      document.querySelector('.redirect-text').textContent = 'Error: System Call Failed';
+      document.querySelector('.status-circles').style.display = 'none';
+      document.querySelector('.countdown').style.display = 'none';
+    }
+  </script>
+</body>
+</html>

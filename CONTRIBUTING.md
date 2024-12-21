@@ -53,8 +53,5 @@ Si tu as des questions, des idées ou des problèmes, n'hésite pas à :
 Le projet ventistudio.fr est sous licence CC BY-NC-SA. Assure-toi de respecter cette licence lorsque tu soumets des modifications.
 
 ---
-
-N'hésite pas à personnaliser ces directives en fonction de ton projet spécifique. Et surtout, merci pour ta contribution ! Si tu as d'autres questions, je suis là pour t'aider. 😊🚀
-
----
-J'ai inclus les informations que tu m'as fournies dans les directives de contribution. Si tu as besoin d'aide supplémentaire ou si tu souhaites apporter des modifications, fais-le-moi savoir !
+*© 2024 VentiStudio. Tous droits réservés.*
+Product By AINA UMAISHI - ARTIFICIAL INTELLIGENCE NEW AGE

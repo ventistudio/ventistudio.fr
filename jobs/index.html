@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VentiStudio - Jobs</title>
+  <link rel="icon" type="image/png" href="favicon.ico">
+  <meta property="og:title" content="Bienvenu sur VentiStudio">
+  <meta property="og:site_name" content="VentiStudio Komiyuniti">
+  <meta property="og:url" content="https://ventistudio.fr">
+  <meta property="og:description" content="Rejoignez notre communauté créative en tant que bénévole passionné">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://ventistudio.fr/favicon.gif">
+
+  <style>
+    :root {
+      --primary: #7B66FF;
+      --secondary: #2A2D3A;
+      --background: #1A1B26;
+      --text: #FFFFFF;
+      --hover: #9F86FF;
+      --accent1: #414868;
+      --accent2: #565f89;
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scrollbar-width: thin;
+      scrollbar-color: var(--primary) var(--background);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--background);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    :root {
+  --primary: #7B66FF;
+  --secondary: #2A2D3A;
+  --background: #1A1B26;
+  --text: #FFFFFF;
+  --hover: #9F86FF;
+  --accent1: #414868;
+  --accent2: #565f89;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--background);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+  background-color: var(--secondary);
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 10px rgba(123, 102, 255, 0.1);
+}
+
+.logo {
+  height: 50px;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.mobile-menu-button {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.nav-item {
+  position: relative;
+  cursor: pointer;
+}
+
+.nav-item > a {
+  color: var(--text);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+}
+
+.nav-item > a:hover {
+  background-color: var(--hover);
+  transform: translateY(-2px);
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  background-color: var(--accent1);
+  min-width: 200px;
+  box-shadow: 0 8px 16px rgba(123, 102, 255, 0.2);
+  z-index: 1;
+  border-radius: 8px;
+  margin-top: 0.5rem;
+  backdrop-filter: blur(10px);
+}
+
+.nav-item:hover .dropdown {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+@media screen and (max-width: 768px) {
+  .mobile-menu-button {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    position: fixed;
+    top: 80px;
+    left: 0;
+    right: 0;
+    background-color: var(--secondary);
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-item {
+    width: 100%;
+  }
+
+  .dropdown {
+    position: static;
+    width: 100%;
+    margin-top: 0.5rem;
+    display: none;
+  }
+
+  .nav-item.active .dropdown {
+    display: block;
+  }
+
+  .footer-content {
+    grid-template-columns: repeat(2, 1fr) !important;
+    padding: 0 1rem;
+  }
+
+  .copyright {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.dropdown a {
+  color: var(--text);
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  transition: all 0.2s ease;
+}
+
+.dropdown a:hover {
+  background-color: var(--hover);
+  transform: translateX(5px);
+}
+
+.main-content {
+  padding: 0;
+  text-align: center;
+}
+
+.hero-section {
+  padding: 6rem 2rem;
+  background: linear-gradient(135deg, var(--background) 0%, var(--accent1) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 50% 50%, var(--primary) 0%, transparent 70%);
+  opacity: 0.1;
+  animation: pulse 4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.1; }
+  50% { transform: scale(1.2); opacity: 0.15; }
+  100% { transform: scale(1); opacity: 0.1; }
+}
+
+.hero-section h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(45deg, var(--primary), var(--hover));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: titleGlow 2s ease-in-out infinite alternate;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-section p {
+  font-size: 1.4rem;
+  color: var(--text);
+  opacity: 0.9;
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.cta-button {
+  background: var(--primary);
+  color: var(--text);
+  padding: 1rem 2rem;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+.cta-button:hover {
+  background: var(--hover);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(123, 102, 255, 0.3);
+}
+
+.section {
+  padding: 4rem 2rem;
+  background: var(--background);
+}
+
+.section-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: var(--text);
+}
+
+.section-subtitle {
+  font-size: 1.2rem;
+  color: var(--text);
+  opacity: 0.8;
+  max-width: 800px;
+  margin: 0 auto 3rem auto;
+}
+
+.jobs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.job-card {
+  background: var(--secondary);
+  padding: 2rem;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.job-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.job-description {
+  color: var(--text);
+  opacity: 0.9;
+  margin: 1rem 0;
+}
+
+.job-requirements {
+  color: var(--text);
+  opacity: 0.8;
+  padding-left: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.job-requirements li {
+  margin-bottom: 0.5rem;
+}
+
+.apply-button {
+  background: var(--primary);
+  color: var(--text);
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: auto;
+}
+
+.apply-button:hover {
+  background: var(--hover);
+  transform: translateY(-2px);
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+}
+
+.modal-content {
+  background-color: var(--secondary);
+  margin: 5% auto;
+  padding: 2rem;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 600px;
+  position: relative;
+}
+
+.close-modal {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid var(--accent1);
+  border-radius: 8px;
+  background: var(--background);
+  color: var(--text);
+}
+
+.form-group textarea {
+  height: 150px;
+  resize: vertical;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) var(--background);
+}
+
+.form-group textarea::-webkit-scrollbar {
+  width: 8px;
+}
+
+.form-group textarea::-webkit-scrollbar-track {
+  background: var(--background);
+  border-radius: 4px;
+}
+
+.form-group textarea::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 4px;
+  border: 2px solid var(--background);
+}
+
+.form-group textarea::-webkit-scrollbar-thumb:hover {
+  background: var(--hover);
+}
+
+.form-group input {
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) var(--background);
+}
+
+.form-group input::-webkit-scrollbar {
+  height: 8px;
+}
+
+.form-group input::-webkit-scrollbar-track {
+  background: var(--background);
+  border-radius: 4px;
+}
+
+.form-group input::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 4px;
+  border: 2px solid var(--background);
+}
+
+.form-group input::-webkit-scrollbar-thumb:hover {
+  background: var(--hover);
+}
+
+.submit-button {
+  background: var(--primary);
+  color: var(--text);
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.submit-button:hover {
+  background: var(--hover);
+}
+
+@media screen and (max-width: 768px) {
+  .hero-section h1 {
+    font-size: 2.5rem;
+  }
+  
+  .hero-section p {
+    font-size: 1.1rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .modal-content {
+    margin: 10% auto;
+    width: 95%;
+    padding: 1rem;
+  }
+  
+  .jobs-grid {
+    grid-template-columns: 1fr;
+    padding: 0 1rem;
+  }
+}
+
+@keyframes titleGlow {
+  from { text-shadow: 0 0 20px rgba(123, 102, 255, 0.5); }
+  to { text-shadow: 0 0 30px rgba(123, 102, 255, 0.8); }
+}
+
+.footer {
+  background-color: var(--secondary);
+  padding: 2rem;
+  margin-top: auto;
+  box-shadow: 0 -2px 10px rgba(123, 102, 255, 0.1);
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-section h3 {
+  color: var(--text);
+  margin-bottom: 1rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+}
+
+.footer-section a {
+  color: var(--text);
+  text-decoration: none;
+  display: block;
+  margin-bottom: 0.5rem;
+  transition: all 0.2s ease;
+  opacity: 0.8;
+}
+
+.footer-section a:hover {
+  opacity: 1;
+  color: var(--hover);
+  transform: translateX(5px);
+}
+
+.copyright {
+  text-align: center;
+  padding: 2rem 0;
+  border-top: 1px solid var(--accent1);
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.copyright img {
+  height: 30px;
+}
+
+.copyright span {
+  color: var(--text);
+  opacity: 0.8;
+  font-size: 0.9rem;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 6px;
+  border: 3px solid var(--background);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--hover);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) var(--background);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+#celebration-banner {
+  background: linear-gradient(45deg, var(--primary), var(--hover));
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  position: relative;
+  z-index: 1000;
+}
+
+    /* Scrollbar Styling */
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: var(--primary) var(--background);
+    }
+
+    *::-webkit-scrollbar {
+      width: 12px;
+      height: 12px;
+    }
+
+    *::-webkit-scrollbar-track {
+      background: var(--background);
+      border-radius: 6px;
+    }
+
+    *::-webkit-scrollbar-thumb {
+      background: var(--primary);
+      border-radius: 6px;
+      border: 3px solid var(--background);
+    }
+
+    *::-webkit-scrollbar-thumb:hover {
+      background: var(--hover);
+    }
+
+    /* Modal Scrollbar Specific Styling */
+    .modal-content {
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .form-group textarea {
+      height: 200px;
+      max-height: 300px;
+      resize: vertical;
+      overflow-y: auto;
+    }
+
+    /* Rest of the previous CSS remains the same */
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--background);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    
+  </style>
+</head>
+<body>
+  <div id="celebration-banner" style="display: none; background: var(--primary); color: var(--text); text-align: center; padding: 10px; font-weight: bold; animation: slideDown 0.5s ease-out;">
+    <span id="celebration-message"></span>
+  </div>
+  
+  <nav class="navbar">
+    <img src="/favicon.avif" alt="VentiStudio Logo" class="logo">
+    <button class="mobile-menu-button" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    <div class="nav-links">
+      <div class="nav-item">
+        <a href="/" rel="noopener noreferrer">Accueil</a>
+      </div>
+      <div class="nav-item">
+        <a href="/approuvedcontent" rel="noopener noreferrer">Contenu Approuvé</a>
+      </div>
+      <div class="nav-item">
+        <a href="/wiki" rel="noopener noreferrer">Wiki</a>
+      </div>
+      <div class="nav-item">
+        <a href="/staff" rel="noopener noreferrer">Staff</a>
+        <div class="dropdown">
+          <a href="/job" rel="noopener noreferrer">Recrutement</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="/artist" rel="noopener noreferrer">Artiste</a>
+      </div>
+      <div class="nav-item">
+        <a href="/pip" rel="noopener noreferrer">PIP</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    <section class="hero-section">
+      <h1>Rejoignez l'équipe VentiStudio</h1>
+      <p>Participez à l'aventure en tant que bénévole passionné</p>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Nos opportunités de bénévolat</h2>
+      <p class="section-subtitle">Chez VentiStudio, nous croyons en la force du volontariat et de la passion. Rejoignez une équipe dynamique et contribuez à façonner l'avenir de notre communauté.</p>
+      
+      <div class="jobs-grid">
+        <div class="job-card">
+          <h3>Modérateur Discord</h3>
+          <p class="job-description">Aidez à maintenir une communauté saine et accueillante sur notre serveur Discord.</p>
+          <ul class="job-requirements">
+            <li>Expérience en modération Discord</li>
+            <li>Excellent sens de la communication</li>
+            <li>Disponibilité régulière</li>
+          </ul>
+          <button class="apply-button" onclick="openApplicationForm('Modérateur Discord')">Postuler</button>
+        </div>
+
+        <div class="job-card">
+          <h3>Développeur Web</h3>
+          <p class="job-description">Participez au développement et à l'amélioration de notre plateforme web.</p>
+          <ul class="job-requirements">
+            <li>Connaissance en HTML, CSS, JavaScript</li>
+            <li>Familiarité avec les frameworks modernes</li>
+            <li>Esprit d'équipe</li>
+          </ul>
+          <button class="apply-button" onclick="openApplicationForm('Développeur Web')">Postuler</button>
+        </div>
+
+        <div class="job-card">
+          <h3>Rédacteur de Contenu</h3>
+          <p class="job-description">Créez du contenu engageant pour notre gazette et notre wiki.</p>
+          <ul class="job-requirements">
+            <li>Excellentes capacités rédactionnelles</li>
+            <li>Créativité et originalité</li>
+            <li>Connaissance de la communauté</li>
+          </ul>
+          <button class="apply-button" onclick="openApplicationForm('Rédacteur de Contenu')">Postuler</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal de candidature -->
+    <div id="application-modal" class="modal" role="dialog" aria-labelledby="modal-title">
+      <div class="modal-content">
+        <span class="close-modal" aria-label="Fermer">&times;</span>
+        <h2 id="modal-title">Postuler pour: <span id="position-title"></span></h2>
+        <form id="application-form" onsubmit="submitApplication(event)" novalidate>
+          <div class="form-group">
+            <label for="name">Nom complet:</label>
+            <input type="text" id="name" name="name" required minlength="2" maxlength="100">
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="discord">Identifiant Discord:</label>
+            <input type="text" id="discord" name="discord" required pattern="^.+#\d{4}$">
+          </div>
+          
+          <div class="form-group">
+            <label for="motivation">Lettre de motivation:</label>
+            <textarea id="motivation" name="motivation" required minlength="50" maxlength="500"></textarea>
+          </div>
+          
+          <div class="form-group">
+            <label for="experience">Expérience pertinente:</label>
+            <textarea id="experience" name="experience" required minlength="50" maxlength="500"></textarea>
+          </div>
+          
+          <button type="submit" class="submit-button">Envoyer ma candidature</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <!-- Footer content remains the same -->
+  </footer>
+
+  <div id="application-modal" class="modal" role="dialog" aria-labelledby="modal-title">
+    <div class="modal-content">
+      <span class="close-modal" aria-label="Fermer">&times;</span>
+      <h2 id="modal-title">Postuler pour: <span id="position-title"></span></h2>
+      <form id="application-form" onsubmit="submitApplication(event)" novalidate>
+        <div class="form-group">
+          <label for="name">Nom complet:</label>
+          <input type="text" id="name" name="name" required minlength="2" maxlength="100">
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="discord">Identifiant Discord:</label>
+          <input type="text" id="discord" name="discord" required pattern="^.+#\d{4}$">
+        </div>
+        
+        <div class="form-group">
+          <label for="motivation">Lettre de motivation:</label>
+          <textarea id="motivation" name="motivation" required minlength="50" maxlength="500" placeholder="Expliquez votre motivation en détail (50-500 caractères)"></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label for="experience">Expérience pertinente:</label>
+          <textarea id="experience" name="experience" required minlength="50" maxlength="500" placeholder="Décrivez vos expériences précédentes qui seraient pertinentes pour ce poste (50-500 caractères)"></textarea>
+        </div>
+        
+        <button type="submit" class="submit-button">Envoyer ma candidature</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Mobile Menu Handling
+    const mobileMenuButton = document.querySelector('.mobile-menu-button');
+    const navLinks = document.querySelector('.nav-links');
+    const navItems = document.querySelectorAll('.nav-item');
+
+    mobileMenuButton.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isExpanded = navLinks.classList.toggle('active');
+      mobileMenuButton.setAttribute('aria-expanded', isExpanded);
+    });
+
+    // Responsive Navigation for Mobile
+    if (window.innerWidth <= 768) {
+      navItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+          if (e.target.closest('.nav-item') === item) {
+            item.classList.toggle('active');
+            navItems.forEach(otherItem => {
+              if (otherItem !== item) {
+                otherItem.classList.remove('active');
+              }
+            });
+          }
+        });
+      });
+    }
+
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.navbar')) {
+        navLinks.classList.remove('active');
+        navItems.forEach(item => item.classList.remove('active'));
+        mobileMenuButton.setAttribute('aria-expanded', false);
+      }
+    });
+
+    // Holidays and Celebration Banner
+    function checkHolidays() {
+      const today = new Date();
+      const day = today.getDate();
+      const month = today.getMonth() + 1;
+      const banner = document.getElementById('celebration-banner');
+      const message = document.getElementById('celebration-message');
+      
+      const holidays = [
+        { month: 12, startDay: 1, endDay: 25, message: "Joyeux Noël ! 🎄" },
+        { month: 12, day: 15, message: "Joyeux anniversaire Hikari Umaishi ! 🎂 Et joyeux Noël ! 🎄" },
+        { month: 9, day: 24, message: "Joyeux anniversaire VentiStudio ! 🎉" },
+        { month: 10, startDay: 25, endDay: 31, message: "Joyeux Halloween ! 🎃" },
+        { month: 7, day: 14, message: "Bonne fête nationale ! 🇫🇷" },
+        { monthEnd: 12, monthStart: 1, startDay: 31, endDay: 3, message: "Bonne année ! 🎊" },
+        { month: 9, day: 9, message: "Bonne fête de l'automne ! 🍂" },
+        { month: 3, startDay: 20, endDay: 21, message: "Bienvenue au printemps ! 🌸" }
+      ];
+
+      const currentHoliday = holidays.find(holiday => {
+        if (holiday.day) return holiday.month === month && holiday.day === day;
+        if (holiday.startDay && holiday.endDay) {
+          if (holiday.monthEnd && holiday.monthStart) {
+            return (month === holiday.monthEnd && day === holiday.endDay) || 
+                   (month === holiday.monthStart && day <= holiday.endDay);
+          }
+          return month === holiday.month && day >= holiday.startDay && day <= holiday.endDay;
+        }
+        return false;
+      });
+
+      if (currentHoliday) {
+        message.textContent = currentHoliday.message;
+        banner.style.display = 'block';
+      } else {
+        banner.style.display = 'none';
+      }
+    }
+
+    // Run the check when the page loads
+    checkHolidays();
+
+    function openApplicationForm(position) {
+      const modal = document.getElementById('application-modal');
+      const positionTitle = document.getElementById('position-title');
+      positionTitle.textContent = position;
+      modal.style.display = 'block';
+      
+      // Focus management for accessibility
+      const firstInput = modal.querySelector('input');
+      firstInput.focus();
+    }
+
+    function submitApplication(event) {
+      event.preventDefault();
+      
+      const form = event.target;
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      const position = document.getElementById('position-title').textContent;
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const discord = document.getElementById('discord').value.trim();
+      const motivation = document.getElementById('motivation').value.trim();
+      const experience = document.getElementById('experience').value.trim();
+
+      // Email validation regex
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        alert('Veuillez entrer une adresse email valide');
+        return;
+      }
+
+      const mailtoLink = `mailto:job@ventistudio.fr?subject=Candidature pour le poste de ${encodeURIComponent(position)}&body=Nom: ${encodeURIComponent(name)}%0D%0AEmail: ${encodeURIComponent(email)}%0D%0ADiscord: ${encodeURIComponent(discord)}%0D%0A%0D%0AMotivation:%0D%0A${encodeURIComponent(motivation)}%0D%0A%0D%0AExpérience:%0D%0A${encodeURIComponent(experience)}`;
+      
+      window.location.href = mailtoLink;
+      
+      // Close modal and reset form
+      document.getElementById('application-modal').style.display = 'none';
+      form.reset();
+    }
+
+    // Modal close handlers
+    document.querySelector('.close-modal').addEventListener('click', () => {
+      document.getElementById('application-modal').style.display = 'none';
+    });
+
+    window.addEventListener('click', (event) => {
+      const modal = document.getElementById('application-modal');
+      if (event.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+
+    // Keyboard accessibility for modal
+    document.addEventListener('keydown', (event) => {
+      const modal = document.getElementById('application-modal');
+      if (event.key === 'Escape' && modal.style.display === 'block') {
+        modal.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>

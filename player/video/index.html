@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html><head><base href="https://ventistudio.fr/player/video">
+  <meta charset="utf-8">
+  <meta name="viewport">
+  <html lang="fr"></html>
+  <link rel="icon" type="image/png" href="favicon.ico">
+  <meta property="og:title" content="Bienvenu sur VentiStudio">
+  <meta property="og:site_name" content="VentiStudio Komiyuniti">
+  <meta property="og:url" content="https://ventistudio.fr">
+  <meta property="og:description" content="Hey, je suis Hikari Umaishi (光馬石), mais je préfère que l'on m'appelle Hiuma (ヒウマ).
+Laissez-moi vous présenter ma communauté, un espace où l'art et la créativité se rencontrent.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://ventistudio.fr/favicon.gif">
+    <title>VentiStudio - Video</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.7.8/plyr.css" rel="stylesheet">
+    <style>
+      :root {
+        --primary: #7B66FF;
+        --secondary: #2A2D3A;
+        --background: #1A1B26;
+        --text: #FFFFFF;
+        --hover: #391f9f;
+        --hoverb: #65579e;
+
+      }
+  
+      body {
+        margin: 0;
+        padding: 20px;
+        background: var(--background);
+        color: var(--text);
+        font-family: 'Inter', sans-serif;
+      }
+  
+      .player-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: var(--secondary);
+        border-radius: 10px;
+        padding: 20px;
+      }
+  
+      .video-player {
+        width: 100%;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+  
+      .playlist {
+        margin-top: 20px;
+        background: rgba(42, 45, 58, 0.5);
+        padding: 15px;
+        border-radius: 8px;
+      }
+  
+      .playlist-item {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        background: var(--secondary);
+        margin: 5px 0;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+  
+      .playlist-item:hover {
+        background: var(--hoverb);
+      }
+  
+      .playlist-item.active {
+        background: var(--primary);
+      }
+  
+      .drag-drop-zone {
+        border: 2px dashed var(--primary);
+        padding: 20px;
+        text-align: center;
+        margin: 20px 0;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+      }
+  
+      .drag-drop-zone.dragover {
+        background: rgba(123, 102, 255, 0.1);
+        border-color: var(--hover);
+      }
+  
+      .controls {
+        display: flex;
+        gap: 10px;
+        margin: 20px 0;
+      }
+  
+      button {
+        background: var(--primary);
+        color: var(--text);
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+  
+      button:hover {
+        background: var(--hover);
+      }
+  
+      input[type="file"] {
+        display: none;
+      }
+  
+      .url-input {
+        flex: 1;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--text);
+      }
+  
+      .suggested-videos {
+        margin-top: 20px;
+      }
+  
+      .suggested-video {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px;
+        background: var(--secondary);
+        margin: 5px 0;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+  
+      .suggested-video img {
+        width: 120px;
+        height: 67.5px;
+        object-fit: cover;
+        border-radius: 3px;
+      }
+  
+      .plyr--video {
+        border-radius: 8px;
+      }
+  
+      .autoplay-toggle {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 10px 0;
+      }
+
+      ::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 6px;
+  border: 3px solid var(--background);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--hover);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) var(--background);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+    </style>
+  </head>
+  <body>
+    
+    <div class="player-container">
+      <video id="player" class="video-player" playsinline controls>
+        <source src="" type="video/mp4">
+      </video>
+  
+      <div class="autoplay-toggle">
+        <input type="checkbox" id="autoplay-checkbox" checked>
+        <label for="autoplay-checkbox">Lecture automatique</label>
+      </div>
+  
+      <div class="controls">
+        <button onclick="document.getElementById('file-input').click()">Importer des fichiers</button>
+        <input type="file" id="file-input" accept="video/*" multiple>
+        <input type="text" class="url-input" placeholder="Coller un lien vidéo (.mp4)" id="url-input">
+        <button onclick="addVideoFromUrl()">Ajouter</button>
+      </div>
+  
+      <div class="drag-drop-zone" id="drop-zone">
+        Glisser-déposer vos vidéos ici
+      </div>
+  
+      <div class="playlist" id="playlist"></div>
+  
+      <div class="suggested-videos">
+        <h3>Vidéos suggérées</h3>
+        <div class="suggested-video" onclick="addSuggestedVideo('/a-files/video/asilentvoicevfbandeannonce.mp4', 'Vidéo asilentvoicevfbandeannonce')">
+          <img src="/a-files/image/asv-image.avif" alt="Prévisualisation" onerror="this.src='/favicon.gif'" >
+          <div>
+            <h4>A Silent Voice Bande Annonce</h4>
+            <p>Remake de la bande annonce original</p>
+          </div>
+        </div>
+        <div class="suggested-video" onclick="addSuggestedVideo('/a-files/video/codcliptwitch.mp4', 'Vidéo codcliptwitch')">
+          <img src="/" alt="Prévisualisation" onerror="this.src='/favicon.gif'" >
+          <div>
+            <h4>Call Of Duty Twitch Clip</h4>
+            <p>Clip Twitch 'twitch.tv/ventistudio'</p>
+          </div>
+        </div>
+        <div class="suggested-video" onclick="addSuggestedVideo('/a-files/video/introventistudio.mp4', 'Vidéo introventistudio')">
+          <img src="/" alt="Prévisualisation" onerror="this.src='/favicon.gif'" >
+          <div>
+            <h4>Introduction</h4>
+            <p>Introduction fictive de VentiStudio.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.7.8/plyr.polyfilled.js"></script>
+    <script>
+      const player = new Plyr('#player', {
+        controls: [
+          'play-large', 'play', 'progress', 'current-time', 'mute', 
+          'volume', 'captions', 'settings', 'pip', 'airplay', 'fullscreen'
+        ],
+        settings: ['captions', 'quality', 'speed', 'loop'],
+      });
+  
+      let playlist = [];
+      let currentPlayingIndex = -1;
+      const playlistElement = document.getElementById('playlist');
+      const dropZone = document.getElementById('drop-zone');
+      const autoplayCheckbox = document.getElementById('autoplay-checkbox');
+  
+      dropZone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropZone.classList.add('dragover');
+      });
+  
+      dropZone.addEventListener('dragleave', () => {
+        dropZone.classList.remove('dragover');
+      });
+  
+      dropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropZone.classList.remove('dragover');
+        const files = Array.from(e.dataTransfer.files);
+        files.forEach(file => {
+          if (file.type.startsWith('video/')) {
+            addToPlaylist(file);
+          }
+        });
+        if (playlist.length === files.length) {
+          playVideo(0);
+        }
+      });
+  
+      document.getElementById('file-input').addEventListener('change', (e) => {
+        const files = Array.from(e.target.files);
+        const initialLength = playlist.length;
+        files.forEach(file => addToPlaylist(file));
+        if (initialLength === 0 && files.length > 0) {
+          playVideo(0);
+        }
+      });
+  
+      function addToPlaylist(file) {
+        const url = URL.createObjectURL(file);
+        playlist.push({
+          url: url,
+          name: file.name
+        });
+        updatePlaylistUI();
+        if (playlist.length === 1) {
+          playVideo(0);
+        }
+      }
+  
+      function addVideoFromUrl() {
+        const url = document.getElementById('url-input').value;
+        if (url.endsWith('.mp4')) {
+          playlist.push({
+            url: url,
+            name: url.split('/').pop()
+          });
+          updatePlaylistUI();
+          document.getElementById('url-input').value = '';
+          if (playlist.length === 1) {
+            playVideo(0);
+          }
+        }
+      }
+  
+      function addSuggestedVideo(url, name) {
+        playlist.push({ url, name });
+        updatePlaylistUI();
+        if (playlist.length === 1) {
+          playVideo(0);
+        }
+      }
+  
+      function updatePlaylistUI() {
+        playlistElement.innerHTML = '';
+        playlist.forEach((video, index) => {
+          const item = document.createElement('div');
+          item.className = 'playlist-item';
+          if (index === currentPlayingIndex) {
+            item.classList.add('active');
+          }
+          item.innerHTML = `
+            <span>${video.name}</span>
+            <button onclick="playVideo(${index})" style="margin-left: auto">▶️</button>
+            <button onclick="removeFromPlaylist(${index})">🚮</button>
+            ${index > 0 ? `<button onclick="moveUp(${index})">⬆️</button>` : ''}
+            ${index < playlist.length - 1 ? `<button onclick="moveDown(${index})">⬇️</button>` : ''}
+          `;
+          playlistElement.appendChild(item);
+        });
+      }
+  
+      function playVideo(index) {
+        if (index >= 0 && index < playlist.length) {
+          const video = playlist[index];
+          currentPlayingIndex = index;
+          player.source = {
+            type: 'video',
+            sources: [{
+              src: video.url,
+              type: 'video/mp4'
+            }]
+          };
+          player.play();
+          highlightPlayingVideo(index);
+        }
+      }
+  
+      function removeFromPlaylist(index) {
+        if (index === currentPlayingIndex) {
+          currentPlayingIndex = -1;
+        } else if (index < currentPlayingIndex) {
+          currentPlayingIndex--;
+        }
+        playlist.splice(index, 1);
+        updatePlaylistUI();
+      }
+  
+      function moveUp(index) {
+        if (index > 0) {
+          [playlist[index], playlist[index - 1]] = [playlist[index - 1], playlist[index]];
+          if (currentPlayingIndex === index) {
+            currentPlayingIndex--;
+          } else if (currentPlayingIndex === index - 1) {
+            currentPlayingIndex++;
+          }
+          updatePlaylistUI();
+        }
+      }
+  
+      function moveDown(index) {
+        if (index < playlist.length - 1) {
+          [playlist[index], playlist[index + 1]] = [playlist[index + 1], playlist[index]];
+          if (currentPlayingIndex === index) {
+            currentPlayingIndex++;
+          } else if (currentPlayingIndex === index + 1) {
+            currentPlayingIndex--;
+          }
+          updatePlaylistUI();
+        }
+      }
+  
+      function highlightPlayingVideo(index) {
+        const items = playlistElement.getElementsByClassName('playlist-item');
+        Array.from(items).forEach((item, i) => {
+          item.classList.toggle('active', i === index);
+        });
+      }
+  
+      player.on('ended', () => {
+        if (autoplayCheckbox.checked && currentPlayingIndex !== -1) {
+          if (currentPlayingIndex < playlist.length - 1) {
+            playVideo(currentPlayingIndex + 1);
+          } else {
+            playVideo(0);
+          }
+        }
+      });
+    </script>
+  </body></html>

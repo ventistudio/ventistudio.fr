@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html><head><base href="https://ventistudio.fr/player/story/star-trek-umaishi">
+  <meta charset="utf-8">
+  <meta name="viewport">
+  <html lang="fr"></html>
+  <link rel="icon" type="image/png" href="favicon.ico">
+  <meta property="og:title" content="Bienvenu sur VentiStudio">
+  <meta property="og:site_name" content="VentiStudio Komiyuniti">
+  <meta property="og:url" content="https://ventistudio.fr">
+  <meta property="og:description" content="Hey, je suis Hikari Umaishi (光馬石), mais je préfère que l'on m'appelle Hiuma (ヒウマ).
+Laissez-moi vous présenter ma communauté, un espace où l'art et la créativité se rencontrent.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://ventistudio.fr/favicon.gif">
+  <title>VentiStudio - Star Trek Umaishi</title>
+<style>
+:root {
+  --primary: #7B66FF;
+  --secondary: #2A2D3A;
+  --background: #1A1B26;
+  --text: #FFFFFF;
+  --hover: #9F86FF;
+  --accent1: #414868;
+  --accent2: #565f89;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--background);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+  background-color: var(--secondary);
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 10px rgba(123, 102, 255, 0.1);
+}
+
+.logo {
+  height: 50px;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.mobile-menu-button {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.nav-item {
+  position: relative;
+  cursor: pointer;
+}
+
+.nav-item > a {
+  color: var(--text);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+}
+
+.nav-item > a:hover {
+  background-color: var(--hover);
+  transform: translateY(-2px);
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  background-color: var(--accent1);
+  min-width: 200px;
+  box-shadow: 0 8px 16px rgba(123, 102, 255, 0.2);
+  z-index: 1;
+  border-radius: 8px;
+  margin-top: 0.5rem;
+  backdrop-filter: blur(10px);
+}
+
+.nav-item:hover .dropdown {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+@media screen and (max-width: 768px) {
+  .mobile-menu-button {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    position: fixed;
+    top: 80px;
+    left: 0;
+    right: 0;
+    background-color: var(--secondary);
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-item {
+    width: 100%;
+  }
+
+  .dropdown {
+    position: static;
+    width: 100%;
+    margin-top: 0.5rem;
+    display: none;
+  }
+
+  .nav-item.active .dropdown {
+    display: block;
+  }
+
+  .footer-content {
+    grid-template-columns: repeat(2, 1fr) !important;
+    padding: 0 1rem;
+  }
+
+  .copyright {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.dropdown a {
+  color: var(--text);
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  transition: all 0.2s ease;
+}
+
+.dropdown a:hover {
+  background-color: var(--hover);
+  transform: translateX(5px);
+}
+
+.main-content {
+  padding: 0;
+  text-align: center;
+}
+
+.hero-section {
+  padding: 6rem 2rem;
+  background: linear-gradient(135deg, var(--background) 0%, var(--accent1) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 50% 50%, var(--primary) 0%, transparent 70%);
+  opacity: 0.1;
+  animation: pulse 4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.1; }
+  50% { transform: scale(1.2); opacity: 0.15; }
+  100% { transform: scale(1); opacity: 0.1; }
+}
+
+.hero-section h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(45deg, var(--primary), var(--hover));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: titleGlow 2s ease-in-out infinite alternate;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-section p {
+  font-size: 1.4rem;
+  color: var(--text);
+  opacity: 0.9;
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.cta-button {
+  background: var(--primary);
+  color: var(--text);
+  padding: 1rem 2rem;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+.cta-button:hover {
+  background: var(--hover);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(123, 102, 255, 0.3);
+}
+
+.section {
+  padding: 4rem 2rem;
+  background: var(--background);
+}
+
+.section-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: var(--text);
+}
+
+.section-subtitle {
+  font-size: 1.2rem;
+  color: var(--text);
+  opacity: 0.8;
+  max-width: 800px;
+  margin: 0 auto 3rem auto;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.service-card {
+  background: var(--secondary);
+  padding: 2rem;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.service-card h3 {
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.news-card {
+  background: var(--secondary);
+  padding: 2rem;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+}
+
+.community-section {
+  background: linear-gradient(135deg, var(--secondary) 0%, var(--accent1) 100%);
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.button-group {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media screen and (max-width: 768px) {
+  .hero-section h1 {
+    font-size: 2.5rem;
+  }
+  
+  .hero-section p {
+    font-size: 1.1rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .button-group {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@keyframes titleGlow {
+  from { text-shadow: 0 0 20px rgba(123, 102, 255, 0.5); }
+  to { text-shadow: 0 0 30px rgba(123, 102, 255, 0.8); }
+}
+
+.footer {
+  background-color: var(--secondary);
+  padding: 2rem;
+  margin-top: auto;
+  box-shadow: 0 -2px 10px rgba(123, 102, 255, 0.1);
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-section h3 {
+  color: var(--text);
+  margin-bottom: 1rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+}
+
+.footer-section a {
+  color: var(--text);
+  text-decoration: none;
+  display: block;
+  margin-bottom: 0.5rem;
+  transition: all 0.2s ease;
+  opacity: 0.8;
+}
+
+.footer-section a:hover {
+  opacity: 1;
+  color: var(--hover);
+  transform: translateX(5px);
+}
+
+.copyright {
+  text-align: center;
+  padding: 2rem 0;
+  border-top: 1px solid var(--accent1);
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.copyright img {
+  height: 30px;
+}
+
+.copyright span {
+  color: var(--text);
+  opacity: 0.8;
+  font-size: 0.9rem;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 6px;
+  border: 3px solid var(--background);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--hover);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) var(--background);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+#celebration-banner {
+  background: linear-gradient(45deg, var(--primary), var(--hover));
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  position: relative;
+  z-index: 1000;
+}
+
+.library-filters {
+  padding: 2rem;
+  background: var(--secondary);
+  border-radius: 15px;
+  margin: 2rem auto;
+}
+
+.filter-group {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.filter-input {
+  padding: 0.8rem 1.2rem;
+  border: 2px solid var(--accent1);
+  border-radius: 8px;
+  background: var(--background);
+  color: var(--text);
+  flex: 1;
+  min-width: 200px;
+}
+
+.filter-input:focus {
+  border-color: var(--primary);
+  outline: none;
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.video-card {
+  background: var(--secondary);
+  border-radius: 15px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.video-card:hover {
+  transform: translateY(-5px);
+}
+
+.video-thumbnail {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.video-info {
+  padding: 1.5rem;
+}
+
+.video-title {
+  font-size: 1.2rem;
+  margin: 0 0 0.5rem 0;
+  color: var(--text);
+}
+
+.video-meta {
+  display: flex;
+  justify-content: space-between;
+  color: var(--text);
+  opacity: 0.8;
+  font-size: 0.9rem;
+}
+
+.video-type {
+  background: var(--primary);
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+}
+
+.creator-section {
+  display: none;
+  padding: 2rem;
+  background: var(--secondary);
+  border-radius: 15px;
+  margin: 2rem auto;
+  max-width: 1200px;
+}
+
+.creator-section.active {
+  display: block;
+}
+
+.creator-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.creator-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.creator-info h2 {
+  margin: 0;
+  color: var(--text);
+}
+
+.creator-info p {
+  margin: 0.5rem 0 0 0;
+  opacity: 0.8;
+}
+
+.book-container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  background: var(--secondary);
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+}
+
+.book-content {
+  background: var(--accent1);
+  padding: 3rem;
+  border-radius: 8px;
+  min-height: 600px;
+  position: relative;
+  margin-bottom: 2rem;
+  color: var(--text);
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.page-navigation {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.page-button {
+  background: var(--primary);
+  color: var(--text);
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.page-button:hover {
+  background: var(--hover);
+  transform: translateY(-2px);
+}
+
+.page-button:disabled {
+  background: var(--accent2);
+  cursor: not-allowed;
+  transform: none;
+}
+
+.page-select {
+  background: var(--background);
+  color: var(--text);
+  border: 2px solid var(--primary);
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.page-select:focus {
+  outline: none;
+  border-color: var(--hover);
+}
+
+.page-number {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  color: var(--text);
+  opacity: 0.7;
+  font-style: italic;
+}
+
+@media screen and (max-width: 768px) {
+  .book-container {
+    margin: 1rem;
+    padding: 1rem;
+  }
+  
+  .book-content {
+    padding: 2rem;
+    min-height: 400px;
+  }
+  
+  .page-navigation {
+    flex-wrap: wrap;
+  }
+}
+</style>
+</head>
+<body>
+  <div id="celebration-banner" style="display: none; background: var(--primary); color: var(--text); text-align: center; padding: 10px; font-weight: bold; animation: slideDown 0.5s ease-out;">
+    <span id="celebration-message"></span>
+  </div>
+  
+  <nav class="navbar">
+    <img src="/favicon.avif" alt="VentiStudio Logo" class="logo">
+    <button class="mobile-menu-button">☰</button>
+    <div class="nav-links">
+      <div class="nav-item">
+        <a href="/">Accueil</a>
+      </div>
+      <div class="nav-item">
+        <a href="/approuvedcontent">Contenu Approuvé</a>
+      </div>
+      <div class="nav-item">
+        <a href="/wiki">Wiki</a>
+      </div>
+      <div class="nav-item">
+        <a href="/staff">Staff</a>
+        <div class="dropdown">
+          <a href="/job">Recrutement</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="/artist">Artiste</a>
+      </div>
+      <div class="nav-item">
+        <a href="/pip">PIP</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    <section class="hero-section">
+      <h1>Star Trek Umaishi</h1>
+      <p>Face à la menace borg, que faire?</p>
+    </section>
+
+    <section class="section">
+      <div class="book-container">
+        <div class="book-content" id="bookContent">
+          <!-- Content will be dynamically inserted here -->
+          <span class="page-number" id="pageNumber">Page 1</span>
+        </div>
+        
+        <div class="page-navigation">
+          <button class="page-button" id="prevPage">Page précédente</button>
+          <select class="page-select" id="pageSelect">
+            <!-- Options will be dynamically populated -->
+          </select>
+          <button class="page-button" id="nextPage">Page suivante</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Outils</h3>
+        <a href="/encrypt">Encrypt</a>
+        <a href="/sitemap">Sitemap</a>
+        <a href="/status">Statut</a>
+      </div>
+      <div class="footer-section">
+        <h3>Entreprise</h3>
+        <a href="/about">À propos</a>
+        <a href="/jobs">Emplois</a>
+        <a href="/company">Marque</a>
+      </div>
+      <div class="footer-section">
+        <h3>Ressources</h3>
+        <a href="/university">Université</a>
+        <a href="/lawful/support">Assistance</a>
+        <a href="/lawful/security">Sécurité</a>
+      </div>
+      <div class="footer-section">
+        <h3>Chartes</h3>
+        <a href="/lawful/terms">Conditions</a>
+        <a href="/lawful/privacy">Confidentialité</a>
+        <a href="/lawful/cookies">Paramètres des cookies</a>
+        <a href="/lawful/dmca">DMCA</a>
+        <a href="/lawful/dmcainfo">DMCA Information</a>
+        <a href="/lawful/cgv">Conditions Général de Vente</a>
+      </div>
+    </div>
+    <div class="copyright">
+      <img src="/favicon.avif" alt="VentiStudio Logo">
+      <span>Copyright & P-Line 2023 - 2024, Tous droits réservés.</span>
+    </div>
+  </footer>
+
+  <script>
+    const mobileMenuButton = document.querySelector('.mobile-menu-button');
+    const navLinks = document.querySelector('.nav-links');
+    const navItems = document.querySelectorAll('.nav-item');
+
+    mobileMenuButton.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    if (window.innerWidth <= 768) {
+      navItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+          if (e.target.closest('.nav-item') === item) {
+            item.classList.toggle('active');
+            navItems.forEach(otherItem => {
+              if (otherItem !== item) {
+                otherItem.classList.remove('active');
+              }
+            });
+          }
+        });
+      });
+    }
+
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.navbar')) {
+        navLinks.classList.remove('active');
+        navItems.forEach(item => item.classList.remove('active'));
+      }
+    });
+
+    function checkHolidays() {
+      const today = new Date();
+      const day = today.getDate();
+      const month = today.getMonth() + 1; // JavaScript months are 0-based
+      const banner = document.getElementById('celebration-banner');
+      const message = document.getElementById('celebration-message');
+      let celebrationMessage = '';
+
+      // Check various holiday periods
+      if (month === 12 && day >= 1 && day <= 25) {
+        celebrationMessage = "Joyeux Noël ! 🎄";
+      }
+      
+      if (month === 12 && day === 15) {
+        celebrationMessage = "Joyeux anniversaire Hikari Umaishi ! 🎂 Et joyeux Noël ! 🎄";
+      }
+      
+      if (month === 9 && day === 24) {
+        celebrationMessage = "Joyeux anniversaire VentiStudio ! 🎉";
+      }
+      
+      if (month === 10 && day >= 25 && day <= 31) {
+        celebrationMessage = "Joyeux Halloween ! 🎃";
+      }
+      
+      if (month === 7 && day === 14) {
+        celebrationMessage = "Bonne fête nationale ! 🇫🇷";
+      }
+      
+      if ((month === 12 && day >= 31) || (month === 1 && day <= 3)) {
+        celebrationMessage = "Bonne année ! 🎊";
+      }
+      
+      if (month === 9 && day === 9) {
+        celebrationMessage = "Bonne fête de l'automne ! 🍂";
+      }
+      
+      if (month === 3 && (day === 20 || day === 21)) {
+        celebrationMessage = "Bienvenue au printemps ! 🌸";
+      }
+
+      if (celebrationMessage) {
+        message.textContent = celebrationMessage;
+        banner.style.display = 'block';
+      } else {
+        banner.style.display = 'none';
+      }
+    }
+
+    const bookContent = {
+  1: {
+    title: "Star Trek Umaishi : Présentation",
+    content: "A bord de l'USS Voyager NCC-74656-A, le Capitaine Admiral Umaishi, possède des capacités impressionnantes, notamment la faculté de lire les pensées des autres et le pouvoir de contrôler Qyu, un talent surprenant pour un être humain.\nLeur mission : repartir dans le quadrant Delta, cette fois avec la possibilité de voyager en proton distortion et en sub-distortion, des technologies utilisées par les Borg.\nAlors que l'équipage s'engage dans cette aventure, ils croisent un ennemi inattendu : les Borg, qui attaquent un allié de longue date.\nFace à cette menace, le Capitaine Umaishi devra faire des choix cruciaux pour protéger son équipage et ses alliés.\nQuelles décisions prendra-t-il face à cette nouvelle menace ? Découvrez-le maintenant !"
+  },
+  2: {
+    title: "Chapitre 1 : L’Héritage du Commandant",
+    content: "A bord de l’USS Voyager NCC-74656-A, le pont principal resplendissait sous une lumière douce, mettant en valeur les consoles tactiles futuristes et les écrans holographiques.\nCe vaisseau, incarnation de la technologie de pointe de Starfleet, était sur le point de marquer l'histoire avec son saut inaugural en proto-distorsion.\nL’équipage, mélange d'experts aguerris et de jeunes recrues, s’affairait à leurs postes respectifs, attentifs à chaque détail. Au centre de cette effervescence, l’Admiral Hikari Umaishi, assis dans son fauteuil de commandement, observait calmement la préparation.\n— Capitaine Umaishi, les systèmes de propulsion sont prêts pour un test complet, annonça l’Ingénieur-Chef Enora Hyles via l’intercom.\nCependant, nous captons une anomalie subspatiale dans le quadrant Alpha. Cela semble être une signature de distorsion borg, mais instable.\nLe silence s’installa sur le pont alors que les mots « signature borg » résonnaient comme un signal d’alerte.\nTous les regards se tournèrent vers l’Admiral, guettant sa réaction.\n— Alerte jaune, ordonna Umaishi d’une voix ferme mais posée. Levez les boucliers.\nLieutenant T'Vyr, avez-vous plus d'informations sur cette anomalie ?\nT'Vyr, une Vulcaine en charge des opérations tactiques, consulta rapidement sa console.\n— Capitaine, la signature semble provenir d'un vaisseau de petite taille, probablement inactif ou endommagé.\nCependant, il pourrait s'agir d'un piège. Les Borg ne laissent jamais rien au hasard.\nLe Commandant Ralek, un Andorien au sens de l’humour acéré mais brillant dans son domaine, ajouta avec une pointe de sarcasme :\n— Avec tout le respect, Capitaine, les Borg n’agissent pas seuls. Si nous intervenons, un cube entier pourrait surgir de nulle part.\n— Chef de la sécurité, y a-t-il des vaisseaux Starfleet ou alliés dans les environs ? interrogea Umaishi, tout en réprimant un sourire amusé par les remarques de Ralek.\nLe Lieutenant Kaelen, chef de la sécurité, consulta les relevés des scanners avant de répondre.\n— Aucun vaisseau allié à courte portée, Capitaine.\nLa station Deep Space 9 reste notre seul point de ralliement à longue distance.\nAlors que les discussions continuaient, un signal d'alerte interrompit soudain le flux d’informations.\nL’Enseigne Lera, en charge des communications, annonça d’une voix tendue :\n— Signal de détresse capté ! Il provient de l’USS Enterprise-D. Ils sont engagés dans un combat avec une sphère borg.\nLeur bouclier est faible et leurs systèmes gravement endommagés.\nUne onde de tension traversa le pont, mais l’Admiral Umaishi resta impassible.\nSa voix retentit avec une autorité incontestable :\n— Alerte rouge. Préparez le vaisseau à un saut en distorsion maximale.\nT'Vyr, chargez les phaseurs et verrouillez les cibles sur les systèmes d’armement de la sphère borg.\nLera, positionnez-nous entre l’Enterprise et leur adversaire.\nEngagez !\nLe Voyager bondit dans l’hyperspace avec une précision impressionnante, émergeant à proximité de l’Enterprise-D.\nLa vue sur l’écran principal était saisissante : l’Enterprise, meurtri mais toujours debout, tentait de repousser l’assaut d’une sphère borg pulsant d'une énergie instable.\n— Capitaine Umaishi, les boucliers du Voyager sont étendus pour protéger l’Enterprise, annonça T'Vyr.\nLes phaseurs sont verrouillés sur la sphère.\nVos ordres ?\n— Engagez les tirs ciblés, mais gardez la puissance de feu sous contrôle.\nNous devons neutraliser leurs systèmes sans risquer une surcharge.\nLe pont entier s’activa en un ballet coordonné.\nLe Voyager s’interposa avec grâce entre les deux adversaires, ses boucliers absorbant les tirs borg.\nUne série de tirs précis détruisit les systèmes d'armement de la sphère, équilibrant temporairement les forces.\nUne voix émergea alors de la communication ouverte.\nC’était celle de l’officier androïde de l’Enterprise, le Commandant Data.\n— Capitaine Umaishi, votre intervention est opportune.\nNous avons détecté une instabilité énergétique au sein de la sphère borg. Si vous pouvez maintenir la pression, nous pourrions avoir une opportunité de la neutraliser complètement.\nUmaishi échangea un regard avec son équipage avant de répondre.\n— Compris, Commandant Data.\nCoordonnons nos efforts.\nNous ne laisserons pas les Borg prendre le dessus aujourd’hui.\nAlors que les tirs continuaient de pleuvoir, l’Admiral Umaishi sentit une énergie nouvelle se diffuser sur le pont.\nLe combat venait de commencer, mais avec l’équipage du Voyager et de l’Enterprise unis, l’espoir brillait dans l’obscurité du quadrant Alpha."
+  },
+  3: {
+    title: "Chapitre 2 : L'Appel de l'Inconnu",
+    content: "Le calme relatif du pont principal de l'USS Voyager NCC-74656-A fut de courte durée.\nTandis que la sphère borg diminuait en puissance grâce aux tirs coordonnés des deux vaisseaux, une anomalie se manifesta sur les scanners, attirant l'attention de T'Vyr.\n— Capitaine Umaishi, signaux énergétiques en provenance de la sphère.\nCela ressemble à une tentative de réactivation, mais... il y a des fluctuations inhabituelles.\nCette instabilité pourrait indiquer une surcharge imminente.\nL'Admiral Umaishi fronça les sourcils.\nLa tension était palpable sur le pont.\nIl se leva de son fauteuil de commandement pour mieux observer les données qui s'affichaient sur les écrans.\n— Lieutenant T'Vyr, identifiez la source exacte de ces fluctuations.\nRalek, préparez les émissions de particules chronitons.\nSi cette surcharge menace nos positions, nous devons anticiper.\nRalek, toujours avec un soupçon de sarcasme dans la voix, répondit tout en tapant furieusement sur sa console :\n— Bien sûr, Capitaine.\nRien de tel que jouer avec une potentielle explosion temporelle pour commencer une journée.\nUne alarme retentit soudain, interrompant la légère tension d'humour.\nEnora Hyles, l'Ingénieur-Chef, fit irruption sur le pont via l'intercom.\n— Capitaine, nous avons un problème.\nLe noyau de distorsion du Voyager réagit aux fluctuations énergétiques de la sphère borg.\nSi cela continue, cela pourrait affecter nos systèmes critiques.\n— Analysez les risques immédiats, ordonna Umaishi.\nRalek, ajustez les paramètres du champ de confinement du noyau.\nL’équipage, concentré sur leurs tâches, agissait comme une machine bien huilée.\nUmaishi se tourna vers l’écran principal où l’image de la sphère borg endommagée mais toujours menaçante restait omniprésente.\nUne voix familière s’éleva à travers les communications ouvertes.\nC’était le Commandant Data de l'USS Enterprise-D.\n— Capitaine Umaishi, nous avons détecté une anomalie temporelle autour de la sphère.\nCette surcharge pourrait ne pas être simplement une explosion énergétique, mais une rupture spatio-temporelle.\nElle pourrait aspirer tout objet dans un rayon de plusieurs parsecs.\nLe visage d’Umaishi se durcit.\nL’urgence de la situation était devenue plus claire.\n— Data, avez-vous des suggestions ?\nNous devons stabiliser cette sphère ou nous en éloigner immédiatement.\n— Une équipe à bord pourrait régler le problème, proposa Data.\nSi nous parvenons à interfacer leurs systèmes avec notre technologie, nous pourrions arrêter la surcharge.\nUne équipe d’abordage dans un vaisseau borg endommagé.\nC’était un pari risqué.\nMais Umaishi savait que le risque faisait partie de la vie dans Starfleet.\n— Varok, préparez une équipe d’ingénieurs et de tacticiens.\nNous allons établir une tête de pont à bord de cette sphère.\nT'Vyr, coordonnez avec Data pour maximiser nos chances de succès.\nL’équipage acquiesça, conscient de l’importance de leur mission.\nLe Voyager s’approcha de la sphère borg, maintenant une distance prudente tout en verrouillant un rayon tracteur pour stabiliser la structure endommagée.\n— T'Vyr, avez-vous trouvé un point d'accès ?\n— Oui, Capitaine.\nUne ouverture dans leur coque externe.\nCependant, il y a une barrière énergétique que nous devrons désactiver pour entrer.\nRalek se redressa, un sourire confiant aux lèvres.\n— Laissez-moi deviner, on entre, on bidouille leurs systèmes, et on essaie de ne pas mourir.\nJ’adore ce plan.\nUmaishi ne put réprimer un sourire discret.\n— Exactement, Ralek.\nEt rappelez-vous, nous sommes Starfleet.\nNous ne laissons personne derrière, même pas nos ennemis si nous pouvons l’éviter.\nL’équipe d’abordage se réunit rapidement, vêtus de combinaisons tactiques renforcées et équipés d’outils avancés.\nIls furent téléportés sur la sphère borg, prêts à affronter l'inconnu.\nPendant ce temps, Umaishi et le reste de l'équipage surveillaient chaque mouvement depuis le Voyager, prêts à intervenir à la moindre alerte.\nL'inconnu appelait, et comme toujours, Starfleet répondait."
+  },
+  4: {
+    title: "Chapitre 3 : L’Énigme de la Sphère",
+    content: "Le transfert de l’équipe d’abordage sur la sphère borg s’était déroulé sans incident majeur. Les membres de l’équipe progressaient dans les entrailles du vaisseau ennemi, leurs lampes frontales éclairant des corridors froids et mécaniques, constellés de conduits d’énergie scintillants.\nChaque pas était une confrontation silencieuse avec une technologie redoutée, symbole d’assimilation et de destruction.\nLe Lieutenant Varok, à la tête de l’équipe, communiquait avec le Voyager par l’intermédiaire de son communicateur.\n— Admiral Umaishi, nous avons atteint une console centrale.\nIl semble que les systèmes soient en mode de redémarrage.\nLes protocoles borg sont plus faibles que prévu.\nCela pourrait être une opportunité, mais aussi une ruse.\nUmaishi, sur le pont du Voyager, surveillait les données qui affluaient des scanneurs.\nT’Vyr confirma les observations de Varok.\n— Admiral, les fluctuations énergétiques augmentent autour de la console centrale.\nSi les Borgs tentent de réactiver leur système principal, cela pourrait provoquer une surcharge catastrophique.\nRalek intervint depuis sa console, une étincelle de sarcasme dans la voix.\n— Alors, on les arrête avant qu’ils ne se décident à tout faire exploser ?\nBonne idée.\nUmaishi acquiesça, prenant une décision rapide.\n— Varok, interférez avec leurs systèmes et déconnectez leur réseau principal.\nSi possible, accédez à leur banque de données.\nT’Vyr, surveillez toute activation énergétique anormale.\nNous devons savoir si un cube ou une flotte supplémentaire se trouve à proximité.\n— Bien reçu, Admiral, répondit Varok.\nCommencez les manipulations.\nPendant que l’équipe d’abordage travaillait, Umaishi se tourna vers l’écran principal, où la sphère borg restait en vue.\nIl ne pouvait s’empêcher de penser que cette situation était plus complexe qu’elle n’en avait l’air.\nLera, la chef des communications, intercepta un signal faible et fragmenté.\nSa voix trahissait une pointe d’inquiétude.\n— Admiral, nous captons une transmission subspatiale.\nElle semble provenir de la sphère, mais. elle ne correspond pas au protocole borg standard.\nCela pourrait être une forme d’appel au secours.\nUmaishi se redressa, intrigué.\n— Amplifiez le signal.\nEssayez de le décrypter.\nL’équipage retint son souffle alors que le signal, amplifié et clarifié, révéla une voix synthétique, mais différente de celle des Borgs habituels.\nVoix : « Nous ne sommes pas une menace. Nous cherchons la libération. Aidez-nous. »\nT’Vyr consulta rapidement ses relevés.\n— Admiral, il est possible que la sphère abrite des individus d’une autre espèce, éventuellement assimilés mais ayant conservé une certaine conscience.\nCette demande pourrait être authentique.\nRalek, sceptique, grogna doucement.\n— Ou c’est un nouveau piège.\nLes Borgs ne sont pas vraiment connus pour demander de l’aide.\nUmaishi fixa l’écran principal.\nLe dilemme était évident : ignorer cet appel pourrait signifier abandonner des êtres en détresse, mais y répondre risquait de compromettre la mission.\n— Nous ne sommes pas Starfleet pour choisir la solution de facilité, murmura-t-il, plus pour lui-même que pour l’équipage.\nT’Vyr, analysez la structure interne de la sphère.\nIdentifiez les sections pouvant contenir des chambres d’assistance ou des modules de survie.\nRalek, préparez une équipe de soutien en cas d’intervention.\nLes minutes suivantes furent une course contre la montre.\nVarok et son équipe à bord de la sphère parvinrent à accéder à des données critiques, confirmant l’existence de chambres contenant des êtes biologiques.\nPendant ce temps, T’Vyr rapporta une augmentation des activités énergétiques à proximité.\n— Admiral, des signatures borg supplémentaires entrent dans le secteur.\nUne flotte de quatre vaisseaux se dirige vers nous.\nUmaishi prit une inspiration profonde.\nLe choix était clair.\n— Data, établissez une stratégie pour tenir ces renforts à distance.\nT’Vyr, synchronisez nos systèmes avec ceux de l’Enterprise.\nVarok, récupérez tous ceux que vous pouvez et téléportez-les sur le Voyager.\nNous n’aurons peut-être pas une deuxième chance.\nAlors que les écrans affichaient les vaisseaux borg approchants, l’équipage de l’USS Voyager se prépara à un affrontement inévitable.\nLe compte à rebours avait commencé, et le sort de ceux qui attendaient dans la sphère reposait entre les mains de Starfleet."
+  },
+  5: {
+    title: "Chapitre 4 : Le Sauvetage désespéré",
+    content: "Le pont principal de l'USS Voyager était plongé dans une tension palpable.\nLes vaisseaux borg approchaient rapidement, leurs signatures énergétiques pulsant comme des échos de menace imminente.\nSur l’écran principal, la sphère borg était maintenant entourée de distorsions subspatiales provoquées par l’arrivée des renforts.\nL’Admiral Umaishi se tenait fermement devant son fauteuil, ses mains croisées derrière le dos.\nChaque membre de l’équipage était concentré sur sa console, préparant les systèmes pour le combat et le sauvetage simultané.\n— T’Vyr, situation des nouveaux vaisseaux borg ?\nLa Vulcaine répondit sans lever les yeux de sa console.\n— Quatre vaisseaux en approche rapide.\nDeux cubes tactiques et deux sphères.\nIls seront à portée d’attaque dans cinq minutes.\nRalek grogna en ajustant les paramètres des boucliers.\n— Bien sûr, ils ne peuvent jamais se contenter d’un seul cube.\nC’est comme une invitation à un buffet pour eux.\nUmaishi étira un sourire discret mais sérieux.\n— Ralek, concentrez-vous sur le renforcement des boucliers adaptatifs.\nNous devrons tenir bon assez longtemps pour finaliser l’extraction.\nPendant ce temps, Varok et son équipe d’abordage étaient toujours à l’intérieur de la sphère borg.\nIls avaient localisé les chambres où les individus biologiques étaient maintenus, et les téléportations avaient commencé.\nDes formes humanoïdes apparaissaient sur le pont du Voyager, étendues sur le sol, certaines à peine conscientes.\nL’Officier Médical Principal Andress Varok fit son rapport par communicateur.\n— Admiral, nous avons identifié 27 survivants, mais la situation est instable.\nLes systèmes de survie de la sphère sont sur le point de s’effondrer.\n— Priorisez ceux qui sont en danger critique, ordonna Umaishi.\nRamenez tout le monde que vous pouvez, mais ne prenez pas de risques inutiles.\nLera, au poste de communication, intercepta une nouvelle transmission subspatiale, cette fois provenant des vaisseaux borg approchants.\nLa voix monotone et glaciale des Borgs résonna sur le pont.\n— Nous sommes les Borg.\nRésistance inutile.\nAbandonnez la sphère.\nVous serez assimilés.\nT’Vyr interrompit la transmission.\n— Admiral, ils tentent de nous intimider.\nAucun signe d’échange diplomatique possible.\nUmaishi hocha la tête, sachant que toute tentative de dialogue serait futile.\n— Capitaine Picard, situation sur l’Enterprise ?\nLa voix du Capitaine Picard résonna sur les haut-parleurs.\n— Nous sommes en position pour fournir un soutien feu, Admiral.\nNos systèmes sont limités, mais nous ferons tout notre possible pour vous donner le temps nécessaire.\n— Merci, Capitaine.\nSynchronisez vos tirs avec les nôtres pour maximiser l’impact.\nLe compte à rebours pour l’engagement final avait commencé.\nUmaishi se tourna vers l’équipage.\n— Enclenchez les protocoles de défense.\nRalek, programmez les torpilles à photons multi-phasique pour cibler leurs systèmes d’armement.\nT’Vyr, concentrez nos tirs sur leurs moteurs.\nSi nous pouvons ralentir leurs manœuvres, nous gagnerons un avantage précieux.\nLes Borgs n’attendirent pas.\nLes tirs de phaseurs verts commencèrent à pleuvoir, mais les boucliers du Voyager tinrent bon, absorbant l’énergie.\nEn réponse, le Voyager et l’Enterprise lancèrent une attaque coordonnée.\nLes torpilles à photons frappèrent avec une précision mortelle, perturbant les trajectoires des sphères ennemies.\nSur le pont, les tensions atteignaient leur comble.\nVarok annonça que son équipe avait terminé l’évacuation et était prête à revenir.\n— Téléportez-les immédiatement, ordonna Umaishi.\nT’Vyr, une fois qu’ils sont à bord, activez le protocole de distorsion.\nNous ne pouvons pas nous permettre de rester plus longtemps.\nEn quelques secondes, l’équipe d’abordage fut téléportée à bord du Voyager.\nLes moteurs de distorsion commencèrent à s’amorcer alors que les Borgs intensifiaient leur attaque.\n— Distorsion maximale, maintenant ! cria Umaishi.\nLe Voyager et l’Enterprise disparurent en un éclair de lumière, laissant les Borgs dans leur sillage.\nQuelques instants plus tard, les deux vaisseaux réapparurent dans un espace sécurisé, loin des renforts ennemis.\nL’équipage du Voyager laissa échapper un soupir de soulagement.\nMais Umaishi, bien que soulagé, savait que ce n’était qu’une victoire temporaire.\nLes Borgs étaient toujours une menace, et les survivants secourus à bord de la sphère représentaient une énigme à découvrir.\n— Excellent travail, tout le monde, dit-il avec gravitas.\nNous avons sauvé des vies aujourd’hui, mais la mission n’est pas terminée.\nT’Vyr, commencez une analyse des survivants.\nJe veux savoir qui ils sont et ce qu’ils savent.\nAlors que le Voyager se dirigeait vers une sécurité relative, l’ombre des Borgs continuait de planer, et l’histoire de la sphère semblait loin d’être terminée."
+  },
+  6: {
+    title: "Chapitre 5 : Les Secrets Révélés",
+    content: "Dans l'infirmerie de l'USS Voyager, les survivants récupérés de la sphère borg étaient en cours de stabilisation.\nL'Officier Médical Principal, Andress Varok, était en pleine action, coordonnant les équipes pour évaluer l'état des nouveaux arrivants.\nCes individus présentaient des implants borgs désactivés, mais leurs corps montraient des signes évidents de souffrance prolongée.\n— Admiral Umaishi, rapport initial, annonça Varok via l’intercom.\nLes survivants sont principalement des humanoïdes de diverses espèces.\nIls ont été partiellement dés-assimilés, mais les implants subsistants interfèrent avec leurs fonctions vitales.\nNous faisons tout notre possible pour les stabiliser.\nSur le pont, Umaishi écouta attentivement le rapport tout en gardant un œil sur les scanners. T’Vyr, toujours à la console tactique, affichait une expression de concentration méticuleuse.\n— T’Vyr, avez-vous décrypté les données téléchargées de la sphère ? demanda Umaishi.\nLa Vulcaine hocha légèrement la tête.\n— Oui, Admiral.\nLes données contiennent des informations fragmentées sur un élément nommé « Nexus Émergent ».\nIl semble s'agir d'une expérience borg visant à créer une forme de conscience collective évoluée, mais les résultats indiquent un échec partiel.\nUmaishi fronça les sourcils, intrigué.\n— Une conscience collective évoluée ?\nCela expliquerait peut-être la demande d’aide que nous avons interceptée.\nCes Borgs essayaient-ils de se libérer de leur propre collectivité ?\nRalek intervint, un sourire cynique sur les lèvres.\n— Si c'est vrai, c'est une première.\nLes Borgs qui veulent leur liberté ?\nPeut-être qu'ils commencent à comprendre que l’assimilation, ce n'est pas si fabuleux.\nL’officier de communication, Lera, ajouta son analyse.\n— Admiral, les fragments de données suggèrent également une localisation.\nUn secteur non cartographié du Quadrant Delta pourrait contenir une base ou un laboratoire lié au projet Nexus Émergent.\nUmaishi inspira profondément.\nLes implications de cette information étaient immenses.\n— Capitaine Picard, nous pourrions avoir une piste sur l’origine de ce projet.\nCela pourrait expliquer le comportement inhabituel des Borgs que nous avons rencontrés.\nLa voix du Capitaine Picard résonna depuis l’Enterprise.\n— Une localisation ?\nCela pourrait être notre opportunité d’en apprendre davantage sur leurs faiblesses.\nMais cela pourrait également être un piège.\nUmaishi hocha la tête.\n— Je suis d'accord, mais nous ne pouvons pas ignorer cette chance.\nT’Vyr, commencez les calculs de trajectoire.\nLera, envoyez une copie des données à Starfleet Command.\nRalek, assurez-vous que le Voyager est en parfait état pour un nouveau voyage.\nLe pont s’activa sous les ordres d’Umaishi, chaque membre de l’équipage s’affairant à sa tâche.\nPendant ce temps, l'infirmerie poursuivait son travail acharné.\nDans une des salles de soins, un des survivants se redressa faiblement, ses yeux brillants d'une intelligence intacte malgré les implants visibles sur son visage.\nVarok s'approcha avec prudence.\n— Vous êtes en sécurité à bord de l'USS Voyager.\nPouvez-vous nous dire qui vous êtes ?\nL'individu parla d'une voix rauque mais claire.\n— Je m'appelle Kelyn.\nJ'étais... un scientifique avant d'être assimilé.\nCette sphère était une expérimentation.\nNous avons tenté de nous libérer du Collectif, mais ils nous ont trouvés.\nVarok rapporta rapidement cette information au pont, où Umaishi et le reste de l’équipage écoutèrent avec attention.\n— Admiral, continua Kelyn, si vous voulez comprendre le Nexus Émergent, vous devrez aller dans le secteur Zeta-12.\nMais faites attention.\nCeux qui contrôlent ce projet sont bien plus dangereux que tout ce que vous avez vu jusqu’à présent.\nUmaishi fixa l’écran principal, où la carte des étoiles s’actualisait pour afficher les coordonnées du secteur Zeta-12.\nUne décision cruciale s’imposait.\n— Capitaine Picard, êtes-vous prêt à poursuivre cette mission avec nous ?\nPicard répondit sans hésitation.\n— Toujours, Admiral. En avant toute.\nLe Voyager et l’Enterprise se mirent en route, laissant derrière eux le vide de leur dernière bataille. L’équipage savait que ce qui les attendait dans le secteur Zeta-12 pourrait redéfinir leur compréhension des Borgs, et peut-être même de la galaxie elle-même."
+  },
+  7: {
+    title: "Chapitre 6 : ?",
+    content: "Bientôt disponible."
+  },
+  8: {
+    title: "Chapitre 7 : ?",
+    content: "Bientôt disponible."
+  },
+  9: {
+    title: "Chapitre 8 : ?",
+    content: "Bientôt disponible."
+  },
+  10: {
+    title: "Chapitre 9 : ?",
+    content: "Bientôt disponible."
+  },
+  11: {
+    title: "Chapitre 10 : ?",
+    content: "Bientôt disponible."
+  },
+};
+
+function formatContent(content) {
+  // Replace periods followed by a space or end of string with period + newline
+  return content.replace(/\.\s*/g, '.\n');
+}
+let currentPage = 1;
+    const totalPages = Object.keys(bookContent).length;
+
+    function updatePage(pageNum) {
+      const content = document.getElementById('bookContent');
+      const pageNumber = document.getElementById('pageNumber');
+      const prevButton = document.getElementById('prevPage');
+      const nextButton = document.getElementById('nextPage');
+      
+      content.innerHTML = `
+        <h2>${bookContent[pageNum].title}</h2>
+        <p>${bookContent[pageNum].content}</p>
+        <span class="page-number">Page ${pageNum}</span>
+      `;
+      
+      prevButton.disabled = pageNum === 1;
+      nextButton.disabled = pageNum === totalPages;
+      currentPage = pageNum;
+    }
+
+    function initializePageSelect() {
+      const pageSelect = document.getElementById('pageSelect');
+      pageSelect.innerHTML = Object.keys(bookContent).map(pageNum => 
+        `<option value="${pageNum}">Page ${pageNum}: ${bookContent[pageNum].title}</option>`
+      ).join('');
+    }
+
+    document.getElementById('prevPage').addEventListener('click', () => {
+      if (currentPage > 1) {
+        updatePage(currentPage - 1);
+      }
+    });
+
+    document.getElementById('nextPage').addEventListener('click', () => {
+      if (currentPage < totalPages) {
+        updatePage(currentPage + 1);
+      }
+    });
+
+    document.getElementById('pageSelect').addEventListener('change', (e) => {
+      updatePage(parseInt(e.target.value));
+    });
+
+    // Initialize the book
+    initializePageSelect();
+    updatePage(1);
+function updatePage(pageNum) {
+  const content = document.getElementById('bookContent');
+  const pageNumber = document.getElementById('pageNumber');
+  const prevButton = document.getElementById('prevPage');
+  const nextButton = document.getElementById('nextPage');
+  
+  const formattedContent = formatContent(bookContent[pageNum].content);
+  
+  content.innerHTML = `
+    <h2>${bookContent[pageNum].title}</h2>
+    <p style="white-space: pre-line">${formattedContent}</p>
+    <span class="page-number">Page ${pageNum}</span>
+  `;
+  
+  prevButton.disabled = pageNum === 1;
+  nextButton.disabled = pageNum === totalPages;
+  currentPage = pageNum;
+}
+
+    function initializePageSelect() {
+      const pageSelect = document.getElementById('pageSelect');
+      pageSelect.innerHTML = Object.keys(bookContent).map(pageNum => 
+        `<option value="${pageNum}">Page ${pageNum}: ${bookContent[pageNum].title}</option>`
+      ).join('');
+    }
+
+    document.getElementById('prevPage').addEventListener('click', () => {
+      if (currentPage > 1) {
+        updatePage(currentPage - 1);
+      }
+    });
+
+    document.getElementById('nextPage').addEventListener('click', () => {
+      if (currentPage < totalPages) {
+        updatePage(currentPage + 1);
+      }
+    });
+
+    document.getElementById('pageSelect').addEventListener('change', (e) => {
+      updatePage(parseInt(e.target.value));
+    });
+
+    // Initialize the book
+    initializePageSelect();
+    updatePage(1);
+    
+    // Run the check when the page loads
+    checkHolidays();
+  </script>
+</body></html>

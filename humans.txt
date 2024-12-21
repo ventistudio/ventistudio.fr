@@ -1,19 +1,4 @@
-Le Journal du Voyageur Égaré
+Sitemap: https://ventistudio.fr/sitemap
 
-Extrait du 7e jour, dans les confins de Teyvat
-
-"Les étoiles murmurent à travers les brumes de l’aube, et je les écoute. Elles portent des secrets anciens, des récits oubliés, et des promesses d’aventures à venir. Je me demande si, quelque part dans ces constellations lointaines, se cache la clé pour ouvrir la porte du monde interdit.
-
-J’ai marché pendant des jours, à la recherche d’un signe, d’un indice. Les arbres m’ont chuchoté des légendes, les rivières m’ont offert des énigmes, mais c’est dans le silence des étoiles que je trouve la véritable réponse.
-
-La nuit dernière, j’ai vu une étoile filante. Elle a tracé une ligne fugace dans le ciel, comme si elle cherchait à me guider. J’ai suivi sa trajectoire, grimpant sur des montagnes escarpées, traversant des forêts sombres, jusqu’à atteindre un rocher solitaire.
-
-Et là, gravé dans la pierre, j’ai trouvé ces mots :
-
-“Celui qui sait écouter les étoiles saura trouver son chemin.”
-
-Je ne sais pas encore où ce chemin me mènera, mais je suis prêt à le suivre, à percer les mystères de Teyvat, à découvrir les secrets cachés.
-
-Peut-être que vous aussi, cher lecteur, entendrez un jour le murmure des étoiles.
-
-Voyageur égaré, signant ici.
+User-agent: *
+Disallow:

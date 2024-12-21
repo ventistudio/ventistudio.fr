@@ -1,0 +1,11 @@
+*.wav
+*.mp3
+*.mp4
+/a-files/
+.vs/slnx.sqlite
+.vs/slnx.sqlite
+.vs/ventitudio.fr/FileContentIndex/115ee3dd-4710-4120-ad7c-8222eb05981b.vsidx
+.vs/ventitudio.fr/FileContentIndex/ca33650f-376c-425d-892d-9d8ece0e5b09.vsidx
+.vs/slnx.sqlite
+.vs/ventitudio.fr/FileContentIndex/ca74acc8-3691-4e75-bd2f-8ffbf7f0d864.vsidx
+*.vsidx

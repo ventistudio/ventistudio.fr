@@ -3,7 +3,7 @@
   <meta charset="utf-8">
   <meta name="viewport">
   <html lang="fr"></html>
-  <link rel="icon" type="image/gif" href="favicon.avif">
+  <link rel="icon" type="image/png" href="favicon.ico">
   <meta property="og:title" content="Bienvenu sur VentiStudio">
   <meta property="og:site_name" content="VentiStudio Komiyuniti">
   <meta property="og:url" content="https://ventistudio.fr">
@@ -11,151 +11,240 @@
 Laissez-moi vous présenter ma communauté, un espace où l'art et la créativité se rencontrent.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://ventistudio.fr/favicon.gif">
-  <title>Erreur - VentiStudio</title>
-  <style>
-    :root {
-      --primary: #8b5cf6;
-      --dark: #1a1a1a;
-      --text: #ffffff;
-      --error-color: #ff0033;
-    }
-    
-    body {
-      margin: 0;
-      font-family: 'Courier New', monospace;
-      background: var(--dark);
-      color: var(--text);
-      overflow: hidden;
-      position: relative;
-    }
+  <title>VentiStudio - Erreur</title>
+<style>
+:root {
+  --primary: #7B66FF;
+  --secondary: #2A2D3A;
+  --background: #1A1B26;
+  --text: #FFFFFF;
+  --hover: #9F86FF;
+  --accent1: #414868;
+  --accent2: #565f89;
+}
 
-    .error-container {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 2rem;
-      text-align: center;
-      animation: glitch 1s infinite;
-      position: relative;
-    }
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap');
 
-    .error-code {
-      font-size: 4rem;
-      font-weight: bold;
-      margin-bottom: 1rem;
-      text-shadow: 2px 2px var(--error-color);
-      animation: textGlitch 3s infinite;
-    }
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--background);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
 
-    .error-message {
-      font-size: 1.5rem;
-      max-width: 600px;
-      margin: 0 auto;
-      line-height: 1.6;
-      opacity: 0.8;
-    }
+.error-container {
+  padding: 2rem;
+  max-width: 800px;
+}
 
-    .back-home {
-      margin-top: 2rem;
-      padding: 1rem 2rem;
-      background: var(--error-color);
-      color: white;
-      text-decoration: none;
-      border-radius: 4px;
-      font-weight: bold;
-      transition: all 0.3s;
-    }
+.error-code {
+  font-size: 8rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  margin: 0;
+  background: linear-gradient(45deg, var(--primary), var(--hover));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: glowPulse 2s ease-in-out infinite;
+}
 
-    .back-home:hover {
-      transform: scale(1.1);
-      background: #ff1a1a;
-    }
+.error-title {
+  font-size: 2rem;
+  margin: 1rem 0;
+  font-family: 'Space Grotesk', sans-serif;
+}
 
-    .glitch-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      background: repeating-linear-gradient(
-        0deg,
-        rgba(0, 0, 0, 0.1) 0px,
-        rgba(0, 0, 0, 0.1) 1px,
-        transparent 1px,
-        transparent 2px
-      );
-      animation: scan 8s linear infinite;
-    }
+.error-message {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  opacity: 0.8;
+}
 
-    @keyframes glitch {
-      0% { transform: translate(0) }
-      20% { transform: translate(-2px, 2px) }
-      40% { transform: translate(-2px, -2px) }
-      60% { transform: translate(2px, 2px) }
-      80% { transform: translate(2px, -2px) }
-      100% { transform: translate(0) }
-    }
+.home-button {
+  background: var(--primary);
+  color: var(--text);
+  padding: 1rem 2rem;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-block;
+  margin-top: 2rem;
+}
 
-    @keyframes textGlitch {
-      0% { text-shadow: 2px 2px var(--error-color) }
-      25% { text-shadow: -2px 2px #00ff00 }
-      50% { text-shadow: 2px -2px #0000ff }
-      75% { text-shadow: -2px -2px var(--error-color) }
-      100% { text-shadow: 2px 2px var(--error-color) }
-    }
+.home-button:hover {
+  background: var(--hover);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(123, 102, 255, 0.3);
+}
 
-    @keyframes scan {
-      0% { transform: translateY(-100%) }
-      100% { transform: translateY(100%) }
-    }
-  </style>
+.error-animation {
+  width: 200px;
+  height: 200px;
+  margin: 2rem 0;
+  position: relative;
+}
+
+.error-circle {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 4px solid var(--primary);
+  border-radius: 50%;
+  animation: rotate 4s linear infinite;
+}
+
+.error-circle:nth-child(2) {
+  border-color: var(--hover);
+  animation-direction: reverse;
+  animation-duration: 3s;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes glowPulse {
+  0% { text-shadow: 0 0 20px rgba(123, 102, 255, 0.5); }
+  50% { text-shadow: 0 0 30px rgba(123, 102, 255, 0.8); }
+  100% { text-shadow: 0 0 20px rgba(123, 102, 255, 0.5); }
+}
+
+.lyoko-eye {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  margin: 2rem auto;
+}
+
+.lyoko-eye svg {
+  width: 100%;
+  height: 100%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+</style>
 </head>
 <body>
-  <div class="glitch-overlay"></div>
   <div class="error-container">
-    <div class="error-code" id="errorCode">Chargement...</div>
-    <div class="error-message" id="errorMessage">Analyse de l'erreur en cours...</div>
-    <a href="/" class="back-home">Retour à l'accueil</a>
+    <div class="lyoko-eye">
+      <svg viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="45" fill="none" stroke="var(--primary)" stroke-width="2"/>
+        <path d="M20,50 L80,50 M50,20 L50,80" stroke="var(--primary)" stroke-width="2"/>
+        <circle cx="50" cy="50" r="10" fill="var(--primary)"/>
+      </svg>
+    </div>
+    
+    <h1 class="error-code" id="errorCode">CODE LYOKO</h1>
+    <h2 class="error-title" id="errorTitle">Une aventure virtuelle vous attend</h2>
+    <p class="error-message" id="errorMessage">Explorez l'univers numérique de VentiStudio</p>
+    
+    <div class="error-animation">
+      <div class="error-circle"></div>
+      <div class="error-circle"></div>
+    </div>
+    
+    <a href="/" class="home-button">Retour à l'accueil</a>
   </div>
 
   <script>
-    function getErrorCode() {
+    function handleError() {
       const urlParams = new URLSearchParams(window.location.search);
       const errorCode = urlParams.get('code');
-      return errorCode;
-    }
-
-    function updateErrorDisplay() {
-      const errorCode = getErrorCode();
       const errorCodeElement = document.getElementById('errorCode');
+      const errorTitleElement = document.getElementById('errorTitle');
       const errorMessageElement = document.getElementById('errorMessage');
+      
+      const errorTypes = {
+        '400': {
+          code: '400',
+          title: 'Requête invalide',
+          message: 'Vérifiez les informations transmises.'
+        },
+        '401': {
+          code: '401',
+          title: 'Accès non autorisé',
+          message: 'Veuillez vous connecter pour accéder à cette page.'
+        },
+        '403': {
+          code: '403',
+          title: 'Accès interdit',
+          message: 'Vous n\'avez pas les autorisations nécessaires pour accéder à cette page.'
+        },
+        '404': {
+          code: '404',
+          title: 'Page non trouvée',
+          message: 'La page que vous recherchez semble avoir disparu dans le réseau numérique.'
+        },
+        '500': {
+          code: '500',
+          title: 'Erreur serveur',
+          message: 'Une erreur est survenue sur nos serveurs. Nos techniciens travaillent dessus.'
+        },
+        '503': {
+          code: '503',
+          title: 'Service indisponible',
+          message: 'Le serveur est actuellement surchargé ou en maintenance.'
+        },
+        '900': {
+          code: '900',
+          title: 'Vous avez activé un Easter Egg !',
+          message: '🎉 Bravo pour cette découverte secrète !'
+        },
+        '999': {
+          code: '999',
+          title: 'Une erreur de type \'fusion\' a été détectée.',
+          message: 'Préparez-vous à un reset total du système. ⚡'
+        },
+        '1337': {
+          code: '1337',
+          title: 'Erreur 1337',
+          message: 'Vous avez atteint un niveau de compétence supérieur. 😎'
+        },
+        '4040': {
+          code: '4040',
+          title: 'Erreur 4040',
+          message: 'Il n\'y a pas de page ici, mais vous pouvez trouver votre propre chemin ! 🌌'
+        },
+        'maintenance': {
+          code: 'UPDATE',
+          title: 'Site en maintenance',
+          message: 'VentiStudio est actuellement en maintenance. Revenez bientôt !'
+        },
+        'banned': {
+          code: 'BANNED',
+          title: 'DRAFTURION ZERODEZ',
+          message: 'Vous avez été banni'
+        },
+        'default': {
+          code: 'CODE LYOKO',
+          title: 'Une aventure virtuelle vous attend',
+          message: 'Explorez l\'univers numérique de VentiStudio'
+        }
+      };
 
-      if (errorCode) {
-        errorCodeElement.textContent = `CODE D'ERREUR ${errorCode}`;
-        errorMessageElement.textContent = `L'erreur http ${errorCode} s'est produite. Veuillez réessayer ultérieurement.`;
-      } else {
-        errorCodeElement.textContent = 'CODE LYOKO';
-        errorMessageElement.textContent = `Une erreur inconnue s'est produite dans le système. XANA semble avoir corrompu les données. L'équipe technique a été notifiée et travaille sur une solution.`;
-      }
+      const errorInfo = errorTypes[errorCode] || errorTypes['default'];
+      
+      errorCodeElement.textContent = errorInfo.code;
+      errorTitleElement.textContent = errorInfo.title;
+      errorMessageElement.textContent = errorInfo.message;
     }
 
-    window.addEventListener('load', updateErrorDisplay);
-
-    // Ajout d'effets de corruption supplémentaires
-    setInterval(() => {
-      const container = document.querySelector('.error-container');
-      const randomOffset = Math.random() * 10 - 5;
-      container.style.transform = `translate(${randomOffset}px, ${randomOffset}px)`;
-      
-      if (Math.random() > 0.95) {
-        container.style.filter = `hue-rotate(${Math.random() * 360}deg)`;
-        setTimeout(() => {
-          container.style.filter = 'none';
-        }, 100);
-      }
-    }, 100);
+    // Run error handler when page loads
+    window.onload = handleError;
   </script>
-</body></html>
+</body>
+</html>

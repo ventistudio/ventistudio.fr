@@ -3,7 +3,7 @@
   <meta charset="utf-8">
   <meta name="viewport">
   <html lang="fr"></html>
-  <link rel="icon" type="image/gif" href="favicon.avif">
+  <link rel="icon" type="image/png" href="favicon.ico">
   <meta property="og:title" content="Bienvenu sur VentiStudio">
   <meta property="og:site_name" content="VentiStudio Komiyuniti">
   <meta property="og:url" content="https://ventistudio.fr">
@@ -11,110 +11,274 @@
 Laissez-moi vous présenter ma communauté, un espace où l'art et la créativité se rencontrent.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://ventistudio.fr/favicon.gif">
-  <title>NCC-74656 VOYAGEUR - VentiStudio</title>
-  <style>
-    body {
-      margin: 0;
-      background: #000;
-      color: #fff;
-      font-family: 'Courier New', monospace;
-      overflow-x: hidden;
-    }
+  <title>VentiStudio - Social</title>
+<style>
+:root {
+  --lcars-orange: #FF9C00;
+  --lcars-purple: #CC99CC;
+  --lcars-blue: #9999FF;
+  --lcars-brown: #FF9966;
+  --lcars-red: #FF0000;
+  --lcars-yellow: #FFD700;
+  --background: #000000;
+  --text: #FFFFFF;
+}
 
-    .content {
-      padding: 2rem;
-      max-width: 800px;
-      margin: 0 auto;
-      animation: appear 1s ease-in;
-    }
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--background);
+  color: var(--text);
+  font-family: 'Helvetica', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
 
-    .content.distort {
-      animation: distortAndVanish 3s forwards;
-    }
+.lcars-container {
+  position: relative;
+  width: 800px;
+  height: 400px;
+  background: var(--background);
+  border: 2px solid var(--lcars-orange);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 0 20px var(--lcars-orange);
+}
 
-    .message {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      display: none;
-      font-size: 1.5rem;
-      color: #4a9eff;
-      text-shadow: 0 0 10px #4a9eff;
-      opacity: 0;
-    }
+.alert-lights {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 10px;
+}
 
-    .message.show {
-      display: block;
-      animation: messageAppear 2s forwards;
-    }
+.alert-lights.left {
+  left: -20px;
+}
 
-    @keyframes appear {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
+.alert-lights.right {
+  right: -20px;
+}
 
-    @keyframes distortAndVanish {
-      0% {
-        transform: skew(0deg);
-        filter: blur(0);
-        opacity: 1;
-      }
-      50% {
-        transform: skew(20deg);
-        filter: blur(5px);
-        opacity: 0.5;
-      }
-      100% {
-        transform: skew(45deg);
-        filter: blur(20px);
-        opacity: 0;
-      }
-    }
+.alert-light {
+  width: 100%;
+  height: 30px;
+  margin: 10px 0;
+  border-radius: 5px;
+  animation: blink 1s infinite;
+}
 
-    @keyframes messageAppear {
-      from {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(0.8);
-      }
-      to {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
-      }
-    }
+.alert-red {
+  background-color: var(--lcars-red);
+  box-shadow: 0 0 10px var(--lcars-red);
+}
 
-    h1 {
-      color: #4a9eff;
-      border-bottom: 2px solid #4a9eff;
-      padding-bottom: 1rem;
-    }
-  </style>
+.alert-blue {
+  background-color: var(--lcars-blue);
+  box-shadow: 0 0 10px var(--lcars-blue);
+}
+
+.alert-yellow {
+  background-color: var(--lcars-yellow);
+  box-shadow: 0 0 10px var(--lcars-yellow);
+}
+
+.lcars-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.lcars-title {
+  color: var(--lcars-orange);
+  font-size: 24px;
+  margin-left: 20px;
+}
+
+.lcars-content {
+  text-align: center;
+  padding: 20px;
+}
+
+.redirect-message {
+  color: var(--text);
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.loading-bar {
+  width: 100%;
+  height: 20px;
+  background: var(--lcars-purple);
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 20px 0;
+}
+
+.loading-progress {
+  width: 0%;
+  height: 100%;
+  background: var(--lcars-orange);
+  animation: loading 3s linear forwards;
+}
+
+.starship-info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  color: var(--lcars-blue);
+}
+
+.warp-effect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(ellipse at center, transparent 0%, var(--background) 70%);
+  opacity: 0.5;
+  animation: warpPulse 2s infinite;
+}
+
+@keyframes loading {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+
+@keyframes warpPulse {
+  0% { opacity: 0.3; }
+  50% { opacity: 0.7; }
+  100% { opacity: 0.3; }
+}
+
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.ship-status {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  color: var(--lcars-blue);
+  font-size: 14px;
+}
+
+.alert {
+  color: var(--lcars-red);
+  animation: blink 1s infinite;
+}
+</style>
 </head>
 <body>
-  <div class="content">
-    <h1>NCC-74656 VOYAGEUR</h1>
-    <p>Le USS Voyager (NCC-74656) est un vaisseau spatial de classe Intrepid appartenant à la Fédération des Planètes Unies. Sous le commandement du Capitaine Kathryn Janeway, ce vaisseau s'est retrouvé projeté dans le Quadrant Delta, à plus de 70 000 années-lumière de la Terre.</p>
-    <p>Caractéristiques techniques :</p>
-    <ul>
-      <li>Longueur : 344 mètres</li>
-      <li>Équipage : 141 membres</li>
-      <li>Vitesse maximale : Distorsion 9.975</li>
-      <li>Armement : 13 batteries de phaseurs, 4 lanceurs de torpilles</li>
-    </ul>
-    <p>Le Voyager est équipé des technologies les plus avancées de Starfleet, notamment un noyau de distorsion nouvelle génération et le premier système de bio-neural intégré.</p>
-  </div>
-
-  <div class="message">
-    La page semble être passée en distortion mais a disparu dans le fin fond de la galaxie dans le quadrant delta
+  <div class="lcars-container">
+    <div class="alert-lights left">
+      <div class="alert-light"></div>
+      <div class="alert-light"></div>
+      <div class="alert-light"></div>
+      <div class="alert-light"></div>
+      <div class="alert-light"></div>
+    </div>
+    <div class="alert-lights right">
+      <div class="alert-light"></div>
+      <div class="alert-light"></div>
+      <div class="alert-light"></div>
+      <div class="alert-light"></div>
+      <div class="alert-light"></div>
+    </div>
+    <div class="warp-effect"></div>
+    <div class="lcars-header">
+      <div class="lcars-title">USS Voyager NCC-74656</div>
+    </div>
+    <div class="lcars-content">
+      <div class="redirect-message">INITIALISATION SÉQUENCE DE TÉLÉPORTATION</div>
+      <div class="loading-bar">
+        <div class="loading-progress"></div>
+      </div>
+      <div class="starship-info">
+        <span>Système: LCARS</span>
+        <span>Statut: EN COURS</span>
+        <span>Destination: <span id="destination">CHARGEMENT...</span></span>
+      </div>
+    </div>
+    <div class="ship-status">
+      <div>Boucliers: ACTIFS</div>
+      <div>Vitesse de distorsion: 9.975</div>
+      <div class="alert">TÉLÉPORTATION EN COURS...</div>
+    </div>
   </div>
 
   <script>
-    setTimeout(() => {
-      document.querySelector('.content').classList.add('distort');
+    // Liste noire d'URLs
+    const blacklistedUrls = [
+      'malicious.com',
+      'spam.com',
+      'unsafe.net'
+    ];
+
+    // Fonction pour vérifier si une URL est valide
+    function isValidUrl(string) {
+      try {
+        new URL(string);
+        return true;
+      } catch (_) {
+        return false;
+      }
+    }
+
+    // Fonction pour vérifier si une URL est dans la liste noire
+    function isBlacklisted(url) {
+      return blacklistedUrls.some(blacklisted => url.includes(blacklisted));
+    }
+
+    // Fonction pour définir l'état d'alerte
+    function setAlertState(state) {
+      const alertLights = document.querySelectorAll('.alert-light');
+      alertLights.forEach(light => {
+        light.classList.remove('alert-red', 'alert-blue', 'alert-yellow');
+        light.classList.add(`alert-${state}`);
+      });
+    }
+
+    // Fonction pour obtenir le paramètre de redirection de l'URL
+    function getRedirectUrl() {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get('redirect');
+    }
+
+    // Fonction pour gérer la redirection
+    function handleRedirect() {
+      const redirectUrl = getRedirectUrl();
+      
+      if (!redirectUrl) {
+        setAlertState('red');
+        document.getElementById('destination').textContent = 'DESTINATION NON SPÉCIFIÉE';
+        return;
+      }
+
+      if (!isValidUrl(redirectUrl)) {
+        setAlertState('blue');
+        document.getElementById('destination').textContent = 'INVALIDE';
+        return;
+      }
+
+      if (isBlacklisted(redirectUrl)) {
+        setAlertState('yellow');
+        document.getElementById('destination').textContent = 'NON AUTORISÉE';
+        return;
+      }
+
+      document.getElementById('destination').textContent = redirectUrl;
       setTimeout(() => {
-        document.querySelector('.message').classList.add('show');
-      }, 2000);
-    }, 15000);
+        window.location.href = redirectUrl;
+      }, 3000);
+    }
+
+    // Démarrer la redirection au chargement de la page
+    document.addEventListener('DOMContentLoaded', handleRedirect);
   </script>
 </body></html>

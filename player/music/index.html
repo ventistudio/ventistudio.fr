@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html><head><base href="https://ventistudio.fr/player/music">
+  <meta charset="utf-8">
+  <meta name="viewport">
+  <html lang="fr"></html>
+  <link rel="icon" type="image/png" href="favicon.ico">
+  <meta property="og:title" content="Bienvenu sur VentiStudio">
+  <meta property="og:site_name" content="VentiStudio Komiyuniti">
+  <meta property="og:url" content="https://ventistudio.fr">
+  <meta property="og:description" content="Hey, je suis Hikari Umaishi (光馬石), mais je préfère que l'on m'appelle Hiuma (ヒウマ).
+Laissez-moi vous présenter ma communauté, un espace où l'art et la créativité se rencontrent.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://ventistudio.fr/favicon.gif">
+  <title>VentiStudio - Music</title>
+<style>
+:root {
+  --primary: #7B66FF;
+  --secondary: #2A2D3A;
+  --background: #1A1B26;
+  --text: #FFFFFF;
+  --hover: #9F86FF;
+  --accent1: #414868;
+  --accent2: #565f89;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--background);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+  background-color: var(--secondary);
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 10px rgba(123, 102, 255, 0.1);
+}
+
+.logo {
+  height: 50px;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.mobile-menu-button {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.nav-item {
+  position: relative;
+  cursor: pointer;
+}
+
+.nav-item > a {
+  color: var(--text);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+}
+
+.nav-item > a:hover {
+  background-color: var(--hover);
+  transform: translateY(-2px);
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  background-color: var(--accent1);
+  min-width: 200px;
+  box-shadow: 0 8px 16px rgba(123, 102, 255, 0.2);
+  z-index: 1;
+  border-radius: 8px;
+  margin-top: 0.5rem;
+  backdrop-filter: blur(10px);
+}
+
+.nav-item:hover .dropdown {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+@media screen and (max-width: 768px) {
+  .mobile-menu-button {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    position: fixed;
+    top: 80px;
+    left: 0;
+    right: 0;
+    background-color: var(--secondary);
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-item {
+    width: 100%;
+  }
+
+  .dropdown {
+    position: static;
+    width: 100%;
+    margin-top: 0.5rem;
+    display: none;
+  }
+
+  .nav-item.active .dropdown {
+    display: block;
+  }
+
+  .footer-content {
+    grid-template-columns: repeat(2, 1fr) !important;
+    padding: 0 1rem;
+  }
+
+  .copyright {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.dropdown a {
+  color: var(--text);
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  transition: all 0.2s ease;
+}
+
+.dropdown a:hover {
+  background-color: var(--hover);
+  transform: translateX(5px);
+}
+
+.main-content {
+  padding: 0;
+  text-align: center;
+}
+
+.hero-section {
+  padding: 6rem 2rem;
+  background: linear-gradient(135deg, var(--background) 0%, var(--accent1) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 50% 50%, var(--primary) 0%, transparent 70%);
+  opacity: 0.1;
+  animation: pulse 4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.1; }
+  50% { transform: scale(1.2); opacity: 0.15; }
+  100% { transform: scale(1); opacity: 0.1; }
+}
+
+.hero-section h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(45deg, var(--primary), var(--hover));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: titleGlow 2s ease-in-out infinite alternate;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-section p {
+  font-size: 1.4rem;
+  color: var(--text);
+  opacity: 0.9;
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.cta-button {
+  background: var(--primary);
+  color: var(--text);
+  padding: 1rem 2rem;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+.cta-button:hover {
+  background: var(--hover);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(123, 102, 255, 0.3);
+}
+
+.section {
+  padding: 4rem 2rem;
+  background: var(--background);
+}
+
+.section-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: var(--text);
+}
+
+.section-subtitle {
+  font-size: 1.2rem;
+  color: var(--text);
+  opacity: 0.8;
+  max-width: 800px;
+  margin: 0 auto 3rem auto;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.service-card {
+  background: var(--secondary);
+  padding: 2rem;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.service-card h3 {
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.news-card {
+  background: var(--secondary);
+  padding: 2rem;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+}
+
+.community-section {
+  background: linear-gradient(135deg, var(--secondary) 0%, var(--accent1) 100%);
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.button-group {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media screen and (max-width: 768px) {
+  .hero-section h1 {
+    font-size: 2.5rem;
+  }
+  
+  .hero-section p {
+    font-size: 1.1rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .button-group {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@keyframes titleGlow {
+  from { text-shadow: 0 0 20px rgba(123, 102, 255, 0.5); }
+  to { text-shadow: 0 0 30px rgba(123, 102, 255, 0.8); }
+}
+
+.footer {
+  background-color: var(--secondary);
+  padding: 2rem;
+  margin-top: auto;
+  box-shadow: 0 -2px 10px rgba(123, 102, 255, 0.1);
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-section h3 {
+  color: var(--text);
+  margin-bottom: 1rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+}
+
+.footer-section a {
+  color: var(--text);
+  text-decoration: none;
+  display: block;
+  margin-bottom: 0.5rem;
+  transition: all 0.2s ease;
+  opacity: 0.8;
+}
+
+.footer-section a:hover {
+  opacity: 1;
+  color: var(--hover);
+  transform: translateX(5px);
+}
+
+.copyright {
+  text-align: center;
+  padding: 2rem 0;
+  border-top: 1px solid var(--accent1);
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.copyright img {
+  height: 30px;
+}
+
+.copyright span {
+  color: var(--text);
+  opacity: 0.8;
+  font-size: 0.9rem;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 6px;
+  border: 3px solid var(--background);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--hover);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) var(--background);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+#celebration-banner {
+  background: linear-gradient(45deg, var(--primary), var(--hover));
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  position: relative;
+  z-index: 1000;
+}
+
+.music-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.music-card {
+  background: var(--secondary);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.music-card:hover {
+  transform: translateY(-5px);
+}
+
+.music-card img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.music-info {
+  padding: 1rem;
+}
+
+.music-info h3 {
+  margin: 0;
+  color: var(--text);
+  font-size: 1.1rem;
+}
+
+.music-info p {
+  margin: 0.5rem 0 0;
+  color: var(--accent2);
+  font-size: 0.9rem;
+}
+
+.search-section {
+  padding: 2rem;
+  background: var(--secondary);
+}
+
+.search-controls {
+  display: flex;
+  gap: 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.search-input {
+  flex: 1;
+  min-width: 200px;
+  padding: 0.8rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background: var(--background);
+  color: var(--text);
+}
+
+.filter-select {
+  padding: 0.8rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background: var(--background);
+  color: var(--text);
+}
+
+.music-player {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--secondary);
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.player-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.player-button {
+  background: none;
+  border: none;
+  color: var(--text);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.player-button:hover {
+  background: var(--accent1);
+}
+
+.progress-bar {
+  flex: 1;
+  height: 4px;
+  background: var(--accent1);
+  border-radius: 2px;
+  cursor: pointer;
+  position: relative;
+}
+
+.progress {
+  height: 100%;
+  background: var(--primary);
+  border-radius: 2px;
+  width: 0%;
+}
+
+.volume-control {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.volume-slider {
+  width: 100px;
+}
+
+.now-playing {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.now-playing img {
+  width: 50px;
+  height: 50px;
+  border-radius: 4px;
+}
+
+.track-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.track-info span {
+  color: var(--text);
+}
+
+.track-info small {
+  color: var(--accent2);
+}
+
+.artist-header {
+  padding: 3rem 2rem;
+  background: linear-gradient(to bottom, var(--primary), var(--secondary));
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.artist-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.artist-info {
+  color: var(--text);
+}
+
+.album-section {
+  padding: 2rem;
+}
+
+.album-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.album-card {
+  background: var(--secondary);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.album-info {
+  padding: 1rem;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .search-controls {
+    flex-direction: column;
+  }
+  
+  .music-player {
+    flex-direction: column;
+    padding: 0.5rem;
+  }
+  
+  .volume-control {
+    width: 100%;
+  }
+  
+  .artist-header {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+</style>
+</head>
+<body>
+  <div id="celebration-banner" style="display: none; background: var(--primary); color: var(--text); text-align: center; padding: 10px; font-weight: bold; animation: slideDown 0.5s ease-out;">
+    <span id="celebration-message"></span>
+  </div>
+  
+  <nav class="navbar">
+    <img src="/favicon.avif" alt="VentiStudio Logo" class="logo">
+    <button class="mobile-menu-button">☰</button>
+    <div class="nav-links">
+      <div class="nav-item">
+        <a href="/">Accueil</a>
+      </div>
+      <div class="nav-item">
+        <a href="/approuvedcontent">Contenu Approuvé</a>
+      </div>
+      <div class="nav-item">
+        <a href="/wiki">Wiki</a>
+      </div>
+      <div class="nav-item">
+        <a href="/staff">Staff</a>
+        <div class="dropdown">
+          <a href="/job">Recrutement</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="/artist">Artiste</a>
+      </div>
+      <div class="nav-item">
+        <a href="/pip">PIP</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    <section class="search-section">
+      <div class="search-controls">
+        <input type="text" class="search-input" placeholder="Rechercher par titre, artiste...">
+        <select class="filter-select">
+          <option value="all">Tous les styles</option>
+          <option value="hyperpop">HyperPop</option>
+          <option value="pop">Pop</option>
+          <option value="rock">Rock</option>
+          <option value="electronic">Electronic</option>
+        </select>
+      </div>
+    </section>
+
+    <div class="music-grid">
+      <!-- Example music cards -->
+      <!-- These would be dynamically populated -->
+      <div class="music-card">
+        <img src="/favicon.gif" alt="Album Cover">
+        <div class="music-info">
+          <h3>VentiStudio Music</h3>
+          <p>Bienvenu</p>
+        </div>
+      </div>
+      <!-- More music cards... -->
+    </div>
+
+    <div class="music-player">
+      <div class="now-playing">
+        <img src="/favicon.gif" alt="Now Playing">
+        <div class="track-info">
+          <span>VentiStudio Music</span>
+          <small>Bienvenu</small>
+        </div>
+      </div>
+      
+      <div class="player-controls">
+        <button class="player-button">⏮️</button>
+        <button class="player-button">⏯️</button>
+        <button class="player-button">⏭️</button>
+        <button class="player-button">🔀</button>
+        <button class="player-button">🔁</button>
+      </div>
+      
+      <div class="progress-bar">
+        <div class="progress"></div>
+      </div>
+      
+      <div class="volume-control">
+        <button class="player-button">🔊</button>
+        <input type="range" class="volume-slider" min="0" max="100" value="100">
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Outils</h3>
+        <a href="/encrypt">Encrypt</a>
+        <a href="/sitemap">Sitemap</a>
+        <a href="/status">Statut</a>
+      </div>
+      <div class="footer-section">
+        <h3>Entreprise</h3>
+        <a href="/about">À propos</a>
+        <a href="/jobs">Emplois</a>
+        <a href="/company">Marque</a>
+      </div>
+      <div class="footer-section">
+        <h3>Ressources</h3>
+        <a href="/university">Université</a>
+        <a href="/lawful/support">Assistance</a>
+        <a href="/lawful/security">Sécurité</a>
+      </div>
+      <div class="footer-section">
+        <h3>Chartes</h3>
+        <a href="/lawful/terms">Conditions</a>
+        <a href="/lawful/privacy">Confidentialité</a>
+        <a href="/lawful/cookies">Paramètres des cookies</a>
+        <a href="/lawful/dmca">DMCA</a>
+        <a href="/lawful/dmcainfo">DMCA Information</a>
+        <a href="/lawful/cgv">Conditions Général de Vente</a>
+      </div>
+    </div>
+    <div class="copyright">
+      <img src="/favicon.avif" alt="VentiStudio Logo">
+      <span>Copyright & P-Line 2023 - 2024, Tous droits réservés.</span>
+    </div>
+  </footer>
+
+  <script>
+    const mobileMenuButton = document.querySelector('.mobile-menu-button');
+    const navLinks = document.querySelector('.nav-links');
+    const navItems = document.querySelectorAll('.nav-item');
+
+    mobileMenuButton.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    if (window.innerWidth <= 768) {
+      navItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+          if (e.target.closest('.nav-item') === item) {
+            item.classList.toggle('active');
+            navItems.forEach(otherItem => {
+              if (otherItem !== item) {
+                otherItem.classList.remove('active');
+              }
+            });
+          }
+        });
+      });
+    }
+
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.navbar')) {
+        navLinks.classList.remove('active');
+        navItems.forEach(item => item.classList.remove('active'));
+      }
+    });
+
+    function checkHolidays() {
+      const today = new Date();
+      const day = today.getDate();
+      const month = today.getMonth() + 1;
+      const banner = document.getElementById('celebration-banner');
+      const message = document.getElementById('celebration-message');
+      let celebrationMessage = '';
+
+      // [Existing holiday checks remain unchanged]
+
+      if (celebrationMessage) {
+        message.textContent = celebrationMessage;
+        banner.style.display = 'block';
+      } else {
+        banner.style.display = 'none';
+      }
+    }
+
+    checkHolidays();
+
+    const musicFolder = "/a-files/music/";
+    const musicList = [
+      "ventiopastudien/voyageurdeternite.mp3",
+      "ventiopastudien/aokienfantdelalune-var.wav",
+      "p0lterg3iist/chaosmoonverse.mp3",
+      "lightwater/phonkhard.mp3"
+    ];
+
+    const artistMappings = {
+      "ventiopastudien": "Venti Opastudien",
+      "p0lterg3iist": "P0LTERG3IIST",
+      "lightwater": "LIGHTWATER"
+    };
+
+    const titleMappings = {
+      "voyageurdeternite": "Voyageur D'Éternité",
+      "chaosmoonverse": "Chaos! - Moon Verse",
+      "phonkhard": "Phonk Hard",
+      "aokienfantdelalune-var": "Aoki Enfant de la Lune (var)"
+    };
+
+    const musicGrid = document.querySelector(".music-grid");
+    const audioPlayer = new Audio();
+    let currentTrackIndex = 0;
+    let isShuffleMode = false;
+    let isRepeatMode = false;
+
+    function formatTitle(rawTitle) {
+      return titleMappings[rawTitle] || rawTitle.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+    }
+
+    function getGenreForTrack(path) {
+      if (path.includes('ventiopastudien')) return 'pop';
+      if (path.includes('p0lterg3iist')) return 'hyperpop';
+      if (path.includes('lightwater')) return 'electronic';
+      return 'other';
+    }
+
+    musicList.forEach((path, index) => {
+      const [artist, file] = path.split("/");
+      const rawTitle = file.split(".")[0];
+      const formattedArtist = artistMappings[artist] || artist.toUpperCase();
+      const formattedTitle = formatTitle(rawTitle);
+
+      const card = document.createElement("div");
+      card.className = "music-card";
+      card.dataset.genre = getGenreForTrack(path);
+      card.innerHTML = `
+        <img src="/a-files/music/${artist}/${rawTitle}.avif" alt="Cover" onerror="this.src='/favicon.gif';">
+        <div class="music-info">
+          <h3>${formattedTitle}</h3>
+          <p>${formattedArtist}</p>
+        </div>
+      `;
+      card.addEventListener("click", () => {
+        playTrack(index);
+      });
+      musicGrid.appendChild(card);
+    });
+
+    function playTrack(index) {
+      currentTrackIndex = index;
+      const [artist, file] = musicList[index].split("/");
+      audioPlayer.src = `${musicFolder}${musicList[index]}`;
+      audioPlayer.play();
+      updateNowPlaying(artist, file.split(".")[0]);
+    }
+
+    function updateNowPlaying(artist, title) {
+      const nowPlayingTitle = document.querySelector(".track-info span");
+      const nowPlayingArtist = document.querySelector(".track-info small");
+      nowPlayingTitle.textContent = formatTitle(title);
+      nowPlayingArtist.textContent = artistMappings[artist] || artist.toUpperCase();
+    }
+
+    // Contrôle Lecture/Pause
+    document.querySelector('.player-controls button:nth-child(2)').addEventListener('click', () => {
+      if (audioPlayer.paused) {
+        audioPlayer.play();
+      } else {
+        audioPlayer.pause();
+      }
+    });
+
+    // Boutons précédent et suivant
+    document.querySelector('.player-controls button:nth-child(1)').addEventListener('click', previousTrack);
+    document.querySelector('.player-controls button:nth-child(3)').addEventListener('click', nextTrack);
+
+    function previousTrack() {
+      currentTrackIndex = (currentTrackIndex - 1 + musicList.length) % musicList.length;
+      playTrack(currentTrackIndex);
+    }
+
+    function nextTrack() {
+      currentTrackIndex = (currentTrackIndex + 1) % musicList.length;
+      playTrack(currentTrackIndex);
+    }
+
+    // Boutons Shuffle et Repeat
+    document.querySelector('.player-controls button:nth-child(4)').addEventListener('click', toggleShuffle);
+    document.querySelector('.player-controls button:nth-child(5)').addEventListener('click', toggleRepeat);
+
+    function toggleShuffle() {
+      isShuffleMode = !isShuffleMode;
+      document.querySelector('.player-controls button:nth-child(4)').style.color = isShuffleMode ? 'var(--primary)' : 'var(--text)';
+    }
+
+    function toggleRepeat() {
+      isRepeatMode = !isRepeatMode;
+      document.querySelector('.player-controls button:nth-child(5)').style.color = isRepeatMode ? 'var(--primary)' : 'var(--text)';
+    }
+
+    // Gestion de la fin de lecture
+    audioPlayer.addEventListener('ended', () => {
+      if (isRepeatMode) {
+        audioPlayer.play();
+      } else if (isShuffleMode) {
+        const randomIndex = Math.floor(Math.random() * musicList.length);
+        playTrack(randomIndex);
+      } else {
+        nextTrack();
+      }
+    });
+
+    // Barre de progression
+    audioPlayer.addEventListener('timeupdate', () => {
+      const progressBar = document.querySelector('.progress');
+      const percentage = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+      progressBar.style.width = `${percentage}%`;
+    });
+
+    const progressBarContainer = document.querySelector('.progress-bar');
+    progressBarContainer.addEventListener('click', (e) => {
+      const progressBar = document.querySelector('.progress-bar');
+      const clickPosition = e.offsetX / progressBar.offsetWidth;
+      audioPlayer.currentTime = clickPosition * audioPlayer.duration;
+    });
+
+    // Contrôle du volume
+    const volumeSlider = document.querySelector('.volume-slider');
+    const volumeButton = document.querySelector('.volume-control button');
+
+    volumeSlider.addEventListener('input', () => {
+      audioPlayer.volume = volumeSlider.value / 100;
+      updateVolumeIcon();
+    });
+
+    volumeButton.addEventListener('click', toggleMute);
+
+    function updateVolumeIcon() {
+      const volume = audioPlayer.volume;
+      if (volume === 0) {
+        volumeButton.textContent = '🔇';
+      } else if (volume < 0.3) {
+        volumeButton.textContent = '🔈';
+      } else if (volume < 0.7) {
+        volumeButton.textContent = '🔉';
+      } else {
+        volumeButton.textContent = '🔊';
+      }
+    }
+
+    function toggleMute() {
+      audioPlayer.muted = !audioPlayer.muted;
+      updateVolumeIcon();
+      volumeSlider.value = audioPlayer.muted ? 0 : (audioPlayer.volume * 100);
+    }
+
+    // Recherche et filtrage
+    const searchInput = document.querySelector('.search-input');
+    const filterSelect = document.querySelector('.filter-select');
+
+    searchInput.addEventListener('input', filterMusic);
+    filterSelect.addEventListener('change', filterMusic);
+
+    function filterMusic() {
+      const searchTerm = searchInput.value.toLowerCase();
+      const genre = filterSelect.value;
+      const musicCards = document.querySelectorAll('.music-card');
+
+      musicCards.forEach(card => {
+        const title = card.querySelector('h3').textContent.toLowerCase();
+        const artist = card.querySelector('p').textContent.toLowerCase();
+        const isVisible = 
+          (title.includes(searchTerm) || artist.includes(searchTerm)) &&
+          (genre === 'all' || card.dataset.genre === genre);
+        
+        card.style.display = isVisible ? 'block' : 'none';
+      });
+    }
+  </script>  
+</body>
+</html>

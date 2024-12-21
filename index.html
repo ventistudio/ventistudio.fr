@@ -3,7 +3,7 @@
   <meta charset="utf-8">
   <meta name="viewport">
   <html lang="fr"></html>
-  <link rel="icon" type="image/png" href="favicon.avif">
+  <link rel="icon" type="image/png" href="favicon.ico">
   <meta property="og:title" content="Bienvenu sur VentiStudio">
   <meta property="og:site_name" content="VentiStudio Komiyuniti">
   <meta property="og:url" content="https://ventistudio.fr">
@@ -11,413 +11,671 @@
 Laissez-moi vous présenter ma communauté, un espace où l'art et la créativité se rencontrent.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://ventistudio.fr/favicon.gif">
-  <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
-  <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
-  <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
-  <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
-  <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
-  <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
-  <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
-  <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  <link rel="manifest" href="/manifest.json">
-  <meta name="msapplication-TileColor" content="#ffffff">
-  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
-  <meta name="theme-color" content="#ffffff">
-  <title>VentiStudio - Musique, Art & Technologie</title>
-  <div id="app"></div>
-  <style>
-    :root {
-      --primary: #8b5cf6;
-      --dark: #1a1a1a;
-      --text: #ffffff;
-    }
+  <title>VentiStudio - Acceuil</title>
+<style>
+:root {
+  --primary: #7B66FF;
+  --secondary: #2A2D3A;
+  --background: #1A1B26;
+  --text: #FFFFFF;
+  --hover: #9F86FF;
+  --accent1: #414868;
+  --accent2: #565f89;
+}
 
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: var(--dark);
-      color: var(--text);
-    }
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap');
 
-    .navbar {
-      background: rgba(0,0,0,0.8);
-      padding: 1rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: fixed;
-      width: 100%;
-      box-sizing: border-box;
-      z-index: 1000;
-    }
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--background);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 
-    .logo {
-      width: 50px;
-      height: 50px;
-      transition: transform 0.3s ease;
-    }
+.navbar {
+  background-color: var(--secondary);
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 10px rgba(123, 102, 255, 0.1);
+}
 
-    .logo:hover {
-      transform: rotate(360deg);
-    }
+.logo {
+  height: 50px;
+  transition: transform 0.3s ease;
+}
 
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-    }
+.logo:hover {
+  transform: scale(1.05);
+}
 
-    .nav-links a {
-      color: var(--text);
-      text-decoration: none;
-      font-weight: 500;
-      transition: all 0.3s;
-      padding: 0.5rem 1rem;
-      border-radius: 4px;
-    }
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
 
-    .nav-links a:hover {
-      color: var(--primary);
-      background: rgba(139, 92, 246, 0.1);
-    }
+.mobile-menu-button {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+}
 
-    .hero {
-      text-align: center;
-      padding: 8rem 2rem 4rem;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.7), var(--dark));
-    }
+.nav-item {
+  position: relative;
+  cursor: pointer;
+}
 
-    .hero h1 {
-      font-size: 3.5rem;
-      margin-bottom: 1rem;
-      background: linear-gradient(45deg, #8b5cf6, #ec4899);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: gradientShift 8s ease infinite;
-    }
+.nav-item > a {
+  color: var(--text);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+}
 
-    @keyframes gradientShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+.nav-item > a:hover {
+  background-color: var(--hover);
+  transform: translateY(-2px);
+}
 
-    .hero p {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
-      opacity: 0.9;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
-    }
+.dropdown {
+  display: none;
+  position: absolute;
+  background-color: var(--accent1);
+  min-width: 200px;
+  box-shadow: 0 8px 16px rgba(123, 102, 255, 0.2);
+  z-index: 1;
+  border-radius: 8px;
+  margin-top: 0.5rem;
+  backdrop-filter: blur(10px);
+}
 
-    .cta-button {
-      background: linear-gradient(45deg, var(--primary), #ec4899);
-      color: white;
-      padding: 1rem 2.5rem;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.3s;
-      display: inline-block;
-    }
+.nav-item:hover .dropdown {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
 
-    .cta-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
-    }
+@media screen and (max-width: 768px) {
+  .mobile-menu-button {
+    display: block;
+  }
 
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      padding: 4rem 2rem;
-      background: linear-gradient(to bottom, var(--dark), #2d2d2d);
-    }
+  .nav-links {
+    display: none;
+    position: fixed;
+    top: 80px;
+    left: 0;
+    right: 0;
+    background-color: var(--secondary);
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+  }
 
-    .feature-card {
-      background: rgba(255,255,255,0.05);
-      padding: 2rem;
-      border-radius: 12px;
-      text-align: center;
-      transition: transform 0.3s ease;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.1);
-    }
+  .nav-links.active {
+    display: flex;
+  }
 
-    .feature-card:hover {
-      transform: translateY(-10px);
-      background: rgba(255,255,255,0.08);
-    }
+  .nav-item {
+    width: 100%;
+  }
 
-    .feature-card h3 {
-      color: var(--primary);
-      margin-bottom: 1rem;
-    }
+  .dropdown {
+    position: static;
+    width: 100%;
+    margin-top: 0.5rem;
+    display: none;
+  }
 
-    /* Theme Animations */
-    .celebration-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 999;
-    }
+  .nav-item.active .dropdown {
+    display: block;
+  }
 
-    /* Fireworks */
-    .firework {
-      position: absolute;
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      animation: explode 1s ease-out forwards;
-    }
+  .footer-content {
+    grid-template-columns: repeat(2, 1fr) !important;
+    padding: 0 1rem;
+  }
 
-    @keyframes explode {
-      0% { transform: scale(1); opacity: 1; }
-      100% { transform: scale(20); opacity: 0; }
-    }
+  .copyright {
+    flex-direction: column;
+    text-align: center;
+  }
+}
 
-    /* Snow */
-    .snowflake {
-      position: absolute;
-      color: white;
-      font-size: 1em;
-      animation: snowfall 10s linear infinite;
-    }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
-    @keyframes snowfall {
-      0% { transform: translateY(-100vh) rotate(0deg); }
-      100% { transform: translateY(100vh) rotate(360deg); }
-    }
+.dropdown a {
+  color: var(--text);
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  transition: all 0.2s ease;
+}
 
-    /* Cherry Blossoms */
-    .petal {
-      position: absolute;
-      background: pink;
-      width: 15px;
-      height: 15px;
-      border-radius: 15px 0;
-      animation: flutter 10s linear infinite;
-    }
+.dropdown a:hover {
+  background-color: var(--hover);
+  transform: translateX(5px);
+}
 
-    @keyframes flutter {
-      0% { transform: translate(-100vw, -100vh) rotate(0deg); }
-      100% { transform: translate(100vw, 100vh) rotate(720deg); }
-    }
+.main-content {
+  padding: 0;
+  text-align: center;
+}
 
-    /* Autumn Leaves */
-    .leaf {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: #ff6b35;
-      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-      animation: falling 8s linear infinite;
-    }
+.hero-section {
+  padding: 6rem 2rem;
+  background: linear-gradient(135deg, var(--background) 0%, var(--accent1) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  position: relative;
+  overflow: hidden;
+}
 
-    @keyframes falling {
-      0% { transform: translateY(-100vh) rotate(0deg); }
-      100% { transform: translateY(100vh) rotate(360deg); }
-    }
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 50% 50%, var(--primary) 0%, transparent 70%);
+  opacity: 0.1;
+  animation: pulse 4s ease-in-out infinite;
+}
 
-    /* Halloween */
-    .ghost {
-      position: absolute;
-      font-size: 2em;
-      animation: float 6s ease-in-out infinite;
-    }
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.1; }
+  50% { transform: scale(1.2); opacity: 0.15; }
+  100% { transform: scale(1); opacity: 0.1; }
+}
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-20px); }
-    }
+.hero-section h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(45deg, var(--primary), var(--hover));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: titleGlow 2s ease-in-out infinite alternate;
+  position: relative;
+  z-index: 1;
+}
 
-    /* Celebration Message */
-    .celebration-message {
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(0,0,0,0.8);
-      padding: 1rem 2rem;
-      border-radius: 8px;
-      z-index: 1000;
-      text-align: center;
-      animation: fadeInOut 5s ease-in-out forwards;
-    }
+.hero-section p {
+  font-size: 1.4rem;
+  color: var(--text);
+  opacity: 0.9;
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
 
-    @keyframes fadeInOut {
-      0% { opacity: 0; transform: translate(-50%, -20px); }
-      10% { opacity: 1; transform: translate(-50%, 0); }
-      90% { opacity: 1; transform: translate(-50%, 0); }
-      100% { opacity: 0; transform: translate(-50%, -20px); }
-    }
+.cta-button {
+  background: var(--primary);
+  color: var(--text);
+  padding: 1rem 2rem;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
 
-    @media (max-width: 768px) {
-      .nav-links {
-        display: none;
-      }
-      
-      .hero h1 {
-        font-size: 2.5rem;
-      }
-    }
-  </style>
+.cta-button:hover {
+  background: var(--hover);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(123, 102, 255, 0.3);
+}
+
+.section {
+  padding: 4rem 2rem;
+  background: var(--background);
+}
+
+.section-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: var(--text);
+}
+
+.section-subtitle {
+  font-size: 1.2rem;
+  color: var(--text);
+  opacity: 0.8;
+  max-width: 800px;
+  margin: 0 auto 3rem auto;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.service-card {
+  background: var(--secondary);
+  padding: 2rem;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.service-card h3 {
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.news-card {
+  background: var(--secondary);
+  padding: 2rem;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+}
+
+.community-section {
+  background: linear-gradient(135deg, var(--secondary) 0%, var(--accent1) 100%);
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.button-group {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media screen and (max-width: 768px) {
+  .hero-section h1 {
+    font-size: 2.5rem;
+  }
+  
+  .hero-section p {
+    font-size: 1.1rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .button-group {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@keyframes titleGlow {
+  from { text-shadow: 0 0 20px rgba(123, 102, 255, 0.5); }
+  to { text-shadow: 0 0 30px rgba(123, 102, 255, 0.8); }
+}
+
+.footer {
+  background-color: var(--secondary);
+  padding: 2rem;
+  margin-top: auto;
+  box-shadow: 0 -2px 10px rgba(123, 102, 255, 0.1);
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-section h3 {
+  color: var(--text);
+  margin-bottom: 1rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+}
+
+.footer-section a {
+  color: var(--text);
+  text-decoration: none;
+  display: block;
+  margin-bottom: 0.5rem;
+  transition: all 0.2s ease;
+  opacity: 0.8;
+}
+
+.footer-section a:hover {
+  opacity: 1;
+  color: var(--hover);
+  transform: translateX(5px);
+}
+
+.copyright {
+  text-align: center;
+  padding: 2rem 0;
+  border-top: 1px solid var(--accent1);
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.copyright img {
+  height: 30px;
+}
+
+.copyright span {
+  color: var(--text);
+  opacity: 0.8;
+  font-size: 0.9rem;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 6px;
+  border: 3px solid var(--background);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--hover);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) var(--background);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+#celebration-banner {
+  background: linear-gradient(45deg, var(--primary), var(--hover));
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  position: relative;
+  z-index: 1000;
+}
+</style>
 </head>
 <body>
+  <div id="celebration-banner" style="display: none; background: var(--primary); color: var(--text); text-align: center; padding: 10px; font-weight: bold; animation: slideDown 0.5s ease-out;">
+    <span id="celebration-message"></span>
+  </div>
+  
   <nav class="navbar">
-    <img src="/favicon.avif" alt="Logo VentiStudio - Design circulaire noir et blanc avec symboles français et japonais" class="logo">
+    <img src="/favicon.avif" alt="VentiStudio Logo" class="logo">
+    <button class="mobile-menu-button">☰</button>
     <div class="nav-links">
-      <a href="/">Accueil</a>
-      <a href="/approvedcontent/">Contenu Approuvé</a>
-      <a href="/wiki">Wiki</a>
-      <a href="/staff">Staff</a>
-      <a href="/artist">Artiste</a>
-      <a href="/pip">PIP</a>
+      <div class="nav-item">
+        <a href="/">Accueil</a>
+      </div>
+      <div class="nav-item">
+        <a href="/approuvedcontent">Contenu Approuvé</a>
+      </div>
+      <div class="nav-item">
+        <a href="/wiki">Wiki</a>
+      </div>
+      <div class="nav-item">
+        <a href="/staff">Staff</a>
+        <div class="dropdown">
+          <a href="/job">Recrutement</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="/artist">Artiste</a>
+      </div>
+      <div class="nav-item">
+        <a href="/pip">PIP</a>
+      </div>
     </div>
   </nav>
 
-  <section class="hero">
-    <h1>Bienvenue sur VentiStudio</h1>
-    <p>Connectez-vous, créez et partagez dans un espace unique dédié aux passionnés de musique, d'art et de technologie.</p>
-    <a href="https://discord.gg/BupfZHSBbC" class="cta-button">Rejoignez-nous</a>
-  </section>
+  <main class="main-content">
+    <section class="hero-section">
+      <h1>Bienvenue dans l'univers de VentiStudio</h1>
+      <p>Créativité, innovation, et communauté à portée de clic.</p>
+      <a href="/sitemap" class="cta-button">Explorer VentiStudio</a>
+    </section>
 
-  <div class="features">
-    <div class="feature-card">
-      <h3>Contenu Approuvé</h3>
-      <p>Découvrez du contenu vérifié et de qualité, sélectionné par notre communauté.</p>
+    <section class="section">
+      <h2 class="section-title">À propos de VentiStudio</h2>
+      <p class="section-subtitle">VentiStudio est une plateforme créative conçue pour rassembler des outils innovants, des contenus originaux et une communauté passionnée.</p>
+      <div class="services-grid">
+        <div class="service-card">
+          <h3>Gazette Numérique</h3>
+          <p>Hebdomadaire avec les dernières actualités</p>
+        </div>
+        <div class="service-card">
+          <h3>Lecteurs Multimédias</h3>
+          <p>Pour vidéo, musique et livres</p>
+        </div>
+        <div class="service-card">
+          <h3>Interaction Roblox</h3>
+          <p>Sécurisée et optimisée</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Nos Services</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <h3>La Gazette d'Opastudien</h3>
+          <p>Pour rester informé et inspiré</p>
+        </div>
+        <div class="service-card">
+          <h3>Livres Numériques</h3>
+          <p>Découverte et lecture de nouvelles œuvres</p>
+        </div>
+        <div class="service-card">
+          <h3>Lecteurs Multimédias</h3>
+          <p>Vidéo, musique et bientôt jeux</p>
+        </div>
+        <div class="service-card">
+          <h3>Administration Roblox</h3>
+          <p>Gestion simplifiée et fiable</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Actualités et Événements</h2>
+      <div class="news-grid">
+        <div class="news-card">
+          <h3>Concours de Noël</h3>
+          <p>Participez à notre événement festif sur Discord !</p>
+        </div>
+        <div class="news-card">
+          <h3>Mises à jour techniques</h3>
+          <p>PWA et support AV1 ajoutés</p>
+        </div>
+        <div class="news-card">
+          <h3>Projets à venir</h3>
+          <p>Découvrez ce qui arrive bientôt</p>
+        </div>
+      </div>
+      <a href="/player/news" class="cta-button" style="margin-top: 2rem;">Lire plus d'actualités</a>
+    </section>
+
+    <section class="community-section">
+      <h2 class="section-title">Rejoignez la communauté</h2>
+      <p class="section-subtitle">Que vous soyez créateur, joueur, ou simplement curieux, VentiStudio est votre espace pour explorer, apprendre et partager.</p>
+      <div class="button-group">
+        <a href="/social/?redirect=" class="cta-button">Nous rejoindre sur Discord</a>
+        <a href="/player/story/gazette" class="cta-button">Lire la Gazette</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Outils</h3>
+        <a href="/encrypt">Encrypt</a>
+        <a href="/sitemap">Sitemap</a>
+        <a href="/status">Statut</a>
+      </div>
+      <div class="footer-section">
+        <h3>Entreprise</h3>
+        <a href="/about">À propos</a>
+        <a href="/jobs">Emplois</a>
+        <a href="/company">Marque</a>
+      </div>
+      <div class="footer-section">
+        <h3>Ressources</h3>
+        <a href="/university">Université</a>
+        <a href="/lawful/support">Assistance</a>
+        <a href="/lawful/security">Sécurité</a>
+      </div>
+      <div class="footer-section">
+        <h3>Chartes</h3>
+        <a href="/lawful/terms">Conditions</a>
+        <a href="/lawful/privacy">Confidentialité</a>
+        <a href="/lawful/cookies">Paramètres des cookies</a>
+        <a href="/lawful/dmca">DMCA</a>
+        <a href="/lawful/dmcainfo">DMCA Information</a>
+        <a href="/lawful/cgv">Conditions Général de Vente</a>
+      </div>
     </div>
-    <div class="feature-card">
-      <h3>Wiki Collaboratif</h3>
-      <p>Participez à notre base de connaissances communautaire.</p>
+    <div class="copyright">
+      <img src="/favicon.avif" alt="VentiStudio Logo">
+      <span>Copyright & P-Line 2023 - 2024, Tous droits réservés.</span>
     </div>
-    <div class="feature-card">
-      <h3>Espace Artiste</h3>
-      <p>Un lieu dédié aux créateurs pour partager leurs œuvres.</p>
-    </div>
-  </div>
+  </footer>
 
   <script>
-    window.addEventListener('scroll', () => {
-      const navbar = document.querySelector('.navbar');
-      if (window.scrollY > 50) {
-        navbar.style.background = 'rgba(0,0,0,0.95)';
-        navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.3)';
-      } else {
-        navbar.style.background = 'rgba(0,0,0,0.8)';
-        navbar.style.boxShadow = 'none';
+    const mobileMenuButton = document.querySelector('.mobile-menu-button');
+    const navLinks = document.querySelector('.nav-links');
+    const navItems = document.querySelectorAll('.nav-item');
+
+    mobileMenuButton.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    if (window.innerWidth <= 768) {
+      navItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+          if (e.target.closest('.nav-item') === item) {
+            item.classList.toggle('active');
+            navItems.forEach(otherItem => {
+              if (otherItem !== item) {
+                otherItem.classList.remove('active');
+              }
+            });
+          }
+        });
+      });
+    }
+
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.navbar')) {
+        navLinks.classList.remove('active');
+        navItems.forEach(item => item.classList.remove('active'));
       }
     });
 
-    document.querySelectorAll('.feature-card').forEach(card => {
-      card.addEventListener('mouseenter', () => {
-        card.style.transform = 'translateY(-10px)';
-      });
+    function checkHolidays() {
+      const today = new Date();
+      const day = today.getDate();
+      const month = today.getMonth() + 1; // JavaScript months are 0-based
+      const banner = document.getElementById('celebration-banner');
+      const message = document.getElementById('celebration-message');
+      let celebrationMessage = '';
+
+      // Check various holiday periods
+      if (month === 12 && day >= 1 && day <= 25) {
+        celebrationMessage = "Joyeux Noël ! 🎄";
+      }
       
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = 'translateY(0)';
-      });
-    });
+      if (month === 12 && day === 15) {
+        celebrationMessage = "Joyeux anniversaire Hikari Umaishi ! 🎂 Et joyeux Noël ! 🎄";
+      }
+      
+      if (month === 9 && day === 24) {
+        celebrationMessage = "Joyeux anniversaire VentiStudio ! 🎉";
+      }
+      
+      if (month === 10 && day >= 25 && day <= 31) {
+        celebrationMessage = "Joyeux Halloween ! 🎃";
+      }
+      
+      if (month === 7 && day === 14) {
+        celebrationMessage = "Bonne fête nationale ! 🇫🇷";
+      }
+      
+      if ((month === 12 && day >= 31) || (month === 1 && day <= 3)) {
+        celebrationMessage = "Bonne année ! 🎊";
+      }
+      
+      if (month === 9 && day === 9) {
+        celebrationMessage = "Bonne fête de l'automne ! 🍂";
+      }
+      
+      if (month === 3 && (day === 20 || day === 21)) {
+        celebrationMessage = "Bienvenue au printemps ! 🌸";
+      }
 
-    function createCelebrationMessage(message) {
-      const messageDiv = document.createElement('div');
-      messageDiv.className = 'celebration-message';
-      messageDiv.textContent = message;
-      document.body.appendChild(messageDiv);
-      setTimeout(() => messageDiv.remove(), 5000);
-    }
-
-    function createOverlay() {
-      const overlay = document.createElement('div');
-      overlay.className = 'celebration-overlay';
-      document.body.appendChild(overlay);
-      return overlay;
-    }
-
-    function createFirework(overlay, color) {
-      const firework = document.createElement('div');
-      firework.className = 'firework';
-      firework.style.left = Math.random() * 100 + 'vw';
-      firework.style.top = Math.random() * 100 + 'vh';
-      firework.style.background = color;
-      overlay.appendChild(firework);
-      setTimeout(() => firework.remove(), 1000);
-    }
-
-    function startFireworks(overlay, colors) {
-      setInterval(() => {
-        const color = colors[Math.floor(Math.random() * colors.length)];
-        createFirework(overlay, color);
-      }, 300);
-    }
-
-    function createSnowflake(overlay) {
-      const snowflake = document.createElement('div');
-      snowflake.className = 'snowflake';
-      snowflake.style.left = Math.random() * 100 + 'vw';
-      snowflake.innerHTML = '❄';
-      overlay.appendChild(snowflake);
-      setTimeout(() => snowflake.remove(), 10000);
+      if (celebrationMessage) {
+        message.textContent = celebrationMessage;
+        banner.style.display = 'block';
+      } else {
+        banner.style.display = 'none';
+      }
     }
 
-    function startSnowfall(overlay) {
-      setInterval(() => createSnowflake(overlay), 200);
-    }
-
-    const today = new Date();
-    const month = today.getMonth() + 1;
-    const day = today.getDate();
-    const overlay = createOverlay();
-
-    // VentiStudio Anniversary - September 24
-    if(month === 9 && day === 24) {
-      createCelebrationMessage("Joyeux anniversaire VentiStudio ! 🎉");
-      startFireworks(overlay, ['#ff0000', '#00ff00', '#0000ff', '#ffff00']);
-    }
-    
-    // Halloween - October 31
-    else if(month === 10 && day === 31) {
-      createCelebrationMessage("Joyeux Halloween ! 👻");
-      setInterval(() => {
-        const ghost = document.createElement('div');
-        ghost.className = 'ghost';
-        ghost.innerHTML = '👻';
-        ghost.style.left = Math.random() * 100 + 'vw';
-        overlay.appendChild(ghost);
-        setTimeout(() => ghost.remove(), 6000);
-      }, 2000);
-    }
-    
-    // Hikari Umaishi Anniversary - December 15
-    if(month === 12 && day === 15) {
-      createCelebrationMessage("Joyeux anniversaire Hikari Umaishi ! 🎉");
-      startFireworks(overlay, ['#ff0000', '#00ff00', '#0000ff', '#ffff00']);
-    }
-    
-    // Christmas - December 25
-    else if(month === 12 && day === 25) {
-      createCelebrationMessage("Joyeux Noël ! 🎄");
-      startSnowfall(overlay);
-    }
-    
-    // French National Day - July 14
-    else if(month === 7 && day === 14) {
-      createCelebrationMessage("Vive la France ! 🇫🇷");
-      startFireworks(overlay, ['#0000ff', '#ffffff', '#ff0000']);
-    }
-    
-    // New Year - December 31 to January 3
-    else if((month === 12 && day === 31) || (month === 1 && day <= 3)) {
-      createCelebrationMessage("Bonne année ! 🎊");
-      startFireworks(overlay, ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff']);
-    }
+    // Run the check when the page loads
+    checkHolidays();
   </script>
 </body></html>

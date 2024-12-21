@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html><head><base href="https://ventistudio.fr/social/darkzone">
+  <meta charset="utf-8">
+  <meta name="viewport">
+  <html lang="fr"></html>
+  <link rel="icon" type="image/png" href="favicon.ico">
+  <meta property="og:title" content="Bienvenu sur VentiStudio">
+  <meta property="og:site_name" content="VentiStudio Komiyuniti">
+  <meta property="og:url" content="https://ventistudio.fr">
+  <meta property="og:description" content="Hey, je suis Hikari Umaishi (光馬石), mais je préfère que l'on m'appelle Hiuma (ヒウマ).
+Laissez-moi vous présenter ma communauté, un espace où l'art et la créativité se rencontrent.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://ventistudio.fr/favicon.gif">
+  <title>VentiStudio - DarkZone</title>
+    <style>
+        :root {
+            --primary: #7B66FF;
+            --secondary: #2A2D3A;
+            --background: #1A1B26;
+            --text: #FFFFFF;
+            --warning: #ff6b6b;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+        }
+
+        .warning-box {
+            background: rgba(42, 45, 58, 0.8);
+            border: 2px solid var(--warning);
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 600px;
+            position: relative;
+            animation: pulse 2s infinite;
+            overflow: hidden;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.4); }
+            70% { box-shadow: 0 0 0 20px rgba(255, 107, 107, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0); }
+        }
+
+        h1 {
+            color: var(--warning);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .loading {
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--secondary);
+            border-top: 5px solid var(--warning);
+            border-radius: 50%;
+            margin: 20px auto;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .scanner {
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                var(--warning) 20%, 
+                var(--warning) 80%, 
+                transparent 100%);
+            position: absolute;
+            left: 0;
+            animation: scan 2s ease-in-out infinite;
+            box-shadow: 0 0 15px var(--warning);
+            opacity: 0.8;
+        }
+
+        @keyframes scan {
+            0% { 
+                top: -4px;
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% { 
+                top: calc(100% + 4px);
+                opacity: 0;
+            }
+        }
+
+        .scan-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(255, 107, 107, 0.1) 0px,
+                rgba(255, 107, 107, 0.1) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="warning-box">
+            <div class="scanner"></div>
+            <div class="scan-lines"></div>
+            <h1>ENTRER DANS LA DARKZONE</h1>
+            <p>Analyse des informations d'identification...</p>
+            <div class="loading"></div>
+            <p>Vous serez prochainement redirigé...</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const darkzoneDest = urlParams.get('darkzone');
+            
+            if (darkzoneDest) {
+                setTimeout(() => {
+                    // Decode the URL parameter and redirect
+                    const decodedUrl = decodeURIComponent(darkzoneDest);
+                    window.location.href = decodedUrl;
+                }, 5000); // 5 second delay for effect
+            } else {
+                // If no destination specified, redirect to home
+                setTimeout(() => {
+                    window.location.href = '/';
+                }, 5000);
+            }
+        });
+    </script>
+</body>
+</html>

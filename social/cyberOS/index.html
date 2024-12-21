@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html><head><base href="https://ventistudio.fr/social/cyberOS">
+  <meta charset="utf-8">
+  <meta name="viewport">
+  <html lang="fr"></html>
+  <link rel="icon" type="image/png" href="favicon.ico">
+  <meta property="og:title" content="Bienvenu sur VentiStudio">
+  <meta property="og:site_name" content="VentiStudio Komiyuniti">
+  <meta property="og:url" content="https://ventistudio.fr">
+  <meta property="og:description" content="Hey, je suis Hikari Umaishi (光馬石), mais je préfère que l'on m'appelle Hiuma (ヒウマ).
+Laissez-moi vous présenter ma communauté, un espace où l'art et la créativité se rencontrent.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://ventistudio.fr/favicon.gif">
+  <title>VentiStudio - Download</title>
+<style>
+:root {
+  --primary: #7B66FF;
+  --secondary: #2A2D3A;
+  --background: #1A1B26;
+  --text: #FFFFFF;
+  --hover: #9F86FF;
+  --accent1: #414868;
+  --accent2: #565f89;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--background);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+  background-color: var(--secondary);
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 10px rgba(123, 102, 255, 0.1);
+}
+
+.logo {
+  height: 50px;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.mobile-menu-button {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.nav-item {
+  position: relative;
+  cursor: pointer;
+}
+
+.nav-item > a {
+  color: var(--text);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+}
+
+.nav-item > a:hover {
+  background-color: var(--hover);
+  transform: translateY(-2px);
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  background-color: var(--accent1);
+  min-width: 200px;
+  box-shadow: 0 8px 16px rgba(123, 102, 255, 0.2);
+  z-index: 1;
+  border-radius: 8px;
+  margin-top: 0.5rem;
+  backdrop-filter: blur(10px);
+}
+
+.nav-item:hover .dropdown {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+@media screen and (max-width: 768px) {
+  .mobile-menu-button {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    position: fixed;
+    top: 80px;
+    left: 0;
+    right: 0;
+    background-color: var(--secondary);
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-item {
+    width: 100%;
+  }
+
+  .dropdown {
+    position: static;
+    width: 100%;
+    margin-top: 0.5rem;
+    display: none;
+  }
+
+  .nav-item.active .dropdown {
+    display: block;
+  }
+
+  .footer-content {
+    grid-template-columns: repeat(2, 1fr) !important;
+    padding: 0 1rem;
+  }
+
+  .copyright {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.dropdown a {
+  color: var(--text);
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  transition: all 0.2s ease;
+}
+
+.dropdown a:hover {
+  background-color: var(--hover);
+  transform: translateX(5px);
+}
+
+.main-content {
+  padding: 0;
+  text-align: center;
+}
+
+.hero-section {
+  padding: 6rem 2rem;
+  background: linear-gradient(135deg, var(--background) 0%, var(--accent1) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 50% 50%, var(--primary) 0%, transparent 70%);
+  opacity: 0.1;
+  animation: pulse 4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.1; }
+  50% { transform: scale(1.2); opacity: 0.15; }
+  100% { transform: scale(1); opacity: 0.1; }
+}
+
+.hero-section h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(45deg, var(--primary), var(--hover));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: titleGlow 2s ease-in-out infinite alternate;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-section p {
+  font-size: 1.4rem;
+  color: var(--text);
+  opacity: 0.9;
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.cta-button {
+  background: var(--primary);
+  color: var(--text);
+  padding: 1rem 2rem;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+.cta-button:hover {
+  background: var(--hover);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(123, 102, 255, 0.3);
+}
+
+.section {
+  padding: 4rem 2rem;
+  background: var(--background);
+}
+
+.section-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: var(--text);
+}
+
+.section-subtitle {
+  font-size: 1.2rem;
+  color: var(--text);
+  opacity: 0.8;
+  max-width: 800px;
+  margin: 0 auto 3rem auto;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.service-card {
+  background: var(--secondary);
+  padding: 2rem;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.service-card h3 {
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.news-card {
+  background: var(--secondary);
+  padding: 2rem;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+}
+
+.community-section {
+  background: linear-gradient(135deg, var(--secondary) 0%, var(--accent1) 100%);
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.button-group {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media screen and (max-width: 768px) {
+  .hero-section h1 {
+    font-size: 2.5rem;
+  }
+  
+  .hero-section p {
+    font-size: 1.1rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .button-group {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@keyframes titleGlow {
+  from { text-shadow: 0 0 20px rgba(123, 102, 255, 0.5); }
+  to { text-shadow: 0 0 30px rgba(123, 102, 255, 0.8); }
+}
+
+.footer {
+  background-color: var(--secondary);
+  padding: 2rem;
+  margin-top: auto;
+  box-shadow: 0 -2px 10px rgba(123, 102, 255, 0.1);
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-section h3 {
+  color: var(--text);
+  margin-bottom: 1rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+}
+
+.footer-section a {
+  color: var(--text);
+  text-decoration: none;
+  display: block;
+  margin-bottom: 0.5rem;
+  transition: all 0.2s ease;
+  opacity: 0.8;
+}
+
+.footer-section a:hover {
+  opacity: 1;
+  color: var(--hover);
+  transform: translateX(5px);
+}
+
+.copyright {
+  text-align: center;
+  padding: 2rem 0;
+  border-top: 1px solid var(--accent1);
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.copyright img {
+  height: 30px;
+}
+
+.copyright span {
+  color: var(--text);
+  opacity: 0.8;
+  font-size: 0.9rem;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 6px;
+  border: 3px solid var(--background);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--hover);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) var(--background);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+#celebration-banner {
+  background: linear-gradient(45deg, var(--primary), var(--hover));
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.download-page {
+  background: var(--background);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.download-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    linear-gradient(45deg, rgba(123, 102, 255, 0.1) 0%, transparent 100%),
+    repeating-linear-gradient(
+      45deg,
+      transparent 0,
+      transparent 2px,
+      rgba(123, 102, 255, 0.05) 2px,
+      rgba(123, 102, 255, 0.05) 4px
+    );
+  pointer-events: none;
+}
+
+.verification-container {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  margin-top: 4rem;
+  flex-wrap: wrap;
+}
+
+.verification-circle {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  position: relative;
+  background: var(--secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 20px rgba(123, 102, 255, 0.2);
+}
+
+.verification-circle::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, var(--primary), transparent);
+  animation: rotate 4s linear infinite;
+  opacity: 0;
+}
+
+.verification-circle.active::before {
+  opacity: 1;
+}
+
+.verification-circle.completed::before {
+  background: #4CAF50;
+  animation: none;
+}
+
+.verification-circle.completed {
+  box-shadow: 0 0 20px rgba(76, 175, 80, 0.3);
+}
+
+.verification-circle.completed .verification-status {
+  color: #4CAF50;
+  text-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+}
+
+.verification-content {
+  background: var(--secondary);
+  border-radius: 50%;
+  width: calc(100% - 4px);
+  height: calc(100% - 4px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem;
+  z-index: 1;
+}
+
+.verification-status {
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  color: var(--text);
+  opacity: 0.8;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.glitch-text {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2.5rem;
+  position: relative;
+  color: var(--primary);
+  text-shadow: 2px 2px var(--hover);
+  animation: glitch 2s infinite;
+}
+
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+.progress-text {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.2rem;
+  margin-top: 2rem;
+  color: var(--text);
+  opacity: 0.9;
+}
+</style>
+</head>
+<body>
+  <div id="celebration-banner" style="display: none; background: var(--primary); color: var(--text); text-align: center; padding: 10px; font-weight: bold; animation: slideDown 0.5s ease-out;">
+    <span id="celebration-message"></span>
+  </div>
+  
+  <nav class="navbar">
+    <img src="/favicon.avif" alt="VentiStudio Logo" class="logo">
+    <button class="mobile-menu-button">☰</button>
+    <div class="nav-links">
+      <div class="nav-item">
+        <a href="/">Accueil</a>
+      </div>
+      <div class="nav-item">
+        <a href="/approuvedcontent">Contenu Approuvé</a>
+      </div>
+      <div class="nav-item">
+        <a href="/wiki">Wiki</a>
+      </div>
+      <div class="nav-item">
+        <a href="/staff">Staff</a>
+        <div class="dropdown">
+          <a href="/job">Recrutement</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="/artist">Artiste</a>
+      </div>
+      <div class="nav-item">
+        <a href="/pip">PIP</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="download-page">
+    <h1 class="glitch-text">VÉRIFICATION SYSTÈME</h1>
+    <div class="verification-container">
+      <div class="verification-circle" id="ip-check">
+        <div class="verification-content">
+          <h3>Vérification Client</h3>
+          <p class="verification-status">En attente...</p>
+        </div>
+      </div>
+      
+      <div class="verification-circle" id="server-check">
+        <div class="verification-content">
+          <h3>Vérification Serveur</h3>
+          <p class="verification-status">En attente...</p>
+        </div>
+      </div>
+      
+      <div class="verification-circle" id="download-check">
+        <div class="verification-content">
+          <h3>Validation Finale</h3>
+          <p class="verification-status">En attente...</p>
+        </div>
+      </div>
+    </div>
+    <p class="progress-text" id="progress-text">Initialisation du système...</p>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Outils</h3>
+        <a href="/encrypt">Encrypt</a>
+        <a href="/sitemap">Sitemap</a>
+        <a href="/status">Statut</a>
+      </div>
+      <div class="footer-section">
+        <h3>Entreprise</h3>
+        <a href="/about">À propos</a>
+        <a href="/jobs">Emplois</a>
+        <a href="/company">Marque</a>
+      </div>
+      <div class="footer-section">
+        <h3>Ressources</h3>
+        <a href="/university">Université</a>
+        <a href="/lawful/support">Assistance</a>
+        <a href="/lawful/security">Sécurité</a>
+      </div>
+      <div class="footer-section">
+        <h3>Chartes</h3>
+        <a href="/lawful/terms">Conditions</a>
+        <a href="/lawful/privacy">Confidentialité</a>
+        <a href="/lawful/cookies">Paramètres des cookies</a>
+        <a href="/lawful/dmca">DMCA</a>
+        <a href="/lawful/dmcainfo">DMCA Information</a>
+        <a href="/lawful/cgv">Conditions Général de Vente</a>
+      </div>
+    </div>
+    <div class="copyright">
+      <img src="/favicon.avif" alt="VentiStudio Logo">
+      <span>Copyright & P-Line 2023 - 2024, Tous droits réservés.</span>
+    </div>
+  </footer>
+
+  <script>
+    const mobileMenuButton = document.querySelector('.mobile-menu-button');
+    const navLinks = document.querySelector('.nav-links');
+    const navItems = document.querySelectorAll('.nav-item');
+
+    mobileMenuButton.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    if (window.innerWidth <= 768) {
+      navItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+          if (e.target.closest('.nav-item') === item) {
+            item.classList.toggle('active');
+            navItems.forEach(otherItem => {
+              if (otherItem !== item) {
+                otherItem.classList.remove('active');
+              }
+            });
+          }
+        });
+      });
+    }
+
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.navbar')) {
+        navLinks.classList.remove('active');
+        navItems.forEach(item => item.classList.remove('active'));
+      }
+    });
+
+    function checkHolidays() {
+      const today = new Date();
+      const day = today.getDate();
+      const month = today.getMonth() + 1; // JavaScript months are 0-based
+      const banner = document.getElementById('celebration-banner');
+      const message = document.getElementById('celebration-message');
+      let celebrationMessage = '';
+
+      // Check various holiday periods
+      if (month === 12 && day >= 1 && day <= 25) {
+        celebrationMessage = "Joyeux Noël ! 🎄";
+      }
+      
+      if (month === 12 && day === 15) {
+        celebrationMessage = "Joyeux anniversaire Hikari Umaishi ! 🎂 Et joyeux Noël ! 🎄";
+      }
+      
+      if (month === 9 && day === 24) {
+        celebrationMessage = "Joyeux anniversaire VentiStudio ! 🎉";
+      }
+      
+      if (month === 10 && day >= 25 && day <= 31) {
+        celebrationMessage = "Joyeux Halloween ! 🎃";
+      }
+      
+      if (month === 7 && day === 14) {
+        celebrationMessage = "Bonne fête nationale ! 🇫🇷";
+      }
+      
+      if ((month === 12 && day >= 31) || (month === 1 && day <= 3)) {
+        celebrationMessage = "Bonne année ! 🎊";
+      }
+      
+      if (month === 9 && day === 9) {
+        celebrationMessage = "Bonne fête de l'automne ! 🍂";
+      }
+      
+      if (month === 3 && (day === 20 || day === 21)) {
+        celebrationMessage = "Bienvenue au printemps ! 🌸";
+      }
+
+      if (celebrationMessage) {
+        message.textContent = celebrationMessage;
+        banner.style.display = 'block';
+      } else {
+        banner.style.display = 'none';
+      }
+    }
+
+    // Run the check when the page loads
+    checkHolidays();
+
+    // Add this new JavaScript
+    function getQueryParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    async function startVerification() {
+      const ipCheck = document.getElementById('ip-check');
+      const serverCheck = document.getElementById('server-check');
+      const downloadCheck = document.getElementById('download-check');
+      const progressText = document.getElementById('progress-text');
+      
+      // IP Check
+      ipCheck.classList.add('active');
+      progressText.textContent = 'Vérification de l\'adresse IP...';
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      ipCheck.classList.remove('active');
+      ipCheck.classList.add('completed');
+      ipCheck.querySelector('.verification-status').textContent = 'Validé';
+      
+      // Server Check
+      serverCheck.classList.add('active');
+      progressText.textContent = 'Vérification de la connexion au serveur...';
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      serverCheck.classList.remove('active');
+      serverCheck.classList.add('completed');
+      serverCheck.querySelector('.verification-status').textContent = 'Validé';
+      
+      // Download Check
+      downloadCheck.classList.add('active');
+      progressText.textContent = 'Validation du lien de téléchargement...';
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      const downloadLink = getQueryParam('download');
+      if (downloadLink) {
+        downloadCheck.classList.remove('active');
+        downloadCheck.classList.add('completed');
+        downloadCheck.querySelector('.verification-status').textContent = 'Validé';
+        progressText.textContent = 'Vérification réussie - Début du téléchargement...';
+        window.location.href = downloadLink;
+      } else {
+        downloadCheck.style.setProperty('--primary', '#ff4444');
+        downloadCheck.querySelector('.verification-status').textContent = 'Erreur';
+        progressText.textContent = 'Erreur: Lien de téléchargement invalide';
+      }
+    }
+
+    // Start verification when page loads
+    document.addEventListener('DOMContentLoaded', startVerification);
+  </script>
+</body></html>
