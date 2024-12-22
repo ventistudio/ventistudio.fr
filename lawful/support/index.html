@@ -540,44 +540,29 @@ html {
   </div>
   
   <nav class="navbar">
-    <img src="/a/3da573bc-b46f-452c-95f9-d7323d7c2814" alt="VentiStudio Logo" class="logo">
+    <img src="/favicon.avif" alt="VentiStudio Logo" class="logo">
     <button class="mobile-menu-button">☰</button>
     <div class="nav-links">
       <div class="nav-item">
-        <a href="https://ventistudio.com">Accueil</a>
+        <a href="/">Accueil</a>
       </div>
       <div class="nav-item">
-        <a href="https://ventistudio.com/content">Contenu Approuvé</a>
+        <a href="/approuvedcontent">Contenu Approuvé</a>
+      </div>
+      <div class="nav-item">
+        <a href="/wiki">Wiki</a>
+      </div>
+      <div class="nav-item">
+        <a href="/staff">Staff</a>
         <div class="dropdown">
-          <a href="https://ventistudio.com/content/music">Musiques</a>
-          <a href="https://ventistudio.com/content/videos">Vidéos</a>
-          <a href="https://ventistudio.com/content/art">Art</a>
+          <a href="/job">Recrutement</a>
         </div>
       </div>
       <div class="nav-item">
-        <a href="https://ventistudio.com/wiki">Wiki</a>
-        <div class="dropdown">
-          <a href="https://ventistudio.com/wiki/guides">Guides</a>
-          <a href="https://ventistudio.com/wiki/docs">Documentation</a>
-          <a href="https://ventistudio.com/wiki/faq">FAQ</a>
-        </div>
+        <a href="/artist">Artiste</a>
       </div>
       <div class="nav-item">
-        <a href="https://ventistudio.com/staff">Staff</a>
-        <div class="dropdown">
-          <a href="https://ventistudio.com/staff/team">Équipe</a>
-          <a href="https://ventistudio.com/staff/recruitment">Recrutement</a>
-        </div>
-      </div>
-      <div class="nav-item">
-        <a href="https://ventistudio.com/artist">Artiste</a>
-        <div class="dropdown">
-          <a href="https://ventistudio.com/artist/gallery">Galerie</a>
-          <a href="https://ventistudio.com/artist/submissions">Soumissions</a>
-        </div>
-      </div>
-      <div class="nav-item">
-        <a href="https://ventistudio.com/pip">PIP</a>
+        <a href="/pip">PIP</a>
       </div>
     </div>
   </nav>
@@ -622,7 +607,7 @@ html {
 
       <div class="support-info">
         <h3>Autres moyens de nous contacter</h3>
-        <p>Email direct: support@ventistudio.com</p>
+        <p>Email direct: support@ventistudio.fr</p>
         <p>Horaires de support: Lundi - Vendredi, 9h - 18h (CET)</p>
       </div>
     </div>
@@ -755,7 +740,7 @@ html {
       const subject = document.getElementById('subject').value;
       const message = document.getElementById('message').value;
       
-      const mailtoLink = `mailto:support@ventistudio.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Nom: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
+      const mailtoLink = `mailto:support@ventistudio.fr?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Nom: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
       
       window.location.href = mailtoLink;
     });
