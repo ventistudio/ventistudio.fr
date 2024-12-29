@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html><head><base href="https://ventistudio.fr/">
+<html><head><base href="https://ventistudio.fr/birthday">
   <meta charset="utf-8">
   <meta name="viewport">
   <html lang="fr"></html>
@@ -7,11 +6,11 @@
   <meta property="og:title" content="Bienvenu sur VentiStudio">
   <meta property="og:site_name" content="VentiStudio Komiyuniti">
   <meta property="og:url" content="https://ventistudio.fr">
-  <meta property="og:description" content="Hey, je suis Hikari Umaishi (光馬石), mais je préfère que l'on m'appelle Hiuma (ヒウマ).
-Laissez-moi vous présenter ma communauté, un espace où l'art et la créativité se rencontrent.">
+  <meta property="og:description" content="Hey, je suis Hikari Umaishi (&#x5149;&#x99ac;&#x77f3;), mais je pr&#xe9;f&#xe8;re que l&apos;on m&apos;appelle Hiuma (&#x30d2;&#x30a6;&#x30ma;).
+Laissez-moi vous pr&#xe9;senter ma communaut&#xe9;, un espace o&#xf9; l&apos;art et la cr&#xe9;ativit&#xe9; se rencontrent.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://ventistudio.fr/favicon.gif">
-  <title>VentiStudio - Acceuil</title>
+  <title>VentiStudio - Anniversaire</title>
 <style>
 :root {
   --primary: #7B66FF;
@@ -447,6 +446,91 @@ html {
   position: relative;
   z-index: 1000;
 }
+
+.candles-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 2rem;
+  padding: 2rem;
+  min-height: 300px;
+}
+
+.candle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: sway 3s ease-in-out infinite alternate;
+}
+
+.candle-year {
+  color: var(--text);
+  margin-top: 1rem;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.candle-body {
+  width: 40px;
+  height: 120px;
+  background: linear-gradient(45deg, #fff, #f0f0f0);
+  border-radius: 10px;
+  position: relative;
+}
+
+.wick {
+  width: 4px;
+  height: 15px;
+  background: #2A2D3A;
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.flame {
+  width: 15px;
+  height: 30px;
+  background: #FFA500;
+  position: absolute;
+  top: -45px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  animation: flicker 1s ease-in-out infinite alternate;
+  filter: blur(1px);
+}
+
+@keyframes flicker {
+  0%, 100% {
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(-50%) scale(0.95);
+    opacity: 0.8;
+  }
+}
+
+@keyframes sway {
+  0% {
+    transform: rotate(-1deg);
+  }
+  100% {
+    transform: rotate(1deg);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .candles-container {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .candle-body {
+    width: 30px;
+    height: 90px;
+  }
+}
 </style>
 </head>
 <body>
@@ -456,22 +540,13 @@ html {
   
   <nav class="navbar">
     <img src="/favicon.avif" alt="VentiStudio Logo" class="logo">
-    <button class="mobile-menu-button">☰</button>
+    <button class="mobile-menu-button">&#x2630;</button>
     <div class="nav-links">
       <div class="nav-item">
         <a href="/">Accueil</a>
       </div>
       <div class="nav-item">
-        <a href="/approuvedcontent">Contenu Approuvé</a>
-      </div>
-      <div class="nav-item">
-        <a href="/player">Player</a>
-        <div class="dropdown">
-          <a href="/player/game">Game</a>
-          <a href="/player/music">Music</a>
-          <a href="/player/story">Story</a>
-          <a href="/player/video">Video</a>
-        </div>
+        <a href="/approuvedcontent">Contenu Approuv&#xe9;</a>
       </div>
       <div class="nav-item">
         <a href="/wiki">Wiki</a>
@@ -484,93 +559,21 @@ html {
       </div>
       <div class="nav-item">
         <a href="/artist">Artiste</a>
-        <div class="dropdown">
-          <a href="/submissions">Soumissions</a>
-        </div>
       </div>
       <div class="nav-item">
         <a href="/pip">PIP</a>
-      </div>
-      <div class="nav-item">
-        <a href="/sitemap">Sitemap</a>
       </div>
     </div>
   </nav>
 
   <main class="main-content">
     <section class="hero-section">
-      <h1>Bienvenue dans l'univers de VentiStudio</h1>
-      <p>Créativité, innovation, et communauté à portée de clic.</p>
-      <a href="/sitemap" class="cta-button">Explorer VentiStudio</a>
+      <h1>Nos ann&#xe9;es de service</h1>
+      <p>VentiStudio illumine vos exp&#xe9;riences depuis 2016</p>
     </section>
 
-    <section class="section">
-      <h2 class="section-title">À propos de VentiStudio</h2>
-      <p class="section-subtitle">VentiStudio est une plateforme créative conçue pour rassembler des outils innovants, des contenus originaux et une communauté passionnée.</p>
-      <div class="services-grid">
-        <div class="service-card">
-          <h3>Gazette Numérique</h3>
-          <p>Hebdomadaire avec les dernières actualités</p>
-        </div>
-        <div class="service-card">
-          <h3>Lecteurs Multimédias</h3>
-          <p>Pour vidéo, musique et livres</p>
-        </div>
-        <div class="service-card">
-          <h3>Interaction Roblox</h3>
-          <p>Sécurisée et optimisée</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2 class="section-title">Nos Services</h2>
-      <div class="services-grid">
-        <div class="service-card">
-          <h3>La Gazette d'Opastudien</h3>
-          <p>Pour rester informé et inspiré</p>
-        </div>
-        <div class="service-card">
-          <h3>Livres Numériques</h3>
-          <p>Découverte et lecture de nouvelles œuvres</p>
-        </div>
-        <div class="service-card">
-          <h3>Lecteurs Multimédias</h3>
-          <p>Vidéo, musique et bientôt jeux</p>
-        </div>
-        <div class="service-card">
-          <h3>Administration Roblox</h3>
-          <p>Gestion simplifiée et fiable</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2 class="section-title">Actualités et Événements</h2>
-      <div class="news-grid">
-        <div class="news-card">
-          <h3>Concours de Noël</h3>
-          <p>Participez à notre événement festif sur Discord !</p>
-        </div>
-        <div class="news-card">
-          <h3>Mises à jour techniques</h3>
-          <p>PWA et support AV1 ajoutés</p>
-        </div>
-        <div class="news-card">
-          <h3>Projets à venir</h3>
-          <p>Découvrez ce qui arrive bientôt</p>
-        </div>
-      </div>
-       <a href="/player/news" class="cta-button" style="margin-top: 2rem;">Lire plus d'actualités</a>
-    </section>
-
-    <section class="community-section">
-      <h2 class="section-title">Rejoignez la communauté</h2>
-      <p class="section-subtitle">Que vous soyez créateur, joueur, ou simplement curieux, VentiStudio est votre espace pour explorer, apprendre et partager.</p>
-      <div class="button-group">
-        <a href="/social/?redirect=" class="cta-button">Nous rejoindre sur Discord</a>
-        <a href="/player/story/gazette" class="cta-button">Lire la Gazette</a>
-      </div>
+    <section class="section" id="anniversary-section">
+      <div class="candles-container"></div>
     </section>
   </main>
 
@@ -584,113 +587,159 @@ html {
       </div>
       <div class="footer-section">
         <h3>Entreprise</h3>
-        <a href="/about">À propos</a>
+        <a href="/about">&#xc0; propos</a>
         <a href="/jobs">Emplois</a>
         <a href="/company">Marque</a>
       </div>
       <div class="footer-section">
         <h3>Ressources</h3>
-        <a href="/university">Université</a>
+        <a href="/university">Universit&#xe9;</a>
         <a href="/lawful/support">Assistance</a>
-        <a href="/lawful/security">Sécurité</a>
+        <a href="/lawful/security">S&#xe9;curit&#xe9;</a>
       </div>
       <div class="footer-section">
         <h3>Chartes</h3>
         <a href="/lawful/terms">Conditions</a>
-        <a href="/lawful/privacy">Confidentialité</a>
-        <a href="/lawful/cookies">Paramètres des cookies</a>
+        <a href="/lawful/privacy">Confidentialit&#xe9;</a>
+        <a href="/lawful/cookies">Param&#xe8;tres des cookies</a>
         <a href="/lawful/dmca">DMCA</a>
         <a href="/lawful/dmcainfo">DMCA Information</a>
-        <a href="/lawful/cgv">Conditions Général de Vente</a>
+        <a href="/lawful/cgv">Conditions G&#xe9;n&#xe9;ral de Vente</a>
       </div>
     </div>
     <div class="copyright">
       <img src="/favicon.avif" alt="VentiStudio Logo">
-      <span>Copyright & P-Line 2023 - 2024, Tous droits réservés.</span>
+      <span>Copyright &amp; P-Line 2023 - 2024, Tous droits r&#xe9;serv&#xe9;s.</span>
     </div>
   </footer>
 
-  <script>
-    const mobileMenuButton = document.querySelector('.mobile-menu-button');
-    const navLinks = document.querySelector('.nav-links');
-    const navItems = document.querySelectorAll('.nav-item');
-
-    mobileMenuButton.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-    });
-
-    if (window.innerWidth <= 768) {
-      navItems.forEach(item => {
-        item.addEventListener('click', (e) => {
-          if (e.target.closest('.nav-item') === item) {
-            item.classList.toggle('active');
-            navItems.forEach(otherItem => {
-              if (otherItem !== item) {
-                otherItem.classList.remove('active');
-              }
-            });
+  <script>const mobileMenuButton = document.querySelector('.mobile-menu-button');
+const navLinks = document.querySelector('.nav-links');
+const navItems = document.querySelectorAll('.nav-item');
+mobileMenuButton.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
+});
+if (window.innerWidth <= 768) {
+  navItems.forEach(item => {
+    item.addEventListener('click', e => {
+      if (e.target.closest('.nav-item') === item) {
+        item.classList.toggle('active');
+        navItems.forEach(otherItem => {
+          if (otherItem !== item) {
+            otherItem.classList.remove('active');
           }
         });
-      });
-    }
-
-    document.addEventListener('click', (e) => {
-      if (!e.target.closest('.navbar')) {
-        navLinks.classList.remove('active');
-        navItems.forEach(item => item.classList.remove('active'));
       }
     });
+  });
+}
+document.addEventListener('click', e => {
+  if (!e.target.closest('.navbar')) {
+    navLinks.classList.remove('active');
+    navItems.forEach(item => item.classList.remove('active'));
+  }
+});
+function checkHolidays() {
+  const today = new Date();
+  const day = today.getDate();
+  const month = today.getMonth() + 1;
+  const banner = document.getElementById('celebration-banner');
+  const message = document.getElementById('celebration-message');
+  let celebrationMessage = '';
+  if (month === 12 && day >= 1 && day <= 25) {
+    celebrationMessage = "Joyeux Noël ! ";
+  }
+  if (month === 12 && day === 15) {
+    celebrationMessage = "Joyeux anniversaire Hikari Umaishi !  Et joyeux Noël ! ";
+  }
+  if (month === 9 && day === 24) {
+    celebrationMessage = "Joyeux anniversaire VentiStudio ! ";
+  }
+  if (month === 10 && day >= 25 && day <= 31) {
+    celebrationMessage = "Joyeux Halloween ! ";
+  }
+  if (month === 7 && day === 14) {
+    celebrationMessage = "Bonne fête nationale ! ";
+  }
+  if (month === 12 && day >= 31 || month === 1 && day <= 3) {
+    celebrationMessage = "Bonne année ! ";
+  }
+  if (month === 9 && day === 9) {
+    celebrationMessage = "Bonne fête de l'automne ! ";
+  }
+  if (month === 3 && (day === 20 || day === 21)) {
+    celebrationMessage = "Bienvenue au printemps ! ";
+  }
+  if (celebrationMessage) {
+    message.textContent = celebrationMessage;
+    banner.style.display = 'block';
+  } else {
+    banner.style.display = 'none';
+  }
+}
+checkHolidays();
+function createCandles() {
+  const candlesContainer = document.querySelector('.candles-container');
+  const startYear = 2016;
+  const currentDate = new Date();
+  let yearToUse = currentDate.getFullYear();
+  const anniversaryDate = new Date(yearToUse, 8, 21);
+  
+  if (currentDate < anniversaryDate) {
+    yearToUse = yearToUse - 1;
+  }
+  
+  const yearsOld = yearToUse - startYear; 
+  const yearsOfService = yearsOld + 1; 
+  
+  const serviceText = document.createElement('div');
+  serviceText.className = 'service-years-text';
+  serviceText.style.fontSize = '1.5rem';
+  serviceText.style.marginBottom = '2rem';
+  serviceText.style.color = 'var(--text)';
+  serviceText.style.fontFamily = 'Space Grotesk, sans-serif';
+  serviceText.innerHTML = `VentiStudio a donc ${yearsOld} ans, il est donc sur sa ${yearsOfService}<sup>ème</sup> année de service`;
+  
+  candlesContainer.parentElement.insertBefore(serviceText, candlesContainer);
 
-    function checkHolidays() {
-      const today = new Date();
-      const day = today.getDate();
-      const month = today.getMonth() + 1; // JavaScript months are 0-based
-      const banner = document.getElementById('celebration-banner');
-      const message = document.getElementById('celebration-message');
-      let celebrationMessage = '';
-
-      // Check various holiday periods
-      if (month === 12 && day >= 1 && day <= 25) {
-        celebrationMessage = "Joyeux Noël ! 🎄";
-      }
-      
-      if (month === 12 && day === 15) {
-        celebrationMessage = "Joyeux anniversaire Hikari Umaishi ! 🎂 Et joyeux Noël ! 🎄";
-      }
-      
-      if (month === 9 && day === 24) {
-        celebrationMessage = "Joyeux anniversaire VentiStudio ! 🎉";
-      }
-      
-      if (month === 10 && day >= 25 && day <= 31) {
-        celebrationMessage = "Joyeux Halloween ! 🎃";
-      }
-      
-      if (month === 7 && day === 14) {
-        celebrationMessage = "Bonne fête nationale ! 🇫🇷";
-      }
-      
-      if ((month === 12 && day >= 31) || (month === 1 && day <= 3)) {
-        celebrationMessage = "Bonne année ! 🎊";
-      }
-      
-      if (month === 9 && day === 9) {
-        celebrationMessage = "Bonne fête de l'automne ! 🍂";
-      }
-      
-      if (month === 3 && (day === 20 || day === 21)) {
-        celebrationMessage = "Bienvenue au printemps ! 🌸";
-      }
-
-      if (celebrationMessage) {
-        message.textContent = celebrationMessage;
-        banner.style.display = 'block';
-      } else {
-        banner.style.display = 'none';
-      }
-    }
-
-    // Run the check when the page loads
-    checkHolidays();
-  </script>
+  for (let year = startYear; year <= yearToUse; year++) {
+    const candle = document.createElement('div');
+    candle.className = 'candle';
+    const candleBody = document.createElement('div');
+    candleBody.className = 'candle-body';
+    const wick = document.createElement('div');
+    wick.className = 'wick';
+    const flame = document.createElement('div');
+    flame.className = 'flame';
+    const yearLabel = document.createElement('div');
+    yearLabel.className = 'candle-year';
+    yearLabel.textContent = year;
+    
+    candleBody.appendChild(wick);
+    candleBody.appendChild(flame);
+    candle.appendChild(candleBody);
+    candle.appendChild(yearLabel);
+    
+    flame.style.animationDelay = `${Math.random() * 2}s`;
+    candle.style.animationDelay = `${Math.random() * 2}s`;
+    
+    candlesContainer.appendChild(candle);
+  }
+}
+function checkAndUpdateCandles() {
+  const today = new Date();
+  const anniversaryDate = new Date(today.getFullYear(), 8, 21);
+  if (today.getDate() === 21 && today.getMonth() === 8) {
+    const candlesContainer = document.querySelector('.candles-container');
+    const serviceText = document.querySelector('.service-years-text');
+    if (serviceText) serviceText.remove();
+    candlesContainer.innerHTML = '';
+    createCandles();
+  }
+}
+document.addEventListener('DOMContentLoaded', () => {
+  createCandles();
+  setInterval(checkAndUpdateCandles, 24 * 60 * 60 * 1000);
+  checkAndUpdateCandles();
+});</script>
 </body></html>

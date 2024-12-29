@@ -229,13 +229,17 @@ body {
           title: 'DRAFTURION ZERODEZ',
           message: 'Vous avez été banni'
         },
+        'url': {
+          code: 'URL',
+          title: 'Url non trouvée',
+          message: 'L\'url que vous recherchez semble avoir disparu dans le réseau numérique.'
+        },
         'default': {
           code: 'CODE LYOKO',
           title: 'Une aventure virtuelle vous attend',
           message: 'Explorez l\'univers numérique de VentiStudio'
         }
       };
-
       const errorInfo = errorTypes[errorCode] || errorTypes['default'];
       
       errorCodeElement.textContent = errorInfo.code;

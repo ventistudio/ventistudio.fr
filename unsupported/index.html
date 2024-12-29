@@ -1,17 +1,14 @@
-<!DOCTYPE html>
-<html><head><base href="https://ventistudio.fr/">
+<html><head><base href="https://ventistudio.fr/unsupported">
   <meta charset="utf-8">
-  <meta name="viewport">
-  <html lang="fr"></html>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VentiStudio - Compatibilité</title>
   <link rel="icon" type="image/png" href="favicon.ico">
-  <meta property="og:title" content="Bienvenu sur VentiStudio">
+  <meta property="og:title" content="Compatibilité de VentiStudio">
   <meta property="og:site_name" content="VentiStudio Komiyuniti">
-  <meta property="og:url" content="https://ventistudio.fr">
-  <meta property="og:description" content="Hey, je suis Hikari Umaishi (光馬石), mais je préfère que l'on m'appelle Hiuma (ヒウマ).
-Laissez-moi vous présenter ma communauté, un espace où l'art et la créativité se rencontrent.">
+  <meta property="og:url" content="https://ventistudio.fr/compatibility">
+  <meta property="og:description" content="Informations sur les navigateurs et systèmes d'exploitation supportés par VentiStudio">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://ventistudio.fr/favicon.gif">
-  <title>VentiStudio - Acceuil</title>
 <style>
 :root {
   --primary: #7B66FF;
@@ -447,6 +444,69 @@ html {
   position: relative;
   z-index: 1000;
 }
+
+.compatibility-section {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.browser-grid, .os-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.browser-card, .os-card {
+  background: var(--secondary);
+  padding: 1.5rem;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.status-tested {
+  color: #4ade80;
+  font-weight: bold;
+}
+
+.status-untested {
+  color: #fbbf24;
+  font-weight: bold;
+}
+
+.status-unsupported {
+  color: #ef4444;
+  font-weight: bold;
+}
+
+.warning-box {
+  background: rgba(239, 68, 68, 0.1);
+  border-left: 4px solid #ef4444;
+  padding: 1rem;
+  margin: 2rem 0;
+  border-radius: 0 8px 8px 0;
+}
+
+.github-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--primary);
+  color: var(--text);
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  margin: 1rem 0;
+}
+
+.github-link:hover {
+  background: var(--hover);
+  transform: translateY(-2px);
+}
 </style>
 </head>
 <body>
@@ -465,15 +525,6 @@ html {
         <a href="/approuvedcontent">Contenu Approuvé</a>
       </div>
       <div class="nav-item">
-        <a href="/player">Player</a>
-        <div class="dropdown">
-          <a href="/player/game">Game</a>
-          <a href="/player/music">Music</a>
-          <a href="/player/story">Story</a>
-          <a href="/player/video">Video</a>
-        </div>
-      </div>
-      <div class="nav-item">
         <a href="/wiki">Wiki</a>
       </div>
       <div class="nav-item">
@@ -484,94 +535,88 @@ html {
       </div>
       <div class="nav-item">
         <a href="/artist">Artiste</a>
-        <div class="dropdown">
-          <a href="/submissions">Soumissions</a>
-        </div>
       </div>
       <div class="nav-item">
         <a href="/pip">PIP</a>
-      </div>
-      <div class="nav-item">
-        <a href="/sitemap">Sitemap</a>
       </div>
     </div>
   </nav>
 
   <main class="main-content">
     <section class="hero-section">
-      <h1>Bienvenue dans l'univers de VentiStudio</h1>
-      <p>Créativité, innovation, et communauté à portée de clic.</p>
-      <a href="/sitemap" class="cta-button">Explorer VentiStudio</a>
+      <h1>Compatibilité du Site</h1>
+      <p>Informations sur les navigateurs et systèmes d'exploitation supportés</p>
     </section>
 
-    <section class="section">
-      <h2 class="section-title">À propos de VentiStudio</h2>
-      <p class="section-subtitle">VentiStudio est une plateforme créative conçue pour rassembler des outils innovants, des contenus originaux et une communauté passionnée.</p>
-      <div class="services-grid">
-        <div class="service-card">
-          <h3>Gazette Numérique</h3>
-          <p>Hebdomadaire avec les dernières actualités</p>
+    <div class="compatibility-section">
+      <h2 class="section-title">Navigateurs Web</h2>
+      <p>Liste des navigateurs testés et leur statut de compatibilité :</p>
+      
+      <div class="browser-grid">
+        <div class="browser-card">
+          <h3>Navigateurs Testés</h3>
+          <ul>
+            <li><span class="status-tested">✓</span> Brave</li>
+            <li><span class="status-tested">✓</span> Mozilla Firefox</li>
+            <li><span class="status-tested">✓</span> Tor Browser</li>
+            <li><span class="status-tested">✓</span> Arc</li>
+            <li><span class="status-tested">✓</span> Opera GX</li>
+          </ul>
         </div>
-        <div class="service-card">
-          <h3>Lecteurs Multimédias</h3>
-          <p>Pour vidéo, musique et livres</p>
-        </div>
-        <div class="service-card">
-          <h3>Interaction Roblox</h3>
-          <p>Sécurisée et optimisée</p>
-        </div>
-      </div>
-    </section>
 
-    <section class="section">
-      <h2 class="section-title">Nos Services</h2>
-      <div class="services-grid">
-        <div class="service-card">
-          <h3>La Gazette d'Opastudien</h3>
-          <p>Pour rester informé et inspiré</p>
+        <div class="browser-card">
+          <h3>Probablement Compatibles</h3>
+          <ul>
+            <li><span class="status-untested">?</span> Google Chrome</li>
+            <li><span class="status-untested">?</span> Microsoft Edge</li>
+            <li><span class="status-untested">?</span> Samsung Internet</li>
+            <li><span class="status-untested">?</span> Opera (tous)</li>
+          </ul>
         </div>
-        <div class="service-card">
-          <h3>Livres Numériques</h3>
-          <p>Découverte et lecture de nouvelles œuvres</p>
-        </div>
-        <div class="service-card">
-          <h3>Lecteurs Multimédias</h3>
-          <p>Vidéo, musique et bientôt jeux</p>
-        </div>
-        <div class="service-card">
-          <h3>Administration Roblox</h3>
-          <p>Gestion simplifiée et fiable</p>
-        </div>
-      </div>
-    </section>
 
-    <section class="section">
-      <h2 class="section-title">Actualités et Événements</h2>
-      <div class="news-grid">
-        <div class="news-card">
-          <h3>Concours de Noël</h3>
-          <p>Participez à notre événement festif sur Discord !</p>
-        </div>
-        <div class="news-card">
-          <h3>Mises à jour techniques</h3>
-          <p>PWA et support AV1 ajoutés</p>
-        </div>
-        <div class="news-card">
-          <h3>Projets à venir</h3>
-          <p>Découvrez ce qui arrive bientôt</p>
+        <div class="browser-card">
+          <h3>Non Testés</h3>
+          <ul>
+            <li><span class="status-unsupported">!</span> Safari</li>
+            <li><span class="status-unsupported">!</span> Autres navigateurs</li>
+          </ul>
         </div>
       </div>
-       <a href="/player/news" class="cta-button" style="margin-top: 2rem;">Lire plus d'actualités</a>
-    </section>
 
-    <section class="community-section">
-      <h2 class="section-title">Rejoignez la communauté</h2>
-      <p class="section-subtitle">Que vous soyez créateur, joueur, ou simplement curieux, VentiStudio est votre espace pour explorer, apprendre et partager.</p>
-      <div class="button-group">
-        <a href="/social/?redirect=" class="cta-button">Nous rejoindre sur Discord</a>
-        <a href="/player/story/gazette" class="cta-button">Lire la Gazette</a>
+      <div class="warning-box">
+        <h3>⚠️ Avertissement Important</h3>
+        <p>VentiStudio.fr ne supporte pas entièrement les appareils Apple en raison de leurs limitations technologiques et de leur système d'exploitation fermé. Nous ne prévoyons pas d'adapter notre site pour ces appareils.</p>
       </div>
-    </section>
+
+      <h2 class="section-title">Systèmes d'Exploitation Supportés</h2>
+      <div class="os-grid">
+        <div class="browser-card">
+          <h3>OS Supportés</h3>
+          <ul>
+            <li><span class="status-tested">✓</span> Windows 7 et versions ultérieures</li>
+            <li><span class="status-tested">✓</span> Android 11+</li>
+            <li><span class="status-tested">✓</span> Linux (toutes distributions maintenues)</li>
+            <li><span class="status-tested">✓</span> Microsoft 365 OS</li>
+          </ul>
+        </div>
+
+        <div class="browser-card">
+          <h3>Support Partiel</h3>
+          <ul>
+            <li><span class="status-untested">?</span> OS Apple (support limité)</li>
+          </ul>
+        </div>
+      </div>
+
+      <p>Ce site web a été développé exclusivement par Hikari Umaishi.</p>
+      
+      <a href="https://github.com/ventistudio/ventistudio.fr/issues" class="github-link" target="_blank" rel="noopener">
+        <svg height="20" width="20" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+        </svg>
+        Signaler la compatibilité sur GitHub
+      </a>
+    </div>
   </main>
 
   <footer class="footer">
@@ -651,35 +696,35 @@ html {
 
       // Check various holiday periods
       if (month === 12 && day >= 1 && day <= 25) {
-        celebrationMessage = "Joyeux Noël ! 🎄";
+        celebrationMessage = "Joyeux Noël ! ";
       }
       
       if (month === 12 && day === 15) {
-        celebrationMessage = "Joyeux anniversaire Hikari Umaishi ! 🎂 Et joyeux Noël ! 🎄";
+        celebrationMessage = "Joyeux anniversaire Hikari Umaishi !  Et joyeux Noël ! ";
       }
       
       if (month === 9 && day === 24) {
-        celebrationMessage = "Joyeux anniversaire VentiStudio ! 🎉";
+        celebrationMessage = "Joyeux anniversaire VentiStudio ! ";
       }
       
       if (month === 10 && day >= 25 && day <= 31) {
-        celebrationMessage = "Joyeux Halloween ! 🎃";
+        celebrationMessage = "Joyeux Halloween ! ";
       }
       
       if (month === 7 && day === 14) {
-        celebrationMessage = "Bonne fête nationale ! 🇫🇷";
+        celebrationMessage = "Bonne fête nationale ! ";
       }
       
       if ((month === 12 && day >= 31) || (month === 1 && day <= 3)) {
-        celebrationMessage = "Bonne année ! 🎊";
+        celebrationMessage = "Bonne année ! ";
       }
       
       if (month === 9 && day === 9) {
-        celebrationMessage = "Bonne fête de l'automne ! 🍂";
+        celebrationMessage = "Bonne fête de l'automne ! ";
       }
       
       if (month === 3 && (day === 20 || day === 21)) {
-        celebrationMessage = "Bienvenue au printemps ! 🌸";
+        celebrationMessage = "Bienvenue au printemps ! ";
       }
 
       if (celebrationMessage) {

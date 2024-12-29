@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html><head><base href="https://ventistudio.fr/">
+<html><head><base href="https://phone.ventistudio.fr/">
   <meta charset="utf-8">
   <meta name="viewport">
   <html lang="fr"></html>
@@ -447,52 +446,92 @@ html {
   position: relative;
   z-index: 1000;
 }
+
+.mobile-warning {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  backdrop-filter: blur(5px);
+}
+
+.mobile-warning-content {
+  background: var(--secondary);
+  padding: 2rem;
+  border-radius: 15px;
+  text-align: center;
+  max-width: 80%;
+  animation: fadeIn 0.3s ease;
+}
+
+.mobile-warning-content h3 {
+  color: #ffdd00;
+  margin-bottom: 1rem;
+}
+
+.mobile-warning-content p {
+  margin-bottom: 1.5rem;
+}
+
+.mobile-warning-content button {
+  background: var(--primary);
+  color: var(--text);
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.mobile-warning-content button:hover {
+  background: var(--hover);
+  transform: scale(1.05);
+}
 </style>
 </head>
 <body>
   <div id="celebration-banner" style="display: none; background: var(--primary); color: var(--text); text-align: center; padding: 10px; font-weight: bold; animation: slideDown 0.5s ease-out;">
     <span id="celebration-message"></span>
   </div>
+  <div id="mobile-warning" class="mobile-warning" style="display: none;">
+    <div class="mobile-warning-content">
+      <h3>⚠️ Attention</h3>
+      <p>Ce site web n'a pas été conçu pour les appareils mobiles, risque d'incompatibilité de certaine page élevé.</p>
+      <button onclick="dismissWarning()">J'ai compris</button>
+    </div>
+  </div>
   
   <nav class="navbar">
-    <img src="/favicon.avif" alt="VentiStudio Logo" class="logo">
+    <img src="https://venitstudio.fr/favicon.avif" alt="VentiStudio Logo" class="logo">
     <button class="mobile-menu-button">☰</button>
     <div class="nav-links">
       <div class="nav-item">
         <a href="/">Accueil</a>
       </div>
       <div class="nav-item">
-        <a href="/approuvedcontent">Contenu Approuvé</a>
+        <a href="https://venitstudio.fr/approuvedcontent">Contenu Approuvé</a>
       </div>
       <div class="nav-item">
-        <a href="/player">Player</a>
+        <a href="https://venitstudio.fr/wiki">Wiki</a>
+      </div>
+      <div class="nav-item">
+        <a href="https://venitstudio.fr/staff">Staff</a>
         <div class="dropdown">
-          <a href="/player/game">Game</a>
-          <a href="/player/music">Music</a>
-          <a href="/player/story">Story</a>
-          <a href="/player/video">Video</a>
+          <a href="https://venitstudio.fr/job">Recrutement</a>
         </div>
       </div>
       <div class="nav-item">
-        <a href="/wiki">Wiki</a>
+        <a href="https://venitstudio.fr/artist">Artiste</a>
       </div>
       <div class="nav-item">
-        <a href="/staff">Staff</a>
-        <div class="dropdown">
-          <a href="/job">Recrutement</a>
-        </div>
-      </div>
-      <div class="nav-item">
-        <a href="/artist">Artiste</a>
-        <div class="dropdown">
-          <a href="/submissions">Soumissions</a>
-        </div>
-      </div>
-      <div class="nav-item">
-        <a href="/pip">PIP</a>
-      </div>
-      <div class="nav-item">
-        <a href="/sitemap">Sitemap</a>
+        <a href="https://venitstudio.fr/pip">PIP</a>
       </div>
     </div>
   </nav>
@@ -501,7 +540,7 @@ html {
     <section class="hero-section">
       <h1>Bienvenue dans l'univers de VentiStudio</h1>
       <p>Créativité, innovation, et communauté à portée de clic.</p>
-      <a href="/sitemap" class="cta-button">Explorer VentiStudio</a>
+      <a href="https://venitstudio.fr/sitemap" class="cta-button">Explorer VentiStudio</a>
     </section>
 
     <section class="section">
@@ -561,15 +600,15 @@ html {
           <p>Découvrez ce qui arrive bientôt</p>
         </div>
       </div>
-       <a href="/player/news" class="cta-button" style="margin-top: 2rem;">Lire plus d'actualités</a>
+      <a href="https://venitstudio.fr/player/news" class="cta-button" style="margin-top: 2rem;">Lire plus d'actualités</a>
     </section>
 
     <section class="community-section">
       <h2 class="section-title">Rejoignez la communauté</h2>
       <p class="section-subtitle">Que vous soyez créateur, joueur, ou simplement curieux, VentiStudio est votre espace pour explorer, apprendre et partager.</p>
       <div class="button-group">
-        <a href="/social/?redirect=" class="cta-button">Nous rejoindre sur Discord</a>
-        <a href="/player/story/gazette" class="cta-button">Lire la Gazette</a>
+        <a href="https://venitstudio.fr/social/?redirect=" class="cta-button">Nous rejoindre sur Discord</a>
+        <a href="https://venitstudio.fr/player/story/gazette" class="cta-button">Lire la Gazette</a>
       </div>
     </section>
   </main>
@@ -578,34 +617,34 @@ html {
     <div class="footer-content">
       <div class="footer-section">
         <h3>Outils</h3>
-        <a href="/encrypt">Encrypt</a>
-        <a href="/sitemap">Sitemap</a>
-        <a href="/status">Statut</a>
+        <a href="https://venitstudio.fr/encrypt">Encrypt</a>
+        <a href="https://venitstudio.fr/sitemap">Sitemap</a>
+        <a href="https://venitstudio.fr/status">Statut</a>
       </div>
       <div class="footer-section">
         <h3>Entreprise</h3>
-        <a href="/about">À propos</a>
-        <a href="/jobs">Emplois</a>
-        <a href="/company">Marque</a>
+        <a href="https://venitstudio.fr/about">À propos</a>
+        <a href="https://venitstudio.fr/jobs">Emplois</a>
+        <a href="https://venitstudio.fr/company">Marque</a>
       </div>
       <div class="footer-section">
         <h3>Ressources</h3>
-        <a href="/university">Université</a>
-        <a href="/lawful/support">Assistance</a>
-        <a href="/lawful/security">Sécurité</a>
+        <a href="https://venitstudio.fr/university">Université</a>
+        <a href="https://venitstudio.fr/lawful/support">Assistance</a>
+        <a href="https://venitstudio.fr/lawful/security">Sécurité</a>
       </div>
       <div class="footer-section">
         <h3>Chartes</h3>
-        <a href="/lawful/terms">Conditions</a>
-        <a href="/lawful/privacy">Confidentialité</a>
-        <a href="/lawful/cookies">Paramètres des cookies</a>
-        <a href="/lawful/dmca">DMCA</a>
-        <a href="/lawful/dmcainfo">DMCA Information</a>
-        <a href="/lawful/cgv">Conditions Général de Vente</a>
+        <a href="https://venitstudio.fr/lawful/terms">Conditions</a>
+        <a href="https://venitstudio.fr/lawful/privacy">Confidentialité</a>
+        <a href="https://venitstudio.fr/lawful/cookies">Paramètres des cookies</a>
+        <a href="https://venitstudio.fr/lawful/dmca">DMCA</a>
+        <a href="https://venitstudio.fr/lawful/dmcainfo">DMCA Information</a>
+        <a href="https://venitstudio.fr/lawful/cgv">Conditions Général de Vente</a>
       </div>
     </div>
     <div class="copyright">
-      <img src="/favicon.avif" alt="VentiStudio Logo">
+      <img src="https://venitstudio.fr/favicon.avif" alt="VentiStudio Logo">
       <span>Copyright & P-Line 2023 - 2024, Tous droits réservés.</span>
     </div>
   </footer>
@@ -651,35 +690,35 @@ html {
 
       // Check various holiday periods
       if (month === 12 && day >= 1 && day <= 25) {
-        celebrationMessage = "Joyeux Noël ! 🎄";
+        celebrationMessage = "Joyeux Noël ! ";
       }
       
       if (month === 12 && day === 15) {
-        celebrationMessage = "Joyeux anniversaire Hikari Umaishi ! 🎂 Et joyeux Noël ! 🎄";
+        celebrationMessage = "Joyeux anniversaire Hikari Umaishi !  Et joyeux Noël ! ";
       }
       
       if (month === 9 && day === 24) {
-        celebrationMessage = "Joyeux anniversaire VentiStudio ! 🎉";
+        celebrationMessage = "Joyeux anniversaire VentiStudio ! ";
       }
       
       if (month === 10 && day >= 25 && day <= 31) {
-        celebrationMessage = "Joyeux Halloween ! 🎃";
+        celebrationMessage = "Joyeux Halloween ! ";
       }
       
       if (month === 7 && day === 14) {
-        celebrationMessage = "Bonne fête nationale ! 🇫🇷";
+        celebrationMessage = "Bonne fête nationale ! ";
       }
       
       if ((month === 12 && day >= 31) || (month === 1 && day <= 3)) {
-        celebrationMessage = "Bonne année ! 🎊";
+        celebrationMessage = "Bonne année ! ";
       }
       
       if (month === 9 && day === 9) {
-        celebrationMessage = "Bonne fête de l'automne ! 🍂";
+        celebrationMessage = "Bonne fête de l'automne ! ";
       }
       
       if (month === 3 && (day === 20 || day === 21)) {
-        celebrationMessage = "Bienvenue au printemps ! 🌸";
+        celebrationMessage = "Bienvenue au printemps ! ";
       }
 
       if (celebrationMessage) {
@@ -692,5 +731,26 @@ html {
 
     // Run the check when the page loads
     checkHolidays();
+
+    function checkMobileDevice() {
+      if (window.innerWidth <= 768) {
+        const warning = document.getElementById('mobile-warning');
+        const dismissed = localStorage.getItem('mobile-warning-dismissed');
+        
+        if (!dismissed) {
+          warning.style.display = 'flex';
+        }
+      }
+    }
+
+    function dismissWarning() {
+      const warning = document.getElementById('mobile-warning');
+      warning.style.display = 'none';
+      localStorage.setItem('mobile-warning-dismissed', 'true');
+    }
+
+    checkMobileDevice();
+
+    window.addEventListener('resize', checkMobileDevice);
   </script>
 </body></html>

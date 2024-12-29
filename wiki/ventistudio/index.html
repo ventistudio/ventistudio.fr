@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html><head><base href="https://ventistudio.fr/wiki/ventistudio">
+  <meta charset="utf-8">
+  <meta name="viewport">
+  <html lang="fr"></html>
+  <link rel="icon" type="image/png" href="favicon.ico">
+  <meta property="og:title" content="Bienvenu sur VentiStudio">
+  <meta property="og:site_name" content="VentiStudio Komiyuniti">
+  <meta property="og:url" content="https://ventistudio.fr">
+  <meta property="og:description" content="Hey, je suis Hikari Umaishi (光馬石), mais je préfère que l'on m'appelle Hiuma (ヒウマ).
+Laissez-moi vous présenter ma communauté, un espace où l'art et la créativité se rencontrent.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://ventistudio.fr/favicon.gif">
+  <title>VentiStudio - Emergency Redirect</title>
+    <link rel="icon" type="image/png" href="/favicon.ico">
+    <style>
+        :root {
+            --primary: #ff3333;
+            --secondary: #2A1A1A;
+            --background: #1A0F0F;
+            --text: #FFFFFF;
+            --hover: #ff6666;
+            --accent1: #682828;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .emergency-container {
+            max-width: 600px;
+            padding: 2rem;
+            background-color: var(--secondary);
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(255, 51, 51, 0.3);
+            margin: 1rem;
+            position: relative;
+            overflow: hidden;
+            animation: emergencyPulse 2s infinite;
+        }
+
+        @keyframes emergencyPulse {
+            0% { box-shadow: 0 0 30px rgba(255, 51, 51, 0.3); }
+            50% { box-shadow: 0 0 50px rgba(255, 51, 51, 0.5); }
+            100% { box-shadow: 0 0 30px rgba(255, 51, 51, 0.3); }
+        }
+
+        .emergency-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, var(--primary) 0%, transparent 100%);
+            opacity: 0.15;
+            z-index: 0;
+        }
+
+        .logo {
+            width: 120px;
+            height: auto;
+            margin-bottom: 2rem;
+            animation: warningPulse 1s infinite;
+            filter: grayscale(50%) brightness(90%);
+        }
+
+        @keyframes warningPulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            position: relative;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 4px rgba(255, 0, 0, 0.3);
+            animation: glitch 3s infinite;
+        }
+
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(2px, -2px); }
+            60% { transform: translate(-2px, -2px); }
+            80% { transform: translate(2px, 2px); }
+            100% { transform: translate(0); }
+        }
+
+        p {
+            margin: 1rem 0;
+            line-height: 1.6;
+            position: relative;
+            color: #ff9999;
+        }
+
+        .redirect-timer {
+            font-size: 1.2rem;
+            color: var(--hover);
+            margin: 1rem 0;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(255, 51, 51, 0.5);
+        }
+
+        .loading-bar {
+            width: 100%;
+            height: 6px;
+            background-color: var(--accent1);
+            border-radius: 3px;
+            margin: 1rem 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .loading-progress {
+            height: 100%;
+            background-color: var(--primary);
+            width: 0%;
+            transition: width 0.1s linear;
+            animation: loading 5s linear forwards, glow 1s infinite;
+            position: relative;
+        }
+
+        @keyframes loading {
+            from { width: 0%; }
+            to { width: 100%; }
+        }
+
+        @keyframes glow {
+            0% { box-shadow: 0 0 5px var(--primary); }
+            50% { box-shadow: 0 0 20px var(--primary); }
+            100% { box-shadow: 0 0 5px var(--primary); }
+        }
+
+        .manual-redirect {
+            color: var(--primary);
+            text-decoration: none;
+            padding: 0.5rem 1.5rem;
+            border: 2px solid var(--primary);
+            border-radius: 25px;
+            margin-top: 1.5rem;
+            display: inline-block;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .manual-redirect:hover {
+            background-color: var(--primary);
+            color: var(--text);
+            box-shadow: 0 0 20px var(--primary);
+        }
+
+        .manual-redirect::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        .manual-redirect:hover::before {
+            left: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="emergency-container">
+        <img src="/favicon.avif" alt="VentiStudio Logo" class="logo">
+        <h1>⚠ Redirection d'urgence ⚠</h1>
+        <p>Une erreur critique s'est produite. Pour votre sécurité, vous allez être redirigé automatiquement.</p>
+        <div class="loading-bar">
+            <div class="loading-progress"></div>
+        </div>
+        <div class="redirect-timer">Redirection dans <span id="countdown">3</span> secondes...</div>
+        <a href="/" class="manual-redirect">Redirection immédiate</a>
+    </div>
+
+    <script>
+        // Countdown and redirect
+        let timeLeft = 3;
+        const countdownElement = document.getElementById('countdown');
+        
+        const countdown = setInterval(() => {
+            timeLeft--;
+            countdownElement.textContent = timeLeft;
+            
+            if (timeLeft <= 0) {
+                clearInterval(countdown);
+                window.location.href = '/';
+            }
+        }, 1000);
+
+        // Handle errors during redirect
+        window.onerror = function() {
+            clearInterval(countdown);
+            countdownElement.parentElement.textContent = 'Erreur critique - Veuillez utiliser la redirection manuelle';
+        };
+    </script>
+</body></html>

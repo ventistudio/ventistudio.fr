@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html><head><base href="https://ventistudio.fr/gold">
+  <meta charset="utf-8">
+  <meta name="viewport">
+  <html lang="fr"></html>
+  <link rel="icon" type="image/png" href="favicon.ico">
+  <meta property="og:title" content="Bienvenu sur VentiStudio">
+  <meta property="og:site_name" content="VentiStudio Komiyuniti">
+  <meta property="og:url" content="https://ventistudio.fr">
+  <meta property="og:description" content="Hey, je suis Hikari Umaishi (光馬石), mais je préfère que l'on m'appelle Hiuma (ヒウマ).
+Laissez-moi vous présenter ma communauté, un espace où l'art et la créativité se rencontrent.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://ventistudio.fr/favicon.gif">
+  <title>VentiStudio - Gold</title>
+<style>
+:root {
+    --primary: #7B66FF;
+    --secondary: #2A2D3A; 
+    --background: #1A1B26;
+    --text: #FFFFFF;
+    --hover: #9F86FF;
+    --accent1: #414868;
+    --accent2: #565f89;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--background);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.access-container {
+    background: var(--secondary);
+    padding: 2rem;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 0 20px rgba(123, 102, 255, 0.2);
+}
+
+.gold-title {
+    text-align: center;
+    font-size: 2rem;
+    color: #FFD700;
+    margin-bottom: 2rem;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+.input-group {
+    margin-bottom: 1.5rem;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text);
+}
+
+.input-group input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid var(--accent1);
+    border-radius: 8px;
+    background: var(--background);
+    color: var(--text);
+    margin-bottom: 1rem;
+}
+
+.input-group input:focus {
+    border-color: var(--primary);
+    outline: none;
+}
+
+.submit-btn {
+    background: var(--primary);
+    color: var(--text);
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+    background: var(--hover);
+    transform: translateY(-2px);
+}
+
+.divider {
+    text-align: center;
+    margin: 1.5rem 0;
+    position: relative;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 45%;
+    height: 1px;
+    background: var(--accent1);
+}
+
+.divider::before {
+    left: 0;
+}
+
+.divider::after {
+    right: 0;
+}
+
+#error-message {
+    color: #ff6b6b;
+    text-align: center;
+    margin-top: 1rem;
+    display: none;
+}
+
+.file-upload {
+    position: relative;
+    overflow: hidden;
+    margin: 1rem 0;
+}
+
+.file-upload input[type=file] {
+    display: none;
+}
+
+.file-upload label {
+    background: var(--accent1);
+    color: var(--text);
+    padding: 1rem;
+    border-radius: 8px;
+    display: block;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.file-upload label:hover {
+    background: var(--accent2);
+}
+
+#file-name {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text);
+    text-align: center;
+}
+</style>
+</head>
+<body>
+<div class="access-container">
+    <h1 class="gold-title">VentiStudio Gold</h1>
+    
+    <div class="input-group">
+        <label for="access-key">Clé d'accès</label>
+        <input type="text" id="access-key" placeholder="Entrez votre clé d'accès">
+        <button class="submit-btn" id="submit-key">Accéder</button>
+    </div>
+
+    <div class="divider">OU</div>
+
+    <div class="file-upload">
+        <label for="key-file">
+            Uploader un fichier de clé
+            <input type="file" id="key-file" accept=".txt">
+        </label>
+        <div id="file-name"></div>
+    </div>
+
+    <div id="error-message"></div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const accessKey = "https://ventistudio.fr/error/code?code=149";
+    const submitBtn = document.getElementById('submit-key');
+    const keyInput = document.getElementById('access-key');
+    const fileInput = document.getElementById('key-file');
+    const fileNameDisplay = document.getElementById('file-name');
+    const errorMessage = document.getElementById('error-message');
+
+    submitBtn.addEventListener('click', function() {
+        checkKey(keyInput.value.trim());
+    });
+
+    keyInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            checkKey(keyInput.value.trim());
+        }
+    });
+
+    fileInput.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            fileNameDisplay.textContent = file.name;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                checkKey(e.target.result.trim());
+            };
+            reader.readAsText(file);
+        }
+    });
+
+    function checkKey(key) {
+        if (key === accessKey) {
+            window.location.href = accessKey;
+        } else {
+            errorMessage.style.display = 'block';
+            errorMessage.textContent = 'Clé d\'accès invalide. Veuillez réessayer.';
+            setTimeout(() => {
+                errorMessage.style.display = 'none';
+            }, 3000);
+        }
+    }
+});
+</script>
+</body></html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html><head><base href="https://ventistudio.fr/loading">
+  <meta charset="utf-8">
+  <meta name="viewport">
+  <html lang="fr"></html>
+  <link rel="icon" type="image/png" href="favicon.ico">
+  <meta property="og:title" content="Bienvenu sur VentiStudio">
+  <meta property="og:site_name" content="VentiStudio Komiyuniti">
+  <meta property="og:url" content="https://ventistudio.fr">
+  <meta property="og:description" content="Hey, je suis Hikari Umaishi (光馬石), mais je préfère que l'on m'appelle Hiuma (ヒウマ).
+Laissez-moi vous présenter ma communauté, un espace où l'art et la créativité se rencontrent.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://ventistudio.fr/favicon.gif">
+  <title>VentiStudio - Loading</title>
+<style>
+:root {
+  /* Original colors */
+  --primary: #7B66FF;
+  --secondary: #2A2D3A;
+  --background: #1A1B26;
+  --text: #FFFFFF;
+  --hover: #9F86FF;
+  --accent1: #414868;
+  --accent2: #565f89;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--background);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Spinner Animation Keyframes */
+@keyframes rotateBefore {
+  from {
+    transform: rotateX(60deg) rotateY(45deg) rotateZ(0deg);
+  }
+  to {
+    transform: rotateX(60deg) rotateY(45deg) rotateZ(-360deg);
+  }
+}
+
+@keyframes rotateAfter {
+  from {
+    transform: rotateX(240deg) rotateY(45deg) rotateZ(0deg);
+  }
+  to {
+    transform: rotateX(240deg) rotateY(45deg) rotateZ(360deg);
+  }
+}
+
+/* Spinner Styles */
+.spinner:before,
+.spinner:after {
+  box-sizing: border-box;
+  content: '';
+  display: block;
+  position: absolute;
+  margin-top: -5em;
+  margin-left: -5em;
+  width: 10em;
+  height: 10em;
+  transform-style: preserve-3d;
+  transform-origin: 50%;
+  transform: rotateY(50%);
+  perspective-origin: 50% 50%;
+  perspective: 340px;
+  background-size: 10em 10em;
+  background-image: url("data:image/svg+xml,%3Csvg width='266px' height='297px' viewBox='0 0 266 297' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M171.507813,3.25000038 C226.208183,12.8577111 297.112722,71.4912823 250.895599,108.410155 C216.582024,135.82031 186.528405,97.0624964 156.800774,85.7734346 C127.073143,74.4843721 76.8884632,84.2161462 60.1289065,108.410153 C-15.9804685,218.281247 145.277344,296.667968 145.277344,296.667968 C145.277344,296.667968 -25.4492187,257.242198 3.3984375,108.410155 C16.3070661,41.8114174 84.7275829,-11.9922985 171.507813,3.25000038 Z' fill='%237B66FF'/%3E%3C/svg%3E");
+}
+
+.spinner:before {
+  transform: rotateX(60deg) rotateY(45deg) rotateZ(45deg);
+  animation: 750ms rotateBefore infinite linear reverse;
+}
+
+.spinner:after {
+  transform: rotateX(240deg) rotateY(45deg) rotateZ(45deg);
+  animation: 750ms rotateAfter infinite linear;
+}
+
+/* Hero Section Styles */
+.hero-section {
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  background: linear-gradient(135deg, var(--background) 0%, var(--accent1) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 50% 50%, var(--primary) 0%, transparent 70%);
+  opacity: 0.1;
+  animation: pulse 4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.1; }
+  50% { transform: scale(1.2); opacity: 0.15; }
+  100% { transform: scale(1); opacity: 0.1; }
+}
+
+/* Title Styles */
+.hero-section h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(45deg, var(--primary), var(--hover));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: titleGlow 2s ease-in-out infinite alternate;
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes titleGlow {
+  from { text-shadow: 0 0 20px rgba(123, 102, 255, 0.5); }
+  to { text-shadow: 0 0 30px rgba(123, 102, 255, 0.8); }
+}
+
+/* Main Content Styles */
+.main-content {
+  padding: 0;
+  text-align: center;
+}
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+  .hero-section h1 {
+    font-size: 2.5rem;
+  }
+  
+  .hero-section p {
+    font-size: 1.1rem;
+  }
+}
+</style>
+</head>
+<body>
+<main class="main-content">
+    <section class="hero-section">
+     <div class="spinner"></div>
+     <h1>Loading...</h1>
+    </section>
+</main>
+</body>
+<script>
+  window.onload = function() {
+      function getQueryParam(param) {
+          const urlParams = new URLSearchParams(window.location.search);
+          return urlParams.get(param);
+      }
+
+      const redirectUrl = getQueryParam('code');
+
+      if (redirectUrl) {
+          console.log(`Redirection vers ${redirectUrl} dans 2 secondes...`);
+
+          setTimeout(function() {
+              window.location.href = decodeURIComponent(redirectUrl);
+          }, 2000);
+      } else {
+          console.error("Aucune URL de redirection spécifiée");
+          window.location.href = "/error?code=url";
+      }
+  };
+</script>

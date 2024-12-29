@@ -1,0 +1,29 @@
+<html lang="fr">
+<head>
+  <base href="https://ventistudio.fr/error/code/">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VentiStudio Gold - Acc&#xe8;s Donateur</title>
+  <link rel="icon" type="image/png" href="favicon.ico">
+  <meta property="og:title" content="Bienvenu sur VentiStudio">
+  <meta property="og:site_name" content="VentiStudio Komiyuniti">
+  <meta property="og:url" content="https://ventistudio.fr">
+  <meta property="og:description" content="Hey, je suis Hikari Umaishi (&#x5149;&#x99ac;&#x77f3;), mais je pr&#xe9;f&#xe8;re que l&apos;on m&apos;appelle Hiuma (&#x30d2;&#x30a6;&#x30de;).
+Laissez-moi vous pr&#xe9;senter ma communaut&#xe9;, un espace o&#xf9; l&apos;art et la cr&#xe9;ativit&#xe9; se rencontrent.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://ventistudio.fr/favicon.gif">
+</head>
+<script>
+// Récupère les paramètres de l'URL
+const urlParams = new URLSearchParams(window.location.search);
+
+// Vérifie si l'argument "code" est présent et égal à 149
+if (urlParams.has('code') && urlParams.get('code') === '149') {
+    // Redirige vers /gold/ventistudiofrgold
+    window.location.href = '/gold/goldforventistudiofr';
+} else {
+    // Redirige vers /
+    window.location.href = '/';
+}
+</script>
+</html>

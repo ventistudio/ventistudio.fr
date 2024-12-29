@@ -1,17 +1,15 @@
-<!DOCTYPE html>
-<html><head><base href="https://ventistudio.fr/">
+<html><head><base href="https://ventistudio.fr/umaishicorp">
   <meta charset="utf-8">
   <meta name="viewport">
   <html lang="fr"></html>
   <link rel="icon" type="image/png" href="favicon.ico">
-  <meta property="og:title" content="Bienvenu sur VentiStudio">
-  <meta property="og:site_name" content="VentiStudio Komiyuniti">
+  <meta property="og:title" content="Umaishi Corp - Innovation, Créativité et Technologie">
+  <meta property="og:site_name" content="Umaishi Corp">
   <meta property="og:url" content="https://ventistudio.fr">
-  <meta property="og:description" content="Hey, je suis Hikari Umaishi (光馬石), mais je préfère que l'on m'appelle Hiuma (ヒウマ).
-Laissez-moi vous présenter ma communauté, un espace où l'art et la créativité se rencontrent.">
+  <meta property="og:description" content="Découvrez l'univers d'Umaishi Corp et ses divisions: VentiStudio, Retribution Studio, RushKA Studio et plus encore.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://ventistudio.fr/favicon.gif">
-  <title>VentiStudio - Acceuil</title>
+  <title>Umaishi Corp - Accueil</title>
 <style>
 :root {
   --primary: #7B66FF;
@@ -293,6 +291,26 @@ body {
   margin-bottom: 1rem;
 }
 
+.service-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+  text-align: left;
+}
+
+.service-card ul li {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.service-card ul li:before {
+  content: "•";
+  color: var(--primary);
+  position: absolute;
+  left: 0;
+}
+
 .news-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -447,6 +465,18 @@ html {
   position: relative;
   z-index: 1000;
 }
+
+.section:nth-child(even) {
+  background: linear-gradient(135deg, var(--background) 0%, var(--accent1) 100%);
+}
+
+#divisions .service-card {
+  border-left: 4px solid var(--primary);
+}
+
+#ventistudio-services .service-card {
+  border-top: 4px solid var(--hover);
+}
 </style>
 </head>
 <body>
@@ -465,15 +495,6 @@ html {
         <a href="/approuvedcontent">Contenu Approuvé</a>
       </div>
       <div class="nav-item">
-        <a href="/player">Player</a>
-        <div class="dropdown">
-          <a href="/player/game">Game</a>
-          <a href="/player/music">Music</a>
-          <a href="/player/story">Story</a>
-          <a href="/player/video">Video</a>
-        </div>
-      </div>
-      <div class="nav-item">
         <a href="/wiki">Wiki</a>
       </div>
       <div class="nav-item">
@@ -484,63 +505,71 @@ html {
       </div>
       <div class="nav-item">
         <a href="/artist">Artiste</a>
-        <div class="dropdown">
-          <a href="/submissions">Soumissions</a>
-        </div>
       </div>
       <div class="nav-item">
         <a href="/pip">PIP</a>
-      </div>
-      <div class="nav-item">
-        <a href="/sitemap">Sitemap</a>
       </div>
     </div>
   </nav>
 
   <main class="main-content">
     <section class="hero-section">
-      <h1>Bienvenue dans l'univers de VentiStudio</h1>
-      <p>Créativité, innovation, et communauté à portée de clic.</p>
-      <a href="/sitemap" class="cta-button">Explorer VentiStudio</a>
+      <h1>Umaishi Corp</h1>
+      <p>L'innovation au service de la créativité et de la technologie</p>
+      <a href="#divisions" class="cta-button">Découvrir nos divisions</a>
     </section>
 
-    <section class="section">
-      <h2 class="section-title">À propos de VentiStudio</h2>
-      <p class="section-subtitle">VentiStudio est une plateforme créative conçue pour rassembler des outils innovants, des contenus originaux et une communauté passionnée.</p>
+    <section class="section" id="divisions">
+      <h2 class="section-title">Nos Divisions Principales</h2>
       <div class="services-grid">
         <div class="service-card">
-          <h3>Gazette Numérique</h3>
-          <p>Hebdomadaire avec les dernières actualités</p>
+          <h3>VentiStudio</h3>
+          <p>La créativité sans limites - Notre plateforme centrale dédiée aux médias interactifs et aux expériences numériques.</p>
+          <ul>
+            <li>Lecteurs multimédia</li>
+            <li>Gazette d'Opastudien</li>
+            <li>PIP Next Gen</li>
+          </ul>
         </div>
         <div class="service-card">
-          <h3>Lecteurs Multimédias</h3>
-          <p>Pour vidéo, musique et livres</p>
+          <h3>Retribution Studio</h3>
+          <p>Votre allié dans le jeu vidéo - Développement de jeux et d'outils gaming innovants.</p>
+          <ul>
+            <li>Gestion Roblox</li>
+            <li>Systèmes sécurisés</li>
+            <li>Administration avancée</li>
+          </ul>
         </div>
         <div class="service-card">
-          <h3>Interaction Roblox</h3>
-          <p>Sécurisée et optimisée</p>
+          <h3>RushKA Studio</h3>
+          <p>L'animation et l'univers visuel - Notre branche dédiée au design et à la narration visuelle.</p>
+          <ul>
+            <li>Animations originales</li>
+            <li>Design graphique</li>
+            <li>Univers Aoki</li>
+          </ul>
         </div>
       </div>
     </section>
 
-    <section class="section">
-      <h2 class="section-title">Nos Services</h2>
+    <section class="section" id="ventistudio-services">
+      <h2 class="section-title">Services VentiStudio</h2>
       <div class="services-grid">
         <div class="service-card">
-          <h3>La Gazette d'Opastudien</h3>
-          <p>Pour rester informé et inspiré</p>
+          <h3>Nexus Lumina</h3>
+          <p>Le cœur des créateurs - Hub artistique communautaire pour la diffusion d'œuvres.</p>
         </div>
         <div class="service-card">
-          <h3>Livres Numériques</h3>
-          <p>Découverte et lecture de nouvelles œuvres</p>
+          <h3>Subo Awards</h3>
+          <p>Récompense des talents - Célébration annuelle des créateurs exceptionnels.</p>
         </div>
         <div class="service-card">
-          <h3>Lecteurs Multimédias</h3>
-          <p>Vidéo, musique et bientôt jeux</p>
+          <h3>Étoile Tasukete</h3>
+          <p>La solidarité au cœur de la communauté - Soutien et entraide communautaire.</p>
         </div>
         <div class="service-card">
-          <h3>Administration Roblox</h3>
-          <p>Gestion simplifiée et fiable</p>
+          <h3>Phare Teikei</h3>
+          <p>La lumière de l'innovation - Programme partenaire et incubateur technologique.</p>
         </div>
       </div>
     </section>
@@ -561,7 +590,7 @@ html {
           <p>Découvrez ce qui arrive bientôt</p>
         </div>
       </div>
-       <a href="/player/news" class="cta-button" style="margin-top: 2rem;">Lire plus d'actualités</a>
+      <a href="/player/news" class="cta-button" style="margin-top: 2rem;">Lire plus d'actualités</a>
     </section>
 
     <section class="community-section">
@@ -593,6 +622,12 @@ html {
         <a href="/university">Université</a>
         <a href="/lawful/support">Assistance</a>
         <a href="/lawful/security">Sécurité</a>
+      </div>
+      <div class="footer-section">
+        <h3>Divisions</h3>
+        <a href="/ventistudio">VentiStudio</a>
+        <a href="/retribution">Retribution Studio</a>
+        <a href="/rushka">RushKA Studio</a>
       </div>
       <div class="footer-section">
         <h3>Chartes</h3>
@@ -651,35 +686,35 @@ html {
 
       // Check various holiday periods
       if (month === 12 && day >= 1 && day <= 25) {
-        celebrationMessage = "Joyeux Noël ! 🎄";
+        celebrationMessage = "Joyeux Noël ! ";
       }
       
       if (month === 12 && day === 15) {
-        celebrationMessage = "Joyeux anniversaire Hikari Umaishi ! 🎂 Et joyeux Noël ! 🎄";
+        celebrationMessage = "Joyeux anniversaire Hikari Umaishi !  Et joyeux Noël ! ";
       }
       
       if (month === 9 && day === 24) {
-        celebrationMessage = "Joyeux anniversaire VentiStudio ! 🎉";
+        celebrationMessage = "Joyeux anniversaire VentiStudio ! ";
       }
       
       if (month === 10 && day >= 25 && day <= 31) {
-        celebrationMessage = "Joyeux Halloween ! 🎃";
+        celebrationMessage = "Joyeux Halloween ! ";
       }
       
       if (month === 7 && day === 14) {
-        celebrationMessage = "Bonne fête nationale ! 🇫🇷";
+        celebrationMessage = "Bonne fête nationale ! ";
       }
       
       if ((month === 12 && day >= 31) || (month === 1 && day <= 3)) {
-        celebrationMessage = "Bonne année ! 🎊";
+        celebrationMessage = "Bonne année ! ";
       }
       
       if (month === 9 && day === 9) {
-        celebrationMessage = "Bonne fête de l'automne ! 🍂";
+        celebrationMessage = "Bonne fête de l'automne ! ";
       }
       
       if (month === 3 && (day === 20 || day === 21)) {
-        celebrationMessage = "Bienvenue au printemps ! 🌸";
+        celebrationMessage = "Bienvenue au printemps ! ";
       }
 
       if (celebrationMessage) {
