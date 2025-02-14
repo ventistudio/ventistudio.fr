@@ -25,5 +25,7 @@ __**Aucune garantie n’est donnée.**__
 Si la licence ne peut pas vous accorder toutes les autorisations nécessaires pour votre utilisation prévue, veuiller contacté licence@ventistudio.fr, (Aucune garantie de réponce satisfesente ne peu etre donné). 
 Par exemple, d’autres droits tels que les droits de publicité, de confidentialité ou de droits moraux peuvent limiter votre utilisation du matériel.
 ---
+ATTENTION IL N'Y A AUCUNE GARENTI DE FONCTIONNEMENT, A UTILISER A VOS RISQUE ET PERIL.
+
 *© 2024 VentiStudio. Tous droits réservés.*
 Product By AINA UMAISHI - ARTIFICIAL INTELLIGENCE NEW AGE
