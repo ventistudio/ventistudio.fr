@@ -10,15 +10,15 @@ Le concédant ne peut pas révoquer ces libertés tant que vous respectez les te
 ## Sous les conditions suivantes :
 1. **Attribution** : vous devez donner le crédit approprié, fournir un lien vers la licence et indiquer si des modifications ont été apportées. Vous pouvez le faire de manière raisonnable, mais pas de manière à suggérer que le concédant vous approuve ou approuve votre utilisation.
 Attention vous avez lobligation de ne pas toucher au code suivent dans chaque page du site :
-"<div class="copyright">
+``"<div class="copyright">
       <img src="/favicon.avif" alt="VentiStudio Logo">
-      <span>Copyright & P-Line 2023 - 2024, Tous droits réservés.</span>
-</div>"
-2. **NonCommercial** : vous ne pouvez pas utiliser le code à des fins commerciales (revente interdite du code même apprès modification du code source).
-3. **ShareAlike** : si vous remaniez, transformez ou créez à partir du code source, vous devez distribuer vos contributions sous la même licence que l’original tout en notifien les utilisateur de la provenence original du code ( c'est a dire https://github.com/ventistudio/ventistudio.fr).
-4. **Aucune restriction supplémentaire** : vous ne pouvez pas appliquer de termes juridiques ou de mesures technologiques qui restreignent légalement les autres dans l’utilisation permise par la licence.
-5. **Licence Temporaire** : Cette licence peu etre modifier a tout moment pour apporté des modification.
-6. **Terms** : Votre projet doit respecté l'ensemble des lawful c'est a dire les cgv, cookies, dmca, dmca info, privacy, security, terms et lawful/index.html.
+      <span>Copyright & P-Line 2023 - 2025, Tous droits réservés.</span>
+   "</div>"``
+3. **NonCommercial** : vous ne pouvez pas utiliser le code à des fins commerciales (revente interdite du code même apprès modification du code source).
+4. **ShareAlike** : si vous remaniez, transformez ou créez à partir du code source, vous devez distribuer vos contributions sous la même licence que l’original tout en notifien les utilisateur de la provenence original du code ( c'est a dire https://github.com/ventistudio/ventistudio.fr).
+5. **Aucune restriction supplémentaire** : vous ne pouvez pas appliquer de termes juridiques ou de mesures technologiques qui restreignent légalement les autres dans l’utilisation permise par la licence.
+6. **Licence Temporaire** : Cette licence peu etre modifier a tout moment pour apporté des modification.
+7. **Terms** : Votre projet doit respecté l'ensemble des lawful c'est a dire les cgv, cookies, dmca, dmca info, privacy, security, terms et lawful/index.html.
 
 ## Avis :
 __**Aucune garantie n’est donnée.**__ 
