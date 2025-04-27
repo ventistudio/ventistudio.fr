@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html><head><base href="https://ventistudio.fr/aina">
+  <meta charset="utf-8">
+  <meta name="viewport">
+  <html lang="fr"></html>
+  <link rel="icon" type="image/gif" href="favicon.avif">
+  <meta property="og:title" content="Bienvenu sur VentiStudio">
+  <meta property="og:site_name" content="VentiStudio Komiyuniti">
+  <meta property="og:url" content="https://ventistudio.fr">
+  <meta property="og:description" content="Hey, je suis Hikari Umaishi (光馬石), mais je préfère que l'on m'appelle Hiuma (ヒウマ).
+Laissez-moi vous présenter ma communauté, un espace où l'art et la créativité se rencontrent.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://ventistudio.fr/favicon.gif">
+  <title>VentiStudio - Aina Umaishi AI System</title>
+  <style>
+    :root {
+      --primary: #8b5cf6;
+      --dark: #1a1a1a;
+      --text: #ffffff;
+      --neon-blue: #00f3ff;
+      --neon-purple: #bc13fe;
+    }
+    
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--dark);
+      color: var(--text);
+    }
+
+    .navbar {
+      background: rgba(0,0,0,0.8);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: fixed;
+      width: 100%;
+      box-sizing: border-box;
+      z-index: 1000;
+    }
+
+    .logo {
+      width: 50px;
+      height: 50px;
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: rotate(360deg);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+      background: rgba(139, 92, 246, 0.1);
+    }
+
+    .hero {
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.7), var(--dark));
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(45deg, #8b5cf6, #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientShift 8s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-button {
+      background: linear-gradient(45deg, var(--primary), #ec4899);
+      color: white;
+      padding: 1rem 2.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+      display: inline-block;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      padding: 4rem 2rem;
+      background: linear-gradient(to bottom, var(--dark), #2d2d2d);
+    }
+
+    .feature-card {
+      background: rgba(255,255,255,0.05);
+      padding: 2rem;
+      border-radius: 12px;
+      text-align: center;
+      transition: transform 0.3s ease;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      background: rgba(255,255,255,0.08);
+    }
+
+    .feature-card h3 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .ai-container {
+      min-height: 100vh;
+      background: #000;
+      padding-top: 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .neural-network {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.3;
+    }
+
+    .ai-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .ai-title {
+      font-size: 3rem;
+      background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .system-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .system-card {
+      background: rgba(255,255,255,0.05);
+      border-radius: 15px;
+      padding: 2rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .system-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+      transform: rotate(45deg);
+      animation: shimmer 3s infinite;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%) rotate(45deg); }
+      100% { transform: translateX(100%) rotate(45deg); }
+    }
+
+    .system-card h3 {
+      color: var(--neon-blue);
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+
+    .neural-path {
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 1000;
+      animation: drawPath 3s forwards infinite;
+    }
+
+    @keyframes drawPath {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    .ai-description {
+      color: var(--text);
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 0 auto 3rem;
+      text-align: center;
+      font-size: 1.2rem;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <img src="/favicon.avif" alt="Logo VentiStudio - Design circulaire noir et blanc avec symboles français et japonais" class="logo">
+    <div class="nav-links">
+      <a href="/">Accueil</a>
+      <a href="/approvedcontent">Contenu Approuvé</a>
+      <a href="/wiki">Wiki</a>
+      <a href="/staff">Staff</a>
+      <a href="/artist">Artiste</a>
+      <a href="/pip">PIP</a>
+    </div>
+  </nav>
+
+  <div class="ai-container">
+    <svg class="neural-network" viewBox="0 0 1000 1000">
+      <defs>
+        <filter id="glow">
+          <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+          <feMerge>
+            <feMergeNode in="coloredBlur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+      </defs>
+      <g filter="url(#glow)">
+        <path class="neural-path" d="M100,100 C300,200 700,300 900,100" stroke="var(--neon-blue)" fill="none" stroke-width="2"/>
+        <path class="neural-path" d="M100,300 C400,400 600,200 900,300" stroke="var(--neon-purple)" fill="none" stroke-width="2"/>
+        <path class="neural-path" d="M100,500 C200,600 800,400 900,500" stroke="var(--neon-blue)" fill="none" stroke-width="2"/>
+      </g>
+    </svg>
+
+    <div class="ai-content">
+      <h1 class="ai-title">Aina Umaishi (A.I.N.A)</h1>
+      
+      <p class="ai-description">
+        Découvrez Aina Umaishi, une intelligence artificielle nouvelle génération qui repousse les limites de l'apprentissage automatique tout en respectant les trois lois fondamentales de la robotique.
+      </p>
+
+      <div class="system-grid">
+        <div class="system-card">
+          <h3>PaimonToPompom (PTP/2P)</h3>
+          <p>Système avancé de génération d'images et de vidéos avec gestion intégrée des droits d'auteur.</p>
+        </div>
+
+        <div class="system-card">
+          <h3>Draturion Protection</h3>
+          <p>Système d'auto-protection évolutif utilisant des simulations en temps réel pour anticiper et contrer les menaces potentielles.</p>
+        </div>
+
+        <div class="system-card">
+          <h3>Aina Deegle</h3>
+          <p>Module de traitement du langage naturel multilingue, incluant un langage propriétaire spécialement conçu pour l'IA.</p>
+        </div>
+
+        <div class="system-card">
+          <h3>Three Neuronal System</h3>
+          <p>Architecture neuronale unique (3+3x3) permettant une prise de décision collective entre les différents sous-systèmes.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    window.addEventListener('scroll', () => {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 50) {
+        navbar.style.background = 'rgba(0,0,0,0.95)';
+        navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.3)';
+      } else {
+        navbar.style.background = 'rgba(0,0,0,0.8)';
+        navbar.style.boxShadow = 'none';
+      }
+    });
+
+    document.querySelectorAll('.feature-card').forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        card.style.transform = 'translateY(-10px)';
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'translateY(0)';
+      });
+    });
+
+    function createRandomNeuralPath() {
+      const svg = document.querySelector('.neural-network');
+      const newPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      
+      const startX = Math.random() * 1000;
+      const startY = Math.random() * 1000;
+      const endX = Math.random() * 1000;
+      const endY = Math.random() * 1000;
+      const controlX1 = Math.random() * 1000;
+      const controlY1 = Math.random() * 1000;
+      
+      newPath.setAttribute("d", `M${startX},${startY} Q${controlX1},${controlY1} ${endX},${endY}`);
+      newPath.setAttribute("stroke", Math.random() > 0.5 ? "var(--neon-blue)" : "var(--neon-purple)");
+      newPath.setAttribute("fill", "none");
+      newPath.setAttribute("stroke-width", "2");
+      newPath.classList.add("neural-path");
+      
+      svg.querySelector("g").appendChild(newPath);
+      
+      setTimeout(() => {
+        newPath.remove();
+      }, 3000);
+    }
+
+    setInterval(createRandomNeuralPath, 500);
+  </script>
+</body></html>

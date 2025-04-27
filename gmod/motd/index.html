@@ -1,0 +1,203 @@
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VentiStudio - MOTD GMod</title>
+  <link rel="icon" type="image/png" href="/favicon.ico">
+  <style>
+    :root {
+      --primary: #7B66FF;
+      --secondary: #2A2D3A;
+      --background: #1A1B26;
+      --text: #FFFFFF;
+      --hover: #9F86FF;
+      --accent1: #414868;
+      --accent2: #565f89;
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap');
+
+    body {
+      margin: 0;
+      padding: 2rem;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--background);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .motd-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: var(--secondary);
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .header h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .collection-section {
+      background: var(--accent1);
+      padding: 1.5rem;
+      border-radius: 10px;
+      margin-bottom: 2rem;
+    }
+
+    .collection-button {
+      display: inline-block;
+      background: var(--primary);
+      color: var(--text);
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      margin-top: 1rem;
+    }
+
+    .collection-button:hover {
+      background: var(--hover);
+      transform: translateY(-2px);
+    }
+
+    .changelog {
+      background: var(--accent1);
+      padding: 1.5rem;
+      border-radius: 10px;
+    }
+
+    .changelog h2 {
+      color: var(--primary);
+      font-family: 'Space Grotesk', sans-serif;
+      margin-bottom: 1rem;
+    }
+
+    .update-entry {
+      border-left: 3px solid var(--primary);
+      padding-left: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .update-date {
+      color: var(--hover);
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .update-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .update-list li {
+      margin-bottom: 0.5rem;
+      position: relative;
+      padding-left: 1.5rem;
+    }
+
+    .update-list li::before {
+      content: "•";
+      color: var(--primary);
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+    }
+
+    .important {
+      background: rgba(123, 102, 255, 0.1);
+      border-left: 3px solid var(--primary);
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 0 8px 8px 0;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem;
+      }
+      
+      .motd-container {
+        padding: 1rem;
+      }
+      
+      .header h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="motd-container">
+    <div class="header">
+      <h1>Bienvenue sur le serveur GMod VentiStudio</h1>
+      <p>Retrouvez ici toutes les informations importantes concernant le serveur</p>
+    </div>
+
+    <div class="important">
+      <strong>⚠️ Important :</strong> L'installation de la collection est obligatoire pour évité les erreur. 
+      Assurez-vous que tous les addons sont téléchargés avant de vous connecter.
+    </div>
+
+    <div class="collection-section">
+      <h2>Collection d'addons</h2>
+      <p>Pour une expérience optimale, assurez-vous d'être abonné à notre collection d'addons officielle :</p>
+      <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3293283928" class="collection-button" target="_blank">
+        Téléchargé la collection Steam →
+      </a>
+    </div>
+
+    <div class="collection-section">
+      <h2>Serveur Discord</h2>
+      <p>Pour une expérience optimale et débloquer d'autre jobs, assurez-vous d'avoir rejoind le serveur disocrd officielle :</p>
+      <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3293283928" class="collection-button" target="_blank">
+        Rejoindre la communauté Discord →
+      </a>
+    </div>
+
+
+    <div class="changelog">
+      <h2>Notes de mise à jour</h2>
+      
+      <div class="update-entry">
+        <div class="update-date">15 Janvier 2025</div>
+        <ul class="update-list">
+          <li>Ajout du nouveau système de personnalisation</li>
+          <li>Création du loading et du motd</li>
+          <li>Mise à jour de la collection</li>
+        </ul>
+      </div>
+
+      <div class="update-entry">
+        <div class="update-date">14 Janvier 2025</div>
+        <ul class="update-list">
+          <li>Modification des lieu de spawn</li>
+          <li>Ajout des grade VIP, VSP, MVP</li>
+          <li>Mise à jour de la collection</li>
+        </ul>
+      </div>
+
+      <div class="update-entry">
+        <div class="update-date">13 Janvier 2025</div>
+        <ul class="update-list">
+          <li>Nouveau système d'experience</li>
+          <li>Modification de l'ensemble des team</li>
+          <li>Mise à jour de la collection</li>
+          <li>Correction de divert bug</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

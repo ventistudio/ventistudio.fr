@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html><head><base href="https://ventistudio.fr/warning">
-  <meta charset="utf-8">
-  <meta name="viewport">
-  <html lang="fr"></html>
-  <link rel="icon" type="image/png" href="favicon.ico">
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/ico" href="https://ventistudio.fr/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta property="og:title" content="Bienvenu sur VentiStudio">
   <meta property="og:site_name" content="VentiStudio Komiyuniti">
   <meta property="og:url" content="https://ventistudio.fr">
@@ -12,512 +12,90 @@ Laissez-moi vous présenter ma communauté, un espace où l'art et la créativit
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://ventistudio.fr/favicon.gif">
   <title>VentiStudio - Avertissement</title>
+  <link rel="stylesheet" href="https://trust.ventistudio.fr/root/style.css">
   <style>
-    :root {
-      --primary: #7B66FF;
-      --secondary: #2A2D3A;
-      --background: #1A1B26;
-      --text: #FFFFFF;
-      --hover: #9F86FF;
-      --accent1: #414868;
-      --accent2: #565f89;
-    }
-
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap');
-
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Inter', sans-serif;
-      background-color: var(--background);
-      color: var(--text);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .navbar {
-      background-color: var(--secondary);
-      padding: 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      box-shadow: 0 2px 10px rgba(123, 102, 255, 0.1);
-    }
-
-    .logo {
-      height: 50px;
-      transition: transform 0.3s ease;
-    }
-
-    .logo:hover {
-      transform: scale(1.05);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-    }
-
-    .mobile-menu-button {
-      display: none;
-      background: none;
-      border: none;
-      color: var(--text);
-      font-size: 1.5rem;
-      cursor: pointer;
-      padding: 0.5rem;
-    }
-
-    .nav-item {
-      position: relative;
-      cursor: pointer;
-    }
-
-    .nav-item > a {
-      color: var(--text);
-      text-decoration: none;
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
-      transition: all 0.3s ease;
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 500;
-    }
-
-    .nav-item > a:hover {
-      background-color: var(--hover);
-      transform: translateY(-2px);
-    }
-
-    .dropdown {
-      display: none;
-      position: absolute;
-      background-color: var(--accent1);
-      min-width: 200px;
-      box-shadow: 0 8px 16px rgba(123, 102, 255, 0.2);
-      z-index: 1;
-      border-radius: 8px;
-      margin-top: 0.5rem;
-      backdrop-filter: blur(10px);
-    }
-
-    .nav-item:hover .dropdown {
-      display: block;
-      animation: fadeIn 0.3s ease;
-    }
-
-    @media screen and (max-width: 768px) {
-      .mobile-menu-button {
-        display: block;
-      }
-
-      .nav-links {
-        display: none;
-        position: fixed;
-        top: 80px;
-        left: 0;
-        right: 0;
-        background-color: var(--secondary);
-        flex-direction: column;
-        padding: 1rem;
-        gap: 1rem;
-      }
-
-      .nav-links.active {
-        display: flex;
-      }
-
-      .nav-item {
-        width: 100%;
-      }
-
-      .dropdown {
-        position: static;
-        width: 100%;
-        margin-top: 0.5rem;
-        display: none;
-      }
-
-      .nav-item.active .dropdown {
-        display: block;
-      }
-
-      .footer-content {
-        grid-template-columns: repeat(2, 1fr) !important;
-        padding: 0 1rem;
-      }
-
-      .copyright {
-        flex-direction: column;
-        text-align: center;
-      }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .dropdown a {
-      color: var(--text);
-      padding: 12px 16px;
-      text-decoration: none;
-      display: block;
-      transition: all 0.2s ease;
-    }
-
-    .dropdown a:hover {
-      background-color: var(--hover);
-      transform: translateX(5px);
-    }
-
-    .main-content {
-      padding: 0;
-      text-align: center;
-    }
-
-    .hero-section {
-      padding: 6rem 2rem;
-      background: linear-gradient(135deg, var(--background) 0%, var(--accent1) 100%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 2rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-section::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: radial-gradient(circle at 50% 50%, var(--primary) 0%, transparent 70%);
-      opacity: 0.1;
-      animation: pulse 4s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); opacity: 0.1; }
-      50% { transform: scale(1.2); opacity: 0.15; }
-      100% { transform: scale(1); opacity: 0.1; }
-    }
-
-    .hero-section h1 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 3.5rem;
-      margin-bottom: 1rem;
-      background: linear-gradient(45deg, var(--primary), var(--hover));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: titleGlow 2s ease-in-out infinite alternate;
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-section p {
-      font-size: 1.4rem;
-      color: var(--text);
-      opacity: 0.9;
-      max-width: 800px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 1;
-    }
-
-    .cta-button {
-      background: var(--primary);
-      color: var(--text);
-      padding: 1rem 2rem;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      position: relative;
-      z-index: 1;
-      border: none;
-      cursor: pointer;
-      font-size: 1.1rem;
-    }
-
-    .cta-button:hover {
-      background: var(--hover);
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(123, 102, 255, 0.3);
-    }
-
-    .section {
-      padding: 4rem 2rem;
-      background: var(--background);
-    }
-
-    .section-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 2.5rem;
-      margin-bottom: 2rem;
-      color: var(--text);
-    }
-
-    .section-subtitle {
-      font-size: 1.2rem;
-      color: var(--text);
-      opacity: 0.8;
-      max-width: 800px;
-      margin: 0 auto 3rem auto;
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .service-card {
-      background: var(--secondary);
-      padding: 2rem;
-      border-radius: 15px;
-      transition: all 0.3s ease;
-    }
-
-    .service-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    }
-
-    .service-card h3 {
-      color: var(--primary);
-      margin-bottom: 1rem;
-    }
-
-    .news-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .news-card {
-      background: var(--secondary);
-      padding: 2rem;
-      border-radius: 15px;
-      transition: all 0.3s ease;
-    }
-
-    .community-section {
-      background: linear-gradient(135deg, var(--secondary) 0%, var(--accent1) 100%);
-      text-align: center;
-      padding: 4rem 2rem;
-    }
-
-    .button-group {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    @media screen and (max-width: 768px) {
-      .hero-section h1 {
-        font-size: 2.5rem;
-      }
-      
-      .hero-section p {
-        font-size: 1.1rem;
-      }
-      
-      .section-title {
-        font-size: 2rem;
-      }
-      
-      .button-group {
-        flex-direction: column;
-        align-items: center;
-      }
-    }
-
-    @keyframes titleGlow {
-      from { text-shadow: 0 0 20px rgba(123, 102, 255, 0.5); }
-      to { text-shadow: 0 0 30px rgba(123, 102, 255, 0.8); }
-    }
-
-    .footer {
-      background-color: var(--secondary);
-      padding: 2rem;
-      margin-top: auto;
-      box-shadow: 0 -2px 10px rgba(123, 102, 255, 0.1);
-    }
-
-    .footer-content {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .footer-section h3 {
-      color: var(--text);
-      margin-bottom: 1rem;
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-    }
-
-    .footer-section a {
-      color: var(--text);
-      text-decoration: none;
-      display: block;
-      margin-bottom: 0.5rem;
-      transition: all 0.2s ease;
-      opacity: 0.8;
-    }
-
-    .footer-section a:hover {
-      opacity: 1;
-      color: var(--hover);
-      transform: translateX(5px);
-    }
-
-    .copyright {
-      text-align: center;
-      padding: 2rem 0;
-      border-top: 1px solid var(--accent1);
-      margin-top: 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-    }
-
-    .copyright img {
-      height: 30px;
-    }
-
-    .copyright span {
-      color: var(--text);
-      opacity: 0.8;
-      font-size: 0.9rem;
-    }
-
-    ::-webkit-scrollbar {
-      width: 12px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: var(--background);
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: var(--primary);
-      border-radius: 6px;
-      border: 3px solid var(--background);
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background: var(--hover);
-    }
-
-    * {
-      scrollbar-width: thin;
-      scrollbar-color: var(--primary) var(--background);
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    @keyframes slideDown {
-      from {
-        transform: translateY(-100%);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
-
-    #celebration-banner {
-      background: linear-gradient(45deg, var(--primary), var(--hover));
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      position: relative;
-      z-index: 1000;
-    }
-
     .warning-container {
-      max-width: 800px;
-      margin: 4rem auto;
+      max-width: 1200px;
+      margin: 2rem auto;
       padding: 2rem;
-      background: var(--secondary);
-      border-radius: 15px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      background: var(--bg-secondary);
+      border-radius: 1rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
     }
 
     .warning-header {
-      text-align: center;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
       margin-bottom: 2rem;
-    }
-
-    .warning-header h1 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 2.5rem;
-      color: var(--primary);
-      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid var(--border-color);
     }
 
     .warning-icon {
-      font-size: 4rem;
-      color: var(--primary);
-      margin-bottom: 1rem;
+      font-size: 2.5rem;
       animation: pulse 2s infinite;
     }
 
-    .warning-content {
-      line-height: 1.6;
-      color: var(--text);
-      font-size: 1.1rem;
-      text-align: justify;
+    .warning-header h1 {
+      font-size: 2rem;
+      color: var(--warning-color);
+      margin: 0;
     }
 
-    .warning-content p {
-      margin-bottom: 1.5rem;
+    .warning-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
     }
 
     .highlight-box {
-      background: rgba(123, 102, 255, 0.1);
-      border-left: 4px solid var(--primary);
-      padding: 1rem;
-      margin: 1.5rem 0;
-      border-radius: 0 8px 8px 0;
+      padding: 1.5rem;
+      background: var(--warning-bg);
+      border-left: 4px solid var(--warning-color);
+      border-radius: 0.5rem;
+      transition: transform 0.3s ease;
     }
 
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-      100% { transform: scale(1); }
+    .highlight-box:hover {
+      transform: translateX(10px);
     }
 
-    @media screen and (max-width: 768px) {
-      .warning-container {
-        margin: 2rem;
-        padding: 1.5rem;
-      }
+    .highlight-box p {
+      margin: 0;
+      line-height: 1.6;
+      color: var(--text-primary);
+    }
 
-      .warning-header h1 {
-        font-size: 2rem;
-      }
+    .warning-content ul {
+      margin: 1rem 0 0 0;
+      padding-left: 1.5rem;
+      list-style-type: none;
+    }
 
-      .warning-content {
-        font-size: 1rem;
-      }
+    .warning-content ul li {
+      position: relative;
+      padding-left: 1.5rem;
+      margin-bottom: 0.5rem;
+      line-height: 1.6;
+      color: var(--text-primary);
+    }
 
-      .categories-grid {
-        grid-template-columns: 1fr;
-      }
+    .warning-content ul li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--warning-color);
+      font-weight: bold;
+    }
+
+    .warning-important {
+      border-left: 4px solid #dc3545;
+      background: rgba(220, 53, 69, 0.1);
+    }
+
+    [data-theme="dark"] .warning-important {
+      background: rgba(220, 53, 69, 0.15);
     }
 
     .categories-container {
@@ -526,29 +104,27 @@ Laissez-moi vous présenter ma communauté, un espace où l'art et la créativit
 
     .categories-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
     }
 
     .category-card {
-      background: var(--accent1);
-      border-radius: 12px;
+      background: var(--bg-tertiary);
       padding: 1.5rem;
-      text-align: center;
+      border-radius: 1rem;
       transition: all 0.3s ease;
     }
 
     .category-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 5px 15px rgba(123, 102, 255, 0.2);
+      box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
     }
 
     .category-title {
-      color: var(--primary);
-      font-family: 'Space Grotesk', sans-serif;
       font-size: 1.5rem;
-      margin-bottom: 1rem;
+      margin: 0 0 1.5rem 0;
+      color: var(--text-primary);
+      text-align: center;
     }
 
     .category-buttons {
@@ -558,55 +134,101 @@ Laissez-moi vous présenter ma communauté, un espace où l'art et la créativit
     }
 
     .category-button {
-      background: var(--secondary);
-      color: var(--text);
-      padding: 0.8rem 1.5rem;
-      border-radius: 8px;
+      display: block;
+      padding: 0.8rem 1.2rem;
+      background: var(--button-bg);
+      color: var(--button-text);
       text-decoration: none;
+      border-radius: 0.5rem;
+      text-align: center;
       transition: all 0.3s ease;
-      border: 1px solid var(--accent2);
     }
 
     .category-button:hover {
-      background: var(--primary);
-      transform: translateX(5px);
+      background: var(--button-hover);
+      transform: scale(1.02);
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    :root {
+      --warning-color: #ff9800;
+      --warning-bg: rgba(255, 152, 0, 0.1);
+      --button-bg: #7c3aed;
+      --button-hover: #6d28d9;
+      --button-text: #ffffff;
+      --bg-tertiary: rgba(124, 58, 237, 0.1);
+      --border-color: rgba(124, 58, 237, 0.2);
+    }
+
+    [data-theme="dark"] {
+      --warning-color: #ffa726;
+      --warning-bg: rgba(255, 167, 38, 0.1);
+      --button-bg: #7c3aed;
+      --button-hover: #6d28d9;
+      --button-text: #ffffff;
+      --bg-tertiary: rgba(124, 58, 237, 0.15);
+      --border-color: rgba(124, 58, 237, 0.3);
+    }
+
+    @media (max-width: 768px) {
+      .warning-container {
+        margin: 1rem;
+        padding: 1.5rem;
+      }
+
+      .warning-header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .warning-icon {
+        font-size: 2rem;
+      }
+
+      .warning-header h1 {
+        font-size: 1.5rem;
+      }
+
+      .categories-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
-  <div id="celebration-banner" style="display: none; background: var(--primary); color: var(--text); text-align: center; padding: 10px; font-weight: bold; animation: slideDown 0.5s ease-out;">
-    <span id="celebration-message"></span>
-  </div>
-  
-  <nav class="navbar">
-    <img src="/favicon.avif" alt="VentiStudio Logo" class="logo">
-    <button class="mobile-menu-button">☰</button>
-    <div class="nav-links">
-      <div class="nav-item">
-        <a href="/">Accueil</a>
-      </div>
-      <div class="nav-item">
-        <a href="/approuvedcontent">Contenu Approuvé</a>
-      </div>
-      <div class="nav-item">
-        <a href="/wiki">Wiki</a>
-      </div>
-      <div class="nav-item">
-        <a href="/staff">Staff</a>
-        <div class="dropdown">
-          <a href="/job">Recrutement</a>
-        </div>
-      </div>
-      <div class="nav-item">
-        <a href="/artist">Artiste</a>
-      </div>
-      <div class="nav-item">
-        <a href="/pip">PIP</a>
-      </div>
+  <header>
+    <div class="logo">
+      <img src="https://ventistudio.fr/favicon.avif" alt="VentiStudio Logo" class="site-logo">
+      <span>VentiStudio</span>
     </div>
-  </nav>
+    <nav>
+      <a href="https://ventistudio.fr" class="active">Accueil</a>
+      <a href="https://ventistudio.fr/approuvedcontent">Contenu Approuvé</a>
+      <a href="https://ventistudio.fr/player">Player</a>
+      <a href="https://ventistudio.fr/wiki">Wiki</a>
+      <a href="https://ventistudio.fr/staff">Staff</a>
+      <a href="https://ventistudio.fr/artist">Artiste</a>
+      <a href="https://ventistudio.fr/pip">PIP</a>
+      <a href="https://ventistudio.fr/sitemap">Sitemap</a>
+    </nav>
+    <div class="controls">
+      <button id="theme-toggle" class="theme-toggle">
+        <svg width="24" height="24" viewBox="0 0 24 24">
+          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
+          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
+          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
+        </svg>
+      </button>
+      <div id="user-button"></div>
+    </div>
+  </header>
 
-  <main class="main-content">
+  <main>
     <div class="warning-container">
       <div class="warning-header">
         <div class="warning-icon">⚠️</div>
@@ -615,16 +237,21 @@ Laissez-moi vous présenter ma communauté, un espace où l'art et la créativit
       
       <div class="warning-content">
         <div class="highlight-box">
-          <p>VentiStudio ne peut en aucun cas garantir que le contenu que vous recherchez est disponible sur l'un des sites référencés. Nous déclinons toute responsabilité concernant les téléchargements effectués depuis ces sites. Vous vous déclarez seul responsable de vos actions.</p>
+          <p>⚠️ L'ensemble des contenus référencés sur cette page ne sont ni créés, ni modifiés, ni développés, ni soutenus de quelque manière que ce soit par VentiStudio ou ses créateurs. VentiStudio décline toute responsabilité concernant les sites proposés.</p>
         </div>
 
-        <p>VentiStudio ne certifie pas que ces sites sont entièrement sûrs ou accessibles en permanence. Votre navigation sur ces plateformes se fait donc à vos propres risques et périls.</p>
 
-        <div class="highlight-box">
-          <p>Cette page ne peut en aucun cas faire l'objet d'une demande DMCA. Toute demande de ce type sera automatiquement rejetée.</p>
+          <p>En accédant à cette page, vous, l'utilisateur actuel de l'appareil :</p>
+          <ul>
+            <li>Reconnaissez être seul responsable de vos actes</li>
+            <li>Confirmez être en pleine possession de vos moyens</li>
+            <li>Attestez avoir lu et approuvé l'ensemble des consignes présentes</li>
+            <li>Comprenez que VentiStudio ne garantit ni l'accessibilité ni la sécurité des sites référencés</li>
+          </ul>
+
+        <div class="highlight-box warning-important">
+          <p>Cette page est fournie uniquement à titre informatif. Toute tentative de réclamation DMCA sera automatiquement rejetée, VentiStudio n'étant pas propriétaire des contenus référencés.</p>
         </div>
-
-        <p>VentiStudio propose cette page uniquement à des fins éducatives et de test. Nous ne sommes ni associés, ni propriétaires des sites mentionnés.</p>
       </div>
 
       <div class="categories-container">
@@ -655,129 +282,73 @@ Laissez-moi vous présenter ma communauté, un espace où l'art et la créativit
               <a href="/social/darkzone/?darkzone=https://gogunlocked.com/" class="category-button">GOG UNLOCKED</a>
             </div>
           </div>
-
         </div>
       </div>
     </div>
   </main>
 
-  <footer class="footer">
+  <footer>
     <div class="footer-content">
       <div class="footer-section">
-        <h3>Outils</h3>
-        <a href="/encrypt">Encrypt</a>
-        <a href="/sitemap">Sitemap</a>
-        <a href="/status">Statut</a>
+        <h4>Outils</h4>
+        <ul>
+          <li><a href="https://ventistudio.fr/encrypt">Encrypt</a></li>
+          <li><a href="https://ventistudio.fr/sitemap">Sitemap</a></li>
+          <li><a href="https://status.ventistudio.fr/">Statut</a></li>
+          <li><a href="https://aina.ventistudio.fr/">Aina</a></li>
+        </ul>
       </div>
       <div class="footer-section">
-        <h3>Entreprise</h3>
-        <a href="/about">À propos</a>
-        <a href="/jobs">Emplois</a>
-        <a href="/company">Marque</a>
+        <h4>Entreprise</h4>
+        <ul>
+          <li><a href="https://ventistudio.fr/about">À propos</a></li>
+          <li><a href="https://ventistudio.fr/jobs">Emplois</a></li>
+          <li><a href="https://ventistudio.fr/company">Marque</a></li>
+          <li><a href="https://ventistudio.fr/creator">Créateur</a></li>
+        </ul>
       </div>
       <div class="footer-section">
-        <h3>Ressources</h3>
-        <a href="/university">Université</a>
-        <a href="/lawful/support">Assistance</a>
-        <a href="/lawful/security">Sécurité</a>
+        <h4>Ressources</h4>
+        <ul>
+          <li><a href="https://ventistudio.fr/university">Université</a></li>
+          <li><a href="https://ventistudio.fr/school">École</a></li>
+          <li><a href="https://ventistudio.fr/help">Assistance</a></li>
+          <li><a href="https://ventistudio.fr/security">Sécurité</a></li>
+        </ul>
       </div>
       <div class="footer-section">
-        <h3>Chartes</h3>
-        <a href="/lawful/terms">Conditions</a>
-        <a href="/lawful/privacy">Confidentialité</a>
-        <a href="/lawful/cookies">Paramètres des cookies</a>
-        <a href="/lawful/dmca">DMCA</a>
-        <a href="/lawful/dmcainfo">DMCA Information</a>
-        <a href="/lawful/cgv">Conditions Général de Vente</a>
+        <h4>Chartes</h4>
+        <ul>
+          <li><a href="https://ventistudio.fr/terms">Conditions</a></li>
+          <li><a href="https://ventistudio.fr/privacy">Confidentialité</a></li>
+          <li><a href="https://ventistudio.fr/cookies">Cookies</a></li>
+          <li><a href="https://ventistudio.fr/dmca">DMCA</a></li>
+        </ul>
       </div>
     </div>
-    <div class="copyright">
-      <img src="/favicon.avif" alt="VentiStudio Logo">
-      <span>Copyright & P-Line 2023 - 2024, Tous droits réservés.</span>
+    <div class="footer-bottom">
+      <p class="status"><iframe src="https://status.ventistudio.fr/badge?theme=dark" width="250" height="30" frameborder="0" marginheight="0" marginwidth="0" scrolling="no"></iframe></p>
+      <p class="copyright">Copyright © P-Line 2023 - 2025. Tous droits réservés.</p>
     </div>
   </footer>
 
+  <script src="https://trust.ventistudio.fr/root/script.js"></script>
   <script>
-    const mobileMenuButton = document.querySelector('.mobile-menu-button');
-    const navLinks = document.querySelector('.nav-links');
-    const navItems = document.querySelectorAll('.nav-item');
-
-    mobileMenuButton.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-    });
-
-    if (window.innerWidth <= 768) {
-      navItems.forEach(item => {
-        item.addEventListener('click', (e) => {
-          if (e.target.closest('.nav-item') === item) {
-            item.classList.toggle('active');
-            navItems.forEach(otherItem => {
-              if (otherItem !== item) {
-                otherItem.classList.remove('active');
-              }
-            });
-          }
-        });
-      });
-    }
-
-    document.addEventListener('click', (e) => {
-      if (!e.target.closest('.navbar')) {
-        navLinks.classList.remove('active');
-        navItems.forEach(item => item.classList.remove('active'));
-      }
-    });
-
-    function checkHolidays() {
-      const today = new Date();
-      const day = today.getDate();
-      const month = today.getMonth() + 1; // JavaScript months are 0-based
-      const banner = document.getElementById('celebration-banner');
-      const message = document.getElementById('celebration-message');
-      let celebrationMessage = '';
-
-      // Check various holiday periods
-      if (month === 12 && day >= 1 && day <= 25) {
-        celebrationMessage = "Joyeux Noël ! 🎄";
-      }
+    function checkPlatformCompatibility() {
+      var userAgent = navigator.userAgent.toLowerCase();
+      var isIOS = /iphone|ipad|ipod/.test(userAgent);
+      var isAndroid = /android/.test(userAgent);
       
-      if (month === 12 && day === 15) {
-        celebrationMessage = "Joyeux anniversaire Hikari Umaishi ! 🎂 Et joyeux Noël ! 🎄";
-      }
-      
-      if (month === 9 && day === 24) {
-        celebrationMessage = "Joyeux anniversaire VentiStudio ! 🎉";
-      }
-      
-      if (month === 10 && day >= 25 && day <= 31) {
-        celebrationMessage = "Joyeux Halloween ! 🎃";
-      }
-      
-      if (month === 7 && day === 14) {
-        celebrationMessage = "Bonne fête nationale ! 🇫🇷";
-      }
-      
-      if ((month === 12 && day >= 31) || (month === 1 && day <= 3)) {
-        celebrationMessage = "Bonne année ! 🎊";
-      }
-      
-      if (month === 9 && day === 9) {
-        celebrationMessage = "Bonne fête de l'automne ! 🍂";
-      }
-      
-      if (month === 3 && (day === 20 || day === 21)) {
-        celebrationMessage = "Bienvenue au printemps ! 🌸";
-      }
-
-      if (celebrationMessage) {
-        message.textContent = celebrationMessage;
-        banner.style.display = 'block';
-      } else {
-        banner.style.display = 'none';
+      if (isIOS || isAndroid) {
+        window.location.href = '/unsupported';
       }
     }
-
-    // Run the check when the page loads
-    checkHolidays();
+    
+    checkPlatformCompatibility();
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        checkGeoRestriction();
+    });
   </script>
-</body></html>
+</body>
+</html>

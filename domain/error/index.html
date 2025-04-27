@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/ico" href="https://ventistudio.fr/favicon.ico">
+  <meta property="og:title" content="VentiStudio - Erreur">
+  <meta property="og:site_name" content="VentiStudio Komiyuniti">
+  <meta property="og:url" content="https://error.ventistudio.fr">
+  <meta property="og:description" content="Une erreur s'est produite dans l'univers numérique de VentiStudio">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://ventistudio.fr/favicon.gif">
+  <title>VentiStudio - Erreur</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/domain/error/style.css">
+</head>
+<body>
+  <div class="error-container">
+    <div class="lyoko-eye">
+      <svg viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="45" fill="none" stroke="var(--primary)" stroke-width="2"/>
+        <path d="M20,50 L80,50 M50,20 L50,80" stroke="var(--primary)" stroke-width="2"/>
+        <circle cx="50" cy="50" r="10" fill="var(--primary)"/>
+      </svg>
+    </div>
+    
+    <h1 class="error-code" id="errorCode">CODE LYOKO</h1>
+    <h2 class="error-title" id="errorTitle">Une aventure virtuelle vous attend</h2>
+    <p class="error-message" id="errorMessage">Explorez l'univers numérique de VentiStudio</p>
+    
+    <div class="error-animation">
+      <div class="error-circle"></div>
+      <div class="error-circle"></div>
+    </div>
+    
+    <a href="https://ventistudio.fr/" class="home-button">Retour à l'accueil</a>
+  </div>
+
+  <script>
+    function handleError() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const errorCode = urlParams.get('code');
+      const errorCodeElement = document.getElementById('errorCode');
+      const errorTitleElement = document.getElementById('errorTitle');
+      const errorMessageElement = document.getElementById('errorMessage');
+      
+      const errorTypes = {
+        // Erreurs HTTP standards
+        '400': {
+          code: '400',
+          title: 'Requête incorrecte',
+          message: 'Désolé, votre requête ne peut pas être traitée. Vérifiez les informations envoyées.'
+        },
+        '401': {
+          code: '401',
+          title: 'Non autorisé',
+          message: 'Vous devez vous authentifier pour accéder à cette ressource.'
+        },
+        '402': {
+          code: '402',
+          title: 'Paiement requis',
+          message: 'Cette ressource nécessite un paiement pour y accéder.'
+        },
+        '403': {
+          code: '403',
+          title: 'Accès refusé',
+          message: 'Vous n\'avez pas les permissions nécessaires pour accéder à cette page.'
+        },
+        '404': {
+          code: '404',
+          title: 'Page introuvable',
+          message: 'Cette page semble avoir été absorbée par un passage vers le monde virtuel.'
+        },
+        '405': {
+          code: '405',
+          title: 'Méthode non autorisée',
+          message: 'La méthode de requête utilisée n\'est pas autorisée.'
+        },
+        '406': {
+          code: '406',
+          title: 'Non acceptable',
+          message: 'La ressource demandée n\'est pas disponible dans un format acceptable.'
+        },
+        '407': {
+          code: '407',
+          title: 'Authentification proxy requise',
+          message: 'Vous devez vous authentifier pour accéder à cette ressource via un proxy.'
+        },
+        '408': {
+          code: '408',
+          title: 'Délai d\'attente dépassé',
+          message: 'Le serveur a expiré en attendant votre requête.'
+        },
+        '409': {
+          code: '409',
+          title: 'Conflit',
+          message: 'Un conflit a été détecté lors du traitement de votre requête.'
+        },
+        '410': {
+          code: '410',
+          title: 'Ressource supprimée',
+          message: 'La ressource demandée a été supprimée et n\'est plus disponible.'
+        },
+        '411': {
+          code: '411',
+          title: 'Longueur requise',
+          message: 'La longueur de la requête n\'a pas été spécifiée.'
+        },
+        '412': {
+          code: '412',
+          title: 'Échec de la précondition',
+          message: 'Une condition préalable à la requête a échoué.'
+        },
+        '413': {
+          code: '413',
+          title: 'Entité trop volumineuse',
+          message: 'La taille de la requête dépasse la limite autorisée par le serveur.'
+        },
+        '414': {
+          code: '414',
+          title: 'URI trop longue',
+          message: 'L\'URI de la requête est trop longue pour être traitée par le serveur.'
+        },
+        '415': {
+          code: '415',
+          title: 'Type de média non supporté',
+          message: 'Le type de média de la requête n\'est pas supporté par le serveur.'
+        },
+        '416': {
+          code: '416',
+          title: 'Plage de requête non satisfaisante',
+          message: 'La plage de requête spécifiée n\'est pas satisfaisante.'
+        },
+        '417': {
+          code: '417',
+          title: 'Échec de l\'attente',
+          message: 'Le serveur n\'a pas été capable de répondre à la demande d\'attente.'
+        },
+        '418': {
+          code: '418',
+          title: 'Je suis une théière',
+          message: 'Le serveur refuse de préparer du café car il est une théière.'
+        },
+        '421': {
+          code: '421',
+          title: 'Demande redirigée',
+          message: 'La requête a été redirigée vers une autre ressource.'
+        },
+        '422': {
+          code: '422',
+          title: 'Entité non traitable',
+          message: 'La requête est bien formée mais impossible à traiter.'
+        },
+        '423': {
+          code: '423',
+          title: 'Verrouillé',
+          message: 'La ressource est verrouillée et ne peut pas être modifiée.'
+        },
+        '424': {
+          code: '424',
+          title: 'Échec de la dépendance',
+          message: 'La méthode de requête échoue en raison d\'une dépendance non satisfaite.'
+        },
+        '425': {
+          code: '425',
+          title: 'Trop tôt',
+          message: 'La ressource demandée est inaccessible car elle est trop tôt.'
+        },
+        '426': {
+          code: '426',
+          title: 'Mise à niveau requise',
+          message: 'Le client doit mettre à niveau pour accéder à la ressource demandée.'
+        },
+        '428': {
+          code: '428',
+          title: 'Précondition requise',
+          message: 'La requête n\'est pas satisfaite car une condition préalable est requise.'
+        },
+        '429': {
+          code: '429',
+          title: 'Trop de requêtes',
+          message: 'Vous avez envoyé trop de requêtes en un temps donné.'
+        },
+        '431': {
+          code: '431',
+          title: 'Champ d\'en-tête trop grand',
+          message: 'La taille de l\'en-tête de la requête dépasse la limite autorisée par le serveur.'
+        },
+        '451': {
+          code: '451',
+          title: 'Indisponible pour des raisons juridiques',
+          message: 'La ressource demandée est indisponible pour des raisons juridiques.'
+        },
+        '500': {
+          code: '500',
+          title: 'Erreur interne du serveur',
+          message: 'Une erreur interne du serveur s\'est produite. Veuillez réessayer plus tard.'
+        },
+        '501': {
+          code: '501',
+          title: 'Non implémenté',
+          message: 'La méthode de requête n\'est pas implémentée par le serveur.'
+        },
+        '502': {
+          code: '502',
+          title: 'Mauvaise passerelle',
+          message: 'La passerelle a reçu une réponse invalide.'
+        },
+        '503': {
+          code: '503',
+          title: 'Service indisponible',
+          message: 'Le serveur est indisponible pour le moment. Veuillez réessayer plus tard.'
+        },
+        '504': {
+          code: '504',
+          title: 'Délai d\'attente de la passerelle dépassé',
+          message: 'Le serveur a expiré en attendant une réponse de la passerelle.'
+        },
+        '505': {
+          code: '505',
+          title: 'Version HTTP non supportée',
+          message: 'La version HTTP de la requête n\'est pas supportée par le serveur.'
+        },
+        '506': {
+          code: '506',
+          title: 'Variant négociant également',
+          message: 'Le serveur a détecté une boucle infinie lors de la négociation de la ressource.'
+        },
+        '507': {
+          code: '507',
+          title: 'Espace insuffisant',
+          message: 'Le serveur n\'a pas assez d\'espace pour stocker la ressource.'
+        },
+        '508': {
+          code: '508',
+          title: 'Boucle détectée',
+          message: 'La requête a échoué car une boucle infinie a été détectée.'
+        },
+        '510': {
+          code: '510',
+          title: 'Non étendu',
+          message: 'La requête n\'est pas étendue par le serveur.'
+        },
+        '511': {
+          code: '511',
+          title: 'Authentification réseau requise',
+          message: 'Le client doit s\'authentifier pour accéder à la ressource demandée.'
+        },
+
+
+        // Erreurs Ester Egg
+        '900': {
+          code: '900',
+          title: 'Vous avez activé un Easter Egg !',
+          message: '🎉 Bravo pour cette découverte secrète !'
+        },
+        '999': {
+          code: '999',
+          title: 'Une erreur de type \'fusion\' a été détectée.',
+          message: 'Préparez-vous à un reset total du système. ⚡'
+        },
+        '1337': {
+          code: '1337',
+          title: 'Erreur 1337',
+          message: 'Vous avez atteint un niveau de compétence supérieur. 😎'
+        },
+        '4040': {
+          code: '4040',
+          title: 'Erreur 4040',
+          message: 'Il n\'y a pas de page ici, mais vous pouvez trouver votre propre chemin ! 🌌'
+        },
+
+        // Erreurs par défaut
+        'ventistudio': {
+          code: 'VENTISTUDIO',
+          title: 'Erreur VentiStudio',
+          message: 'Une erreur s\'est produite dans l\'univers numérique de VentiStudio'
+        },
+        'maintenance': {
+          code: 'UPDATE',
+          title: 'Site en maintenance',
+          message: 'VentiStudio est actuellement en maintenance. Revenez bientôt !'
+        },
+        'banned': {
+          code: 'BANNED',
+          title: 'DRAFTURION ZERODEZ',
+          message: 'Vous avez été banni'
+        },
+        'url': {
+          code: 'URL',
+          title: 'Url non trouvée',
+          message: 'L\'url que vous recherchez semble avoir disparu dans le réseau numérique.'
+        },
+        'default': {
+          code: 'CODE LYOKO',
+          title: 'Une aventure virtuelle vous attend',
+          message: 'Explorez l\'univers numérique de VentiStudio'
+        }
+      };
+
+      const errorInfo = errorTypes[errorCode] || errorTypes['default'];
+      
+      errorCodeElement.textContent = errorInfo.code;
+      errorTitleElement.textContent = errorInfo.title;
+      errorMessageElement.textContent = errorInfo.message;
+    }
+
+    window.onload = handleError;
+  </script>
+</body>
+</html>

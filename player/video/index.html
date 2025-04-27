@@ -1,414 +1,192 @@
+
 <!DOCTYPE html>
-<html><head><base href="https://ventistudio.fr/player/video">
-  <meta charset="utf-8">
-  <meta name="viewport">
-  <html lang="fr"></html>
-  <link rel="icon" type="image/png" href="favicon.ico">
-  <meta property="og:title" content="Bienvenu sur VentiStudio">
-  <meta property="og:site_name" content="VentiStudio Komiyuniti">
-  <meta property="og:url" content="https://ventistudio.fr">
-  <meta property="og:description" content="Hey, je suis Hikari Umaishi (光馬石), mais je préfère que l'on m'appelle Hiuma (ヒウマ).
-Laissez-moi vous présenter ma communauté, un espace où l'art et la créativité se rencontrent.">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="https://ventistudio.fr/favicon.gif">
-    <title>VentiStudio - Video</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.7.8/plyr.css" rel="stylesheet">
-    <style>
-      :root {
-        --primary: #7B66FF;
-        --secondary: #2A2D3A;
-        --background: #1A1B26;
-        --text: #FFFFFF;
-        --hover: #391f9f;
-        --hoverb: #65579e;
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/ico" href="https://ventistudio.fr/favicon.ico">
+  <title>VentiStudio - Video</title>
+  <link rel="stylesheet" href="https://trust.ventistudio.fr/root/style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.7.8/plyr.css" rel="stylesheet">
+  <style>
+    .player-container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
 
-      }
-  
-      body {
-        margin: 0;
-        padding: 20px;
-        background: var(--background);
-        color: var(--text);
-        font-family: 'Inter', sans-serif;
-      }
-  
-      .player-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        background: var(--secondary);
-        border-radius: 10px;
-        padding: 20px;
-      }
-  
-      .video-player {
-        width: 100%;
-        border-radius: 8px;
-        overflow: hidden;
-      }
-  
-      .playlist {
-        margin-top: 20px;
-        background: rgba(42, 45, 58, 0.5);
-        padding: 15px;
-        border-radius: 8px;
-      }
-  
-      .playlist-item {
-        display: flex;
-        align-items: center;
-        padding: 10px;
-        background: var(--secondary);
-        margin: 5px 0;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-      }
-  
-      .playlist-item:hover {
-        background: var(--hoverb);
-      }
-  
-      .playlist-item.active {
-        background: var(--primary);
-      }
-  
-      .drag-drop-zone {
-        border: 2px dashed var(--primary);
-        padding: 20px;
-        text-align: center;
-        margin: 20px 0;
-        border-radius: 8px;
-        transition: all 0.3s ease;
-      }
-  
-      .drag-drop-zone.dragover {
-        background: rgba(123, 102, 255, 0.1);
-        border-color: var(--hover);
-      }
-  
-      .controls {
-        display: flex;
-        gap: 10px;
-        margin: 20px 0;
-      }
-  
-      button {
-        background: var(--primary);
-        color: var(--text);
-        border: none;
-        padding: 10px 20px;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-      }
-  
-      button:hover {
-        background: var(--hover);
-      }
-  
-      input[type="file"] {
-        display: none;
-      }
-  
-      .url-input {
-        flex: 1;
-        padding: 10px;
-        border: none;
-        border-radius: 5px;
-        background: rgba(255, 255, 255, 0.1);
-        color: var(--text);
-      }
-  
-      .suggested-videos {
-        margin-top: 20px;
-      }
-  
-      .suggested-video {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 10px;
-        background: var(--secondary);
-        margin: 5px 0;
-        border-radius: 5px;
-        cursor: pointer;
-      }
-  
-      .suggested-video img {
-        width: 120px;
-        height: 67.5px;
-        object-fit: cover;
-        border-radius: 3px;
-      }
-  
-      .plyr--video {
-        border-radius: 8px;
-      }
-  
-      .autoplay-toggle {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin: 10px 0;
-      }
+    .video-player {
+      width: 100%;
+      border-radius: 10px;
+      overflow: hidden;
+      background: var(--accent1);
+    }
 
-      ::-webkit-scrollbar {
-  width: 12px;
-}
+    .controls {
+      margin: 1rem 0;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
 
-::-webkit-scrollbar-track {
-  background: var(--background);
-}
+    .controls button, .controls input[type="file"] {
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      border: none;
+      background: var(--accent1);
+      color: var(--text);
+      cursor: pointer;
+    }
 
-::-webkit-scrollbar-thumb {
-  background: var(--primary);
-  border-radius: 6px;
-  border: 3px solid var(--background);
-}
+    .url-input {
+      flex: 1;
+      padding: 0.5rem;
+      border-radius: 5px;
+      border: 1px solid var(--accent2);
+      background: var(--accent1);
+      color: var(--text);
+      min-width: 200px;
+    }
 
-::-webkit-scrollbar-thumb:hover {
-  background: var(--hover);
-}
+    .drag-drop-zone {
+      border: 2px dashed var(--accent2);
+      border-radius: 10px;
+      padding: 2rem;
+      text-align: center;
+      margin: 1rem 0;
+      background: var(--accent1);
+    }
 
-* {
-  scrollbar-width: thin;
-  scrollbar-color: var(--primary) var(--background);
-}
+    .playlist {
+      margin: 1rem 0;
+      background: var(--accent1);
+      border-radius: 10px;
+      padding: 1rem;
+    }
 
-html {
-  scroll-behavior: smooth;
-}
+    .autoplay-toggle {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 1rem 0;
+    }
 
-@keyframes slideDown {
-  from {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-    </style>
-  </head>
-  <body>
-    
+    #file-input {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="/favicon.avif" alt="VentiStudio Logo" class="site-logo">
+      <span>VentiStudio</span>
+    </div>
+    <nav>
+      <a href="/">Accueil</a>
+      <a href="/approuvedcontent">Contenu Approuvé</a>
+      <a href="/player" class="active">Player</a>
+      <a href="/wiki">Wiki</a>
+      <a href="/staff">Staff</a>
+      <a href="/artist">Artiste</a>
+      <a href="/pip">PIP</a>
+      <a href="/sitemap">Sitemap</a>
+    </nav>
+    <div class="controls">
+      <button id="theme-toggle" class="theme-toggle">
+        <svg width="24" height="24" viewBox="0 0 24 24">
+          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
+          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
+          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
+        </svg>
+      </button>
+      <div id="user-button"></div>
+    </div>
+  </header>
+
+  <main class="main-content">
     <div class="player-container">
       <video id="player" class="video-player" playsinline controls>
         <source src="" type="video/mp4">
       </video>
-  
+
       <div class="autoplay-toggle">
         <input type="checkbox" id="autoplay-checkbox" checked>
         <label for="autoplay-checkbox">Lecture automatique</label>
       </div>
-  
+
       <div class="controls">
         <button onclick="document.getElementById('file-input').click()">Importer des fichiers</button>
         <input type="file" id="file-input" accept="video/*" multiple>
         <input type="text" class="url-input" placeholder="Coller un lien vidéo (.mp4)" id="url-input">
         <button onclick="addVideoFromUrl()">Ajouter</button>
       </div>
-  
+
       <div class="drag-drop-zone" id="drop-zone">
         Glisser-déposer vos vidéos ici
       </div>
-  
-      <div class="playlist" id="playlist"></div>
-  
-      <div class="suggested-videos">
-        <h3>Vidéos suggérées</h3>
-        <div class="suggested-video" onclick="addSuggestedVideo('/a-files/video/asilentvoicevfbandeannonce.mp4', 'Vidéo asilentvoicevfbandeannonce')">
-          <img src="/a-files/image/asv-image.avif" alt="Prévisualisation" onerror="this.src='/favicon.gif'" >
-          <div>
-            <h4>A Silent Voice Bande Annonce</h4>
-            <p>Remake de la bande annonce original</p>
-          </div>
-        </div>
-        <div class="suggested-video" onclick="addSuggestedVideo('/a-files/video/codcliptwitch.mp4', 'Vidéo codcliptwitch')">
-          <img src="/" alt="Prévisualisation" onerror="this.src='/favicon.gif'" >
-          <div>
-            <h4>Call Of Duty Twitch Clip</h4>
-            <p>Clip Twitch 'twitch.tv/ventistudio'</p>
-          </div>
-        </div>
-        <div class="suggested-video" onclick="addSuggestedVideo('/a-files/video/introventistudio.mp4', 'Vidéo introventistudio')">
-          <img src="/" alt="Prévisualisation" onerror="this.src='/favicon.gif'" >
-          <div>
-            <h4>Introduction</h4>
-            <p>Introduction fictive de VentiStudio.</p>
-          </div>
-        </div>
+
+      <div class="playlist" id="playlist">
+        <!-- La playlist sera remplie dynamiquement -->
       </div>
     </div>
-  
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.7.8/plyr.polyfilled.js"></script>
-    <script>
-      const player = new Plyr('#player', {
-        controls: [
-          'play-large', 'play', 'progress', 'current-time', 'mute', 
-          'volume', 'captions', 'settings', 'pip', 'airplay', 'fullscreen'
-        ],
-        settings: ['captions', 'quality', 'speed', 'loop'],
-      });
-  
-      let playlist = [];
-      let currentPlayingIndex = -1;
-      const playlistElement = document.getElementById('playlist');
-      const dropZone = document.getElementById('drop-zone');
-      const autoplayCheckbox = document.getElementById('autoplay-checkbox');
-  
-      dropZone.addEventListener('dragover', (e) => {
-        e.preventDefault();
-        dropZone.classList.add('dragover');
-      });
-  
-      dropZone.addEventListener('dragleave', () => {
-        dropZone.classList.remove('dragover');
-      });
-  
-      dropZone.addEventListener('drop', (e) => {
-        e.preventDefault();
-        dropZone.classList.remove('dragover');
-        const files = Array.from(e.dataTransfer.files);
-        files.forEach(file => {
-          if (file.type.startsWith('video/')) {
-            addToPlaylist(file);
-          }
-        });
-        if (playlist.length === files.length) {
-          playVideo(0);
-        }
-      });
-  
-      document.getElementById('file-input').addEventListener('change', (e) => {
-        const files = Array.from(e.target.files);
-        const initialLength = playlist.length;
-        files.forEach(file => addToPlaylist(file));
-        if (initialLength === 0 && files.length > 0) {
-          playVideo(0);
-        }
-      });
-  
-      function addToPlaylist(file) {
-        const url = URL.createObjectURL(file);
-        playlist.push({
-          url: url,
-          name: file.name
-        });
-        updatePlaylistUI();
-        if (playlist.length === 1) {
-          playVideo(0);
-        }
-      }
-  
-      function addVideoFromUrl() {
-        const url = document.getElementById('url-input').value;
-        if (url.endsWith('.mp4')) {
-          playlist.push({
-            url: url,
-            name: url.split('/').pop()
-          });
-          updatePlaylistUI();
-          document.getElementById('url-input').value = '';
-          if (playlist.length === 1) {
-            playVideo(0);
-          }
-        }
-      }
-  
-      function addSuggestedVideo(url, name) {
-        playlist.push({ url, name });
-        updatePlaylistUI();
-        if (playlist.length === 1) {
-          playVideo(0);
-        }
-      }
-  
-      function updatePlaylistUI() {
-        playlistElement.innerHTML = '';
-        playlist.forEach((video, index) => {
-          const item = document.createElement('div');
-          item.className = 'playlist-item';
-          if (index === currentPlayingIndex) {
-            item.classList.add('active');
-          }
-          item.innerHTML = `
-            <span>${video.name}</span>
-            <button onclick="playVideo(${index})" style="margin-left: auto">▶️</button>
-            <button onclick="removeFromPlaylist(${index})">🚮</button>
-            ${index > 0 ? `<button onclick="moveUp(${index})">⬆️</button>` : ''}
-            ${index < playlist.length - 1 ? `<button onclick="moveDown(${index})">⬇️</button>` : ''}
-          `;
-          playlistElement.appendChild(item);
-        });
-      }
-  
-      function playVideo(index) {
-        if (index >= 0 && index < playlist.length) {
-          const video = playlist[index];
-          currentPlayingIndex = index;
-          player.source = {
-            type: 'video',
-            sources: [{
-              src: video.url,
-              type: 'video/mp4'
-            }]
-          };
-          player.play();
-          highlightPlayingVideo(index);
-        }
-      }
-  
-      function removeFromPlaylist(index) {
-        if (index === currentPlayingIndex) {
-          currentPlayingIndex = -1;
-        } else if (index < currentPlayingIndex) {
-          currentPlayingIndex--;
-        }
-        playlist.splice(index, 1);
-        updatePlaylistUI();
-      }
-  
-      function moveUp(index) {
-        if (index > 0) {
-          [playlist[index], playlist[index - 1]] = [playlist[index - 1], playlist[index]];
-          if (currentPlayingIndex === index) {
-            currentPlayingIndex--;
-          } else if (currentPlayingIndex === index - 1) {
-            currentPlayingIndex++;
-          }
-          updatePlaylistUI();
-        }
-      }
-  
-      function moveDown(index) {
-        if (index < playlist.length - 1) {
-          [playlist[index], playlist[index + 1]] = [playlist[index + 1], playlist[index]];
-          if (currentPlayingIndex === index) {
-            currentPlayingIndex++;
-          } else if (currentPlayingIndex === index + 1) {
-            currentPlayingIndex--;
-          }
-          updatePlaylistUI();
-        }
-      }
-  
-      function highlightPlayingVideo(index) {
-        const items = playlistElement.getElementsByClassName('playlist-item');
-        Array.from(items).forEach((item, i) => {
-          item.classList.toggle('active', i === index);
-        });
-      }
-  
-      player.on('ended', () => {
-        if (autoplayCheckbox.checked && currentPlayingIndex !== -1) {
-          if (currentPlayingIndex < playlist.length - 1) {
-            playVideo(currentPlayingIndex + 1);
-          } else {
-            playVideo(0);
-          }
-        }
-      });
-    </script>
-  </body></html>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Outils</h4>
+        <ul>
+          <li><a href="/encrypt">Encrypt</a></li>
+          <li><a href="/sitemap">Sitemap</a></li>
+          <li><a href="https://status.ventistudio.fr/">Statut</a></li>
+          <li><a href="https://aina.ventistudio.fr/">Aina</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Entreprise</h4>
+        <ul>
+          <li><a href="/about">À propos</a></li>
+          <li><a href="/jobs">Emplois</a></li>
+          <li><a href="/company">Marque</a></li>
+          <li><a href="/creator">Créateur</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Ressources</h4>
+        <ul>
+          <li><a href="/university">Université</a></li>
+          <li><a href="/school">École</a></li>
+          <li><a href="/help">Assistance</a></li>
+          <li><a href="/security">Sécurité</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Chartes</h4>
+        <ul>
+          <li><a href="/terms">Conditions</a></li>
+          <li><a href="/privacy">Confidentialité</a></li>
+          <li><a href="/cookies">Cookies</a></li>
+          <li><a href="/dmca">DMCA</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="status"><iframe src="https://status.ventistudio.fr/badge?theme=dark" width="250" height="30" frameborder="0" marginheight="0" marginwidth="0" scrolling="no"></iframe></p>
+      <p class="copyright">Copyright © P-Line 2023 - 2025. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.7.8/plyr.polyfilled.js"></script>
+  <script src="https://trust.ventistudio.fr/root/script.js"></script>
+  <script>
+    const player = new Plyr('#player', {
+      controls: [
+        'play-large', 'play', 'progress', 'current-time', 'mute', 
+        'volume', 'captions', 'settings', 'pip', 'airplay', 'fullscreen'
+      ],
+      settings: ['captions', 'quality', 'speed', 'loop'],
+    });
+  </script>
+</body>
+</html>

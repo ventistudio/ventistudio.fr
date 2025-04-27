@@ -1,741 +1,242 @@
-<html><head><base href="https://ventistudio.fr/unsupported">
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VentiStudio - Compatibilité</title>
-  <link rel="icon" type="image/png" href="favicon.ico">
-  <meta property="og:title" content="Compatibilité de VentiStudio">
-  <meta property="og:site_name" content="VentiStudio Komiyuniti">
-  <meta property="og:url" content="https://ventistudio.fr/compatibility">
-  <meta property="og:description" content="Informations sur les navigateurs et systèmes d'exploitation supportés par VentiStudio">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="https://ventistudio.fr/favicon.gif">
-<style>
-:root {
-  --primary: #7B66FF;
-  --secondary: #2A2D3A;
-  --background: #1A1B26;
-  --text: #FFFFFF;
-  --hover: #9F86FF;
-  --accent1: #414868;
-  --accent2: #565f89;
-}
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap');
-
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Inter', sans-serif;
-  background-color: var(--background);
-  color: var(--text);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-.navbar {
-  background-color: var(--secondary);
-  padding: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  box-shadow: 0 2px 10px rgba(123, 102, 255, 0.1);
-}
-
-.logo {
-  height: 50px;
-  transition: transform 0.3s ease;
-}
-
-.logo:hover {
-  transform: scale(1.05);
-}
-
-.nav-links {
-  display: flex;
-  gap: 2rem;
-}
-
-.mobile-menu-button {
-  display: none;
-  background: none;
-  border: none;
-  color: var(--text);
-  font-size: 1.5rem;
-  cursor: pointer;
-  padding: 0.5rem;
-}
-
-.nav-item {
-  position: relative;
-  cursor: pointer;
-}
-
-.nav-item > a {
-  color: var(--text);
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 500;
-}
-
-.nav-item > a:hover {
-  background-color: var(--hover);
-  transform: translateY(-2px);
-}
-
-.dropdown {
-  display: none;
-  position: absolute;
-  background-color: var(--accent1);
-  min-width: 200px;
-  box-shadow: 0 8px 16px rgba(123, 102, 255, 0.2);
-  z-index: 1;
-  border-radius: 8px;
-  margin-top: 0.5rem;
-  backdrop-filter: blur(10px);
-}
-
-.nav-item:hover .dropdown {
-  display: block;
-  animation: fadeIn 0.3s ease;
-}
-
-@media screen and (max-width: 768px) {
-  .mobile-menu-button {
-    display: block;
-  }
-
-  .nav-links {
-    display: none;
-    position: fixed;
-    top: 80px;
-    left: 0;
-    right: 0;
-    background-color: var(--secondary);
-    flex-direction: column;
-    padding: 1rem;
-    gap: 1rem;
-  }
-
-  .nav-links.active {
-    display: flex;
-  }
-
-  .nav-item {
-    width: 100%;
-  }
-
-  .dropdown {
-    position: static;
-    width: 100%;
-    margin-top: 0.5rem;
-    display: none;
-  }
-
-  .nav-item.active .dropdown {
-    display: block;
-  }
-
-  .footer-content {
-    grid-template-columns: repeat(2, 1fr) !important;
-    padding: 0 1rem;
-  }
-
-  .copyright {
-    flex-direction: column;
-    text-align: center;
-  }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.dropdown a {
-  color: var(--text);
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  transition: all 0.2s ease;
-}
-
-.dropdown a:hover {
-  background-color: var(--hover);
-  transform: translateX(5px);
-}
-
-.main-content {
-  padding: 0;
-  text-align: center;
-}
-
-.hero-section {
-  padding: 6rem 2rem;
-  background: linear-gradient(135deg, var(--background) 0%, var(--accent1) 100%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(circle at 50% 50%, var(--primary) 0%, transparent 70%);
-  opacity: 0.1;
-  animation: pulse 4s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); opacity: 0.1; }
-  50% { transform: scale(1.2); opacity: 0.15; }
-  100% { transform: scale(1); opacity: 0.1; }
-}
-
-.hero-section h1 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 3.5rem;
-  margin-bottom: 1rem;
-  background: linear-gradient(45deg, var(--primary), var(--hover));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: titleGlow 2s ease-in-out infinite alternate;
-  position: relative;
-  z-index: 1;
-}
-
-.hero-section p {
-  font-size: 1.4rem;
-  color: var(--text);
-  opacity: 0.9;
-  max-width: 800px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 1;
-}
-
-.cta-button {
-  background: var(--primary);
-  color: var(--text);
-  padding: 1rem 2rem;
-  border-radius: 30px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  position: relative;
-  z-index: 1;
-  border: none;
-  cursor: pointer;
-  font-size: 1.1rem;
-}
-
-.cta-button:hover {
-  background: var(--hover);
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(123, 102, 255, 0.3);
-}
-
-.section {
-  padding: 4rem 2rem;
-  background: var(--background);
-}
-
-.section-title {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
-  color: var(--text);
-}
-
-.section-subtitle {
-  font-size: 1.2rem;
-  color: var(--text);
-  opacity: 0.8;
-  max-width: 800px;
-  margin: 0 auto 3rem auto;
-}
-
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.service-card {
-  background: var(--secondary);
-  padding: 2rem;
-  border-radius: 15px;
-  transition: all 0.3s ease;
-}
-
-.service-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-.service-card h3 {
-  color: var(--primary);
-  margin-bottom: 1rem;
-}
-
-.news-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.news-card {
-  background: var(--secondary);
-  padding: 2rem;
-  border-radius: 15px;
-  transition: all 0.3s ease;
-}
-
-.community-section {
-  background: linear-gradient(135deg, var(--secondary) 0%, var(--accent1) 100%);
-  text-align: center;
-  padding: 4rem 2rem;
-}
-
-.button-group {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-@media screen and (max-width: 768px) {
-  .hero-section h1 {
-    font-size: 2.5rem;
-  }
-  
-  .hero-section p {
-    font-size: 1.1rem;
-  }
-  
-  .section-title {
-    font-size: 2rem;
-  }
-  
-  .button-group {
-    flex-direction: column;
-    align-items: center;
-  }
-}
-
-@keyframes titleGlow {
-  from { text-shadow: 0 0 20px rgba(123, 102, 255, 0.5); }
-  to { text-shadow: 0 0 30px rgba(123, 102, 255, 0.8); }
-}
-
-.footer {
-  background-color: var(--secondary);
-  padding: 2rem;
-  margin-top: auto;
-  box-shadow: 0 -2px 10px rgba(123, 102, 255, 0.1);
-}
-
-.footer-content {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.footer-section h3 {
-  color: var(--text);
-  margin-bottom: 1rem;
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 700;
-}
-
-.footer-section a {
-  color: var(--text);
-  text-decoration: none;
-  display: block;
-  margin-bottom: 0.5rem;
-  transition: all 0.2s ease;
-  opacity: 0.8;
-}
-
-.footer-section a:hover {
-  opacity: 1;
-  color: var(--hover);
-  transform: translateX(5px);
-}
-
-.copyright {
-  text-align: center;
-  padding: 2rem 0;
-  border-top: 1px solid var(--accent1);
-  margin-top: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-}
-
-.copyright img {
-  height: 30px;
-}
-
-.copyright span {
-  color: var(--text);
-  opacity: 0.8;
-  font-size: 0.9rem;
-}
-
-::-webkit-scrollbar {
-  width: 12px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--background);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--primary);
-  border-radius: 6px;
-  border: 3px solid var(--background);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--hover);
-}
-
-* {
-  scrollbar-width: thin;
-  scrollbar-color: var(--primary) var(--background);
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-@keyframes slideDown {
-  from {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-#celebration-banner {
-  background: linear-gradient(45deg, var(--primary), var(--hover));
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  position: relative;
-  z-index: 1000;
-}
-
-.compatibility-section {
-  max-width: 800px;
-  margin: 2rem auto;
-  padding: 0 1rem;
-}
-
-.browser-grid, .os-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1rem;
-  margin: 2rem 0;
-}
-
-.browser-card, .os-card {
-  background: var(--secondary);
-  padding: 1.5rem;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.status-tested {
-  color: #4ade80;
-  font-weight: bold;
-}
-
-.status-untested {
-  color: #fbbf24;
-  font-weight: bold;
-}
-
-.status-unsupported {
-  color: #ef4444;
-  font-weight: bold;
-}
-
-.warning-box {
-  background: rgba(239, 68, 68, 0.1);
-  border-left: 4px solid #ef4444;
-  padding: 1rem;
-  margin: 2rem 0;
-  border-radius: 0 8px 8px 0;
-}
-
-.github-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: var(--primary);
-  color: var(--text);
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  margin: 1rem 0;
-}
-
-.github-link:hover {
-  background: var(--hover);
-  transform: translateY(-2px);
-}
-</style>
+  <link rel="stylesheet" href="https://trust.ventistudio.fr/root/style.css">
+  <style>
+    .brave-banner {
+      background: var(--bg-secondary);
+      padding: 2rem;
+      border-radius: 1rem;
+      text-align: center;
+      margin: 2rem 0;
+      box-shadow: var(--neon-glow);
+    }
+
+    .brave-banner h2 {
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .brave-banner .cta {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--bg-primary);
+      padding: 1rem 2rem;
+      border-radius: 2rem;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 1rem;
+      transition: all 0.3s;
+      box-shadow: var(--neon-glow);
+    }
+
+    .brave-banner .cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 20px rgba(187, 154, 247, 0.7);
+    }
+
+    .compatibility-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .browser-card {
+      background: var(--bg-secondary);
+      padding: 2rem;
+      border-radius: 1rem;
+      transition: transform 0.3s;
+    }
+
+    .browser-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .browser-card h3 {
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+    }
+
+    .browser-card ul {
+      list-style: none;
+    }
+
+    .browser-card li {
+      display: flex;
+      align-items: center;
+      margin: 0.5rem 0;
+      color: var(--text-primary);
+    }
+
+    .status-icon {
+      display: inline-flex;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      margin-right: 0.75rem;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+
+    .status-tested {
+      background: #4ade80;
+      color: var(--bg-primary);
+    }
+
+    .status-untested {
+      background: #fbbf24;
+      color: var(--bg-primary);
+    }
+
+    .status-unsupported {
+      background: #ef4444;
+      color: var(--bg-primary);
+    }
+
+    @media (max-width: 768px) {
+      .compatibility-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .brave-banner {
+        margin: 1rem;
+        padding: 1.5rem;
+      }
+    }
+  </style>
 </head>
 <body>
-  <div id="celebration-banner" style="display: none; background: var(--primary); color: var(--text); text-align: center; padding: 10px; font-weight: bold; animation: slideDown 0.5s ease-out;">
-    <span id="celebration-message"></span>
-  </div>
-  
-  <nav class="navbar">
-    <img src="/favicon.avif" alt="VentiStudio Logo" class="logo">
-    <button class="mobile-menu-button">☰</button>
-    <div class="nav-links">
-      <div class="nav-item">
-        <a href="/">Accueil</a>
-      </div>
-      <div class="nav-item">
-        <a href="/approuvedcontent">Contenu Approuvé</a>
-      </div>
-      <div class="nav-item">
-        <a href="/wiki">Wiki</a>
-      </div>
-      <div class="nav-item">
-        <a href="/staff">Staff</a>
-        <div class="dropdown">
-          <a href="/job">Recrutement</a>
-        </div>
-      </div>
-      <div class="nav-item">
-        <a href="/artist">Artiste</a>
-      </div>
-      <div class="nav-item">
-        <a href="/pip">PIP</a>
-      </div>
+  <header>
+    <div class="logo">
+      <img src="../favicon.avif" alt="VentiStudio Logo" class="site-logo">
+      <span>VentiStudio</span>
     </div>
-  </nav>
+    <nav>
+      <a href="https://ventistudio.fr">Accueil</a>
+      <a href="https://ventistudio.fr/approuvedcontent">Contenu Approuvé</a>
+      <a href="https://ventistudio.fr/player">Player</a>
+      <a href="https://ventistudio.fr/wiki">Wiki</a>
+      <a href="https://ventistudio.fr/staff">Staff</a>
+      <a href="https://ventistudio.fr/artist">Artiste</a>
+      <a href="https://ventistudio.fr/pip">PIP</a>
+      <a href="https://ventistudio.fr/sitemap">Sitemap</a>
+    </nav>
+    <div class="controls">
+      <a href="https://github.com/ventistudio/ventistudio.fr/issues" 
+         class="github-issues" 
+         target="_blank" 
+         rel="noopener noreferrer"
+         title="Signaler un problème">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2Z" stroke-width="2"/>
+          <path d="M12 8V13" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="12" cy="16" r="1" fill="currentColor"/>
+        </svg>
+      </a>
+      <button id="theme-toggle" class="theme-toggle">
+        <svg class="sun" width="24" height="24" viewBox="0 0 24 24"><!-- ... --></svg>
+        <svg class="moon" width="24" height="24" viewBox="0 0 24 24"><!-- ... --></svg>
+      </button>
+    </div>
+  </header>
 
-  <main class="main-content">
-    <section class="hero-section">
+  <main>
+    <section class="hero">
       <h1>Compatibilité du Site</h1>
-      <p>Informations sur les navigateurs et systèmes d'exploitation supportés</p>
+      <p>Découvrez les navigateurs et systèmes d'exploitation supportés</p>
     </section>
 
-    <div class="compatibility-section">
-      <h2 class="section-title">Navigateurs Web</h2>
-      <p>Liste des navigateurs testés et leur statut de compatibilité :</p>
-      
-      <div class="browser-grid">
-        <div class="browser-card">
-          <h3>Navigateurs Testés</h3>
-          <ul>
-            <li><span class="status-tested">✓</span> Brave</li>
-            <li><span class="status-tested">✓</span> Mozilla Firefox</li>
-            <li><span class="status-tested">✓</span> Tor Browser</li>
-            <li><span class="status-tested">✓</span> Arc</li>
-            <li><span class="status-tested">✓</span> Opera GX</li>
-          </ul>
-        </div>
-
-        <div class="browser-card">
-          <h3>Probablement Compatibles</h3>
-          <ul>
-            <li><span class="status-untested">?</span> Google Chrome</li>
-            <li><span class="status-untested">?</span> Microsoft Edge</li>
-            <li><span class="status-untested">?</span> Samsung Internet</li>
-            <li><span class="status-untested">?</span> Opera (tous)</li>
-          </ul>
-        </div>
-
-        <div class="browser-card">
-          <h3>Non Testés</h3>
-          <ul>
-            <li><span class="status-unsupported">!</span> Safari</li>
-            <li><span class="status-unsupported">!</span> Autres navigateurs</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="warning-box">
-        <h3>⚠️ Avertissement Important</h3>
-        <p>VentiStudio.fr ne supporte pas entièrement les appareils Apple en raison de leurs limitations technologiques et de leur système d'exploitation fermé. Nous ne prévoyons pas d'adapter notre site pour ces appareils.</p>
-      </div>
-
-      <h2 class="section-title">Systèmes d'Exploitation Supportés</h2>
-      <div class="os-grid">
-        <div class="browser-card">
-          <h3>OS Supportés</h3>
-          <ul>
-            <li><span class="status-tested">✓</span> Windows 7 et versions ultérieures</li>
-            <li><span class="status-tested">✓</span> Android 11+</li>
-            <li><span class="status-tested">✓</span> Linux (toutes distributions maintenues)</li>
-            <li><span class="status-tested">✓</span> Microsoft 365 OS</li>
-          </ul>
-        </div>
-
-        <div class="browser-card">
-          <h3>Support Partiel</h3>
-          <ul>
-            <li><span class="status-untested">?</span> OS Apple (support limité)</li>
-          </ul>
-        </div>
-      </div>
-
-      <p>Ce site web a été développé exclusivement par Hikari Umaishi.</p>
-      
-      <a href="https://github.com/ventistudio/ventistudio.fr/issues" class="github-link" target="_blank" rel="noopener">
-        <svg height="20" width="20" viewBox="0 0 16 16" fill="currentColor">
-          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
-        </svg>
-        Signaler la compatibilité sur GitHub
-      </a>
+    <div class="brave-banner">
+      <h2>VentiStudio recommande fortement l'utilisation de Brave</h2>
+      <p>Pour une expérience optimale, sécurisée et respectueuse de votre vie privée</p>
+      <a href="https://brave.com/download" class="cta" target="_blank">Télécharger Brave</a>
     </div>
+
+    <section class="compatibility-grid">
+      <div class="browser-card">
+        <h3>Navigateurs Testés</h3>
+        <ul>
+          <li><span class="status-icon status-tested">✓</span>Brave</li>
+          <li><span class="status-icon status-tested">✓</span>Opera Gx</li>
+          <li><span class="status-icon status-tested">✓</span>Opera Crypto</li>
+          <li><span class="status-icon status-tested">✓</span>Opera Air</li>
+          <li><span class="status-icon status-tested">✓</span>Firefox</li>
+          <li><span class="status-icon status-tested">✓</span>Tor Browser</li>
+        </ul>
+      </div>
+
+      <div class="browser-card">
+        <h3>Compatibilité Partielle</h3>
+        <ul>
+          <li><span class="status-icon status-untested">?</span>Opera Dev</li>
+          <li><span class="status-icon status-untested">?</span>Opera One</li>
+          <li><span class="status-icon status-untested">?</span>Opera Neon</li>
+          <li><span class="status-icon status-untested">?</span>Chrome</li>
+          <li><span class="status-icon status-untested">?</span>Edge</li>
+          <li><span class="status-icon status-untested">?</span>Safari</li>
+        </ul>
+      </div>
+
+      <div class="browser-card">
+        <h3>Non Supportés</h3>
+        <ul>
+          <li><span class="status-icon status-unsupported">!</span>Windows XP/Vista/7/8 Browsers</li>
+          <li><span class="status-icon status-unsupported">!</span>iOS Browsers</li>
+        </ul>
+      </div>
+    </section>
   </main>
 
-  <footer class="footer">
+  <footer>
     <div class="footer-content">
       <div class="footer-section">
-        <h3>Outils</h3>
-        <a href="/encrypt">Encrypt</a>
-        <a href="/sitemap">Sitemap</a>
-        <a href="/status">Statut</a>
+        <h4>Outils</h4>
+        <ul>
+          <li><a href="https://ventistudio.fr/encrypt">Encrypt</a></li>
+          <li><a href="https://ventistudio.fr/sitemap">Sitemap</a></li>
+          <li><a href="https://status.ventistudio.fr/">Statut</a></li>
+          <li><a href="https://aina.ventistudio.fr/">Aina</a></li>
+        </ul>
       </div>
       <div class="footer-section">
-        <h3>Entreprise</h3>
-        <a href="/about">À propos</a>
-        <a href="/jobs">Emplois</a>
-        <a href="/company">Marque</a>
+        <h4>Entreprise</h4>
+        <ul>
+          <li><a href="https://ventistudio.fr/about">À propos</a></li>
+          <li><a href="https://ventistudio.fr/jobs">Emplois</a></li>
+          <li><a href="https://ventistudio.fr/company">Marque</a></li>
+          <li><a href="https://ventistudio.fr/creator">Créateur</a></li>
+        </ul>
       </div>
       <div class="footer-section">
-        <h3>Ressources</h3>
-        <a href="/university">Université</a>
-        <a href="/lawful/support">Assistance</a>
-        <a href="/lawful/security">Sécurité</a>
+        <h4>Ressources</h4>
+        <ul>
+          <li><a href="https://ventistudio.fr/university">Université</a></li>
+          <li><a href="https://ventistudio.fr/school">École</a></li>
+          <li><a href="https://ventistudio.fr/help">Assistance</a></li>
+          <li><a href="https://ventistudio.fr/security">Sécurité</a></li>
+        </ul>
       </div>
       <div class="footer-section">
-        <h3>Chartes</h3>
-        <a href="/lawful/terms">Conditions</a>
-        <a href="/lawful/privacy">Confidentialité</a>
-        <a href="/lawful/cookies">Paramètres des cookies</a>
-        <a href="/lawful/dmca">DMCA</a>
-        <a href="/lawful/dmcainfo">DMCA Information</a>
-        <a href="/lawful/cgv">Conditions Général de Vente</a>
+        <h4>Chartes</h4>
+        <ul>
+          <li><a href="https://ventistudio.fr/terms">Conditions</a></li>
+          <li><a href="https://ventistudio.fr/privacy">Confidentialité</a></li>
+          <li><a href="https://ventistudio.fr/cookies">Cookies</a></li>
+          <li><a href="https://ventistudio.fr/dmca">DMCA</a></li>
+        </ul>
       </div>
     </div>
-    <div class="copyright">
-      <img src="/favicon.avif" alt="VentiStudio Logo">
-      <span>Copyright & P-Line 2023 - 2024, Tous droits réservés.</span>
+    <div class="footer-bottom">
+      <p class="status"><iframe src="https://status.ventistudio.fr/badge?theme=dark" width="250" height="30" frameborder="0" marginheight="0" marginwidth="0" scrolling="no"></iframe></p>
+      <p class="copyright">Copyright © P-Line 2023 - 2025. Tous droits réservés.</p>
     </div>
   </footer>
 
-  <script>
-    const mobileMenuButton = document.querySelector('.mobile-menu-button');
-    const navLinks = document.querySelector('.nav-links');
-    const navItems = document.querySelectorAll('.nav-item');
-
-    mobileMenuButton.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-    });
-
-    if (window.innerWidth <= 768) {
-      navItems.forEach(item => {
-        item.addEventListener('click', (e) => {
-          if (e.target.closest('.nav-item') === item) {
-            item.classList.toggle('active');
-            navItems.forEach(otherItem => {
-              if (otherItem !== item) {
-                otherItem.classList.remove('active');
-              }
-            });
-          }
-        });
-      });
-    }
-
-    document.addEventListener('click', (e) => {
-      if (!e.target.closest('.navbar')) {
-        navLinks.classList.remove('active');
-        navItems.forEach(item => item.classList.remove('active'));
-      }
-    });
-
-    function checkHolidays() {
-      const today = new Date();
-      const day = today.getDate();
-      const month = today.getMonth() + 1; // JavaScript months are 0-based
-      const banner = document.getElementById('celebration-banner');
-      const message = document.getElementById('celebration-message');
-      let celebrationMessage = '';
-
-      // Check various holiday periods
-      if (month === 12 && day >= 1 && day <= 25) {
-        celebrationMessage = "Joyeux Noël ! ";
-      }
-      
-      if (month === 12 && day === 15) {
-        celebrationMessage = "Joyeux anniversaire Hikari Umaishi !  Et joyeux Noël ! ";
-      }
-      
-      if (month === 9 && day === 24) {
-        celebrationMessage = "Joyeux anniversaire VentiStudio ! ";
-      }
-      
-      if (month === 10 && day >= 25 && day <= 31) {
-        celebrationMessage = "Joyeux Halloween ! ";
-      }
-      
-      if (month === 7 && day === 14) {
-        celebrationMessage = "Bonne fête nationale ! ";
-      }
-      
-      if ((month === 12 && day >= 31) || (month === 1 && day <= 3)) {
-        celebrationMessage = "Bonne année ! ";
-      }
-      
-      if (month === 9 && day === 9) {
-        celebrationMessage = "Bonne fête de l'automne ! ";
-      }
-      
-      if (month === 3 && (day === 20 || day === 21)) {
-        celebrationMessage = "Bienvenue au printemps ! ";
-      }
-
-      if (celebrationMessage) {
-        message.textContent = celebrationMessage;
-        banner.style.display = 'block';
-      } else {
-        banner.style.display = 'none';
-      }
-    }
-
-    // Run the check when the page loads
-    checkHolidays();
-  </script>
-</body></html>
+  <script src="https://trust.ventistudio.fr/root/script.js"></script>
+</body>
+</html>

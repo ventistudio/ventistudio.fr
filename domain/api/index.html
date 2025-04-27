@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VentiStudio API - Zone Restreinte</title>
+    <link rel="icon" type="image/ico" href="https://ventistudio.fr/favicon.ico">
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        .warning-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            background: var(--bg-primary);
+        }
+
+        .warning-icon {
+            color: var(--accent);
+            margin-bottom: 2rem;
+            animation: pulse 2s infinite;
+        }
+
+        .countdown {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-top: 1rem;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="warning-container">
+        <div class="warning-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                <line x1="12" y1="9" x2="12" y2="13"/>
+                <line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+        </div>
+        <h1>Zone Restreinte - API</h1>
+        <p>Cette page n'est pas destinée aux utilisateurs humains.<br>Veuillez retourner dans un lieu sûr.</p>
+        <div class="countdown" id="countdown">10</div>
+    </div>
+
+    <script>
+        let count = 10;
+        const countdown = document.getElementById('countdown');
+        
+        const timer = setInterval(() => {
+            count--;
+            countdown.textContent = count;
+            
+            if (count <= 0) {
+                clearInterval(timer);
+                window.location.href = 'https://ventistudio.fr';
+            }
+        }, 1000);
+
+        // Définir le thème en fonction des préférences sauvegardées
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme) {
+            document.documentElement.setAttribute('data-theme', currentTheme);
+        } else {
+            const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+            document.documentElement.setAttribute('data-theme', 
+                prefersDarkScheme.matches ? 'dark' : 'light'
+            );
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accès Refusé - VentiStudio</title>
+    <style>
+        body {
+            background-color: #1a1b26;
+            color: #a9b1d6;
+            font-family: system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 600px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 2s forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            color: #bb9af7;
+        }
+
+        h2 {
+            color: #bb9af7;
+            font-size: 2em;
+            margin-bottom: 0.5em;
+            opacity: 0;
+            animation: typeWriter 3s steps(40) 1s forwards;
+        }
+
+        p {
+            line-height: 1.6;
+            margin: 1em 0;
+            opacity: 0;
+        }
+
+        .typing {
+            border-right: 2px solid #bb9af7;
+            white-space: nowrap;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+
+        @keyframes typeWriter {
+            from {
+                width: 0;
+                opacity: 1;
+            }
+            to {
+                width: 100%;
+                opacity: 1;
+            }
+        }
+
+        .fade-in {
+            animation: fadeInText 2s forwards;
+            animation-delay: 4s;
+        }
+
+        @keyframes fadeInText {
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Avertissement</h1>
+        <h2 class="typing">l'accès à ce site a été refusé.</h2>
+        <p class="fade-in">Pourquoi je vois ce message ?</p>
+        <p class="fade-in">Il semblerait que VentiStudio.fr est actuellement fermé.</p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const text = document.querySelector('h1').textContent;
+            document.querySelector('h1').textContent = '';
+            
+            let i = 0;
+            const typeWriter = () => {
+                if (i < text.length) {
+                    document.querySelector('h1').textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 100);
+                }
+            };
+
+            setTimeout(typeWriter, 1000);
+        });
+    </script>
+</body>
+</html>

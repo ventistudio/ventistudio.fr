@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html><head><base href="https://ventistudio.fr/staff/p/hikariumaishi">
+  <meta charset="utf-8">
+  <meta name="viewport">
+  <html lang="fr"></html>
+  <link rel="icon" type="image/gif" href="favicon.avif">
+  <meta property="og:title" content="Bienvenu sur VentiStudio">
+  <meta property="og:site_name" content="VentiStudio Komiyuniti">
+  <meta property="og:url" content="https://ventistudio.fr">
+  <meta property="og:description" content="Hey, je suis Hikari Umaishi (光馬石), mais je préfère que l'on m'appelle Hiuma (ヒウマ).
+Laissez-moi vous présenter ma communauté, un espace où l'art et la créativité se rencontrent.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://ventistudio.fr/favicon.gif">
+  <title>Hikari Umaishi - VentiStudio</title>
+  <style>
+    :root {
+      --primary: #8b5cf6;
+      --dark: #1a1a1a;
+      --text: #ffffff;
+    }
+    
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--dark);
+      color: var(--text);
+    }
+
+    .navbar {
+      background: rgba(0,0,0,0.8);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: fixed;
+      width: 100%;
+      box-sizing: border-box;
+      z-index: 1000;
+    }
+
+    .logo {
+      width: 50px;
+      height: 50px;
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: rotate(360deg);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+      background: rgba(139, 92, 246, 0.1);
+    }
+
+    .artist-profile {
+      padding: 8rem 2rem 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .artist-header {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .artist-photo {
+      width: 300px;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+
+    .artist-info h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+
+    .social-link {
+      padding: 0.5rem 1rem;
+      background: rgba(255,255,255,0.1);
+      border-radius: 4px;
+      color: var(--text);
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    .social-link:hover {
+      background: var(--primary);
+    }
+
+    .donate-button {
+      background: linear-gradient(45deg, #f6bc5c, #ec4899);
+      padding: 0.5rem 2rem;
+      border-radius: 4px;
+      color: white;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 1rem;
+    }
+
+    .section {
+      margin: 3rem 0;
+      padding: 2rem;
+      background: rgba(255,255,255,0.05);
+      border-radius: 8px;
+    }
+
+    .works-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .work-card {
+      background: rgba(255,255,255,0.08);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+
+    .work-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .work-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .work-info {
+      padding: 1rem;
+    }
+
+    .work-title {
+      color: var(--primary);
+      margin: 0 0 0.5rem 0;
+    }
+
+    .sources {
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+
+    .sources a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .sources a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <img src="/favicon.avif" alt="Logo VentiStudio - Design circulaire noir et blanc avec symboles français et japonais" class="logo">
+    <div class="nav-links">
+      <a href="/">Accueil</a>
+      <a href="/approvedcontent">Contenu Approuvé</a>
+      <a href="/wiki">Wiki</a>
+      <a href="/staff">Staff</a>
+      <a href="/artist">Artiste</a>
+      <a href="/pip">PIP</a>
+    </div>
+  </nav>
+
+  <main class="artist-profile">
+    <div class="artist-header">
+      <img src="/staff/p/hikariumaishi/image.avif" alt="Portrait professionnel de l'artiste dans son studio" class="artist-photo">
+      <div class="artist-info">
+        <h1>Hikari Umaishi</h1>
+        <p>Créateur de l'Umaishi Corp.</p>
+        
+        <div class="social-links">
+          <a href="/social/NCC-74656/link?https://discord.gg/BupfZHSBbC" class="social-link">Discord</a>
+          <a href="/social/NCC-74656/link?https://www.instagram.com/ventiopastudien" class="social-link">Instagram</a>
+          <a href="/social/NCC-74656/link?https://open.spotify.com/intl-fr/artist/77MxpoFvQT4XPVwtsZP403?si=REwAevMeSLS_BlR8ucNpGA" class="social-link">Spotify</a>
+          <a href="/social/NCC-74656/link?https://www.tiktok.com/@ventiopastudien" class="social-link">TikTok</a>
+          <a href="/social/NCC-74656/link?https://www.facebook.com/ventiopastudien" class="social-link">Facebook</a>
+          <a href="/social/NCC-74656/link?https://www.hoyolab.com/accountCenter/postList?id=174804434" class="social-link">Hoyolab</a>
+          <a href="/social/NCC-74656/link?https://www.twitch.tv/ventistudio" class="social-link">Twitch</a>
+          <a href="/social/NCC-74656/link?https://github.com/ventistudio" class="social-link">GitHub</a>
+        </div>
+
+        <a href="/social/NCC-74656/link?https://buymeacoffee.com/ventistudio" class="donate-button">Buymeacoffee</a>
+        <a href="/social/NCC-74656/link?https://Ko-fi.com/ventistudio" class="donate-button">Kofi</a>
+        <a href="/social/NCC-74656/link?https://www.patreon.com/c/ventistudio" class="donate-button">Patreon</a>
+      </div>
+    </div>
+
+    <section class="section">
+      <h2>Biographie</h2>
+      <p>Né en 2006 en France, l'artiste développe en 2016 une passion pour l'arts.</p>
+      <p>En 2016 il créer VentiStudio (qui porte aujourd'hui le nom de Umaishi Corp), pour créer une communauté autour du personnage Venti Opastudien.</p>
+      <p>En 2023 il créer le personnage Hikari Umaishi et l'Umaishi Corp, cela lui a permis de créer un pont entre monde virtuel et réel, il publie également ça premiere musique et dévoile sont projet Aoki Univers.</p>
+      <p>En 2024 il sépare VentiStudio en plusieurs parti, il y a maintenant Retribution Studio pour les jeux vidéo, RushKA pour le dévellopement d'application et de site web, Nexus Lumina une agence artistique communautaire et Phare TeiKei le programme partenaire.</p>
+    </section>
+
+    <section class="section">
+      <h2>Parcours</h2>
+      <p>2016 : Création de VentiStudio</p>
+      <p>2023 : Sorti du premier single de Venti Opastudien</p>
+      <p>2024 : Création de Nexus Lumina l'agence artistique communautaire.</p>
+    </section>
+
+    <section class="section">
+      <h2>Créations</h2>
+      <div class="works-grid">
+        <article class="work-card">
+          <img src="/music/1/image.avif" alt="Voyageur d'éternité" class="work-image">
+          <div class="work-info">
+            <h3 class="work-title">Voyageur d'éternité</h3>
+            <p>Single - 2023</p>
+            <a href="/music/1/" class="cta-button">Voir l'œuvre</a>
+          </div>
+        </article>
+        <article class="work-card">
+          <img src="/music/8/image.avif" alt="Sakura Yamazakura - Star of Love" class="work-image">
+          <div class="work-info">
+            <h3 class="work-title">Sakura Yamazakura - Star of Love</h3>
+            <p>Single - 2024</p>
+            <a href="/music/8/" class="cta-button">Voir l'œuvre</a>
+          </div>
+        </article>
+        <article class="work-card">
+          <img src="/music/9/image.avif" alt="Clochette - Hommage" class="work-image">
+          <div class="work-info">
+            <h3 class="work-title">Clochette - Hommage</h3>
+            <p>Single - 2024</p>
+            <a href="/music/9/" class="cta-button">Voir l'œuvre</a>
+          </div>
+        </article>
+        <article class="work-card">
+          <img src="/music/10/image.avif" alt="Legendary Eternal Love" class="work-image">
+          <div class="work-info">
+            <h3 class="work-title">Legendary Eternal Love</h3>
+            <p>Single - 2024</p>
+            <a href="/music/10/" class="cta-button">Voir l'œuvre</a>
+          </div>
+        </article>
+        <article class="work-card">
+          <img src="/music/11/image.avif" alt="Stranger Birthday" class="work-image">
+          <div class="work-info">
+            <h3 class="work-title">Stranger Birthday</h3>
+            <p>Single - 2023</p>
+            <a href="/music/11/" class="cta-button">Voir l'œuvre</a>
+          </div>
+        </article>
+        <article class="work-card">
+          <img src="/music/12/image.avif" alt="IS CHRISTMAS DAY" class="work-image">
+          <div class="work-info">
+            <h3 class="work-title">IS CHRISTMAS DAY</h3>
+            <p>Single - 2023</p>
+            <a href="/music/12/" class="cta-button">Voir l'œuvre</a>
+          </div>
+        </article>
+        <article class="work-card">
+          <img src="/music/13/image.avif" alt="ANNIVERSAIRE SPECIAL 2023" class="work-image">
+          <div class="work-info">
+            <h3 class="work-title">ANNIVERSAIRE SPECIAL 2023</h3>
+            <p>Single - 2023</p>
+            <a href="/music/13/" class="cta-button">Voir l'œuvre</a>
+          </div>
+        </article>
+        <article class="work-card">
+          <img src="/music/14/image.avif" alt="HALLOWEEN 2023" class="work-image">
+          <div class="work-info">
+            <h3 class="work-title">HALLOWEEN 2023</h3>
+            <p>Single - 2023</p>
+            <a href="/music/14/" class="cta-button">Voir l'œuvre</a>
+          </div>
+        </article>
+        <article class="work-card">
+          <img src="/music/3/image.avif" alt="Aoki Univers" class="work-image">
+          <div class="work-info">
+            <h3 class="work-title">Aoki Univers</h3>
+            <p>Album - 2023</p>
+            <a href="/music/3/" class="cta-button">Voir l'œuvre</a>
+          </div>
+        </article>
+        <article class="work-card">
+          <img src="/music/4/image.avif" alt="Aoki Univers 2" class="work-image">
+          <div class="work-info">
+            <h3 class="work-title">Aoki Univers 2</h3>
+            <p>Album - 2023</p>
+            <a href="/music/4/" class="cta-button">Voir l'œuvre</a>
+          </div>
+        </article>
+        <article class="work-card">
+          <img src="/music/5/image.avif" alt="Aoki Univers 3" class="work-image">
+          <div class="work-info">
+            <h3 class="work-title">Aoki Univers 3</h3>
+            <p>Album - 2023</p>
+            <a href="/music/5/" class="cta-button">Voir l'œuvre</a>
+          </div>
+        </article>
+        <article class="work-card">
+          <img src="/music/6/image.avif" alt="Aoki Univers 4" class="work-image">
+          <div class="work-info">
+            <h3 class="work-title">Aoki Univers 4</h3>
+            <p>Album - 2024</p>
+            <a href="/music/6/" class="cta-button">Voir l'œuvre</a>
+          </div>
+        </article>
+        <article class="work-card">
+          <img src="/music/7/image.avif" alt="Aoki Univers 5" class="work-image">
+          <div class="work-info">
+            <h3 class="work-title">Aoki Univers 5</h3>
+            <p>Album - 2024</p>
+            <a href="/music/7/" class="cta-button">Voir l'œuvre</a>
+          </div>
+        </article>
+        
+        <!-- More work cards... -->
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Expositions Marquantes</h2>
+      <ul>
+        <li>Aucune information disponible.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Sources</h2>
+      <div class="sources">
+        <p>1. Venti Opastudien - Via l'auteur lui-même.</p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    window.addEventListener('scroll', () => {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 50) {
+        navbar.style.background = 'rgba(0,0,0,0.95)';
+        navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.3)';
+      } else {
+        navbar.style.background = 'rgba(0,0,0,0.8)';
+        navbar.style.boxShadow = 'none';
+      }
+    });
+
+    document.querySelectorAll('.work-card').forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        card.style.transform = 'translateY(-5px)';
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'translateY(0)';
+      });
+    });
+  </script>
+</body></html>

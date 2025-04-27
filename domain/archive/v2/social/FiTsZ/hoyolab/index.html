@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html><head><base href="https://ventistudio.fr/social/fitsz/hoyolab">
+  <meta charset="utf-8">
+  <meta name="viewport">
+  <html lang="fr"></html>
+  <link rel="icon" type="image/gif" href="favicon.avif">
+  <meta property="og:title" content="Bienvenu sur VentiStudio">
+  <meta property="og:site_name" content="VentiStudio Komiyuniti">
+  <meta property="og:url" content="https://ventistudio.fr">
+  <meta property="og:description" content="Hey, je suis Hikari Umaishi (光馬石), mais je préfère que l'on m'appelle Hiuma (ヒウマ).
+Laissez-moi vous présenter ma communauté, un espace où l'art et la créativité se rencontrent.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://ventistudio.fr/favicon.gif">
+  <title>VentiStudio - Redirection HoYoLAB</title>
+  <style>
+    :root {
+      --primary: #8b5cf6;
+      --dark: #1a1a1a;
+      --text: #ffffff;
+      --hoyolab: #2962ff;
+    }
+    
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--dark);
+      color: var(--text);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      background: linear-gradient(45deg, #2962ff, #1565C0, #0D47A1, #0277BD, #039BE5);
+    }
+
+    .redirect-container {
+      text-align: center;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      max-width: 500px;
+      width: 90%;
+    }
+
+    .hoyolab-logo {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 1rem;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: white;
+    }
+
+    p {
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+
+    .hoyolab-button {
+      background: var(--hoyolab);
+      color: white;
+      padding: 1rem 2.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .hoyolab-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(41, 98, 255, 0.4);
+      background: #1e4ecc;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 2px;
+      margin-top: 2rem;
+      overflow: hidden;
+    }
+
+    .progress {
+      height: 100%;
+      background: var(--hoyolab);
+      width: 0%;
+      transition: width 3s linear;
+    }
+  </style>
+</head>
+<body>
+  <div class="redirect-container">
+    <svg class="hoyolab-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ffffff">
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+    </svg>
+    <h1>Suivez-nous sur HoYoLAB</h1>
+    <p>Vous allez être redirigé vers le compte HoYoLAB de VentiStudio dans quelques secondes...</p>
+    <div class="progress-bar">
+      <div class="progress"></div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const progress = document.querySelector('.progress');
+    progress.style.width = '100%';
+    // Récupérez l'URL actuelle
+    const currentUrl = window.location.href;
+      
+    // Trouvez la position du caractère "?"
+    const questionMarkIndex = currentUrl.indexOf('?');
+       
+    if (questionMarkIndex !== -1) {
+    // Extrait le texte après le "?"
+    const queryString = currentUrl.substring(questionMarkIndex + 1);
+          
+    // Redirigez vers l'URL Discord appropriée
+    window.location.href = `https://www.hoyolab.com/accountCenter/postList?id=${queryString}`;
+    } else {
+    // Redirigez vers une page par défaut si aucun texte n'est trouvé après le "?"
+    window.location.href = 'https://www.hoyolab.com/accountCenter/postList?id=174804434';
+      }
+    });
+  </script>
+</body></html>

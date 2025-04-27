@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html><head><base href="https://ventistudio.fr/archive/v1/about">
+  <meta charset="utf-8">
+  <meta name="viewport">
+  <html lang="fr"></html>
+  <link rel="icon" type="image/gif" href="favicon.png">
+  <meta property="og:title" content="Bienvenu sur VentiStudio">
+  <meta property="og:site_name" content="VentiStudio Komiyuniti">
+  <meta property="og:url" content="https://ventistudio.fr">
+  <meta property="og:description" content="Hey, je suis Hikari Umaishi (光馬石), mais je préfère que l'on m'appelle Hiuma (ヒウマ).
+Laissez-moi vous présenter ma communauté, un espace où l'art et la créativité se rencontrent.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://ventistudio.fr/favicon.gif">
+    <title>VentiStudio - À propos</title>
+    <style>
+        :root {
+            --dark-bg: #0f0f14;
+            --purple: #8e4ec6;
+            --light-text: #ffffff;
+            --dark-text: #a9a9b2;
+            --accent: #ff7edb;
+            --input-bg: #1a1a24;
+            --button-bg: #3d3d56;
+        }
+
+        body {
+            font-family: 'Noto Sans', 'Noto Sans JP', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo svg {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+            fill: var(--accent);
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li a {
+            color: var(--dark-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            color: var(--light-text);
+        }
+
+        main {
+            margin-top: 40px;
+        }
+
+        h1 {
+            color: var(--accent);
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: var(--purple);
+            font-size: 1.8em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        .highlight {
+            background-color: var(--input-bg);
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--purple);
+            color: var(--light-text);
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: var(--accent);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 20px 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2L1 21h22L12 2zm0 3.5L19.5 19h-15L12 5.5z"/>
+                </svg>
+                <span>VentiStudio</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/archive/v1/">Accueil</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <h1>VentiStudio : Une Plateforme 100% Open Source</h1>
+            
+            <p>Bienvenue dans l'univers de VentiStudio, une plateforme innovante entièrement dédiée à l'open source et à la liberté numérique.</p>
+
+            <h2>Qu'est-ce que VentiStudio ?</h2>
+            <p>VentiStudio est bien plus qu'une simple plateforme. C'est un écosystème complet conçu pour offrir une expérience en ligne sécurisée, privée et totalement transparente. Notre plateforme intègre des fonctionnalités variées, allant d'un moteur de recherche sécurisé, en passant par un wiki et d'autre outils.</p>
+
+            <h2>Pourquoi VentiStudio est-il totalement open source ?</h2>
+            <p>Chez VentiStudio, nous croyons fermement en la puissance et l'importance de l'open source. Voici pourquoi :</p>
+
+            <div class="highlight">
+                <h3>1. Transparence</h3>
+                <p>En étant open source, chaque ligne de notre code est accessible au public. Cela signifie que n'importe qui peut examiner comment fonctionne notre plateforme, garantissant une totale transparence.</p>
+
+                <h3>2. Sécurité</h3>
+                <p>Avec de nombreux yeux sur notre code, les failles de sécurité potentielles peuvent être identifiées et corrigées rapidement. Cela rend notre plateforme plus sûre pour tous les utilisateurs.</p>
+
+                <h3>3. Innovation collaborative</h3>
+                <p>L'open source permet à des développeurs du monde entier de contribuer, apportant de nouvelles idées et améliorations constantes à notre plateforme.</p>
+
+                <h3>4. Liberté et contrôle</h3>
+                <p>Les utilisateurs ont la liberté de modifier et d'adapter VentiStudio à leurs besoins spécifiques, leur donnant un contrôle total sur leur expérience en ligne.</p>
+
+                <h3>5. Éducation</h3>
+                <p>Notre code source ouvert sert d'outil d'apprentissage pour les développeurs en herbe, contribuant à l'éducation et à la croissance de la communauté tech.</p>
+            </div>
+
+            <h2>Notre engagement envers l'open source</h2>
+            <p>Chez VentiStudio, l'open source n'est pas seulement une caractéristique, c'est notre philosophie fondamentale. Nous nous engageons à maintenir notre plateforme 100% open source, encourageant la collaboration, l'innovation et la transparence à chaque étape de notre développement.</p>
+
+            <p>Nous croyons que l'avenir du web repose sur des plateformes ouvertes, transparentes et contrôlées par la communauté. VentiStudio est notre contribution à cet avenir.</p>
+
+            <a href="https://github.com/ventistudio/ventistudio/" class="cta-button">Explorez notre code sur GitHub</a>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 VentiStudio. Tous droits réservés. Code source disponible sous licence MIT.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            // Animation simple pour les titres
+            const titles = document.querySelectorAll('h1, h2, h3');
+            titles.forEach((title, index) => {
+                title.style.opacity = '0';
+                title.style.transform = 'translateY(20px)';
+                title.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                
+                setTimeout(() => {
+                    title.style.opacity = '1';
+                    title.style.transform = 'translateY(0)';
+                }, 100 * index);
+            });
+
+            // Animation pour le bouton CTA
+            const ctaButton = document.querySelector('.cta-button');
+            ctaButton.addEventListener('mouseover', () => {
+                ctaButton.style.transform = 'scale(1.05)';
+                ctaButton.style.transition = 'transform 0.3s ease';
+            });
+            ctaButton.addEventListener('mouseout', () => {
+                ctaButton.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

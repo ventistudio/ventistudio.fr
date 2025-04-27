@@ -1,173 +1,160 @@
 <!DOCTYPE html>
-<html><head><base href="https://ventistudio.fr/player/game/tetris">
-  <meta charset="utf-8">
-  <meta name="viewport">
-  <html lang="fr"></html>
-  <link rel="icon" type="image/png" href="favicon.ico">
-  <meta property="og:title" content="Bienvenu sur VentiStudio">
-  <meta property="og:site_name" content="VentiStudio Komiyuniti">
-  <meta property="og:url" content="https://ventistudio.fr">
-  <meta property="og:description" content="Hey, je suis Hikari Umaishi (光馬石), mais je préfère que l'on m'appelle Hiuma (ヒウマ).
-Laissez-moi vous présenter ma communauté, un espace où l'art et la créativité se rencontrent.">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="https://ventistudio.fr/favicon.gif">
-  <title>VentiStudio - Tetris</title>
-<style>
-:root {
-  --primary: #7B66FF;
-  --secondary: #2A2D3A;
-  --background: #1A1B26;
-  --text: #FFFFFF;
-}
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="favicon.ico">
+    <title>VentiStudio - Tetris</title>
+    <style>
+        :root {
+            --primary: #7B66FF;
+            --secondary: #2A2D3A;
+            --background: #1A1B26;
+            --text: #FFFFFF;
+        }
 
-body {
-  margin: 0;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Space Grotesk', sans-serif;
-  background-color: var(--background);
-  color: var(--text);
-}
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+        }
 
-.game-container {
-  display: flex;
-  gap: 20px;
-  padding: 20px;
-  background: var(--secondary);
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.5);
-  position: relative;
-}
+        .game-container {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            background: var(--secondary);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            position: relative;
+        }
 
-.game-board {
-  border: 2px solid var(--primary);
-  display: grid;
-  grid-template-columns: repeat(10, 30px);
-  grid-template-rows: repeat(20, 30px);
-  gap: 1px;
-  background: var(--background);
-}
+        .game-board {
+            border: 2px solid var(--primary);
+            display: grid;
+            grid-template-columns: repeat(10, 30px);
+            grid-template-rows: repeat(20, 30px);
+            gap: 1px;
+            background: var(--background);
+        }
 
-.cell {
-  width: 30px;
-  height: 30px;
-  border: 1px solid rgba(255,255,255,0.1);
-}
+        .cell {
+            width: 30px;
+            height: 30px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
 
-.sidebar {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  min-width: 200px;
-}
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            min-width: 200px;
+        }
 
-.next-piece {
-  border: 2px solid var(--primary);
-  width: 120px;
-  height: 120px;
-  display: grid;
-  grid-template-columns: repeat(4, 30px);
-  grid-template-rows: repeat(4, 30px);
-  background: var(--background);
-}
+        .next-piece {
+            border: 2px solid var(--primary);
+            width: 120px;
+            height: 120px;
+            display: grid;
+            grid-template-columns: repeat(4, 30px);
+            grid-template-rows: repeat(4, 30px);
+            background: var(--background);
+        }
 
-.score-board {
-  background: var(--background);
-  padding: 10px;
-  border-radius: 5px;
-}
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
 
-.button-group {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
+        button {
+            background: var(--primary);
+            color: var(--text);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
 
-button {
-  background: var(--primary);
-  color: var(--text);
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: all 0.3s ease;
-}
+        button:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
 
-button:hover {
-  opacity: 0.9;
-  transform: translateY(-2px);
-}
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+        }
 
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0,0,0,0.8);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px;
-}
+        .overlay-content {
+            background: var(--secondary);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
 
-.overlay-content {
-  background: var(--secondary);
-  padding: 20px;
-  border-radius: 10px;
-  text-align: center;
-}
+        .piece-I { background: #00f0f0; }
+        .piece-O { background: #f0f000; }
+        .piece-T { background: #a000f0; }
+        .piece-S { background: #00f000; }
+        .piece-Z { background: #f00000; }
+        .piece-J { background: #0000f0; }
+        .piece-L { background: #f0a000; }
 
-.piece-I { background: #00f0f0; }
-.piece-O { background: #f0f000; }
-.piece-T { background: #a000f0; }
-.piece-S { background: #00f000; }
-.piece-Z { background: #f00000; }
-.piece-J { background: #0000f0; }
-.piece-L { background: #f0a000; }
-
-.filled {
-  border: 1px solid rgba(255,255,255,0.3);
-}
-</style>
+        .filled {
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+    </style>
 </head>
 <body>
-<div class="game-container">
-  <div class="game-board" id="board"></div>
-  <div class="sidebar">
-    <div>
-      <h3>Score: <span id="score">0</span></h3>
-      <h3>Level: <span id="level">1</span></h3>
+    <div class="game-container">
+        <div class="game-board" id="board"></div>
+        <div class="sidebar">
+            <div>
+                <h3>Score: <span id="score">0</span></h3>
+                <h3>Level: <span id="level">1</span></h3>
+            </div>
+            <div>
+                <h3>Next Piece:</h3>
+                <div class="next-piece" id="next-piece"></div>
+            </div>
+            <div class="button-group">
+                <button id="start-btn">Start Game</button>
+                <button id="pause-btn">Pause</button>
+                <button id="reset-btn">Reset</button>
+            </div>
+        </div>
+        
+        <div class="overlay" id="game-over">
+            <div class="overlay-content">
+                <h2>Game Over!</h2>
+                <p>Final Score: <span id="final-score">0</span></p>
+                <button id="restart-btn">Play Again</button>
+            </div>
+        </div>
+        
+        <div class="overlay" id="pause-screen">
+            <div class="overlay-content">
+                <h2>Game Paused</h2>
+                <button id="resume-btn">Resume</button>
+            </div>
+        </div>
     </div>
-    <div>
-      <h3>Next Piece:</h3>
-      <div class="next-piece" id="next-piece"></div>
-    </div>
-    <div class="button-group">
-      <button id="start-btn">Start Game</button>
-      <button id="pause-btn">Pause</button>
-      <button id="reset-btn">Reset</button>
-    </div>
-  </div>
-  
-  <div class="overlay" id="game-over">
-    <div class="overlay-content">
-      <h2>Game Over!</h2>
-      <p>Final Score: <span id="final-score">0</span></p>
-      <button id="restart-btn">Play Again</button>
-    </div>
-  </div>
-  
-  <div class="overlay" id="pause-screen">
-    <div class="overlay-content">
-      <h2>Game Paused</h2>
-      <button id="resume-btn">Resume</button>
-    </div>
-  </div>
-</div>
 
 <script>class Tetris {
   constructor() {

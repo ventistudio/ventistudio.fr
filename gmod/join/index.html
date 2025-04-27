@@ -1,0 +1,84 @@
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion au serveur Steam</title>
+    <style>
+      :root {
+        --primary: #7B66FF;
+        --secondary: #2A2D3A;
+        --background: #1A1B26;
+        --text: #FFFFFF;
+        --hover: #9F86FF;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Inter', sans-serif;
+        background-color: var(--background);
+        color: var(--text);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+      }
+      h1 {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+      p {
+        font-size: 1.2rem;
+      }
+      .cta-button {
+        margin-top: 2rem;
+        background: var(--primary);
+        color: var(--text);
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      .cta-button:hover {
+        background: var(--hover);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(123, 102, 255, 0.3);
+      }
+      @keyframes fadeOut {
+        from { opacity: 1; }
+        to { opacity: 0; }
+      }
+    </style>
+    <!-- Meta refresh fallback in case JavaScript is disabled -->
+    <meta http-equiv="refresh" content="5;url=steam://connect/185.206.151.149:27290?appid=4000">
+  </head>
+  <body>
+    <h1>Connexion en cours...</h1>
+    <p>Connexion immédiate en cours, cette page se fermera d'ici 5 secondes.</p>
+    <button class="cta-button" onclick="redirectNow()">Se connecter immédiatement</button>
+
+    <script>
+      function redirectNow() {
+        // Trigger the Steam protocol connection immediately
+        window.location.href = "steam://connect/185.206.151.149:27290?appid=4000";
+        // Fade out the page
+        document.body.style.animation = "fadeOut 0.5s ease forwards";
+        // Delay the closing of the page by 5 seconds after the redirection and fade out
+        setTimeout(() => {
+          window.close();
+        }, 5000);
+      }
+
+      // Automatically trigger redirection as soon que la page soit chargée
+      window.onload = () => {
+        redirectNow();
+      };
+    </script>
+  </body>
+</html>

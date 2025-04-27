@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html><head><base href="https://ventistudio.fr/approvedcontent">
+  <meta charset="utf-8">
+  <meta name="viewport">
+  <html lang="fr"></html>
+  <link rel="icon" type="image/gif" href="favicon.avif">
+  <meta property="og:title" content="Bienvenu sur VentiStudio">
+  <meta property="og:site_name" content="VentiStudio Komiyuniti">
+  <meta property="og:url" content="https://ventistudio.fr">
+  <meta property="og:description" content="Hey, je suis Hikari Umaishi (光馬石), mais je préfère que l'on m'appelle Hiuma (ヒウマ).
+Laissez-moi vous présenter ma communauté, un espace où l'art et la créativité se rencontrent.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://ventistudio.fr/favicon.gif">
+  <title>VentiStudio - Contenu Approuvé</title>
+  <style>
+    :root {
+      --primary: #8b5cf6;
+      --dark: #1a1a1a;
+      --text: #ffffff;
+    }
+    
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--dark);
+      color: var(--text);
+    }
+
+    .navbar {
+      background: rgba(0,0,0,0.8);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: fixed;
+      width: 100%;
+      box-sizing: border-box;
+      z-index: 1000;
+    }
+
+    .logo {
+      width: 50px;
+      height: 50px;
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: rotate(360deg);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+      background: rgba(139, 92, 246, 0.1);
+    }
+
+    .search-section {
+      padding: 8rem 2rem 2rem;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.7), var(--dark));
+    }
+
+    .search-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .search-bar {
+      width: 100%;
+      padding: 1rem;
+      border-radius: 8px;
+      border: none;
+      background: rgba(255,255,255,0.1);
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+
+    .filter-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    .filter-button {
+      padding: 0.5rem 1.5rem;
+      border: none;
+      border-radius: 20px;
+      background: rgba(139, 92, 246, 0.2);
+      color: var(--text);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .filter-button:hover, .filter-button.active {
+      background: var(--primary);
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 2rem;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .content-card {
+      background: rgba(255,255,255,0.05);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .content-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .content-image {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+    }
+
+    .content-info {
+      padding: 1.5rem;
+    }
+
+    .content-info h3 {
+      margin: 0 0 0.5rem 0;
+      color: var(--primary);
+    }
+
+    .content-info p {
+      margin: 0;
+      opacity: 0.8;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+
+    @media (max-width: 768px) {
+      .filter-buttons {
+        justify-content: center;
+      }
+      
+      .content-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <img src="/favicon.avif" alt="Logo VentiStudio - Design circulaire noir et blanc avec symboles français et japonais" class="logo">
+    <div class="nav-links">
+      <a href="/">Accueil</a>
+      <a href="/approvedcontent/">Contenu Approuvé</a>
+      <a href="/wiki">Wiki</a>
+      <a href="/staff">Staff</a>
+      <a href="/artist">Artiste</a>
+      <a href="/pip">PIP</a>
+    </div>
+  </nav>
+
+  <section class="search-section">
+    <div class="search-container">
+      <input type="text" class="search-bar" placeholder="Rechercher un contenu...">
+      <div class="filter-buttons">
+        <button class="filter-button active" data-type="all">Tout</button>
+        <button class="filter-button" data-type="films">Films</button>
+        <button class="filter-button" data-type="series">Séries</button>
+        <button class="filter-button" data-type="animations">Animations</button>
+        <button class="filter-button" data-type="musique">Musique</button>
+        <button class="filter-button" data-type="jeux">Jeux</button>
+        <button class="filter-button" data-type="manga">Manga</button>
+        <button class="filter-button" data-type="applications">Applications</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="content-grid" id="content-grid">
+  </div>
+
+  <script>
+    const contentData = [
+      {
+        id: 1,
+        title: "LE JEUX DE LA DAME ",
+        description: "Placée en orphelinat à 9 ans, Beth développe un talent étonnant pour les échecs... et une addiction aux tranquillisants verts données comme sédatifs aux enfants.",
+        type: "series",
+        image: "1"
+      },
+      {
+        id: 2,
+        title: "A SILENT VOICE",
+        description: "Nishimiya est une élève douce mais qui elle est harcelée par Ishida, car elle est sourde. Dénoncé, le garçon est à son tour rejeté par ses camarades. Des années plus tard, il apprend la langue des signes et part à la recherche de la jeune fille.",
+        type: "animations",
+        image: "2"
+      },
+      {
+        id: 3,
+        title: "THE ORBITAL CHILDREN",
+        description: "En 2045, après un accident survenu à bord d'une station spatiale, deux enfants nés sur la Lune et trois jeunes Terriens sont livrés à eux-mêmes et tentent de survivre.",
+        type: "animations",
+        image: "3"
+      },
+      {
+        id: 4,
+        title: "OSHI NO KO",
+        description: "Gorô Amemiya, un obstétricien exerçant dans un hôpital de campagne, n’a d’yeux que pour la sublime Aï Hoshino, une célèbre et talentueuse idole. Au détour d’une rencontre fortuite, la découverte d’un terrible secret va changer leur destin à tout jamais…",
+        type: "animations",
+        image: "4"
+      },
+      {
+        id: 5,
+        title: "THE TURRET ANTHEM",
+        description: "Une petite pépite pour les fans de jeux vidéo. Cette musique est associée à l’univers de Portal, un jeu développé par Valve.",
+        type: "musique",
+        image: "5"
+      },
+      {
+        id: 6,
+        title: "GENSHIN IMPACT",
+        description: "Genshin Impact est un jeu de rôle d'aventure en monde ouvert. Dans le jeu, vous découvrirez le monde fantastique de Teyvat, et vos pas vous porteront à travers sept nations à la rencontre de voyageurs de tous horizons, qui vous accompagneront dans vos périple.",
+        type: "jeux",
+        image: "6"
+      },
+      {
+        id: 7,
+        title: "STEAM",
+        description: "Steam est un logiciel qui permet de simplifier la mise à jour des jeux, il permet non seulement de mettre à jour automatiquement les jeux , mais aussi de les télécharger.",
+        type: "applications",
+        image: "7"
+      },
+      {
+        id: 8,
+        title: "STEELSERIES GG",
+        description: "SteelSeries GG ! Une plateforme qui permet de créer de meilleures connexions avec votre matériel, vos coéquipiers et votre jeu.",
+        type: "applications",
+        image: "8"
+      },
+      {
+        id: 9,
+        title: "TOWER OF FANTASY",
+        description: "Faites un bond en avant de plusieurs siècles sur la planète lointaine d'Aida pour découvrir « Tower of Fantasy », le MMORPG en monde ouvert partagé d'aventure futuriste et empreint d'un style animé.",
+        type: "jeux",
+        image: "9"
+      },
+      {
+        id: 10,
+        title: "ETERNAL RETURN",
+        description: "Eternal Return est un mix unique entre MOBA/Battle Royale et Survie combinant stratégie, mécaniques et étonnants personnages.",
+        type: "jeux",
+        image: "10"
+      },
+      {
+        id: 11,
+        title: "YOKAI WATCH",
+        description: "Nathan est un écolier tout à fait ordinaire. Alors qu’il se promène dans la forêt, il découvre Whisper, un Yo-kai très bavard... Ce drôle de personnage lui offre une Yo-kai Watch, une montre qui lui permet de révéler la présence des Yo-kai autour de lui ! Nathan va s’en servir pour convaincre les Yo-kai de devenir ses amis et d’utiliser leurs pouvoirs pour faire le bien. Le voilà embarqué dans une aventure extraordinaire ! Les Yo-kai sont des entités surnaturelles responsables de tous les petits tracas du quotidien...",
+        type: "manga",
+        image: "11"
+      },
+      {
+        id: 12,
+        title: "7 SEEDS",
+        description: "Anticipant la possibilité que la Terre soit détruite par des météorites et réduite au stade primitif, le gouvernement japonais a créé un projet : 7Seeds. Dans le dessein d’assurer la survie de l’Espèce humaine, des groupes de 7 personnes sont enlevés secrètement et cryogénisés jusqu’à la fin du désastre. Les groupes sont nommés en fonction des 4 saisons.Un ordinateur est assigné à chaque groupe pour déterminer quand les conditions sont revenues au niveau de survie humaine, et alors les ramène à la vie… Le problème ? aucun des membres de ces groupes n’est au courant de la situation.",
+        type: "animations",
+        image: "12"
+      },
+      {
+        id: 13,
+        title: "LA LIGNE VERTE",
+        description: "Paul Edgecomb, pensionnaire centenaire d'une maison de retraite, est hanté par ses souvenirs. Gardien-chef du pénitencier de Cold Mountain en 1935, il était chargé de veiller au bon déroulement des exécutions capitales en s’efforçant d'adoucir les derniers moments des condamnés. Parmi eux se trouvait un colosse du nom de John Coffey, accusé du viol et du meurtre de deux fillettes. Intrigué par cet homme candide et timide aux dons magiques, Edgecomb va tisser avec lui des liens très forts.",
+        type: "films",
+        image: "13"
+      },
+      {
+        id: 14,
+        title: "SEIYA ET LES CHEVALIERS DU ZODIAQUE",
+        description: "Seiya et les Chevaliers du Zodiaque s'unissent à nouveau pour protéger la déesse Athéna, mais une sombre prophétie pèse sur leurs destins.",
+        type: "animations",
+        image: "14"
+      },
+      {
+        id: 15,
+        title: "AICO INCARNATION",
+        description: "Quand Aiko apprend que son existence est fondée sur un terrible mensonge, elle fait équipe avec des Divers pour anéantir le Burst, et peut-être sauver ainsi sa famille.",
+        type: "animations",
+        image: "15"
+      },
+      {
+        id: 16,
+        title: "REVISIONS",
+        description: "Après le transport de la région de Shibuya en 2388, l'étudiant Daisuke et ses amis ont été enrôlés par l'agent Milo dans une équipe spéciale pour combattre les cyborgs hostiles.",
+        type: "animations",
+        image: "16"
+      },
+      {
+        id: 17,
+        title: "Ranma ½",
+        description: "Soun attend avec impatience l'arrivée de son vieil ami Genma Saotomé et de son fils Ranma. Mais contre toute attente, c'est une ado et un panda géant qui se présentent au dojo Tendo.",
+        type: "animations",
+        image: "17"
+      },
+      {
+        id: 18,
+        title: "BROOKLYN NINE-NINE",
+        description: "La vie au sein du commissariat de police de Brooklyn n'est pas de tout repos : une pléiade d'inspecteurs un poil loufoque doivent jongler entre leur mission de protéger et servir les habitants de la ville, leur vie personnelle et celle du bureau.",
+        type: "series",
+        image: "18"
+      },
+      {
+        id: 19,
+        title: "CYBORG 009",
+        description: "Intégrés depuis des années, les cyborgs doivent sortir de l'ombre et reprendre le combat quand la race surhumaine des Éminents menace l'humanité.",
+        type: "animations",
+        image: "19"
+      },
+      {
+        id: 20,
+        title: "THE RISING OF THE SHIELD HERO",
+        description: "The Rising of the Shield Hero, connue au Japon sous le nom de Tate no yūsha no nariagari, est une série de light novel japonais écrite par Aneko Yusagi. L'histoire suit l'épopée de Naofumi Iwatani qui est mystérieusement invoqué dans un autre monde où il est le héros au Bouclier.",
+        type: "animations",
+        image: "20"
+      },
+      {
+        id: 21,
+        title: "DISCORD",
+        description: "Discord est une plateforme de VoIP et de messagerie instantanée. Il fonctionne sur les systèmes d’exploitation Windows, macOS, Linux, Android, iOS ainsi que sur les navigateurs web. Il est distribué sous forme de freeware et développé avec une licence propriétaire.",
+        type: "applications",
+        image: "21"
+      },
+    ];
+
+    function createContentCard(content) {
+      return `
+        <a href="/approvedcontent/${content.id}" class="content-card">
+          <img src="/approvedcontent/${content.image}/image.avif" alt="Image de ${content.title}" class="content-image">
+          <div class="content-info">
+            <h3>${content.title}</h3>
+            <p>${content.description}</p>
+          </div>
+        </a>
+      `;
+    }
+
+    function updateDisplay(filteredContent) {
+      const contentGrid = document.getElementById('content-grid');
+      contentGrid.innerHTML = filteredContent.map(createContentCard).join('');
+    }
+
+    // Search and filter functionality
+    let currentFilter = 'all';
+    let currentSearch = '';
+
+    function filterContent() {
+      let filtered = contentData;
+      
+      // Apply type filter
+      if (currentFilter !== 'all') {
+        filtered = filtered.filter(item => item.type === currentFilter);
+      }
+      
+      // Apply search filter
+      if (currentSearch) {
+        filtered = filtered.filter(item => 
+          item.title.toLowerCase().includes(currentSearch.toLowerCase()) ||
+          item.type.toLowerCase().includes(currentSearch.toLowerCase())
+        );
+      }
+      
+      updateDisplay(filtered);
+    }
+
+    // Event listeners
+    const filterButtons = document.querySelectorAll('.filter-button');
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        currentFilter = button.dataset.type;
+        filterContent();
+      });
+    });
+
+    const searchBar = document.querySelector('.search-bar');
+    searchBar.addEventListener('input', (e) => {
+      currentSearch = e.target.value;
+      filterContent();
+    });
+
+    // Initial display
+    filterContent();
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 50) {
+        navbar.style.background = 'rgba(0,0,0,0.95)';
+        navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.3)';
+      } else {
+        navbar.style.background = 'rgba(0,0,0,0.8)';
+        navbar.style.boxShadow = 'none';
+      }
+    });
+  </script>
+</body></html>

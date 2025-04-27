@@ -1,0 +1,214 @@
+<html><head><base href="https://example.com">
+  <title>VentiStudio - Livre Numérique</title>
+  <style>
+    :root {
+      --primary: #8b5cf6;
+      --dark: #1a1a1a;
+      --text: #ffffff;
+      --page-color: #f5f5f5;
+      --text-dark: #333333;
+    }
+    
+    body {
+      margin: 0;
+      font-family: 'Georgia', serif;
+      background: var(--dark);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .book-container {
+      margin: 2rem auto;
+      max-width: 1000px;
+      perspective: 2000px;
+      padding: 20px;
+    }
+
+    .book {
+      position: relative;
+      width: 100%;
+      height: 70vh;
+      transform-style: preserve-3d;
+      transition: transform 0.5s;
+    }
+
+    .page {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: var(--page-color);
+      padding: 2rem;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      border-radius: 5px;
+      transform-origin: left center;
+      transform-style: preserve-3d;
+      transition: transform 0.5s;
+      box-sizing: border-box;
+      color: var(--text-dark);
+      overflow-y: auto;
+    }
+
+    .page-content {
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.8;
+      font-size: 1.1rem;
+    }
+
+    .page-number {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      font-style: italic;
+      color: #666;
+    }
+
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .control-button {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .control-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 2px 8px rgba(139, 92, 246, 0.4);
+    }
+
+    .control-button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .chapter-title {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      .book-container {
+        padding: 10px;
+      }
+      
+      .page-content {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="book-container">
+    <div class="book">
+      <div class="page" id="currentPage">
+        <div class="page-content">
+          <h1 class="chapter-title">Les Mystères de VentiStudio</h1>
+          
+          <p>Dans l'univers numérique en constante évolution, VentiStudio se dresse comme un phare pour les créateurs et les passionnés. Ce lieu unique, où la musique, l'art et la technologie convergent, raconte une histoire fascinante qui mérite d'être partagée.</p>
+
+          <p>Notre voyage commence par une simple idée : créer un espace où les artistes peuvent s'épanouir, où les technologies peuvent être explorées, et où la créativité n'a pas de limites. Chaque jour, de nouveaux chapitres s'écrivent dans cette aventure collective.</p>
+
+          <p>Les murs virtuels de VentiStudio résonnent des échos de milliers de créations, chacune portant en elle une partie de l'âme de son créateur. C'est un lieu où les rêves prennent forme, où les idées deviennent réalité, et où chaque membre contribue à enrichir notre histoire commune.</p>
+
+          <div class="page-number">1</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="controls">
+      <button class="control-button" id="prevButton" disabled>Page Précédente</button>
+      <button class="control-button" id="nextButton">Page Suivante</button>
+    </div>
+  </div>
+
+  <script>
+    let currentPageNum = 1;
+    const totalPages = 3;
+    const pages = [
+      {
+        title: "Les Mystères de VentiStudio",
+        content: `
+          <p>Dans l'univers numérique en constante évolution, VentiStudio se dresse comme un phare pour les créateurs et les passionnés. Ce lieu unique, où la musique, l'art et la technologie convergent, raconte une histoire fascinante qui mérite d'être partagée.</p>
+
+          <p>Notre voyage commence par une simple idée : créer un espace où les artistes peuvent s'épanouir, où les technologies peuvent être explorées, et où la créativité n'a pas de limites. Chaque jour, de nouveaux chapitres s'écrivent dans cette aventure collective.</p>
+
+          <p>Les murs virtuels de VentiStudio résonnent des échos de milliers de créations, chacune portant en elle une partie de l'âme de son créateur. C'est un lieu où les rêves prennent forme, où les idées deviennent réalité, et où chaque membre contribue à enrichir notre histoire commune.</p>
+        `
+      },
+      {
+        title: "La Communauté Créative",
+        content: `
+          <p>Au cœur de VentiStudio bat une communauté vibrante et diverse. Des artistes aux développeurs, des musiciens aux designers, chacun apporte sa pierre à l'édifice. La collaboration est notre force, l'innovation notre moteur.</p>
+
+          <p>Chaque jour, de nouveaux projets voient le jour, portés par la passion et l'engagement de nos membres. Les frontières entre les disciplines s'estompent, donnant naissance à des créations uniques et inspirantes.</p>
+
+          <p>Notre Wiki collaboratif grandit, alimenté par le savoir collectif. Les espaces dédiés aux artistes s'enrichissent de nouvelles œuvres, tandis que notre système de contenu approuvé garantit qualité et pertinence.</p>
+        `
+      },
+      {
+        title: "L'Avenir de VentiStudio",
+        content: `
+          <p>Alors que nous regardons vers l'avenir, VentiStudio continue d'évoluer et de se réinventer. Nos ambitions sont grandes, portées par la vision d'un espace toujours plus innovant et inclusif.</p>
+
+          <p>De nouvelles fonctionnalités sont en développement, des partenariats se créent, et notre communauté ne cesse de grandir. Chaque jour qui passe nous rapproche un peu plus de notre objectif : devenir la référence en matière de création numérique collaborative.</p>
+
+          <p>L'aventure ne fait que commencer, et nous vous invitons à en faire partie. Rejoignez-nous dans cette quête d'excellence et d'innovation, où chaque voix compte et où chaque création trouve sa place.</p>
+        `
+      }
+    ];
+
+    const currentPage = document.getElementById('currentPage');
+    const prevButton = document.getElementById('prevButton');
+    const nextButton = document.getElementById('nextButton');
+
+    function updatePage() {
+      const pageData = pages[currentPageNum - 1];
+      currentPage.innerHTML = `
+        <div class="page-content">
+          <h1 class="chapter-title">${pageData.title}</h1>
+          ${pageData.content}
+          <div class="page-number">${currentPageNum}</div>
+        </div>
+      `;
+      
+      prevButton.disabled = currentPageNum === 1;
+      nextButton.disabled = currentPageNum === totalPages;
+
+      currentPage.style.transform = 'none';
+    }
+
+    prevButton.addEventListener('click', () => {
+      if (currentPageNum > 1) {
+        currentPage.style.transform = 'rotateY(-180deg)';
+        setTimeout(() => {
+          currentPageNum--;
+          updatePage();
+        }, 250);
+      }
+    });
+
+    nextButton.addEventListener('click', () => {
+      if (currentPageNum < totalPages) {
+        currentPage.style.transform = 'rotateY(180deg)';
+        setTimeout(() => {
+          currentPageNum++;
+          updatePage();
+        }, 250);
+      }
+    });
+  </script>
+</body></html>

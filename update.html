@@ -1,178 +1,314 @@
 <!DOCTYPE html>
-<html><head><base href="https://ventistudio.fr/update">
-  <meta charset="utf-8">
-  <meta name="viewport">
-  <html lang="fr"></html>
-  <link rel="icon" type="image/png" href="favicon.ico">
-  <meta property="og:title" content="Bienvenu sur VentiStudio">
-  <meta property="og:site_name" content="VentiStudio Komiyuniti">
-  <meta property="og:url" content="https://ventistudio.fr">
-  <meta property="og:description" content="Hey, je suis Hikari Umaishi (光馬石), mais je préfère que l'on m'appelle Hiuma (ヒウマ).
-Laissez-moi vous présenter ma communauté, un espace où l'art et la créativité se rencontrent.">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="https://ventistudio.fr/favicon.gif">
-  <title>VentiStudio - Update</title>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AOKI UNIVERSE - URGENCE</title>
   <style>
-    :root {
-      --primary: #7B66FF;
-      --secondary: #2A2D3A;
-      --background: #1A1B26;
-      --text: #FFFFFF;
-      --hover: #9F86FF;
-      --accent1: #414868;
-      --accent2: #565f89;
-    }
-
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap');
-
-    body {
+    * {
       margin: 0;
       padding: 0;
-      font-family: 'Inter', sans-serif;
-      background-color: var(--background);
-      color: var(--text);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      box-sizing: border-box;
     }
 
-    .maintenance-container {
-      text-align: center;
-      padding: 2rem;
+    body {
+      font-family: 'Consolas', 'Courier New', monospace;
+      background-color: #000;
+      color: #ff4c4c;
+      overflow: hidden;
+      height: 100vh;
+    }
+
+    .container {
       max-width: 800px;
-      animation: fadeIn 1s ease-in;
-    }
-
-    .logo {
-      width: 150px;
-      height: auto;
-      margin-bottom: 2rem;
-      animation: pulse 2s ease-in-out infinite;
+      margin: 8% auto 0;
+      padding: 2rem;
+      text-align: center;
+      opacity: 1;
+      transition: opacity 1.5s ease;
     }
 
     h1 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      background: linear-gradient(45deg, var(--primary), var(--hover));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      font-size: 2.8rem;
+      text-shadow: 0 0 12px red;
     }
 
-    .message {
+    h2 {
+      margin-top: 1rem;
       font-size: 1.2rem;
-      margin-bottom: 2rem;
-      line-height: 1.6;
+      color: #ffaaaa;
     }
 
-    .progress-container {
-      width: 300px;
-      height: 10px;
-      background: var(--secondary);
-      border-radius: 5px;
-      margin: 2rem auto;
+    .info {
+      margin-top: 1.5rem;
+      background: #111;
+      border: 1px solid #ff3c3c33;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      box-shadow: 0 0 8px #ff3c3c22;
+      color: #ff6b6b;
+    }
+
+    .glow {
+      position: absolute;
+      top: -40%;
+      left: -40%;
+      width: 180%;
+      height: 180%;
+      background: radial-gradient(circle, #ff000014 0%, transparent 80%);
+      animation: rotate 25s linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes rotate {
+      0% { transform: rotate(0); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .flash {
+      animation: flashAnim 1s infinite;
+    }
+
+    @keyframes flashAnim {
+      0%, 100% { background-color: #000; }
+      50% { background-color: #1a0000; }
+    }
+
+    .terminal {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 30vw;
+      min-width: 320px;
+      height: 40vh;
+      background: #0a0a0aee;
+      border-top-left-radius: 10px;
+      border-left: 2px solid #900;
+      border-top: 2px solid #900;
+      display: flex;
+      flex-direction: column;
+      font-size: 0.75rem;
+      z-index: 100;
       overflow: hidden;
     }
 
-    .progress-bar {
-      height: 100%;
-      background: linear-gradient(90deg, var(--primary), var(--hover));
-      width: 20%;
-      border-radius: 5px;
-      animation: progress 2s ease-in-out infinite;
+    .terminal-header {
+      background: #1a0000;
+      padding: 0.5rem;
+      color: #ff6b6b;
+      font-weight: bold;
+      border-bottom: 1px solid #900;
     }
 
-    .status {
-      font-size: 1rem;
-      color: var(--accent2);
-      margin-top: 1rem;
+    .terminal-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
+    .instructions, .dialogue {
+      padding: 0.5rem 1rem;
+      overflow-y: auto;
+      height: 50%;
     }
 
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
+    .instructions {
+      background: #111;
+      color: #ffaaaa;
+      border-bottom: 1px solid #900;
     }
 
-    @keyframes progress {
-      0% { transform: translateX(-100%); }
-      100% { transform: translateX(500%); }
+    .dialogue {
+      background: #0f0f0f;
+      color: #ff6b6b;
     }
 
-    .return-time {
-      margin-top: 2rem;
-      padding: 1rem;
-      background: var(--secondary);
-      border-radius: 10px;
-      display: inline-block;
-    }
-
-    @media screen and (max-width: 768px) {
-      .maintenance-container {
-        padding: 1rem;
-      }
-
-      h1 {
-        font-size: 2rem;
-      }
-
-      .message {
-        font-size: 1rem;
-      }
-
-      .progress-container {
-        width: 250px;
-      }
+    .footer {
+      position: absolute;
+      bottom: 8px;
+      left: 16px;
+      font-size: 0.75rem;
+      color: #ff3c3c88;
     }
   </style>
 </head>
 <body>
-  <div class="maintenance-container">
-    <img src="/favicon.avif" alt="VentiStudio Logo" class="logo">
-    <h1>Maintenance en cours</h1>
-    <div class="message">
-      Nous effectuons actuellement une maintenance planifiée pour améliorer nos services.<br>
-      Merci de votre patience et de votre compréhension.
-    </div>
-    <div class="progress-container">
-      <div class="progress-bar"></div>
-    </div>
-    <div class="status">Mise à jour des systèmes en cours...</div>
-    <div class="return-time">
-      Temps estimé de retour : <span id="countdown">--:--:--</span>
+  <div class="glow"></div>
+
+  <div class="container" id="alert-box">
+    <h1 id="title">🟠 ALERTE COLLISION</h1>
+    <h2 id="subtitle">Analyse en cours... Système AINA en observation</h2>
+    <div class="info" id="info-box">
+      Orbite instable détectée. Attente de confirmation par la station BISS-JAHAAKA.
     </div>
   </div>
 
+  <div class="terminal">
+    <div class="terminal-header">Terminal Local - AINA</div>
+    <div class="terminal-content">
+      <div class="instructions" id="instructions">
+        Initialisation des systèmes de communication...
+      </div>
+      <div class="dialogue" id="dialogue">
+        [MAEVA/JDF-C] : « Le module CRYO a-t-il confirmé l’impact ? »<br>
+        [AI/AINA] : « Analyse en cours. Données partielles reçues. »<br>
+        [KOTA/NU7] : « On va encore devoir revêtir les ONIQLO ? Sérieux ? »<br>
+        [MAKIMA/JDF-M] : « Silence. Respectez le protocole. »
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    © P-Line / VentiStudio – Système AINA – AOKI Universe v4.8.1
+  </div>
+
   <script>
-    // Set maintenance end time (1 hour from now by default)
-    const endTime = new Date(new Date().getTime() + 60 * 60 * 1000);
-    
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const distance = endTime - now;
-      
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-      
-      document.getElementById('countdown').innerHTML = 
-        `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-      
-      if (distance < 0) {
-        clearInterval(countdownInterval);
-        document.getElementById('countdown').innerHTML = "Bientôt de retour!";
-      }
+    const title = document.getElementById('title');
+    const subtitle = document.getElementById('subtitle');
+    const info = document.getElementById('info-box');
+    const alertBox = document.getElementById('alert-box');
+    const instructions = document.getElementById('instructions');
+    const dialogue = document.getElementById('dialogue');
+
+    function fadeOut() {
+      alertBox.style.opacity = 0;
     }
 
-    const countdownInterval = setInterval(updateCountdown, 1000);
-    updateCountdown();
+    function fadeIn() {
+      alertBox.style.opacity = 1;
+    }
+
+    function updateTerminal(newInstr, newDialogues) {
+      instructions.innerHTML = newInstr;
+      dialogue.innerHTML = newDialogues.map(d => `[${d.author}] : « ${d.text} »`).join("<br>");
+    }
+
+    setTimeout(() => {
+      fadeOut();
+      setTimeout(() => {
+        // Phase 2 : ONIQLO
+        title.textContent = '🔴 ALERTE ONIQLO (TYPE 1)';
+        subtitle.textContent = 'Distribution de combinaisons pressurisées en cours.';
+        info.innerHTML = 'Tout personnel non équipé doit revêtir immédiatement une combinaison ONIQLO. Accès restreint aux modules non sécurisés.';
+        updateTerminal(
+          "Veuillez scanner votre badge ONIQLO à la borne la plus proche.",
+          [
+            { author: "LENA/INFIRM", text: "Plus de combinaisons disponibles dans le secteur D." },
+            { author: "AI/AINA", text: "Ravitaillement automatique enclenché. Temps estimé : 03:25 min." },
+            { author: "R.CHEVALIER/CMD", text: "Priorité aux unités de maintien vital." }
+          ]
+        );
+        fadeIn();
+      }, 1500);
+    }, 16000);
+
+    setTimeout(() => {
+      fadeOut();
+      setTimeout(() => {
+        // Phase 3 : URGENCE MAXIMALE
+        title.textContent = '🚨 ALERTE D\'URGENCE MAXIMALE';
+        subtitle.textContent = 'Connexion prioritaire à AINA... Situation critique.';
+        info.innerHTML = `
+          Communication inter-stations synchronisée.<br>
+          Protocole AO-RC-7 déclenché.<br>
+          Évacuation partielle de la station recommandée.<br><br>
+          <strong>Évitez toute tentative de contact externe.</strong>
+        `;
+        document.body.classList.add('flash');
+        fadeIn();
+        setTimeout(() => {
+          startRepairGame();
+        }, 2000); // Start the mini-game after showing the alert
+      }, 1500);
+    }, 32000);
+
+    let repairCount = 0;
+    let repairNeeded = 5; // Number of repairs needed to succeed
+    let repairTimeout;
+
+    function startRepairGame() {
+      // Clear previous content
+      alertBox.innerHTML = `
+        <h1 id="title">🛠️ Réparations nécessaires</h1>
+        <h2 id="subtitle">Cliquez sur les points critiques pour réparer !</h2>
+        <div id="repair-zone" style="position: relative; width: 100%; height: 300px; background: #111; margin-top: 1rem; border: 2px solid #900; border-radius: 12px;">
+          <!-- Repair points will be dynamically added here -->
+        </div>
+        <div class="info" id="info-box">
+          Réparations effectuées : <span id="repair-count">0</span> / ${repairNeeded}
+        </div>
+      `;
+
+      // Add repair points
+      const repairZone = document.getElementById('repair-zone');
+      for (let i = 0; i < repairNeeded; i++) {
+        const repairPoint = document.createElement('div');
+        repairPoint.style.position = 'absolute';
+        repairPoint.style.width = '30px';
+        repairPoint.style.height = '30px';
+        repairPoint.style.background = '#ff4c4c';
+        repairPoint.style.borderRadius = '50%';
+        repairPoint.style.cursor = 'pointer';
+        repairPoint.style.top = `${Math.random() * 80}%`;
+        repairPoint.style.left = `${Math.random() * 80}%`;
+        repairPoint.addEventListener('click', () => {
+          repairPoint.style.background = '#4cff4c';
+          repairPoint.style.pointerEvents = 'none';
+          repairCount++;
+          document.getElementById('repair-count').textContent = repairCount;
+          if (repairCount >= repairNeeded) {
+            clearTimeout(repairTimeout);
+            repairSuccess();
+          }
+        });
+        repairZone.appendChild(repairPoint);
+      }
+
+      // Set timeout for failure
+      repairTimeout = setTimeout(() => {
+        repairFailure();
+      }, 15000); // 15 seconds to complete repairs
+    }
+
+    function repairSuccess() {
+      alertBox.innerHTML = `
+        <h1 id="title">✅ Réparations réussies</h1>
+        <h2 id="subtitle">Le système est stabilisé. Passage en mode maintenance.</h2>
+        <div class="info" id="info-box">
+          Toutes les réparations critiques ont été effectuées avec succès.<br>
+          <strong>Personnel non essentiel :</strong> Restez dans les lieux pressurisés jusqu'à nouvel ordre.
+        </div>
+      `;
+      document.body.classList.remove('flash');
+      updateTerminal(
+        "Mode maintenance activé. Surveillance des systèmes en cours.",
+        [
+          { author: "AI/AINA", text: "Les réparations ont stabilisé le système. Mode maintenance activé." },
+          { author: "R.CHEVALIER/CMD", text: "Personnel non essentiel, restez dans les zones pressurisées." },
+          { author: "LENA/INFIRM", text: "Aucune blessure signalée. Surveillance médicale en cours." }
+        ]
+      );
+    }
+
+    function repairFailure() {
+      alertBox.innerHTML = `
+        <h1 id="title">🚨 ÉCHEC DES RÉPARATIONS</h1>
+        <h2 id="subtitle">Passage en alerte d'évacuation immédiate.</h2>
+        <div class="info" id="info-box">
+          Les réparations n'ont pas pu être effectuées à temps. Évacuez immédiatement !
+        </div>
+      `;
+      document.body.classList.add('flash');
+      updateTerminal(
+        "Évacuation immédiate requise. Suivez les signaux lumineux muraux.",
+        [
+          { author: "AI/AINA", text: "Tous les modules non pressurisés doivent être évacués." },
+          { author: "R.CHEVALIER/CMD", text: "Protocole d'évacuation activé. Bonne chance à tous." },
+          { author: "KOTA/NU7", text: "Les modules pressurisés sont sécurisés pour l'instant." }
+        ]
+      );
+    }
   </script>
 </body>
 </html>

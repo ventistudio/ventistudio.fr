@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html><head><base href="https://ventistudio.fr/archive">
+  <meta charset="utf-8">
+  <meta name="viewport">
+  <html lang="fr"></html>
+  <link rel="icon" type="image/gif" href="favicon.avif">
+  <meta property="og:title" content="Bienvenu sur VentiStudio">
+  <meta property="og:site_name" content="VentiStudio Komiyuniti">
+  <meta property="og:url" content="https://ventistudio.fr">
+  <meta property="og:description" content="Hey, je suis Hikari Umaishi (光馬石), mais je préfère que l'on m'appelle Hiuma (ヒウマ).
+Laissez-moi vous présenter ma communauté, un espace où l'art et la créativité se rencontrent.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://ventistudio.fr/favicon.gif">
+  <title>VentiStudio Archive - Version Archivée</title>
+  <style>
+    :root {
+      --primary: #8b5cf6;
+      --dark: #1a1a1a;
+      --text: #ffffff;
+    }
+    
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--dark);
+      color: var(--text);
+    }
+
+    .navbar {
+      background: rgba(0,0,0,0.8);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: fixed;
+      width: 100%;
+      box-sizing: border-box;
+      z-index: 1000;
+    }
+
+    .logo {
+      width: 50px;
+      height: 50px;
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: rotate(360deg);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+      background: rgba(139, 92, 246, 0.1);
+    }
+
+    .hero {
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.7), var(--dark));
+    }
+
+    .archive-date {
+      background: rgba(74, 85, 104, 0.2);
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(45deg, #8b5cf6, #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientShift 8s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-button {
+      background: linear-gradient(45deg, var(--primary), #ec4899);
+      color: white;
+      padding: 1rem 2.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+      display: inline-block;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      padding: 4rem 2rem;
+      background: linear-gradient(to bottom, var(--dark), #2d2d2d);
+    }
+
+    .feature-card {
+      background: rgba(255,255,255,0.05);
+      padding: 2rem;
+      border-radius: 12px;
+      text-align: center;
+      transition: transform 0.3s ease;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      background: rgba(255,255,255,0.08);
+    }
+
+    .feature-card h3 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+    }
+
+    .preview-badge {
+      position: fixed;
+      top: 100px;
+      right: -60px;
+      background: linear-gradient(45deg, #4a5568, #718096);
+      color: white;
+      padding: 8px 80px;
+      transform: rotate(45deg);
+      z-index: 1001;
+      font-weight: bold;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    .alert-banner {
+      background: rgba(74, 85, 104, 0.1);
+      border-left: 4px solid #4a5568;
+      padding: 1rem 2rem;
+      margin: 2rem auto;
+      max-width: 800px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="preview-badge" style="top: auto; bottom: 40px; right: auto; left: -60px; transform: rotate(45deg);">ARCHIVE</div>
+  
+  <nav class="navbar">
+    <img src="/favicon.avif" alt="Logo VentiStudio - Design circulaire noir et blanc avec symboles français et japonais" class="logo">
+    <div class="nav-links">
+      <a href="/archive">Accueil</a>
+      <a href="/archive/v1">Archive V1</a>
+      <a href="/archive/image">Image</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="archive-date">Version Archivée - Septembre 2024</div>
+    <h1>Version Archive de VentiStudio</h1>
+    <p>Vous consultez actuellement une version archivée de VentiStudio. Cette version représente un instantané historique du site tel qu'il était à une date précédente.</p>
+    <div class="alert-banner">
+      <h3>📚 Note d'Archive</h3>
+      <p>Cette version archive est une capture statique du site. Certaines fonctionnalités peuvent ne plus être disponibles ou fonctionnelles. Les liens et contenus sont préservés tels qu'ils étaient au moment de l'archivage.</p>
+    </div>
+    <a href="/" class="cta-button">Accéder à la Version Actuelle</a>
+  </section>
+
+  <div class="features">
+    <div class="feature-card">
+      <h3>Contenu Historique</h3>
+      <p>Explorez le contenu et les fonctionnalités de VentiStudio tels qu'ils étaient dans le passé.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Version Préservée</h3>
+      <p>Accédez à une capture complète du site à un moment précis de son histoire.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Reference Historique</h3>
+      <p>Consultez l'évolution de VentiStudio à travers cette version archivée.</p>
+    </div>
+  </div>
+
+  <script>
+    window.addEventListener('scroll', () => {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 50) {
+        navbar.style.background = 'rgba(0,0,0,0.95)';
+        navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.3)';
+      } else {
+        navbar.style.background = 'rgba(0,0,0,0.8)';
+        navbar.style.boxShadow = 'none';
+      }
+    });
+
+    document.querySelectorAll('.feature-card').forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        card.style.transform = 'translateY(-10px)';
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'translateY(0)';
+      });
+    });
+  </script>
+</body></html>

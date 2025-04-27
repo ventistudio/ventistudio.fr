@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="fr-FR">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Spécifie l'encodage des caractères en UTF-8 -->
+    <meta http-equiv="Access-Control-Allow-Origin" content="*" />
+    <!-- Autorise les requêtes cross-origin depuis n'importe quelle origine -->
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <!-- (Optionnel) Force la mise à jour des requêtes non sécurisées vers HTTPS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Rendre la page responsive sur tous les appareils -->
+    <link rel="icon" href="%VITE_SITE_LOGO%" />
+    <!-- Lien vers l'icône du site (favicon) -->
+    <link rel="apple-touch-icon" href="%VITE_SITE_APPLE_LOGO%" />
+    <!-- Icône pour les appareils Apple -->
+    <link rel="bookmark" href="%VITE_SITE_APPLE_LOGO%" />
+    <!-- Marque-page pour les navigateurs qui le prennent en charge -->
+    <link rel="apple-touch-icon-precomposed" sizes="200x200" href="%VITE_SITE_APPLE_LOGO%" />
+    <!-- Icône Apple précomposée avec une taille de 200x200 -->
+    <meta name="description" content="%VITE_SITE_DES%" />
+    <!-- Description du site -->
+    <meta name="keywords" content="%VITE_SITE_KEYWORDS%" />
+    <!-- Mots-clés du site -->
+    <meta name="author" content="%VITE_SITE_AUTHOR%" />
+    <!-- Auteur du site -->
+    <meta name="theme-color" content="#424242" />
+    <!-- Couleur du thème pour les navigateurs mobiles -->
+    <title>%VITE_SITE_NAME%</title>
+    <!-- Titre de la page -->
+    <!-- Police HarmonyOS Sans -->
+    <!-- Le CDN de ce site est protégé contre le hotlinking. Si vous utilisez un domaine autre que celui spécifié, remplacez le lien ci-dessous. Sinon, la police personnalisée ne fonctionnera pas. -->
+    <link rel="stylesheet" href="https://s1.hdslb.com/bfs/static/jinkela/long/font/regular.css" />
+    <!-- <link rel="stylesheet" href="https://cdn.imsyy.top/gh/imsyy/file/font/HarmonyOS_Sans/regular.min.css" /> -->
+    <!-- Redirection des utilisateurs d'Internet Explorer vers une page de mise à jour -->
+    <script>
+      if (/*@cc_on!@*/ false || (!!window.MSInputMethodContext && !!document.documentMode))
+        window.location.href =
+          'https://support.dmeng.net/upgrade-your-browser.html?referrer=' +
+          encodeURIComponent(window.location.href);
+    </script>
+  </head>
+
+  <body>
+    <!-- Contenu principal -->
+    <div id="app"></div>
+    <!-- Message pour les utilisateurs avec JavaScript désactivé -->
+    <noscript>
+      <div style="text-align: center">Veuillez activer JavaScript</div>
+    </noscript>
+    <!-- Inclusion du fichier JavaScript principal -->
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

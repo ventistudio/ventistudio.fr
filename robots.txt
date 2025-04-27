@@ -1,4 +1,4 @@
-Sitemap: https://ventistudio.fr/sitemap.xml
-
 User-agent: *
-Disallow:
+Allow: /
+
+Sitemap: https://ventistudio.fr/sitemap.xml

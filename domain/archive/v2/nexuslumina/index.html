@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html><head><base href="https://ventistudio.fr/nexuslumina">
+  <meta charset="utf-8">
+  <meta name="viewport">
+  <html lang="fr"></html>
+  <link rel="icon" type="image/gif" href="favicon.avif">
+  <meta property="og:title" content="Bienvenu sur VentiStudio">
+  <meta property="og:site_name" content="VentiStudio Komiyuniti">
+  <meta property="og:url" content="https://ventistudio.fr">
+  <meta property="og:description" content="Hey, je suis Hikari Umaishi (光馬石), mais je préfère que l'on m'appelle Hiuma (ヒウマ).
+Laissez-moi vous présenter ma communauté, un espace où l'art et la créativité se rencontrent.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://ventistudio.fr/favicon.gif">
+  <title>Nexus Lumina - Agence Artistique Communautaire</title>
+  <style>
+    :root {
+      --primary: #8b5cf6;
+      --dark: #1a1a1a;
+      --text: #ffffff;
+      --accent: #ff6b6b;
+    }
+    
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--dark);
+      color: var(--text);
+    }
+
+    .navbar {
+      background: rgba(0,0,0,0.8);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: fixed;
+      width: 100%;
+      box-sizing: border-box;
+      z-index: 1000;
+    }
+
+    .logo {
+      width: 50px;
+      height: 50px;
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: rotate(360deg);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+      background: rgba(139, 92, 246, 0.1);
+    }
+
+    .nexus-hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #1a1a1a, #2d1f4d);
+      padding-top: 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nexus-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1));
+      pointer-events: none;
+    }
+
+    .nexus-title {
+      font-size: 4rem;
+      margin-bottom: 2rem;
+      background: linear-gradient(45deg, #ff6b6b, #8b5cf6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: titleGlow 3s ease-in-out infinite;
+    }
+
+    @keyframes titleGlow {
+      0%, 100% { text-shadow: 0 0 20px rgba(139, 92, 246, 0.5); }
+      50% { text-shadow: 0 0 40px rgba(255, 107, 107, 0.8); }
+    }
+
+    .platforms-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 4rem auto;
+      padding: 0 2rem;
+    }
+
+    .platform-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .platform-card:hover {
+      transform: translateY(-10px);
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
+    }
+
+    .platform-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: var(--accent);
+    }
+
+    .pricing-section {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    .pricing-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      padding: 2rem;
+      max-width: 400px;
+      margin: 2rem auto;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .price {
+      font-size: 2.5rem;
+      color: var(--accent);
+      margin: 1rem 0;
+    }
+
+    .discord-cta {
+      background: #7289DA;
+      color: white;
+      padding: 1rem 2.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-block;
+      margin-top: 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .discord-cta:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 20px rgba(114, 137, 218, 0.4);
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <nav class="navbar">
+    <img src="/favicon.avif" alt="Logo VentiStudio - Design circulaire noir et blanc avec symboles français et japonais" class="logo">
+    <div class="nav-links">
+      <a href="/">VentiStudio</a>
+      <a href="/umaishicorp">Umaishi Corp</a>
+      <a href="/nexuslumina">Nexus Lumina</a>
+      <a href="/suboawards">Subo Awards</a>
+      <a href="/phareteikei">Phare TeiKei</a>
+      <a href="/social/FiTsZ">FiTsZ</a>
+    </div>
+  </nav>
+
+  <div class="nexus-hero">
+    <h1 class="nexus-title">Nexus Lumina</h1>
+    <p>Une Agence Artistique Communautaire Innovante</p>
+  </div>
+
+  <div class="platforms-grid">
+    <div class="platform-card">
+      <i class="fab fa-twitch platform-icon"></i>
+      <h3>Twitch</h3>
+      <p>Diffusez en direct et interagissez avec votre communauté</p>
+    </div>
+    <div class="platform-card">
+      <i class="fab fa-youtube platform-icon"></i>
+      <h3>YouTube</h3>
+      <p>Partagez vos créations avec le monde entier</p>
+    </div>
+    <div class="platform-card">
+      <i class="fab fa-tiktok platform-icon"></i>
+      <h3>TikTok</h3>
+      <p>Créez des contenus viraux et tendance</p>
+    </div>
+    <div class="platform-card">
+      <i class="fab fa-instagram platform-icon"></i>
+      <h3>Instagram</h3>
+      <p>Exposez votre art et votre lifestyle</p>
+    </div>
+  </div>
+
+  <div class="pricing-section">
+    <section class="wiki-section">
+        <h2>À Propos de Nexus Lumina</h2>
+        <div class="wiki-content">
+            <p>Nexus Lumina est une agence artistique communautaire innovante qui vise à rassembler et soutenir divers créateurs de contenu et artistes. Notre vision est de créer un écosystème créatif unique en son genre, fusionnant les cultures française et japonaise.</p>
+            
+            <h3>Nos Domaines d'Action</h3>
+            <div class="wiki-section-content">
+                <h4>Créateurs de Contenu</h4>
+                <p>Nous accueillons les créateurs de contenu actifs sur :</p>
+                <ul>
+                    <li>Twitch</li>
+                    <li>Kick</li>
+                    <li>YouTube</li>
+                    <li>Odysee</li>
+                    <li>TikTok</li>
+                    <li>Instagram</li>
+                </ul>
+
+                <h4>Artistes Musicaux</h4>
+                <p>Notre projet phare : Création d'un groupe d'Idols français inspiré de la culture japonaise</p>
+                <p>Nous recherchons activement :</p>
+                <ul>
+                    <li>Chanteurs</li>
+                    <li>Musiciens</li>
+                    <li>Artistes du spectacle</li>
+                </ul>
+            </div>
+
+            <div class="distribution-info">
+                <h3>Distribution Musicale</h3>
+                <p>Pour les artistes souhaitant distribuer leur musique sur plus de 150 plateformes dont Spotify et Deezer :</p>
+                <div class="pricing-options">
+                    <div class="price-option">
+                        <h4>Abonnement Mensuel</h4>
+                        <p class="price">2€/mois</p>
+                        <p class="total">(22€/an au total)</p>
+                    </div>
+                    <div class="price-option">
+                        <h4>Abonnement Annuel</h4>
+                        <p class="price">16€/an</p>
+                        <p class="saving">Économisez 6€ par an !</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="join-section">
+                <p>Pour plus d'informations et pour postuler, rejoignez notre serveur Discord.</p>
+                <p>Notez que des frais peuvent s'appliquer après approbation de votre candidature.</p>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .wiki-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 1000px;
+            text-align: left;
+        }
+
+        .wiki-content {
+            line-height: 1.6;
+        }
+
+        .wiki-section-content {
+            margin: 2rem 0;
+            padding: 1rem;
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: 10px;
+        }
+
+        .distribution-info {
+            margin: 2rem 0;
+            padding: 2rem;
+            background: rgba(255, 107, 107, 0.1);
+            border-radius: 15px;
+        }
+
+        .pricing-options {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .price-option {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .price {
+            font-size: 2rem;
+            color: var(--accent);
+            margin: 0.5rem 0;
+        }
+
+        .saving {
+            color: #4ade80;
+            font-weight: bold;
+        }
+
+        .join-section {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .wiki-section h2, .wiki-section h3, .wiki-section h4 {
+            color: var(--accent);
+            margin-top: 1.5rem;
+        }
+
+        .wiki-section ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .wiki-section li {
+            margin: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .wiki-section li:before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+    </style>
+
+    <h2>Tarifs de Distribution Musicale</h2>
+    <div class="pricing-card">
+        <h3>Distribution Mondiale</h3>
+        <p class="price">2€/mois</p>
+        <p>ou</p>
+        <p class="price">16€/an</p>
+        <ul>
+            <li>Distribution sur +150 plateformes</li>
+            <li>Spotify, Deezer et plus encore</li>
+            <li>Support personnalisé</li>
+        </ul>
+    </div>
+    <a href="https://discord.gg/BupfZHSBbC" class="discord-cta">
+        <i class="fab fa-discord"></i> Rejoignez-nous sur Discord
+    </a>
+</div>
+
+  <script>
+    window.addEventListener('scroll', () => {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 50) {
+        navbar.style.background = 'rgba(0,0,0,0.95)';
+        navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.3)';
+      } else {
+        navbar.style.background = 'rgba(0,0,0,0.8)';
+        navbar.style.boxShadow = 'none';
+      }
+    });
+
+    document.querySelectorAll('.platform-card').forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        card.style.transform = 'translateY(-10px) scale(1.05)';
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'translateY(0) scale(1)';
+      });
+    });
+  </script>
+</body></html>

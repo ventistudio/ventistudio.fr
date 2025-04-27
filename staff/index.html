@@ -1,888 +1,501 @@
 <!DOCTYPE html>
-<html><head><base href="https://ventistudio.fr/staff">
-  <meta charset="utf-8">
-  <meta name="viewport">
-  <html lang="fr"></html>
-  <link rel="icon" type="image/png" href="favicon.ico">
-  <meta property="og:title" content="Bienvenu sur VentiStudio">
-  <meta property="og:site_name" content="VentiStudio Komiyuniti">
-  <meta property="og:url" content="https://ventistudio.fr">
-  <meta property="og:description" content="Hey, je suis Hikari Umaishi (光馬石), mais je préfère que l'on m'appelle Hiuma (ヒウマ).
-Laissez-moi vous présenter ma communauté, un espace où l'art et la créativité se rencontrent.">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="https://ventistudio.fr/favicon.gif">
-  <title>VentiStudio - Staff</title>
-<style>
-:root {
-  --primary: #7B66FF;
-  --secondary: #2A2D3A;
-  --background: #1A1B26;
-  --text: #FFFFFF;
-  --hover: #9F86FF;
-  --accent1: #414868;
-  --accent2: #565f89;
-}
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap');
-
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Inter', sans-serif;
-  background-color: var(--background);
-  color: var(--text);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-.navbar {
-  background-color: var(--secondary);
-  padding: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  box-shadow: 0 2px 10px rgba(123, 102, 255, 0.1);
-}
-
-.logo {
-  height: 50px;
-  transition: transform 0.3s ease;
-}
-
-.logo:hover {
-  transform: scale(1.05);
-}
-
-.nav-links {
-  display: flex;
-  gap: 2rem;
-}
-
-.mobile-menu-button {
-  display: none;
-  background: none;
-  border: none;
-  color: var(--text);
-  font-size: 1.5rem;
-  cursor: pointer;
-  padding: 0.5rem;
-}
-
-.nav-item {
-  position: relative;
-  cursor: pointer;
-}
-
-.nav-item > a {
-  color: var(--text);
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 500;
-}
-
-.nav-item > a:hover {
-  background-color: var(--hover);
-  transform: translateY(-2px);
-}
-
-.dropdown {
-  display: none;
-  position: absolute;
-  background-color: var(--accent1);
-  min-width: 200px;
-  box-shadow: 0 8px 16px rgba(123, 102, 255, 0.2);
-  z-index: 1;
-  border-radius: 8px;
-  margin-top: 0.5rem;
-  backdrop-filter: blur(10px);
-}
-
-.nav-item:hover .dropdown {
-  display: block;
-  animation: fadeIn 0.3s ease;
-}
-
-@media screen and (max-width: 768px) {
-  .mobile-menu-button {
-    display: block;
-  }
-
-  .nav-links {
-    display: none;
-    position: fixed;
-    top: 80px;
-    left: 0;
-    right: 0;
-    background-color: var(--secondary);
-    flex-direction: column;
-    padding: 1rem;
-    gap: 1rem;
-  }
-
-  .nav-links.active {
-    display: flex;
-  }
-
-  .nav-item {
-    width: 100%;
-  }
-
-  .dropdown {
-    position: static;
-    width: 100%;
-    margin-top: 0.5rem;
-    display: none;
-  }
-
-  .nav-item.active .dropdown {
-    display: block;
-  }
-
-  .footer-content {
-    grid-template-columns: repeat(2, 1fr) !important;
-    padding: 0 1rem;
-  }
-
-  .copyright {
-    flex-direction: column;
-    text-align: center;
-  }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.dropdown a {
-  color: var(--text);
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  transition: all 0.2s ease;
-}
-
-.dropdown a:hover {
-  background-color: var(--hover);
-  transform: translateX(5px);
-}
-
-.main-content {
-  padding: 0;
-  text-align: center;
-}
-
-.hero-section {
-  padding: 6rem 2rem;
-  background: linear-gradient(135deg, var(--background) 0%, var(--accent1) 100%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(circle at 50% 50%, var(--primary) 0%, transparent 70%);
-  opacity: 0.1;
-  animation: pulse 4s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); opacity: 0.1; }
-  50% { transform: scale(1.2); opacity: 0.15; }
-  100% { transform: scale(1); opacity: 0.1; }
-}
-
-.hero-section h1 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 3.5rem;
-  margin-bottom: 1rem;
-  background: linear-gradient(45deg, var(--primary), var(--hover));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: titleGlow 2s ease-in-out infinite alternate;
-  position: relative;
-  z-index: 1;
-}
-
-.hero-section p {
-  font-size: 1.4rem;
-  color: var(--text);
-  opacity: 0.9;
-  max-width: 800px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 1;
-}
-
-.cta-button {
-  background: var(--primary);
-  color: var(--text);
-  padding: 1rem 2rem;
-  border-radius: 30px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  position: relative;
-  z-index: 1;
-  border: none;
-  cursor: pointer;
-  font-size: 1.1rem;
-}
-
-.cta-button:hover {
-  background: var(--hover);
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(123, 102, 255, 0.3);
-}
-
-.section {
-  padding: 4rem 2rem;
-  background: var(--background);
-}
-
-.section-title {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
-  color: var(--text);
-}
-
-.section-subtitle {
-  font-size: 1.2rem;
-  color: var(--text);
-  opacity: 0.8;
-  max-width: 800px;
-  margin: 0 auto 3rem auto;
-}
-
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.service-card {
-  background: var(--secondary);
-  padding: 2rem;
-  border-radius: 15px;
-  transition: all 0.3s ease;
-}
-
-.service-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-.service-card h3 {
-  color: var(--primary);
-  margin-bottom: 1rem;
-}
-
-.news-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.news-card {
-  background: var(--secondary);
-  padding: 2rem;
-  border-radius: 15px;
-  transition: all 0.3s ease;
-}
-
-.community-section {
-  background: linear-gradient(135deg, var(--secondary) 0%, var(--accent1) 100%);
-  text-align: center;
-  padding: 4rem 2rem;
-}
-
-.button-group {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-@media screen and (max-width: 768px) {
-  .hero-section h1 {
-    font-size: 2.5rem;
-  }
-  
-  .hero-section p {
-    font-size: 1.1rem;
-  }
-  
-  .section-title {
-    font-size: 2rem;
-  }
-  
-  .button-group {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .staff-grid {
-    grid-template-columns: 1fr;
-    padding: 1rem;
-  }
-}
-
-@keyframes titleGlow {
-  from { text-shadow: 0 0 20px rgba(123, 102, 255, 0.5); }
-  to { text-shadow: 0 0 30px rgba(123, 102, 255, 0.8); }
-}
-
-.footer {
-  background-color: var(--secondary);
-  padding: 2rem;
-  margin-top: auto;
-  box-shadow: 0 -2px 10px rgba(123, 102, 255, 0.1);
-}
-
-.footer-content {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.footer-section h3 {
-  color: var(--text);
-  margin-bottom: 1rem;
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 700;
-}
-
-.footer-section a {
-  color: var(--text);
-  text-decoration: none;
-  display: block;
-  margin-bottom: 0.5rem;
-  transition: all 0.2s ease;
-  opacity: 0.8;
-}
-
-.footer-section a:hover {
-  opacity: 1;
-  color: var(--hover);
-  transform: translateX(5px);
-}
-
-.copyright {
-  text-align: center;
-  padding: 2rem 0;
-  border-top: 1px solid var(--accent1);
-  margin-top: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-}
-
-.copyright img {
-  height: 30px;
-}
-
-.copyright span {
-  color: var(--text);
-  opacity: 0.8;
-  font-size: 0.9rem;
-}
-
-::-webkit-scrollbar {
-  width: 12px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--background);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--primary);
-  border-radius: 6px;
-  border: 3px solid var(--background);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--hover);
-}
-
-* {
-  scrollbar-width: thin;
-  scrollbar-color: var(--primary) var(--background);
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-@keyframes slideDown {
-  from {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-#celebration-banner {
-  background: linear-gradient(45deg, var(--primary), var(--hover));
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  position: relative;
-  z-index: 1000;
-}
-
-.staff-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-  padding: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.staff-card {
-  background: var(--secondary);
-  border-radius: 15px;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  position: relative;
-}
-
-.staff-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-.staff-header {
-  padding: 1.5rem;
-  text-align: center;
-}
-
-.staff-avatar {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  margin: 0 auto 1rem;
-  border: 3px solid var(--primary);
-  transition: transform 0.3s ease;
-}
-
-.staff-card:hover .staff-avatar {
-  transform: scale(1.05);
-}
-
-.staff-name {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 1.5rem;
-  margin: 0;
-  color: var(--text);
-}
-
-.staff-role {
-  color: var(--primary);
-  font-size: 1rem;
-  margin: 0.5rem 0;
-}
-
-.staff-details {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease;
-  background: var(--accent1);
-}
-
-.staff-card.active .staff-details {
-  max-height: 500px;
-}
-
-.staff-bio {
-  padding: 1.5rem;
-  color: var(--text);
-  border-top: 1px solid var(--accent2);
-}
-
-.staff-links {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  padding: 0 1.5rem 1.5rem;
-}
-
-.staff-link {
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  background: var(--primary);
-  color: var(--text);
-  text-decoration: none;
-  font-size: 0.9rem;
-  transition: all 0.3s ease;
-}
-
-.staff-link:hover {
-  background: var(--hover);
-  transform: translateY(-2px);
-}
-
-.staff-expand {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  background: var(--primary);
-  border: none;
-  color: var(--text);
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.staff-card.active .staff-expand {
-  transform: rotate(45deg);
-}
-</style>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Équipes – VentiStudio</title>
+  <link rel="stylesheet" href="https://trust.ventistudio.fr/root/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+    }
+
+    .artist-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 2rem;
+      padding: 2rem;
+    }
+    .artist-card {
+      background: var(--bg-secondary, #f4f4f4);
+      padding: 1rem;
+      border-radius: 10px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .artist-card:hover {
+      transform: scale(1.02);
+    }
+    .artist-card img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1rem;
+    }
+    .artist-name {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: var(--text-primary, #333);
+    }
+
+    .artist-modal {
+      display: none;
+      position: fixed;
+      z-index: 1002;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      max-width: 600px;
+      width: 95%;
+      background: var(--bg-primary, white);
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    }
+
+    .artist-modal h3 {
+      margin-top: 0;
+      font-size: 1.5rem;
+    }
+
+    .artist-modal img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+    }
+
+    .artist-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 1001;
+    }
+
+    .close-modal {
+      float: right;
+      cursor: pointer;
+      font-size: 1.5rem;
+      background: none;
+      border: none;
+      color: var(--text-primary, #333);
+    }
+
+    .artist-info {
+      text-align: left;
+      line-height: 1.6;
+    }
+
+    .artist-buttons {
+      margin-top: 1rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .artist-buttons a {
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      background: #7c3aed;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.2s;
+    }
+
+    .artist-buttons a:hover {
+      background: #5b21b6;
+    }
+
+    [data-theme="dark"] .artist-card {
+      background: #1a1b26;
+      color: #c0caf5;
+    }
+
+    [data-theme="dark"] .artist-modal {
+      background: #1a1a1a;
+      color: #c0caf5;
+    }
+
+    [data-theme="dark"] .close-modal {
+      color: #c0caf5;
+    }
+  </style>
 </head>
 <body>
-  <div id="celebration-banner" style="display: none; background: var(--primary); color: var(--text); text-align: center; padding: 10px; font-weight: bold; animation: slideDown 0.5s ease-out;">
-    <span id="celebration-message"></span>
-  </div>
+
+</head>
+
+<body>
+  <header>
+    <div class="logo">
+      <img src="https://ventistudio.fr/favicon.avif" alt="VentiStudio Logo" class="site-logo">
+      <span>VentiStudio</span>
+    </div>
+    <nav>
+      <a href="https://ventistudio.fr">Accueil</a>
+      <a href="https://ventistudio.fr/approuvedcontent">Contenu Approuvé</a>
+      <a href="https://ventistudio.fr/player">Player</a>
+      <a href="https://ventistudio.fr/wiki">Wiki</a>
+      <a href="https://ventistudio.fr/staff" class="active">Staff</a>
+      <a href="https://ventistudio.fr/artist">Artiste</a>
+      <a href="https://ventistudio.fr/pip">PIP</a>
+      <a href="https://ventistudio.fr/sitemap">Sitemap</a>
+    </nav>
+    <div class="controls">
+      <button id="theme-toggle" class="theme-toggle">
+        <svg width="24" height="24" viewBox="0 0 24 24">
+          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
+          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
+          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
+        </svg>
+      </button>
+      <div id="user-button"></div>
+    </div>
+  </header>
   
-  <nav class="navbar">
-    <img src="/favicon.avif" alt="VentiStudio Logo" class="logo">
-    <button class="mobile-menu-button">☰</button>
-    <div class="nav-links">
-      <div class="nav-item">
-        <a href="/">Accueil</a>
+  <main>
+    <div class="artist-grid">
+      <!-- Carte artiste -->
+      <div class="artist-card" onclick="openArtistModal('staff1')">
+        <img src="/a-files/image/hikariumaishi.avif" alt="Hikari Umaishi">
+        <div class="artist-name">Hikari Umaishi</div>
       </div>
-      <div class="nav-item">
-        <a href="/approuvedcontent">Contenu Approuvé</a>
+
+      <div class="artist-card" onclick="openArtistModal('staff2')">
+        <img src="/a-files/image/tomoumaishi.avif" alt="Tomo Umaishi">
+        <div class="artist-name">Tomo Umaishi</div>
       </div>
-      <div class="nav-item">
-        <a href="/wiki">Wiki</a>
+
+      <div class="artist-card" onclick="openArtistModal('staff3')">
+        <img src="/a-files/image/clementfernandez.avif" alt="Clément Fernandez">
+        <div class="artist-name">Clément Fernandez</div>
       </div>
-      <div class="nav-item">
-        <a href="/staff">Staff</a>
-        <div class="dropdown">
-          <a href="/job">Recrutement</a>
-        </div>
+
+      <div class="artist-card" onclick="openArtistModal('staff4')">
+        <img src="/a-files/image/kalashnikov.avif" alt="Kalashnikov">
+        <div class="artist-name">Kalashnikov</div>
       </div>
-      <div class="nav-item">
-        <a href="/artist">Artiste</a>
+
+      <div class="artist-card" onclick="openArtistModal('staff5')">
+        <img src="/a-files/image/sokinasawa.avif" alt="Soki Nasawa">
+        <div class="artist-name">Soki Nasawa</div>
       </div>
-      <div class="nav-item">
-        <a href="/pip">PIP</a>
+
+      <div class="artist-card" onclick="openArtistModal('staff6')">
+        <img src="/a-files/image/maitrecorbeau.avif" alt="Maître Corbeau">
+        <div class="artist-name">Maître Corbeau</div>
+      </div>
+
+      <div class="artist-card" onclick="openArtistModal('staff7')">
+        <img src="/a-files/image/petitepatatekawaii.avif" alt="Petite Patate Kawaii">
+        <div class="artist-name">Petite Patate Kawaii</div>
+      </div>
+
+      <div class="artist-card" onclick="openArtistModal('staff8')">
+        <img src="/a-files/image/futogensei.avif" alt="Futo Gensei">
+        <div class="artist-name">Futo Gensei</div>
+      </div>
+
+      <div class="artist-card" onclick="openArtistModal('staff9')">
+        <img src="/a-files/image/losttanuu.avif" alt="Lost Tanuu">
+        <div class="artist-name">Lost Tanuu</div>
+      </div>
+
+      <div class="artist-card" onclick="openArtistModal('staff10')">
+        <img src="/a-files/image/rayansilverhand.avif" alt="Rayan Silverhand">
+        <div class="artist-name">Rayan Silverhand</div>
+      </div>
+
+      <div class="artist-card" onclick="openArtistModal('staff11')">
+        <img src="/a-files/image/yaso.avif" alt="Yaso">
+        <div class="artist-name">Yaso</div>
       </div>
     </div>
-  </nav>
+    
 
-  <main class="main-content">
-    <section class="hero-section">
-      <h1>Notre Équipe</h1>
-      <p>Découvrez les personnes passionnées qui font vivre VentiStudio</p>
-    </section>
+    <!-- Overlay et modale -->
+    <div class="artist-overlay" id="artistOverlay" onclick="closeArtistModal()"></div>
 
-    <section class="section">
-      <div class="staff-grid">
-        <div class="staff-card">
-          <div class="staff-header">
-            <img src="/a-files/image/hikariumaishi.avif" alt="Hikari" class="staff-avatar">
-            <h3 class="staff-name">Hikari Umaishi</h3>
-            <p class="staff-role">Fondateur & Artiste</p>
-          </div>
-          <div class="staff-details">
-            <div class="staff-bio">
-              <p>Fondateur de VentiStudio, Fondateur de l'Umaishi Corp.</p>
-            </div>
-            <div class="staff-links">
-              <a href="/social/NCC-74656/?redirect=https://discord.gg/BupfZHSBbC" class="staff-link">Discord</a>
-              <a href="/social/NCC-74656/?redirect=https://ventistudio.fr/artist" class="staff-link">VentiStudio</a>
-              <a href="/social/NCC-74656/?redirect=https://www.patreon.com/c/ventistudio" class="staff-link">Patreon</a>        
-            </div>
-          </div>
-          <button class="staff-expand">+</button>
-        </div>
-
-        <div class="staff-card">
-          <div class="staff-header">
-            <img src="/a-files/image/sokinasawa.avif" alt="Hikari" class="staff-avatar">
-            <h3 class="staff-name">Soki Nasawa</h3>
-            <p class="staff-role">Gérant de VentiStudio</p>
-          </div>
-          <div class="staff-details">
-            <div class="staff-bio">
-              <p>Bien Bonsoir je suis l'envoyer O5-1E dans le cas pré sens je vous souhaite Une bonne vie au sain de la Fondation SCP bonne journée🕵️</p>
-            </div>
-            <div class="staff-links">
-              <a href="/social/NCC-74656/?redirect=https://discord.gg/BupfZHSBbC" class="staff-link">Discord</a>
-            </div>
-          </div>
-          <button class="staff-expand">+</button>
-        </div>
-
-        <div class="staff-card">
-          <div class="staff-header">
-            <img src="/a-files/image/futogensei.avif" alt="Hikari" class="staff-avatar">
-            <h3 class="staff-name">Futo Gensei</h3>
-            <p class="staff-role">Gérant de Retribution Studio</p>
-          </div>
-          <div class="staff-details">
-            <div class="staff-bio">
-              <p>Music is my escape from reality</p>
-            </div>
-            <div class="staff-links">
-              <a href="/social/NCC-74656/?redirect=https://discord.gg/BupfZHSBbC" class="staff-link">Discord</a>
-            </div>
-          </div>
-          <button class="staff-expand">+</button>
-        </div>
-
-        <div class="staff-card">
-          <div class="staff-header">
-            <img src="/a-files/image/yuikobayashi.avif" alt="Hikari" class="staff-avatar">
-            <h3 class="staff-name">Yui Kobayashi</h3>
-            <p class="staff-role">Gérante de RushKA Studio</p>
-          </div>
-          <div class="staff-details">
-            <div class="staff-bio">
-              <p>My name is Tessa. Wind breaker, my favorite anime :D  (and mha !!)</p>
-            </div>
-            <div class="staff-links">
-              <a href="/social/NCC-74656/?redirect=https://discord.gg/BupfZHSBbC" class="staff-link">Discord</a>
-            </div>
-          </div>
-          <button class="staff-expand">+</button>
-        </div>
-
-        <div class="staff-card">
-          <div class="staff-header">
-            <img src="/a-files/image/emytakemichi.avif" alt="Hikari" class="staff-avatar">
-            <h3 class="staff-name">Emy Takemichi</h3>
-            <p class="staff-role">Gérante de Étoile Tasukete</p>
-          </div>
-          <div class="staff-details">
-            <div class="staff-bio">
-              <p>Morphée arms are so soft</p>
-            </div>
-            <div class="staff-links">
-              <a href="/social/NCC-74656/?redirect=https://discord.gg/BupfZHSBbC" class="staff-link">Discord</a>
-            </div>
-          </div>
-          <button class="staff-expand">+</button>
-        </div>
-
-        <div class="staff-card">
-          <div class="staff-header">
-            <img src="/a-files/image/kalashnikov.avif" alt="Hikari" class="staff-avatar">
-            <h3 class="staff-name">Kalashnikov</h3>
-            <p class="staff-role">Gérante de Nexus Lumina</p>
-          </div>
-          <div class="staff-details">
-            <div class="staff-bio">
-              <p>ENTP, Fr/Eng, Animator/Cosplayer</p>
-            </div>
-            <div class="staff-links">
-              <a href="/social/NCC-74656/?redirect=https://discord.gg/BupfZHSBbC" class="staff-link">Discord</a>
-            <a href="/social/NCC-74656/?redirect=https://ventistudio.fr/artist" class="staff-link">VentiStudio</a>
-            </div>
-          </div>
-          <button class="staff-expand">+</button>
-        </div>
-
-        <div class="staff-card">
-          <div class="staff-header">
-            <img src="/a-files/image/rayansilverhand.avif" alt="Hikari" class="staff-avatar">
-            <h3 class="staff-name">Rayan Silverhand</h3>
-            <p class="staff-role">Gérant Staff</p>
-          </div>
-          <div class="staff-details">
-            <div class="staff-bio">
-              <p>L'amour est un souvenir lointain, la guerre est tout ce qu'il me reste... mais même un soldat brisé se bat encore. L'amour s'efface, la bataille ne finit jamais. Brisé, mais toujours debout.</p>
-            </div>
-            <div class="staff-links">
-              <a href="/social/NCC-74656/?redirect=https://discord.gg/BupfZHSBbC" class="staff-link">Discord</a>
-            </div>
-          </div>
-          <button class="staff-expand">+</button>
-        </div> 
-
-        <div class="staff-card">
-          <div class="staff-header">
-            <img src="/a-files/image/clementfernandez.avif" alt="Hikari" class="staff-avatar">
-            <h3 class="staff-name">Clément Fernandez</h3>
-            <p class="staff-role">Gérant Staff</p>
-          </div>
-          <div class="staff-details">
-            <div class="staff-bio">
-              <p>Redacted.</p>
-            </div>
-            <div class="staff-links">
-              <a href="/social/NCC-74656/?redirect=https://discord.gg/BupfZHSBbC" class="staff-link">Discord</a>
-            </div>
-          </div>
-          <button class="staff-expand">+</button>
-        </div> 
-
-        <!-- Ajoutez d'autres cartes staff ici -->
-        
+    <div class="artist-modal" id="staff1">
+      <button class="close-modal" onclick="closeArtistModal()">✕</button>
+      <div style="text-align: center;">
+        <img src="/a-files/image/hikariumaishi.avif" alt="Hikari Umaishi">
+        <h3>Hikari Umaishi</h3>
       </div>
-    </section>
+      <div class="artist-info">
+        <p><strong>Nom :</strong> Hikari Umaishi</p>
+        <p><strong>Pseudo :</strong> Hiuma</p>
+        <p><strong>Rank :</strong> 🧑‍🎨 • Archon Primordiaux</p>
+        <p><strong>Présentation :</strong> Hikari Umaishi est le fondateur de VentiStudio.</p>
+        <p><strong>Biographie :</strong> Voyageur, Voyageuse, Bienvenue dans notre monde ou l'avenir est notre présent. Teyvat fait appel !</p>
+        <p><strong>Discord :</strong> @ventistudio</p>
+      </div>
+      <div class="artist-buttons">
+        <a href="https://ventistudio.fr/player?music=voyageur-deternite" target="_blank">🎵 Voir la fiche d'artiste</a>
+        <a href="https://ventistudio.fr/wiki/Hikari_Umaishi" target="_blank">📘 Voir le Wiki</a>
+        <a href="https://ventistudio.fr" target="_blank">🌐 Site Officiel</a>
+      </div>
+    </div>
+
+    <div class="artist-modal" id="staff2">
+      <button class="close-modal" onclick="closeArtistModal()">✕</button>
+      <div style="text-align: center;">
+        <img src="/a-files/image/tomoumaishi.avif" alt="Tomo Umaishi">
+        <h3>Tomo Umaishi</h3>
+      </div>
+      <div class="artist-info">
+        <p><strong>Nom :</strong> Tomo Umaishi</p>
+        <p><strong>Pseudo :</strong> Hugo GVH</p>
+        <p><strong>Rank :</strong> 🧑‍🎨 • Archon Supérieur</p>
+        <p><strong>Présentation :</strong> Tomo Umaishi est pas vraiment du staff c'est simplement le frêre d'Hikari Umaishi.</p>
+        <p><strong>Biographie :</strong> (Aucune)</p>
+        <p><strong>Discord :</strong> @hugo_gvh_49815</p>
+      </div>
+      <div class="artist-buttons">
+        <a href="https://ventistudio.fr/artist" target="_blank">🎵 Voir la fiche d'artiste</a>
+        <a href="https://ventistudio.fr/wiki/Tomo_Umaishi" target="_blank">📘 Voir le Wiki</a>
+      </div>
+    </div>
+
+    <div class="artist-modal" id="staff3">
+      <button class="close-modal" onclick="closeArtistModal()">✕</button>
+      <div style="text-align: center;">
+        <img src="/a-files/image/clementfernandez.avif" alt="Clément Fernandez">
+        <h3>Clément Fernandez</h3>
+      </div>
+      <div class="artist-info">
+        <p><strong>Nom :</strong> Clément Fernandez</p>
+        <p><strong>Pseudo :</strong> Clem</p>
+        <p><strong>Rank :</strong> 🧑‍🎨 • Archon Ambassadeur</p>
+        <p><strong>Présentation :</strong> Clément Fernandez est un des 3 ambassadeur fondateur de VentiStudio.</p>
+        <p><strong>Biographie :</strong> (Aucune)</p>
+        <p><strong>Discord :</strong> @clem442</p>
+      </div>
+      <div class="artist-buttons">
+        <a href="https://ventistudio.fr/wiki/Hikari_Umaishi" target="_blank">📘 Voir le Wiki</a>
+      </div>
+    </div>
+
+    <div class="artist-modal" id="staff4">
+      <button class="close-modal" onclick="closeArtistModal()">✕</button>
+      <div style="text-align: center;">
+        <img src="/a-files/image/kalashnikov.avif" alt="Kalashnikov">
+        <h3>Kalashnikov</h3>
+      </div>
+      <div class="artist-info">
+        <p><strong>Nom :</strong> Kalashnikov</p>
+        <p><strong>Pseudo :</strong> Moonlight</p>
+        <p><strong>Rank :</strong> 🧑‍🎨 • Archon Ambassadeur</p>
+        <p><strong>Présentation :</strong> Kalashnikov est un des 3 ambassadeur fondateur de VentiStudio.</p>
+        <p><strong>Biographie :</strong> Moon/poltergeist/vendetta or Kalashnikov</p>
+        <p><strong>Discord :</strong> @moonlightvoc</p>
+      </div>
+      <div class="artist-buttons">
+        <a href="https://ventistudio.fr/player?music=voyageur-deternite" target="_blank">🎵 Voir la fiche d'artiste</a>
+        <a href="https://ventistudio.fr/wiki/Hikari_Umaishi" target="_blank">📘 Voir le Wiki</a>
+      </div>
+    </div>
+
+    <div class="artist-modal" id="staff5">
+      <button class="close-modal" onclick="closeArtistModal()">✕</button>
+      <div style="text-align: center;">
+        <img src="/a-files/image/sokinasawa.avif" alt="Soki Nasawa">
+        <h3>Soki Nasawa</h3>
+      </div>
+      <div class="artist-info">
+        <p><strong>Nom :</strong> Soki Nasawa</p>
+        <p><strong>Pseudo :</strong> Pompom</p>
+        <p><strong>Rank :</strong> 🧑‍🎨 • Archon Ambassadeur</p>
+        <p><strong>Présentation :</strong> Soki Nasawa est un des 3 ambassadeur fondateur de VentiStudio.</p>
+        <p><strong>Biographie :</strong> (Aucune)</p>
+        <p><strong>Discord :</strong> @daeth1gun</p>
+      </div>
+      <div class="artist-buttons">
+        <a href="https://ventistudio.fr/wiki/Hikari_Umaishi" target="_blank">📘 Voir le Wiki</a>
+      </div>
+    </div>
+
+    <div class="artist-modal" id="staff6">
+      <button class="close-modal" onclick="closeArtistModal()">✕</button>
+      <div style="text-align: center;">
+        <img src="/a-files/image/maitrecorbeau.avif" alt="Maître Corbeau">
+        <h3>Maître Corbeau</h3>
+      </div>
+      <div class="artist-info">
+        <p><strong>Nom :</strong> Maître Corbeau</p>
+        <p><strong>Pseudo :</strong> Corbeau Sauvage</p>
+        <p><strong>Rank :</strong> 🧑‍🎨 • Archon Responsable</p>
+        <p><strong>Présentation :</strong> Maître Corbeau est le responsable global de VentiStudio.</p>
+        <p><strong>Biographie :</strong> ♪fly me to the moon⁓🥀, Goth/Dark academia Aesthetic enjoyer/INFP-T, ❤ The Cat Returns, why the heck am I still alive..., ♪Live in a fantasy world,the real one suck</p>
+        <p><strong>Discord :</strong> @_corbeau__</p>
+      </div>
+      <div class="artist-buttons">
+        <a href="https://ventistudio.fr/wiki/Hikari_Umaishi" target="_blank">📘 Voir le Wiki</a>
+      </div>
+    </div>
+
+    <div class="artist-modal" id="staff7">
+      <button class="close-modal" onclick="closeArtistModal()">✕</button>
+      <div style="text-align: center;">
+        <img src="/a-files/image/petitepatatekawaii.avif" alt="Petite Patate Kawaii">
+        <h3>Petite Patate Kawaii</h3>
+      </div>
+      <div class="artist-info">
+        <p><strong>Nom :</strong> Petite Patate Kawaii</p>
+        <p><strong>Pseudo :</strong> Cookies</p>
+        <p><strong>Rank :</strong> 🧑‍🎨 • Archon Porte Parole</p>
+        <p><strong>Présentation :</strong> Petite Patate Kawaii est le Porte Parole Officiel de VentiStudio.</p>
+        <p><strong>Biographie :</strong> il ne faut pas se fier à un sourire parce qu'on ne sait jamais se qu'il peut se cacher derrière, un sourire est un outil très précieux très chères, il inspire tes amis fait douter tes ennemis.</p>
+        <p><strong>Discord :</strong> @petite_patate_kawaii</p>
+      </div>
+      <div class="artist-buttons">
+        <a href="https://ventistudio.fr/wiki/Hikari_Umaishi" target="_blank">📘 Voir le Wiki</a>
+      </div>
+    </div>
+
+    <div class="artist-modal" id="staff8">
+      <button class="close-modal" onclick="closeArtistModal()">✕</button>
+      <div style="text-align: center;">
+        <img src="/a-files/image/futogensei.avif" alt="Futo Gensei">
+        <h3>Futo Gensei</h3>
+      </div>
+      <div class="artist-info">
+        <p><strong>Nom :</strong> Futo Gensei</p>
+        <p><strong>Pseudo :</strong> Feeway</p>
+        <p><strong>Rank :</strong> 🔧 • Archonte</p>
+        <p><strong>Présentation :</strong> Futo Genshei est l'assistent fondateur de VentiStudio.</p>
+        <p><strong>Biographie :</strong> Music is my escape from reality.</p>
+        <p><strong>Discord :</strong> @feewaytv</p>
+      </div>
+      <div class="artist-buttons">
+        <a href="https://ventistudio.fr/wiki/Hikari_Umaishi" target="_blank">📘 Voir le Wiki</a>
+      </div>
+    </div>
+
+
+    <div class="artist-modal" id="staff9">
+      <button class="close-modal" onclick="closeArtistModal()">✕</button>
+      <div style="text-align: center;">
+        <img src="/a-files/image/losttanuu.avif" alt="Lost Tanuu">
+        <h3>Lost Tanuu</h3>
+      </div>
+      <div class="artist-info">
+        <p><strong>Nom :</strong> Lost Tanuu</p>
+        <p><strong>Pseudo :</strong> Nikano</p>
+        <p><strong>Rank :</strong> 👔 • Adepte</p>
+        <p><strong>Présentation :</strong> Lost Tanuu est le responsable staff et avocat de VentiStudio.</p>
+        <p><strong>Biographie :</strong> Slt...</p>
+        <p><strong>Discord :</strong> @nikano09_7</p>
+      </div>
+      <div class="artist-buttons">
+        <a href="https://ventistudio.fr/wiki/Hikari_Umaishi" target="_blank">📘 Voir le Wiki</a>
+      </div>
+    </div>
+
+    <div class="artist-modal" id="staff10">
+      <button class="close-modal" onclick="closeArtistModal()">✕</button>
+      <div style="text-align: center;">
+        <img src="/a-files/image/rayansilverhand.avif" alt="Rayan Silverhand">
+        <h3>Rayan Silverhand</h3>
+      </div>
+      <div class="artist-info">
+        <p><strong>Nom :</strong> Rayan Silverhand</p>
+        <p><strong>Pseudo :</strong> Rayan</p>
+        <p><strong>Rank :</strong> ⚖️ • Shogun</p>
+        <p><strong>Présentation :</strong> Rayan Silverhand est un des juge de VentiStudio.</p>
+        <p><strong>Biographie :</strong> "Le meilleur tir est celui que l'on ne doit jamais faire." – Colonel Jeff Cooper.</p>
+        <p><strong>Discord :</strong> @rayan_001_</p>
+      </div>
+      <div class="artist-buttons">
+        <a href="https://ventistudio.fr/wiki/Hikari_Umaishi" target="_blank">📘 Voir le Wiki</a>
+      </div>
+    </div>
+
+    <div class="artist-modal" id="staff11">
+      <button class="close-modal" onclick="closeArtistModal()">✕</button>
+      <div style="text-align: center;">
+        <img src="/a-files/image/yaso.avif" alt="Yaso">
+        <h3>Yaso</h3>
+      </div>
+      <div class="artist-info">
+        <p><strong>Nom :</strong> Yaso</p>
+        <p><strong>Pseudo :</strong> (Aucun)</p>
+        <p><strong>Rank :</strong> ⚖️ • Shogun</p>
+        <p><strong>Présentation :</strong> Yaso est un des juge de VentiStudio.</p>
+        <p><strong>Biographie :</strong> ⚒️ small dev⚒️, 🔴 Small content creator🔴.</p>
+        <p><strong>Discord :</strong> @yaso1.1</p>
+      </div>
+      <div class="artist-buttons">
+        <a href="https://ventistudio.fr/wiki/Hikari_Umaishi" target="_blank">📘 Voir le Wiki</a>
+      </div>
+    </div>
   </main>
 
-  <footer class="footer">
+  <footer>
     <div class="footer-content">
       <div class="footer-section">
-        <h3>Outils</h3>
-        <a href="/encrypt">Encrypt</a>
-        <a href="/sitemap">Sitemap</a>
-        <a href="/status">Statut</a>
+        <h4>Outils</h4>
+        <ul>
+          <li><a href="https://ventistudio.fr/encrypt">Encrypt</a></li>
+          <li><a href="https://ventistudio.fr/sitemap">Sitemap</a></li>
+          <li><a href="https://status.ventistudio.fr/">Statut</a></li>
+          <li><a href="https://aina.ventistudio.fr/">Aina</a></li>
+        </ul>
       </div>
       <div class="footer-section">
-        <h3>Entreprise</h3>
-        <a href="/about">À propos</a>
-        <a href="/jobs">Emplois</a>
-        <a href="/company">Marque</a>
+        <h4>Entreprise</h4>
+        <ul>
+          <li><a href="https://ventistudio.fr/about">À propos</a></li>
+          <li><a href="https://ventistudio.fr/jobs">Emplois</a></li>
+          <li><a href="https://ventistudio.fr/company">Marque</a></li>
+          <li><a href="https://ventistudio.fr/creator">Créateur</a></li>
+        </ul>
       </div>
       <div class="footer-section">
-        <h3>Ressources</h3>
-        <a href="/university">Université</a>
-        <a href="/lawful/support">Assistance</a>
-        <a href="/lawful/security">Sécurité</a>
+        <h4>Ressources</h4>
+        <ul>
+          <li><a href="https://ventistudio.fr/university">Université</a></li>
+          <li><a href="https://ventistudio.fr/school">École</a></li>
+          <li><a href="https://ventistudio.fr/help">Assistance</a></li>
+          <li><a href="https://ventistudio.fr/security">Sécurité</a></li>
+        </ul>
       </div>
       <div class="footer-section">
-        <h3>Chartes</h3>
-        <a href="/lawful/terms">Conditions</a>
-        <a href="/lawful/privacy">Confidentialité</a>
-        <a href="/lawful/cookies">Paramètres des cookies</a>
-        <a href="/lawful/dmca">DMCA</a>
-        <a href="/lawful/dmcainfo">DMCA Information</a>
-        <a href="/lawful/cgv">Conditions Général de Vente</a>
+        <h4>Chartes</h4>
+        <ul>
+          <li><a href="https://ventistudio.fr/terms">Conditions</a></li>
+          <li><a href="https://ventistudio.fr/privacy">Confidentialité</a></li>
+          <li><a href="https://ventistudio.fr/cookies">Cookies</a></li>
+          <li><a href="https://ventistudio.fr/dmca">DMCA</a></li>
+        </ul>
       </div>
     </div>
-    <div class="copyright">
-      <img src="/favicon.avif" alt="VentiStudio Logo">
-      <span>Copyright & P-Line 2023 - 2024, Tous droits réservés.</span>
+    <div class="footer-bottom">
+      <p class="status"><iframe src="https://status.ventistudio.fr/badge?theme=dark" width="250" height="30" frameborder="0" marginheight="0" marginwidth="0" scrolling="no"></iframe></p>
+      <p class="copyright">Copyright © P-Line 2023 - 2025. Tous droits réservés.</p>
     </div>
   </footer>
 
+  <script src="https://trust.ventistudio.fr/root/script.js"></script>
   <script>
-    const mobileMenuButton = document.querySelector('.mobile-menu-button');
-    const navLinks = document.querySelector('.nav-links');
-    const navItems = document.querySelectorAll('.nav-item');
-
-    mobileMenuButton.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-    });
-
-    if (window.innerWidth <= 768) {
-      navItems.forEach(item => {
-        item.addEventListener('click', (e) => {
-          if (e.target.closest('.nav-item') === item) {
-            item.classList.toggle('active');
-            navItems.forEach(otherItem => {
-              if (otherItem !== item) {
-                otherItem.classList.remove('active');
-              }
-            });
-          }
-        });
-      });
+    function openArtistModal(id) {
+      document.getElementById('artistOverlay').style.display = 'block';
+      document.getElementById(id).style.display = 'block';
     }
 
-    document.addEventListener('click', (e) => {
-      if (!e.target.closest('.navbar')) {
-        navLinks.classList.remove('active');
-        navItems.forEach(item => item.classList.remove('active'));
-      }
-    });
-
-    function checkHolidays() {
-      const today = new Date();
-      const day = today.getDate();
-      const month = today.getMonth() + 1; // JavaScript months are 0-based
-      const banner = document.getElementById('celebration-banner');
-      const message = document.getElementById('celebration-message');
-      let celebrationMessage = '';
-
-      // Check various holiday periods
-      if (month === 12 && day >= 1 && day <= 25) {
-        celebrationMessage = "Joyeux Noël ! 🎄";
-      }
-      
-      if (month === 12 && day === 15) {
-        celebrationMessage = "Joyeux anniversaire Hikari Umaishi ! 🎂 Et joyeux Noël ! 🎄";
-      }
-      
-      if (month === 9 && day === 24) {
-        celebrationMessage = "Joyeux anniversaire VentiStudio ! 🎉";
-      }
-      
-      if (month === 10 && day >= 25 && day <= 31) {
-        celebrationMessage = "Joyeux Halloween ! 🎃";
-      }
-      
-      if (month === 7 && day === 14) {
-        celebrationMessage = "Bonne fête nationale ! 🇫🇷";
-      }
-      
-      if ((month === 12 && day >= 31) || (month === 1 && day <= 3)) {
-        celebrationMessage = "Bonne année ! 🎊";
-      }
-      
-      if (month === 9 && day === 9) {
-        celebrationMessage = "Bonne fête de l'automne ! 🍂";
-      }
-      
-      if (month === 3 && (day === 20 || day === 21)) {
-        celebrationMessage = "Bienvenue au printemps ! 🌸";
-      }
-
-      if (celebrationMessage) {
-        message.textContent = celebrationMessage;
-        banner.style.display = 'block';
-      } else {
-        banner.style.display = 'none';
-      }
+    function closeArtistModal() {
+      document.getElementById('artistOverlay').style.display = 'none';
+      document.querySelectorAll('.artist-modal').forEach(modal => {
+        modal.style.display = 'none';
+      });
     }
-
-    // Run the check when the page loads
-    checkHolidays();
-
-    document.querySelectorAll('.staff-card').forEach(card => {
-      card.addEventListener('click', function(e) {
-        if (!e.target.classList.contains('staff-link')) {
-          this.classList.toggle('active');
-        }
-      });
-    });
-
-    // Prevent clicks on links from toggling the card
-    document.querySelectorAll('.staff-link').forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.stopPropagation();
-      });
-    });
   </script>
-</body></html>
+</body>
+</html>

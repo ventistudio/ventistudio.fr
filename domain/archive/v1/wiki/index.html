@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html><head><base href="https://ventistudio.fr/archive/v1/wiki">
+  <meta charset="utf-8">
+  <meta name="viewport">
+  <html lang="fr"></html>
+  <link rel="icon" type="image/gif" href="favicon.png">
+  <meta property="og:title" content="Bienvenu sur VentiStudio">
+  <meta property="og:site_name" content="VentiStudio Komiyuniti">
+  <meta property="og:url" content="https://ventistudio.fr">
+  <meta property="og:description" content="Hey, je suis Hikari Umaishi (光馬石), mais je préfère que l'on m'appelle Hiuma (ヒウマ).
+Laissez-moi vous présenter ma communauté, un espace où l'art et la créativité se rencontrent.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://ventistudio.fr/favicon.gif">
+    <title>VentiStudio - Wiki</title>
+    <style>
+        :root {
+            --dark-bg: #0f0f14;
+            --purple: #8e4ec6;
+            --light-text: #ffffff;
+            --dark-text: #a9a9b2;
+            --accent: #ff7edb;
+            --input-bg: #1a1a24;
+            --button-bg: #3d3d56;
+        }
+
+        body {
+            font-family: 'Noto Sans', 'Noto Sans JP', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            justify-content: space-between;           
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .logo svg {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+            fill: var(--accent);
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        nav ul li a {
+            color: var(--dark-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 5px 10px;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            color: var(--light-text);
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 5px;
+        }
+
+        main {
+            display: flex;
+            margin-top: 40px;
+        }
+
+        h1 {
+            color: var(--accent);
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .content {
+            flex-grow: 1;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .content-item {
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .content-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .content-item img {
+            width: 100%;
+            height: 225px;
+            object-fit: cover;
+        }
+
+        .content-info {
+            padding: 15px;
+        }
+
+        .content-info h3 {
+            margin: 0;
+            font-size: 1em;
+            color: var(--light-text);
+        }
+
+        .content-info p {
+            margin: 10px 0 0;
+            font-size: 0.8em;
+            color: var(--dark-text);
+        }
+
+        .category-filter {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .category-btn {
+            padding: 8px 15px;
+            background-color: var(--button-bg);
+            color: var(--light-text);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 0.9em;
+        }
+
+        .category-btn:hover, .category-btn.active {
+            background-color: var(--purple);
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--purple);
+            color: var(--light-text);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #7a3aad;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .feature {
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature svg {
+            width: 60px;
+            height: 60px;
+            fill: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .feature h3 {
+            margin-top: 0;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 20px 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .sidebar {
+            width: 250px;
+            padding-right: 30px;
+        }
+
+        .search-bar {
+            margin-bottom: 20px;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--dark-text);
+            border-radius: 5px;
+            background-color: var(--input-bg);
+            color: var(--light-text);
+        }
+
+        .wiki-content {
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            padding: 30px;
+        }
+
+        .wiki-content p {
+            margin-bottom: 15px;
+        }
+
+        .wiki-content ul {
+            padding-left: 20px;
+        }
+
+        .wiki-content a {
+            color: var(--purple);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .wiki-content a:hover {
+            color: var(--accent);
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2L1 21h22L12 2zm0 3.5L19.5 19h-15L12 5.5z"/>
+                </svg>
+                <span>VentiStudio Wiki</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/">Accueil</a></li>
+                    <li><a href="/publish">Contenu Approuvé</a></li>
+                    <li><a href="/wiki">Wiki</a></li>
+                    <li><a href="/music">Musique</a></li>
+                    <li><a href="/network">Réseau</a></li>
+                    <li><a href="/speedtest">Speedtest</a></li>
+                    <li><a href="/proxy">Proxy</a></li>
+                    <li><a href="/pip">Mode Pip</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <aside class="sidebar">
+                <div class="search-bar">
+                    <input type="text" placeholder="Rechercher dans le wiki...">
+                </div>
+                <div class="categories">
+                    <h2>Catégories</h2>
+                    <ul>
+                        <li><a href="#ventistudio">VentiStudio</a></li>
+                        <li><a href="#umaichi">Umaichi Corp</a></li>
+                        <li><a href="#retribution">Retribution Studio</a></li>
+                        <li><a href="#aoki">Aoki Univers</a></li>
+                        <li><a href="#reseausocial">Réseau Social</a></li>
+                    </ul>
+                </div>
+            </aside>
+
+            <div class="content">
+                <h1>Wiki VentiStudio</h1>
+                <div class="wiki-content">
+                    <h2 id="ventistudio">VentiStudio</h2>
+                    <p>VentiStudio est le cœur créatif de notre écosystème. Fondé sur des principes créatifs, VentiStudio s’efforce de créer des expériences numériques uniques qui fusionnent l’esthétique française et japonaise.
+
+                        En 2016, VentiStudio voit le jour sous le nom d’OPALUX STUDIO. Depuis sa création, il a connu plusieurs changements de pseudonyme pour diverses raisons. En 2021, OPALUX STUDIO se transforme en VentiStudio. Cette évolution marque une nouvelle ère pour notre univers.
+
+                        En 2018, Venti ouvre son premier serveur Discord communautaire et entame une approche unique de l’univers Teyvat (qui est devenu le nom de l’univers Ventistudio depuis 2023). Nous avons également investi les réseaux sociaux, notamment Instagram et TikTok, pour toucher un public plus large.
+
+                        Cependant, la période de la COVID-19 (2020-2022) entraîne une pause dans nos activités. Venti refait surface avec le projet Aoki Univers, notamment dans la musique. Le personnage Venti Opastudien se métamorphose en un nom d’artiste, et en 2023, la première musique intitulée “Voyageur d’éternité” par Venti Opastudien est publiée sur toutes les plateformes musicales.
+
+                        En 2024, VentiStudio se recentralise et se sépare en plusieurs groupes, tous contrôlés par l’entité Umaishi Corp. C’est également la première fois que VentiStudio se détache du domaine des jeux vidéo, laissant place à Retribution Game’s Studio sur le secteur français.
+
+                        En somme, VentiStudio est un univers en constante évolution, porté par la créativité et la passion de son fondateur. Bienvenue dans notre monde où chaque pixel, chaque note et chaque mot sont soigneusement tissés pour raconter des histoires uniques.</p>
+                    <ul>
+                        <li>Fondé en 2016</li>
+                        <li>Branche Artistique</li>
+                        <li>Projets phares : Aoki Univers</li>
+                    </ul>
+
+                    <h2 id="umaichi">Umaichi Corp</h2>
+                    <p>L’Umaishi Corp est une entité qui joue un rôle clé dans l’écosystème de VentiStudio.
+
+                        L’Umaishi Corp a toujours été en place, mais son nom précédent a été perdu dans les archives. Cependant, en 2024, elle se révèle sous ce nouveau nom.
+                        Elle a été créée pour gérer et coordonner les différentes branches de VentiStudio.
+                        
+                        En 2024, VentiStudio a connu une recentralisation, puis s’est à nouveau séparé en plusieurs groupes, tous contrôlés par l’Umaishi Corp.
+                        C’est également la première fois que VentiStudio se détache du domaine des jeux vidéo, laissant place à Retribution Game’s Studio sur le secteur français.
+                        
+                        L’Umaishi Corp agit comme un pilier central, coordonnant les activités créatives, les projets et les initiatives au sein de VentiStudio.
+                        Elle incarne la vision et la direction stratégique de l’écosystème.
+                        
+                        Bien que nous en sachions peu sur les détails internes de l’Umaishi Corp, son nom évoque une aura de mystère et d’intrigue.
+                        En somme, l’Umaishi Corp est un élément essentiel de VentiStudio, orchestrant les mouvements et les développements au sein de cet univers créatif.</p>
+
+                    <h2 id="retribution">Retribution Studio</h2>
+                    <p>Retribution Studio est un studio de jeux indépendant.</p>
+
+                    <h2 id="aoki">Aoki Univers</h2>
+                    <p>Aoki Univers est une histoire créer par Hikari Umaishi.</p>
+
+                    <h2 id="reseausocial">Réseau Social</h2>
+                    <p>Notre réseau social est conçu pour connecter les créateurs, les innovateurs et les passionnés du monde entier. Il offre des fonctionnalités uniques telles que :</p>
+                    <ul>
+                        <li>Partage de contenu créatif</li>
+                        <li>Collaborations inter-studios</li>
+                        <li>Événements virtuels exclusifs</li>
+                        <li>Marketplace pour artistes et créateurs</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 VentiStudio. Tous droits réservés.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const searchInput = document.querySelector('.search-bar input');
+            const wikiContent = document.querySelector('.wiki-content');
+
+            searchInput.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase();
+                const contentElements = wikiContent.querySelectorAll('h2, p, li');
+
+                contentElements.forEach(element => {
+                    const text = element.textContent.toLowerCase();
+                    if (text.includes(searchTerm)) {
+                        element.style.display = '';
+                        if (element.tagName === 'H2') {
+                            let nextElement = element.nextElementSibling;
+                            while (nextElement && nextElement.tagName !== 'H2') {
+                                nextElement.style.display = '';
+                                nextElement = nextElement.nextElementSibling;
+                            }
+                        }
+                    } else {
+                        element.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,21 +1,14 @@
-<html><head><base href="https://ventistudio.fr/player">
-    <meta charset="utf-8">
-    <meta name="viewport">
-    <html lang="fr"></html>
-    <link rel="icon" type="image/png" href="favicon.ico">
-    <meta property="og:title" content="Bienvenu sur VentiStudio">
-    <meta property="og:site_name" content="VentiStudio Komiyuniti">
-    <meta property="og:url" content="https://ventistudio.fr">
-    <meta property="og:description" content="Hey, je suis Hikari Umaishi (光馬石), mais je préfère que l'on m'appelle Hiuma (ヒウマ).
-  Laissez-moi vous présenter ma communauté, un espace où l'art et la créativité se rencontrent.">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="https://ventistudio.fr/favicon.gif">
-    <title>VentiStudio - Player</title>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/ico" href="https://ventistudio.fr/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Player - VentiStudio</title>
+  <link rel="stylesheet" href="https://trust.ventistudio.fr/root/style.css">
   <style>
   :root {
     --primary: #7B66FF;
-    --secondary: #2A2D3A;
-    --background: #1A1B26;
     --text: #FFFFFF;
     --hover: #9F86FF;
     --accent1: #414868;
@@ -28,130 +21,13 @@
     margin: 0;
     padding: 0;
     font-family: 'Inter', sans-serif;
-    background-color: var(--background);
+    background-color: var(--bg-primary);
     color: var(--text);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
   }
-  
-  .navbar {
-    background-color: var(--secondary);
-    padding: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    box-shadow: 0 2px 10px rgba(123, 102, 255, 0.1);
-  }
-  
-  .logo {
-    height: 50px;
-    transition: transform 0.3s ease;
-  }
-  
-  .logo:hover {
-    transform: scale(1.05);
-  }
-  
-  .nav-links {
-    display: flex;
-    gap: 2rem;
-  }
-  
-  .mobile-menu-button {
-    display: none;
-    background: none;
-    border: none;
-    color: var(--text);
-    font-size: 1.5rem;
-    cursor: pointer;
-    padding: 0.5rem;
-  }
-  
-  .nav-item {
-    position: relative;
-    cursor: pointer;
-  }
-  
-  .nav-item > a {
-    color: var(--text);
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 500;
-  }
-  
-  .nav-item > a:hover {
-    background-color: var(--hover);
-    transform: translateY(-2px);
-  }
-  
-  .dropdown {
-    display: none;
-    position: absolute;
-    background-color: var(--accent1);
-    min-width: 200px;
-    box-shadow: 0 8px 16px rgba(123, 102, 255, 0.2);
-    z-index: 1;
-    border-radius: 8px;
-    margin-top: 0.5rem;
-    backdrop-filter: blur(10px);
-  }
-  
-  .nav-item:hover .dropdown {
-    display: block;
-    animation: fadeIn 0.3s ease;
-  }
-  
-  @media screen and (max-width: 768px) {
-    .mobile-menu-button {
-      display: block;
-    }
-  
-    .nav-links {
-      display: none;
-      position: fixed;
-      top: 80px;
-      left: 0;
-      right: 0;
-      background-color: var(--secondary);
-      flex-direction: column;
-      padding: 1rem;
-      gap: 1rem;
-    }
-  
-    .nav-links.active {
-      display: flex;
-    }
-  
-    .nav-item {
-      width: 100%;
-    }
-  
-    .dropdown {
-      position: static;
-      width: 100%;
-      margin-top: 0.5rem;
-      display: none;
-    }
-  
-    .nav-item.active .dropdown {
-      display: block;
-    }
-  
-    .footer-content {
-      grid-template-columns: repeat(2, 1fr) !important;
-      padding: 0 1rem;
-    }
-  
-    .copyright {
-      flex-direction: column;
-      text-align: center;
-    }
-  }
-  
+    
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(-10px); }
     to { opacity: 1; transform: translateY(0); }
@@ -249,7 +125,7 @@
   
   .section {
     padding: 4rem 2rem;
-    background: var(--background);
+    background: var(--bg-primary);
   }
   
   .section-title {
@@ -338,493 +214,238 @@
       align-items: center;
     }
   }
-  
-  @keyframes titleGlow {
-    from { text-shadow: 0 0 20px rgba(123, 102, 255, 0.5); }
-    to { text-shadow: 0 0 30px rgba(123, 102, 255, 0.8); }
-  }
-  
-  .footer {
-    background-color: var(--secondary);
-    padding: 2rem;
-    margin-top: auto;
-    box-shadow: 0 -2px 10px rgba(123, 102, 255, 0.1);
-  }
-  
-  .footer-content {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
-  .footer-section h3 {
-    color: var(--text);
-    margin-bottom: 1rem;
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
-  }
-  
-  .footer-section a {
-    color: var(--text);
-    text-decoration: none;
-    display: block;
-    margin-bottom: 0.5rem;
-    transition: all 0.2s ease;
-    opacity: 0.8;
-  }
-  
-  .footer-section a:hover {
-    opacity: 1;
-    color: var(--hover);
-    transform: translateX(5px);
-  }
-  
-  .copyright {
-    text-align: center;
-    padding: 2rem 0;
-    border-top: 1px solid var(--accent1);
-    margin-top: 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-  }
-  
-  .copyright img {
-    height: 30px;
-  }
-  
-  .copyright span {
-    color: var(--text);
-    opacity: 0.8;
-    font-size: 0.9rem;
-  }
-  
-  ::-webkit-scrollbar {
-    width: 12px;
-  }
-  
-  ::-webkit-scrollbar-track {
-    background: var(--background);
-  }
-  
-  ::-webkit-scrollbar-thumb {
-    background: var(--primary);
-    border-radius: 6px;
-    border: 3px solid var(--background);
-  }
-  
-  ::-webkit-scrollbar-thumb:hover {
-    background: var(--hover);
-  }
-  
-  * {
-    scrollbar-width: thin;
-    scrollbar-color: var(--primary) var(--background);
-  }
-  
-  html {
-    scroll-behavior: smooth;
-  }
-  
-  @keyframes slideDown {
-    from {
-      transform: translateY(-100%);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
-  
-  #celebration-banner {
-    background: linear-gradient(45deg, var(--primary), var(--hover));
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    position: relative;
-    z-index: 1000;
-  }
-  
+    
   .content-header {
-    padding: 2rem;
-    background: var(--secondary);
     text-align: center;
+    margin-bottom: 2rem;
   }
-  
+
   .content-filters {
-    padding: 1rem;
-    background: var(--accent1);
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
     flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    justify-content: center;
   }
-  
-  .search-bar {
-    display: flex;
-    gap: 0.5rem;
-    max-width: 500px;
-    width: 100%;
-  }
-  
-  .search-input {
-    flex: 1;
-    padding: 0.5rem 1rem;
-    border: 2px solid var(--primary);
-    border-radius: 20px;
-    background: var(--background);
-    color: var(--text);
-    font-size: 1rem;
-  }
-  
-  .search-input:focus {
-    outline: none;
-    border-color: var(--hover);
-  }
-  
+
   .filter-button {
     padding: 0.5rem 1rem;
     border: none;
-    border-radius: 20px;
-    background: var(--accent2);
-    color: var(--text);
+    border-radius: 0.5rem;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3s;
   }
-  
+
   .filter-button.active {
-    background: var(--primary);
+    background: var(--accent);
+    color: var(--bg-primary);
   }
-  
-  .filter-button:hover {
-    background: var(--hover);
-    transform: translateY(-2px);
+
+  .search-bar {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto 1rem;
   }
-  
+
+  .search-input {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 0.5rem;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+  }
+
   .content-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 2rem;
-    padding: 2rem;
-    max-width: 1400px;
-    margin: 0 auto;
+    padding: 1rem;
   }
-  
+
   .content-card {
-    background: var(--secondary);
-    border-radius: 15px;
+    background: var(--accent1);
+    border-radius: 1rem;
     overflow: hidden;
     transition: all 0.3s ease;
     cursor: pointer;
-    position: relative;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
-  
+
   .content-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
   }
-  
+
   .content-image {
     width: 100%;
-    height: 400px;
+    height: 200px;
     object-fit: cover;
   }
-  
+
   .content-info {
     padding: 1.5rem;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
   }
-  
+
   .content-type {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: var(--primary);
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    background: var(--accent);
+    color: var(--bg-primary);
+    border-radius: 1rem;
     font-size: 0.9rem;
+    margin-bottom: 0.5rem;
   }
-  
+
+  .content-type svg {
+    width: 16px;
+    height: 16px;
+  }
+
   .content-title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
     color: var(--text);
+    margin: 0.5rem 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
   }
-  
+
   .content-description {
     color: var(--text);
-    opacity: 0.8;
-    line-height: 1.6;
+    font-size: 0.9rem;
+    margin: 0;
+    line-height: 1.4;
+    opacity: 0.9;
   }
-  
-  @media screen and (max-width: 768px) {
-    .content-filters {
-      flex-direction: column;
-      align-items: stretch;
-    }
-    
-    .search-bar {
-      max-width: 100%;
-    }
-    
+
+  @media (max-width: 768px) {
     .content-grid {
-      grid-template-columns: 1fr;
-      padding: 1rem;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     }
   }
   </style>
-  </head>
-  <body>
-    <div id="celebration-banner" style="display: none; background: var(--primary); color: var(--text); text-align: center; padding: 10px; font-weight: bold; animation: slideDown 0.5s ease-out;">
-      <span id="celebration-message"></span>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="/favicon.avif" alt="VentiStudio Logo" class="site-logo">
+      <span>VentiStudio</span>
     </div>
-    
-    <nav class="navbar">
-      <img src="/favicon.avif" alt="VentiStudio Logo" class="logo">
-      <button class="mobile-menu-button">☰</button>
-      <div class="nav-links">
-        <div class="nav-item">
-          <a href="/">Accueil</a>
-        </div>
-        <div class="nav-item">
-          <a href="/approuvedcontent">Contenu Approuvé</a>
-        </div>
-        <div class="nav-item">
-          <a href="/wiki">Wiki</a>
-        </div>
-        <div class="nav-item">
-          <a href="/staff">Staff</a>
-          <div class="dropdown">
-            <a href="/job">Recrutement</a>
-          </div>
-        </div>
-        <div class="nav-item">
-          <a href="/artist">Artiste</a>
-        </div>
-        <div class="nav-item">
-          <a href="/pip">PIP</a>
-        </div>
-      </div>
+    <nav>
+      <a href="/">Accueil</a>
+      <a href="/approuvedcontent">Contenu Approuvé</a>
+      <a href="/player" class="active">Player</a>
+      <a href="/wiki">Wiki</a>
+      <a href="/staff">Staff</a>
+      <a href="/artist">Artiste</a>
+      <a href="/pip">PIP</a>
+      <a href="/sitemap">Sitemap</a>
     </nav>
-  
-    <main class="main-content">
-      <div class="content-header">
-        <h1 class="section-title">Player</h1>
-        <p class="section-subtitle">VentiStudio All for One !</p>
+    <div class="controls">
+      <button id="theme-toggle" class="theme-toggle">
+        <svg width="24" height="24" viewBox="0 0 24 24">
+          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
+          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
+          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
+        </svg>
+      </button>
+      <div id="user-button"></div>
+    </div>
+  </header>
+
+  <main>
+    <div class="content-header">
+      <h1>Player</h1>
+      <p>Nos différents players spécialement conçus pour ventistudio.</p>
+    </div>
+
+    <div class="content-filters">
+      <div class="search-bar">
+        <input type="text" class="search-input" placeholder="Rechercher du contenu...">
       </div>
+    </div>
+
+    <div class="content-grid">
+      <div class="content-card" data-type="player" data-id="game">
       
-      <div class="content-filters">
-        <div class="search-bar">
-          <input type="text" class="search-input" placeholder="Rechercher un contenu...">
+        <img src="/a-files/image/game-image.avif" alt="Film example" class="content-image">
+        <div class="content-info">
+          <h3 class="content-title">GAME</h3>
+          <p class="content-description">Le jeu est un moyen de divertissement interactif qui permet aux utilisateurs de s'immerger dans des mondes virtuels, de relever des défis et d'explorer des histoires captivantes. Que ce soit sur console, PC ou mobile, le jeu offre une expérience unique et engageante.</p>
         </div>
-        <button class="filter-button active" data-type="all">Tout</button>
-        <button class="filter-button" data-type="player">Player</button>
       </div>
+      <div class="content-card" data-type="player" data-id="video">
       
-      <div class="content-grid">
-        <div class="content-card" data-type="player" data-id="game">
-          <span class="content-type">Player</span>
-          <img src="/a-files/image/game-image.avif" alt="Film example" class="content-image">
-          <div class="content-info">
-            <h3 class="content-title">Jeux</h3>
-            <p class="content-description">Player de jeux de VentiStudio.fr</p>
-          </div>
-        </div>
-        <div class="content-card" data-type="player" data-id="music">
-          <span class="content-type">Player</span>
-          <img src="/a-files/image/music-image.avif" alt="Film example" class="content-image">
-          <div class="content-info">
-            <h3 class="content-title">Musique</h3>
-            <p class="content-description">Player muiscal de VentiStudio.fr</p>
-          </div>
-        </div>
-        <div class="content-card" data-type="player" data-id="story">
-          <span class="content-type">Player</span>
-          <img src="/a-files/image/story-image.avif" alt="Film example" class="content-image">
-          <div class="content-info">
-            <h3 class="content-title">Histoire</h3>
-            <p class="content-description">Player d'histoire de VentiStudio.fr</p>
-          </div>
-        </div>
-        <div class="content-card" data-type="player" data-id="video">
-          <span class="content-type">Player</span>
-          <img src="/a-files/image/video-image.avif" alt="Film example" class="content-image">
-          <div class="content-info">
-            <h3 class="content-title">Video</h3>
-            <p class="content-description">Player vidéo de VentiStudio.fr</p>
-          </div>
-        </div>
-        <!-- Add more content cards as needed -->
-      </div>
-    </main>
-  
-    <footer class="footer">
-      <div class="footer-content">
-        <div class="footer-section">
-          <h3>Outils</h3>
-          <a href="/encrypt">Encrypt</a>
-          <a href="/sitemap">Sitemap</a>
-          <a href="/status">Statut</a>
-        </div>
-        <div class="footer-section">
-          <h3>Entreprise</h3>
-          <a href="/about">À propos</a>
-          <a href="/jobs">Emplois</a>
-          <a href="/company">Marque</a>
-        </div>
-        <div class="footer-section">
-          <h3>Ressources</h3>
-          <a href="/university">Université</a>
-          <a href="/lawful/support">Assistance</a>
-          <a href="/lawful/security">Sécurité</a>
-        </div>
-        <div class="footer-section">
-          <h3>Chartes</h3>
-          <a href="/lawful/terms">Conditions</a>
-          <a href="/lawful/privacy">Confidentialité</a>
-          <a href="/lawful/cookies">Paramètres des cookies</a>
-          <a href="/lawful/dmca">DMCA</a>
-          <a href="/lawful/dmcainfo">DMCA Information</a>
-          <a href="/lawful/cgv">Conditions Général de Vente</a>
+        <img src="/a-files/image/video-image.avif" alt="Film example" class="content-image">
+        <div class="content-info">
+          <h3 class="content-title">VIDEO</h3>
+          <p class="content-description">Les vidéos sont des enregistrements visuels qui capturent des moments, des histoires ou des informations. Elles peuvent être éducatives, divertissantes ou informatives, et sont souvent partagées sur des plateformes de streaming ou de médias sociaux.</p>
         </div>
       </div>
-      <div class="copyright">
-        <img src="/favicon.avif" alt="VentiStudio Logo">
-        <span>Copyright & P-Line 2023 - 2024, Tous droits réservés.</span>
+      <div class="content-card" data-type="player" data-id="story">
+      
+        <img src="/a-files/image/story-image.avif" alt="Film example" class="content-image">
+        <div class="content-info">
+          <h3 class="content-title">STORY</h3>
+          <p class="content-description">Les histoires sont des récits narratifs qui peuvent être fictifs ou basés sur des événements réels. Elles sont souvent utilisées pour transmettre des messages, des émotions ou des leçons de vie, et peuvent être racontées à travers divers médias tels que la littérature, le cinéma ou le théâtre.</p>
+        </div>
       </div>
-    </footer>
-  
-    <script>
-      const mobileMenuButton = document.querySelector('.mobile-menu-button');
-      const navLinks = document.querySelector('.nav-links');
-      const navItems = document.querySelectorAll('.nav-item');
-  
-      mobileMenuButton.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-      });
-  
-      if (window.innerWidth <= 768) {
-        navItems.forEach(item => {
-          item.addEventListener('click', (e) => {
-            if (e.target.closest('.nav-item') === item) {
-              item.classList.toggle('active');
-              navItems.forEach(otherItem => {
-                if (otherItem !== item) {
-                  otherItem.classList.remove('active');
-                }
-              });
-            }
-          });
-        });
-      }
-  
-      document.addEventListener('click', (e) => {
-        if (!e.target.closest('.navbar')) {
-          navLinks.classList.remove('active');
-          navItems.forEach(item => item.classList.remove('active'));
-        }
-      });
-  
-      function checkHolidays() {
-        const today = new Date();
-        const day = today.getDate();
-        const month = today.getMonth() + 1; // JavaScript months are 0-based
-        const banner = document.getElementById('celebration-banner');
-        const message = document.getElementById('celebration-message');
-        let celebrationMessage = '';
-  
-        // Check various holiday periods
-        if (month === 12 && day >= 1 && day <= 25) {
-          celebrationMessage = "Joyeux Noël ! 🎄";
-        }
-        
-        if (month === 12 && day === 15) {
-          celebrationMessage = "Joyeux anniversaire Hikari Umaishi ! 🎂 Et joyeux Noël ! 🎄";
-        }
-        
-        if (month === 9 && day === 24) {
-          celebrationMessage = "Joyeux anniversaire VentiStudio ! 🎉";
-        }
-        
-        if (month === 10 && day >= 25 && day <= 31) {
-          celebrationMessage = "Joyeux Halloween ! 🎃";
-        }
-        
-        if (month === 7 && day === 14) {
-          celebrationMessage = "Bonne fête nationale ! 🇫🇷";
-        }
-        
-        if ((month === 12 && day >= 31) || (month === 1 && day <= 3)) {
-          celebrationMessage = "Bonne année ! 🎊";
-        }
-        
-        if (month === 9 && day === 9) {
-          celebrationMessage = "Bonne fête de l'automne ! 🍂";
-        }
-        
-        if (month === 3 && (day === 20 || day === 21)) {
-          celebrationMessage = "Bienvenue au printemps ! 🌸";
-        }
-  
-        if (celebrationMessage) {
-          message.textContent = celebrationMessage;
-          banner.style.display = 'block';
-        } else {
-          banner.style.display = 'none';
-        }
-      }
-  
-      // Run the check when the page loads
-      checkHolidays();
-  
-      // Add content filtering functionality
-      const filterButtons = document.querySelectorAll('.filter-button');
-      const contentCards = document.querySelectorAll('.content-card');
-      const searchInput = document.querySelector('.search-input');
-  
-      filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-          const type = button.dataset.type;
-          
-          filterButtons.forEach(btn => btn.classList.remove('active'));
-          button.classList.add('active');
-          
-          contentCards.forEach(card => {
-            if (type === 'all' || card.dataset.type === type) {
-              card.style.display = 'block';
-            } else {
-              card.style.display = 'none';
-            }
-          });
-        });
-      });
-  
-      searchInput.addEventListener('input', (e) => {
-        const searchTerm = e.target.value.toLowerCase();
-        
-        contentCards.forEach(card => {
-          const title = card.querySelector('.content-title').textContent.toLowerCase();
-          const description = card.querySelector('.content-description').textContent.toLowerCase();
-          
-          if (title.includes(searchTerm) || description.includes(searchTerm)) {
-            card.style.display = 'block';
-          } else {
-            card.style.display = 'none';
-          }
-        });
-      });
-  
-      // Add click handler for content cards
-      contentCards.forEach(card => {
-        card.addEventListener('click', () => {
-          const contentId = card.dataset.id;
-          if (contentId) {
-            window.location.href = `/player/${contentId}`;
-          }
-        });
-      });
-    </script>
-  </body></html>
+      <!-- Add more content cards as needed -->
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Outils</h4>
+        <ul>
+          <li><a href="https://ventistudio.fr/encrypt">Encrypt</a></li>
+          <li><a href="https://ventistudio.fr/sitemap">Sitemap</a></li>
+          <li><a href="https://status.ventistudio.fr/">Statut</a></li>
+          <li><a href="https://aina.ventistudio.fr/">Aina</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Entreprise</h4>
+        <ul>
+          <li><a href="https://ventistudio.fr/about">À propos</a></li>
+          <li><a href="https://ventistudio.fr/jobs">Emplois</a></li>
+          <li><a href="https://ventistudio.fr/company">Marque</a></li>
+          <li><a href="https://ventistudio.fr/creator">Créateur</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Ressources</h4>
+        <ul>
+          <li><a href="https://ventistudio.fr/university">Université</a></li>
+          <li><a href="https://ventistudio.fr/school">École</a></li>
+          <li><a href="https://ventistudio.fr/help">Assistance</a></li>
+          <li><a href="https://ventistudio.fr/security">Sécurité</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Chartes</h4>
+        <ul>
+          <li><a href="https://ventistudio.fr/terms">Conditions</a></li>
+          <li><a href="https://ventistudio.fr/privacy">Confidentialité</a></li>
+          <li><a href="https://ventistudio.fr/cookies">Cookies</a></li>
+          <li><a href="https://ventistudio.fr/dmca">DMCA</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="status"><iframe src="https://status.ventistudio.fr/badge?theme=dark" width="250" height="30" frameborder="0" marginheight="0" marginwidth="0" scrolling="no"></iframe></p>
+      <p class="copyright">Copyright © P-Line 2023 - 2025. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <script src="https://trust.ventistudio.fr/root/script.js"></script> <!--https://trust.ventistudio.fr/-->
+  <script src="https://trust.ventistudio.fr/root/player/script.js"></script>
+</body>
+</html>

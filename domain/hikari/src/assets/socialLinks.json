@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Github",
+    "icon": "/images/icon/github.png",
+    "tip": "Aller voir sur Github",
+    "url": "https://github.com/ventistudio"
+  },
+  {
+    "name": "Email",
+    "icon": "/images/icon/email.png",
+    "tip": "Envoyez un Email ~",
+    "url": "mailto:support@ventistudio.fr"
+  }
+]

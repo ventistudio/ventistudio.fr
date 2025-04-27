@@ -1,0 +1,2258 @@
+[
+  {
+    "title": "Aeons - Celestial Afar",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Aeons - Celestial Afar.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Aeons - Express",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Aeons - Express.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Aeons - Shadow Univers",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Aeons - Shadow Univers.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Aeons - The Old Univers",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Aeons - The Old Univers.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Aeons - Vortex Call",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Aeons - Vortex Call.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Aeons - Wars Theme",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Aeons - Wars Theme.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "AICO - Nation Uni Génération 7, Pt. 1",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 5",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers5/AICO - Nation Uni Génération 7, Pt. 1.mp3",
+    "cover": "a-files/music/image/aokiunivers5.avif"
+  },
+  {
+    "title": "AICO - Nation Uni Génération 7, Pt. 3",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/AICO - Nation Uni Génération 7, Pt. 3.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "AICO - Nation Uni Génération 7, Pt. 4",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/AICO - Nation Uni Génération 7, Pt. 4.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "AICO - Nation Uni Génération 7",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 3",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers3/AICO - Nation Uni Génération 7.mp3",
+    "cover": "a-files/music/image/aokiunivers3.avif"
+  },
+  {
+    "title": "AICO - Nation Univ Génération 7, Pt. 2",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 5",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers5/AICO - Nation Univ Génération 7, Pt. 2.mp3",
+    "cover": "a-files/music/image/aokiunivers5.avif"
+  },
+  {
+    "title": "AICO - Panic Général (var)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers Bonus",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiuniversbonus/AICO - Panic Général (var).mp3",
+    "cover": "a-files/music/image/aokiuniversbonus.avif"
+  },
+  {
+    "title": "AICO - Panic Général",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 3",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers3/AICO - Panic Général.mp3",
+    "cover": "a-files/music/image/aokiunivers3.avif"
+  },
+  {
+    "title": "AINA - Combative Mod",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/AINA - Combative Mod.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "AINA - I am Freedom",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/AINA - I am Freedom.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "AINA - New Age",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 5",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers5/AINA - New Age.mp3",
+    "cover": "a-files/music/image/aokiunivers5.avif"
+  },
+  {
+    "title": "AINA - Scan Detection",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/AINA - Scan Detection.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "AINA - Scan Mod",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/AINA - Scan Mod.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "AINA - Virtuality Mod",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/AINA - Virtuality Mod.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Anemo - Anshin",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 3",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers3/Anemo - Anshin.mp3",
+    "cover": "a-files/music/image/aokiunivers3.avif"
+  },
+  {
+    "title": "Anshin - Point de Non-Retour (var)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 7",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers7/Anshin - Point de Non-Retour (var).mp3",
+    "cover": "a-files/music/image/aokiunivers7.avif"
+  },
+  {
+    "title": "Anshin - Point de Non-Retour, Pt. 1",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers Bonus",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiuniversbonus/Anshin - Point de Non-Retour, Pt. 1.mp3",
+    "cover": "a-files/music/image/aokiuniversbonus.avif"
+  },
+  {
+    "title": "Anshin - Point de Non-Retour",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 3",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers3/Anshin - Point de Non-Retour.mp3",
+    "cover": "a-files/music/image/aokiunivers3.avif"
+  },
+  {
+    "title": "Aoki - Enfant de la lune (Enchanted - Var)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Aoki - Enfant de la lune (Enchanted - Var).mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Aoki - Enfant de la lune (Enchanted), Pt. 1",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers Bonus",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiuniversbonus/Aoki - Enfant de la lune (Enchanted), Pt. 1.mp3",
+    "cover": "a-files/music/image/aokiuniversbonus.avif"
+  },
+  {
+    "title": "Aoki - Enfant de la lune (Enchanted), Pt. 2",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers Bonus",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiuniversbonus/Aoki - Enfant de la lune (Enchanted), Pt. 2.mp3",
+    "cover": "a-files/music/image/aokiuniversbonus.avif"
+  },
+  {
+    "title": "Aoki - Enfant de la lune (Enchanted)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Aoki - Enfant de la lune (Enchanted).mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Aoki - Enfant de la lune (var - orchestra)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers/Aoki - Enfant de la lune (var - orchestra).mp3",
+    "cover": "a-files/music/image/aokiunivers.avif"
+  },
+  {
+    "title": "Aoki - Enfant de la lune (var)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers/Aoki - Enfant de la lune (var).mp3",
+    "cover": "a-files/music/image/aokiunivers.avif"
+  },
+  {
+    "title": "Aoki - Enfant de la lune",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers/Aoki - Enfant de la lune.mp3",
+    "cover": "a-files/music/image/aokiunivers.avif"
+  },
+  {
+    "title": "Aoki - Fox Theme",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 9",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers9/Aoki - Fox Theme.mp3",
+    "cover": "a-files/music/image/aokiunivers9.avif"
+  },
+  {
+    "title": "Aoki - Gods And Goddess Sanctuary",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 8",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers8/Aoki - Gods And Goddess Sanctuary.mp3",
+    "cover": "a-files/music/image/aokiunivers8.avif"
+  },
+  {
+    "title": "Aoki - La lune de l'enfant (Enchanted - Var)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Aoki - La lune de l'enfant (Enchanted - Var).mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Aoki - La lune de l'enfant (Enchanted), Pt. 1",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Aoki - La lune de l'enfant (Enchanted), Pt. 1.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Aoki - La lune de l'enfant (Enchanted)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Aoki - La lune de l'enfant (Enchanted).mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Aoki - La lune de l'enfant, Pt.1",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 6",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers6/Aoki - La lune de l'enfant, Pt.1.mp3",
+    "cover": "a-files/music/image/aokiunivers6.avif"
+  },
+  {
+    "title": "Aoki - La lune de l'enfant, Pt.2",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 6",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers6/Aoki - La lune de l'enfant, Pt.2.mp3",
+    "cover": "a-files/music/image/aokiunivers6.avif"
+  },
+  {
+    "title": "Aoki - La lune de l'enfant, Pt.3",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 8",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers8/Aoki - La lune de l'enfant, Pt.3.mp3",
+    "cover": "a-files/music/image/aokiunivers8.avif"
+  },
+  {
+    "title": "Aoki - La lune de l'enfant",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 5",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers5/Aoki - La lune de l'enfant.mp3",
+    "cover": "a-files/music/image/aokiunivers5.avif"
+  },
+  {
+    "title": "Aoki - Next-Enfant de la lune, Pt. 1",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 5",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers5/Aoki - Next-Enfant de la lune, Pt. 1.mp3",
+    "cover": "a-files/music/image/aokiunivers5.avif"
+  },
+  {
+    "title": "Aoki - Next-Enfant de la lune, Pt. 2",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 5",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers5/Aoki - Next-Enfant de la lune, Pt. 2.mp3",
+    "cover": "a-files/music/image/aokiunivers5.avif"
+  },
+  {
+    "title": "Aoki - Next-Enfant de la lune, Pt. 3",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 5",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers5/Aoki - Next-Enfant de la lune, Pt. 3.mp3",
+    "cover": "a-files/music/image/aokiunivers5.avif"
+  },
+  {
+    "title": "Aoki - Next-Enfant de la lune, Pt.4",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 6",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers6/Aoki - Next-Enfant de la lune, Pt.4.mp3",
+    "cover": "a-files/music/image/aokiunivers6.avif"
+  },
+  {
+    "title": "Aoki - Next-Enfant de la lune, Pt.5",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 6",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers6/Aoki - Next-Enfant de la lune, Pt.5.mp3",
+    "cover": "a-files/music/image/aokiunivers6.avif"
+  },
+  {
+    "title": "Aoki - Next-Enfant de la lune",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 2",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers2/Aoki - Next-Enfant de la lune.mp3",
+    "cover": "a-files/music/image/aokiunivers2.avif"
+  },
+  {
+    "title": "Aoki - Omega Theme",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Aoki - Omega Theme.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Aoki - Reanimation Sequence (Var)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Aoki - Reanimation Sequence (Var).mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Aoki - Reanimation Sequence",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 9",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers9/Aoki - Reanimation Sequence.mp3",
+    "cover": "a-files/music/image/aokiunivers9.avif"
+  },
+  {
+    "title": "Aoki - Stream Theme (Var)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers Bonus",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiuniversbonus/Aoki - Stream Theme (Var).mp3",
+    "cover": "a-files/music/image/aokiuniversbonus.avif"
+  },
+  {
+    "title": "Aoki - Stream Theme",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 8",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers8/Aoki - Stream Theme.mp3",
+    "cover": "a-files/music/image/aokiunivers8.avif"
+  },
+  {
+    "title": "Aoki - The Cat (var)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 6",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers6/Aoki - The Cat (var).mp3",
+    "cover": "a-files/music/image/aokiunivers6.avif"
+  },
+  {
+    "title": "Aoki - The Cat, Pt. 1",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Aoki - The Cat, Pt. 1.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Aoki - The Cat",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 5",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers5/Aoki - The Cat.mp3",
+    "cover": "a-files/music/image/aokiunivers5.avif"
+  },
+  {
+    "title": "Aoki - The Light of the Child",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Aoki - The Light of the Child.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Aoki - Timeless Memory (Var)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers Bonus",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiuniversbonus/Aoki - Timeless Memory (Var).mp3",
+    "cover": "a-files/music/image/aokiuniversbonus.avif"
+  },
+  {
+    "title": "Aoki - Timeless Memory",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 6",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers6/Aoki - Timeless Memory.mp3",
+    "cover": "a-files/music/image/aokiunivers6.avif"
+  },
+  {
+    "title": "Aoki - Umaishi Corp",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 5",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers5/Aoki - Umaishi Corp.mp3",
+    "cover": "a-files/music/image/aokiunivers5.avif"
+  },
+  {
+    "title": "Aoki Univers - Child of the Moon (var)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers Bonus",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiuniversbonus/Aoki Univers - Child of the Moon (var).mp3",
+    "cover": "a-files/music/image/aokiuniversbonus.avif"
+  },
+  {
+    "title": "Aoki Univers - Child of the Moon",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers Bonus",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiuniversbonus/Aoki Univers - Child of the Moon.mp3",
+    "cover": "a-files/music/image/aokiuniversbonus.avif"
+  },
+  {
+    "title": "Aoki Univers - Final Theme",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 4",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers4/Aoki Univers - Final Theme.mp3",
+    "cover": "a-files/music/image/aokiunivers4.avif"
+  },
+  {
+    "title": "Aoki Univers - L'histoire Spacial, Pt. 1",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 5",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers5/Aoki Univers - L'histoire Spacial, Pt. 1.mp3",
+    "cover": "a-files/music/image/aokiunivers5.avif"
+  },
+  {
+    "title": "Aoki Univers - L'histoire Spacial, Pt. 2",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Aoki Univers - L'histoire Spacial, Pt. 2.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Aoki Univers - L'histoire Spatial (var)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 2",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers2/Aoki Univers - L'histoire Spatial (var).mp3",
+    "cover": "a-files/music/image/aokiunivers2.avif"
+  },
+  {
+    "title": "Aoki Univers - L'histoire Spatial",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 2",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers2/Aoki Univers - L'histoire Spatial.mp3",
+    "cover": "a-files/music/image/aokiunivers2.avif"
+  },
+  {
+    "title": "Aoki Univers - La Voie Céleste",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Aoki Univers - La Voie Céleste.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Aoki Univers - Notre Planète Bleu",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 5",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers5/Aoki Univers - Notre Planète Bleu.mp3",
+    "cover": "a-files/music/image/aokiunivers5.avif"
+  },
+  {
+    "title": "Aoki Univers - Notre station (var)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 2",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers2/Aoki Univers - Notre station (var).mp3",
+    "cover": "a-files/music/image/aokiunivers2.avif"
+  },
+  {
+    "title": "Aoki Univers - Notre Station, Pt. 1",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 5",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers5/Aoki Univers - Notre Station, Pt. 1.mp3",
+    "cover": "a-files/music/image/aokiunivers5.avif"
+  },
+  {
+    "title": "Aoki Univers - Notre Station, Pt. 2",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 5",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers5/Aoki Univers - Notre Station, Pt. 2.mp3",
+    "cover": "a-files/music/image/aokiunivers5.avif"
+  },
+  {
+    "title": "Aoki Univers - Notre station",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 2",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers2/Aoki Univers - Notre station.mp3",
+    "cover": "a-files/music/image/aokiunivers2.avif"
+  },
+  {
+    "title": "Aoki Univers - Orbital Children (new)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Aoki Univers - Orbital Children (new).mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Aoki Univers - Orbital Children (var-new)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Aoki Univers - Orbital Children (var-new).mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Aoki Univers - Orbital Children, Pt. 1",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers Bonus",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiuniversbonus/Aoki Univers - Orbital Children, Pt. 1.mp3",
+    "cover": "a-files/music/image/aokiuniversbonus.avif"
+  },
+  {
+    "title": "Aoki Univers - Sleep Time",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Aoki Univers - Sleep Time.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Aoki Univers - Space Life",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Aoki Univers - Space Life.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Aoki Univers - Space Story",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Aoki Univers - Space Story.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Aoki Univers - Voyageur",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 5",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers5/Aoki Univers - Voyageur.mp3",
+    "cover": "a-files/music/image/aokiunivers5.avif"
+  },
+  {
+    "title": "Boblox - Adventure Theme (var)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers Bonus",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiuniversbonus/Boblox - Adventure Theme (var).mp3",
+    "cover": "a-files/music/image/aokiuniversbonus.avif"
+  },
+  {
+    "title": "Boblox - Adventure Theme",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 7",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers7/Boblox - Adventure Theme.mp3",
+    "cover": "a-files/music/image/aokiunivers7.avif"
+  },
+  {
+    "title": "Boblox - Adventure Time",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers Bonus",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiuniversbonus/Boblox - Adventure Time.mp3",
+    "cover": "a-files/music/image/aokiuniversbonus.avif"
+  },
+  {
+    "title": "Boblox - Baby Theme",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers Bonus",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiuniversbonus/Boblox - Baby Theme.mp3",
+    "cover": "a-files/music/image/aokiuniversbonus.avif"
+  },
+  {
+    "title": "Boblox - Chill",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers Bonus",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiuniversbonus/Boblox - Chill.mp3",
+    "cover": "a-files/music/image/aokiuniversbonus.avif"
+  },
+  {
+    "title": "Boblox - End Theme",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Boblox - End Theme.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Boblox - Fighter Theme",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Boblox - Fighter Theme.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Boblox - Guile Theme",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Boblox - Guile Theme.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Boblox - Horor Games",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 4",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers4/Boblox - Horor Games.mp3",
+    "cover": "a-files/music/image/aokiunivers4.avif"
+  },
+  {
+    "title": "Boblox - Paku Theme",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Boblox - Paku Theme.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Boblox - Return Theme",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers Bonus",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiuniversbonus/Boblox - Return Theme.mp3",
+    "cover": "a-files/music/image/aokiuniversbonus.avif"
+  },
+  {
+    "title": "Boblox - Start Adventure (var)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 7",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers7/Boblox - Start Adventure (var).mp3",
+    "cover": "a-files/music/image/aokiunivers7.avif"
+  },
+  {
+    "title": "Boblox - Start Adventure",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 4",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers4/Boblox - Start Adventure.mp3",
+    "cover": "a-files/music/image/aokiunivers4.avif"
+  },
+  {
+    "title": "Boblox - Start Theme",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Boblox - Start Theme.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Boblox - The Games (var)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 5",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers5/Boblox - The Games (var).mp3",
+    "cover": "a-files/music/image/aokiunivers5.avif"
+  },
+  {
+    "title": "Boblox - The Games Of Year",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Boblox - The Games Of Year.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Boblox - The Games, Pt. 1",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Boblox - The Games, Pt. 1.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Boblox - The Games",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 3",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers3/Boblox - The Games.mp3",
+    "cover": "a-files/music/image/aokiunivers3.avif"
+  },
+  {
+    "title": "Boblox - Vice City",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Boblox - Vice City.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Boblox - Victory Theme",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Boblox - Victory Theme.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Christmas Day (var)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers Bonus",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiuniversbonus/Christmas Day (var).mp3",
+    "cover": "a-files/music/image/aokiuniversbonus.avif"
+  },
+  {
+    "title": "Clochette - Hommage (var)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Clochette - Hommage (var).mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Cryo - Atlas (var)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Cryo - Atlas (var).mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Cryo - Atlas",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 3",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers3/Cryo - Atlas.mp3",
+    "cover": "a-files/music/image/aokiunivers3.avif"
+  },
+  {
+    "title": "Deegle - L'oiseau dieu (var)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 3",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers3/Deegle - L'oiseau dieu (var).mp3",
+    "cover": "a-files/music/image/aokiunivers3.avif"
+  },
+  {
+    "title": "Deegle - L'oiseau dieu, Pt. 1",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 5",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers5/Deegle - L'oiseau dieu, Pt. 1.mp3",
+    "cover": "a-files/music/image/aokiunivers5.avif"
+  },
+  {
+    "title": "Deegle - L'oiseau dieu",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 2",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers2/Deegle - L'oiseau dieu.mp3",
+    "cover": "a-files/music/image/aokiunivers2.avif"
+  },
+  {
+    "title": "Deegle - Le rappel (var)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers/Deegle - Le rappel (var).mp3",
+    "cover": "a-files/music/image/aokiunivers.avif"
+  },
+  {
+    "title": "Deegle - Le rappel",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers/Deegle - Le rappel.mp3",
+    "cover": "a-files/music/image/aokiunivers.avif"
+  },
+  {
+    "title": "Dendro - Kappa, Pt. 1",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 5",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers5/Dendro - Kappa, Pt. 1.mp3",
+    "cover": "a-files/music/image/aokiunivers5.avif"
+  },
+  {
+    "title": "Dendro - Kappa, Pt. 2",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 5",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers5/Dendro - Kappa, Pt. 2.mp3",
+    "cover": "a-files/music/image/aokiunivers5.avif"
+  },
+  {
+    "title": "Dendro - Kappa",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 3",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers3/Dendro - Kappa.mp3",
+    "cover": "a-files/music/image/aokiunivers3.avif"
+  },
+  {
+    "title": "DISLORD - Arcade Theme",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers Bonus",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiuniversbonus/DISLORD - Arcade Theme.mp3",
+    "cover": "a-files/music/image/aokiuniversbonus.avif"
+  },
+  {
+    "title": "DISLORD - Call Incoming",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/DISLORD - Call Incoming.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "DISLORD - Festival, Pt.1",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 7",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers7/DISLORD - Festival, Pt.1.mp3",
+    "cover": "a-files/music/image/aokiunivers7.avif"
+  },
+  {
+    "title": "DISLORD - Festival, Pt.2",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 7",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers7/DISLORD - Festival, Pt.2.mp3",
+    "cover": "a-files/music/image/aokiunivers7.avif"
+  },
+  {
+    "title": "DISLORD - Festival, Pt.3",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/DISLORD - Festival, Pt.3.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "DISLORD - Festival",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 4",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers4/DISLORD - Festival.mp3",
+    "cover": "a-files/music/image/aokiunivers4.avif"
+  },
+  {
+    "title": "DISLORD - Final Theme",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/DISLORD - Final Theme.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "DISLORD - Social",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 3",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers3/DISLORD - Social.mp3",
+    "cover": "a-files/music/image/aokiunivers3.avif"
+  },
+  {
+    "title": "Dixyverse - star",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 4",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers4/Dixyverse - star.mp3",
+    "cover": "a-files/music/image/aokiunivers4.avif"
+  },
+  {
+    "title": "Electro - Harta.wav",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 5",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers5/Electro - Harta.wav.mp3",
+    "cover": "a-files/music/image/aokiunivers5.avif"
+  },
+  {
+    "title": "Geo - Aphrodite",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 5",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers5/Geo - Aphrodite.mp3",
+    "cover": "a-files/music/image/aokiunivers5.avif"
+  },
+  {
+    "title": "Hydro - Jutsu",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 3",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers3/Hydro - Jutsu.mp3",
+    "cover": "a-files/music/image/aokiunivers3.avif"
+  },
+  {
+    "title": "ISAC - Agent",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/ISAC - Agent.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "ISAC - Military",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/ISAC - Military.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "JAHAAKA - Construction",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 3",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers3/JAHAAKA - Construction.mp3",
+    "cover": "a-files/music/image/aokiunivers3.avif"
+  },
+  {
+    "title": "JAHAAKA - Critical Damage (var)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/JAHAAKA - Critical Damage (var).mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "JAHAAKA - Critical Damage",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 9",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers9/JAHAAKA - Critical Damage.mp3",
+    "cover": "a-files/music/image/aokiunivers9.avif"
+  },
+  {
+    "title": "JAHAAKA - Danse",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 5",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers5/JAHAAKA - Danse.mp3",
+    "cover": "a-files/music/image/aokiunivers5.avif"
+  },
+  {
+    "title": "JAHAAKA - Décourvete",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 5",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers5/JAHAAKA - Décourvete.mp3",
+    "cover": "a-files/music/image/aokiunivers5.avif"
+  },
+  {
+    "title": "JAHAAKA - Découverte, Pt.1",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 6",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers6/JAHAAKA - Découverte, Pt.1.mp3",
+    "cover": "a-files/music/image/aokiunivers6.avif"
+  },
+  {
+    "title": "JAHAAKA - Découverte, Pt.2",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers Bonus",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiuniversbonus/JAHAAKA - Découverte, Pt.2.mp3",
+    "cover": "a-files/music/image/aokiuniversbonus.avif"
+  },
+  {
+    "title": "JAHAAKA - Découverte, Pt.3",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers Bonus",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiuniversbonus/JAHAAKA - Découverte, Pt.3.mp3",
+    "cover": "a-files/music/image/aokiuniversbonus.avif"
+  },
+  {
+    "title": "JAHAAKA - Découverte, Pt.4",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers Bonus",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiuniversbonus/JAHAAKA - Découverte, Pt.4.mp3",
+    "cover": "a-files/music/image/aokiuniversbonus.avif"
+  },
+  {
+    "title": "JAHAAKA - Découverte",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 3",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers3/JAHAAKA - Découverte.mp3",
+    "cover": "a-files/music/image/aokiunivers3.avif"
+  },
+  {
+    "title": "JAHAAKA - Good Nigth (var)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers Bonus",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiuniversbonus/JAHAAKA - Good Nigth (var).mp3",
+    "cover": "a-files/music/image/aokiuniversbonus.avif"
+  },
+  {
+    "title": "JAHAAKA - Good Nigth",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 5",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers5/JAHAAKA - Good Nigth.mp3",
+    "cover": "a-files/music/image/aokiunivers5.avif"
+  },
+  {
+    "title": "JAHAAKA - Kami Theme",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/JAHAAKA - Kami Theme.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "JAHAAKA - Mobile Arwing Suit",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 9",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers9/JAHAAKA - Mobile Arwing Suit.mp3",
+    "cover": "a-files/music/image/aokiunivers9.avif"
+  },
+  {
+    "title": "JAHAAKA - School Theme",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/JAHAAKA - School Theme.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "JAHAAKA - Self-Destruct Sequence",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 9",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers9/JAHAAKA - Self-Destruct Sequence.mp3",
+    "cover": "a-files/music/image/aokiunivers9.avif"
+  },
+  {
+    "title": "JAHAAKA - Survive at All Costs",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 9",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers9/JAHAAKA - Survive at All Costs.mp3",
+    "cover": "a-files/music/image/aokiunivers9.avif"
+  },
+  {
+    "title": "John Doe - ISAC Tower",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/John Doe - ISAC Tower.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "John Doe - Lloyd Theme",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 7",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers7/John Doe - Lloyd Theme.mp3",
+    "cover": "a-files/music/image/aokiunivers7.avif"
+  },
+  {
+    "title": "John Doe - Monster Tower",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/John Doe - Monster Tower.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "John Doe - Square Aerith (Enchanted)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/John Doe - Square Aerith (Enchanted).mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "John Doe - Square Aerith (var)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/John Doe - Square Aerith (var).mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "John Doe - Square Aerith, Pt 1",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers Bonus",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiuniversbonus/John Doe - Square Aerith, Pt 1.mp3",
+    "cover": "a-files/music/image/aokiuniversbonus.avif"
+  },
+  {
+    "title": "John Doe - Square Aerith",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 6",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers6/John Doe - Square Aerith.mp3",
+    "cover": "a-files/music/image/aokiunivers6.avif"
+  },
+  {
+    "title": "John Doe - Square Fantasy",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/John Doe - Square Fantasy.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "John Doe - Walker Tower",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 6",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers6/John Doe - Walker Tower.mp3",
+    "cover": "a-files/music/image/aokiunivers6.avif"
+  },
+  {
+    "title": "John Doe - Wars Never Dead (var)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers Bonus",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiuniversbonus/John Doe - Wars Never Dead (var).mp3",
+    "cover": "a-files/music/image/aokiuniversbonus.avif"
+  },
+  {
+    "title": "John Doe - Wars Never Dead, Pt. 1",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers Bonus",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiuniversbonus/John Doe - Wars Never Dead, Pt. 1.mp3",
+    "cover": "a-files/music/image/aokiuniversbonus.avif"
+  },
+  {
+    "title": "John Doe - Wars Never Dead",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 6",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers6/John Doe - Wars Never Dead.mp3",
+    "cover": "a-files/music/image/aokiunivers6.avif"
+  },
+  {
+    "title": "Jutsu - Arcade (Enchanted)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers Bonus",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiuniversbonus/Jutsu - Arcade (Enchanted).mp3",
+    "cover": "a-files/music/image/aokiuniversbonus.avif"
+  },
+  {
+    "title": "Jutsu - Arcade (var)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 5",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers5/Jutsu - Arcade (var).mp3",
+    "cover": "a-files/music/image/aokiunivers5.avif"
+  },
+  {
+    "title": "Jutsu - Arcade",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 2",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers2/Jutsu - Arcade.mp3",
+    "cover": "a-files/music/image/aokiunivers2.avif"
+  },
+  {
+    "title": "Jutsu - Emergency Reverse Propulsion",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers/Jutsu - Emergency Reverse Propulsion.mp3",
+    "cover": "a-files/music/image/aokiunivers.avif"
+  },
+  {
+    "title": "Jutsu - Please Evacuate",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers/Jutsu - Please Evacuate.mp3",
+    "cover": "a-files/music/image/aokiunivers.avif"
+  },
+  {
+    "title": "Jutsu - Warhead Protocol",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers/Jutsu - Warhead Protocol.mp3",
+    "cover": "a-files/music/image/aokiunivers.avif"
+  },
+  {
+    "title": "Kanae - I Love You...",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 8",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers8/Kanae - I Love You....mp3",
+    "cover": "a-files/music/image/aokiunivers8.avif"
+  },
+  {
+    "title": "Kanae - Peercom Link",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 7",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers7/Kanae - Peercom Link.mp3",
+    "cover": "a-files/music/image/aokiunivers7.avif"
+  },
+  {
+    "title": "Kanae - Sad reality (var)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers Bonus",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiuniversbonus/Kanae - Sad reality (var).mp3",
+    "cover": "a-files/music/image/aokiuniversbonus.avif"
+  },
+  {
+    "title": "Kanae - Sad reality",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 4",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers4/Kanae - Sad reality.mp3",
+    "cover": "a-files/music/image/aokiunivers4.avif"
+  },
+  {
+    "title": "Kanae - Silent Message",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 9",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers9/Kanae - Silent Message.mp3",
+    "cover": "a-files/music/image/aokiunivers9.avif"
+  },
+  {
+    "title": "Kanae - Silent Voice (Enchanted)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Kanae - Silent Voice (Enchanted).mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Kanae - Silent Voice (var)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 5",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers5/Kanae - Silent Voice (var).mp3",
+    "cover": "a-files/music/image/aokiunivers5.avif"
+  },
+  {
+    "title": "Kanae - Silent Voice, Pt. 1",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Kanae - Silent Voice, Pt. 1.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Kanae - Silent Voice",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 2",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers2/Kanae - Silent Voice.mp3",
+    "cover": "a-files/music/image/aokiunivers2.avif"
+  },
+  {
+    "title": "Kanae - Soothing Medical Breath",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers/Kanae - Soothing Medical Breath.mp3",
+    "cover": "a-files/music/image/aokiunivers.avif"
+  },
+  {
+    "title": "Kanae - Speed Theme",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Kanae - Speed Theme.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Kanae - The Doctor (var)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Kanae - The Doctor (var).mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Kanae - The Doctor",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 7",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers7/Kanae - The Doctor.mp3",
+    "cover": "a-files/music/image/aokiunivers7.avif"
+  },
+  {
+    "title": "Kishi - Commandant",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 4",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers4/Kishi - Commandant.mp3",
+    "cover": "a-files/music/image/aokiunivers4.avif"
+  },
+  {
+    "title": "Kishi - Fight Theme",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Kishi - Fight Theme.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Kishi - Infinity of the Space",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Kishi - Infinity of the Space.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Kishi - Space Adventure",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers Bonus",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiuniversbonus/Kishi - Space Adventure (var).mp3",
+    "cover": "a-files/music/image/aokiuniversbonus.avif"
+  },
+  {
+    "title": "Kishi - Space Adventure",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 4",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers4/Kishi - Space Adventure.mp3",
+    "cover": "a-files/music/image/aokiunivers4.avif"
+  },
+  {
+    "title": "Kishi - Station Spacial",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 5",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers5/Kishi - Station Spacial.mp3",
+    "cover": "a-files/music/image/aokiunivers5.avif"
+  },
+  {
+    "title": "Kishi - Urgence Spacial (var)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 5",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers5/Kishi - Urgence Spacial (var).mp3",
+    "cover": "a-files/music/image/aokiunivers5.avif"
+  },
+  {
+    "title": "Kishi - Urgence Spacial",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 5",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers5/Kishi - Urgence Spacial.mp3",
+    "cover": "a-files/music/image/aokiunivers5.avif"
+  },
+  {
+    "title": "LaserLink - Drone Control",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/LaserLink - Drone Control.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "LaserLink - Emergency Information",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/LaserLink - Emergency Information.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "LaserLink - LIDAR",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/LaserLink - LIDAR.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "LaserLink - Not Found",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/LaserLink - Not Found.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "LaserLink - PeerToPeer",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/LaserLink - PeerToPeer.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "LaserLink - Signal Scan",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/LaserLink - Signal Scan.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "LaserLink - Theme",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/LaserLink - Theme.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Le Château Retrici - Main Theme",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers Bonus",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiuniversbonus/Le Château Retrici - Main Theme.mp3",
+    "cover": "a-files/music/image/aokiuniversbonus.avif"
+  },
+  {
+    "title": "Le Château Retrici - The Endless",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Le Château Retrici - The Endless.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Legendary Eternal Love (var)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 7",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers7/Legendary Eternal Love (var).mp3",
+    "cover": "a-files/music/image/aokiunivers7.avif"
+  },
+  {
+    "title": "Legion - Prepare for Battle",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers/Legion - Prepare for Battle.mp3",
+    "cover": "a-files/music/image/aokiunivers.avif"
+  },
+  {
+    "title": "Les Voyageurs D'éternité",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Les Voyageurs D'éternité.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Lost Site - Site Omega 98",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Lost Site - Site Omega 98.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Lost Site - Zone Retribution",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 6",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers6/Lost Site - Zone Retribution.mp3",
+    "cover": "a-files/music/image/aokiunivers6.avif"
+  },
+  {
+    "title": "Mei - Art Time",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers Bonus",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiuniversbonus/Mei - Art Time.mp3",
+    "cover": "a-files/music/image/aokiuniversbonus.avif"
+  },
+  {
+    "title": "Mei - Theme",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers Bonus",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiuniversbonus/Mei - Theme.mp3",
+    "cover": "a-files/music/image/aokiuniversbonus.avif"
+  },
+  {
+    "title": "Nanami - Espoir (var)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 2",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers2/Nanami - Espoir (var).mp3",
+    "cover": "a-files/music/image/aokiunivers2.avif"
+  },
+  {
+    "title": "Nanami - Espoir",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 2",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers2/Nanami - Espoir.mp3",
+    "cover": "a-files/music/image/aokiunivers2.avif"
+  },
+  {
+    "title": "Nanami - Force (var)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers Bonus",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiuniversbonus/Nanami - Force (var).mp3",
+    "cover": "a-files/music/image/aokiuniversbonus.avif"
+  },
+  {
+    "title": "Nanami - Force",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 4",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers4/Nanami - Force.mp3",
+    "cover": "a-files/music/image/aokiunivers4.avif"
+  },
+  {
+    "title": "Nanami - Love Game Start",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 5",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers5/Nanami - Love Game Start.mp3",
+    "cover": "a-files/music/image/aokiunivers5.avif"
+  },
+  {
+    "title": "Nasawa - Controleurs spatial (var)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 2",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers2/Nasawa - Controleurs spatial (var).mp3",
+    "cover": "a-files/music/image/aokiunivers2.avif"
+  },
+  {
+    "title": "Venti Opastudien - Nasawa - Controleurs spatial, Pt. 1",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 5",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers5/Nasawa - Controleurs spatial, Pt. 1.mp3",
+    "cover": "a-files/music/image/aokiunivers5.avif"
+  },
+  {
+    "title": "Nasawa - Controleurs spatial, Pt. 2",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers Bonus",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiuniversbonus/Nasawa - Controleurs spatial, Pt. 2.mp3",
+    "cover": "a-files/music/image/aokiuniversbonus.avif"
+  },
+  {
+    "title": "Nasawa - Controleurs spatial, Pt. 3",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers Bonus",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiuniversbonus/Nasawa - Controleurs spatial, Pt. 3.mp3",
+    "cover": "a-files/music/image/aokiuniversbonus.avif"
+  },
+  {
+    "title": "Nasawa - Controleurs spatial",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 2",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers2/Nasawa - Controleurs spatial.mp3",
+    "cover": "a-files/music/image/aokiunivers2.avif"
+  },
+  {
+    "title": "ONIQLO - Build",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/ONIQLO - Build.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "ONIQLO - Center",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/ONIQLO - Center.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "ONIQLO - Day",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/ONIQLO - Day.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "ONIQLO - Emergency Smart",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/ONIQLO - Emergency Smart.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "ONIQLO - Force Shield (var)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/ONIQLO - Force Shield (var).mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "ONIQLO - Force Shield",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/ONIQLO - Force Shield.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "ONIQLO - Night",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/ONIQLO - Night.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "ONIQLO - Theme",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/ONIQLO - Theme.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "ONIQLO - Tower",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/ONIQLO - Tower.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Paimon - Déesse spatial (var)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 8",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers8/Paimon - Déesse spatial (var).mp3",
+    "cover": "a-files/music/image/aokiunivers8.avif"
+  },
+  {
+    "title": "Paimon - Déesse spatial",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 2",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers2/Paimon - Déesse spatial.mp3",
+    "cover": "a-files/music/image/aokiunivers2.avif"
+  },
+  {
+    "title": "Peercom - Link Start (var)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers Bonus",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiuniversbonus/Peercom - Link Start (var).mp3",
+    "cover": "a-files/music/image/aokiuniversbonus.avif"
+  },
+  {
+    "title": "Peercom - Link Start",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 8",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers8/Peercom - Link Start.mp3",
+    "cover": "a-files/music/image/aokiunivers8.avif"
+  },
+  {
+    "title": "Peercom - Portal",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 9",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers9/Peercom - Portal.mp3",
+    "cover": "a-files/music/image/aokiunivers9.avif"
+  },
+  {
+    "title": "Peercom - Smart",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 9",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers9/Peercom - Smart.mp3",
+    "cover": "a-files/music/image/aokiunivers9.avif"
+  },
+  {
+    "title": "Peercom - Triforce Attack",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 9",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers9/Peercom - Triforce Attack.mp3",
+    "cover": "a-files/music/image/aokiunivers9.avif"
+  },
+  {
+    "title": "Peercom - Triforce Shield",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 9",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers9/Peercom - Triforce Shield.mp3",
+    "cover": "a-files/music/image/aokiunivers9.avif"
+  },
+  {
+    "title": "Pyro - Atlas",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 5",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers5/Pyro - Atlas.mp3",
+    "cover": "a-files/music/image/aokiunivers5.avif"
+  },
+  {
+    "title": "Satsujin - chaos",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 4",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers4/Satsujin - chaos.mp3",
+    "cover": "a-files/music/image/aokiunivers4.avif"
+  },
+  {
+    "title": "Seeds - Cyber-Dieu",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 8",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers8/Seeds - Cyber-Dieu.mp3",
+    "cover": "a-files/music/image/aokiunivers8.avif"
+  },
+  {
+    "title": "Seeds - Quantum Research of 7",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers/Seeds - Quantum Research of 7.mp3",
+    "cover": "a-files/music/image/aokiunivers.avif"
+  },
+  {
+    "title": "Smart - Call",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Smart - Call.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Soki - The Ambassador",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Soki - The Ambassador.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Soki - The Star",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Soki - The Star.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Takahashi - Theme",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 5",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers5/Takahashi - Theme.mp3",
+    "cover": "a-files/music/image/aokiunivers5.avif"
+  },
+  {
+    "title": "Takarazuka - Medical",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 4",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers4/Takarazuka - Medical.mp3",
+    "cover": "a-files/music/image/aokiunivers4.avif"
+  },
+  {
+    "title": "Takashi - Theme (var)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers Bonus",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiuniversbonus/Takashi - Theme (var).mp3",
+    "cover": "a-files/music/image/aokiuniversbonus.avif"
+  },
+  {
+    "title": "Takemichi - Wars Action",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 2",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers2/Takemichi - Wars Action.mp3",
+    "cover": "a-files/music/image/aokiunivers2.avif"
+  },
+  {
+    "title": "Takemichi - Wars Alert (var)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 2",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers2/Takemichi - Wars Alert (var).mp3",
+    "cover": "a-files/music/image/aokiunivers2.avif"
+  },
+  {
+    "title": "Takemichi - Wars Alert, Pt. 1",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 5",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers5/Takemichi - Wars Alert, Pt. 1.mp3",
+    "cover": "a-files/music/image/aokiunivers5.avif"
+  },
+  {
+    "title": "Takemichi - Wars Alert, Pt. 3",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers Bonus",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiuniversbonus/Takemichi - Wars Alert, Pt. 3.mp3",
+    "cover": "a-files/music/image/aokiuniversbonus.avif"
+  },
+  {
+    "title": "Takemichi - Wars Alert, Pt.2",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 7",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers7/Takemichi - Wars Alert, Pt.2.mp3",
+    "cover": "a-files/music/image/aokiunivers7.avif"
+  },
+  {
+    "title": "Takemichi - Wars Alert",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 2",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers2/Takemichi - Wars Alert.mp3",
+    "cover": "a-files/music/image/aokiunivers2.avif"
+  },
+  {
+    "title": "Takemichi - Wars Theme (extended)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 7",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers7/Takemichi - Wars Theme (extended).mp3",
+    "cover": "a-files/music/image/aokiunivers7.avif"
+  },
+  {
+    "title": "Takemichi - Wars Theme",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 7",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers7/Takemichi - Wars Theme.mp3",
+    "cover": "a-files/music/image/aokiunivers7.avif"
+  },
+  {
+    "title": "TELADA - Cantina",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/TELADA - Cantina.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "TELADA - Emergency Power",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 3",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers3/TELADA - Emergency Power.mp3",
+    "cover": "a-files/music/image/aokiunivers3.avif"
+  },
+  {
+    "title": "TELADA - Power On",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/TELADA - Power On.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "TELADA - Theme",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/TELADA - Theme.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Teyvat - Archon",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Teyvat - Archon.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Teyvat - Son de l'univers (Enchanted)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Teyvat - Son de l'univers (Enchanted).mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Teyvat - Son de l'univers, Pt. 1",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 5",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers5/Teyvat - Son de l'univers, Pt. 1.mp3",
+    "cover": "a-files/music/image/aokiunivers5.avif"
+  },
+  {
+    "title": "Teyvat - Son de l'univers, Pt. 2",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 5",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers5/Teyvat - Son de l'univers, Pt. 2.mp3",
+    "cover": "a-files/music/image/aokiunivers5.avif"
+  },
+  {
+    "title": "Teyvat - Son de l'univers, Pt. 3",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Teyvat - Son de l'univers, Pt. 3.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Teyvat - Son de l'univers, Pt. 4",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers Bonus",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiuniversbonus/Teyvat - Son de l'univers, Pt. 4.mp3",
+    "cover": "a-files/music/image/aokiuniversbonus.avif"
+  },
+  {
+    "title": "Teyvat - Son de l'univers",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 3",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers3/Teyvat - Son de l'univers.mp3",
+    "cover": "a-files/music/image/aokiunivers3.avif"
+  },
+  {
+    "title": "Teyvat - Space of the God",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Teyvat - Space of the God.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Teyvat - Univers Infini",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Teyvat - Univers Infini.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Teyvat - Vortex",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Teyvat - Vortex.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Teyvat - XOXO (new)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Teyvat - XOXO (new).mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Teyvat - XOXO (var)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers Bonus",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiuniversbonus/Teyvat - XOXO (var).mp3",
+    "cover": "a-files/music/image/aokiuniversbonus.avif"
+  },
+  {
+    "title": "Teyvat's - Astral Symphony",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers/Teyvat's - Astral Symphony.mp3",
+    "cover": "a-files/music/image/aokiunivers.avif"
+  },
+  {
+    "title": "The Time - Of America",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 5",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers5/The Time - Of America.mp3",
+    "cover": "a-files/music/image/aokiunivers5.avif"
+  },
+  {
+    "title": "The Time - Of France",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/The Time - Of France.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "The Time - Of Russian",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 5",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers5/The Time - Of Russian.mp3",
+    "cover": "a-files/music/image/aokiunivers5.avif"
+  },
+  {
+    "title": "Throne of space (var)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 5",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers5/Throne of space (var).mp3",
+    "cover": "a-files/music/image/aokiunivers5.avif"
+  },
+  {
+    "title": "Throne of space",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 5",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers5/Throne of space.mp3",
+    "cover": "a-files/music/image/aokiunivers5.avif"
+  },
+  {
+    "title": "Tomo - Theme",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Tomo - Theme.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Umaishi - Artist Time (var)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Umaishi - Artist Time (var).mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Umaishi - Artist Time",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 8",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers8/Umaishi - Artist Time.mp3",
+    "cover": "a-files/music/image/aokiunivers8.avif"
+  },
+  {
+    "title": "Umaishi - Museum",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Umaishi - Museum.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Umaishi - The Brightness Shadow (var) - Valide",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 8",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers8/Umaishi - The Brightness Shadow (var) - Valide.mp3",
+    "cover": "a-files/music/image/aokiunivers8.avif"
+  },
+  {
+    "title": "Umaishi - The Brightness Shadow, Pt. 1",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Umaishi - The Brightness Shadow, Pt. 1.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Umaishi - The Brightness Shadow",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 8",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers8/Umaishi - The Brightness Shadow.mp3",
+    "cover": "a-files/music/image/aokiunivers8.avif"
+  },
+  {
+    "title": "Umaishi - Theme (var)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers Bonus",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiuniversbonus/Umaishi - Theme (var).mp3",
+    "cover": "a-files/music/image/aokiuniversbonus.avif"
+  },
+  {
+    "title": "Umaishi - Theme",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 8",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers8/Umaishi - Theme.mp3",
+    "cover": "a-files/music/image/aokiunivers8.avif"
+  },
+  {
+    "title": "Voyageur D'éternité (Enchanted)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Voyageur D'éternité (Enchanted).mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Voyageur d'éternité (var)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 5",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers5/Voyageur d'éternité (var).mp3",
+    "cover": "a-files/music/image/aokiunivers5.avif"
+  },
+  {
+    "title": "Voyageuse D'éternité",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Voyageuse D'éternité.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Yamazakura - Patrol (Enchanted)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Yamazakura - Patrol (Enchanted).mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Yamazakura - Patrol (var)",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 4",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers4/Yamazakura - Patrol (var).mp3",
+    "cover": "a-files/music/image/aokiunivers4.avif"
+  },
+  {
+    "title": "Yamazakura - Patrol",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 4",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers4/Yamazakura - Patrol.mp3",
+    "cover": "a-files/music/image/aokiunivers4.avif"
+  },
+  {
+    "title": "Yamazakura - Twelve Theme",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers 10",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers10/Yamazakura - Twelve Theme.mp3",
+    "cover": "a-files/music/image/aokiunivers10.avif"
+  },
+  {
+    "title": "Yuuki - Enemy Straight Ahead",
+    "artist": "Venti Opastudien",
+    "album": "Aoki Univers",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/aokiunivers/Yuuki - Enemy Straight Ahead.mp3",
+    "cover": "a-files/music/image/aokiunivers.avif"
+  },
+  {
+    "title": "Voyageur D'éternité",
+    "artist": "Venti Opastudien",
+    "album": "Single",
+    "style": "Pop, Instrumental",
+    "src": "a-files/music/ventiopastudien/voyageurdeternite.mp3",
+    "cover": "a-files/music/ventiopastudien/voyageurdeternite.avif"
+  },
+  {
+    "title": "Chaos! - Moon Verse",
+    "artist": "P0LTERG3IIST",
+    "album": "Single",
+    "style": "Pop",
+    "src": "a-files/music/p0lterg3iist/chaosmoonverse.mp3",
+    "cover": "a-files/music/p0lterg3iist/chaosmoonverse.avif"
+  },
+  {
+    "title": "Phonk Hard",
+    "artist": "LIGHTWATER",
+    "album": "Single",
+    "style": "Pop",
+    "src": "a-files/music/lightwater/phonkhard.mp3",
+    "cover": "a-files/music/lightwater/phonkhard.avif"
+  }
+]

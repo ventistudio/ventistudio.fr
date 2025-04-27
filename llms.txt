@@ -1,0 +1,90 @@
+# llms.txt - Politiques d'accès pour les LLMs
+# Ce fichier définit les règles d'accès et d'utilisation pour les modèles de langage.
+
+# Propriété
+Owner: https://ventistudio.fr/
+Contact: contact@ventistudio.fr
+
+# Politique générale 
+GeneralPolicy: Allow-Read-Only
+LastModified: 2025-03-31
+Version: 1.0
+
+# Règles spécifiques pour les LLMs autorisés
+
+## OpenAI
+User-agent: ChatGPT
+Policy: Allow-Read
+Training: Disallow
+Permissions: 
+  - Browse content
+  - Reference content 
+  - Generate responses
+  - Assist with code
+Restrictions:
+  - No training on content
+  - No content scraping
+  - No automated data collection
+
+## Anthropic 
+User-agent: Claude
+Policy: Allow-Read
+Training: Disallow 
+Permissions:
+  - Browse content
+  - Reference content
+  - Generate responses
+  - Assist with code
+Restrictions:
+  - No training on content
+  - No content scraping
+  - No automated data collection
+
+## Google
+User-agent: Google-AI
+Policy: Allow-Read
+Training: Disallow
+Permissions:
+  - Browse content
+  - Reference content
+  - Generate responses
+  - Assist with code
+Restrictions:
+  - No training on content
+  - No content scraping
+  - No automated data collection
+
+## Microsoft/GitHub
+User-agent: Copilot
+Policy: Allow-Read
+Training: Disallow
+Permissions:
+  - Browse content
+  - Reference content
+  - Generate responses
+  - Assist with code
+Restrictions:
+  - No training on content
+  - No content scraping
+  - No automated data collection
+
+## Autres LLMs
+User-agent: *
+Policy: Disallow
+Training: Disallow
+Permissions: None
+Restrictions: All
+
+# Notes
+- Les LLMs autorisés peuvent lire et référencer le contenu mais pas l'utiliser pour l'entraînement
+- L'accès est limité à l'assistance utilisateur et la génération de réponses
+- Les politiques peuvent être modifiées sans préavis
+- Le non-respect des règles peut entraîner la révocation de l'accès
+
+# Pour demander l'accès
+Pour demander l'autorisation d'accès pour un nouveau LLM, contactez :
+Email: support@ventistudio.fr
+
+---
+Copyright © 2023 - 2025 VentiStudio - Tous droits réservés
+Product By AINA UMAISHI - ARTIFICIAL INTELLIGENCE NEW AGE

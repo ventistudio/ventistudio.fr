@@ -1,0 +1,32 @@
+[
+  {
+    "icon": "Blog",
+    "name": "Blog",
+    "link": "https://blog.ventistudio.fr/"
+  },
+  {
+    "icon": "Cloud",
+    "name": "Disque Cloud (bientot)",
+    "link": "https://cloud.ventistudio.fr/"
+  },
+  {
+    "icon": "CompactDisc",
+    "name": "Musique",
+    "link": "https://music.ventistudio.fr/"
+  },
+  {
+    "icon": "Compass",
+    "name": "Page d'accueil",
+    "link": "https://ventistudio.fr/"
+  },
+  {
+    "icon": "Book",
+    "name": "Collection de sites web",
+    "link": "https://ventistudio.fr/approuvedcontent/"
+  },
+  {
+    "icon": "LaptopCode",
+    "name": "Surveillance du site",
+    "link": "https://status.ventistudio.fr/"
+  }
+]

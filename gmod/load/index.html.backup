@@ -1,0 +1,530 @@
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VentiStudio - Chargement GMod</title>
+<style>
+  :root {
+    --primary: #7B66FF;
+    --secondary: #2A2D3A; 
+    --background: #1A1B26;
+    --text: #FFFFFF;
+    --hover: #9F86FF;
+    --accent1: #414868;
+    --accent2: #565f89;
+  }
+
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap');
+
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--background);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .loading-container {
+    display: flex;
+    height: 100vh;
+  }
+
+  .section {
+    flex: 1;
+    padding: 2rem;
+    overflow-y: auto;
+    position: relative;
+  }
+
+  .section:first-child {
+    border-right: 2px solid var(--accent1);
+  }
+
+  .section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .rule-card, .staff-card {
+    background: var(--secondary);
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+
+  .rule-card h3, .staff-card h3 {
+    color: var(--hover);
+    margin-top: 0;
+  }
+
+  .progress-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--accent1);
+    overflow: hidden;
+  }
+
+  .progress {
+    height: 100%;
+    background: var(--primary);
+    position: absolute;
+    left: -50%;
+    width: 50%;
+    animation: loading 1.5s infinite ease-in-out;
+    box-shadow: 0 0 10px var(--primary);
+  }
+
+  @keyframes loading {
+    0% {
+      left: -50%;
+    }
+    100% {
+      left: 100%;
+    }
+  }
+
+  .staff-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .staff-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  .staff-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .staff-info h3 {
+    margin: 0;
+  }
+
+  .staff-role {
+    color: var(--hover);
+    font-size: 0.9rem;
+  }
+
+  .tip-container {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--secondary);
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    width: 80%;
+    max-width: 600px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    transition: opacity 0.5s ease-out;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--background);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 4px;
+  }
+
+  @media (max-width: 768px) {
+    .loading-container {
+      flex-direction: column;
+    }
+    
+    .section:first-child {
+      border-right: none;
+      border-bottom: 2px solid var(--accent1);
+    }
+  }
+  .audio-controls {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: rgba(255,255,255,0.1);
+      padding: 10px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .audio-controls button {
+      background: var(--primary);
+      border: none;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: opacity 0.3s;
+    }
+
+    .audio-controls button:hover {
+      opacity: 0.8;
+    }
+
+    #volumeSlider {
+      width: 100px;
+    }
+
+    .now-playing {
+      color: var(--text);
+      font-size: 0.8rem;
+      margin-right: 10px;
+    }
+</style>
+</head>
+<body>
+  <audio id="bgMusic">
+    <source src="" type="audio/mpeg">
+  </audio>
+
+  <div class="audio-controls">
+    <span class="now-playing" id="nowPlaying"></span>
+  </div>
+  <div class="loading-container">
+    <section class="section">
+      <h2 class="section-title">Règles & Astuces</h2>
+      <div class="rule-card">
+        <h3>Règle #1 - Respect</h3>
+        <p>Respectez tous les joueurs et le staff. Aucune forme de harcèlement ou de discrimination ne sera tolérée.</p>
+      </div>
+      <div class="rule-card">
+        <h3>Règle #2 - RolePlay</h3>
+        <p>Restez dans votre rôle en tout temps. Le FailRP peut entraîner un avertissement ou un bannissement.</p>
+      </div>
+      <div class="rule-card">
+        <h3>Règle #3 - Exploitation</h3>
+        <p>L'utilisation de bugs ou de cheats est strictement interdite.</p>
+      </div>
+      <div class="rule-card">
+        <h3>Astuce #1</h3>
+        <p>N'oubliez pas de télécharger la collection.</p>
+      </div>
+      <div class="rule-card">
+        <h3>Astuce #2</h3>
+        <p>Vous pouvez signaler les joueur via le discord.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Notre Staff</h2>
+      <div class="staff-card">
+        <div class="staff-avatar">
+          <img src="https://avatars.fastly.steamstatic.com/8a78a24d3ae3031caf2695bc4dede2d6eb7af7cf_full.jpg" alt="Hikari">
+        </div>
+        <div class="staff-info">
+          <h3>Hikari Umaishi</h3>
+          <div class="staff-role">Fondateur</div>
+          <p>Créateur et administrateur principal du serveur</p>
+        </div>
+      </div>
+      <div class="staff-card">
+        <div class="staff-avatar">
+          <img src="https://avatars.fastly.steamstatic.com/4db560cb9a7cd072ef1a0951127ba0768cb20825_full.jpg" alt="SuperAdmin">
+        </div>
+        <div class="staff-info">
+          <h3>DJ MRS3RKILER</h3>
+          <div class="staff-role">Co-créateur</div>
+          <p>Co-Créateur principal du serveur</p>
+        </div>
+      </div>
+      <div class="staff-card">
+        <div class="staff-avatar">
+          <img src="https://avatars.fastly.steamstatic.com/776a1fee96dc25e6f6e9237a2510b14acbe3e436_full.jpg" alt="Modérateur">
+        </div>
+        <div class="staff-info">
+          <h3>Futo Gensei</h3>
+          <div class="staff-role">Ancient Responsable Retribution Studio</div>
+          <p>Est directement lier au projet Zone Retribution</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="progress-bar">
+    <div class="progress"></div>
+  </div>
+
+  <div class="tip-container" id="tip-display">
+    Chargement des assets du serveur...
+  </div>
+
+  <script>
+    const tips = [
+      "N'oubliez pas de rejoindre notre Discord !",
+      "Utilisez T pour chatter avec les autres joueurs",
+      "Appuyez sur F4 pour voir les métiers disponibles",
+      "Le respect des règles garantit une meilleure expérience pour tous",
+      "N'hésitez pas à demander de l'aide au staff"
+    ];
+
+    let currentTip = 0;
+    const tipElement = document.getElementById('tip-display');
+
+    setInterval(() => {
+      currentTip = (currentTip + 1) % tips.length;
+      tipElement.style.opacity = 0;
+      setTimeout(() => {
+        tipElement.textContent = tips[currentTip];
+        tipElement.style.opacity = 1;
+      }, 500);
+    }, 5000);
+    // Configuration de la playlist
+   const playlist = [
+      {
+        title: "Lost Site",
+        artist: "Venti Opastudien",
+        src: "/gmod/music/ls1.mp3"
+      },
+      {
+        title: "SCP Celeste",
+        artist: "Galshi",
+        src: "/gmod/music/sc1.mp3"
+      },
+      {
+        title: "Zone Retribution 1",
+        artist: "Venti Opastudien x Suno",
+        src: "/gmod/music/zr1.mp3"
+      },
+      {
+        title: "Zone Retribution 2",
+        artist: "Venti Opastudien x Suno",
+        src: "/gmod/music/zr2.mp3"
+      },
+      {
+        title: "Zone Retribution 1",
+        artist: "Venti Opastudien x Suno",
+        src: "/gmod/music/zr1.mp3"
+      },
+      {
+        title: "Zone Retribution 2",
+        artist: "Venti Opastudien x Suno",
+        src: "/gmod/music/zr2.mp3"
+      },
+      {
+        title: "Zone Retribution 3",
+        artist: "Venti Opastudien x Suno",
+        src: "/gmod/music/zr3.mp3"
+      },
+      {
+        title: "Zone Retribution 4",
+        artist: "Venti Opastudien x Suno",
+        src: "/gmod/music/zr4.mp3"
+      },
+      {
+        title: "Zone Retribution 5",
+        artist: "Venti Opastudien x Suno",
+        src: "/gmod/music/zr5.mp3"
+      },
+      {
+        title: "Zone Retribution 6",
+        artist: "Venti Opastudien x Suno",
+        src: "/gmod/music/zr6.mp3"
+      },
+      {
+        title: "Zone Retribution 7",
+        artist: "Venti Opastudien x Suno",
+        src: "/gmod/music/zr7.mp3"
+      },
+      {
+        title: "SCP Celeste",
+        artist: "Venti Opastudien x Suno",
+        src: "/gmod/music/music1.mp3"
+      },
+      {
+        title: "Hymne de la Zone Rétribution",
+        artist: "DJ MRS3RKILER x Suno",
+        src: "/gmod/music/hzr.mp3"
+      },
+      {
+        title: "SCP Celeste Old",
+        artist: "Venti Opastudien x Suno",
+        src: "/gmod/music/music2.mp3"
+      },
+      {
+        title: "Le Site Oublié Zone Retribution 1",
+        artist: "Venti Opastudien x Suno",
+        src: "/gmod/music/lso1.mp3"
+      },
+      {
+        title: "Le Site Oublié Zone Retribution 2",
+        artist: "Venti Opastudien x Suno",
+        src: "/gmod/music/lso2.mp3"
+      },
+      {
+        title: "Le Site Oublié Zone Retribution 3",
+        artist: "Venti Opastudien x Suno",
+        src: "/gmod/music/lso3.mp3"
+      },
+      {
+        title: "Le Site Oublié Zone Retribution 4",
+        artist: "Venti Opastudien x Suno",
+        src: "/gmod/music/lso4.mp3"
+      },
+      {
+        title: "Le Site Oublié Zone Retribution 5",
+        artist: "Venti Opastudien x Suno",
+        src: "/gmod/music/lso5.mp3"
+      },
+      {
+        title: "Le Sauveur Éclairé 1",
+        artist: "Venti Opastudien x Suno",
+        src: "/gmod/music/lse1.mp3"
+      },
+      {
+        title: "Le Sauveur Éclairé 2",
+        artist: "Venti Opastudien x Suno",
+        src: "/gmod/music/lse2.mp3"
+      },
+      {
+        title: "Évacuation Zone Retribution",
+        artist: "Venti Opastudien x Suno",
+        src: "/gmod/music/ezr.mp3"
+      },
+      {
+        title: "Évacuation Imminente",
+        artist: "Venti Opastudien x Suno",
+        src: "/gmod/music/ei.mp3"
+      },
+      {
+        title: "Hikari, ombre sacrifiée",
+        artist: "Venti Opastudien x Suno",
+        src: "/gmod/music/hos.mp3"
+      },
+      {
+        title: "Sécurisé Contenir Protéger",
+        artist: "Venti Opastudien x Suno",
+        src: "/gmod/music/scp.mp3"
+      },
+      {
+        title: "Verrouillage d'Urgence",
+        artist: "Venti Opastudien x Suno",
+        src: "/gmod/music/vu.mp3"
+      },
+      // Ajoutez autant de pistes que vous voulez
+    ];
+
+    // Fonction pour forcer l'autoplay
+    function forceAutoplay() {
+      const audio = document.getElementById('bgMusic');
+      
+      // Tentative de lecture
+      const playAttempt = setInterval(() => {
+        audio.play()
+          .then(() => {
+            clearInterval(playAttempt);
+          })
+          .catch(error => {
+            console.log("Tentative de lecture automatique...");
+          });
+      }, 500);
+    }
+
+    // Gestion de la musique
+    document.addEventListener('DOMContentLoaded', function() {
+      const audio = document.getElementById('bgMusic');
+      const toggleBtn = document.getElementById('toggleMusic');
+      const volumeSlider = document.getElementById('volumeSlider');
+      const skipBtn = document.getElementById('skipTrack');
+      const nowPlayingText = document.getElementById('nowPlaying');
+      // Définir le volume à 25% (0.25)
+      audio.volume = 0.15;
+      
+      // Si vous avez un volumeSlider, mettez également sa valeur à 25
+      if (volumeSlider) {
+        volumeSlider.value = 15;
+      }
+
+      // ... (rest of the JavaScript code remains the same) ...
+      let currentTrackIndex = Math.floor(Math.random() * playlist.length);
+
+      // Fonction pour charger et jouer une piste
+      function loadAndPlayTrack(index) {
+        const track = playlist[index];
+        audio.src = track.src;
+        nowPlayingText.textContent = `▶️ ${track.title} - ${track.artist}`;
+        audio.load();
+        
+        // Force la lecture
+        forceAutoplay();
+      }
+
+      // Fonction pour jouer une piste aléatoire
+      function playRandomTrack() {
+        const previousIndex = currentTrackIndex;
+        do {
+          currentTrackIndex = Math.floor(Math.random() * playlist.length);
+        } while (playlist.length > 1 && currentTrackIndex === previousIndex);
+        loadAndPlayTrack(currentTrackIndex);
+      }
+      
+      // Démarrage immédiat de la première piste
+      playRandomTrack();
+
+      // Gestion de la fin d'une piste
+      audio.addEventListener('ended', () => {
+        playRandomTrack();
+      });
+
+      // Interaction utilisateur pour débloquer l'audio sur certains navigateurs
+      document.addEventListener('click', () => {
+        if (audio.paused) {
+          forceAutoplay();
+        }
+      }, { once: true });
+
+      // Bouton muet/non muet
+      toggleBtn.addEventListener('click', () => {
+        if (audio.muted) {
+          audio.muted = false;
+          toggleBtn.textContent = '🔇 Muet';
+        } else {
+          audio.muted = true;
+          toggleBtn.textContent = '🔊 Non muet';
+        }
+      });
+
+      // Contrôle du volume
+      volumeSlider.addEventListener('input', (e) => {
+        audio.volume = e.target.value / 100;
+      });
+
+      // Bouton suivant
+      skipBtn.addEventListener('click', () => {
+        playRandomTrack();
+      });
+
+      // Gestion de la visibilité de la page
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          audio.pause();
+        } else {
+          forceAutoplay();
+        }
+      });
+    });
+
+    
+  </script>
+</body>
+</html>

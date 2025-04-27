@@ -1,0 +1,22 @@
+{
+    "name": "VentiStudio.Fr",
+    "short_name": "VentiMusic",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#1a1b26",
+    "theme_color": "#7c3aed",
+    "description": "Créativité, innovation, et communauté à portée de clic.",
+    "icons": [
+      {
+        "src": "/favicon-192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "/favicon-512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+  }
+  

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html><head><base href="https://ventistudio.fr/archive/v1/pip">
+  <meta charset="utf-8">
+  <meta name="viewport">
+  <html lang="fr"></html>
+  <link rel="icon" type="image/gif" href="favicon.png">
+  <meta property="og:title" content="Bienvenu sur VentiStudio">
+  <meta property="og:site_name" content="VentiStudio Komiyuniti">
+  <meta property="og:url" content="https://ventistudio.fr">
+  <meta property="og:description" content="Hey, je suis Hikari Umaishi (光馬石), mais je préfère que l'on m'appelle Hiuma (ヒウマ).
+Laissez-moi vous présenter ma communauté, un espace où l'art et la créativité se rencontrent.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://ventistudio.fr/favicon.gif">
+    <title>VentiStudio - PiP Viewer</title>
+    <link rel="manifest" href="manifest.json">
+    <style>
+        :root {
+            --dark-bg: #0f0f14;
+            --purple: #8e4ec6;
+            --light-text: #ffffff;
+            --dark-text: #a9a9b2;
+            --accent: #ff7edb;
+            --input-bg: #1a1a24;
+            --button-bg: #3d3d56;
+        }
+
+        body {
+            font-family: 'Noto Sans', 'Noto Sans JP', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: var(--accent);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        #fileInput {
+            display: none;
+        }
+
+        #selectButton {
+            background-color: var(--button-bg);
+            color: var(--light-text);
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        #selectButton:hover {
+            background-color: var(--purple);
+        }
+
+        #videoContainer {
+            margin-top: 20px;
+            max-width: 100%;
+        }
+
+        #videoElement {
+            max-width: 100%;
+            border-radius: 5px;
+        }
+
+        #pipButton {
+            background-color: var(--button-bg);
+            color: var(--light-text);
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+
+        #pipButton:hover {
+            background-color: var(--purple);
+        }
+
+        #pipButton:disabled {
+            background-color: var(--dark-text);
+            cursor: not-allowed;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>PiP Viewer</h1>
+    <input type="file" id="fileInput" accept="video/*">
+    <button id="selectButton">Sélectionner une vidéo</button>
+    <div id="videoContainer" class="hidden">
+        <video id="videoElement" controls></video>
+        <button id="pipButton" disabled>Activer le mode PiP</button>
+    </div>
+
+    <script>
+        const fileInput = document.getElementById('fileInput');
+        const selectButton = document.getElementById('selectButton');
+        const videoContainer = document.getElementById('videoContainer');
+        const videoElement = document.getElementById('videoElement');
+        const pipButton = document.getElementById('pipButton');
+
+        selectButton.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        fileInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const videoURL = URL.createObjectURL(file);
+                videoElement.src = videoURL;
+                videoContainer.classList.remove('hidden');
+                pipButton.disabled = false;
+            }
+        });
+
+        pipButton.addEventListener('click', async () => {
+            try {
+                if (document.pictureInPictureElement) {
+                    await document.exitPictureInPicture();
+                } else {
+                    await videoElement.requestPictureInPicture();
+                }
+            } catch (error) {
+                console.error('Erreur lors de l\'activation du mode PiP:', error);
+            }
+        });
+
+        videoElement.addEventListener('enterpictureinpicture', () => {
+            pipButton.textContent = 'Désactiver le mode PiP';
+        });
+
+        videoElement.addEventListener('leavepictureinpicture', () => {
+            pipButton.textContent = 'Activer le mode PiP';
+        });
+
+        // Vérifier si le navigateur prend en charge l'API Picture-in-Picture
+        if ('pictureInPictureEnabled' in document) {
+            pipButton.disabled = false;
+        } else {
+            pipButton.disabled = true;
+            pipButton.textContent = 'PiP non supporté';
+        }
+
+        // Service Worker pour le fonctionnement hors ligne
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(registration => {
+                        console.log('Service Worker enregistré avec succès:', registration.scope);
+                    })
+                    .catch(error => {
+                        console.log('Échec de l\'enregistrement du Service Worker:', error);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>

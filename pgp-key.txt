@@ -1,0 +1,82 @@
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+Comment: Identifiant d'utilisateur:	Venti Opastudien <support@ventistudio.fr>
+Comment: Valide à partir de:	31/03/2025 15:02
+Comment: Type:	4 096-bit RSA (certificat secret disponible)
+Comment: Utilisation:	Signature, Chiffrement, Certification des identifiants utilisateur
+Comment: Empreinte:	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
+EjNptzJRdPU=
+=3KLh
+-----END PGP PUBLIC KEY BLOCK-----
+
+Key ID: B114 A0E5 8AED 0F21
+Key Fingerprint: F73A 995C CD51 D4AE 6CD3 BCF2 B114 A0E5 8AED 0F21
+Key Type: RSA
+Key Size: 4096 bits
+Created: 2025-03-31
+
+Key Owner: Venti Opastudien
+Email: support@ventistudio.fr
+Usage: Signature, Chiffrement, Certification des identifiants utilisateur
+
+This is the official PGP public key for the VentiStudio Team.
+Please use this key to encrypt sensitive security-related communications and other links associated with VentiStudio.
+
+-----BEGIN SECURITY CONTACT INFO-----
+Primary Contact: support@ventistudio.fr
+Security Team PGP Key ID: B114 A0E5 8AED 0F21
+Emergency Contact: DISCORD @ventistudio
+Response Time: < 48h
+-----END SECURITY CONTACT INFO-----
+
+Last Updated: 2025-03-31
+Verified By: AINA UMAISHI - ARTIFICIAL INTELLIGENCE NEW AGE
+

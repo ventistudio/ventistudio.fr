@@ -1,40 +1,65 @@
 # VentiStudio : Une Plateforme Sécurisée et Transparente avec un Code 100% Open Source
 
-**Umaishi Corp** est fier de vous présenter le code source de **VentiStudio.fr**, une plateforme innovante développée par RushKA, une filiale de l’Umaishi Corp.
+[![Statu du service principal](https://uptime.betterstack.com/status-badges/v3/monitor/1oteu.svg)](https://uptime.betterstack.com/?utm_source=status_badge)
+[![Security Policy](https://img.shields.io/badge/security-policy-brightgreen.svg)](https://ventistudio.fr/security)
+[![License](https://img.shields.io/badge/license-Kanae%20Aoki-blue.svg)](https://ventistudio.fr/licence)
 
-## VentiStudio, c'est quoi ?
+**Umaishi Corp** est fier de vous présenter le code source de **VentiStudio.fr**, une plateforme innovante développée par RushKA, une filiale de l'Umaishi Corp.
 
-VentiStudio, ce n’est pas juste une plateforme : c’est un véritable écosystème pensé pour garantir une expérience en ligne sécurisée, respectueuse de votre vie privée et totalement transparente.  
-Avec des fonctionnalités variées et un code entièrement **open source**, nous nous engageons à offrir le meilleur à nos utilisateurs.
+## 🎯 VentiStudio, c'est quoi ?
+VentiStudio est un écosystème numérique offrant :
+- Une plateforme de streaming multimédia sécurisée
+- Un espace créatif pour les artistes
+- Des outils de collaboration innovants
+- Une expérience utilisateur optimisée
 
-## Pourquoi avons-nous choisi l'Open Source ?
+## 🌟 Fonctionnalités principales
+- **Streaming HD** : Vidéo, musique et jeux
+- **Espace créatif** : Outils pour artistes
+- **Wiki intégré** : Documentation collaborative
+- **Système PIP** : Picture-in-Picture avancé
+- **Multi-devices** : Compatible sur tous supports
 
-Chez VentiStudio, nous croyons profondément aux valeurs de l'open source. Même si le contenu (hors code) de notre plateforme reste protégé par le droit d'auteur, notre choix de rendre le code accessible repose sur plusieurs raisons :
+## 🔒 Sécurité et confidentialité
+- Chiffrement de bout en bout
+- Authentification multi-facteurs
+- Conformité RGPD
+- Audits de sécurité réguliers
 
-1. **Transparence totale**  
-   En rendant chaque ligne de notre code visible, nous permettons à tous de comprendre le fonctionnement de la plateforme. Rien n’est caché.
+## 🚀 Installation
 
-2. **Sécurité renforcée**  
-   Grâce à la contribution de développeurs du monde entier, les éventuelles vulnérabilités sont rapidement détectées et corrigées, offrant une sécurité optimale à nos utilisateurs.
+```bash
+git clone https://github.com/ventistudio/ventistudio.fr.git
+cd ventistudio.fr
+npm install
+npm run dev
+```
 
-3. **Innovation partagée**  
-   L’open source invite à la collaboration. Chaque contribution enrichit la plateforme avec de nouvelles idées et des améliorations continues.
+## 📚 Documentation
+- [Guide de démarrage](https://docs.ventistudio.fr/getting-started)
+- [Documentation API](https://api.ventistudio.fr/docs)
+- [Wiki](https://ventistudio.fr/wiki)
 
-4. **Liberté et contrôle**  
-   Nos utilisateurs peuvent adapter VentiStudio à leurs besoins, leur offrant ainsi une expérience entièrement personnalisée.
+## 🤝 Contribuer
+Consultez notre [guide de contribution](CONTRIBUTING.md) et notre [code de conduite](CODE_OF_CONDUCT.md).
 
-5. **Apprentissage pour tous**  
-   En rendant notre code disponible, nous contribuons à la formation des développeurs en herbe et encourageons l’échange au sein de la communauté technologique.
+## 🔐 Sécurité
+Pour signaler une vulnérabilité, consultez notre [politique de sécurité](SECURITY.md).
 
-6. **Respect des droits d’auteur**  
-   Si notre code est ouvert, tout le contenu de la plateforme reste strictement protégé. Nous veillons à préserver les droits d’auteur et à valoriser le travail des créateurs.
+## 📄 Licence
+Ce projet est sous licence [Kanae Aoki](https://ventistudio.fr/licence).
 
-## Notre engagement envers l’Open Source
+## 📊 Statut du service
+- [Statut en direct](https://status.ventistudio.fr)
+- [Historique des incidents](https://status.ventistudio.fr/history)
 
-Pour nous, l’open source est bien plus qu’un choix, nous nous engageons à maintenir une plateforme ouverte, transparente et collaborative à chaque étape de son évolution.  
+## 📞 Contact
+- Site : [ventistudio.fr](https://ventistudio.fr)
+- Support : support@ventistudio.fr
+- Sécurité : security@ventistudio.fr
+
 ---
+*VentiStudio - Copyright & P-Line 2023 - 2025*  
+*Product By AINA UMAISHI - ARTIFICIAL INTELLIGENCE NEW AGE*
 
-*© 2024 VentiStudio. Tous droits réservés. Le code source est disponible sous licence [Kanae Aoki](https://ventistudio.fr/licence).*  
-[Découvrir VentiStudio](https://ventistudio.fr/)  
----
-*VentiStudio - Copyright & P-Line 2023 - 2024, Tous droits réservés. Le code source est disponible sous licence [Kanae Aoki](https://ventistudio.fr/licence).*  
+[🌐 Découvrir VentiStudio](https://ventistudio.fr/)

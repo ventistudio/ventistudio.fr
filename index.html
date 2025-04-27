@@ -1,696 +1,552 @@
 <!DOCTYPE html>
-<html><head><base href="https://ventistudio.fr/">
-  <meta charset="utf-8">
-  <meta name="viewport">
-  <html lang="fr"></html>
-  <link rel="icon" type="image/png" href="favicon.ico">
-  <meta property="og:title" content="Bienvenu sur VentiStudio">
-  <meta property="og:site_name" content="VentiStudio Komiyuniti">
-  <meta property="og:url" content="https://ventistudio.fr">
-  <meta property="og:description" content="Hey, je suis Hikari Umaishi (光馬石), mais je préfère que l'on m'appelle Hiuma (ヒウマ).
-Laissez-moi vous présenter ma communauté, un espace où l'art et la créativité se rencontrent.">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="https://ventistudio.fr/favicon.gif">
-  <title>VentiStudio - Acceuil</title>
-<style>
-:root {
-  --primary: #7B66FF;
-  --secondary: #2A2D3A;
-  --background: #1A1B26;
-  --text: #FFFFFF;
-  --hover: #9F86FF;
-  --accent1: #414868;
-  --accent2: #565f89;
-}
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/ico" href="https://ventistudio.fr/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VentiStudio v4</title>
+  <link rel="stylesheet" href="https://trust.ventistudio.fr/root/style.css">
+  <style>
+    .donation-popup-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+    }
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap');
+    .donation-popup {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(187, 154, 247, 0.7);
+        padding: 2rem;
+        border-radius: 10px;
+        max-width: 500px;
+        width: 90%;
+        z-index: 1001;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
 
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Inter', sans-serif;
-  background-color: var(--background);
-  color: var(--text);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
+    .donation-popup-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 1rem;
+        margin-top: 1.5rem;
+    }
 
-.navbar {
-  background-color: var(--secondary);
-  padding: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  box-shadow: 0 2px 10px rgba(123, 102, 255, 0.1);
-}
+    .donation-popup-button {
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: opacity 0.2s;
+    }
 
-.logo {
-  height: 50px;
-  transition: transform 0.3s ease;
-}
+    .donation-popup-button:hover {
+        opacity: 0.9;
+    }
 
-.logo:hover {
-  transform: scale(1.05);
-}
+    .donation-popup-button.primary {
+        background: #7c3aed;
+        color: #ffffff;
+    }
 
-.nav-links {
-  display: flex;
-  gap: 2rem;
-}
+    .donation-popup-button.secondary {
+        background: #6c757d;
+        color: white;
+    }
 
-.mobile-menu-button {
-  display: none;
-  background: none;
-  border: none;
-  color: var(--text);
-  font-size: 1.5rem;
-  cursor: pointer;
-  padding: 0.5rem;
-}
+    [data-theme="dark"] .donation-popup {
+        background: #1a1b26;
+        color: #7aa2f7;
+    }
 
-.nav-item {
-  position: relative;
-  cursor: pointer;
-}
+    .cookie-popup-overlay {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(26, 27, 38, 0.95);
+        padding: 1rem;
+        z-index: 1000;
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    }
 
-.nav-item > a {
-  color: var(--text);
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 500;
-}
+    .cookie-popup {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+        color: #ffffff;
+    }
 
-.nav-item > a:hover {
-  background-color: var(--hover);
-  transform: translateY(-2px);
-}
+    .cookie-popup-content {
+        flex: 1;
+    }
 
-.dropdown {
-  display: none;
-  position: absolute;
-  background-color: var(--accent1);
-  min-width: 200px;
-  box-shadow: 0 8px 16px rgba(123, 102, 255, 0.2);
-  z-index: 1;
-  border-radius: 8px;
-  margin-top: 0.5rem;
-  backdrop-filter: blur(10px);
-}
+    .cookie-popup-buttons {
+        display: flex;
+        gap: 1rem;
+    }
 
-.nav-item:hover .dropdown {
-  display: block;
-  animation: fadeIn 0.3s ease;
-}
+    .cookie-button {
+        padding: 0.5rem 1.5rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: opacity 0.2s;
+    }
 
-@media screen and (max-width: 768px) {
-  .mobile-menu-button {
-    display: block;
-  }
+    .cookie-button:hover {
+        opacity: 0.9;
+    }
 
-  .nav-links {
-    display: none;
-    position: fixed;
-    top: 80px;
-    left: 0;
-    right: 0;
-    background-color: var(--secondary);
-    flex-direction: column;
-    padding: 1rem;
-    gap: 1rem;
-  }
+    .cookie-button.accept {
+        background: #7c3aed;
+        color: #ffffff;
+    }
 
-  .nav-links.active {
-    display: flex;
-  }
+    .cookie-button.reject {
+        background: #6c757d;
+        color: #ffffff;
+    }
 
-  .nav-item {
-    width: 100%;
-  }
+    .popup-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+    }
 
-  .dropdown {
-    position: static;
-    width: 100%;
-    margin-top: 0.5rem;
-    display: none;
-  }
+    .popup {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 2rem;
+        border-radius: 10px;
+        max-width: 500px;
+        width: 90%;
+        z-index: 1001;
+    }
 
-  .nav-item.active .dropdown {
-    display: block;
-  }
+    .popup-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
 
-  .footer-content {
-    grid-template-columns: repeat(2, 1fr) !important;
-    padding: 0 1rem;
-  }
+    .popup-button {
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
 
-  .copyright {
-    flex-direction: column;
-    text-align: center;
-  }
-}
+    .popup-button.primary {
+        background: #007bff;
+        color: white;
+    }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+    .popup-button.secondary {
+        background: #6c757d;
+        color: white;
+    }
 
-.dropdown a {
-  color: var(--text);
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  transition: all 0.2s ease;
-}
+    [data-theme="dark"] .popup {
+        background: #1a1a1a;
+        color: white;
+    }
 
-.dropdown a:hover {
-  background-color: var(--hover);
-  transform: translateX(5px);
-}
+    .auth-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+    }
 
-.main-content {
-  padding: 0;
-  text-align: center;
-}
+    .auth-modal-content {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: var(--bg-primary);
+        padding: 2rem;
+        border-radius: 10px;
+        max-width: 500px;
+        width: 90%;
+        z-index: 1001;
+    }
 
-.hero-section {
-  padding: 6rem 2rem;
-  background: linear-gradient(135deg, var(--background) 0%, var(--accent1) 100%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
-  position: relative;
-  overflow: hidden;
-}
+    .auth-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
 
-.hero-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(circle at 50% 50%, var(--primary) 0%, transparent 70%);
-  opacity: 0.1;
-  animation: pulse 4s ease-in-out infinite;
-}
+    .auth-methods {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
 
-@keyframes pulse {
-  0% { transform: scale(1); opacity: 0.1; }
-  50% { transform: scale(1.2); opacity: 0.15; }
-  100% { transform: scale(1); opacity: 0.1; }
-}
+    .auth-method {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: 500;
+        background: #7289da;
+        color: white;
+    }
 
-.hero-section h1 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 3.5rem;
-  margin-bottom: 1rem;
-  background: linear-gradient(45deg, var(--primary), var(--hover));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: titleGlow 2s ease-in-out infinite alternate;
-  position: relative;
-  z-index: 1;
-}
+    .auth-method.discord svg {
+        fill: white;
+    }
 
-.hero-section p {
-  font-size: 1.4rem;
-  color: var(--text);
-  opacity: 0.9;
-  max-width: 800px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 1;
-}
+    .separator {
+        text-align: center;
+        margin: 1rem 0;
+        font-size: 0.9rem;
+        color: #6c757d;
+    }
 
-.cta-button {
-  background: var(--primary);
-  color: var(--text);
-  padding: 1rem 2rem;
-  border-radius: 30px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  position: relative;
-  z-index: 1;
-  border: none;
-  cursor: pointer;
-  font-size: 1.1rem;
-}
+    .auth-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
 
-.cta-button:hover {
-  background: var(--hover);
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(123, 102, 255, 0.3);
-}
+    .form-group input {
+        width: 100%;
+        padding: 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
 
-.section {
-  padding: 4rem 2rem;
-  background: var(--background);
-}
+    .auth-submit {
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: 500;
+        background: #007bff;
+        color: white;
+    }
 
-.section-title {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
-  color: var(--text);
-}
+    .auth-footer {
+        text-align: center;
+        font-size: 0.9rem;
+        color: #6c757d;
+    }
 
-.section-subtitle {
-  font-size: 1.2rem;
-  color: var(--text);
-  opacity: 0.8;
-  max-width: 800px;
-  margin: 0 auto 3rem auto;
-}
-
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.service-card {
-  background: var(--secondary);
-  padding: 2rem;
-  border-radius: 15px;
-  transition: all 0.3s ease;
-}
-
-.service-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-.service-card h3 {
-  color: var(--primary);
-  margin-bottom: 1rem;
-}
-
-.news-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.news-card {
-  background: var(--secondary);
-  padding: 2rem;
-  border-radius: 15px;
-  transition: all 0.3s ease;
-}
-
-.community-section {
-  background: linear-gradient(135deg, var(--secondary) 0%, var(--accent1) 100%);
-  text-align: center;
-  padding: 4rem 2rem;
-}
-
-.button-group {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-@media screen and (max-width: 768px) {
-  .hero-section h1 {
-    font-size: 2.5rem;
-  }
-  
-  .hero-section p {
-    font-size: 1.1rem;
-  }
-  
-  .section-title {
-    font-size: 2rem;
-  }
-  
-  .button-group {
-    flex-direction: column;
-    align-items: center;
-  }
-}
-
-@keyframes titleGlow {
-  from { text-shadow: 0 0 20px rgba(123, 102, 255, 0.5); }
-  to { text-shadow: 0 0 30px rgba(123, 102, 255, 0.8); }
-}
-
-.footer {
-  background-color: var(--secondary);
-  padding: 2rem;
-  margin-top: auto;
-  box-shadow: 0 -2px 10px rgba(123, 102, 255, 0.1);
-}
-
-.footer-content {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.footer-section h3 {
-  color: var(--text);
-  margin-bottom: 1rem;
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 700;
-}
-
-.footer-section a {
-  color: var(--text);
-  text-decoration: none;
-  display: block;
-  margin-bottom: 0.5rem;
-  transition: all 0.2s ease;
-  opacity: 0.8;
-}
-
-.footer-section a:hover {
-  opacity: 1;
-  color: var(--hover);
-  transform: translateX(5px);
-}
-
-.copyright {
-  text-align: center;
-  padding: 2rem 0;
-  border-top: 1px solid var(--accent1);
-  margin-top: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-}
-
-.copyright img {
-  height: 30px;
-}
-
-.copyright span {
-  color: var(--text);
-  opacity: 0.8;
-  font-size: 0.9rem;
-}
-
-::-webkit-scrollbar {
-  width: 12px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--background);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--primary);
-  border-radius: 6px;
-  border: 3px solid var(--background);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--hover);
-}
-
-* {
-  scrollbar-width: thin;
-  scrollbar-color: var(--primary) var(--background);
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-@keyframes slideDown {
-  from {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-#celebration-banner {
-  background: linear-gradient(45deg, var(--primary), var(--hover));
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  position: relative;
-  z-index: 1000;
-}
-</style>
+  </style>
 </head>
+<script src="https://uptime.betterstack.com/widgets/announcement.js" data-id="202779" async="async" type="text/javascript"></script>
 <body>
-  <div id="celebration-banner" style="display: none; background: var(--primary); color: var(--text); text-align: center; padding: 10px; font-weight: bold; animation: slideDown 0.5s ease-out;">
-    <span id="celebration-message"></span>
-  </div>
-  
-  <nav class="navbar">
-    <img src="/favicon.avif" alt="VentiStudio Logo" class="logo">
-    <button class="mobile-menu-button">☰</button>
-    <div class="nav-links">
-      <div class="nav-item">
-        <a href="/">Accueil</a>
-      </div>
-      <div class="nav-item">
-        <a href="/approuvedcontent">Contenu Approuvé</a>
-      </div>
-      <div class="nav-item">
-        <a href="/player">Player</a>
-        <div class="dropdown">
-          <a href="/player/game">Game</a>
-          <a href="/player/music">Music</a>
-          <a href="/player/story">Story</a>
-          <a href="/player/video">Video</a>
-        </div>
-      </div>
-      <div class="nav-item">
-        <a href="/wiki">Wiki</a>
-      </div>
-      <div class="nav-item">
-        <a href="/staff">Staff</a>
-        <div class="dropdown">
-          <a href="/job">Recrutement</a>
-        </div>
-      </div>
-      <div class="nav-item">
-        <a href="/artist">Artiste</a>
-        <div class="dropdown">
-          <a href="/submissions">Soumissions</a>
-        </div>
-      </div>
-      <div class="nav-item">
-        <a href="/pip">PIP</a>
-      </div>
-      <div class="nav-item">
-        <a href="/sitemap">Sitemap</a>
-      </div>
+  <header>
+    <div class="logo">
+      <img src="https://ventistudio.fr/favicon.avif" alt="VentiStudio Logo" class="site-logo">
+      <span>VentiStudio</span>
     </div>
-  </nav>
+    <nav>
+      <a href="https://ventistudio.fr" class="active">Accueil</a>
+      <a href="https://ventistudio.fr/approuvedcontent">Contenu Approuvé</a>
+      <a href="https://ventistudio.fr/player" >Player</a>
+      <a href="https://ventistudio.fr/wiki">Wiki</a>
+      <a href="https://ventistudio.fr/staff">Staff</a>
+      <a href="https://ventistudio.fr/artist">Artiste</a>
+      <a href="https://ventistudio.fr/pip">PIP</a>
+      <a href="https://ventistudio.fr/sitemap">Sitemap</a>
+    </nav>
+    <div class="controls">
+      <button id="theme-toggle" class="theme-toggle">
+        <svg width="24" height="24" viewBox="0 0 24 24">
+          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
+          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
+          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
+        </svg>
+      </button>
+      <div id="user-button"></div>
+    </div>
+  </header>
 
-  <main class="main-content">
-    <section class="hero-section">
+  <main>
+    <section class="hero">
       <h1>Bienvenue dans l'univers de VentiStudio</h1>
       <p>Créativité, innovation, et communauté à portée de clic.</p>
-      <a href="/sitemap" class="cta-button">Explorer VentiStudio</a>
+      <a href="/sitemap" class="cta">Explorer VentiStudio</a>
     </section>
 
-    <section class="section">
-      <h2 class="section-title">À propos de VentiStudio</h2>
-      <p class="section-subtitle">VentiStudio est une plateforme créative conçue pour rassembler des outils innovants, des contenus originaux et une communauté passionnée.</p>
-      <div class="services-grid">
-        <div class="service-card">
-          <h3>Gazette Numérique</h3>
-          <p>Hebdomadaire avec les dernières actualités</p>
-        </div>
-        <div class="service-card">
-          <h3>Lecteurs Multimédias</h3>
-          <p>Pour vidéo, musique et livres</p>
-        </div>
-        <div class="service-card">
-          <h3>Interaction Roblox</h3>
-          <p>Sécurisée et optimisée</p>
-        </div>
+    <section class="about">
+      <h2>À propos de VentiStudio</h2>
+      <p>VentiStudio est une plateforme créative conçue pour rassembler des outils innovants, des contenus originaux et une communauté passionnée.</p>
+      <div class="cards">
+        <a href="https://www.clictune.com/kokX" target="_blank" class="card">
+          <div class="card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path fill="currentColor" d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/>
+            </svg>
+          </div>
+          <h3>Discord</h3>
+          <p>Votre espace pour discuter et vous retrouver.</p>
+        </a>
+
+        <a href="https://www.clictune.com/kokS" target="_blank" class="card">
+          <div class="card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="24" height="24" viewBox="0 0 256.000000 256.000000" preserveAspectRatio="xMidYMid meet">
+              <metadata>
+              Created by potrace 1.11, written by Peter Selinger 2001-2013
+              </metadata>
+              <g transform="translate(0.000000,256.000000) scale(0.100000,-0.100000)" fill="currentColor" stroke="none">
+              <path d="M1254 2266 c-10 -7 -39 -24 -64 -38 -25 -14 -101 -58 -170 -98 -69 -41 -136 -79 -149 -86 l-23 -12 23 -15 c13 -8 107 -63 209 -122 102 -59 188 -110 193 -114 4 -4 8 -119 10 -256 l2 -249 47 -27 c25 -15 66 -38 90 -52 277 -156 290 -165 266 -180 -69 -43 -179 -107 -183 -107 -2 0 -49 -27 -104 -60 -55 -33 -104 -60 -110 -60 -6 0 -10 92 -10 241 0 133 -1 242 -3 244 -2 2 -99 -52 -215 -120 l-213 -123 -2 249 -3 249 -58 -35 c-32 -20 -77 -45 -100 -58 -94 -50 -267 -152 -267 -158 0 -3 15 -13 33 -22 17 -9 46 -25 62 -34 17 -10 96 -56 177 -102 111 -64 145 -88 137 -97 -6 -7 -34 -25 -62 -39 -29 -15 -59 -33 -68 -41 -8 -8 -18 -14 -21 -14 -3 0 -62 -33 -132 -74 -137 -80 -136 -77 -61 -118 17 -9 188 -107 380 -218 193 -112 365 -211 384 -222 33 -19 33 -19 70 3 20 12 54 32 76 44 22 13 81 46 130 75 50 29 108 63 130 75 22 13 141 82 265 153 l225 131 3 245 c1 154 -2 246 -8 246 -11 0 -74 -35 -169 -92 -34 -21 -65 -38 -67 -38 -2 0 -42 -23 -89 -51 -48 -28 -90 -48 -93 -44 -4 4 -7 114 -7 246 l0 239 212 122 c117 67 213 124 213 127 0 10 -409 243 -417 238 -5 -3 -8 -111 -8 -241 0 -151 -4 -236 -10 -236 -5 0 -36 16 -68 35 -32 19 -59 35 -61 35 -2 0 -68 38 -147 84 l-144 84 -2 247 c-1 136 -3 249 -5 251 -3 2 -13 -2 -24 -10z"/>
+              </g>
+              </svg>
+          </div>
+          <h3>Salad</h3>
+          <p>Partagez votre PC, obtenez des récompenses.</p>
+        </a>
+
+        <a href="https://www.clictune.com/kokT" target="_blank" class="card">
+          <div class="card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.0" width="24" height="24" viewBox="0 0 500.000000 500.000000" preserveAspectRatio="xMidYMid meet">
+              <g clip-path="url(#E)">
+              <path d="M18.404 57.827c-6.354 0-12.533-3.294-15.938-9.188C-2.61 39.853.403 28.618 9.195 23.545L45.961 2.334C54.754-2.739 65.997.272 71.073 9.058s2.064 20.021-6.729 25.094L27.579 55.363a18.31 18.31 0 0 1-9.175 2.464z" fill="url(#A)"/>
+              <use xlink:href="#F" fill="url(#B)"/>
+              <use xlink:href="#F" fill="url(#C)"/>
+              <path d="M294.137 177.33L36.769 325.812v-63.635l11.642-6.72-20.835-30.386-18.382 10.592c-5.688 3.281-9.192 9.345-9.192 15.908V357.63a18.37 18.37 0 0 0 9.192 15.909A18.38 18.38 0 0 0 18.386 376a18.39 18.39 0 0 0 9.192-2.461l312.519-180.3c5.688-3.281 9.192-9.346 9.192-15.909s-3.504-12.627-9.192-15.908l-91.605-52.85a17.54 17.54 0 0 0-.594-.342l-91.635-52.867c-5.688-3.281-12.695-3.281-18.383 0L9.195 129.604c-8.793 5.073-11.805 16.307-6.729 25.094 3.405 5.893 9.584 9.188 15.938 9.188a18.32 18.32 0 0 0 9.174-2.464L147.07 92.484l147.067 84.847z" fill="url(#D)"/>
+              </g>
+              <metadata>
+                Created by ventistudio, ventistudio not affiliated with instant gaming.
+              </metadata>
+              <defs>
+              <linearGradient id="A" x1="10.066" y1="83.92" x2="68.113" y2="-.13" gradientUnits="userSpaceOnUse">
+              <stop offset=".26" stop-color="currentColor"/>
+              <stop offset="1" stop-color="currentColor"/>
+              </linearGradient>
+              <linearGradient id="B" x1="51.719" y1="214.43" x2="127.497" y2="82.364" gradientUnits="userSpaceOnUse">
+              <stop stop-color="currentColor"/>
+              <stop offset="1" stop-color="currentColor" stop-opacity="0"/>
+              </linearGradient>
+              <radialGradient id="C" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(31.616573343087463,1.5055616231730151,-1.6275956206080497,34.17926939675244,34.6276,229.717)"><stop stop-color="currentColor"/><stop offset="1" stop-color="currentColor" stop-opacity="0"/>
+              </radialGradient>
+              <linearGradient id="D" x1="13.055" y1="376" x2="349.288" y2="170.804" gradientUnits="userSpaceOnUse">
+              <stop stop-color="currentColor"/>
+              <stop offset="1" stop-color="currentColor"/>
+              </linearGradient>
+              <clipPath id="E">
+              <path fill="#fff" d="M0 0h1458v376H0z"/>
+              </clipPath>
+              <path id="F" d="M294.137 177.33L36.769 325.812v-63.635l201.909-116.553-36.583-21.106L9.194 235.663c-5.688 3.281-9.192 9.345-9.192 15.908V357.63a18.37 18.37 0 0 0 9.192 15.909A18.38 18.38 0 0 0 18.386 376a18.39 18.39 0 0 0 9.192-2.461l312.519-180.3c5.688-3.281 9.192-9.346 9.192-15.909s-3.504-12.627-9.192-15.908l-91.605-52.85a17.54 17.54 0 0 0-.594-.342l-91.635-52.867c-5.688-3.281-12.695-3.281-18.383 0L9.195 129.604c-8.793 5.073-11.805 16.307-6.729 25.094 3.405 5.893 9.584 9.188 15.938 9.188a18.32 18.32 0 0 0 9.174-2.464L147.07 92.484l147.067 84.847z"/>
+              </defs>
+              </svg>
+          </div>
+          <h3>Instant Gaming</h3>
+          <p>Achetez vos jeux vidéo moins cher.</p>
+        </a>
       </div>
     </section>
 
-    <section class="section">
-      <h2 class="section-title">Nos Services</h2>
-      <div class="services-grid">
-        <div class="service-card">
-          <h3>La Gazette d'Opastudien</h3>
-          <p>Pour rester informé et inspiré</p>
-        </div>
-        <div class="service-card">
-          <h3>Livres Numériques</h3>
-          <p>Découverte et lecture de nouvelles œuvres</p>
-        </div>
-        <div class="service-card">
-          <h3>Lecteurs Multimédias</h3>
-          <p>Vidéo, musique et bientôt jeux</p>
-        </div>
-        <div class="service-card">
-          <h3>Administration Roblox</h3>
-          <p>Gestion simplifiée et fiable</p>
-        </div>
-      </div>
-    </section>
+    <section class="recommendations">
+      <h2>Recommandations</h2>
+      <div class="cards">
+        <a href="EXEMPLE:LOCAL" target="_blank" class="card">
+          <div class="card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-music"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+          </div>
+          <h3>Exemple</h3>
+          <p>Exemple.</p>
+        </a>
 
-    <section class="section">
-      <h2 class="section-title">Actualités et Événements</h2>
-      <div class="news-grid">
-        <div class="news-card">
-          <h3>Concours de Noël</h3>
-          <p>Participez à notre événement festif sur Discord !</p>
-        </div>
-        <div class="news-card">
-          <h3>Mises à jour techniques</h3>
-          <p>PWA et support AV1 ajoutés</p>
-        </div>
-        <div class="news-card">
-          <h3>Projets à venir</h3>
-          <p>Découvrez ce qui arrive bientôt</p>
-        </div>
-      </div>
-       <a href="/player/news" class="cta-button" style="margin-top: 2rem;">Lire plus d'actualités</a>
-    </section>
+        <a href="EXEMPLE:LOCAL" target="_blank" class="card">
+          <div class="card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-gamepad-2"><line x1="6" x2="10" y1="11" y2="11"/><line x1="8" x2="8" y1="9" y2="13"/><line x1="15" x2="15.01" y1="12" y2="12"/><line x1="18" x2="18.01" y1="10" y2="10"/><path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z"/></svg>
+          </div>
+          <h3>Exemple</h3>
+          <p>Exemple.</p>
+        </a>
 
-    <section class="community-section">
-      <h2 class="section-title">Rejoignez la communauté</h2>
-      <p class="section-subtitle">Que vous soyez créateur, joueur, ou simplement curieux, VentiStudio est votre espace pour explorer, apprendre et partager.</p>
-      <div class="button-group">
-        <a href="/social/?redirect=" class="cta-button">Nous rejoindre sur Discord</a>
-        <a href="/player/story/gazette" class="cta-button">Lire la Gazette</a>
+        <a href="EXEMPLE:LOCAL" target="_blank" class="card">
+          <div class="card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open-text"><path d="M12 7v14"/><path d="M16 12h2"/><path d="M16 8h2"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/><path d="M6 12h2"/><path d="M6 8h2"/></svg>
+          </div>
+          <h3>Exemple</h3>
+          <p>Exemple.</p>
+        </a>
+
+        <a href="EXEMPLE:LOCAL" target="_blank" class="card">
+          <div class="card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-video"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"/><rect x="2" y="6" width="14" height="12" rx="2"/></svg>
+          </div>
+          <h3>Exemple</h3>
+          <p>Exemple.</p>
+        </a>
+
+        <a href="EXEMPLE:LOCAL" target="_blank" class="card">
+          <div class="card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-badge-check"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg>
+          </div>
+          <h3>Exemple</h3>
+          <p>Exemple.</p>
+        </a>
       </div>
     </section>
+    <div class="donation-popup-overlay" id="donationPopup">
+        <div class="donation-popup">
+            <h3>Soutenez VentiStudio</h3>
+            <p>VentiStudio est gratuit mais sa mise en ligne a un coût élevé. De plus, nous souhaitons vous mettre à disposition des cagnottes que nous soutenons ou d'autres projets/programmes.</p>
+            <div class="donation-popup-actions">
+                <button class="donation-popup-button secondary" onclick="closeDonationPopup()">Plus tard</button>
+                <button class="donation-popup-button primary" onclick="window.location.href='https://ventistudio.fr/donate'">En savoir plus</button>
+            </div>
+        </div>
+    </div>
+    <div class="cookie-popup-overlay" id="cookiePopup">
+        <div class="cookie-popup">
+            <div class="cookie-popup-content">
+                <h3>🍪 Nous utilisons des cookies</h3>
+                <p>Nous utilisons des cookies pour améliorer votre expérience sur notre site. En continuant à naviguer, vous acceptez notre utilisation des cookies.</p>
+            </div>
+            <div class="cookie-popup-buttons">
+                <button class="cookie-button reject" onclick="rejectCookies()">Refuser</button>
+                <button class="cookie-button accept" onclick="acceptCookies()">Accepter</button>
+            </div>
+        </div>
+    </div>
+    <div class="popup-overlay" id="donationPopup">
+        <div class="popup">
+            <h3>Soutenez VentiStudio</h3>
+            <p>VentiStudio est gratuit mais sa mise en ligne a un coût élevé. De plus, nous souhaitons vous mettre à disposition des cagnottes que nous soutenons ou d'autres projets/programmes.</p>
+            <div class="popup-actions">
+                <button class="popup-button secondary" onclick="closePopup()">Plus tard</button>
+                <button class="popup-button primary" onclick="window.location.href='https://ventistudio.fr/support'">En savoir plus</button>
+            </div>
+        </div>
+    </div>
+    <div class="auth-modal" id="authModal">
+        <div class="auth-modal-content">
+            <div class="auth-header">
+                <h3>Connexion</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="auth-methods">
+                <button class="auth-method discord">
+                    <svg class="discord-icon" width="24" height="24" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/>
+                    </svg>
+                    Se connecter avec Discord
+                </button>
+                <div class="separator">ou</div>
+                <form id="loginForm" class="auth-form">
+                    <div class="form-group">
+                        <input type="text" id="username" placeholder="Nom d'utilisateur ou Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="password" placeholder="Mot de passe" required>
+                    </div>
+                    <button type="submit" class="auth-submit">Se connecter</button>
+                </form>
+                <p class="auth-footer">
+                    Pas encore de compte ? L'inscription se fait automatiquement avec votre email.
+                </p>
+            </div>
+        </div>
+    </div>
   </main>
 
-  <footer class="footer">
+  <footer>
     <div class="footer-content">
       <div class="footer-section">
-        <h3>Outils</h3>
-        <a href="/encrypt">Encrypt</a>
-        <a href="/sitemap">Sitemap</a>
-        <a href="/status">Statut</a>
+        <h4>Outils</h4>
+        <ul>
+          <li><a href="https://ventistudio.fr/encrypt">Encrypt</a></li>
+          <li><a href="https://ventistudio.fr/sitemap">Sitemap</a></li>
+          <li><a href="https://status.ventistudio.fr/">Statut</a></li>
+          <li><a href="https://aina.ventistudio.fr/">Aina</a></li>
+        </ul>
       </div>
       <div class="footer-section">
-        <h3>Entreprise</h3>
-        <a href="/about">À propos</a>
-        <a href="/jobs">Emplois</a>
-        <a href="/company">Marque</a>
+        <h4>Entreprise</h4>
+        <ul>
+          <li><a href="https://ventistudio.fr/about">À propos</a></li>
+          <li><a href="https://ventistudio.fr/jobs">Emplois</a></li>
+          <li><a href="https://ventistudio.fr/company">Marque</a></li>
+          <li><a href="https://ventistudio.fr/creator">Créateur</a></li>
+        </ul>
       </div>
       <div class="footer-section">
-        <h3>Ressources</h3>
-        <a href="/university">Université</a>
-        <a href="/lawful/support">Assistance</a>
-        <a href="/lawful/security">Sécurité</a>
+        <h4>Ressources</h4>
+        <ul>
+          <li><a href="https://ventistudio.fr/university">Université</a></li>
+          <li><a href="https://ventistudio.fr/school">École</a></li>
+          <li><a href="https://ventistudio.fr/help">Assistance</a></li>
+          <li><a href="https://ventistudio.fr/security">Sécurité</a></li>
+        </ul>
       </div>
       <div class="footer-section">
-        <h3>Chartes</h3>
-        <a href="/lawful/terms">Conditions</a>
-        <a href="/lawful/privacy">Confidentialité</a>
-        <a href="/lawful/cookies">Paramètres des cookies</a>
-        <a href="/lawful/dmca">DMCA</a>
-        <a href="/lawful/dmcainfo">DMCA Information</a>
-        <a href="/lawful/cgv">Conditions Général de Vente</a>
+        <h4>Chartes</h4>
+        <ul>
+          <li><a href="https://ventistudio.fr/terms">Conditions</a></li>
+          <li><a href="https://ventistudio.fr/privacy">Confidentialité</a></li>
+          <li><a href="https://ventistudio.fr/cookies">Cookies</a></li>
+          <li><a href="https://ventistudio.fr/dmca">DMCA</a></li>
+        </ul>
       </div>
     </div>
-    <div class="copyright">
-      <img src="/favicon.avif" alt="VentiStudio Logo">
-      <span>Copyright & P-Line 2023 - 2024, Tous droits réservés.</span>
+    <div class="footer-bottom">
+      <p class="status"><iframe src="https://status.ventistudio.fr/badge?theme=dark" width="250" height="30" frameborder="0" marginheight="0" marginwidth="0" scrolling="no"></iframe></p>
+      <p class="copyright">Copyright © P-Line 2023 - 2025. Tous droits réservés.</p>
     </div>
   </footer>
 
-  <script>
-    const mobileMenuButton = document.querySelector('.mobile-menu-button');
-    const navLinks = document.querySelector('.nav-links');
-    const navItems = document.querySelectorAll('.nav-item');
-
-    mobileMenuButton.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-    });
-
-    if (window.innerWidth <= 768) {
-      navItems.forEach(item => {
-        item.addEventListener('click', (e) => {
-          if (e.target.closest('.nav-item') === item) {
-            item.classList.toggle('active');
-            navItems.forEach(otherItem => {
-              if (otherItem !== item) {
-                otherItem.classList.remove('active');
-              }
-            });
-          }
-        });
-      });
-    }
-
-    document.addEventListener('click', (e) => {
-      if (!e.target.closest('.navbar')) {
-        navLinks.classList.remove('active');
-        navItems.forEach(item => item.classList.remove('active'));
-      }
-    });
-
-    function checkHolidays() {
-      const today = new Date();
-      const day = today.getDate();
-      const month = today.getMonth() + 1; // JavaScript months are 0-based
-      const banner = document.getElementById('celebration-banner');
-      const message = document.getElementById('celebration-message');
-      let celebrationMessage = '';
-
-      // Check various holiday periods
-      if (month === 12 && day >= 1 && day <= 25) {
-        celebrationMessage = "Joyeux Noël ! 🎄";
-      }
+  <script src="https://trust.ventistudio.fr/root/script.js"></script>
+<script>
+    function checkPlatformCompatibility() {
+      var userAgent = navigator.userAgent.toLowerCase();
       
-      if (month === 12 && day === 15) {
-        celebrationMessage = "Joyeux anniversaire Hikari Umaishi ! 🎂 Et joyeux Noël ! 🎄";
-      }
+      // Detect iOS
+      var isIOS = /iphone|ipad|ipod/.test(userAgent);
       
-      if (month === 9 && day === 24) {
-        celebrationMessage = "Joyeux anniversaire VentiStudio ! 🎉";
-      }
+      // Detect Android
+      var isAndroid = /android/.test(userAgent);
       
-      if (month === 10 && day >= 25 && day <= 31) {
-        celebrationMessage = "Joyeux Halloween ! 🎃";
-      }
-      
-      if (month === 7 && day === 14) {
-        celebrationMessage = "Bonne fête nationale ! 🇫🇷";
-      }
-      
-      if ((month === 12 && day >= 31) || (month === 1 && day <= 3)) {
-        celebrationMessage = "Bonne année ! 🎊";
-      }
-      
-      if (month === 9 && day === 9) {
-        celebrationMessage = "Bonne fête de l'automne ! 🍂";
-      }
-      
-      if (month === 3 && (day === 20 || day === 21)) {
-        celebrationMessage = "Bienvenue au printemps ! 🌸";
-      }
-
-      if (celebrationMessage) {
-        message.textContent = celebrationMessage;
-        banner.style.display = 'block';
-      } else {
-        banner.style.display = 'none';
+      // Redirect if platform is not supported
+      if (isIOS || isAndroid) {
+        window.location.href = '/unsupported';
       }
     }
-
-    // Run the check when the page loads
-    checkHolidays();
+    
+    // Run check when page loads
+    checkPlatformCompatibility();
+    
+    // Exécuter la vérification de géorestriction au chargement de la page
+    document.addEventListener('DOMContentLoaded', function() {
+        checkGeoRestriction();
+    });
   </script>
-</body></html>
+</body>
+</html>

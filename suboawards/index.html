@@ -1,424 +1,263 @@
-<html><head><base href="https://ventistudio.fr/suboawards">
-  <meta charset="utf-8">
+<!DOCTYPE html>
+<html lang="fr">
+<head><base href="https://ventistudio.fr/suboawards">
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/ico" href="https://ventistudio.fr/favicon.ico">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Subo Awards - VentiStudio</title>
-<style>
-:root {
-  --primary: #7B66FF;
-  --secondary: #2A2D3A;
-  --background: #1A1B26;
-  --text: #FFFFFF;
-  --hover: #9F86FF;
-  --accent1: #414868;
-  --accent2: #565f89;
-}
+  <link rel="stylesheet" href="https://trust.ventistudio.fr/root/style.css">
+  <style>
+    /* Hero Section */
+    .awards-hero {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent1) 100%);
+      padding: 4rem 2rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      border-radius: 0 0 20px 20px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap');
+    .awards-hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: var(--text);
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
 
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Inter', sans-serif;
-  background-color: var(--background);
-  color: var(--text);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
+    .awards-hero p {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+    }
 
-.navbar {
-  background-color: var(--secondary);
-  padding: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  box-shadow: 0 2px 10px rgba(123, 102, 255, 0.1);
-}
+    /* Grid Layout */
+    .awards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      padding: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
 
-.logo {
-  height: 50px;
-  transition: transform 0.3s ease;
-}
+    /* Award Cards */
+    .award-card {
+      background: var(--bg-secondary);
+      border-radius: 15px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
 
-.logo:hover {
-  transform: scale(1.05);
-}
+    .award-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    }
 
-.nav-links {
-  display: flex;
-  gap: 2rem;
-}
+    .award-year {
+      background: var(--primary);
+      color: var(--text);
+      padding: 0.75rem;
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.2rem;
+      letter-spacing: 1px;
+    }
 
-.mobile-menu-button {
-  display: none;
-  background: none;
-  border: none;
-  color: var(--text);
-  font-size: 1.5rem;
-  cursor: pointer;
-  padding: 0.5rem;
-}
+    .award-content {
+      padding: 1.5rem;
+    }
 
-.nav-item {
-  position: relative;
-  cursor: pointer;
-}
+    .award-category {
+      font-size: 1.5rem;
+      margin: 1rem 0;
+      color: var(--text);
+    }
 
-.nav-item > a {
-  color: var(--text);
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 500;
-}
+    /* Winner Badge */
+    .winner-badge {
+      background: linear-gradient(135deg, #ffd700 0%, #ffaa00 100%);
+      color: #000;
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: bold;
+      display: inline-block;
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
 
-.nav-item > a:hover {
-  background-color: var(--hover);
-  transform: translateY(-2px);
-}
+    /* Year Filter */
+    .year-filter {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin: 2rem 0;
+      padding: 1rem;
+      flex-wrap: wrap;
+    }
 
-.dropdown {
-  display: none;
-  position: absolute;
-  background-color: var(--accent1);
-  min-width: 200px;
-  box-shadow: 0 8px 16px rgba(123, 102, 255, 0.2);
-  z-index: 1;
-  border-radius: 8px;
-  margin-top: 0.5rem;
-  backdrop-filter: blur(10px);
-}
+    .year-button {
+      background: var(--bg-secondary);
+      border: none;
+      padding: 0.75rem 2rem;
+      border-radius: 25px;
+      color: var(--text);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      font-size: 1rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
 
-.nav-item:hover .dropdown {
-  display: block;
-  animation: fadeIn 0.3s ease;
-}
+    .year-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
 
-@media screen and (max-width: 768px) {
-  .mobile-menu-button {
-    display: block;
-  }
+    .year-button.active {
+      background: var(--primary);
+      color: var(--text);
+      font-weight: bold;
+    }
 
-  .nav-links {
-    display: none;
-    position: fixed;
-    top: 80px;
-    left: 0;
-    right: 0;
-    background-color: var(--secondary);
-    flex-direction: column;
-    padding: 1rem;
-    gap: 1rem;
-  }
+    /* Vote Button */
+    .vote-button {
+      background: var(--primary);
+      color: var(--text);
+      border: none;
+      padding: 0.75rem 2rem;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      font-size: 1rem;
+      width: 100%;
+      margin-top: 1rem;
+    }
 
-  .nav-links.active {
-    display: flex;
-  }
+    .vote-button:hover {
+      background: var(--accent1);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
 
-  .nav-item {
-    width: 100%;
-  }
+    /* Award Content */
+    .award-content p {
+      margin: 0.5rem 0;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
 
-  .dropdown {
-    position: static;
-    width: 100%;
-    margin-top: 0.5rem;
-    display: none;
-  }
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-  .nav-item.active .dropdown {
-    display: block;
-  }
+    .award-card {
+      animation: fadeIn 0.5s ease-out forwards;
+    }
 
-  .footer-content {
-    grid-template-columns: repeat(2, 1fr) !important;
-    padding: 0 1rem;
-  }
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .awards-hero h1 {
+        font-size: 2rem;
+      }
 
-  .copyright {
-    flex-direction: column;
-    text-align: center;
-  }
-}
+      .awards-grid {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+        gap: 1.5rem;
+      }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+      .year-filter {
+        padding: 0.5rem;
+      }
 
-.dropdown a {
-  color: var(--text);
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  transition: all 0.2s ease;
-}
+      .year-button {
+        padding: 0.5rem 1.5rem;
+        font-size: 0.9rem;
+      }
 
-.dropdown a:hover {
-  background-color: var(--hover);
-  transform: translateX(5px);
-}
+      .award-card {
+        margin: 0 1rem;
+      }
+    }
 
-.main-content {
-  padding: 0;
-  text-align: center;
-}
+    @media (max-width: 480px) {
+      .awards-hero {
+        padding: 2rem 1rem;
+      }
 
-.awards-hero {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--accent1) 100%);
-  padding: 4rem 2rem;
-  text-align: center;
-}
+      .award-category {
+        font-size: 1.2rem;
+      }
 
-.awards-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  padding: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
+      .winner-badge {
+        font-size: 0.8rem;
+        padding: 0.3rem 0.8rem;
+      }
+    }
 
-.award-card {
-  background: var(--secondary);
-  border-radius: 15px;
-  overflow: hidden;
-  transition: transform 0.3s ease;
-}
+    /* Dark Mode Adjustments */
+    [data-theme="dark"] .award-card {
+      background: var(--bg-secondary-dark);
+    }
 
-.award-card:hover {
-  transform: translateY(-5px);
-}
+    [data-theme="dark"] .winner-badge {
+      background: linear-gradient(135deg, #ffd700 0%, #ff8c00 100%);
+    }
 
-.award-content {
-  padding: 1.5rem;
-}
+    /* Loading State */
+    .loading {
+      opacity: 0.7;
+      pointer-events: none;
+      position: relative;
+    }
 
-.award-year {
-  background: var(--primary);
-  color: var(--text);
-  padding: 0.5rem;
-  text-align: center;
-  font-weight: bold;
-}
-
-.award-category {
-  color: var(--primary);
-  font-size: 1.2rem;
-  margin: 1rem 0;
-}
-
-.vote-button {
-  background: var(--primary);
-  color: var(--text);
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.vote-button:hover {
-  background: var(--hover);
-}
-
-.year-filter {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin: 2rem 0;
-  flex-wrap: wrap;
-}
-
-.year-button {
-  background: var(--secondary);
-  border: none;
-  padding: 0.5rem 1.5rem;
-  border-radius: 25px;
-  color: var(--text);
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.year-button.active {
-  background: var(--primary);
-}
-
-.winner-badge {
-  background: gold;
-  color: black;
-  padding: 0.25rem 0.75rem;
-  border-radius: 15px;
-  font-size: 0.8rem;
-  display: inline-block;
-  margin-bottom: 0.5rem;
-}
-
-.voting-overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.8);
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.voting-modal {
-  background: var(--secondary);
-  padding: 2rem;
-  border-radius: 15px;
-  max-width: 500px;
-  width: 90%;
-}
-
-@media (max-width: 768px) {
-  .awards-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.footer {
-  background-color: var(--secondary);
-  padding: 2rem;
-  margin-top: auto;
-  box-shadow: 0 -2px 10px rgba(123, 102, 255, 0.1);
-}
-
-.footer-content {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.footer-section h3 {
-  color: var(--text);
-  margin-bottom: 1rem;
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 700;
-}
-
-.footer-section a {
-  color: var(--text);
-  text-decoration: none;
-  display: block;
-  margin-bottom: 0.5rem;
-  transition: all 0.2s ease;
-  opacity: 0.8;
-}
-
-.footer-section a:hover {
-  opacity: 1;
-  color: var(--hover);
-  transform: translateX(5px);
-}
-
-.copyright {
-  text-align: center;
-  padding: 2rem 0;
-  border-top: 1px solid var(--accent1);
-  margin-top: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-}
-
-.copyright img {
-  height: 30px;
-}
-
-.copyright span {
-  color: var(--text);
-  opacity: 0.8;
-  font-size: 0.9rem;
-}
-
-::-webkit-scrollbar {
-  width: 12px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--background);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--primary);
-  border-radius: 6px;
-  border: 3px solid var(--background);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--hover);
-}
-
-* {
-  scrollbar-width: thin;
-  scrollbar-color: var(--primary) var(--background);
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-@keyframes slideDown {
-  from {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-#celebration-banner {
-  background: linear-gradient(45deg, var(--primary), var(--hover));
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  position: relative;
-  z-index: 1000;
-}
-</style>
+    .loading::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(2px);
+    }
+  </style>
 </head>
 <body>
-  <div id="celebration-banner" style="display: none; background: var(--primary); color: var(--text); text-align: center; padding: 10px; font-weight: bold; animation: slideDown 0.5s ease-out;">
-    <span id="celebration-message"></span>
-  </div>
-  
-  <nav class="navbar">
-    <img src="/favicon.avif" alt="VentiStudio Logo" class="logo">
-    <button class="mobile-menu-button">☰</button>
-    <div class="nav-links">
-      <div class="nav-item">
-        <a href="/">Accueil</a>
-      </div>
-      <div class="nav-item">
-        <a href="/approuvedcontent">Contenu Approuvé</a>
-      </div>
-      <div class="nav-item">
-        <a href="/wiki">Wiki</a>
-      </div>
-      <div class="nav-item">
-        <a href="/staff">Staff</a>
-        <div class="dropdown">
-          <a href="/job">Recrutement</a>
-        </div>
-      </div>
-      <div class="nav-item">
-        <a href="/artist">Artiste</a>
-      </div>
-      <div class="nav-item">
-        <a href="/pip">PIP</a>
-      </div>
+  <header>
+    <div class="logo">
+      <img src="https://ventistudio.fr/favicon.avif" alt="VentiStudio Logo" class="site-logo">
+      <span>VentiStudio</span>
     </div>
-  </nav>
+    <nav>
+      <a href="https://ventistudio.fr" class="active">Accueil</a>
+      <a href="https://ventistudio.fr/approuvedcontent">Contenu Approuvé</a>
+      <a href="https://ventistudio.fr/player">Player</a>
+      <a href="https://ventistudio.fr/wiki">Wiki</a>
+      <a href="https://ventistudio.fr/staff">Staff</a>
+      <a href="https://ventistudio.fr/artist">Artiste</a>
+      <a href="https://ventistudio.fr/pip">PIP</a>
+      <a href="https://ventistudio.fr/sitemap">Sitemap</a>
+    </nav>
+    <div class="controls">
+      <button id="theme-toggle" class="theme-toggle">
+        <svg width="24" height="24" viewBox="0 0 24 24">
+          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
+          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
+          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
+        </svg>
+      </button>
+      <div id="user-button"></div>
+    </div>
+  </header>
 
   <main class="main-content">
     <section class="awards-hero">
@@ -427,7 +266,7 @@ html {
     </section>
 
     <div class="year-filter">
-      <button class="year-button">2025</button>
+      <button class="year-button active">2025</button>
       <button class="year-button">2024</button>
       <button class="year-button">2023</button>
     </div>
@@ -487,53 +326,54 @@ html {
         </div>
       </div>
     </div>
-
-    <div class="voting-overlay" id="votingOverlay">
-      <div class="voting-modal">
-        <h2>Voter pour ce contenu</h2>
-        <p>Connectez-vous avec Discord pour voter</p>
-        <button class="cta-button" onclick="voteWithDiscord()">Se connecter avec Discord</button>
-        <button class="vote-button" onclick="closeVoting()">Fermer</button>
-      </div>
-    </div>
   </main>
 
-  <footer class="footer">
+  <footer>
     <div class="footer-content">
       <div class="footer-section">
-        <h3>Outils</h3>
-        <a href="/encrypt">Encrypt</a>
-        <a href="/sitemap">Sitemap</a>
-        <a href="/status">Statut</a>
+        <h4>Outils</h4>
+        <ul>
+          <li><a href="https://ventistudio.fr/encrypt">Encrypt</a></li>
+          <li><a href="https://ventistudio.fr/sitemap">Sitemap</a></li>
+          <li><a href="https://status.ventistudio.fr/">Statut</a></li>
+          <li><a href="https://aina.ventistudio.fr/">Aina</a></li>
+        </ul>
       </div>
       <div class="footer-section">
-        <h3>Entreprise</h3>
-        <a href="/about">À propos</a>
-        <a href="/jobs">Emplois</a>
-        <a href="/company">Marque</a>
+        <h4>Entreprise</h4>
+        <ul>
+          <li><a href="https://ventistudio.fr/about">À propos</a></li>
+          <li><a href="https://ventistudio.fr/jobs">Emplois</a></li>
+          <li><a href="https://ventistudio.fr/company">Marque</a></li>
+          <li><a href="https://ventistudio.fr/creator">Créateur</a></li>
+        </ul>
       </div>
       <div class="footer-section">
-        <h3>Ressources</h3>
-        <a href="/university">Université</a>
-        <a href="/lawful/support">Assistance</a>
-        <a href="/lawful/security">Sécurité</a>
+        <h4>Ressources</h4>
+        <ul>
+          <li><a href="https://ventistudio.fr/university">Université</a></li>
+          <li><a href="https://ventistudio.fr/school">École</a></li>
+          <li><a href="https://ventistudio.fr/help">Assistance</a></li>
+          <li><a href="https://ventistudio.fr/security">Sécurité</a></li>
+        </ul>
       </div>
       <div class="footer-section">
-        <h3>Chartes</h3>
-        <a href="/lawful/terms">Conditions</a>
-        <a href="/lawful/privacy">Confidentialité</a>
-        <a href="/lawful/cookies">Paramètres des cookies</a>
-        <a href="/lawful/dmca">DMCA</a>
-        <a href="/lawful/dmcainfo">DMCA Information</a>
-        <a href="/lawful/cgv">Conditions Général de Vente</a>
+        <h4>Chartes</h4>
+        <ul>
+          <li><a href="https://ventistudio.fr/terms">Conditions</a></li>
+          <li><a href="https://ventistudio.fr/privacy">Confidentialité</a></li>
+          <li><a href="https://ventistudio.fr/cookies">Cookies</a></li>
+          <li><a href="https://ventistudio.fr/dmca">DMCA</a></li>
+        </ul>
       </div>
     </div>
-    <div class="copyright">
-      <img src="/favicon.avif" alt="VentiStudio Logo">
-      <span>Copyright & P-Line 2023 - 2024, Tous droits réservés.</span>
+    <div class="footer-bottom">
+      <p class="status"><iframe src="https://status.ventistudio.fr/badge?theme=dark" width="250" height="30" frameborder="0" marginheight="0" marginwidth="0" scrolling="no"></iframe></p>
+      <p class="copyright">Copyright © P-Line 2023 - 2025. Tous droits réservés.</p>
     </div>
   </footer>
 
+  <script src="https://trust.ventistudio.fr/root/script.js"></script>
   <script>
     const mobileMenuButton = document.querySelector('.mobile-menu-button');
     const navLinks = document.querySelector('.nav-links');
@@ -640,9 +480,82 @@ html {
       const cards = document.querySelectorAll('.award-card');
       cards.forEach(card => {
         const cardYear = card.querySelector('.award-year').textContent;
-        card.style.display = cardYear === year ? 'block' : 'none';
+        if (cardYear === year) {
+          card.style.display = 'block';
+          // Animation de fondu à l'apparition
+          card.style.opacity = '0';
+          setTimeout(() => {
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+          }, 100);
+        } else {
+          // Animation de fondu à la disparition
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(20px)';
+          setTimeout(() => {
+            card.style.display = 'none';
+          }, 300);
+        }
       });
+
+      // Mise à jour du texte de la section hero
+      const heroText = document.querySelector('.awards-hero p');
+      switch(year) {
+        case '2025':
+          heroText.textContent = 'Votez pour vos favoris de l\'année en cours !';
+          break;
+        case '2024':
+          heroText.textContent = 'Découvrez les gagnants de 2024';
+          break;
+        case '2023':
+          heroText.textContent = 'Redécouvrez les lauréats de 2023';
+          break;
+      }
     }
+
+    // Initialisation: afficher seulement les awards de 2025 au chargement
+    document.addEventListener('DOMContentLoaded', function() {
+      const yearButtons = document.querySelectorAll('.year-button');
+      
+      // Configuration des boutons de filtrage
+      yearButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          // Retirer la classe active de tous les boutons
+          yearButtons.forEach(btn => btn.classList.remove('active'));
+          // Ajouter la classe active au bouton cliqué
+          button.classList.add('active');
+          // Filtrer les awards
+          filterAwardsByYear(button.textContent);
+        });
+      });
+
+      // Afficher par défaut l'année 2025 au chargement
+      filterAwardsByYear('2025');
+    });
+
+    function checkPlatformCompatibility() {
+      var userAgent = navigator.userAgent.toLowerCase();
+      var isIOS = /iphone|ipad|ipod/.test(userAgent);
+      var isAndroid = /android/.test(userAgent);
+      
+      if (isIOS || isAndroid) {
+        window.location.href = '/unsupported';
+      }
+    }
+    
+    checkPlatformCompatibility();
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      // Gestion des filtres par année
+      const yearButtons = document.querySelectorAll('.year-button');
+      yearButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          yearButtons.forEach(btn => btn.classList.remove('active'));
+          button.classList.add('active');
+          filterAwardsByYear(button.textContent);
+        });
+      });
+    });
   </script>
 </body>
 </html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/ico" href="https://ventistudio.fr/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accès Restreint - VentiStudio</title>
+  <link rel="stylesheet" href="https://trust.ventistudio.fr/root/style.css">
+  <style>
+    .restricted-container {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: rgba(187, 154, 247, 0.1);
+      border-radius: 10px;
+    }
+
+    .countries-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .country-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(187, 154, 247, 0.05);
+      padding: 1rem;
+      border-radius: 5px;
+      text-align: center;
+    }
+
+    .flag {
+      font-size: 2rem;
+    }
+
+    .country-name {
+      font-size: 0.9rem;
+    }
+
+    .warning-icon {
+      font-size: 3rem;
+      color: #ff6b6b;
+      margin-bottom: 1rem;
+    }
+
+    [data-theme="dark"] .restricted-container {
+      background: rgba(26, 27, 38, 0.8);
+    }
+
+    [data-theme="dark"] .country-card {
+      background: rgba(26, 27, 38, 0.5);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="https://ventistudio.fr/favicon.avif" alt="VentiStudio Logo" class="site-logo">
+      <span>VentiStudio</span>
+    </div>
+  </header>
+
+  <main>
+    <div class="restricted-container">
+      <h1>⚠️ Accès Restreint</h1>
+      
+      <h2>Votre connexion a été interrompue, mais pourquoi ?</h2>
+      <p>Votre pays n'entre pas dans les critères de VentiStudio. Pour contourner cette restriction, vous pouvez utiliser un VPN ou un proxy.</p>
+
+      <h3>Pays autorisés :</h3>
+      <div class="countries-grid">
+        <div class="country-card" data-country="FR">
+          <span class="flag">🇫🇷</span>
+          <span class="country-name">France</span>
+        </div>
+        <div class="country-card" data-country="DE">
+          <span class="flag">🇩🇪</span>
+          <span class="country-name">Allemagne</span>
+        </div>
+        <div class="country-card" data-country="GB">
+          <span class="flag">🇬🇧</span>
+          <span class="country-name">Royaume-Uni</span>
+        </div>
+        <div class="country-card" data-country="ES">
+          <span class="flag">🇪🇸</span>
+          <span class="country-name">Espagne</span>
+        </div>
+        <div class="country-card" data-country="IT">
+          <span class="flag">🇮🇹</span>
+          <span class="country-name">Italie</span>
+        </div>
+        <div class="country-card" data-country="PT">
+          <span class="flag">🇵🇹</span>
+          <span class="country-name">Portugal</span>
+        </div>
+        <div class="country-card" data-country="BE">
+          <span class="flag">🇧🇪</span>
+          <span class="country-name">Belgique</span>
+        </div>
+        <div class="country-card" data-country="NL">
+          <span class="flag">🇳🇱</span>
+          <span class="country-name">Pays-Bas</span>
+        </div>
+        <div class="country-card" data-country="CH">
+          <span class="flag">🇨🇭</span>
+          <span class="country-name">Suisse</span>
+        </div>
+        <div class="country-card" data-country="AT">
+          <span class="flag">🇦🇹</span>
+          <span class="country-name">Autriche</span>
+        </div>
+        <div class="country-card" data-country="IE">
+          <span class="flag">🇮🇪</span>
+          <span class="country-name">Irlande</span>
+        </div>
+        <div class="country-card" data-country="SE">
+          <span class="flag">🇸🇪</span>
+          <span class="country-name">Suède</span>
+        </div>
+        <div class="country-card" data-country="NO">
+          <span class="flag">🇳🇴</span>
+          <span class="country-name">Norvège</span>
+        </div>
+        <div class="country-card" data-country="FI">
+          <span class="flag">🇫🇮</span>
+          <span class="country-name">Finlande</span>
+        </div>
+        <div class="country-card" data-country="DK">
+          <span class="flag">🇩🇰</span>
+          <span class="country-name">Danemark</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-bottom">
+      <p class="copyright">Copyright © P-Line 2023 - 2025. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <script src="https://trust.ventistudio.fr/root/script.js"></script>
+</body>
+</html>
