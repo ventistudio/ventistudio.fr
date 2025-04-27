@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/ico" href="https://ventistudio.fr/favicon.ico">
+  <title>VentiStudio - </title>
+  <link rel="stylesheet" href="https://trust.ventistudio.fr/root/style.css">
+  <style>
+    .content-detail {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 2rem;
+    }
+
+    .content-hero {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 2rem;
+      margin-bottom: 3rem;
+      background: var(--bg-secondary);
+      border-radius: 1rem;
+      padding: 2rem;
+    }
+
+    .content-poster {
+      width: 100%;
+      border-radius: 0.5rem;
+      box-shadow: var(--neon-glow);
+    }
+
+    .content-details {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .content-meta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .meta-tag {
+      background: var(--accent);
+      color: var(--bg-primary);
+      padding: 0.25rem 0.75rem;
+      border-radius: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .rating-stars {
+      color: var(--accent);
+      font-size: 1.25rem;
+    }
+
+    .content-actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .cta-button {
+      background: var(--accent);
+      color: var(--bg-primary);
+      padding: 0.75rem 1.5rem;
+      border-radius: 2rem;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--neon-glow);
+    }
+
+    .bit-button {
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      border: 2px solid var(--accent);
+      padding: 0.75rem 1.5rem;
+      border-radius: 2rem;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .bit-button:hover {
+      background: var(--accent);
+      color: var(--bg-primary);
+    }
+
+    .content-sections {
+      display: grid;
+      gap: 2rem;
+    }
+
+    .content-section {
+      background: var(--bg-secondary);
+      padding: 2rem;
+      border-radius: 1rem;
+    }
+
+    .review-grid {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    .review-card {
+      background: var(--bg-primary);
+      padding: 1.5rem;
+      border-radius: 0.5rem;
+    }
+
+    .review-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .reviewer-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .related-content {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .related-card {
+      background: var(--bg-primary);
+      border-radius: 0.5rem;
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+
+    .related-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--neon-glow);
+    }
+
+    .related-image {
+      width: 100%;
+      aspect-ratio: 2/3;
+      object-fit: cover;
+    }
+
+    .related-info {
+      padding: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .content-hero {
+        grid-template-columns: 1fr;
+      }
+
+      .content-poster {
+        max-width: 300px;
+        margin: 0 auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="https://ventistudio.fr/favicon.avif" alt="VentiStudio Logo" class="site-logo">
+      <span>VentiStudio</span>
+    </div>
+    <nav>
+      <a href="https://ventistudio.fr" class="active">Accueil</a>
+      <a href="https://ventistudio.fr/approuvedcontent">Contenu Approuvé</a>
+      <a href="https://ventistudio.fr/player">Player</a>
+      <a href="https://ventistudio.fr/wiki">Wiki</a>
+      <a href="https://ventistudio.fr/staff">Staff</a>
+      <a href="https://ventistudio.fr/artist">Artiste</a>
+      <a href="https://ventistudio.fr/pip">PIP</a>
+      <a href="https://ventistudio.fr/sitemap">Sitemap</a>
+    </nav>
+    <div class="controls">
+      <button id="theme-toggle" class="theme-toggle">
+        <svg width="24" height="24" viewBox="0 0 24 24">
+          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
+          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
+          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
+        </svg>
+      </button>
+      <div id="user-button"></div>
+    </div>
+  </header>
+
+  <div id="celebration-banner" style="display: none;">
+    <span id="celebration-message"></span>
+  </div>
+  
+  <main id="content-container" class="content-detail">
+    <!-- Le contenu sera injecté ici dynamiquement -->
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Outils</h4>
+        <ul>
+          <li><a href="https://ventistudio.fr/encrypt">Encrypt</a></li>
+          <li><a href="https://ventistudio.fr/sitemap">Sitemap</a></li>
+          <li><a href="https://status.ventistudio.fr/">Statut</a></li>
+          <li><a href="https://aina.ventistudio.fr/">Aina</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Entreprise</h4>
+        <ul>
+          <li><a href="https://ventistudio.fr/about">À propos</a></li>
+          <li><a href="https://ventistudio.fr/jobs">Emplois</a></li>
+          <li><a href="https://ventistudio.fr/company">Marque</a></li>
+          <li><a href="https://ventistudio.fr/creator">Créateur</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Ressources</h4>
+        <ul>
+          <li><a href="https://ventistudio.fr/university">Université</a></li>
+          <li><a href="https://ventistudio.fr/school">École</a></li>
+          <li><a href="https://ventistudio.fr/help">Assistance</a></li>
+          <li><a href="https://ventistudio.fr/security">Sécurité</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Chartes</h4>
+        <ul>
+          <li><a href="https://ventistudio.fr/terms">Conditions</a></li>
+          <li><a href="https://ventistudio.fr/privacy">Confidentialité</a></li>
+          <li><a href="https://ventistudio.fr/cookies">Cookies</a></li>
+          <li><a href="https://ventistudio.fr/dmca">DMCA</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="status"><iframe src="https://status.ventistudio.fr/badge?theme=dark" width="250" height="30" frameborder="0" marginheight="0" marginwidth="0" scrolling="no"></iframe></p>
+      <p class="copyright">Copyright © P-Line 2023 - 2025. Tous droits réservés.</p>
+    </div>
+  </footer>
+  <script>
+    // Fonction pour récupérer les paramètres de l'URL
+    function getParameterByName(name) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(name);
+    }
+
+    // Vérifie si id=0 est présent dans l'URL
+    if (getParameterByName('id') === '0') {
+        setTimeout(function() {
+            window.location.href = "https://error.ventistudio.fr/?code=ventistudio";
+        }, 5000);
+    }
+  </script>
+  <script src="https://trust.ventistudio.fr/root/approuvedcontent/content/content-loader.js"></script>
+  <script src="https://trust.ventistudio.fr/root/script.js"></script>
+</body>
+</html>

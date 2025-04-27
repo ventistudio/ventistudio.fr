@@ -1,0 +1,76 @@
+# ai.txt - Politique d'accès aux IA et modèles d'entraînement
+# Ce fichier définit les règles d'accès et d'utilisation du contenu du site par les intelligences artificielles.
+
+# Propriétaire du site
+Owner: https://owner.ventistudio.fr
+Contact: contact@ventistudio.fr
+
+# Politique générale
+User-agent: *
+Policy: disallow  # Interdiction totale pour toutes les IA non listées
+
+# Politiques spécifiques aux IA connues : 
+# Règle : Autorisation d'indexer (lecture uniquement), interdiction d'entraîner
+
+# OpenAI (ChatGPT, GPTBot, etc.)
+User-agent: GPTBot
+Policy: index-only  # Autorisé à lire/indexer mais interdit d'entraîner
+
+# ChatGPT Plugin and User agents
+User-agent: ChatGPT-User
+Policy: index-only
+
+# Anthropic (Claude)
+User-agent: ClaudeBot
+Policy: index-only
+
+# Google AI (Gemini, Bard, etc.)
+User-agent: Google-Extended
+Policy: index-only
+
+# GoogleBot (au cas où lié à l'IA)
+User-agent: Googlebot
+Policy: index-only
+
+# Microsoft & GitHub Copilot
+User-agent: Microsoft Copilot
+Policy: index-only
+User-agent: GitHub Copilot
+Policy: index-only
+
+# Bing AI (Copilot intégré dans Bing)
+User-agent: Bingbot
+Policy: index-only
+User-agent: msnbot
+Policy: index-only
+
+# Meta (LLaMA, etc.)
+User-agent: MetaBot
+Policy: index-only
+
+# Perplexity AI
+User-agent: PerplexityBot
+Policy: index-only
+
+# Mistral AI
+User-agent: MistralBot
+Policy: index-only
+
+# Yandex AI
+User-agent: Yandex
+Policy: index-only
+
+# Baidu AI
+User-agent: Baiduspider
+Policy: index-only
+
+# Sogou AI
+User-agent: Sogou
+Policy: index-only
+
+# DuckDuckGo AI
+User-agent: DuckDuckBot
+Policy: index-only
+
+# Date de dernière mise à jour
+Last-Modified: 2025-03-14

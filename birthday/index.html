@@ -1,7 +1,9 @@
-<html><head><base href="https://ventistudio.fr/birthday">
-  <meta charset="utf-8">
-  <meta name="viewport">
-  <html lang="fr"></html>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VentiStudio - Anniversaire</title>
   <link rel="icon" type="image/png" href="favicon.ico">
   <meta property="og:title" content="Bienvenu sur VentiStudio">
   <meta property="og:site_name" content="VentiStudio Komiyuniti">
@@ -10,736 +12,673 @@
 Laissez-moi vous pr&#xe9;senter ma communaut&#xe9;, un espace o&#xf9; l&apos;art et la cr&#xe9;ativit&#xe9; se rencontrent.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://ventistudio.fr/favicon.gif">
-  <title>VentiStudio - Anniversaire</title>
-<style>
-:root {
-  --primary: #7B66FF;
-  --secondary: #2A2D3A;
-  --background: #1A1B26;
-  --text: #FFFFFF;
-  --hover: #9F86FF;
-  --accent1: #414868;
-  --accent2: #565f89;
-}
+  <link rel="stylesheet" href="https://trust.ventistudio.fr/root/style.css">
+  <style>
+    .candles-container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 2rem;
+      padding: 4rem 2rem 2rem;
+      min-height: 200px;
+      perspective: 1000px;
+    }
+    .candle {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0 20px;
+      transform-style: preserve-3d;
+      transition: transform 0.3s ease;
+    }
+    .candle:hover {
+      transform: translateY(-10px) scale(1.05);
+    }
+    .candle-body {
+      width: 40px;
+      height: 120px;
+      background: linear-gradient(to right, #f1f1f1, #ffffff, #f1f1f1);
+      border-radius: 10px;
+      position: relative;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      transform-style: preserve-3d;
+    }
+    .candle-body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 4px;
+      height: 10px; /* Réduit de 15px à 10px */
+      background: #333;
+      border-radius: 2px;
+      z-index: 1; /* Assure que la mèche soit au-dessus */
+    }
+    .candle-body::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: -10px;
+      right: -10px;
+      height: 20px;
+      background: radial-gradient(ellipse at center, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0) 70%);
+      border-radius: 50%;
+      transform: rotateX(90deg) translateZ(-10px);
+    }
+    .flame {
+      position: absolute;
+      top: -20px; 
+      left: 50%;
+      transform: translateX(0%);
+      width: 12px; 
+      height: 25px; 
+    }
+    .flame::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 100%;
+      background: linear-gradient(to top, 
+        #ff9800 20%, 
+        #ff5722 60%, 
+        #ffeb3b 80%
+      );
+      border-radius: 50% 50% 20% 20%;
+      box-shadow: 
+        0 0 15px #ff9800,
+        0 0 30px #ff5722,
+        0 0 45px #f44336,
+        0 -15px 30px rgba(255, 152, 0, 0.4);
+      transform-origin: center bottom;
+      animation: var(--flame-animation);
+    }
+    .flame::after {
+      content: '';
+      position: absolute;
+      bottom: 40%;
+      left: 25%;
+      right: 25%;
+      height: 40%;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 50%;
+      filter: blur(2px);
+      animation: var(--glow-animation);
+    }
+    @keyframes flicker1 {
+      0%, 100% { transform: translateX(-50%) scale(1) rotate(-1deg); }
+      25% { transform: translateX(-51%) scale(1.05) rotate(0.5deg); }
+      50% { transform: translateX(-49%) scale(0.95) rotate(-0.5deg); }
+      75% { transform: translateX(-50%) scale(1.1) rotate(1deg); }
+    }
+    @keyframes flicker2 {
+      0%, 100% { transform: translateX(-50%) scale(0.95) rotate(0.5deg); }
+      33% { transform: translateX(-51%) scale(1.05) rotate(-1deg); }
+      66% { transform: translateX(-49%) scale(1) rotate(1deg); }
+    }
+    @keyframes flicker3 {
+      0%, 100% { transform: translateX(-50%) scale(1.05) rotate(-0.5deg); }
+      50% { transform: translateX(-50%) scale(0.95) rotate(0.5deg); }
+    }
+    @keyframes glow1 {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 0.8; }
+    }
+    @keyframes glow2 {
+      0%, 100% { opacity: 0.6; }
+      33% { opacity: 0.9; }
+      66% { opacity: 0.7; }
+    }
+    .seasonal-decorations {
+      text-align: center;
+      margin-top: 2rem;
+    }
+    .seasonal-decorations img {
+      max-width: 100px;
+      margin: 0 10px;
+    }
+    .seasonal-decorations {
+      position: relative;
+      min-height: 200px;
+      overflow: hidden;
+    }
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap');
+    /* Effet de neige */
+    .snowing::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: 0;
+      right: 0;
+      height: 10px;
+      background: white;
+      animation: snow 3s linear infinite;
+    }
 
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Inter', sans-serif;
-  background-color: var(--background);
-  color: var(--text);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
+    /* Effet coeurs flottants */
+    .floating-hearts img {
+      animation: float 3s ease-in-out infinite;
+    }
 
-.navbar {
-  background-color: var(--secondary);
-  padding: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  box-shadow: 0 2px 10px rgba(123, 102, 255, 0.1);
-}
+    /* Effet pétales qui tombent */
+    .falling-petals img {
+      animation: fall 5s linear infinite;
+    }
 
-.logo {
-  height: 50px;
-  transition: transform 0.3s ease;
-}
+    /* Effet de pluie */
+    .raining::before {
+      content: '';
+      position: absolute;
+      width: 2px;
+      height: 10px;
+      background: #88d1f1;
+      animation: rain 1s linear infinite;
+    }
 
-.logo:hover {
-  transform: scale(1.05);
-}
+    /* Animations */
+    @keyframes snow {
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(200px) rotate(360deg); }
+    }
 
-.nav-links {
-  display: flex;
-  gap: 2rem;
-}
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
 
-.mobile-menu-button {
-  display: none;
-  background: none;
-  border: none;
-  color: var(--text);
-  font-size: 1.5rem;
-  cursor: pointer;
-  padding: 0.5rem;
-}
+    @keyframes fall {
+      0% { transform: translateY(-100%) rotate(0deg); }
+      100% { transform: translateY(100vh) rotate(360deg); }
+    }
 
-.nav-item {
-  position: relative;
-  cursor: pointer;
-}
+    @keyframes rain {
+      0% { transform: translateY(-100%); }
+      100% { transform: translateY(100vh); }
+    }
 
-.nav-item > a {
-  color: var(--text);
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 500;
-}
-
-.nav-item > a:hover {
-  background-color: var(--hover);
-  transform: translateY(-2px);
-}
-
-.dropdown {
-  display: none;
+/* Styles de base pour les décorations */
+.decoration {
   position: absolute;
-  background-color: var(--accent1);
-  min-width: 200px;
-  box-shadow: 0 8px 16px rgba(123, 102, 255, 0.2);
-  z-index: 1;
-  border-radius: 8px;
-  margin-top: 0.5rem;
-  backdrop-filter: blur(10px);
+  pointer-events: none;
 }
 
-.nav-item:hover .dropdown {
-  display: block;
-  animation: fadeIn 0.3s ease;
+/* Styles spécifiques pour chaque type de décoration */
+.firework {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ff6b6b;
+  animation: explode 1s ease-out forwards;
 }
 
-@media screen and (max-width: 768px) {
-  .mobile-menu-button {
-    display: block;
-  }
-
-  .nav-links {
-    display: none;
-    position: fixed;
-    top: 80px;
-    left: 0;
-    right: 0;
-    background-color: var(--secondary);
-    flex-direction: column;
-    padding: 1rem;
-    gap: 1rem;
-  }
-
-  .nav-links.active {
-    display: flex;
-  }
-
-  .nav-item {
-    width: 100%;
-  }
-
-  .dropdown {
-    position: static;
-    width: 100%;
-    margin-top: 0.5rem;
-    display: none;
-  }
-
-  .nav-item.active .dropdown {
-    display: block;
-  }
-
-  .footer-content {
-    grid-template-columns: repeat(2, 1fr) !important;
-    padding: 0 1rem;
-  }
-
-  .copyright {
-    flex-direction: column;
-    text-align: center;
-  }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.dropdown a {
-  color: var(--text);
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  transition: all 0.2s ease;
-}
-
-.dropdown a:hover {
-  background-color: var(--hover);
-  transform: translateX(5px);
-}
-
-.main-content {
-  padding: 0;
-  text-align: center;
-}
-
-.hero-section {
-  padding: 6rem 2rem;
-  background: linear-gradient(135deg, var(--background) 0%, var(--accent1) 100%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
+.heart {
+  width: 20px;
+  height: 20px;
+  background: #ff4d6d;
   position: relative;
-  overflow: hidden;
+  transform: rotate(45deg);
+  animation: float 3s ease-in-out infinite;
 }
 
-.hero-section::before {
+.heart::before,
+.heart::after {
+  content: '';
+  width: 20px;
+  height: 20px;
+  background: #ff4d6d;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.heart::before {
+  left: -10px;
+}
+
+.heart::after {
+  top: -10px;
+}
+
+.petal {
+  width: 15px;
+  height: 15px;
+  background: #ffb5b5;
+  border-radius: 15px 0;
+  animation: fall 5s linear infinite;
+}
+
+.raindrop {
+  width: 2px;
+  height: 10px;
+  background: #88d1f1;
+  border-radius: 2px;
+  animation: rain 1s linear infinite;
+}
+
+.ghost {
+  width: 20px;
+  height: 25px;
+  background: #fff;
+  border-radius: 10px 10px 0 0;
+  position: relative;
+  animation: float 3s ease-in-out infinite;
+}
+
+.ghost::before {
   content: '';
   position: absolute;
-  top: 0;
+  bottom: -5px;
   left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(circle at 50% 50%, var(--primary) 0%, transparent 70%);
-  opacity: 0.1;
-  animation: pulse 4s ease-in-out infinite;
+  width: 20px;
+  height: 5px;
+  background: #fff;
+  border-radius: 0 0 5px 5px;
 }
 
-@keyframes pulse {
-  0% { transform: scale(1); opacity: 0.1; }
-  50% { transform: scale(1.2); opacity: 0.15; }
-  100% { transform: scale(1); opacity: 0.1; }
+.snowflake {
+  width: 8px;
+  height: 8px;
+  background: white;
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  animation: snow 3s linear infinite;
 }
 
-.hero-section h1 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 3.5rem;
-  margin-bottom: 1rem;
-  background: linear-gradient(45deg, var(--primary), var(--hover));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: titleGlow 2s ease-in-out infinite alternate;
+/* Nouvelles décorations saisonnières */
+.sun {
+  width: 40px;
+  height: 40px;
+  background: #ffeb3b;
+  border-radius: 50%;
+  box-shadow: 0 0 30px #ff9800;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.leaf {
+  width: 20px;
+  height: 20px;
+  background: #4caf50;
+  border-radius: 0 50% 50% 50%;
+  transform: rotate(45deg);
+  animation: spin-fall 6s linear infinite;
+}
+
+.umbrella {
+  width: 30px;
+  height: 25px;
+  background: #2196f3;
+  border-radius: 50% 50% 0 0;
   position: relative;
-  z-index: 1;
+  transform-origin: center bottom;
+  animation: sway 3s ease-in-out infinite;
 }
 
-.hero-section p {
-  font-size: 1.4rem;
-  color: var(--text);
-  opacity: 0.9;
-  max-width: 800px;
-  margin: 0 auto;
+.umbrella::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  width: 2px;
+  height: 15px;
+  background: #666;
+  transform: translateX(-50%);
+}
+
+.flower {
+  width: 20px;
+  height: 20px;
   position: relative;
-  z-index: 1;
 }
 
-.cta-button {
-  background: var(--primary);
-  color: var(--text);
-  padding: 1rem 2rem;
-  border-radius: 30px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s ease;
+.flower::before {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: #ff80ab;
+  border-radius: 50%;
+  animation: bloom 4s ease-in-out infinite;
+}
+
+.flower::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 4px;
+  height: 4px;
+  background: #ffd700;
+  border-radius: 50%;
+}
+
+.star {
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 20px solid #ffd700;
   position: relative;
-  z-index: 1;
-  border: none;
-  cursor: pointer;
-  font-size: 1.1rem;
+  animation: twinkle 1.5s ease-in-out infinite;
 }
 
-.cta-button:hover {
-  background: var(--hover);
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(123, 102, 255, 0.3);
+.star::after {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: -10px;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 20px solid #ffd700;
 }
 
-.section {
-  padding: 4rem 2rem;
-  background: var(--background);
+.firefly {
+  width: 4px;
+  height: 4px;
+  background: #90ff90;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #50ff50;
+  animation: firefly 3s ease-in-out infinite;
 }
 
-.section-title {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
-  color: var(--text);
+/* Animations */
+@keyframes explode {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(20); opacity: 0.5; }
+  100% { transform: scale(30); opacity: 0; }
 }
 
-.section-subtitle {
-  font-size: 1.2rem;
-  color: var(--text);
-  opacity: 0.8;
-  max-width: 800px;
-  margin: 0 auto 3rem auto;
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(45deg); }
+  50% { transform: translateY(-20px) rotate(45deg); }
 }
 
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.service-card {
-  background: var(--secondary);
-  padding: 2rem;
-  border-radius: 15px;
-  transition: all 0.3s ease;
-}
-
-.service-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-.service-card h3 {
-  color: var(--primary);
-  margin-bottom: 1rem;
-}
-
-.news-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.news-card {
-  background: var(--secondary);
-  padding: 2rem;
-  border-radius: 15px;
-  transition: all 0.3s ease;
-}
-
-.community-section {
-  background: linear-gradient(135deg, var(--secondary) 0%, var(--accent1) 100%);
-  text-align: center;
-  padding: 4rem 2rem;
-}
-
-.button-group {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-@media screen and (max-width: 768px) {
-  .hero-section h1 {
-    font-size: 2.5rem;
+@keyframes fall {
+  0% { 
+    transform: translateY(-100vh) rotate(0deg);
+    opacity: 1;
   }
-  
-  .hero-section p {
-    font-size: 1.1rem;
-  }
-  
-  .section-title {
-    font-size: 2rem;
-  }
-  
-  .button-group {
-    flex-direction: column;
-    align-items: center;
-  }
-}
-
-@keyframes titleGlow {
-  from { text-shadow: 0 0 20px rgba(123, 102, 255, 0.5); }
-  to { text-shadow: 0 0 30px rgba(123, 102, 255, 0.8); }
-}
-
-.footer {
-  background-color: var(--secondary);
-  padding: 2rem;
-  margin-top: auto;
-  box-shadow: 0 -2px 10px rgba(123, 102, 255, 0.1);
-}
-
-.footer-content {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.footer-section h3 {
-  color: var(--text);
-  margin-bottom: 1rem;
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 700;
-}
-
-.footer-section a {
-  color: var(--text);
-  text-decoration: none;
-  display: block;
-  margin-bottom: 0.5rem;
-  transition: all 0.2s ease;
-  opacity: 0.8;
-}
-
-.footer-section a:hover {
-  opacity: 1;
-  color: var(--hover);
-  transform: translateX(5px);
-}
-
-.copyright {
-  text-align: center;
-  padding: 2rem 0;
-  border-top: 1px solid var(--accent1);
-  margin-top: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-}
-
-.copyright img {
-  height: 30px;
-}
-
-.copyright span {
-  color: var(--text);
-  opacity: 0.8;
-  font-size: 0.9rem;
-}
-
-::-webkit-scrollbar {
-  width: 12px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--background);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--primary);
-  border-radius: 6px;
-  border: 3px solid var(--background);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--hover);
-}
-
-* {
-  scrollbar-width: thin;
-  scrollbar-color: var(--primary) var(--background);
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-@keyframes slideDown {
-  from {
-    transform: translateY(-100%);
+  100% { 
+    transform: translateY(100vh) rotate(360deg);
     opacity: 0;
   }
-  to {
-    transform: translateY(0);
+}
+
+@keyframes snow {
+  0% { 
+    transform: translateY(-10px) rotate(0deg);
     opacity: 1;
+  }
+  100% { 
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
   }
 }
 
-#celebration-banner {
-  background: linear-gradient(45deg, var(--primary), var(--hover));
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  position: relative;
-  z-index: 1000;
-}
-
-.candles-container {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  gap: 2rem;
-  padding: 2rem;
-  min-height: 300px;
-}
-
-.candle {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  animation: sway 3s ease-in-out infinite alternate;
-}
-
-.candle-year {
-  color: var(--text);
-  margin-top: 1rem;
-  font-family: 'Space Grotesk', sans-serif;
-}
-
-.candle-body {
-  width: 40px;
-  height: 120px;
-  background: linear-gradient(45deg, #fff, #f0f0f0);
-  border-radius: 10px;
-  position: relative;
-}
-
-.wick {
-  width: 4px;
-  height: 15px;
-  background: #2A2D3A;
-  position: absolute;
-  top: -15px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.flame {
-  width: 15px;
-  height: 30px;
-  background: #FFA500;
-  position: absolute;
-  top: -45px;
-  left: 50%;
-  transform: translateX(-50%);
-  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-  animation: flicker 1s ease-in-out infinite alternate;
-  filter: blur(1px);
-}
-
-@keyframes flicker {
-  0%, 100% {
-    transform: translateX(-50%) scale(1);
+/* Nouvelles animations */
+@keyframes spin-fall {
+  0% {
+    transform: translateY(-100vh) rotate(0deg);
     opacity: 1;
   }
-  50% {
-    transform: translateX(-50%) scale(0.95);
-    opacity: 0.8;
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
   }
 }
 
 @keyframes sway {
-  0% {
-    transform: rotate(-1deg);
-  }
-  100% {
-    transform: rotate(1deg);
-  }
+  0%, 100% { transform: rotate(-5deg); }
+  50% { transform: rotate(5deg); }
 }
 
-@media screen and (max-width: 768px) {
-  .candles-container {
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-  
-  .candle-body {
-    width: 30px;
-    height: 90px;
-  }
+@keyframes bloom {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+@keyframes firefly {
+  0% { opacity: 0; transform: translateX(0) translateY(0); }
+  50% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(100px) translateY(-100px); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.1); opacity: 0.8; }
 }
 </style>
 </head>
 <body>
-  <div id="celebration-banner" style="display: none; background: var(--primary); color: var(--text); text-align: center; padding: 10px; font-weight: bold; animation: slideDown 0.5s ease-out;">
-    <span id="celebration-message"></span>
-  </div>
-  
-  <nav class="navbar">
-    <img src="/favicon.avif" alt="VentiStudio Logo" class="logo">
-    <button class="mobile-menu-button">&#x2630;</button>
-    <div class="nav-links">
-      <div class="nav-item">
-        <a href="/">Accueil</a>
-      </div>
-      <div class="nav-item">
-        <a href="/approuvedcontent">Contenu Approuv&#xe9;</a>
-      </div>
-      <div class="nav-item">
-        <a href="/wiki">Wiki</a>
-      </div>
-      <div class="nav-item">
-        <a href="/staff">Staff</a>
-        <div class="dropdown">
-          <a href="/job">Recrutement</a>
-        </div>
-      </div>
-      <div class="nav-item">
-        <a href="/artist">Artiste</a>
-      </div>
-      <div class="nav-item">
-        <a href="/pip">PIP</a>
-      </div>
+  <header>
+    <div class="logo">
+      <img src="https://ventistudio.fr/favicon.avif" alt="VentiStudio Logo" class="site-logo">
+      <span>VentiStudio</span>
     </div>
-  </nav>
+    <nav>
+      <a href="https://ventistudio.fr" class="active">Accueil</a>
+      <a href="https://ventistudio.fr/approuvedcontent">Contenu Approuvé</a>
+      <a href="https://ventistudio.fr/player">Player</a>
+      <a href="https://ventistudio.fr/wiki">Wiki</a>
+      <a href="https://ventistudio.fr/staff">Staff</a>
+      <a href="https://ventistudio.fr/artist">Artiste</a>
+      <a href="https://ventistudio.fr/pip">PIP</a>
+      <a href="https://ventistudio.fr/sitemap">Sitemap</a>
+    </nav>
+    <div class="controls">
+      <button id="theme-toggle" class="theme-toggle">
+        <svg width="24" height="24" viewBox="0 0 24 24">
+          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
+          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
+          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
+        </svg>
+      </button>
+      <div id="user-button"></div>
+    </div>
+  </header>
 
-  <main class="main-content">
-    <section class="hero-section">
-      <h1>Nos ann&#xe9;es de service</h1>
-      <p>VentiStudio illumine vos exp&#xe9;riences depuis 2016</p>
+  <main>
+    <section class="hero">
+      <h1>Nos années de service</h1>
+      <p>VentiStudio illumine vos expériences depuis 2016</p>
     </section>
-
-    <section class="section" id="anniversary-section">
+    <section id="anniversary-section">
       <div class="candles-container"></div>
+      <div id="decorations" class="seasonal-decorations"></div>
     </section>
   </main>
 
-  <footer class="footer">
+  <footer>
     <div class="footer-content">
       <div class="footer-section">
-        <h3>Outils</h3>
-        <a href="/encrypt">Encrypt</a>
-        <a href="/sitemap">Sitemap</a>
-        <a href="/status">Statut</a>
+        <h4>Outils</h4>
+        <ul>
+          <li><a href="https://ventistudio.fr/encrypt">Encrypt</a></li>
+          <li><a href="https://ventistudio.fr/sitemap">Sitemap</a></li>
+          <li><a href="https://status.ventistudio.fr/">Statut</a></li>
+          <li><a href="https://aina.ventistudio.fr/">Aina</a></li>
+        </ul>
       </div>
       <div class="footer-section">
-        <h3>Entreprise</h3>
-        <a href="/about">&#xc0; propos</a>
-        <a href="/jobs">Emplois</a>
-        <a href="/company">Marque</a>
+        <h4>Entreprise</h4>
+        <ul>
+          <li><a href="https://ventistudio.fr/about">À propos</a></li>
+          <li><a href="https://ventistudio.fr/jobs">Emplois</a></li>
+          <li><a href="https://ventistudio.fr/company">Marque</a></li>
+          <li><a href="https://ventistudio.fr/creator">Créateur</a></li>
+        </ul>
       </div>
       <div class="footer-section">
-        <h3>Ressources</h3>
-        <a href="/university">Universit&#xe9;</a>
-        <a href="/lawful/support">Assistance</a>
-        <a href="/lawful/security">S&#xe9;curit&#xe9;</a>
+        <h4>Ressources</h4>
+        <ul>
+          <li><a href="https://ventistudio.fr/university">Université</a></li>
+          <li><a href="https://ventistudio.fr/school">École</a></li>
+          <li><a href="https://ventistudio.fr/help">Assistance</a></li>
+          <li><a href="https://ventistudio.fr/security">Sécurité</a></li>
+        </ul>
       </div>
       <div class="footer-section">
-        <h3>Chartes</h3>
-        <a href="/lawful/terms">Conditions</a>
-        <a href="/lawful/privacy">Confidentialit&#xe9;</a>
-        <a href="/lawful/cookies">Param&#xe8;tres des cookies</a>
-        <a href="/lawful/dmca">DMCA</a>
-        <a href="/lawful/dmcainfo">DMCA Information</a>
-        <a href="/lawful/cgv">Conditions G&#xe9;n&#xe9;ral de Vente</a>
+        <h4>Chartes</h4>
+        <ul>
+          <li><a href="https://ventistudio.fr/terms">Conditions</a></li>
+          <li><a href="https://ventistudio.fr/privacy">Confidentialité</a></li>
+          <li><a href="https://ventistudio.fr/cookies">Cookies</a></li>
+          <li><a href="https://ventistudio.fr/dmca">DMCA</a></li>
+        </ul>
       </div>
     </div>
-    <div class="copyright">
-      <img src="/favicon.avif" alt="VentiStudio Logo">
-      <span>Copyright &amp; P-Line 2023 - 2024, Tous droits r&#xe9;serv&#xe9;s.</span>
+    <div class="footer-bottom">
+      <p class="status"><iframe src="https://status.ventistudio.fr/badge?theme=dark" width="250" height="30" frameborder="0" marginheight="0" marginwidth="0" scrolling="no"></iframe></p>
+      <p class="copyright">Copyright © P-Line 2023 - 2025. Tous droits réservés.</p>
     </div>
   </footer>
 
-  <script>const mobileMenuButton = document.querySelector('.mobile-menu-button');
-const navLinks = document.querySelector('.nav-links');
-const navItems = document.querySelectorAll('.nav-item');
-mobileMenuButton.addEventListener('click', () => {
-  navLinks.classList.toggle('active');
-});
-if (window.innerWidth <= 768) {
-  navItems.forEach(item => {
-    item.addEventListener('click', e => {
-      if (e.target.closest('.nav-item') === item) {
-        item.classList.toggle('active');
-        navItems.forEach(otherItem => {
-          if (otherItem !== item) {
-            otherItem.classList.remove('active');
-          }
-        });
-      }
-    });
-  });
-}
-document.addEventListener('click', e => {
-  if (!e.target.closest('.navbar')) {
-    navLinks.classList.remove('active');
-    navItems.forEach(item => item.classList.remove('active'));
-  }
-});
-function checkHolidays() {
-  const today = new Date();
-  const day = today.getDate();
-  const month = today.getMonth() + 1;
-  const banner = document.getElementById('celebration-banner');
-  const message = document.getElementById('celebration-message');
-  let celebrationMessage = '';
-  if (month === 12 && day >= 1 && day <= 25) {
-    celebrationMessage = "Joyeux Noël ! ";
-  }
-  if (month === 12 && day === 15) {
-    celebrationMessage = "Joyeux anniversaire Hikari Umaishi !  Et joyeux Noël ! ";
-  }
-  if (month === 9 && day === 24) {
-    celebrationMessage = "Joyeux anniversaire VentiStudio ! ";
-  }
-  if (month === 10 && day >= 25 && day <= 31) {
-    celebrationMessage = "Joyeux Halloween ! ";
-  }
-  if (month === 7 && day === 14) {
-    celebrationMessage = "Bonne fête nationale ! ";
-  }
-  if (month === 12 && day >= 31 || month === 1 && day <= 3) {
-    celebrationMessage = "Bonne année ! ";
-  }
-  if (month === 9 && day === 9) {
-    celebrationMessage = "Bonne fête de l'automne ! ";
-  }
-  if (month === 3 && (day === 20 || day === 21)) {
-    celebrationMessage = "Bienvenue au printemps ! ";
-  }
-  if (celebrationMessage) {
-    message.textContent = celebrationMessage;
-    banner.style.display = 'block';
-  } else {
-    banner.style.display = 'none';
-  }
-}
-checkHolidays();
-function createCandles() {
-  const candlesContainer = document.querySelector('.candles-container');
-  const startYear = 2016;
-  const currentDate = new Date();
-  let yearToUse = currentDate.getFullYear();
-  const anniversaryDate = new Date(yearToUse, 8, 21);
-  
-  if (currentDate < anniversaryDate) {
-    yearToUse = yearToUse - 1;
-  }
-  
-  const yearsOld = yearToUse - startYear; 
-  const yearsOfService = yearsOld + 1; 
-  
-  const serviceText = document.createElement('div');
-  serviceText.className = 'service-years-text';
-  serviceText.style.fontSize = '1.5rem';
-  serviceText.style.marginBottom = '2rem';
-  serviceText.style.color = 'var(--text)';
-  serviceText.style.fontFamily = 'Space Grotesk, sans-serif';
-  serviceText.innerHTML = `VentiStudio a donc ${yearsOld} ans, il est donc sur sa ${yearsOfService}<sup>ème</sup> année de service`;
-  
-  candlesContainer.parentElement.insertBefore(serviceText, candlesContainer);
+  <script src="https://trust.ventistudio.fr/root/script.js"></script>
+  <script>
+    function createCandles() {
+      const container = document.querySelector('.candles-container');
+      const startYear = 2016;
+      const currentYear = new Date().getFullYear();
+      
+      const flickerAnimations = [
+        'flicker1 1.5s infinite',
+        'flicker2 2s infinite',
+        'flicker3 1.8s infinite'
+      ];
+      
+      const glowAnimations = [
+        'glow1 2s infinite',
+        'glow2 1.5s infinite'
+      ];
 
-  for (let year = startYear; year <= yearToUse; year++) {
-    const candle = document.createElement('div');
-    candle.className = 'candle';
-    const candleBody = document.createElement('div');
-    candleBody.className = 'candle-body';
-    const wick = document.createElement('div');
-    wick.className = 'wick';
-    const flame = document.createElement('div');
-    flame.className = 'flame';
-    const yearLabel = document.createElement('div');
-    yearLabel.className = 'candle-year';
-    yearLabel.textContent = year;
-    
-    candleBody.appendChild(wick);
-    candleBody.appendChild(flame);
-    candle.appendChild(candleBody);
-    candle.appendChild(yearLabel);
-    
-    flame.style.animationDelay = `${Math.random() * 2}s`;
-    candle.style.animationDelay = `${Math.random() * 2}s`;
-    
-    candlesContainer.appendChild(candle);
-  }
-}
-function checkAndUpdateCandles() {
-  const today = new Date();
-  const anniversaryDate = new Date(today.getFullYear(), 8, 21);
-  if (today.getDate() === 21 && today.getMonth() === 8) {
-    const candlesContainer = document.querySelector('.candles-container');
-    const serviceText = document.querySelector('.service-years-text');
-    if (serviceText) serviceText.remove();
-    candlesContainer.innerHTML = '';
-    createCandles();
-  }
-}
-document.addEventListener('DOMContentLoaded', () => {
-  createCandles();
-  setInterval(checkAndUpdateCandles, 24 * 60 * 60 * 1000);
-  checkAndUpdateCandles();
-});</script>
-</body></html>
+      for (let year = startYear; year <= currentYear; year++) {
+        const candle = document.createElement('div');
+        candle.className = 'candle';
+        
+        const body = document.createElement('div');
+        body.className = 'candle-body';
+        
+        const flame = document.createElement('div');
+        flame.className = 'flame';
+        
+        // Animations aléatoires pour chaque bougie
+        const randomFlicker = flickerAnimations[Math.floor(Math.random() * flickerAnimations.length)];
+        const randomGlow = glowAnimations[Math.floor(Math.random() * glowAnimations.length)];
+        
+        flame.style.setProperty('--flame-animation', randomFlicker);
+        flame.style.setProperty('--glow-animation', randomGlow);
+        
+        const label = document.createElement('div');
+        label.textContent = year;
+        label.style.marginTop = '10px';
+        label.style.color = 'var(--text)';
+        
+        body.appendChild(flame);
+        candle.appendChild(body);
+        candle.appendChild(label);
+        container.appendChild(candle);
+      }
+    }
+
+    function createDecoration(type) {
+      const decoration = document.createElement('div');
+      decoration.className = `decoration ${type}`;
+      
+      // Position aléatoire sur l'axe X
+      decoration.style.left = `${Math.random() * 100}%`;
+      
+      return decoration;
+    }
+
+    function addSeasonalDecorations() {
+      const decorations = document.getElementById('decorations');
+      const currentMonth = new Date().getMonth();
+      
+      const decorationsByMonth = {
+        0: { // Janvier
+          items: ['firework', 'snowflake', 'star'],
+          count: 25
+        },
+        1: { // Février
+          items: ['heart', 'flower'],
+          count: 20
+        },
+        2: { // Mars
+          items: ['petal', 'flower', 'leaf'],
+          count: 30
+        },
+        3: { // Avril
+          items: ['raindrop', 'umbrella', 'flower'],
+          count: 40
+        },
+        4: { // Mai
+          items: ['petal', 'flower', 'firefly'],
+          count: 35
+        },
+        5: { // Juin
+          items: ['sun', 'firefly'],
+          count: 15
+        },
+        6: { // Juillet
+          items: ['sun', 'star'],
+          count: 20
+        },
+        7: { // Août
+          items: ['star', 'firefly'],
+          count: 25
+        },
+        8: { // Septembre
+          items: ['leaf', 'petal'],
+          count: 30
+        },
+        9: { // Octobre
+          items: ['ghost', 'leaf'],
+          count: 25
+        },
+        10: { // Novembre
+          items: ['leaf', 'raindrop'],
+          count: 35
+        },
+        11: { // Décembre
+          items: ['snowflake', 'star'],
+          count: 40
+        }
+      };
+
+      if (decorationsByMonth[currentMonth]) {
+        const { items, count } = decorationsByMonth[currentMonth];
+        decorations.innerHTML = '';
+        
+        for (let i = 0; i < count; i++) {
+          const type = items[Math.floor(Math.random() * items.length)];
+          const decoration = createDecoration(type);
+          
+          // Délai aléatoire pour l'animation
+          decoration.style.animationDelay = `${Math.random() * 2}s`;
+          
+          decorations.appendChild(decoration);
+          
+          // Supprimer l'élément une fois l'animation terminée
+          decoration.addEventListener('animationend', () => {
+            decoration.remove();
+            // Créer un nouvel élément pour maintenir le nombre constant
+            decorations.appendChild(createDecoration(type));
+          });
+        }
+      }
+    }
+
+    // Mettre à jour les décorations toutes les 100ms
+    setInterval(addSeasonalDecorations, 100);
+
+    document.addEventListener('DOMContentLoaded', () => {
+      createCandles();
+      addSeasonalDecorations();
+    });
+  </script>
+</body>
+</html>

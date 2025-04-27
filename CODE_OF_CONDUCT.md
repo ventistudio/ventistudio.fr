@@ -14,10 +14,10 @@ Tous les contributeurs doivent traiter les autres avec respect. Les comportement
 Il est interdit de publier des contenus inappropriés, illégaux ou offensants dans les discussions, les pull requests, ou toute autre interaction liée au projet.
 
 ## 4. Débats et Communication
-Les débats constructifs sont encouragés, mais doivent rester respectueux. L’utilisation d’un langage vulgaire ou agressif est proscrite.
+Les débats constructifs sont encouragés, mais doivent rester respectueux. L'utilisation d'un langage vulgaire ou agressif est proscrite.
 
 ## 5. Responsabilité des Comptes
-Chaque contributeur est responsable de l’utilisation de son compte GitHub. Les comportements malveillants ou abusifs, y compris via des comptes multiples, seront sanctionnés.
+Chaque contributeur est responsable de l'utilisation de son compte GitHub. Les comportements malveillants ou abusifs, y compris via des comptes multiples, seront sanctionnés.
 
 ## 6. Confidentialité
 Les discussions internes au projet, y compris les échanges dans les issues ou pull requests, doivent rester confidentielles et ne pas être partagées sans autorisation préalable.
@@ -51,12 +51,17 @@ Des actions rétroactives peuvent être prises pour des comportements nuisibles 
 
 ## Engagement Communautaire
 Ce Code de Conduite vise à assurer :
-- Un environnement collaboratif, sûr et respectueux pour tous.
-- Une gestion équitable et transparente des contributions.
-- Une protection renforcée pour le projet et ses membres.
+- Un environnement collaboratif, sûr et respectueux pour tous
+- Une gestion équitable et transparente des contributions
+- Une protection renforcée pour le projet et ses membres
 
 En rejoignant ce projet, vous contribuez à une communauté basée sur la confiance, l'innovation et le respect mutuel.
 
+## Application et Contact
+Pour signaler une violation du Code de Conduite :
+- Email : conduct@ventistudio.fr
+- Discord : [Server VentiStudio](https://discord.ventistudio.fr)
+
 ---
-*© 2024 VentiStudio. Tous droits réservés.*
-Product By AINA UMAISHI - ARTIFICIAL INTELLIGENCE NEW AGE
+*© 2023 - 2025 VentiStudio. Tous droits réservés.*  
+*Product By AINA UMAISHI - ARTIFICIAL INTELLIGENCE NEW AGE*

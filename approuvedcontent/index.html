@@ -1,201 +1,19 @@
-<html><head><base href="https://ventistudio.fr/approuvedcontent">
-  <meta charset="utf-8">
-  <meta name="viewport">
-  <html lang="fr"></html>
-  <link rel="icon" type="image/png" href="favicon.ico">
-  <meta property="og:title" content="Bienvenu sur VentiStudio">
-  <meta property="og:site_name" content="VentiStudio Komiyuniti">
-  <meta property="og:url" content="https://ventistudio.fr">
-  <meta property="og:description" content="Hey, je suis Hikari Umaishi (光馬石), mais je préfère que l'on m'appelle Hiuma (ヒウマ).
-Laissez-moi vous présenter ma communauté, un espace où l'art et la créativité se rencontrent.">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="https://ventistudio.fr/favicon.gif">
-  <title>VentiStudio - Contenu Approuvé</title>
-<style>
-:root {
-  --primary: #7B66FF;
-  --secondary: #2A2D3A;
-  --background: #1A1B26;
-  --text: #FFFFFF;
-  --hover: #9F86FF;
-  --accent1: #414868;
-  --accent2: #565f89;
-}
-
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/ico" href="https://ventistudio.fr/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contenu Approuvé - VentiStudio</title>
+  <link rel="stylesheet" href="https://trust.ventistudio.fr/root/style.css">
+  <style>
+ /* Import des polices */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap');
 
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Inter', sans-serif;
-  background-color: var(--background);
-  color: var(--text);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-.navbar {
-  background-color: var(--secondary);
-  padding: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  box-shadow: 0 2px 10px rgba(123, 102, 255, 0.1);
-}
-
-.logo {
-  height: 50px;
-  transition: transform 0.3s ease;
-}
-
-.logo:hover {
-  transform: scale(1.05);
-}
-
-.nav-links {
-  display: flex;
-  gap: 2rem;
-}
-
-.mobile-menu-button {
-  display: none;
-  background: none;
-  border: none;
-  color: var(--text);
-  font-size: 1.5rem;
-  cursor: pointer;
-  padding: 0.5rem;
-}
-
-.nav-item {
-  position: relative;
-  cursor: pointer;
-}
-
-.nav-item > a {
-  color: var(--text);
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 500;
-}
-
-.nav-item > a:hover {
-  background-color: var(--hover);
-  transform: translateY(-2px);
-}
-
-.dropdown {
-  display: none;
-  position: absolute;
-  background-color: var(--accent1);
-  min-width: 200px;
-  box-shadow: 0 8px 16px rgba(123, 102, 255, 0.2);
-  z-index: 1;
-  border-radius: 8px;
-  margin-top: 0.5rem;
-  backdrop-filter: blur(10px);
-}
-
-.nav-item:hover .dropdown {
-  display: block;
-  animation: fadeIn 0.3s ease;
-}
-
-@media screen and (max-width: 768px) {
-  .mobile-menu-button {
-    display: block;
-  }
-
-  .nav-links {
-    display: none;
-    position: fixed;
-    top: 80px;
-    left: 0;
-    right: 0;
-    background-color: var(--secondary);
-    flex-direction: column;
-    padding: 1rem;
-    gap: 1rem;
-  }
-
-  .nav-links.active {
-    display: flex;
-  }
-
-  .nav-item {
-    width: 100%;
-  }
-
-  .dropdown {
-    position: static;
-    width: 100%;
-    margin-top: 0.5rem;
-    display: none;
-  }
-
-  .nav-item.active .dropdown {
-    display: block;
-  }
-
-  .footer-content {
-    grid-template-columns: repeat(2, 1fr) !important;
-    padding: 0 1rem;
-  }
-
-  .copyright {
-    flex-direction: column;
-    text-align: center;
-  }
-}
-
+/* Animations */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(-10px); }
   to { opacity: 1; transform: translateY(0); }
-}
-
-.dropdown a {
-  color: var(--text);
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  transition: all 0.2s ease;
-}
-
-.dropdown a:hover {
-  background-color: var(--hover);
-  transform: translateX(5px);
-}
-
-.main-content {
-  padding: 0;
-  text-align: center;
-}
-
-.hero-section {
-  padding: 6rem 2rem;
-  background: linear-gradient(135deg, var(--background) 0%, var(--accent1) 100%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(circle at 50% 50%, var(--primary) 0%, transparent 70%);
-  opacity: 0.1;
-  animation: pulse 4s ease-in-out infinite;
 }
 
 @keyframes pulse {
@@ -204,649 +22,438 @@ body {
   100% { transform: scale(1); opacity: 0.1; }
 }
 
-.hero-section h1 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 3.5rem;
-  margin-bottom: 1rem;
-  background: linear-gradient(45deg, var(--primary), var(--hover));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: titleGlow 2s ease-in-out infinite alternate;
-  position: relative;
-  z-index: 1;
-}
-
-.hero-section p {
-  font-size: 1.4rem;
-  color: var(--text);
-  opacity: 0.9;
-  max-width: 800px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 1;
-}
-
-.cta-button {
-  background: var(--primary);
-  color: var(--text);
-  padding: 1rem 2rem;
-  border-radius: 30px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  position: relative;
-  z-index: 1;
-  border: none;
-  cursor: pointer;
-  font-size: 1.1rem;
-}
-
-.cta-button:hover {
-  background: var(--hover);
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(123, 102, 255, 0.3);
-}
-
-.section {
-  padding: 4rem 2rem;
-  background: var(--background);
-}
-
-.section-title {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
-  color: var(--text);
-}
-
-.section-subtitle {
-  font-size: 1.2rem;
-  color: var(--text);
-  opacity: 0.8;
-  max-width: 800px;
-  margin: 0 auto 3rem auto;
-}
-
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.service-card {
-  background: var(--secondary);
-  padding: 2rem;
-  border-radius: 15px;
-  transition: all 0.3s ease;
-}
-
-.service-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-.service-card h3 {
-  color: var(--primary);
-  margin-bottom: 1rem;
-}
-
-.news-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.news-card {
-  background: var(--secondary);
-  padding: 2rem;
-  border-radius: 15px;
-  transition: all 0.3s ease;
-}
-
-.community-section {
-  background: linear-gradient(135deg, var(--secondary) 0%, var(--accent1) 100%);
+/* Layout principal */
+.main-content {
+  padding: 0;
   text-align: center;
-  padding: 4rem 2rem;
 }
 
-.button-group {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-@media screen and (max-width: 768px) {
-  .hero-section h1 {
-    font-size: 2.5rem;
-  }
-  
-  .hero-section p {
-    font-size: 1.1rem;
-  }
-  
-  .section-title {
-    font-size: 2rem;
-  }
-  
-  .button-group {
-    flex-direction: column;
-    align-items: center;
-  }
-}
-
-@keyframes titleGlow {
-  from { text-shadow: 0 0 20px rgba(123, 102, 255, 0.5); }
-  to { text-shadow: 0 0 30px rgba(123, 102, 255, 0.8); }
-}
-
-.footer {
-  background-color: var(--secondary);
-  padding: 2rem;
-  margin-top: auto;
-  box-shadow: 0 -2px 10px rgba(123, 102, 255, 0.1);
-}
-
-.footer-content {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.footer-section h3 {
-  color: var(--text);
-  margin-bottom: 1rem;
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 700;
-}
-
-.footer-section a {
-  color: var(--text);
-  text-decoration: none;
-  display: block;
-  margin-bottom: 0.5rem;
-  transition: all 0.2s ease;
-  opacity: 0.8;
-}
-
-.footer-section a:hover {
-  opacity: 1;
-  color: var(--hover);
-  transform: translateX(5px);
-}
-
-.copyright {
-  text-align: center;
-  padding: 2rem 0;
-  border-top: 1px solid var(--accent1);
-  margin-top: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-}
-
-.copyright img {
-  height: 30px;
-}
-
-.copyright span {
-  color: var(--text);
-  opacity: 0.8;
-  font-size: 0.9rem;
-}
-
-::-webkit-scrollbar {
-  width: 12px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--background);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--primary);
-  border-radius: 6px;
-  border: 3px solid var(--background);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--hover);
-}
-
-* {
-  scrollbar-width: thin;
-  scrollbar-color: var(--primary) var(--background);
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-@keyframes slideDown {
-  from {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-#celebration-banner {
-  background: linear-gradient(45deg, var(--primary), var(--hover));
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  position: relative;
-  z-index: 1000;
-}
-
+/* En-tête de contenu */
 .content-header {
-  padding: 2rem;
-  background: var(--secondary);
   text-align: center;
+  margin-bottom: 2rem;
 }
 
+/* Filtres et recherche */
 .content-filters {
-  padding: 1rem;
-  background: var(--accent1);
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
   flex-wrap: wrap;
-}
-
-.search-bar {
-  display: flex;
-  gap: 0.5rem;
-  max-width: 500px;
-  width: 100%;
-}
-
-.search-input {
-  flex: 1;
-  padding: 0.5rem 1rem;
-  border: 2px solid var(--primary);
-  border-radius: 20px;
-  background: var(--background);
-  color: var(--text);
-  font-size: 1rem;
-}
-
-.search-input:focus {
-  outline: none;
-  border-color: var(--hover);
+  gap: 1rem;
+  margin-bottom: 2rem;
+  justify-content: center;
 }
 
 .filter-button {
   padding: 0.5rem 1rem;
   border: none;
-  border-radius: 20px;
-  background: var(--accent2);
-  color: var(--text);
+  border-radius: 0.5rem;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s;
 }
 
 .filter-button.active {
-  background: var(--primary);
+  background: var(--accent);
+  color: var(--bg-primary);
 }
 
-.filter-button:hover {
-  background: var(--hover);
-  transform: translateY(-2px);
+.search-bar {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto 1rem;
 }
 
+.search-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 0.5rem;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+/* Grille de contenu */
 .content-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 2rem;
-  padding: 2rem;
-  max-width: 1400px;
-  margin: 0 auto;
+  padding: 1rem;
 }
 
-.content-card {
-  background: var(--secondary);
-  border-radius: 15px;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  position: relative;
-}
-
-.content-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-.content-image {
-  width: 100%;
-  height: 400px;
-  object-fit: cover;
-}
-
-.content-info {
-  padding: 1.5rem;
-}
-
-.content-type {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: var(--primary);
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  font-size: 0.9rem;
-  align-items: center;
-  gap: 0.5rem;
-  display: flex;
-  text-decoration: none;
-}
-
-.content-type svg {
-  width: 20px;
-  height: 20px;
-  fill: currentColor;
-}
-
-.content-title {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  color: var(--text);
-}
-
-.content-description {
-  color: var(--text);
-  opacity: 0.8;
-  line-height: 1.6;
-}
-
-@media screen and (max-width: 768px) {
-  .content-filters {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  
-  .search-bar {
-    max-width: 100%;
-  }
-  
+/* Media queries */
+@media (max-width: 768px) {
   .content-grid {
-    grid-template-columns: 1fr;
-    padding: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   }
 }
-</style>
+  </style>
 </head>
 <body>
-  <div id="celebration-banner" style="display: none; background: var(--primary); color: var(--text); text-align: center; padding: 10px; font-weight: bold; animation: slideDown 0.5s ease-out;">
-    <span id="celebration-message"></span>
-  </div>
-  
-  <nav class="navbar">
-    <img src="/favicon.avif" alt="VentiStudio Logo" class="logo">
-    <button class="mobile-menu-button">☰</button>
-    <div class="nav-links">
-      <div class="nav-item">
-        <a href="/">Accueil</a>
-      </div>
-      <div class="nav-item">
-        <a href="/approuvedcontent">Contenu Approuvé</a>
-      </div>
-      <div class="nav-item">
-        <a href="/wiki">Wiki</a>
-      </div>
-      <div class="nav-item">
-        <a href="/staff">Staff</a>
-        <div class="dropdown">
-          <a href="/job">Recrutement</a>
-        </div>
-      </div>
-      <div class="nav-item">
-        <a href="/artist">Artiste</a>
-      </div>
-      <div class="nav-item">
-        <a href="/pip">PIP</a>
-      </div>
+  <header>
+    <div class="logo">
+      <img src="/favicon.avif" alt="VentiStudio Logo" class="site-logo">
+      <span>VentiStudio</span>
     </div>
-  </nav>
+    <nav>
+      <a href="/">Accueil</a>
+      <a href="/approuvedcontent" class="active">Contenu Approuvé</a>
+      <a href="/player">Player</a>
+      <a href="/wiki">Wiki</a>
+      <a href="/staff">Staff</a>
+      <a href="/artist">Artiste</a>
+      <a href="/pip">PIP</a>
+      <a href="/sitemap">Sitemap</a>
+    </nav>
+    <div class="controls">
+      <button id="theme-toggle" class="theme-toggle">
+        <svg width="24" height="24" viewBox="0 0 24 24">
+          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
+          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
+          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
+        </svg>
+      </button>
+      <div id="user-button"></div>
+    </div>
+  </header>
 
-  <main class="main-content">
+  <main>
     <div class="content-header">
-      <h1 class="section-title">Contenu Approuvé</h1>
-      <p class="section-subtitle">Une sélection soigneusement choisie de contenus de qualité</p>
+      <h1>Contenu Approuvé</h1>
+      <p>Une sélection soigneusement choisie de contenus de qualité</p>
     </div>
-    
+
     <div class="content-filters">
       <div class="search-bar">
-        <input type="text" class="search-input" placeholder="Rechercher un contenu...">
+        <input type="text" class="search-input" placeholder="Rechercher du contenu...">
       </div>
-      <button class="filter-button active" data-type="all">Tout</button>
-      <button class="filter-button" data-type="films">Films</button>
-      <button class="filter-button" data-type="series">Séries</button>
-      <button class="filter-button" data-type="series-animations">Séries d'Animations</button>
-      <button class="filter-button" data-type="animations">Animations</button>
-      <button class="filter-button" data-type="musique">Musique</button>
-      <button class="filter-button" data-type="jeux">Jeux</button>
-      <button class="filter-button" data-type="manga">Manga</button>
-      <button class="filter-button" data-type="applications">Applications</button>
     </div>
-    
+
+    <div class="content-filters">
+        <button class="filter-button active" data-type="all">Tout</button>
+        <button class="filter-button" data-type="films">Films</button>
+        <button class="filter-button" data-type="series">Séries</button>
+        <button class="filter-button" data-type="series-animations">Séries d'Animations</button>
+        <button class="filter-button" data-type="animations">Animations</button>
+        <button class="filter-button" data-type="musique">Musique</button>
+        <button class="filter-button" data-type="jeux">Jeux</button>
+        <button class="filter-button" data-type="manga">Manga</button>
+        <button class="filter-button" data-type="applications">Applications</button>
+      </div>
+
+
     <div class="content-grid">
       <div class="content-card" data-type="series" data-id="1">
-        <span class="content-type">Séries<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 30 30">
-          <path d="M23 2L23 22.04 18 9.27 18 2zM13 19.88L13 27 8 27.6 8 7.38zM8 2L18 27 23 27.54 13 2z"></path>
-          </svg></span>
-        <img src="/a-files/image/jdld-image.avif" alt="Film example" class="content-image">
+        <div class="content-image-container">
+          <img src="/a-files/image/jdld-image.avif" alt="Film example" class="content-image">
+          <span class="content-type">
+            Séries
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+              <path d="M23 2L23 22.04 18 9.27 18 2zM13 19.88L13 27 8 27.6 8 7.38zM8 2L18 27 23 27.54 13 2z"/>
+            </svg>
+          </span>
+        </div>
         <div class="content-info">
           <h3 class="content-title">LE JEUX DE LA DAME</h3>
-          <p class="content-description">Placée en orphelinat à 9 ans, Beth développe un talent étonnant pour les échecs... et une addiction aux tranquillisants verts données comme sédatifs aux enfants.</p>
+          <p class="content-description">Placée en orphelinat à 9 ans, Beth développe un talent étonnant pour les échecs...</p>
         </div>
       </div>
+      
       <div class="content-card" data-type="animations" data-id="2">
-        <span class="content-type">Animations<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 50 50">
-          <path d="M 25 3 C 12.85 3 3 12.85 3 25 C 3 40.188 13.387672 44.538609 20.388672 45.974609 C 20.427672 45.982609 20.465953 45.986328 20.501953 45.986328 C 21.006953 45.986328 21.206312 45.25525 20.695312 45.03125 C 13.285312 41.79025 8.0301562 34.327141 9.1601562 25.494141 C 10.256156 16.920141 17.244938 10.069141 25.835938 9.1191406 C 26.564937 9.0381406 27.287 9 28 9 C 35.541 9 42.044422 13.395672 45.107422 19.763672 C 45.206422 19.968672 45.382594 20.058594 45.558594 20.058594 C 45.853594 20.058594 46.144828 19.8075 46.048828 19.4375 C 44.302828 12.7105 39 3 25 3 z M 29 14 C 20.481 14 13.619625 21.101031 14.015625 29.707031 C 14.366625 37.346031 20.653016 43.631422 28.291016 43.982422 C 28.528016 43.994422 28.766 44 29 44 C 37.285 44 44 37.285 44 29 C 44 27.819 43.860563 26.670359 43.601562 25.568359 C 43.542563 25.319359 43.332234 25.183594 43.115234 25.183594 C 42.961234 25.183594 42.806266 25.251484 42.697266 25.396484 C 41.512266 26.976484 39.627 28 37.5 28 C 37.397 28 37.293453 27.997188 37.189453 27.992188 C 34.031453 27.845188 31.348203 25.317875 31.033203 22.171875 C 30.763203 19.477875 32.142297 17.082328 34.279297 15.861328 C 34.656297 15.646328 34.62475 15.100266 34.21875 14.947266 C 32.59375 14.340266 30.838 14 29 14 z M 44.296875 26.595703 L 44.300781 26.595703 L 44.296875 26.595703 z"></path>
-          </svg></span>
-        <img src="/a-files/image/asv-image.avif" alt="Film example" class="content-image">
+        <div class="content-image-container">
+          <img src="/a-files/image/asv-image.avif" alt="Film example" class="content-image">
+          <span class="content-type">
+            Animations
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+              <path d="M 25 3 C 12.85 3 3 12.85 3 25 C 3 40.188 13.387672 44.538609 20.388672 45.974609..."/>
+            </svg>
+          </span>
+        </div>
         <div class="content-info">
           <h3 class="content-title">A SILENT VOICE</h3>
-          <p class="content-description">Nishimiya est une élève douce mais qui elle est harcelée par Ishida, car elle est sourde. Dénoncé, le garçon est à son tour rejeté par ses camarades. Des années plus tard, il apprend la langue des signes et part à la recherche de la jeune fille.</p>
+          <p class="content-description">Nishimiya est une élève douce mais qui elle est harcelée par Ishida...</p>
         </div>
       </div>
       <div class="content-card" data-type="series-animations" data-id="3">
-        <span class="content-type">Séries d'Animations<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 30 30">
-          <path d="M23 2L23 22.04 18 9.27 18 2zM13 19.88L13 27 8 27.6 8 7.38zM8 2L18 27 23 27.54 13 2z"></path>
-          </svg></span>
-        <img src="/a-files/image/toc-image.avif" alt="Film example" class="content-image">
+        <div class="content-image-container">
+          <img src="/a-files/image/toc-image.avif" alt="Film example" class="content-image">
+          <span class="content-type">
+            Séries d'Animations
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+              <path d="M23 2L23 22.04 18 9.27 18 2zM13 19.88L13 27 8 27.6 8 7.38zM8 2L18 27 23 27.54 13 2z"/>
+            </svg>
+          </span>
+        </div>
         <div class="content-info">
           <h3 class="content-title">THE ORBITAL CHILDREN</h3>
           <p class="content-description">En 2045, après un accident survenu à bord d'une station spatiale, deux enfants nés sur la Lune et trois jeunes Terriens sont livrés à eux-mêmes et tentent de survivre.</p>
         </div>
       </div>
       <div class="content-card" data-type="series-animations" data-id="4">
-        <span class="content-type">Séries d'Animations<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 30 30">
-          <path d="M23 2L23 22.04 18 9.27 18 2zM13 19.88L13 27 8 27.6 8 7.38zM8 2L18 27 23 27.54 13 2z"></path>
-          </svg></span>
-        <img src="/a-files/image/onk-image.avif" alt="Film example" class="content-image">
+        <div class="content-image-container">
+          <img src="/a-files/image/onk-image.avif" alt="Film example" class="content-image">
+          <span class="content-type">
+            Séries d'Animations
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+              <path d="M23 2L23 22.04 18 9.27 18 2zM13 19.88L13 27 8 27.6 8 7.38zM8 2L18 27 23 27.54 13 2z"/>
+            </svg>
+          </span>
+        </div>
         <div class="content-info">
           <h3 class="content-title">OSHI NO KO</h3>
           <p class="content-description">Gorô Amemiya, un obstétricien exerçant dans un hôpital de campagne, n’a d’yeux que pour la sublime Aï Hoshino, une célèbre et talentueuse idole. Au détour d’une rencontre fortuite, la découverte d’un terrible secret va changer leur destin à tout jamais…</p>
         </div>
       </div>
       <div class="content-card" data-type="musique" data-id="5">
-        <span class="content-type">Musique<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 50 50">
-          <path d="M 25 3 C 12.85 3 3 12.85 3 25 C 3 37.15 12.85 47 25 47 C 37.15 47 47 37.15 47 25 C 47 12.85 37.15 3 25 3 z M 25 11 C 32.72 11 39 17.28 39 25 C 39 32.72 32.72 39 25 39 C 17.28 39 11 32.72 11 25 C 11 17.28 17.28 11 25 11 z M 25 13 C 18.383 13 13 18.383 13 25 C 13 31.617 18.383 37 25 37 C 31.617 37 37 31.617 37 25 C 37 18.383 31.617 13 25 13 z M 22.019531 18.501953 C 22.194031 18.505203 22.366984 18.552484 22.521484 18.646484 L 31.521484 24.146484 C 31.817484 24.327484 32 24.651 32 25 C 32 25.349 31.818484 25.671516 31.521484 25.853516 L 22.521484 31.353516 C 22.361484 31.450516 22.181 31.5 22 31.5 C 21.832 31.5 21.663719 31.456094 21.511719 31.371094 C 21.195719 31.194094 21 30.861 21 30.5 L 21 19.5 C 21 19.139 21.195719 18.805906 21.511719 18.628906 C 21.670219 18.540906 21.845031 18.498703 22.019531 18.501953 z"></path>
-          </svg></span>
-        <img src="/a-files/image/tta-image.avif" alt="Film example" class="content-image">
+        <div class="content-image-container">
+          <img src="/a-files/image/tta-image.avif" alt="Film example" class="content-image">
+          <span class="content-type">
+            Musique
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+              <path d="M 25 3 C 12.85 3 3 12.85 3 25 C 3 40.188 13.387672 44.538609 20.388672 45.974609..."/>
+            </svg>
+          </span>
+        </div>
         <div class="content-info">
           <h3 class="content-title">THE TURRET ANTHEM</h3>
           <p class="content-description">Une petite pépite pour les fans de jeux vidéo. Cette musique est associée à l’univers de Portal, un jeu développé par Valve.</p>
         </div>
       </div>
       <div class="content-card" data-type="jeux" data-id="6">
-        <span class="content-type">Jeux<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 64 64">
-          <path d="M 40.867188 4.8300781 C 40.521373 4.8543887 40.174625 4.9080625 39.828125 4.9921875 L 39.513672 5.0703125 C 37.689672 5.5143125 36.189484 6.7415469 35.396484 8.4355469 L 34.400391 10.552734 C 33.68782 9.3433883 32.236805 8.6982492 30.810547 9.0859375 L 21.320312 11.763672 C 19.622312 12.226672 18.618078 13.985594 19.080078 15.683594 C 19.083061 15.694514 19.088708 15.703981 19.091797 15.714844 L 15.658203 13.580078 C 14.178203 12.660078 12.314359 12.418391 10.693359 12.900391 C 7.9043594 13.706391 6.0741406 16.287031 6.2441406 19.207031 L 8.6914062 47.496094 C 8.8464063 50.273094 10.290734 52.705047 12.552734 53.998047 C 13.778734 54.701047 15.134766 55.060547 16.509766 55.060547 C 17.214766 55.060547 17.924047 54.965391 18.623047 54.775391 L 19.564453 54.517578 L 19.585938 54.578125 C 20.176938 56.479125 21.473375 58.033078 23.234375 58.955078 C 24.296375 59.513078 25.490453 59.810547 26.689453 59.810547 C 27.460453 59.810547 28.208297 59.695563 28.904297 59.476562 C 30.797297 58.890562 32.350297 57.600797 33.279297 55.841797 C 33.498722 55.426592 33.674013 54.996024 33.810547 54.558594 C 34.112529 54.873786 34.442896 55.161822 34.830078 55.382812 C 35.512078 55.771813 36.266297 55.970703 37.029297 55.970703 C 37.432297 55.970703 37.837328 55.914688 38.236328 55.804688 C 39.330328 55.496688 40.24275 54.803562 40.84375 53.851562 C 41.56475 54.023562 42.326641 54.010688 43.056641 53.804688 C 44.700799 53.344597 45.868252 51.992169 46.246094 50.384766 L 47.298828 53.898438 C 47.817828 55.804437 49.552453 57.060547 51.439453 57.060547 C 51.812453 57.060547 52.189453 57.011203 52.564453 56.908203 C 54.846453 56.286203 56.196359 53.924188 55.568359 51.617188 L 53.654297 45.230469 L 54.732422 44.9375 C 56.538422 44.4475 58.129844 43.320766 59.214844 41.759766 C 60.840844 39.391766 60.968688 36.240734 59.554688 33.552734 L 46.765625 8.1171875 C 45.615 5.9191875 43.287889 4.6599043 40.867188 4.8300781 z M 41.007812 6.8222656 C 42.643461 6.709377 44.215453 7.5566719 44.986328 9.0292969 L 57.777344 34.46875 C 58.836344 36.48175 58.754312 38.897094 57.570312 40.621094 C 56.756312 41.791094 55.562031 42.640813 54.207031 43.007812 L 33.384766 48.6875 L 33.382812 48.679688 C 33.163813 47.905687 32.654219 47.266953 31.949219 46.876953 C 31.247219 46.487953 30.438688 46.396141 29.679688 46.619141 C 28.905688 46.838141 28.265953 47.345875 27.876953 48.046875 C 27.500377 48.726265 27.407881 49.509114 27.605469 50.255859 L 23.818359 51.285156 C 23.806036 51.288502 23.797242 51.297009 23.785156 51.300781 C 23.777347 51.303261 23.769508 51.302001 23.761719 51.304688 C 23.719385 51.318934 23.68944 51.349989 23.650391 51.369141 C 23.575174 51.406035 23.499531 51.439394 23.4375 51.492188 C 23.398932 51.524877 23.374643 51.567724 23.341797 51.605469 C 23.290844 51.664058 23.237205 51.718654 23.201172 51.787109 C 23.174515 51.837529 23.164263 51.892956 23.146484 51.947266 C 23.124718 52.013949 23.099129 52.077697 23.091797 52.148438 C 23.085472 52.207773 23.098939 52.267524 23.103516 52.328125 C 23.108298 52.39027 23.098271 52.451317 23.115234 52.513672 C 23.11872 52.526463 23.126911 52.536291 23.130859 52.548828 C 23.133283 52.556651 23.132139 52.564461 23.134766 52.572266 L 23.419922 53.414062 C 23.690922 54.273063 24.284516 54.983875 25.103516 55.421875 C 25.914516 55.840875 26.84175 55.925203 27.71875 55.658203 C 29.53275 55.095203 30.550141 53.160141 29.994141 51.369141 L 29.542969 49.773438 C 29.467969 49.516437 29.497 49.249578 29.625 49.017578 C 29.753 48.785578 29.966422 48.617969 30.232422 48.542969 C 30.484422 48.467969 30.750422 48.498953 30.982422 48.626953 C 31.216422 48.755953 31.384031 48.968562 31.457031 49.226562 L 31.904297 50.798828 C 32.328297 52.164828 32.189719 53.62325 31.511719 54.90625 C 30.831719 56.19225 29.695641 57.137359 28.306641 57.568359 C 27.011641 57.978359 25.444063 57.858547 24.164062 57.185547 C 22.875062 56.510547 21.926469 55.375359 21.480469 53.943359 L 21.130859 52.972656 C 21.112159 52.920556 21.074826 52.88281 21.048828 52.835938 C 21.016262 52.777274 20.989973 52.716025 20.947266 52.666016 C 20.902856 52.613765 20.848255 52.576678 20.794922 52.535156 C 20.746668 52.49754 20.702603 52.457903 20.648438 52.429688 C 20.588881 52.398589 20.525619 52.383848 20.460938 52.365234 C 20.402197 52.348206 20.346815 52.326301 20.285156 52.320312 C 20.217062 52.31374 20.149515 52.328027 20.080078 52.335938 C 20.028308 52.34164 19.977617 52.331504 19.925781 52.345703 L 18.095703 52.845703 C 16.552703 53.269703 14.936875 53.059719 13.546875 52.261719 C 11.874875 51.305719 10.804547 49.483469 10.685547 47.355469 L 8.2382812 19.0625 C 8.1242813 17.1095 9.3628125 15.365359 11.257812 14.818359 C 12.362812 14.489359 13.603563 14.660297 14.601562 15.279297 L 20.28125 18.810547 C 20.51725 18.957547 20.804266 18.997781 21.072266 18.925781 L 33.933594 15.414062 C 34.216594 15.337063 34.449219 15.141953 34.574219 14.876953 L 37.205078 9.2832031 C 37.741078 8.1392031 38.754188 7.3117656 39.992188 7.0097656 L 40.304688 6.9316406 C 40.538812 6.8753906 40.774148 6.8383926 41.007812 6.8222656 z M 31.818359 10.980469 C 32.279422 11.042813 32.680797 11.372156 32.810547 11.847656 C 32.983547 12.482656 32.607844 13.140406 31.964844 13.316406 L 22.474609 15.994141 C 22.169609 16.078141 21.847313 16.036906 21.570312 15.878906 C 21.293312 15.719906 21.094719 15.465203 21.011719 15.158203 C 20.838719 14.523203 21.213422 13.865453 21.857422 13.689453 L 31.345703 11.011719 C 31.504953 10.968719 31.664672 10.959687 31.818359 10.980469 z M 36.046875 18.359375 C 35.918094 18.342047 35.783641 18.350219 35.650391 18.386719 C 35.117391 18.531719 34.802266 19.080281 34.947266 19.613281 L 35.474609 21.544922 C 35.619609 22.077922 36.168172 22.391094 36.701172 22.246094 C 37.234172 22.101094 37.549297 21.550578 37.404297 21.017578 L 36.878906 19.087891 C 36.770156 18.688141 36.433219 18.411359 36.046875 18.359375 z M 31.222656 19.673828 C 31.093875 19.6565 30.959422 19.664672 30.826172 19.701172 C 30.293172 19.846172 29.978047 20.396687 30.123047 20.929688 L 30.650391 22.859375 C 30.795391 23.392375 31.345906 23.705547 31.878906 23.560547 C 32.411906 23.415547 32.725078 22.865031 32.580078 22.332031 L 32.054688 20.402344 C 31.945937 20.002594 31.609 19.725812 31.222656 19.673828 z M 26.398438 20.990234 C 26.269656 20.972859 26.135203 20.979375 26.001953 21.015625 C 25.468953 21.160625 25.155781 21.711141 25.300781 22.244141 L 25.826172 24.173828 C 25.971172 24.706828 26.521687 25.021953 27.054688 24.876953 C 27.587688 24.731953 27.900859 24.181438 27.755859 23.648438 L 27.230469 21.71875 C 27.121719 21.319 26.784781 21.042359 26.398438 20.990234 z M 21.574219 22.302734 C 21.445438 22.285359 21.310984 22.293828 21.177734 22.330078 C 20.644734 22.475078 20.331563 23.025594 20.476562 23.558594 L 21.001953 25.488281 C 21.147953 26.021281 21.698469 26.334453 22.230469 26.189453 C 22.763469 26.044453 23.076641 25.495891 22.931641 24.962891 L 22.40625 23.03125 C 22.2975 22.6315 21.960562 22.354859 21.574219 22.302734 z M 39.925781 23.447266 C 39.659338 23.444625 39.391047 23.464156 39.123047 23.503906 C 38.906047 23.537906 38.687219 23.583484 38.449219 23.646484 L 22.162109 28.388672 C 21.952109 28.443672 21.748828 28.510891 21.548828 28.587891 C 19.425828 29.407891 18.041516 31.574516 18.103516 33.978516 C 18.207516 38.036516 18.367172 40.481047 18.576172 41.248047 C 19.078172 43.089047 20.266828 44.625266 21.923828 45.572266 C 23.017828 46.197266 24.228078 46.515625 25.455078 46.515625 C 26.086078 46.515625 26.721703 46.430766 27.345703 46.259766 L 43.332031 41.902344 C 45.172031 41.400344 46.707297 40.210687 47.654297 38.554688 C 48.600297 36.898688 48.846891 34.972469 48.337891 33.105469 C 48.112891 32.276469 46.859234 29.964375 44.615234 26.234375 C 43.571359 24.500125 41.790885 23.46575 39.925781 23.447266 z M 39.863281 25.447266 C 41.044281 25.447266 42.224391 26.141578 42.900391 27.267578 C 45.289391 31.237578 46.277062 33.158156 46.414062 33.660156 C 46.775063 34.985156 46.600922 36.372453 45.919922 37.564453 C 45.238922 38.756453 44.131641 39.611656 42.806641 39.972656 L 26.818359 44.330078 C 25.495359 44.693078 24.107063 44.517938 22.914062 43.835938 C 21.722062 43.154937 20.866859 42.047656 20.505859 40.722656 C 20.384859 40.276656 20.214516 38.257734 20.103516 33.927734 C 20.063516 32.364734 20.933531 30.969125 22.269531 30.453125 C 22.404531 30.401125 22.542125 30.3565 22.703125 30.3125 L 38.988281 25.572266 C 39.131281 25.533266 39.275875 25.501469 39.421875 25.480469 C 39.567875 25.458469 39.716281 25.447266 39.863281 25.447266 z M 37.931641 30.066406 C 37.786287 30.075719 37.638188 30.098922 37.492188 30.138672 C 36.324188 30.457672 35.635125 31.662078 35.953125 32.830078 L 36.634766 35.328125 C 36.952766 36.497125 38.158172 37.186187 39.326172 36.867188 C 40.494172 36.548187 41.183234 35.343781 40.865234 34.175781 L 40.185547 31.677734 C 39.906422 30.655734 38.949115 30.001219 37.931641 30.066406 z M 27.607422 32.880859 C 27.462068 32.890172 27.315922 32.913375 27.169922 32.953125 C 26.001922 33.272125 25.312859 34.478484 25.630859 35.646484 L 26.3125 38.142578 C 26.6305 39.310578 27.834906 39.999641 29.003906 39.681641 C 30.171906 39.362641 30.860969 38.158234 30.542969 36.990234 L 29.861328 34.492188 C 29.582203 33.470188 28.624896 32.815672 27.607422 32.880859 z M 51.724609 45.757812 L 53.646484 52.167969 C 53.978484 53.386969 53.257063 54.648469 52.039062 54.980469 C 50.819063 55.313469 49.561656 54.591609 49.222656 53.349609 L 47.308594 46.960938 L 51.724609 45.757812 z M 44.091797 47.839844 L 44.306641 48.582031 C 44.681641 50.018031 43.879625 51.496906 42.515625 51.878906 C 41.935625 52.041906 41.326828 51.98575 40.798828 51.71875 C 40.545828 51.58975 40.246422 51.575688 39.982422 51.679688 C 39.717422 51.783687 39.510156 51.994719 39.410156 52.261719 C 39.110156 53.065719 38.485312 53.656906 37.695312 53.878906 C 37.059312 54.055906 36.395266 53.973484 35.822266 53.646484 C 35.210266 53.296484 34.770172 52.713375 34.576172 51.984375 L 34.162109 50.546875 L 44.091797 47.839844 z M 28.128906 52.185547 C 28.166441 52.47745 28.114622 52.773039 27.974609 53.039062 C 27.794609 53.381062 27.492906 53.633094 27.128906 53.746094 C 26.758906 53.857094 26.365203 53.822391 26.033203 53.650391 C 25.735667 53.491647 25.512077 53.240802 25.378906 52.933594 L 28.128906 52.185547 z"></path>
-          </svg></span>
-        <img src="/a-files/image/gi-image.avif" alt="Film example" class="content-image">
+        <div class="content-image-container">
+          <img src="/a-files/image/gi-image.avif" alt="Film example" class="content-image">
+          <span class="content-type">
+            Jeux
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+              <path d="M 25 3 C 12.85 3 3 12.85 3 25 C 3 40.188 13.387672 44.538609 20.388672 45.974609..."/>
+            </svg>
+          </span>
+        </div>
         <div class="content-info">
           <h3 class="content-title">GENSHIN IMPACT</h3>
           <p class="content-description">Genshin Impact est un jeu de rôle d'aventure en monde ouvert. Dans le jeu, vous découvrirez le monde fantastique de Teyvat, et vos pas vous porteront à travers sept nations à la rencontre de voyageurs de tous horizons, qui vous accompagneront dans vos périple.</p>
         </div>
       </div>
       <div class="content-card" data-type="applications" data-id="7">
-        <span class="content-type">Applications<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 50 50">
-          <path d="M4 4H24V24H4zM26 4H46V24H26zM4 26H24V46H4zM26 26H46V46H26z"></path>
-          </svg></span>
-        <img src="/a-files/image/s-image.avif" alt="Film example" class="content-image">
+        <div class="content-image-container">
+          <img src="/a-files/image/s-image.avif" alt="Film example" class="content-image">
+          <span class="content-type">
+            Applications
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+              <path d="M4 4H24V24H4zM26 4H46V24H26zM4 26H24V46H4zM26 26H46V46H26z"/>
+            </svg>
+          </span>
+        </div>
         <div class="content-info">
           <h3 class="content-title">STEAM</h3>
           <p class="content-description">Steam est un logiciel qui permet de simplifier la mise à jour des jeux, il permet non seulement de mettre à jour automatiquement les jeux , mais aussi de les télécharger.</p>
         </div>
       </div>
       <div class="content-card" data-type="applications" data-id="8">
-        <span class="content-type">Applications<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 50 50">
-          <path d="M4 4H24V24H4zM26 4H46V24H26zM4 26H24V46H4zM26 26H46V46H26z"></path>
-          </svg></span>
-        <img src="/a-files/image/sgg-image.avif" alt="Film example" class="content-image">
+        <div class="content-image-container">
+          <img src="/a-files/image/sgg-image.avif" alt="Film example" class="content-image">
+          <span class="content-type">
+            Applications
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+              <path d="M4 4H24V24H4zM26 4H46V24H26zM4 26H24V46H4zM26 26H46V46H26z"/>
+            </svg>
+          </span>
+        </div>
         <div class="content-info">
           <h3 class="content-title">SteelSeries GG</h3>
           <p class="content-description">SteelSeries GG ! Une plateforme qui permet de créer de meilleures connexions avec votre matériel, vos coéquipiers et votre jeu.</p>
         </div>
       </div>
       <div class="content-card" data-type="jeux" data-id="9">
-        <span class="content-type">Jeux<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 50 50">
-          <path d="M 25 3 C 13.59 3 4.209375 11.680781 3.109375 22.800781 L 14.300781 28.529297 C 15.430781 27.579297 16.9 27 18.5 27 L 18.550781 27 C 18.940781 26.4 19.389375 25.649141 19.859375 24.869141 C 20.839375 23.259141 21.939531 21.439062 23.019531 20.039062 C 23.259531 15.569063 26.97 12 31.5 12 C 36.19 12 40 15.81 40 20.5 C 40 25.03 36.430937 28.740469 31.960938 28.980469 C 30.560938 30.060469 28.750859 31.160859 27.130859 32.130859 C 26.350859 32.610859 25.6 33.059219 25 33.449219 L 25 33.5 C 25 37.09 22.09 40 18.5 40 C 14.91 40 12 37.09 12 33.5 C 12 33.33 12.009531 33.17 12.019531 33 L 3.2792969 28.519531 C 4.9692969 38.999531 14.05 47 25 47 C 37.15 47 47 37.15 47 25 C 47 12.85 37.15 3 25 3 z M 31.5 14 C 27.92 14 25 16.92 25 20.5 C 25 24.08 27.92 27 31.5 27 C 35.08 27 38 24.08 38 20.5 C 38 16.92 35.08 14 31.5 14 z M 31.5 16 C 33.99 16 36 18.01 36 20.5 C 36 22.99 33.99 25 31.5 25 C 29.01 25 27 22.99 27 20.5 C 27 18.01 29.01 16 31.5 16 z M 18.5 29 C 17.71 29 16.960313 29.200312 16.320312 29.570312 L 19.640625 31.269531 C 20.870625 31.899531 21.350469 33.410625 20.730469 34.640625 C 20.280469 35.500625 19.41 36 18.5 36 C 18.11 36 17.729375 35.910469 17.359375 35.730469 L 14.029297 34.019531 C 14.289297 36.259531 16.19 38 18.5 38 C 20.99 38 23 35.99 23 33.5 C 23 31.01 20.99 29 18.5 29 z"></path>
-          </svg></span>
-        <img src="/a-files/image/tof-image.avif" alt="Film example" class="content-image">
+        <div class="content-image-container">
+          <img src="/a-files/image/tof-image.avif" alt="Film example" class="content-image">
+          <span class="content-type">
+            Jeux
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+              <path d="M 25 3 C 12.85 3 3 12.85 3 25 C 3 40.188 13.387672 44.538609 20.388672 45.974609..."/>
+            </svg>
+          </span>
+        </div>
         <div class="content-info">
           <h3 class="content-title">TOWER OF FANTASY</h3>
           <p class="content-description">Faites un bond en avant de plusieurs siècles sur la planète lointaine d'Aida pour découvrir « Tower of Fantasy », le MMORPG en monde ouvert partagé d'aventure futuriste et empreint d'un style animé. </p>
         </div>
       </div>
       <div class="content-card" data-type="jeux" data-id="10">
-        <span class="content-type">Jeux<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 50 50">
-          <path d="M 25 3 C 13.59 3 4.209375 11.680781 3.109375 22.800781 L 14.300781 28.529297 C 15.430781 27.579297 16.9 27 18.5 27 L 18.550781 27 C 18.940781 26.4 19.389375 25.649141 19.859375 24.869141 C 20.839375 23.259141 21.939531 21.439062 23.019531 20.039062 C 23.259531 15.569063 26.97 12 31.5 12 C 36.19 12 40 15.81 40 20.5 C 40 25.03 36.430937 28.740469 31.960938 28.980469 C 30.560938 30.060469 28.750859 31.160859 27.130859 32.130859 C 26.350859 32.610859 25.6 33.059219 25 33.449219 L 25 33.5 C 25 37.09 22.09 40 18.5 40 C 14.91 40 12 37.09 12 33.5 C 12 33.33 12.009531 33.17 12.019531 33 L 3.2792969 28.519531 C 4.9692969 38.999531 14.05 47 25 47 C 37.15 47 47 37.15 47 25 C 47 12.85 37.15 3 25 3 z M 31.5 14 C 27.92 14 25 16.92 25 20.5 C 25 24.08 27.92 27 31.5 27 C 35.08 27 38 24.08 38 20.5 C 38 16.92 35.08 14 31.5 14 z M 31.5 16 C 33.99 16 36 18.01 36 20.5 C 36 22.99 33.99 25 31.5 25 C 29.01 25 27 22.99 27 20.5 C 27 18.01 29.01 16 31.5 16 z M 18.5 29 C 17.71 29 16.960313 29.200312 16.320312 29.570312 L 19.640625 31.269531 C 20.870625 31.899531 21.350469 33.410625 20.730469 34.640625 C 20.280469 35.500625 19.41 36 18.5 36 C 18.11 36 17.729375 35.910469 17.359375 35.730469 L 14.029297 34.019531 C 14.289297 36.259531 16.19 38 18.5 38 C 20.99 38 23 35.99 23 33.5 C 23 31.01 20.99 29 18.5 29 z"></path>
-          </svg></span>
-        <img src="/a-files/image/er-image.avif" alt="Film example" class="content-image">
+        <div class="content-image-container">
+          <img src="/a-files/image/er-image.avif" alt="Film example" class="content-image">
+          <span class="content-type">
+            Jeux
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+              <path d="M 25 3 C 12.85 3 3 12.85 3 25 C 3 40.188 13.387672 44.538609 20.388672 45.974609..."/>
+            </svg>
+          </span>
+        </div>
         <div class="content-info">
           <h3 class="content-title">Eternal Return</h3>
           <p class="content-description">Eternal Return est un mix unique entre MOBA/Battle Royale et Survie combinant stratégie, mécaniques et étonnants personnages.</p>
         </div>
       </div>
       <div class="content-card" data-type="manga" data-id="11">
-        <span class="content-type">Manga<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 32 32">
-          <path d="M16.2,4c-3.3,0-6.9,1.2-7.7,5.3C8.4,9.7,8.7,10,9,10l3.3,0.3c0.3,0,0.6-0.3,0.6-0.6c0.3-1.4,1.5-2.1,2.8-2.1c0.7,0,1.5,0.3,1.9,0.9c0.5,0.7,0.4,1.7,0.4,2.5v0.5c-2,0.2-4.6,0.4-6.5,1.2c-2.2,0.9-3.7,2.8-3.7,5.7c0,3.6,2.3,5.4,5.2,5.4c2.5,0,3.8-0.6,5.7-2.5c0.6,0.9,0.9,1.4,2,2.3c0.3,0.1,0.6,0.1,0.8-0.1v0c0.7-0.6,2-1.7,2.7-2.3c0.3-0.2,0.2-0.6,0-0.9c-0.6-0.9-1.3-1.6-1.3-3.2v-5.4c0-2.3,0.2-4.4-1.5-6C20.1,4.4,17.9,4,16.2,4z M17.1,14.3c0.3,0,0.6,0,0.9,0v0.8c0,1.3,0.1,2.5-0.6,3.7c-0.5,1-1.4,1.6-2.4,1.6c-1.3,0-2.1-1-2.1-2.5C12.9,15.2,14.9,14.5,17.1,14.3z M26.7,22.4c-0.9,0-1.9,0.2-2.7,0.8c-0.2,0.2-0.2,0.4,0.1,0.4c0.9-0.1,2.8-0.4,3.2,0.1s-0.4,2.3-0.7,3.1c-0.1,0.2,0.1,0.3,0.3,0.2c1.5-1.2,1.9-3.8,1.6-4.2C28.3,22.5,27.6,22.4,26.7,22.4z M3.7,22.8c-0.2,0-0.3,0.3-0.1,0.4c3.3,3,7.6,4.7,12.4,4.7c3.4,0,7.4-1.1,10.2-3.1c0.5-0.3,0.1-0.9-0.4-0.7c-3.1,1.3-6.4,1.9-9.5,1.9c-4.5,0-8.8-1.2-12.4-3.3C3.8,22.9,3.7,22.8,3.7,22.8z"></path>
-          </svg></span>
-        <img src="/a-files/image/ykwm-image.avif" alt="Film example" class="content-image">
+        <div class="content-image-container">
+          <img src="/a-files/image/ykwm-image.avif" alt="Film example" class="content-image">
+          <span class="content-type">
+            Manga
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+              <path d="M16.2,4c-3.3,0-6.9,1.2-7.7,5.3C8.4,9.7,8.7,10,9,10l3.3,0.3c0.3,0,0.6-0.3,0.6-0.6c0.3-1.4,1.5-2.1,2.8-2.1c0.7,0,1.5,0.3,1.9,0.9c0.5,0.7,0.4,1.7,0.4,2.5v0.5c-2,0.2-4.6,0.4-6.5,1.2c-2.2,0.9-3.7,2.8-3.7,5.7c0,3.6,2.3,5.4,5.2,5.4c2.5,0,3.8-0.6,5.7-2.5c0.6,0.9,0.9,1.4,2,2.3c0.3,0.1,0.6,0.1,0.8-0.1v0c0.7-0.6,2-1.7,2.7-2.3c0.3-0.2,0.2-0.6,0-0.9c-0.6-0.9-1.3-1.6-1.3-3.2v-5.4c0-2.3,0.2-4.4-1.5-6C20.1,4.4,17.9,4,16.2,4z M17.1,14.3c0.3,0,0.6,0,0.9,0v0.8c0,1.3,0.1,2.5-0.6,3.7c-0.5,1-1.4,1.6-2.4,1.6c-1.3,0-2.1-1-2.1-2.5C12.9,15.2,14.9,14.5,17.1,14.3z M26.7,22.4c-0.9,0-1.9,0.2-2.7,0.8c-0.2,0.2-0.2,0.4,0.1,0.4c0.9-0.1,2.8-0.4,3.2,0.1s-0.4,2.3-0.7,3.1c-0.1,0.2,0.1,0.3,0.3,0.2c1.5-1.2,1.9-3.8,1.6-4.2C28.3,22.5,27.6,22.4,26.7,22.4z M3.7,22.8c-0.2,0-0.3,0.3-0.1,0.4c3.3,3,7.6,4.7,12.4,4.7c3.4,0,7.4-1.1,10.2-3.1c0.5-0.3,0.1-0.9-0.4-0.7c-3.1,1.3-6.4,1.9-9.5,1.9c-4.5,0-8.8-1.2-12.4-3.3C3.8,22.9,3.7,22.8,3.7,22.8z"></path>
+            </svg>
+          </span>
+        </div>
         <div class="content-info">
           <h3 class="content-title">Yokai Watch Manga</h3>
           <p class="content-description">Nathan est un écolier tout à fait ordinaire. Alors qu’il se promène dans la forêt, il découvre Whisper, un Yo-kai très bavard... Ce drôle de personnage lui offre une Yo-kai Watch, une montre qui lui permet de révéler la présence des Yo-kai autour de lui ! Nathan va s’en servir pour convaincre les Yo-kai de devenir ses amis et d’utiliser leurs pouvoirs pour faire le bien. Le voilà embarqué dans une aventure extraordinaire ! Les Yo-kai sont des entités surnaturelles responsables de tous les petits tracas du quotidien...</p>
         </div>
       </div>
       <div class="content-card" data-type="series-animations" data-id="12">
-        <span class="content-type">Séries d'Animations<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 30 30">
-          <path d="M23 2L23 22.04 18 9.27 18 2zM13 19.88L13 27 8 27.6 8 7.38zM8 2L18 27 23 27.54 13 2z"></path>
-          </svg></span>
-        <img src="/a-files/image/7s-image.avif" alt="Film example" class="content-image">
+        <div class="content-image-container">
+          <img src="/a-files/image/7s-image.avif" alt="Film example" class="content-image">
+          <span class="content-type">
+            Séries d'Animations
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+              <path d="M23 2L23 22.04 18 9.27 18 2zM13 19.88L13 27 8 27.6 8 7.38zM8 2L18 27 23 27.54 13 2z"/>
+            </svg>
+          </span>
+        </div>
         <div class="content-info">
           <h3 class="content-title">7 Seeds</h3>
           <p class="content-description">Anticipant la possibilité que la Terre soit détruite par des météorites et réduite au stade primitif, le gouvernement japonais a créé un projet : 7Seeds. Dans le dessein d’assurer la survie de l’Espèce humaine, des groupes de 7 personnes sont enlevés secrètement et cryogénisés jusqu’à la fin du désastre. Les groupes sont nommés en fonction des 4 saisons.Un ordinateur est assigné à chaque groupe pour déterminer quand les conditions sont revenues au niveau de survie humaine, et alors les ramène à la vie… Le problème ? aucun des membres de ces groupes n’est au courant de la situation.</p>
         </div>
       </div>
       <div class="content-card" data-type="films" data-id="13">
-        <span class="content-type">Film<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 30 30">
-          <path d="M23 2L23 22.04 18 9.27 18 2zM13 19.88L13 27 8 27.6 8 7.38zM8 2L18 27 23 27.54 13 2z"></path>
-          </svg></span>
-        <img src="/a-files/image/llv-image.avif" alt="Film example" class="content-image">
+        <div class="content-image-container">
+          <img src="/a-files/image/llv-image.avif" alt="Film example" class="content-image">
+          <span class="content-type">
+            Film
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+              <path d="M23 2L23 22.04 18 9.27 18 2zM13 19.88L13 27 8 27.6 8 7.38zM8 2L18 27 23 27.54 13 2z"/>
+            </svg>
+          </span>
+        </div>
         <div class="content-info">
           <h3 class="content-title">La Ligne Verte</h3>
           <p class="content-description">Paul Edgecomb, pensionnaire centenaire d'une maison de retraite, est hanté par ses souvenirs. Gardien-chef du pénitencier de Cold Mountain en 1935, il était chargé de veiller au bon déroulement des exécutions capitales en s’efforçant d'adoucir les derniers moments des condamnés. Parmi eux se trouvait un colosse du nom de John Coffey, accusé du viol et du meurtre de deux fillettes. Intrigué par cet homme candide et timide aux dons magiques, Edgecomb va tisser avec lui des liens très forts.</p>
         </div>
       </div>
       <div class="content-card" data-type="series-animations" data-id="14">
-        <span class="content-type">Séries d'Animations<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 30 30">
-          <path d="M23 2L23 22.04 18 9.27 18 2zM13 19.88L13 27 8 27.6 8 7.38zM8 2L18 27 23 27.54 13 2z"></path>
-          </svg></span>
-        <img src="/a-files/image/selcdz-image.avif" alt="Film example" class="content-image">
+        <div class="content-image-container">
+          <img src="/a-files/image/selcdz-image.avif" alt="Film example" class="content-image">
+          <span class="content-type">
+            Séries d'Animations
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+              <path d="M23 2L23 22.04 18 9.27 18 2zM13 19.88L13 27 8 27.6 8 7.38zM8 2L18 27 23 27.54 13 2z"/>
+            </svg>
+          </span>
+        </div>
         <div class="content-info">
           <h3 class="content-title">Seiya et les Chevaliers du Zodiaque</h3>
           <p class="content-description">Seiya et les Chevaliers du Zodiaque s'unissent à nouveau pour protéger la déesse Athéna, mais une sombre prophétie pèse sur leurs destins.</p>
         </div>
       </div>
       <div class="content-card" data-type="series-animations" data-id="15">
-        <span class="content-type">Séries d'Animations<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 30 30">
-          <path d="M23 2L23 22.04 18 9.27 18 2zM13 19.88L13 27 8 27.6 8 7.38zM8 2L18 27 23 27.54 13 2z"></path>
-          </svg></span>
-        <img src="/a-files/image/aicoi-image.avif" alt="Film example" class="content-image">
+        <div class="content-image-container">
+          <img src="/a-files/image/aicoi-image.avif" alt="Film example" class="content-image">
+          <span class="content-type">
+            Séries d'Animations
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+              <path d="M23 2L23 22.04 18 9.27 18 2zM13 19.88L13 27 8 27.6 8 7.38zM8 2L18 27 23 27.54 13 2z"/>
+            </svg>
+          </span>
+        </div>
         <div class="content-info">
           <h3 class="content-title">AICO Incarnation</h3>
           <p class="content-description">Quand Aiko apprend que son existence est fondée sur un terrible mensonge, elle fait équipe avec des Divers pour anéantir le Burst, et peut-être sauver ainsi sa famille.</p>
         </div>
       </div>
       <div class="content-card" data-type="series-animations" data-id="16">
-        <span class="content-type">Séries d'Animations<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 30 30">
-          <path d="M23 2L23 22.04 18 9.27 18 2zM13 19.88L13 27 8 27.6 8 7.38zM8 2L18 27 23 27.54 13 2z"></path>
-          </svg></span>
-        <img src="/a-files/image/r-image.avif" alt="Film example" class="content-image">
+        <div class="content-image-container">
+          <img src="/a-files/image/r-image.avif" alt="Film example" class="content-image">
+          <span class="content-type">
+            Séries d'Animations
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+              <path d="M23 2L23 22.04 18 9.27 18 2zM13 19.88L13 27 8 27.6 8 7.38zM8 2L18 27 23 27.54 13 2z"/>
+            </svg>
+          </span>
+        </div>
         <div class="content-info">
           <h3 class="content-title">Revisions</h3>
           <p class="content-description">Après le transport de la région de Shibuya en 2388, l'étudiant Daisuke et ses amis ont été enrôlés par l'agent Milo dans une équipe spéciale pour combattre les cyborgs hostiles.</p>
         </div>
       </div>
       <div class="content-card" data-type="series-animations" data-id="17">
-        <span class="content-type">Séries d'Animations<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 30 30">
-          <path d="M23 2L23 22.04 18 9.27 18 2zM13 19.88L13 27 8 27.6 8 7.38zM8 2L18 27 23 27.54 13 2z"></path>
-          </svg></span>
-        <img src="/a-files/image/r12-image.avif" alt="Film example" class="content-image">
+        <div class="content-image-container">
+          <img src="/a-files/image/r12-image.avif" alt="Film example" class="content-image">
+          <span class="content-type">
+            Séries d'Animations
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+              <path d="M23 2L23 22.04 18 9.27 18 2zM13 19.88L13 27 8 27.6 8 7.38zM8 2L18 27 23 27.54 13 2z"/>
+            </svg>
+          </span>
+        </div>
         <div class="content-info">
           <h3 class="content-title">Ranma ½</h3>
           <p class="content-description">Soun attend avec impatience l'arrivée de son vieil ami Genma Saotomé et de son fils Ranma. Mais contre toute attente, c'est une ado et un panda géant qui se présentent au dojo Tendo.</p>
         </div>
       </div>
       <div class="content-card" data-type="series" data-id="18">
-        <span class="content-type">Séries<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 30 30">
-          <path d="M23 2L23 22.04 18 9.27 18 2zM13 19.88L13 27 8 27.6 8 7.38zM8 2L18 27 23 27.54 13 2z"></path>
-          </svg></span>
-        <img src="/a-files/image/bnn-image.avif" alt="Film example" class="content-image">
+        <div class="content-image-container">
+          <img src="/a-files/image/bnn-image.avif" alt="Film example" class="content-image">
+          <span class="content-type">
+            Séries
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+              <path d="M23 2L23 22.04 18 9.27 18 2zM13 19.88L13 27 8 27.6 8 7.38zM8 2L18 27 23 27.54 13 2z"/>
+            </svg>
+          </span>
+        </div>
         <div class="content-info">
           <h3 class="content-title">Brooklyn Nine-Nine</h3>
           <p class="content-description">La vie au sein du commissariat de police de Brooklyn n'est pas de tout repos : une pléiade d'inspecteurs un poil loufoque doivent jongler entre leur mission de protéger et servir les habitants de la ville, leur vie personnelle et celle du bureau.</p>
         </div>
       </div>
       <div class="content-card" data-type="series-animations" data-id="19">
-        <span class="content-type">Séries d'Animations<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 30 30">
-          <path d="M23 2L23 22.04 18 9.27 18 2zM13 19.88L13 27 8 27.6 8 7.38zM8 2L18 27 23 27.54 13 2z"></path>
-          </svg></span>
-        <img src="/a-files/image/c009coj-image.avif" alt="Film example" class="content-image">
+        <div class="content-image-container">
+          <img src="/a-files/image/c009coj-image.avif" alt="Film example" class="content-image">
+          <span class="content-type">
+            Séries d'Animations
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+              <path d="M23 2L23 22.04 18 9.27 18 2zM13 19.88L13 27 8 27.6 8 7.38zM8 2L18 27 23 27.54 13 2z"/>
+            </svg>
+          </span>
+        </div>
         <div class="content-info">
           <h3 class="content-title">Cyborg 009</h3>
           <p class="content-description">Intégrés depuis des années, les cyborgs doivent sortir de l'ombre et reprendre le combat quand la race surhumaine des Éminents menace l'humanité.</p>
         </div>
       </div>
       <div class="content-card" data-type="series-animations" data-id="20">
-        <span class="content-type">Séries d'Animations<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 50 50">
-          <path d="M 25 3 C 12.85 3 3 12.85 3 25 C 3 40.188 13.387672 44.538609 20.388672 45.974609 C 20.427672 45.982609 20.465953 45.986328 20.501953 45.986328 C 21.006953 45.986328 21.206312 45.25525 20.695312 45.03125 C 13.285312 41.79025 8.0301562 34.327141 9.1601562 25.494141 C 10.256156 16.920141 17.244938 10.069141 25.835938 9.1191406 C 26.564937 9.0381406 27.287 9 28 9 C 35.541 9 42.044422 13.395672 45.107422 19.763672 C 45.206422 19.968672 45.382594 20.058594 45.558594 20.058594 C 45.853594 20.058594 46.144828 19.8075 46.048828 19.4375 C 44.302828 12.7105 39 3 25 3 z M 29 14 C 20.481 14 13.619625 21.101031 14.015625 29.707031 C 14.366625 37.346031 20.653016 43.631422 28.291016 43.982422 C 28.528016 43.994422 28.766 44 29 44 C 37.285 44 44 37.285 44 29 C 44 27.819 43.860563 26.670359 43.601562 25.568359 C 43.542563 25.319359 43.332234 25.183594 43.115234 25.183594 C 42.961234 25.183594 42.806266 25.251484 42.697266 25.396484 C 41.512266 26.976484 39.627 28 37.5 28 C 37.397 28 37.293453 27.997188 37.189453 27.992188 C 34.031453 27.845188 31.348203 25.317875 31.033203 22.171875 C 30.763203 19.477875 32.142297 17.082328 34.279297 15.861328 C 34.656297 15.646328 34.62475 15.100266 34.21875 14.947266 C 32.59375 14.340266 30.838 14 29 14 z M 44.296875 26.595703 L 44.300781 26.595703 L 44.296875 26.595703 z"></path>
-          </svg></span>
-        <img src="/a-files/image/trotsh-image.avif" alt="Film example" class="content-image">
+        <div class="content-image-container">
+          <img src="/a-files/image/trotsh-image.avif" alt="Film example" class="content-image">
+          <span class="content-type">
+            Séries d'Animations
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+              <path d="M 25 3 C 12.85 3 3 12.85 3 25 C 3 40.188 13.387672 44.538609 20.388672 45.974609..."/>
+            </svg>
+          </span>
+        </div>
         <div class="content-info">
           <h3 class="content-title">The Rising of the Shield Hero</h3>
           <p class="content-description">The Rising of the Shield Hero, connue au Japon sous le nom de Tate no yūsha no nariagari, est une série de light novel japonais écrite par Aneko Yusagi. L'histoire suit l'épopée de Naofumi Iwatani qui est mystérieusement invoqué dans un autre monde où il est le héros au Bouclier.</p>
         </div>
       </div>
       <div class="content-card" data-type="applications" data-id="21">
-        <span class="content-type">Applications<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 50 50">
-          <path d="M4 4H24V24H4zM26 4H46V24H26zM4 26H24V46H4zM26 26H46V46H26z"></path>
-          </svg></span>
-        <img src="/a-files/image/d-image.avif" alt="Film example" class="content-image">
+        <div class="content-image-container">
+          <img src="/a-files/image/d-image.avif" alt="Film example" class="content-image">
+          <span class="content-type">
+            Applications
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+              <path d="M4 4H24V24H4zM26 4H46V24H26zM4 26H24V46H4zM26 26H46V46H26z"/>
+            </svg>
+          </span>
+        </div>
         <div class="content-info">
           <h3 class="content-title">Discord</h3>
           <p class="content-description">Discord est une plateforme de VoIP et de messagerie instantanée. Il fonctionne sur les systèmes d’exploitation Windows, macOS, Linux, Android, iOS ainsi que sur les navigateurs web. Il est distribué sous forme de freeware et développé avec une licence propriétaire.</p>
@@ -856,170 +463,52 @@ html {
     </div>
   </main>
 
-  <footer class="footer">
+  <footer>
     <div class="footer-content">
       <div class="footer-section">
-        <h3>Outils</h3>
-        <a href="/encrypt">Encrypt</a>
-        <a href="/sitemap">Sitemap</a>
-        <a href="/status">Statut</a>
+        <h4>Outils</h4>
+        <ul>
+          <li><a href="https://ventistudio.fr/encrypt">Encrypt</a></li>
+          <li><a href="https://ventistudio.fr/sitemap">Sitemap</a></li>
+          <li><a href="https://status.ventistudio.fr/">Statut</a></li>
+          <li><a href="https://aina.ventistudio.fr/">Aina</a></li>
+        </ul>
       </div>
       <div class="footer-section">
-        <h3>Entreprise</h3>
-        <a href="/about">À propos</a>
-        <a href="/jobs">Emplois</a>
-        <a href="/company">Marque</a>
+        <h4>Entreprise</h4>
+        <ul>
+          <li><a href="https://ventistudio.fr/about">À propos</a></li>
+          <li><a href="https://ventistudio.fr/jobs">Emplois</a></li>
+          <li><a href="https://ventistudio.fr/company">Marque</a></li>
+          <li><a href="https://ventistudio.fr/creator">Créateur</a></li>
+        </ul>
       </div>
       <div class="footer-section">
-        <h3>Ressources</h3>
-        <a href="/university">Université</a>
-        <a href="/lawful/support">Assistance</a>
-        <a href="/lawful/security">Sécurité</a>
+        <h4>Ressources</h4>
+        <ul>
+          <li><a href="https://ventistudio.fr/university">Université</a></li>
+          <li><a href="https://ventistudio.fr/school">École</a></li>
+          <li><a href="https://ventistudio.fr/help">Assistance</a></li>
+          <li><a href="https://ventistudio.fr/security">Sécurité</a></li>
+        </ul>
       </div>
       <div class="footer-section">
-        <h3>Chartes</h3>
-        <a href="/lawful/terms">Conditions</a>
-        <a href="/lawful/privacy">Confidentialité</a>
-        <a href="/lawful/cookies">Paramètres des cookies</a>
-        <a href="/lawful/dmca">DMCA</a>
-        <a href="/lawful/dmcainfo">DMCA Information</a>
-        <a href="/lawful/cgv">Conditions Général de Vente</a>
+        <h4>Chartes</h4>
+        <ul>
+          <li><a href="https://ventistudio.fr/terms">Conditions</a></li>
+          <li><a href="https://ventistudio.fr/privacy">Confidentialité</a></li>
+          <li><a href="https://ventistudio.fr/cookies">Cookies</a></li>
+          <li><a href="https://ventistudio.fr/dmca">DMCA</a></li>
+        </ul>
       </div>
     </div>
-    <div class="copyright">
-      <img src="/favicon.avif" alt="VentiStudio Logo">
-      <span>Copyright & P-Line 2023 - 2024, Tous droits réservés.</span>
+    <div class="footer-bottom">
+      <p class="status"><iframe src="https://status.ventistudio.fr/badge?theme=dark" width="250" height="30" frameborder="0" marginheight="0" marginwidth="0" scrolling="no"></iframe></p>
+      <p class="copyright">Copyright © P-Line 2023 - 2025. Tous droits réservés.</p>
     </div>
   </footer>
 
-  <script>
-    const mobileMenuButton = document.querySelector('.mobile-menu-button');
-    const navLinks = document.querySelector('.nav-links');
-    const navItems = document.querySelectorAll('.nav-item');
-
-    mobileMenuButton.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-    });
-
-    if (window.innerWidth <= 768) {
-      navItems.forEach(item => {
-        item.addEventListener('click', (e) => {
-          if (e.target.closest('.nav-item') === item) {
-            item.classList.toggle('active');
-            navItems.forEach(otherItem => {
-              if (otherItem !== item) {
-                otherItem.classList.remove('active');
-              }
-            });
-          }
-        });
-      });
-    }
-
-    document.addEventListener('click', (e) => {
-      if (!e.target.closest('.navbar')) {
-        navLinks.classList.remove('active');
-        navItems.forEach(item => item.classList.remove('active'));
-      }
-    });
-
-    function checkHolidays() {
-      const today = new Date();
-      const day = today.getDate();
-      const month = today.getMonth() + 1; // JavaScript months are 0-based
-      const banner = document.getElementById('celebration-banner');
-      const message = document.getElementById('celebration-message');
-      let celebrationMessage = '';
-
-      // Check various holiday periods
-      if (month === 12 && day >= 1 && day <= 25) {
-        celebrationMessage = "Joyeux Noël ! 🎄";
-      }
-      
-      if (month === 12 && day === 15) {
-        celebrationMessage = "Joyeux anniversaire Hikari Umaishi ! 🎂 Et joyeux Noël ! 🎄";
-      }
-      
-      if (month === 9 && day === 24) {
-        celebrationMessage = "Joyeux anniversaire VentiStudio ! 🎉";
-      }
-      
-      if (month === 10 && day >= 25 && day <= 31) {
-        celebrationMessage = "Joyeux Halloween ! 🎃";
-      }
-      
-      if (month === 7 && day === 14) {
-        celebrationMessage = "Bonne fête nationale ! 🇫🇷";
-      }
-      
-      if ((month === 12 && day >= 31) || (month === 1 && day <= 3)) {
-        celebrationMessage = "Bonne année ! 🎊";
-      }
-      
-      if (month === 9 && day === 9) {
-        celebrationMessage = "Bonne fête de l'automne ! 🍂";
-      }
-      
-      if (month === 3 && (day === 20 || day === 21)) {
-        celebrationMessage = "Bienvenue au printemps ! 🌸";
-      }
-
-      if (celebrationMessage) {
-        message.textContent = celebrationMessage;
-        banner.style.display = 'block';
-      } else {
-        banner.style.display = 'none';
-      }
-    }
-
-    // Run the check when the page loads
-    checkHolidays();
-
-    // Add content filtering functionality
-    const filterButtons = document.querySelectorAll('.filter-button');
-    const contentCards = document.querySelectorAll('.content-card');
-    const searchInput = document.querySelector('.search-input');
-
-    filterButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        const type = button.dataset.type;
-        
-        filterButtons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-        
-        contentCards.forEach(card => {
-          if (type === 'all' || card.dataset.type === type) {
-            card.style.display = 'block';
-          } else {
-            card.style.display = 'none';
-          }
-        });
-      });
-    });
-
-    searchInput.addEventListener('input', (e) => {
-      const searchTerm = e.target.value.toLowerCase();
-      
-      contentCards.forEach(card => {
-        const title = card.querySelector('.content-title').textContent.toLowerCase();
-        const description = card.querySelector('.content-description').textContent.toLowerCase();
-        
-        if (title.includes(searchTerm) || description.includes(searchTerm)) {
-          card.style.display = 'block';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    });
-
-    // Add click handler for content cards
-    contentCards.forEach(card => {
-      card.addEventListener('click', () => {
-        const contentId = card.dataset.id;
-        if (contentId) {
-          window.location.href = `/approuvedcontent/${contentId}`;
-        }
-      });
-    });
-  </script>
-</body></html>
+  <script src="https://trust.ventistudio.fr/root/script.js"></script> <!--https://trust.ventistudio.fr/-->
+  <script src="https://trust.ventistudio.fr/root/approuvedcontent/script.js"></script>
+</body>
+</html>
