@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html><head><base href="https://ventistudio.fr/update">
+  <meta charset="utf-8">
+  <meta name="viewport">
+  <html lang="fr"></html>
+  <link rel="icon" type="image/png" href="favicon.ico">
+  <meta property="og:title" content="Bienvenu sur VentiStudio">
+  <meta property="og:site_name" content="VentiStudio Komiyuniti">
+  <meta property="og:url" content="https://ventistudio.fr">
+  <meta property="og:description" content="Hey, je suis Hikari Umaishi (光馬石), mais je préfère que l'on m'appelle Hiuma (ヒウマ).
+Laissez-moi vous présenter ma communauté, un espace où l'art et la créativité se rencontrent.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://ventistudio.fr/favicon.gif">
+  <title>VentiStudio - Update</title>
+  <style>
+    :root {
+      --primary: #7B66FF;
+      --secondary: #2A2D3A;
+      --background: #1A1B26;
+      --text: #FFFFFF;
+      --hover: #9F86FF;
+      --accent1: #414868;
+      --accent2: #565f89;
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--background);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .maintenance-container {
+      text-align: center;
+      padding: 2rem;
+      max-width: 800px;
+      animation: fadeIn 1s ease-in;
+    }
+
+    .logo {
+      width: 150px;
+      height: auto;
+      margin-bottom: 2rem;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(45deg, var(--primary), var(--hover));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .message {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    .progress-container {
+      width: 300px;
+      height: 10px;
+      background: var(--secondary);
+      border-radius: 5px;
+      margin: 2rem auto;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--hover));
+      width: 20%;
+      border-radius: 5px;
+      animation: progress 2s ease-in-out infinite;
+    }
+
+    .status {
+      font-size: 1rem;
+      color: var(--accent2);
+      margin-top: 1rem;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes progress {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(500%); }
+    }
+
+    .return-time {
+      margin-top: 2rem;
+      padding: 1rem;
+      background: var(--secondary);
+      border-radius: 10px;
+      display: inline-block;
+    }
+
+    @media screen and (max-width: 768px) {
+      .maintenance-container {
+        padding: 1rem;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .message {
+        font-size: 1rem;
+      }
+
+      .progress-container {
+        width: 250px;
+      }
+    }
+    iframe {
+        align-items: center;
+        justify-content: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="maintenance-container">
+    <img src="/favicon.avif" alt="VentiStudio Logo" class="logo">
+    <h1>Maintenance en cours</h1>
+    <div class="message">
+      Nous effectuons actuellement une maintenance planifiée pour améliorer nos services.<br>
+      Merci de votre patience et de votre compréhension.
+    </div>
+    <div class="progress-container">
+      <div class="progress-bar"></div>
+    </div>
+    <div class="status">Mise à jour des systèmes en cours...</div>
+    <div class="return-time">
+      Temps estimé de retour : <span id="countdown">--:--:--</span>
+    </div>
+  </div>
+  <iframe src="https://status.ventistudio.fr/badge?theme=dark" width="250" height="30" frameborder="0" marginheight="0" marginwidth="0" scrolling="no"></iframe>
+  <script>
+    // Set maintenance end time (1 hour from now by default)
+    const endTime = new Date(new Date().getTime() + 60 * 60 * 1000);
+    
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = endTime - now;
+      
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      
+      document.getElementById('countdown').innerHTML = 
+        `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+      
+      if (distance < 0) {
+        clearInterval(countdownInterval);
+        document.getElementById('countdown').innerHTML = "Bientôt de retour!";
+      }
+    }
+
+    const countdownInterval = setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>

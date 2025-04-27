@@ -1,0 +1,222 @@
+/* Variables globales */
+:root {
+    --minecraft-green: #71c065;
+    --minecraft-brown: #825432;
+    --minecraft-stone: #828282;
+    --minecraft-dark: rgba(0, 0, 0, 0.8);
+    --font-minecraft: 'Minecraft', system-ui, -apple-system, sans-serif;
+}
+
+/* Style général */
+body {
+    margin: 0;
+    font-family: var(--font-minecraft);
+    color: #ffffff;
+    background: #1a1a1a;
+    line-height: 1.6;
+}
+
+.minecraft-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('https://ventistudio.fr/mc/minecraft.avif') center/cover no-repeat;
+    opacity: 0.15;
+    z-index: -1;
+}
+
+/* Header */
+header {
+    background: var(--minecraft-dark);
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.nav-link {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: var(--minecraft-green);
+}
+
+/* Container principal */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Titres */
+h1, h2, h3 {
+    text-align: center;
+    text-shadow: 2px 2px var(--minecraft-dark);
+    margin-bottom: 1.5rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: var(--minecraft-green);
+}
+
+/* Blocs Minecraft */
+.minecraft-block {
+    background: rgba(0, 0, 0, 0.85);
+    border: 3px solid #444;
+    padding: 2rem;
+    margin: 1rem 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Stats du serveur */
+.server-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.stat {
+    text-align: center;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+}
+
+.stat-label {
+    font-weight: bold;
+    color: var(--minecraft-green);
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+/* Boutons Minecraft */
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.minecraft-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.5rem;
+    background: var(--minecraft-green);
+    color: white;
+    text-decoration: none;
+    border: 3px solid #4a7943;
+    border-radius: 4px;
+    transition: all 0.3s;
+    font-weight: bold;
+}
+
+.minecraft-button:hover {
+    background: #5fa754;
+    transform: translateY(-2px);
+}
+
+.button-icon {
+    font-size: 1.2rem;
+}
+
+/* Instructions d'installation */
+.install-steps {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+    border-radius: 8px;
+    margin: 2rem 0;
+}
+
+.install-steps ol {
+    padding-left: 1.5rem;
+}
+
+.install-steps li {
+    margin-bottom: 0.8rem;
+}
+
+/* Caractéristiques */
+.features ul {
+    list-style: none;
+    padding: 0;
+}
+
+.features li {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Bouton Discord */
+.discord-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    background: #5865F2;
+    color: white;
+    text-decoration: none;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    margin: 1rem auto;
+    max-width: 300px;
+    transition: background 0.3s;
+}
+
+.discord-button:hover {
+    background: #4752c4;
+}
+
+.discord-icon {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 2rem;
+    background: var(--minecraft-dark);
+    margin-top: 3rem;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .buttons {
+        flex-direction: column;
+    }
+
+    .minecraft-button {
+        width: 100%;
+        justify-content: center;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.minecraft-block {
+    animation: fadeIn 0.5s ease-in-out;
+}

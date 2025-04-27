@@ -1,0 +1,5 @@
+Contact: mailto:security@ventistudio.fr
+Expiration: 2030-12-15T00:00:00Z
+Remerciements: https://ventistudio.fr/acknowledgements/
+Carrières: https://ventistudio.fr/jobs
+Langues préférées: fr, en, jp.
