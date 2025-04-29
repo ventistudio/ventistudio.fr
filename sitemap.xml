@@ -1,143 +1,337 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Pages principales -->
   <url>
     <loc>https://ventistudio.fr/</loc>
-    <lastmod>2025-03-31</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
-  
-  <!-- Contenu -->
   <url>
     <loc>https://ventistudio.fr/approuvedcontent</loc>
-    <lastmod>2025-03-31</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
   </url>
-
-  <!-- Player -->
   <url>
     <loc>https://ventistudio.fr/player</loc>
-    <lastmod>2025-03-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://ventistudio.fr/player/game</loc>
-    <lastmod>2025-03-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://ventistudio.fr/player/music</loc>
-    <lastmod>2025-03-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://ventistudio.fr/player/video</loc>
-    <lastmod>2025-03-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://ventistudio.fr/player/story</loc>
-    <lastmod>2025-03-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Wiki -->
   <url>
     <loc>https://ventistudio.fr/wiki</loc>
-    <lastmod>2025-03-31</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
   </url>
-
-  <!-- Staff -->
   <url>
     <loc>https://ventistudio.fr/staff</loc>
-    <lastmod>2025-03-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
-
-  <!-- Artiste -->
   <url>
     <loc>https://ventistudio.fr/artist</loc>
-    <lastmod>2025-03-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
-
-  <!-- PIP -->
   <url>
     <loc>https://ventistudio.fr/pip</loc>
-    <lastmod>2025-03-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Pages légales -->
-  <url>
-    <loc>https://ventistudio.fr/lawful/terms</loc>
-    <lastmod>2025-03-31</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://ventistudio.fr/lawful/privacy</loc>
-    <lastmod>2025-03-31</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://ventistudio.fr/lawful/cookies</loc>
-    <lastmod>2025-03-31</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://ventistudio.fr/lawful/dmca</loc>
-    <lastmod>2025-03-31</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- Pages d'entreprise -->
-  <url>
-    <loc>https://ventistudio.fr/about</loc>
-    <lastmod>2025-03-31</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://ventistudio.fr/company</loc>
-    <lastmod>2025-03-31</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://ventistudio.fr/jobs</loc>
-    <lastmod>2025-03-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Pages utilitaires -->
-  <url>
-    <loc>https://ventistudio.fr/sitemap</loc>
-    <lastmod>2025-03-31</lastmod>
-    <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://ventistudio.fr/ester-eggs</loc>
-    <lastmod>2025-03-31</lastmod>
+    <loc>https://ventistudio.fr/about</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/jobs</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/terms</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/privacy</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/lawful/dmcainfo/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
-
+  <!-- Pages Wiki -->
+  <url>
+    <loc>https://ventistudio.fr/wiki/ventistudio/whatisventistudio</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/wiki/ventistudio/ainapad</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/wiki/ventistudio/uia</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/wiki/aokiunivers/lore</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/wiki/aokiunivers/aina</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/wiki/aokiunivers/biss</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/wiki/aokiunivers/dystopiaprequel</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/wiki/aokiunivers/dystopia</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/wiki/scp/zone98</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/wiki/scp/protocols</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/wiki/scp/scp-ls</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/wiki/scp/zonerp</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/wiki/other/aumashi</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/wiki/other/lukaguyonvarch</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <!-- Fichiers images indexables -->
+  <url>
+    <loc>https://ventistudio.fr/a-files/image/jdld-image.avif</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/a-files/image/asv-image.avif</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/a-files/image/toc-image.avif</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/a-files/image/onk-image.avif</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/a-files/image/tta-image.avif</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/a-files/image/gi-image.avif</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/a-files/image/s-image.avif</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/a-files/image/sgg-image.avif</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/a-files/image/tof-image.avif</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/a-files/image/er-image.avif</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/a-files/image/ykwm-image.avif</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/a-files/image/7s-image.avif</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/a-files/image/llv-image.avif</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/a-files/image/selcdz-image.avif</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/a-files/image/aicoi-image.avif</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/a-files/image/r-image.avif</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/a-files/image/r12-image.avif</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/a-files/image/bnn-image.avif</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/a-files/image/c009coj-image.avif</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/a-files/image/trotsh-image.avif</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/a-files/image/d-image.avif</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/a-files/image/game-image.avif</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/a-files/image/video-image.avif</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/a-files/image/story-image.avif</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/a-files/image/hikariumaishi.avif</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/a-files/image/tomoumaishi.avif</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/a-files/image/clementfernandez.avif</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/a-files/image/kalashnikov.avif</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/a-files/image/sokinasawa.avif</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/a-files/image/maitrecorbeau.avif</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/a-files/image/petitepatatekawaii.avif</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/a-files/image/futogensei.avif</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/a-files/image/losttanuu.avif</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/a-files/image/rayansilverhand.avif</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/a-files/image/yaso.avif</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/a-files/image/ventiopastudien.avif</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/a-files/image/p0lterg3iist.avif</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/a-files/image/lightwater.avif</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/a-files/image/iletaitunefeemokafrego.avif</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ventistudio.fr/a-files/image/justicepourhugo.avif</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
 </urlset>
+<!-- Sitemap generated by Ventistudio  -->
+<!-- https://ventistudio.fr/ -->

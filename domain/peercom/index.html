@@ -1,147 +1,194 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <link rel="icon" type="image/ico" href="https://ventistudio.fr/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recherche - VentiStudio</title>
-    <link rel="stylesheet" href="/style.css">
-    <style>
-        .search-container {
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/ico" href="https://ventistudio.fr/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Peercom - VentiStudio</title>
+  <link rel="stylesheet" href="https://trust.ventistudio.fr/root/style.css">
+  <style>
+    :root {
+      --neon-primary: #7c3aed;
+      --neon-secondary: #5a2dbd;
+      --neon-glow: 0 0 10px rgba(124, 58, 237, 0.5),
+                   0 0 20px rgba(124, 58, 237, 0.3),
+                   0 0 30px rgba(124, 58, 237, 0.2);
+    }
 
-        .search-input {
-            width: 100%;
-            padding: 1rem;
-            font-size: 1.2rem;
-            border: 2px solid var(--accent);
-            border-radius: 0.5rem;
-            background: var(--bg-secondary);
-            color: var(--text-primary);
-            margin-bottom: 2rem;
-        }
+    body {
+      background: linear-gradient(135deg, #13151a 0%, #090a0f 100%);
+      min-height: 100vh;
+      margin: 0;
+    }
 
-        .search-results {
-            display: grid;
-            gap: 1rem;
-        }
+    .search-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      padding: 0 20px;
+    }
 
-        .result-item {
-            background: var(--bg-secondary);
-            padding: 1rem;
-            border-radius: 0.5rem;
-            transition: transform 0.2s;
-        }
+    .search-container h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+      color: white;
+      text-shadow: var(--neon-glow);
+      animation: neonPulse 1.5s infinite alternate;
+    }
 
-        .result-item:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--neon-glow);
-        }
+    .search-container form {
+      display: flex;
+      width: 100%;
+      max-width: 600px;
+      position: relative;
+    }
 
-        .result-title {
-            color: var(--accent);
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
+    .search-container input[type="text"] {
+      flex: 1;
+      padding: 1rem 1.5rem;
+      font-size: 1.1rem;
+      border: 2px solid var(--neon-primary);
+      border-radius: 50px;
+      background: rgba(124, 58, 237, 0.1);
+      color: white;
+      outline: none;
+      transition: all 0.3s ease;
+      box-shadow: var(--neon-glow);
+    }
 
-        .result-description {
-            color: var(--text-primary);
-            font-size: 0.9rem;
-        }
+    .search-container input[type="text"]:focus {
+      box-shadow: 0 0 15px rgba(124, 58, 237, 0.7);
+    }
 
-        .search-filters {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
+    .search-container button {
+      position: absolute;
+      right: 5px;
+      top: 50%;
+      transform: translateY(-50%);
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      border: none;
+      background-color: var(--neon-primary);
+      color: white;
+      cursor: pointer;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      box-shadow: var(--neon-glow);
+    }
 
-        .filter-button {
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--accent);
-            border-radius: 0.5rem;
-            background: var(--bg-secondary);
-            color: var(--text-primary);
-            cursor: pointer;
-            transition: all 0.2s;
-        }
+    .search-container button:hover {
+      background-color: var(--neon-secondary);
+      transform: translateY(-50%) scale(1.05);
+    }
 
-        .filter-button.active {
-            background: var(--accent);
-            color: var(--bg-primary);
-        }
+    .search-container p {
+      margin-top: 1.5rem;
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.7);
+      text-shadow: 0 0 5px rgba(124, 58, 237, 0.3);
+    }
 
-        .no-results {
-            text-align: center;
-            color: var(--text-primary);
-            padding: 2rem;
-        }
-        .search-mode-toggle {
-    padding: 0.5rem 1rem;
-    border: 2px solid var(--accent);
-    border-radius: 0.5rem;
-    background: var(--bg-secondary);
-    color: var(--text-primary);
-    cursor: pointer;
-    transition: all 0.2s;
-    font-weight: bold;
-}
+    .suggestions {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: rgba(19, 21, 26, 0.95);
+      border: 1px solid var(--neon-primary);
+      border-radius: 10px;
+      margin-top: 10px;
+      box-shadow: var(--neon-glow);
+      z-index: 1000;
+      max-height: 200px;
+      overflow-y: auto;
+    }
 
-.search-mode-toggle:hover {
-    background: var(--accent);
-    color: var(--bg-primary);
-}
-    </style>
+    .suggestion-item {
+      padding: 10px 20px;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .suggestion-item:hover {
+      background-color: rgba(124, 58, 237, 0.2);
+    }
+
+    @keyframes neonPulse {
+      from {
+        text-shadow: var(--neon-glow);
+      }
+      to {
+        text-shadow: 0 0 15px rgba(124, 58, 237, 0.7),
+                     0 0 25px rgba(124, 58, 237, 0.5),
+                     0 0 35px rgba(124, 58, 237, 0.3);
+      }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <img src="https://ventistudio.fr/favicon.avif" alt="VentiStudio Logo" class="site-logo">
-            <span>VentiStudio</span>
-        </div>
-        <nav>
-            <a href="/">Accueil</a>
-            <a href="/search" class="active">Recherche</a>
-            <a href="/player">Player</a>
-            <a href="/wiki">Wiki</a>
-        </nav>
-        <div class="controls">
-            <button id="theme-toggle" class="theme-toggle">
-                <svg width="24" height="24" viewBox="0 0 24 24">
-                    <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
-                    <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
-                    <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
-                </svg>
-            </button>
-            <div id="user-button"></div>
-        </div>
-    </header>
+  <div class="search-container">
+    <h1>Bienvenue sur Peercom</h1>
+    <p>Recherchez tout ce que vous voulez, redirection temporaire vers Brave.</p>
+    <form action="https://search.brave.com/search" method="get" target="_blank" id="searchForm">
+      <input type="text" name="q" id="searchInput" placeholder="Entrez votre recherche ici..." required autocomplete="off">
+      <input type="hidden" name="source" value="ventistudio.fr">
+      <button type="submit">Rechercher</button>
+      <div class="suggestions" id="suggestions"></div>
+    </form>
+    <p>Note : Peercom est en cours de développement.</p>
+  </div>
 
-    <main>
-        <div class="search-container">
-            <input 
-                type="text" 
-                id="searchInput" 
-                class="search-input" 
-                placeholder="Rechercher dans VentiStudio..."
-                autocomplete="off"
-            >
-            <div class="search-filters">
-                <button class="filter-button active" data-filter="all">Tout</button>
-                <button class="filter-button" data-filter="music">Musique</button>
-                <button class="filter-button" data-filter="games">Jeux</button>
-                <button class="filter-button" data-filter="videos">Vidéos</button>
-                <button class="filter-button" data-filter="books">Livres</button>
-            </div>
-            <div id="searchResults" class="search-results">
-                <!-- Les résultats seront insérés ici -->
-            </div>
-        </div>
-    </main>
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    const suggestionsContainer = document.getElementById('suggestions');
+    let suggestions = [];
 
-    <script src="/script.js"></script>
-    <script src="/domain/peercom/search.js"></script>
+    // Simuler une API de suggestions (à remplacer par votre propre API)
+    const getSuggestions = async (query) => {
+      if (!query) return [];
+      try {
+        const response = await fetch(`https://api.datamuse.com/sug?s=${query}`);
+        const data = await response.json();
+        return data.map(item => item.word).slice(0, 5);
+      } catch (error) {
+        console.error('Erreur lors de la récupération des suggestions:', error);
+        return [];
+      }
+    };
+
+    searchInput.addEventListener('input', async (e) => {
+      const query = e.target.value;
+      if (query.length < 2) {
+        suggestionsContainer.innerHTML = '';
+        return;
+      }
+
+      suggestions = await getSuggestions(query);
+      
+      suggestionsContainer.innerHTML = suggestions
+        .map(suggestion => `
+          <div class="suggestion-item" onclick="selectSuggestion('${suggestion}')">
+            ${suggestion}
+          </div>
+        `).join('');
+    });
+
+    function selectSuggestion(suggestion) {
+      searchInput.value = suggestion;
+      suggestionsContainer.innerHTML = '';
+      document.getElementById('searchForm').submit();
+    }
+
+    // Fermer les suggestions en cliquant en dehors
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.search-container form')) {
+        suggestionsContainer.innerHTML = '';
+      }
+    });
+  </script>
 </body>
 </html>
