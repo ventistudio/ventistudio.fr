@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/ico" href="https://ventistudio.fr/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VentiStudio for Artist</title>
+  <link rel="stylesheet" href="https://trust.ventistudio.fr/root/style.css">
+  <style>
+    :root {
+      --primary-color: var(--bg-primary);
+      --secondary-color: var(--bg-secondary);
+      --text-color: var(--text-primary);
+      --bg-color: var(--bg-primary);
+      --card-bg: var(--bg-secondary);
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      line-height: 1.6;
+      background: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    .content-artist {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    h2 {
+      color: var(--primary-color);
+      font-size: 2rem;
+      margin: 2.5rem 0 1.5rem;
+      border-bottom: 3px solid var(--primary-color);
+      padding-bottom: 0.5rem;
+    }
+
+    ulartist {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      list-style: none;
+      padding: 0;
+    }
+
+    ulartist liartist {
+      background: var(--card-bg);
+      padding: 1rem 1.5rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+    }
+
+    ulartist liartist:hover {
+      transform: translateY(-5px);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2rem 0;
+      background: var(--card-bg);
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+      padding: 1.2rem;
+      text-align: left;
+      border-bottom: 0.5px solid var(--bg-primary);
+    }
+
+    th {
+      background: var(--primary-color);
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    td:hover {
+      color: var(--primary-color);
+    }
+    tr:hover {
+      color: var(--primary-color);
+      background: var(--accent);
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      padding: 1rem 2rem;
+      border-radius: 2rem;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+      margin-top: 2rem;
+    }
+
+    .btn:hover {
+      background: var(--accent);
+      color: var(--bg-secondary);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+    }
+
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .content-artist {
+        padding: 0 1rem;
+      }
+
+      ulartist {
+        grid-template-columns: 1fr;
+      }
+
+      table {
+        display: block;
+        overflow-x: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="https://ventistudio.fr/favicon.avif" alt="VentiStudio Logo" class="site-logo">
+      <span>VentiStudio</span>
+    </div>
+    <nav>
+      <a href="https://ventistudio.fr">Accueil</a>
+      <a href="https://ventistudio.fr/approuvedcontent">Contenu Approuvé</a>
+      <a href="https://ventistudio.fr/player" >Player</a>
+      <a href="https://ventistudio.fr/wiki">Wiki</a>
+      <a href="https://ventistudio.fr/staff">Staff</a>
+      <a href="https://ventistudio.fr/artist">Artiste</a>
+      <a href="https://ventistudio.fr/pip">PIP</a>
+      <a href="https://ventistudio.fr/sitemap">Sitemap</a>
+    </nav>
+    <div class="controls">
+      <button id="theme-toggle" class="theme-toggle">
+        <svg width="24" height="24" viewBox="0 0 24 24">
+          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
+          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
+          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
+        </svg>
+      </button>
+      <div id="user-button"></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>VentiStudio for Artist</h1>
+      <p>Un lieu d’expression, de soutien et de reconnaissance des talents artistiques de tous horizons.</p>
+    </section>
+
+    <section class="content-artist">
+      <h2>Domaines artistiques couverts</h2>
+      <ulartist>
+        <liartist>Danse</liartist>
+        <liartist>Arts martiaux artistiques</liartist>
+        <liartist>Voile artistique</liartist>
+        <liartist>Musique</liartist>
+        <liartist>Patinage à roulettes artistique</liartist>
+        <liartist>Patinage à glace artistique</liartist>
+        <liartist>Chant</liartist>
+        <liartist>Gymnastique artistique</liartist>
+        <liartist>Peinture</liartist>
+        <liartist>Dessin</liartist>
+        <liartist>Film</liartist>
+        <liartist>Claquettes</liartist>
+        <liartist>Manga</liartist>
+        <liartist>Toutes les autres formes d’art</liartist>
+      </ulartist>
+
+      <h2>Conditions pour devenir artiste officiel</h2>
+      <ulartist>
+        <liartist>Pour les sports artistiques : au moins le niveau 1 (Initiation) dans la discipline.</liartist>
+        <liartist>Pour les autres formes d’art : validation personnelle de Hikari Umaishi ou d’un Archon Ambassadeur.</liartist>
+      </ulartist>
+
+      <h2>Niveaux artistiques</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Niveau</th>
+            <th>Intitulé</th>
+            <th>Description générale</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>0</td>
+            <td>Amateur</td>
+            <td>Aucune expérience ou pratique occasionnelle, apprentissage des bases.</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Initiation</td>
+            <td>Connaissances élémentaires, apprentissage encadré, peu ou pas de représentation.</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Développement</td>
+            <td>Techniques de base acquises, premières scènes ou démonstrations non compétitives.</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Pré-compétition</td>
+            <td>Premiers concours locaux, débuts en chorégraphie ou en programme artistique.</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Compétiteur régional</td>
+            <td>Participation active aux compétitions régionales, bon niveau technique.</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Compétiteur national</td>
+            <td>Accès à des concours nationaux, performance technique et artistique solide.</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>Pré-élite / Semi-pro</td>
+            <td>Niveau avancé, parfois rémunéré, proche du niveau élite, représentation fréquente.</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>Élite national</td>
+            <td>Haut niveau, participation aux championnats nationaux, reconnu dans le pays.</td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>International</td>
+            <td>Participation à des compétitions internationales, élite confirmée.</td>
+          </tr>
+          <tr>
+            <td>9</td>
+            <td>Professionnel</td>
+            <td>Carrière dans le domaine, spectacles ou compétitions de haut niveau, très médiatisé.</td>
+          </tr>
+          <tr>
+            <td>10</td>
+            <td>Maître</td>
+            <td>Référence mondiale dans la discipline, influenceur ou formateur reconnu.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Rejoignez-nous</h2>
+      <p>VentiStudio est ouvert à tous les artistes, quels que soient l’âge, le niveau ou la discipline. Rejoignez notre communauté et faites briller votre talent !</p>
+      <a href="https://ventistudio.fr/social/Link-Star/?redirect=https://discord.gg/BupfZHSBbC" class="btn">Rejoindre VentiStudio en tant qu’artiste</a>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Outils</h4>
+        <ul>
+          <li><a href="https://ventistudio.fr/encrypt">Encrypt</a></li>
+          <li><a href="https://ventistudio.fr/sitemap">Sitemap</a></li>
+          <li><a href="https://status.ventistudio.fr/">Statut</a></li>
+          <li><a href="https://aina.ventistudio.fr/">Aina</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Entreprise</h4>
+        <ul>
+          <li><a href="https://ventistudio.fr/about">À propos</a></li>
+          <li><a href="https://ventistudio.fr/jobs">Emplois</a></li>
+          <li><a href="https://ventistudio.fr/company">Marque</a></li>
+          <li><a href="https://ventistudio.fr/creator">Créateur</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Ressources</h4>
+        <ul>
+          <li><a href="https://ventistudio.fr/university">Université</a></li>
+          <li><a href="https://ventistudio.fr/school">École</a></li>
+          <li><a href="https://ventistudio.fr/help">Assistance</a></li>
+          <li><a href="https://ventistudio.fr/security">Sécurité</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Chartes</h4>
+        <ul>
+          <li><a href="https://ventistudio.fr/terms">Conditions</a></li>
+          <li><a href="https://ventistudio.fr/privacy">Confidentialité</a></li>
+          <li><a href="https://ventistudio.fr/cookies">Cookies</a></li>
+          <li><a href="https://ventistudio.fr/dmca">DMCA</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="status"><iframe src="https://status.ventistudio.fr/badge?theme=dark" width="250" height="30" frameborder="0" marginheight="0" marginwidth="0" scrolling="no"></iframe></p>
+      <p class="copyright">Copyright © P-Line 2023 - 2025. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+
+  <script src="https://trust.ventistudio.fr/root/script.js"></script>
+</body>
+</html>

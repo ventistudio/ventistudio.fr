@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/ico" href="https://ventistudio.fr/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Présentation Discord - VentiStudio</title>
+  <link rel="stylesheet" href="https://trust.ventistudio.fr/root/style.css">
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial, sans-serif;
+    }
+    .section {
+      margin: 20px auto;
+      max-width: 800px;
+    }
+    .btn {
+      display: inline-block;
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      padding: 1rem 2rem;
+      border-radius: 2rem;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+      margin-top: 2rem;
+    }
+
+    .btn:hover {
+      background: var(--accent);
+      color: var(--bg-secondary);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="https://ventistudio.fr/favicon.avif" alt="VentiStudio Logo" class="site-logo">
+      <span>VentiStudio</span>
+    </div>
+    <nav>
+      <a href="https://ventistudio.fr">Accueil</a>
+      <a href="https://ventistudio.fr/approuvedcontent">Contenu Approuvé</a>
+      <a href="https://ventistudio.fr/player" >Player</a>
+      <a href="https://ventistudio.fr/wiki">Wiki</a>
+      <a href="https://ventistudio.fr/staff">Staff</a>
+      <a href="https://ventistudio.fr/artist">Artiste</a>
+      <a href="https://ventistudio.fr/pip">PIP</a>
+      <a href="https://ventistudio.fr/sitemap">Sitemap</a>
+    </nav>
+    <div class="controls">
+      <button id="theme-toggle" class="theme-toggle">
+        <svg width="24" height="24" viewBox="0 0 24 24">
+          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
+          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
+          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
+        </svg>
+      </button>
+      <div id="user-button"></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <h2>À propos de VentiStudio</h2>
+      <p>Hey, je suis <strong>Hikari Umaishi</strong> (光馬石), mais appelez-moi <strong>Hiuma</strong> (ヒウマ).  
+      Laissez-moi vous présenter ma communauté, un espace où l'art et la créativité se rencontrent.</p>
+      <p>En tant que créateur multi-contenu, mangaka et compositeur, mon domaine s'étend à diverses formes d'art, mais elles convergent toutes vers une expression artistique unique.</p>
+    </section>
+
+    <section class="section">
+      <h2>Pourquoi nous rejoindre ?</h2>
+      <ul style="list-style: none; padding: 0;">
+        <li><strong>Gamer :</strong> Retrouvez des personnes prêtes à jouer avec vous et à explorer des univers fascinants.</li>
+        <li><strong>Artiste :</strong> Exprimez votre créativité, partagez vos œuvres et collaborez avec des passionnés.</li>
+        <li><strong>Franco-Japonais :</strong> Plongez dans un espace où les cultures française et japonaise fusionnent.</li>
+        <li><strong>Création sans limites :</strong> Donnez vie à vos idées sans restriction.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Notre Vision</h2>
+      <p>Chez VentiStudio, chaque membre est un acteur clé de l'univers que nous créons ensemble. Vos créations sont comme des planètes dans un système solaire, nourries par votre créativité et vos efforts.</p>
+      <p><strong>Voyageurs et voyageuses, l'avenir est notre présent. Bienvenue dans notre univers.</strong></p>
+    </section>
+
+    <section class="section">
+      <h2>Rejoignez-nous</h2>
+      <p><a href="https://discord.gg/BupfZHSBbC" class="btn">Rejoindre le Discord</a></p>
+    </section>
+
+    <section class="section">
+      <h2>Source</h2>
+      <p>アイナ・ウマイシ（Aina Umaishi）人工知能の新時代</p>  
+      <p>ヴェンティスタジオは光馬石（Hikari Umaishi）によって所有・創造され、アーティスト名「ヴェンティ・オパスティウディエン（Venti Opastudien）」としても知られ、本名はルカ・ギヨンヴァルシュ（Lùka Guyonvarch）です。ヴェンティスタジオのコンテンツやその他関連する創作物の無断コピーは、法的措置を引き起こす可能性がありますのでご注意ください。</p>
+      <p>ヴェンティスタジオ</p>
+      <p>未来は今、私たちの現在です。</p>
+      <h2>Mentions Légales</h2>
+      <p>VentiStudio est la propriété de <strong>Hikari Umaishi</strong> (光馬石), également connu sous le nom d'artiste <strong>Venti Opastudien</strong>. Toute copie non autorisée des contenus de VentiStudio peut entraîner des poursuites judiciaires.</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Outils</h4>
+        <ul>
+          <li><a href="https://ventistudio.fr/encrypt">Encrypt</a></li>
+          <li><a href="https://ventistudio.fr/sitemap">Sitemap</a></li>
+          <li><a href="https://status.ventistudio.fr/">Statut</a></li>
+          <li><a href="https://aina.ventistudio.fr/">Aina</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Entreprise</h4>
+        <ul>
+          <li><a href="https://ventistudio.fr/about">À propos</a></li>
+          <li><a href="https://ventistudio.fr/jobs">Emplois</a></li>
+          <li><a href="https://ventistudio.fr/company">Marque</a></li>
+          <li><a href="https://ventistudio.fr/creator">Créateur</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Ressources</h4>
+        <ul>
+          <li><a href="https://ventistudio.fr/university">Université</a></li>
+          <li><a href="https://ventistudio.fr/school">École</a></li>
+          <li><a href="https://ventistudio.fr/help">Assistance</a></li>
+          <li><a href="https://ventistudio.fr/security">Sécurité</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Chartes</h4>
+        <ul>
+          <li><a href="https://ventistudio.fr/terms">Conditions</a></li>
+          <li><a href="https://ventistudio.fr/privacy">Confidentialité</a></li>
+          <li><a href="https://ventistudio.fr/cookies">Cookies</a></li>
+          <li><a href="https://ventistudio.fr/dmca">DMCA</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="status"><iframe src="https://status.ventistudio.fr/badge?theme=dark" width="250" height="30" frameborder="0" marginheight="0" marginwidth="0" scrolling="no"></iframe></p>
+      <p class="copyright">Copyright © P-Line 2023 - 2025. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <script src="https://trust.ventistudio.fr/root/script.js"></script>
+</body>
+</html>

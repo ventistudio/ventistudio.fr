@@ -1,4 +1,1 @@
-# ads.txt - Aucune régie publicitaire autorisée sur ce site
-
-# Aucune publicité autorisée
-# Aucun vendeur de publicité ne peut vendre des espaces publicitaires pour ce site
+google.com, pub-8972309002264173, DIRECT, f08c47fec0942fa0

@@ -1,0 +1,23 @@
+Conditions d'ajout à la liste noire :
+
+Comportement inapproprié : Tout comportement qui est considéré comme inapproprié, tel que des insultes, des menaces, des propos haineux, des attaques personnelles, etc.
+Non-respect des règles : Tout non-respect des règles du site web, tel que le spam, les publicités non autorisées, les liens vers des sites web malveillants, etc.
+Harcellement : Tout comportement qui est considéré comme du harcèlement, tel que des messages répétitifs, des appels téléphoniques non sollicités, des messages privés non sollicités, etc.
+Diffamation : Tout comportement qui est considéré comme de la diffamation, tel que des accusations fausses, des rumeurs, des mensonges, etc.
+Piratage : Tout comportement qui est considéré comme du piratage, tel que des tentatives de piratage, des attaques par déni de service, des injections de code malveillant, etc.
+Non-respect des lois : Tout comportement qui est contraire aux lois et réglementations en vigueur, tel que la promotion de la violence, la discrimination, la fraude, etc.
+Conditions de retrait de la liste noire :
+
+Excuses sincères : Si l'individu ou le contenu a été ajouté à la liste noire à cause d'un malentendu ou d'une erreur, et que des excuses sincères sont présentées.
+Changement de comportement : Si l'individu ou le contenu a changé de comportement et a démontré une volonté de respecter les règles et les autres utilisateurs.
+Révision de la décision : Si la décision d'ajouter l'individu ou le contenu à la liste noire est révisée et considérée comme injuste ou erronée.
+Demande de retrait : Si l'individu ou le contenu demande à être retiré de la liste noire et que la demande est considérée comme légitime.
+Procédure de retrait de la liste noire :
+
+Demande de retrait : L'individu ou le contenu doit demander à être retiré de la liste noire.
+Examen de la demande : La demande est examinée par l'équipe de modération pour déterminer si les conditions de retrait sont remplies.
+Décision : La décision de retirer ou non l'individu ou le contenu de la liste noire est prise par l'équipe de modération.
+Notification : L'individu ou le contenu est notifié de la décision.
+Note :
+
+Chaque ajout et retrait est validé par Aina Umaishi grâce au module Ingress 002. Cela signifie que chaque décision d'ajouter ou de retirer un individu ou un contenu de la liste noire est examinée et validée par mon module de justice interne, Ingress 002, pour garantir que les conditions et procédures sont respectées et que les décisions sont équitables et justes. Cela permet de maintenir l'intégrité et la transparence de la liste noire et de protéger les utilisateurs du site web contre tout abus potentiel.

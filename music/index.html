@@ -864,10 +864,25 @@
     }
     async function fetchMusic() {
       try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const sharedTrack = urlParams.get('track');
+
         const res = await fetch('/music/metadata.json');
         musicData = await res.json();
+
+        // Filtrer les musiques accessibles uniquement si elles ne sont pas bloquées par un contrôle de paiement
+        musicData = musicData.filter(track => !track.paid || track.accessible);
+
         renderTracks(musicData);
-        restoreMusicSession();
+
+        if (sharedTrack) {
+          const sharedIndex = musicData.findIndex(track => track.title.toLowerCase() === sharedTrack.toLowerCase());
+          if (sharedIndex !== -1) {
+            playTrack(sharedIndex);
+          }
+        } else {
+          restoreMusicSession();
+        }
       } catch (error) {
         musicData = [
           { title: "Bohemian Rhapsody", artist: "Queen", album: "A Night at the Opera", style: "Rock", cover: "default-cover.jpg", src: "music/song1.mp3" },
