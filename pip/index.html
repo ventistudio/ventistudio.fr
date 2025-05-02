@@ -22,6 +22,52 @@
     <script src="https://cdn.jsdelivr.net/npm/matroska-demuxer@2.1.1/dist/matroska-demuxer.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/opus-decoder@0.4.0/opus.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/wasm-vorbis@0.1.0/vorbis.min.js"></script>
+    <style>
+        .ventistudio-videos {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .videos-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+        .video-item {
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 200px;
+        }
+        .video-thumbnail {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 0.5rem;
+        }
+        .video-title {
+            font-size: 1rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        .play-button {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            background: var(--accent);
+            color: var(--bg-secondary);
+            cursor: pointer;
+        }
+        .play-button:hover {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            background: var(--bg-primary);
+            color: var(--accent);
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -122,6 +168,13 @@
                 </div>
             </div>
         </section>
+
+        <section class="ventistudio-videos">
+            <h2>Vidéos intégrées à VentiStudio</h2>
+            <div id="ventistudioVideosContainer" class="videos-container">
+                <!-- Les vidéos intégrées seront ajoutées ici dynamiquement -->
+            </div>
+        </section>
     </main>
 
     <footer>
@@ -173,5 +226,66 @@
 
     <script src="https://trust.ventistudio.fr/root/script.js"></script>
     <script src="https://trust.ventistudio.fr/root/pip/script.js"></script>
+    <script>
+        // Fonction pour enregistrer une vidéo dans l'historique
+        function saveVideoToHistory(videoUrl, videoTitle) {
+            const history = JSON.parse(localStorage.getItem('videoHistory')) || [];
+            const videoEntry = { url: videoUrl, title: videoTitle, timestamp: new Date().toISOString() };
+    
+            // Éviter les doublons
+            if (!history.some(video => video.url === videoUrl)) {
+                history.push(videoEntry);
+                localStorage.setItem('videoHistory', JSON.stringify(history));
+            }
+        }
+    
+        // Exemple : Ajouter un événement pour enregistrer une vidéo lue
+        const videoPlayer = document.getElementById('videoPlayer');
+        videoPlayer.addEventListener('play', () => {
+            const videoUrl = videoPlayer.currentSrc;
+            const videoTitle = document.title; // Vous pouvez personnaliser le titre
+            saveVideoToHistory(videoUrl, videoTitle);
+        });
+
+        // Liste des vidéos intégrées à VentiStudio
+        const ventistudioVideos = [
+            {
+                title: "A SILENT VOICE - BANDE ANNONCE",
+                url: "https://ventistudio.fr/a-files/video/asilentvoicevfbandeannonce.mp4",
+                thumbnail: "https://ventistudio.fr/favicon.gif"
+            },
+            {
+                title: "CALL OF DUTY: CLIP TWITCH",
+                url: "https://ventistudio.fr/a-files/video/codcliptwitch.mp4",
+                thumbnail: "https://ventistudio.fr/favicon.gif"
+            },
+            {
+                title: "INTRO VENTISTUDIO",
+                url: "https://ventistudio.fr/a-files/video/introventistudio.mp4",
+                thumbnail: "https://ventistudio.fr/favicon.gif"
+            }
+        ];
+
+        // Charger les vidéos intégrées dans la section
+        const videosContainer = document.getElementById('ventistudioVideosContainer');
+        ventistudioVideos.forEach(video => {
+            const videoElement = document.createElement('div');
+            videoElement.classList.add('video-item');
+            videoElement.innerHTML = `
+                <img src="${video.thumbnail}" alt="${video.title}" class="video-thumbnail">
+                <h3 class="video-title">${video.title}</h3>
+                <button class="play-button" onclick="playVentistudioVideo('${video.url}', '${video.title}')">Lire</button>
+            `;
+            videosContainer.appendChild(videoElement);
+        });
+
+        // Fonction pour lire une vidéo intégrée
+        function playVentistudioVideo(videoUrl, videoTitle) {
+            const videoPlayer = document.getElementById('videoPlayer');
+            videoPlayer.src = videoUrl;
+            videoPlayer.play();
+            saveVideoToHistory(videoUrl, videoTitle); // Enregistrer dans l'historique
+        }
+    </script>
 </body>
 </html>

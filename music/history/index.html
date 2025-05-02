@@ -6,30 +6,54 @@
   <title>Historique Musical</title>
   <link rel="stylesheet" href="https://trust.ventistudio.fr/root/style.css">
   <style>
-.btn-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 2rem;
-  }
+    .track img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-right: 10px;
+    }
+    .track {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+      background: var(--bg-secondary);
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .track-title {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    .btn-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+    .btn {
+      padding: 1rem 2rem;
+      border-radius: 2rem;
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background: var(--accent);
+      color: var(--bg-secondary);
+    }
+    .favorite-track {
+      border: 2px solid var(--accent); /* Couleur d'accentuation */
+      background: rgba(124, 58, 237, 0.1); /* Fond légèrement coloré */
+      box-shadow: 0 0 10px rgba(124, 58, 237, 0.5); /* Effet lumineux */
+    }
 
-  .btn {
-    display: inline-block;
-    background: var(--bg-secondary);
-    color: var(--text-primary);
-    padding: 1rem 2rem;
-    border-radius: 2rem;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s;
-  }
-
-  .btn:hover {
-    background: var(--accent);
-    color: var(--bg-secondary);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
-  }
+    .favorite-track .track-title {
+      color: var(--accent); /* Couleur spéciale pour le titre */
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
@@ -67,7 +91,7 @@
     </section>
     <div class="track-list" id="historyList"></div>
     <div class="btn-container">
-      <a href="https://ventistudio.fr/music" class="btn">Retour</a>
+      <button class="btn" onclick="clearHistory()">Effacer l'historique</button>
     </div>
   </main>
 
@@ -121,20 +145,46 @@
       const history = JSON.parse(localStorage.getItem('musicHistory') || '[]');
       const historyList = document.getElementById('historyList');
       historyList.innerHTML = '';
+
+      if (history.length === 0) {
+        historyList.innerHTML = '<p>Aucun historique disponible.</p>';
+        return;
+      }
+
+      // Trouver la musique favorite (celle avec le plus grand nombre de lectures)
+      const favoriteTrack = history.reduce((fav, track) => (track.playCount > fav.playCount ? track : fav), history[0]);
+
+      const totalPlays = history.reduce((sum, track) => sum + track.playCount, 0);
+
       history.forEach(track => {
+        const percentage = totalPlays > 0 ? ((track.playCount / totalPlays) * 100).toFixed(1) : 0;
+
         const trackElement = document.createElement('div');
         trackElement.className = 'track';
+
+        // Ajouter une classe spéciale pour la musique favorite
+        if (track.title === favoriteTrack.title) {
+          trackElement.classList.add('favorite-track');
+        }
+
         trackElement.innerHTML = `
-          <img src="${track.cover}" alt="Cover">
-          <div class="track-title">${track.title}</div>
-          <div>${track.artist}</div>
+          <img src="/${track.cover}" alt="${track.title}">
+          <div>
+            <div class="track-title">${track.title}</div>
+            <div>${track.artist}</div>
+            <div>Lectures : ${track.playCount} (${percentage}%)</div>
+          </div>
         `;
         historyList.appendChild(trackElement);
       });
     }
 
-    // Afficher l'historique au chargement de la page
-    renderHistory();
+    function clearHistory() {
+      localStorage.removeItem('musicHistory');
+      renderHistory();
+    }
+
+    document.addEventListener('DOMContentLoaded', renderHistory);
   </script>
   <script src="https://trust.ventistudio.fr/root/script.js"></script>
 </body>

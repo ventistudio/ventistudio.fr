@@ -389,6 +389,7 @@
 </head>
 <body>
   <div class="music-app">
+    <h1>VentiStudio Music</h1>
     <div class="search-bar">
       <input type="text" id="searchInput" placeholder="Rechercher une musique, un artiste, un album...">
     </div>
@@ -613,18 +614,21 @@
       const canvas = document.querySelector('.led-canvas');
       const ctx = canvas.getContext('2d');
       resizeLedCanvas();
+      
+      // Augmenter le nombre de LEDs pour un meilleur effet
       let leds = [];
-      for (let i = 0; i < 30; i++) {
+      for (let i = 0; i < 100; i++) {
         const color = ledColors.length > 0 ? ledColors[Math.floor(Math.random() * ledColors.length)] : {r:255,g:255,b:255};
         leds.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          r: Math.random() * 40 + 30,
-          dx: (Math.random() - 0.5) * 0.7,
-          dy: (Math.random() - 0.5) * 0.7,
+          r: Math.random() * 100 + 40, // Augmenter la taille de base
+          dx: (Math.random() - 0.5) * 0.5, // Ralentir le mouvement
+          dy: (Math.random() - 0.5) * 0.5,
           color: `rgb(${color.r},${color.g},${color.b})`
         });
       }
+    
       function getBass() {
         if (!audioCtxInitialized) return 0;
         analyser.getByteFrequencyData(dataArray);
@@ -632,30 +636,62 @@
         for (let i = 0; i < 10; i++) sum += dataArray[i];
         return sum / 10;
       }
+    
+      function drawNeonBlob(x, y, radius, color) {
+        // Créer un dégradé radial pour l'effet néon
+        const gradient = ctx.createRadialGradient(x, y, 0, x, y, radius);
+        gradient.addColorStop(0, color);
+        gradient.addColorStop(0.4, color.replace('rgb', 'rgba').replace(')', ',0.6)'));
+        gradient.addColorStop(0.8, color.replace('rgb', 'rgba').replace(')', ',0.2)'));
+        gradient.addColorStop(1, 'rgba(0,0,0,0)');
+    
+        // Dessiner plusieurs cercles superposés pour l'effet de flou
+        ctx.beginPath();
+        ctx.arc(x, y, radius, 0, 2 * Math.PI);
+        ctx.fillStyle = gradient;
+        ctx.fill();
+        
+        // Ajouter un halo lumineux
+        ctx.beginPath();
+        ctx.arc(x, y, radius * 0.5, 0, 2 * Math.PI);
+        ctx.fillStyle = color.replace('rgb', 'rgba').replace(')', ',0.3)');
+        ctx.filter = 'blur(15px)';
+        ctx.fill();
+        ctx.filter = 'none';
+      }
+    
       function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         const bass = getBass();
+    
+        // Appliquer un léger flou à tout le canvas
+        ctx.filter = 'blur(2px)';
+        
         leds.forEach(led => {
           led.x += led.dx;
           led.y += led.dy;
-          if (led.x < 0 || led.x > canvas.width) led.dx *= -1;
-          if (led.y < 0 || led.y > canvas.height) led.dy *= -1;
-          let radius = led.r * (1 + bass/200);
-          ctx.beginPath();
-          ctx.arc(led.x, led.y, radius, 0, 2 * Math.PI);
-          ctx.fillStyle = led.color;
-          ctx.globalAlpha = 0.25 + 0.5 * (bass/255);
-          ctx.shadowBlur = 30;
-          ctx.shadowColor = led.color;
-          ctx.fill();
-          ctx.globalAlpha = 1;
-          ctx.shadowBlur = 0;
+          
+          // Rebondir sur les bords
+          if (led.x < -100) led.x = canvas.width + 100;
+          if (led.x > canvas.width + 100) led.x = -100;
+          if (led.y < -100) led.y = canvas.height + 100;
+          if (led.y > canvas.height + 100) led.y = -100;
+    
+          // Faire pulser les LEDs avec la basse
+          const pulseFactor = 1 + (bass/255) * 0.5;
+          const radius = led.r * pulseFactor;
+    
+          drawNeonBlob(led.x, led.y, radius, led.color);
         });
+        
+        ctx.filter = 'none';
         ledAnimationId = requestAnimationFrame(animate);
       }
+    
       window.addEventListener('resize', resizeLedCanvas);
       animate();
     }
+    
     function stopLedAnimation() {
       if (ledAnimationId) cancelAnimationFrame(ledAnimationId);
     }
@@ -740,6 +776,10 @@
       nowPlayingTitle.textContent = musicData[index].title;
       nowPlayingArtist.textContent = musicData[index].artist;
       currentAlbumImage.src = '/' + musicData[index].cover;
+  
+      // Enregistrer la musique dans l'historique
+      saveToHistory(musicData[index]);
+  
       updatePlayPauseButton(true);
       if (autoPlay) {
         if (!audioCtxInitialized) initAudioContext();
@@ -898,29 +938,17 @@
   <script>
     function saveToHistory(track) {
       let history = JSON.parse(localStorage.getItem('musicHistory') || '[]');
-      history = history.filter(item => item.title !== track.title); // Éviter les doublons
-      history.unshift(track); // Ajouter au début
+      let existingTrack = history.find(item => item.title === track.title);
+
+      if (existingTrack) {
+        existingTrack.playCount += 1; // Incrémenter le compteur de lectures
+      } else {
+        track.playCount = 1; // Initialiser le compteur de lectures
+        history.unshift(track); // Ajouter au début
+      }
+
       if (history.length > 200) history.pop(); // Limiter à 200 entrées
       localStorage.setItem('musicHistory', JSON.stringify(history));
-    }
-  
-    function playTrack(index, autoPlay = true) {
-      if (!musicData[index]) return;
-      currentIndex = index;
-      audio.src = '/' + musicData[index].src;
-      nowPlayingTitle.textContent = musicData[index].title;
-      nowPlayingArtist.textContent = musicData[index].artist;
-      currentAlbumImage.src = '/' + musicData[index].cover;
-  
-      // Enregistrer la musique dans l'historique
-      saveToHistory(musicData[index]);
-  
-      updatePlayPauseButton(true);
-      if (autoPlay) {
-        if (!audioCtxInitialized) initAudioContext();
-        audio.play().catch(() => {});
-        updatePlayPauseButton(false);
-      }
     }
   </script>
 </body>
