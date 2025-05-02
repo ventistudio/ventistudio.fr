@@ -895,5 +895,33 @@
     }
     fetchMusic();
   </script>
+  <script>
+    function saveToHistory(track) {
+      let history = JSON.parse(localStorage.getItem('musicHistory') || '[]');
+      history = history.filter(item => item.title !== track.title); // Éviter les doublons
+      history.unshift(track); // Ajouter au début
+      if (history.length > 200) history.pop(); // Limiter à 200 entrées
+      localStorage.setItem('musicHistory', JSON.stringify(history));
+    }
+  
+    function playTrack(index, autoPlay = true) {
+      if (!musicData[index]) return;
+      currentIndex = index;
+      audio.src = '/' + musicData[index].src;
+      nowPlayingTitle.textContent = musicData[index].title;
+      nowPlayingArtist.textContent = musicData[index].artist;
+      currentAlbumImage.src = '/' + musicData[index].cover;
+  
+      // Enregistrer la musique dans l'historique
+      saveToHistory(musicData[index]);
+  
+      updatePlayPauseButton(true);
+      if (autoPlay) {
+        if (!audioCtxInitialized) initAudioContext();
+        audio.play().catch(() => {});
+        updatePlayPauseButton(false);
+      }
+    }
+  </script>
 </body>
 </html>
