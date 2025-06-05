@@ -63,3 +63,6 @@ Ce projet est sous licence [Kanae Aoki](https://ventistudio.fr/licence).
 *Product By AINA UMAISHI - ARTIFICIAL INTELLIGENCE NEW AGE*
 
 [🌐 Découvrir VentiStudio](https://ventistudio.fr/)
+
+## 🚧 VentiStudio v5
+Une refonte complète est en cours dans le dossier `v5/`. Cette nouvelle version s'appuie sur Next.js et Tailwind CSS pour offrir un design Web3.0 d'inspiration japonaise et de nouvelles fonctionnalités communautaires.
