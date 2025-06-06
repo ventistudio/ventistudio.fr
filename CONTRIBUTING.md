@@ -1,57 +1,85 @@
-# Lignes directrices de contribution pour le projet ventistudio.fr
+# 🤝 Lignes directrices de contribution pour le projet ventistudio.fr
 
-## Bienvenue !
+## 🎉 Bienvenue !
 
-Merci de t'intéresser à la contribution au projet ventistudio.fr. Nous sommes ravis que tu souhaites participer ! Voici quelques informations pour t'aider à démarrer.
-
-## Clonage du dépôt
-
-Pour cloner le dépôt, tu as deux options :
-
-1. **Via l'interface web de GitHub** :
-   - Rends-toi sur [ventistudio/ventistudio.fr](https://github.com/ventistudio/ventistudio.fr).
-   - Clique sur le bouton "Code" et sélectionne "Télécharger le ZIP" pour télécharger une copie du code source.
-   - Extrayez le fichier ZIP sur votre machine locale.
-
-2. **En utilisant Git en ligne de commande** :
-   - Ouvre un terminal.
-   - Tape la commande suivante :
-     ```
-     git clone https://github.com/ventistudio/ventistudio.fr.git
-     ```
-   - Cela créera une copie du dépôt sur ta machine.
-
-## Dépendances
-
-Le projet ventistudio.fr inclut toutes les dépendances nécessaires. Tu n'as pas besoin d'installer quoi que ce soit de plus.
-
-## Soumettre des pull requests
-
-Nous encourageons les contributions via des pull requests. Voici comment procéder :
-
-1. Crée une branche de fonctionnalité à partir de la branche principale (par exemple, `main` ou `master`).
-2. Effectue tes modifications dans cette branche.
-3. Soumets une pull request vers la branche principale.
-4. Assure-toi que tes modifications sont testées et ne cassent pas le projet existant.
-
-## Tests et validation
-
-Avant de soumettre une pull request, assure-toi de tester tes modifications. Voici comment :
-
-1. Installe le projet localement.
-2. Utilise le plugin Preview de Visual Studio Code ou un autre outil pour vérifier le bon fonctionnement du site.
-
-## Communication
-
-Si tu as des questions, des idées ou des problèmes, n'hésite pas à :
-
-- Créer une issue sur GitHub.
-- Rejoindre notre salon de discussion pour discuter avec la communauté et les créateurs du projet.
-
-## Licence
-
-Le projet ventistudio.fr est sous licence CC BY-NC-SA. Assure-toi de respecter cette licence lorsque tu soumets des modifications.
+Merci de t'intéresser à la contribution à **VentiStudio.fr** !
+Ce projet est développé par **VentiStudio FiTsZ**, et chaque contribution renforce notre vision d’une plateforme créative, éthique et souveraine.
 
 ---
-*© 2024 VentiStudio. Tous droits réservés.*
-Product By AINA UMAISHI - ARTIFICIAL INTELLIGENCE NEW AGE
+
+## 📦 Clonage du dépôt
+
+Deux méthodes possibles pour récupérer le code :
+
+### 1. Interface GitHub
+
+* Accède à [ventistudio/ventistudio.fr](https://github.com/ventistudio/ventistudio.fr)
+* Clique sur `Code` > `Télécharger ZIP`
+* Décompresse l’archive sur ton appareil
+
+### 2. Git en ligne de commande
+
+```bash
+git clone https://github.com/ventistudio/ventistudio.fr.git
+```
+
+---
+
+## 📁 Dépendances
+
+Toutes les dépendances sont listées dans le projet.
+Après le clonage, exécute simplement :
+
+```bash
+npm install
+```
+
+---
+
+## 🔁 Proposer des modifications (Pull Request)
+
+1. Crée une branche dédiée à ta contribution :
+
+   ```bash
+   git checkout -b feat/ma-nouvelle-fonction
+   ```
+2. Effectue tes changements
+3. Vérifie qu’ils n’interfèrent pas avec le reste du projet
+4. Ouvre une **pull request** vers la branche `main`
+
+---
+
+## ✅ Tests & validation
+
+Avant toute PR, teste localement ton code :
+
+* Lancement du site :
+
+  ```bash
+  npm run dev
+  ```
+* Vérifie visuellement via ton navigateur (ou Preview dans VSCode)
+* Tu peux aussi intégrer un script de test automatisé (ex. `npm test`) si nécessaire
+
+---
+
+## 📬 Communication
+
+Besoin d’aide ? Une idée ou un bug ? Voici où nous trouver :
+
+* [Issues GitHub](https://github.com/ventistudio/ventistudio.fr/issues)
+* [Discord VentiStudio](https://discord.gg/ventistudio) (salon #dev ou #idées)
+
+---
+
+## 📜 Licence
+
+Le projet est protégé par la [Licence FiTsZ DMA – VentiStudio 2025](https://ventistudio.fr/licence)
+Toute contribution implique l’acceptation de cette licence.
+
+> 📌 **Note** : Merci de conserver les mentions de paternité et de respecter les restrictions de diffusion prévues.
+
+---
+
+**© VentiStudio FiTsZ / Umaishi Corp**
+Produit par Aina Umaishi – Intelligence Artificielle Communautaire
