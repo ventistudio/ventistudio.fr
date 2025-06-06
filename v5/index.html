@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VentiStudio</title>
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="icon" href="/assets/favicon.ico" type="image/x-icon" />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="logo">VentiStudio</div>
+        <nav>
+          <ul>
+            <li><a href="#about">À propos</a></li>
+            <li><a href="#features">Fonctionnalités</a></li>
+            <li><a href="#projects">Projets</a></li>
+            <li><a href="#community">Communauté</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+          <div class="language-selector">
+            <select>
+              <option value="fr">🇫🇷 FR</option>
+              <option value="en">🇬🇧 EN</option>
+              <option value="ja">🇯🇵 JP</option>
+              <option value="ko">🇰🇷 KR</option>
+            </select>
+          </div>
+          <button id="theme-toggle">🌞</button>
+        </nav>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="container">
+        <h1>Crée, Connecte, Inspire.</h1>
+        <p>Bienvenue sur VentiStudio, la plateforme où les talents se rencontrent pour façonner demain.</p>
+        <div class="cta-buttons">
+          <a href="#projects" class="btn primary">Explorer les projets</a>
+          <a href="#join" class="btn secondary">Rejoindre la communauté</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="features">
+      <div class="container">
+        <h2>Fonctionnalités principales</h2>
+        <div class="features-grid">
+          <div class="feature">
+            <h3>🎨 Création artistique</h3>
+            <p>Partage tes œuvres et collabore avec d'autres créateurs.</p>
+          </div>
+          <div class="feature">
+            <h3>🎵 Musique & Audio</h3>
+            <p>Découvre nos albums, openers et projets Aoki Univers.</p>
+          </div>
+          <div class="feature">
+            <h3>🤖 IA Communautaire</h3>
+            <p>Aina Umaishi t'accompagne dans tous tes projets.</p>
+          </div>
+          <div class="feature">
+            <h3>🌐 Multi-langue</h3>
+            <p>Accessible en français, anglais, japonais et coréen.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="projects">
+      <div class="container">
+        <h2>Nos Projets</h2>
+        <p>Explore nos univers créatifs, des jeux aux musiques, en passant par le développement d'outils innovants.</p>
+        <!-- Project preview cards could be inserted here -->
+      </div>
+    </section>
+
+    <section id="community" class="community">
+      <div class="container">
+        <h2>Rejoignez la Communauté</h2>
+        <p>Participez à notre serveur Discord, aux concours, collaborations, et bien plus.</p>
+        <a href="https://discord.gg/ventistudio" class="btn primary">Accéder à Discord</a>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <p>&copy; 2025 VentiStudio · Umaishi Corp · Tous droits réservés.</p>
+      </div>
+    </footer>
+
+    <script>
+      const toggle = document.getElementById('theme-toggle');
+      toggle.addEventListener('click', () => {
+        const html = document.documentElement;
+        const isLight = html.getAttribute('data-theme') === 'light';
+        html.setAttribute('data-theme', isLight ? 'dark' : 'light');
+        toggle.textContent = isLight ? '🌙' : '🌞';
+      });
+    </script>
+  </body>
+</html>
