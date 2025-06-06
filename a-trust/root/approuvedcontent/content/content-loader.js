@@ -739,6 +739,635 @@ const contentData = {
   }
 ]
 },
+
+22: {
+  title: "Blue Box",
+  meta: {
+    type: "Séries d'Animations",
+    year: "2021",
+    episodes: "1 Saison",
+    rating: "12+"
+  },
+  stars: "★★★★☆",
+  description: "Blue Box est un manga shōnen écrit et illustré par Kouji Miura. Il raconte l'histoire de Taiki Inomata, un jeune joueur de badminton qui tombe amoureux de Chinatsu Kano, une joueuse de basket-ball talentueuse.",
+  image: "/a-files/image/bluebox-image.avif",
+  watchLink: "/social/FiTsZ?redirect=https://www.netflix.com/fr/title/81663323",
+  details: {
+    creators: "Kouji Miura",
+    cast: "Taiki Inomata, Chinatsu Kano"
+  },
+  ctaButton: "Regarder maintenant",
+  reviews: [
+    {
+      author: "Hikari Umaishi",
+      rating: "★★★★☆",
+      text: "Une belle histoire d'amour et de sport."
+    }
+  ],
+  relatedContent: [
+    {
+      id: 0,
+      title: "Rien pour le moment",
+      image: "/a-files/image/rien.avif"
+    }
+  ]
+},
+
+23: {
+  title: "Tengoku Daimakyo",
+  meta: {
+    type: "Séries d'Animations",
+    year: "2023",
+    episodes: "1 Saison",
+    rating: "13+"
+  },
+  stars: "★★★★☆",
+  description: "Tengoku Daimakyo est une série d'animation qui suit les aventures d'un groupe de jeunes dans un monde fantastique rempli de mystères.",
+  image: "/a-files/image/tengokudanmakyo-image.avif",
+  watchLink: "/social/FiTsZ?redirect=https://www.disneyplus.com/fr-fr/browse/entity-227fed4d-6671-4675-8448-f4f75741c1b9",
+  details: {
+    creators: "Masakazu Ishiguro",
+    cast: "Personnages principaux"
+  },
+  ctaButton: "Regarder maintenant",
+  reviews: [
+    {
+      author: "Hikari Umaishi",
+      rating: "★★★★☆",
+      text: "Une aventure captivante dans un monde mystérieux."
+    }
+  ],
+  relatedContent: [
+    {
+      id: 0,
+      title: "Rien pour le moment",
+      image: "/a-files/image/rien.avif"
+    }
+  ]
+},
+
+24: {
+  title: "No Longer Rangers",
+  meta: {
+    type: "Séries d'Animations",
+    year: "2023",
+    episodes: "1 Saison",
+    rating: "14+"
+  },
+  stars: "★★★☆☆",
+  description: "No Longer Ranger est un anime de type Isekai qui suit l'histoire d'un jeune homme qui se retrouve transporté dans un monde fantastique où il doit faire face à des défis et des aventures inattendues.",
+  image: "/a-files/image/loserranger-image.avif",
+  watchLink: "/social/FiTsZ?redirect=https://www.disneyplus.com/fr-fr/browse/entity-f3a712f6-b358-4b21-b28a-221f23e0eb48",
+  details: {
+    creators: "Studio Isekai",
+    cast: "Personnages principaux"
+  },
+  ctaButton: "Regarder maintenant",
+  reviews: [
+    {
+      author: "Hikari Umaishi",
+      rating: "★★★☆☆",
+      text: "Un Isekai classique mais divertissant."
+    }
+  ],
+  relatedContent: [
+    {
+      id: 0,
+      title: "Rien pour le moment",
+      image: "/a-files/image/rien.avif"
+    }
+  ]
+},
+
+25: {
+  title: "Tokyo Revengers",
+  meta: {
+    type: "Séries d'Animations",
+    year: "2021",
+    episodes: "2 Saisons",
+    rating: "16+"
+  },
+  stars: "★★★★★",
+  description: "Tokyo Revengers est un manga japonais écrit et illustré par Ken Wakui. Il raconte l'histoire de Takemichi Hanagaki, un jeune homme qui voyage dans le temps pour sauver son ex-petite amie et changer le cours de sa vie.",
+  image: "/a-files/image/tokyorevengers-image.avif",
+  watchLink: "/social/FiTsZ?redirect=https://www.crunchyroll.com/fr/series/G3KHEVMN1/tokyo-revengers",
+  details: {
+    creators: "Ken Wakui",
+    cast: "Takemichi Hanagaki, Hinata Tachibana"
+  },
+  ctaButton: "Regarder maintenant",
+  reviews: [
+    {
+      author: "Hikari Umaishi",
+      rating: "★★★★★",
+      text: "Un chef-d'œuvre qui mélange action et émotions."
+    }
+  ],
+  relatedContent: [
+    {
+      id: 0,
+      title: "Rien pour le moment",
+      image: "/a-files/image/rien.avif"
+    }
+  ]
+},
+
+26: {
+  title: "Medalist",
+  meta: {
+    type: "Séries d'Animations",
+    year: "2023",
+    episodes: "1 Saison",
+    rating: "12+"
+  },
+  stars: "★★★★☆",
+  description: "Medalist est un anime de sport qui suit l'histoire de jeunes athlètes qui s'entraînent pour devenir des médaillés olympiques dans le domaine du cyclisme.",
+  image: "/a-files/image/medalist-image.avif",
+  watchLink: "/social/FiTsZ?redirect=https://www.disneyplus.com/fr-fr/browse/entity-bb33d0c2-b077-4bc0-a549-d2ca27d4afa8",
+  details: {
+    creators: "Studio Sport",
+    cast: "Personnages principaux"
+  },
+  ctaButton: "Regarder maintenant",
+  reviews: [
+    {
+      author: "Hikari Umaishi",
+      rating: "★★★★☆",
+      text: "Un anime inspirant pour les amateurs de sport."
+    }
+  ],
+  relatedContent: [
+    {
+      id: 0,
+      title: "Rien pour le moment",
+      image: "/a-files/image/rien.avif"
+    }
+  ]
+},
+
+27: {
+  title: "Dawn Fall",
+  meta: {
+    type: "Séries d'Animations",
+    year: "2023",
+    episodes: "1 Saison",
+    rating: "14+"
+  },
+  stars: "★★★★☆",
+  description: "Dawn Fall est un anime de type action et aventure qui suit les aventures d'un groupe de héros dans un monde fantastique rempli de mystères et de dangers.",
+  image: "/a-files/image/dawnfall-image.avif",
+  watchLink: "/social/FiTsZ?redirect=https://www.disneyplus.com/fr-fr/browse/entity-9d2ab176-0b3c-476f-a989-0578876b018d",
+  details: {
+    creators: "Studio Action",
+    cast: "Personnages principaux"
+  },
+  ctaButton: "Regarder maintenant",
+  reviews: [
+    {
+      author: "Hikari Umaishi",
+      rating: "★★★★☆",
+      text: "Une aventure palpitante avec des personnages captivants."
+    }
+  ],
+  relatedContent: [
+    {
+      id: 0,
+      title: "Rien pour le moment",
+      image: "/a-files/image/rien.avif"
+    }
+  ]
+},
+
+28: {
+  title: "Hunter X Hunter",
+  meta: {
+    type: "Séries d'Animations",
+    year: "2011",
+    episodes: "6 Saisons",
+    rating: "13+"
+  },
+  stars: "★★★★★",
+  description: "Hunter x Hunter est un anime et un manga japonais de Yoshihiro Togashi. Il raconte l'histoire de Gon Freecss, un jeune garçon qui aspire à devenir Hunter pour retrouver son père, un Hunter légendaire.",
+  image: "/a-files/image/hunter-image.avif",
+  watchLink: "/social/FiTsZ?redirect=https://www.netflix.com/fr/title/70300472",
+  details: {
+    creators: "Yoshihiro Togashi",
+    cast: "Gon Freecss, Killua Zoldyck, Kurapika, Leorio Paradinight"
+  },
+  ctaButton: "Regarder maintenant",
+  reviews: [
+    {
+      author: "Hikari Umaishi",
+      rating: "★★★★★",
+      text: "Un classique incontournable pour les fans d'anime."
+    }
+  ],
+  relatedContent: [
+    {
+      id: 0,
+      title: "Rien pour le moment",
+      image: "/a-files/image/rien.avif"
+    }
+  ]
+},
+
+29: {
+  title: "Yu Gi Oh",
+  meta: {
+    type: "Séries d'Animations",
+    year: "1998",
+    episodes: "5 Saisons",
+    rating: "10+"
+  },
+  stars: "★★★★☆",
+  description: "Yu-Gi-Oh! est une série de manga écrite par Kazuki Takahashi. Elle raconte l'histoire de Yūgi Mutō, un jeune garçon qui résout un ancien puzzle égyptien et libère un esprit qui l'aide à jouer à des jeux de cartes.",
+  image: "/a-files/image/ygo-image.avif",
+  watchLink: "/social/FiTsZ?redirect=https://www.netflix.com/fr/title/70177034",
+  details: {
+    creators: "Kazuki Takahashi",
+    cast: "Yūgi Mutō, Seto Kaiba, Joey Wheeler"
+  },
+  ctaButton: "Regarder maintenant",
+  reviews: [
+    {
+      author: "Hikari Umaishi",
+      rating: "★★★★☆",
+      text: "Un anime culte pour les amateurs de jeux de cartes."
+    }
+  ],
+  relatedContent: [
+    {
+      id: 0,
+      title: "Rien pour le moment",
+      image: "/a-files/image/rien.avif"
+    }
+  ]
+},
+
+30: {
+  title: "Star Trek Voyageur",
+  meta: {
+    type: "Séries",
+    year: "1995",
+    episodes: "7 Saisons",
+    rating: "12+"
+  },
+  stars: "★★★★☆",
+  description: "Star Trek: Voyager est une série télévisée de science-fiction américaine créée par Rick Berman et Jeri Taylor, diffusée entre le 16 janvier 1995 et le 23 mai 2001 sur UPN. Elle est la quatrième série de la franchise Star Trek.",
+  image: "/a-files/image/stvoyageur-image.avif",
+  watchLink: "/social/FiTsZ?redirect=https://www.netflix.com/fr/title/70158331",
+  details: {
+    creators: "Rick Berman, Jeri Taylor",
+    cast: "Kate Mulgrew, Robert Beltran, Roxann Dawson"
+  },
+  ctaButton: "Regarder maintenant",
+  reviews: [
+    {
+      author: "Hikari Umaishi",
+      rating: "★★★★☆",
+      text: "Une série de science-fiction captivante et intemporelle."
+    }
+  ],
+  relatedContent: [
+    {
+      id: 0,
+      title: "Rien pour le moment",
+      image: "/a-files/image/rien.avif"
+    }
+  ]
+},
+
+31: {
+  title: "Star Wars Mandalorian",
+  meta: {
+    type: "Séries",
+    year: "2019",
+    episodes: "3 Saisons",
+    rating: "12+"
+  },
+  stars: "★★★★★",
+  description: "Mandalorian est une série télévisée américaine de space opera créée par Jon Favreau, diffusée depuis le 12 novembre 2019 sur Disney+.",
+  image: "/a-files/image/swmandalorian-image.avif",
+  watchLink: "/social/FiTsZ?redirect=https://www.disneyplus.com/fr-fr/browse/entity-422f6dcc-226f-44e7-98d4-22de69b31cf3",
+  details: {
+    creators: "Jon Favreau",
+    cast: "Pedro Pascal, Gina Carano, Carl Weathers"
+  },
+  ctaButton: "Regarder maintenant",
+  reviews: [
+    {
+      author: "Hikari Umaishi",
+      rating: "★★★★★",
+      text: "Un chef-d'œuvre pour les fans de Star Wars."
+    }
+  ],
+  relatedContent: [
+    {
+      id: 0,
+      title: "Rien pour le moment",
+      image: "/a-files/image/rien.avif"
+    }
+  ]
+},
+
+32: {
+  title: "Disney +",
+  meta: {
+    type: "Applications",
+    year: "2019",
+    episodes: "Streaming",
+    rating: "0+"
+  },
+  stars: "★★★★☆",
+  description: "Disney + est une plateforme de streaming qui propose une large sélection de films, séries et documentaires. Accessible sur divers appareils, elle nécessite un abonnement pour profiter de son contenu.",
+  image: "/a-files/image/disneyplus-image.avif",
+  watchLink: "/social/FiTsZ?redirect=https://www.disneyplus.com/",
+  details: {
+    creators: "Disney",
+    cast: "Catalogue Disney"
+  },
+  ctaButton: "Télécharger maintenant",
+  reviews: [
+    {
+      author: "Hikari Umaishi",
+      rating: "★★★★☆",
+      text: "Une excellente plateforme pour les fans de Disney."
+    }
+  ],
+  relatedContent: [
+    {
+      id: 0,
+      title: "Rien pour le moment",
+      image: "/a-files/image/rien.avif"
+    }
+  ]
+},
+
+33: {
+  title: "Netflix",
+  meta: {
+    type: "Applications",
+    year: "2007",
+    episodes: "Streaming",
+    rating: "0+"
+  },
+  stars: "★★★★★",
+  description: "Netflix est une plateforme de streaming qui propose une large sélection de films, séries et documentaires. Accessible sur divers appareils, elle nécessite un abonnement pour profiter de son contenu.",
+  image: "/a-files/image/netflix-image.avif",
+  watchLink: "/social/FiTsZ?redirect=https://www.netflix.com/",
+  details: {
+    creators: "Netflix Inc.",
+    cast: "Catalogue Netflix"
+  },
+  ctaButton: "Télécharger maintenant",
+  reviews: [
+    {
+      author: "Hikari Umaishi",
+      rating: "★★★★★",
+      text: "Une plateforme incontournable pour les amateurs de contenu varié."
+    }
+  ],
+  relatedContent: [
+    {
+      id: 0,
+      title: "Rien pour le moment",
+      image: "/a-files/image/rien.avif"
+    }
+  ]
+},
+
+34: {
+  title: "Qwen",
+  meta: {
+    type: "Applications",
+    year: "2023",
+    episodes: "IA",
+    rating: "0+"
+  },
+  stars: "★★★★☆",
+  description: "Qwen est un modèle de langage, conçu pour comprendre et générer du texte en langage naturel. Il est utilisé dans diverses applications, y compris les chatbots et les assistants virtuels.",
+  image: "/a-files/image/qwen-image.avif",
+  watchLink: "/social/FiTsZ?redirect=https://www.qwen.ai/",
+  details: {
+    creators: "Qwen AI",
+    cast: "Modèle de langage"
+  },
+  ctaButton: "Télécharger maintenant",
+  reviews: [
+    {
+      author: "Hikari Umaishi",
+      rating: "★★★★☆",
+      text: "Un outil puissant pour les développeurs et les entreprises."
+    }
+  ],
+  relatedContent: [
+    {
+      id: 0,
+      title: "Rien pour le moment",
+      image: "/a-files/image/rien.avif"
+    }
+  ]
+},
+
+35: {
+  title: "Msty",
+  meta: {
+    type: "Applications",
+    year: "2023",
+    episodes: "IA",
+    rating: "0+"
+  },
+  stars: "★★★★☆",
+  description: "Msty est un modèle de langage, conçu pour comprendre et générer du texte en langage naturel. Il est utilisé dans diverses applications, y compris les chatbots et les assistants virtuels.",
+  image: "/a-files/image/msty-image.avif",
+  watchLink: "/social/FiTsZ?redirect=https://www.msty.ai/",
+  details: {
+    creators: "Msty AI",
+    cast: "Modèle de langage"
+  },
+  ctaButton: "Télécharger maintenant",
+  reviews: [
+    {
+      author: "Hikari Umaishi",
+      rating: "★★★★☆",
+      text: "Un modèle de langage innovant et performant."
+    }
+  ],
+  relatedContent: [
+    {
+      id: 0,
+      title: "Rien pour le moment",
+      image: "/a-files/image/rien.avif"
+    }
+  ]
+},
+
+36: {
+  title: "Jan",
+  meta: {
+    type: "Applications",
+    year: "2023",
+    episodes: "IA",
+    rating: "0+"
+  },
+  stars: "★★★★☆",
+  description: "Jan est un modèle de langage, conçu pour comprendre et générer du texte en langage naturel. Il est utilisé dans diverses applications, y compris les chatbots et les assistants virtuels.",
+  image: "/a-files/image/jan-image.avif",
+  watchLink: "/social/FiTsZ?redirect=https://www.jan.ai/",
+  details: {
+    creators: "Jan AI",
+    cast: "Modèle de langage"
+  },
+  ctaButton: "Télécharger maintenant",
+  reviews: [
+    {
+      author: "Hikari Umaishi",
+      rating: "★★★★☆",
+      text: "Un modèle de langage polyvalent et efficace."
+    }
+  ],
+  relatedContent: [
+    {
+      id: 0,
+      title: "Rien pour le moment",
+      image: "/a-files/image/rien.avif"
+    }
+  ]
+},
+
+37: {
+  title: "Jellybox",
+  meta: {
+    type: "Applications",
+    year: "2023",
+    episodes: "IA",
+    rating: "0+"
+  },
+  stars: "★★★★☆",
+  description: "Jellybox est un modèle de langage, conçu pour comprendre et générer du texte en langage naturel. Il est utilisé dans diverses applications, y compris les chatbots et les assistants virtuels.",
+  image: "/a-files/image/jellybox-image.avif",
+  watchLink: "/social/FiTsZ?redirect=https://www.jellybox.ai/",
+  details: {
+    creators: "Jellybox AI",
+    cast: "Modèle de langage"
+  },
+  ctaButton: "Télécharger maintenant",
+  reviews: [
+    {
+      author: "Hikari Umaishi",
+      rating: "★★★★☆",
+      text: "Un outil pratique pour les solutions d'IA."
+    }
+  ],
+  relatedContent: [
+    {
+      id: 0,
+      title: "Rien pour le moment",
+      image: "/a-files/image/rien.avif"
+    }
+  ]
+},
+
+38: {
+  title: "Crunchyroll",
+  meta: {
+    type: "Applications",
+    year: "2006",
+    episodes: "Streaming",
+    rating: "0+"
+  },
+  stars: "★★★★★",
+  description: "Crunchyroll est un service de streaming qui propose une large sélection d'anime, de dramas asiatiques et de mangas. Accessible sur divers appareils, il nécessite un abonnement pour profiter de son contenu.",
+  image: "/a-files/image/crunchyroll-image.avif",
+  watchLink: "/social/FiTsZ?redirect=https://www.crunchyroll.com/",
+  details: {
+    creators: "Crunchyroll",
+    cast: "Catalogue Crunchyroll"
+  },
+  ctaButton: "Télécharger maintenant",
+  reviews: [
+    {
+      author: "Hikari Umaishi",
+      rating: "★★★★★",
+      text: "La meilleure plateforme pour les fans d'anime."
+    }
+  ],
+  relatedContent: [
+    {
+      id: 0,
+      title: "Rien pour le moment",
+      image: "/a-files/image/rien.avif"
+    }
+  ]
+},
+
+39: { 
+  title: "Dragon Ball",
+  meta: {
+    type: "Séries d'Animations",
+    year: "1986",
+    episodes: "153 Épisodes",
+    rating: "13+"
+  },
+  stars: "★★★★★",
+  description: "Dragon Ball est une série de manga et d'anime créée par Akira Toriyama. Elle suit les aventures de Son Goku, un jeune guerrier déterminé à devenir le plus puissant en combattant des ennemis redoutables et en cherchant les mythiques Dragon Balls.",
+  image: "/a-files/image/dragonball-image.avif",
+  watchLink: "/social/FiTsZ?redirect=https://www.crunchyroll.com/fr/series/G8DHV7W21/dragon-ball",
+  details: {
+    creators: "Akira Toriyama",
+    cast: "Akira Toriyama, Masako Nozawa, Toshio Furukawa, Mayumi Tanaka, Hiromi Tsuru, Masaharu Satô."
+  },
+  ctaButton: "Regarder maintenant",
+  reviews: [
+    {
+      author: "Kaito Umaishi",
+      rating: "★★★★★",
+      text: "N'a pas fourni de commentaire."
+    }
+  ],
+  relatedContent: [
+    {
+      id: 0,
+      title: "Rien pour le moment",
+      image: "/a-files/image/rien.avif"
+    }
+  ]
+},
+
+40: { 
+  title: "Les Carnets de l'Apothicaire",
+  meta: {
+    type: "Séries d'Animations",
+    year: "2023",
+    episodes: "24 Épisodes",
+    rating: "13+"
+  },
+  stars: "★★★★★",
+  description: "Les Carnets de l'Apothicaire est une série d'animation qui suit les aventures d'une jeune apothicaire dans un monde fantastique. Elle explore des thèmes de magie, de mystère et de découverte.",
+  image: "/a-files/image/cdaa-image.avif",
+  watchLink: "/social/FiTsZ?redirect=https://www.netflix.com/fr-en/title/81712068",
+  details: {
+    creators: "Aoi Yuki, Takeo Otsuka, Katsuyuki Konishi",
+    cast: "Aoi Yuki, Takeo Otsuka, Katsuyuki Konishi."
+  },
+  ctaButton: "Regarder maintenant",
+  reviews: [
+    {
+      author: "Hikari Umaishi",
+      rating: "★★★★★",
+      text: "Un belle anime qui racompte l'histoire d'une apothicaire."
+    }
+  ],
+  relatedContent: [
+    {
+      id: 0,
+      title: "Rien pour le moment",
+      image: "/a-files/image/rien.avif"
+    }
+  ]
+}
+
+
 };
 
 document.addEventListener('DOMContentLoaded', () => {
