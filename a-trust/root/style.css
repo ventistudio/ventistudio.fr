@@ -8,6 +8,7 @@
   --text-primary: #a9b1d6;
   --text-secondary: #7aa2f7;
   --accent: #bb9af7;
+  --accent-cc: #f7f69a;
   --neon-glow: 0 0 10px rgba(187, 154, 247, 0.5);
   --accent-rgb: 187, 154, 247; /* RGB values for the accent color */
 }
@@ -18,6 +19,7 @@
   --text-primary: #24283b;
   --text-secondary: #1a1b26;
   --accent: #7c3aed;
+  --accent-cc: #edea3a;
   --neon-glow: 0 0 10px rgba(124, 58, 237, 0.3);
   --accent-rgb: 124, 58, 237;
 }
