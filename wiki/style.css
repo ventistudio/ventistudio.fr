@@ -1,0 +1,114 @@
+/* VentiStudio Wiki Styles */
+.wiki-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+}
+
+.search-bar {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  font-size: 1.1rem;
+  border: 2px solid var(--accent);
+  border-radius: 8px;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  margin-bottom: 3rem;
+}
+
+.wiki-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.wiki-section {
+  background: var(--bg-secondary);
+  padding: 2rem;
+  border-radius: 12px;
+  transition: all 0.3s;
+}
+
+.wiki-section:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--neon-glow);
+}
+
+.wiki-section h2 {
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+.wiki-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.wiki-section li {
+  margin-bottom: 1rem;
+}
+
+.wiki-section a {
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color 0.3s;
+  display: block;
+  padding: 0.5rem;
+  border-radius: 4px;
+}
+
+.wiki-section a:hover {
+  color: var(--accent);
+  background: rgba(var(--accent-rgb), 0.1);
+}
+
+.wiki-content {
+  background: var(--bg-secondary);
+  padding: 2rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+}
+
+.wiki-content h1 {
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+}
+
+.wiki-content h2 {
+  color: var(--text-secondary);
+  margin: 2rem 0 1rem;
+  font-size: 1.5rem;
+}
+
+.wiki-content p {
+  margin-bottom: 1rem;
+  line-height: 1.7;
+}
+
+.wiki-content ul {
+  margin: 1rem 0;
+  padding-left: 2rem;
+}
+
+.wiki-content li {
+  margin-bottom: 0.5rem;
+}
+
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-primary);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: all 0.3s;
+  margin-bottom: 1rem;
+}
+
+.back-button:hover {
+  color: var(--accent);
+  background: rgba(var(--accent-rgb), 0.1);
+}
