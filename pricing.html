@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Plans tarifaires de VentiStudio - Gratuit, Premium, Enterprise">
+  <title>Tarifs - VentiStudio v6</title>
+  <link rel="icon" type="image/avif" href="https://ventistudio.fr/favicon.avif">
+  
+  <style>
+    :root { --primary: #8b5cf6; --secondary: #06b6d4; --bg-primary: #ffffff; --bg-secondary: #f8fafc; --text-primary: #1f2937; --text-secondary: #6b7280; --border: #e5e7eb; --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+    [data-theme="dark"] { --bg-primary: #0f172a; --bg-secondary: #1e293b; --text-primary: #f1f5f9; --text-secondary: #cbd5e1; --border: #334155; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; transition: var(--transition); }
+    header { position: sticky; top: 0; z-index: 100; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+    [data-theme="dark"] header { background: rgba(15, 23, 42, 0.95); }
+    .header-content { max-width: 1400px; margin: 0 auto; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+    .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; font-weight: 700; color: var(--text-primary); font-size: 1.5rem; }
+    .logo img { width: 40px; height: 40px; border-radius: 8px; }
+    nav a { color: var(--text-secondary); text-decoration: none; font-weight: 500; transition: var(--transition); margin-left: 2rem; }
+    nav a:hover { color: var(--primary); }
+    main { max-width: 1200px; margin: 0 auto; padding: 5rem 2rem; }
+    h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin: 3rem 0; }
+    .pricing-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; text-align: center; transition: var(--transition); }
+    .pricing-card.featured { border-color: var(--primary); box-shadow: 0 10px 25px rgba(139, 92, 246, 0.2); transform: scale(1.05); }
+    .pricing-card h3 { color: var(--primary); margin-bottom: 1rem; font-size: 1.5rem; }
+    .price { font-size: 2.5rem; font-weight: 800; margin: 1rem 0; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .price-period { color: var(--text-secondary); font-size: 0.9rem; }
+    .features { text-align: left; margin: 2rem 0; }
+    .features li { padding: 0.5rem 0; color: var(--text-secondary); list-style: none; }
+    .features li:before { content: "✓ "; color: var(--primary); font-weight: bold; margin-right: 0.5rem; }
+    .btn { background: linear-gradient(135deg, var(--primary), #7c3aed); color: white; padding: 0.75rem 2rem; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: var(--transition); display: inline-block; margin-top: 1rem; }
+    .btn:hover { transform: translateY(-2px); }
+    footer { background: var(--bg-secondary); border-top: 1px solid var(--border); padding: 3rem 2rem; text-align: center; color: var(--text-secondary); margin-top: 5rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <a href="/" class="logo">
+        <img src="https://ventistudio.fr/favicon.avif" alt="Logo" decoding="async" loading="lazy">
+        <span>VentiStudio</span>
+      </a>
+      <nav>
+        <a href="/">Accueil</a>
+        <a href="/pricing">Tarifs</a>
+        <a href="/about">À propos</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <h1>💵 Plans Tarifaires</h1>
+    <p style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 3rem; text-align: center;">Choisissez le plan parfait pour votre projet.</p>
+    
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <h3>🐋 Gratuit</h3>
+        <div class="price">0€<span class="price-period">/mois</span></div>
+        <ul class="features">
+          <li>5 projets maximum</li>
+          <li>Support par email</li>
+          <li>Stockage 1GB</li>
+          <li>Performance de base</li>
+        </ul>
+        <button class="btn">Commencer</button>
+      </div>
+      
+      <div class="pricing-card featured">
+        <h3>🚀 Pro</h3>
+        <div class="price">9€<span class="price-period">/mois</span></div>
+        <ul class="features">
+          <li>Projets illimités</li>
+          <li>Support prioritaire</li>
+          <li>Stockage 100GB</li>
+          <li>Performance premium</li>
+          <li>Analytics avancés</li>
+        </ul>
+        <button class="btn">Essayer Maintenant</button>
+      </div>
+      
+      <div class="pricing-card">
+        <h3>🚘 Enterprise</h3>
+        <div class="price">49€<span class="price-period">/mois</span></div>
+        <ul class="features">
+          <li>Tout de Pro</li>
+          <li>Support 24/7</li>
+          <li>Stockage illimité</li>
+          <li>SLA 99.9%</li>
+          <li>Dédié account manager</li>
+        </ul>
+        <button class="btn">Nous Contacter</button>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <p>&copy; 2025 VentiStudio. Tous droits réservés. | v6.0.0</p>
+  </footer>
+</body>
+</html>

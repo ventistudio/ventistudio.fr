@@ -1,0 +1,118 @@
+{
+  "site": {
+    "name": "VentiStudio",
+    "version": "6.0.0",
+    "url": "https://ventistudio.fr",
+    "description": "Plateforme créative innovante avec des outils puissants et une communauté passionnée",
+    "language": "fr",
+    "timezone": "Europe/Paris",
+    "charset": "UTF-8"
+  },
+  "social": {
+    "discord": "https://discord.gg/ventistudio",
+    "github": "https://github.com/ventistudio",
+    "twitter": "https://twitter.com/ventistudio",
+    "email": "support@ventistudio.fr"
+  },
+  "theme": {
+    "colors": {
+      "primary": "#8b5cf6",
+      "secondary": "#06b6d4",
+      "accent": "#f59e0b",
+      "success": "#10b981",
+      "danger": "#ef4444",
+      "warning": "#f97316"
+    },
+    "fonts": {
+      "primary": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+      "mono": "'Berkeley Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace"
+    },
+    "spacing": [0, 1, 2, 4, 8, 16, 20, 24, 32]
+  },
+  "performance": {
+    "enableGzip": true,
+    "enableCache": true,
+    "cacheExpiry": 31536000,
+    "minifyCSS": true,
+    "minifyJS": true,
+    "optimizeImages": true,
+    "lazyLoadImages": true
+  },
+  "security": {
+    "https": true,
+    "hstsEnabled": true,
+    "csrfProtection": true,
+    "xssProtection": true,
+    "contentSecurityPolicy": true,
+    "frameOptions": "DENY"
+  },
+  "seo": {
+    "enableSitemap": true,
+    "enableRobots": true,
+    "enableSchema": true,
+    "enableOpenGraph": true,
+    "enableTwitterCard": true
+  },
+  "pwa": {
+    "enabled": true,
+    "serviceWorkerEnabled": true,
+    "manifestEnabled": true,
+    "offlineEnabled": true,
+    "installPromptEnabled": true
+  },
+  "analytics": {
+    "googleAnalytics": "",
+    "mixpanel": "",
+    "sentry": "",
+    "hotjar": ""
+  },
+  "api": {
+    "baseUrl": "https://api.ventistudio.fr",
+    "version": "v1",
+    "timeout": 30000,
+    "retryAttempts": 3,
+    "rateLimit": 100
+  },
+  "pages": [
+    {
+      "path": "/",
+      "title": "Accueil",
+      "file": "index.html"
+    },
+    {
+      "path": "/about",
+      "title": "À propos",
+      "file": "about.html"
+    },
+    {
+      "path": "/services",
+      "title": "Services",
+      "file": "services.html"
+    },
+    {
+      "path": "/projects",
+      "title": "Projets",
+      "file": "projects.html"
+    },
+    {
+      "path": "/team",
+      "title": "Équipe",
+      "file": "team.html"
+    },
+    {
+      "path": "/contact",
+      "title": "Contact",
+      "file": "contact.html"
+    },
+    {
+      "path": "/docs",
+      "title": "Documentation",
+      "file": "docs.html"
+    },
+    {
+      "path": "/pricing",
+      "title": "Tarifs",
+      "file": "pricing.html"
+    }
+  ]
+}
