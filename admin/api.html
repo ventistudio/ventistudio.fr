@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Documentation - VentiStudio</title>
+  <link rel="icon" type="image/avif" href="https://ventistudio.fr/favicon.avif">
+  <style>
+    :root {
+      --primary: #8b5cf6;
+      --bg-primary: #0f172a;
+      --bg-secondary: #1e293b;
+      --text-primary: #f1f5f9;
+      --border: #334155;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Monaco', monospace; background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; }
+    .api-container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+    .api-header { margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
+    .api-header h1 { font-size: 2rem; margin-bottom: 0.5rem; color: var(--primary); }
+    .endpoint {
+      background: var(--bg-secondary);
+      border-left: 4px solid var(--primary);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      border-radius: 8px;
+    }
+    .endpoint-method {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      margin-right: 0.5rem;
+    }
+    .method-get { background: #3b82f6; color: white; }
+    .method-post { background: #10b981; color: white; }
+    .method-put { background: #f59e0b; color: white; }
+    .method-delete { background: #ef4444; color: white; }
+    .endpoint-path { font-weight: 600; color: var(--primary); margin: 0.5rem 0; font-size: 1.1rem; }
+    .endpoint-desc { color: #cbd5e1; margin: 0.5rem 0; }
+    pre {
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem;
+      overflow-x: auto;
+      margin: 1rem 0;
+      font-size: 0.85rem;
+    }
+    code { color: #06b6d4; }
+  </style>
+</head>
+<body>
+  <div class="api-container">
+    <div class="api-header">
+      <h1>📦 API Documentation</h1>
+      <p>Endpoints complets pour gérer VentiStudio programmatiquement</p>
+    </div>
+
+    <!-- Pages Endpoint -->
+    <div class="endpoint">
+      <span class="endpoint-method method-get">GET</span>
+      <span class="endpoint-path">/api/pages</span>
+      <p class="endpoint-desc">Lister toutes les pages publiées</p>
+      <pre><code>curl https://api.ventistudio.fr/pages \
+  -H "Authorization: Bearer YOUR_TOKEN"</code></pre>
+    </div>
+
+    <!-- Create Page Endpoint -->
+    <div class="endpoint">
+      <span class="endpoint-method method-post">POST</span>
+      <span class="endpoint-path">/api/pages</span>
+      <p class="endpoint-desc">Créer une nouvelle page</p>
+      <pre><code>curl -X POST https://api.ventistudio.fr/pages \
+  -H "Authorization: Bearer YOUR_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"title": "Page", "slug": "/page", "content": "..."}'</code></pre>
+    </div>
+
+    <!-- Update Page Endpoint -->
+    <div class="endpoint">
+      <span class="endpoint-method method-put">PUT</span>
+      <span class="endpoint-path">/api/pages/:id</span>
+      <p class="endpoint-desc">Mettre à jour une page existante</p>
+      <pre><code>curl -X PUT https://api.ventistudio.fr/pages/123 \
+  -H "Authorization: Bearer YOUR_TOKEN"</code></pre>
+    </div>
+
+    <!-- Delete Page Endpoint -->
+    <div class="endpoint">
+      <span class="endpoint-method method-delete">DELETE</span>
+      <span class="endpoint-path">/api/pages/:id</span>
+      <p class="endpoint-desc">Supprimer une page</p>
+      <pre><code>curl -X DELETE https://api.ventistudio.fr/pages/123 \
+  -H "Authorization: Bearer YOUR_TOKEN"</code></pre>
+    </div>
+
+    <!-- Blog Endpoints -->
+    <div class="endpoint">
+      <span class="endpoint-method method-post">POST</span>
+      <span class="endpoint-path">/api/blog</span>
+      <p class="endpoint-desc">Créer un nouvel article blog</p>
+      <pre><code>{
+  "title": "Article Title",
+  "author": "Author Name",
+  "content": "...",
+  "tags": ["tag1", "tag2"],
+  "published": true
+}</code></pre>
+    </div>
+
+    <!-- Alerts Endpoints -->
+    <div class="endpoint">
+      <span class="endpoint-method method-post">POST</span>
+      <span class="endpoint-path">/api/alerts</span>
+      <p class="endpoint-desc">Créer une alerte</p>
+      <pre><code>{
+  "title": "Alert Title",
+  "message": "Alert message",
+  "level": "danger",
+  "duration": 5
+}</code></pre>
+    </div>
+  </div>
+</body>
+</html>

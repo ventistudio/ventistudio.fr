@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CMS Avancé - VentiStudio</title>
+  <link rel="icon" type="image/avif" href="https://ventistudio.fr/favicon.avif">
+  <style>
+    :root {
+      --primary: #8b5cf6;
+      --secondary: #06b6d4;
+      --bg-primary: #0f172a;
+      --bg-secondary: #1e293b;
+      --text-primary: #f1f5f9;
+      --border: #334155;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', monospace; background: var(--bg-primary); color: var(--text-primary); }
+    .cms-container { max-width: 1400px; margin: 0 auto; padding: 2rem; }
+    .cms-header { margin-bottom: 2rem; }
+    .cms-header h1 { font-size: 2rem; margin-bottom: 0.5rem; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .tabs { display: flex; gap: 1rem; margin-bottom: 2rem; border-bottom: 1px solid var(--border); }
+    .tab { padding: 0.75rem 1.5rem; background: none; border: none; color: var(--text-primary); cursor: pointer; font-weight: 600; transition: all 0.3s; }
+    .tab.active { color: var(--primary); border-bottom: 3px solid var(--primary); margin-bottom: -1px; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    .editor { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; }
+    .editor-toolbar {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      background: var(--bg-primary);
+      padding: 1rem;
+      border-radius: 8px;
+    }
+    .toolbar-btn {
+      padding: 0.5rem 1rem;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+    .toolbar-btn:hover { background: #7c3aed; transform: scale(1.05); }
+    .editor-input { width: 100%; min-height: 400px; background: var(--bg-primary); color: var(--text-primary); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; font-family: 'Monaco', monospace; font-size: 0.9rem; resize: vertical; }
+    .preview {
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2rem;
+      margin-top: 1rem;
+      min-height: 300px;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+    .form-group { margin-bottom: 1.5rem; }
+    .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-primary); }
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%;
+      padding: 0.75rem;
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text-primary);
+      font-family: inherit;
+    }
+    .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--primary); }
+    .btn { padding: 0.75rem 1.5rem; border-radius: 8px; border: none; cursor: pointer; font-weight: 600; transition: all 0.3s; }
+    .btn-primary { background: var(--primary); color: white; }
+    .btn-primary:hover { background: #7c3aed; transform: translateY(-2px); }
+    .btn-secondary { background: var(--bg-secondary); color: var(--primary); border: 1px solid var(--primary); }
+    .btn-secondary:hover { background: var(--primary); color: white; }
+    .alerts-list { display: grid; gap: 1rem; }
+    .alert-item {
+      background: var(--bg-primary);
+      border-left: 4px solid #ef4444;
+      padding: 1rem;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .alert-item.active { border-left-color: var(--secondary); }
+    .alert-meta { font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem; }
+  </style>
+</head>
+<body>
+  <div class="cms-container">
+    <div class="cms-header">
+      <h1>📦 CMS Avancé VentiStudio</h1>
+      <p>Gestionnaire de contenu complet avec prévisualisation</p>
+    </div>
+
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab('pages')">Pages</button>
+      <button class="tab" onclick="switchTab('blog')">Blog</button>
+      <button class="tab" onclick="switchTab('alerts')">Alertes</button>
+      <button class="tab" onclick="switchTab('publish')">Publier</button>
+    </div>
+
+    <!-- PAGES TAB -->
+    <div id="pages" class="tab-content active">
+      <div class="editor">
+        <h2 style="margin-bottom: 1rem; color: var(--primary);">Créer/Éditer une Page</h2>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label>URL de la page</label>
+            <input type="text" placeholder="/nom-de-page" id="pageSlug">
+          </div>
+          <div class="form-group">
+            <label>Titre de la page</label>
+            <input type="text" placeholder="Titre principal" id="pageTitle">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Meta Description</label>
+          <textarea rows="2" placeholder="Description pour SEO (160 chars)" id="pageDescription"></textarea>
+        </div>
+
+        <h3 style="color: var(--secondary); margin: 1.5rem 0 1rem;">Contenu</h3>
+        <div class="editor-toolbar">
+          <button class="toolbar-btn" onclick="insertText('# ', '\n\nTitre H1')">H1</button>
+          <button class="toolbar-btn" onclick="insertText('## ', '\n\nTitre H2')">H2</button>
+          <button class="toolbar-btn" onclick="insertText('**', '**gras')">Gras</button>
+          <button class="toolbar-btn" onclick="insertText('*', '*italic')">Italic</button>
+          <button class="toolbar-btn" onclick="insertText('[', '](https://)')">Lien</button>
+          <button class="toolbar-btn" onclick="insertText('!['  , '](https://image.jpg)')">Image</button>
+          <button class="toolbar-btn" onclick="insertText('- ', '\n- Element')">Liste</button>
+          <button class="toolbar-btn" onclick="insertText('```\n', '\n```')">Code</button>
+        </div>
+
+        <textarea class="editor-input" id="pageContent" placeholder="Contenu de la page (Markdown supporté)"></textarea>
+
+        <h3 style="color: var(--secondary); margin: 1.5rem 0 1rem;">Prévisualisation</h3>
+        <div class="preview" id="pagePreview">
+          <p style="color: var(--text-secondary); text-align: center;">La prévisualisation apparaîtra ici...</p>
+        </div>
+
+        <button class="btn btn-primary" onclick="savePage()" style="margin-top: 2rem; width: 100%;">Sauvegarder la Page</button>
+      </div>
+    </div>
+
+    <!-- BLOG TAB -->
+    <div id="blog" class="tab-content">
+      <div class="editor">
+        <h2 style="margin-bottom: 1rem; color: var(--primary);">Nouvel Article Blog</h2>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label>Titre de l'article</label>
+            <input type="text" placeholder="Titre attractif" id="blogTitle">
+          </div>
+          <div class="form-group">
+            <label>Auteur</label>
+            <input type="text" placeholder="Votre nom" id="blogAuthor">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Catégorie</label>
+            <select id="blogCategory">
+              <option>Web Development</option>
+              <option>Design</option>
+              <option>Tutoriel</option>
+              <option>News</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Tags (séparés par virgule)</label>
+            <input type="text" placeholder="tag1, tag2, tag3" id="blogTags">
+          </div>
+        </div>
+
+        <div class="editor-toolbar">
+          <button class="toolbar-btn" onclick="insertBlogText('# ', '\n\nTitre')">H1</button>
+          <button class="toolbar-btn" onclick="insertBlogText('**', '**gras')">Gras</button>
+          <button class="toolbar-btn" onclick="insertBlogText('[', '](https://)')">Lien</button>
+        </div>
+
+        <textarea class="editor-input" id="blogContent" placeholder="Contenu de l'article (Markdown)"></textarea>
+
+        <button class="btn btn-primary" onclick="saveBlogPost()" style="margin-top: 2rem; width: 100%;">Publier l'Article</button>
+      </div>
+    </div>
+
+    <!-- ALERTS TAB -->
+    <div id="alerts" class="tab-content">
+      <div class="editor">
+        <h2 style="margin-bottom: 1rem; color: var(--primary);">Gestionnaire d'Alertes Evangelion</h2>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label>Titre de l'alerte</label>
+            <input type="text" placeholder="Titre d'urgence" id="alertTitle">
+          </div>
+          <div class="form-group">
+            <label>Niveau de sévérité</label>
+            <select id="alertLevel">
+              <option value="info">INFO</option>
+              <option value="warning">AVERTISSEMENT</option>
+              <option value="danger" selected>URGENCE MAXIMALE</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Message d'alerte</label>
+          <textarea rows="4" placeholder="Message clair et concis" id="alertMessage"></textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Durée d'affichage (secondes)</label>
+            <input type="number" value="5" id="alertDuration" min="3" max="30">
+          </div>
+          <div class="form-group">
+            <label>Page cible</label>
+            <select id="alertTarget">
+              <option>Toutes les pages</option>
+              <option>/</option>
+              <option>/about</option>
+              <option>/services</option>
+            </select>
+          </div>
+        </div>
+
+        <button class="btn btn-primary" onclick="createAlert()" style="margin-top: 1rem; width: 100%;">Créer et Afficher l'Alerte</button>
+
+        <h3 style="color: var(--secondary); margin: 2rem 0 1rem;">Alertes Actives</h3>
+        <div class="alerts-list" id="activeAlerts">
+          <div class="alert-item active">
+            <div>
+              <strong>⚠️ Bienvenue VentiStudio</strong>
+              <div class="alert-meta">Créée: 2025-12-19 18:00 | Statut: Actif</div>
+            </div>
+            <button class="btn btn-secondary" onclick="deleteAlert(this)" style="padding: 0.5rem 1rem;">Archiver</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PUBLISH TAB -->
+    <div id="publish" class="tab-content">
+      <div class="editor">
+        <h2 style="margin-bottom: 1rem; color: var(--primary);">Options de Publication</h2>
+        
+        <div class="form-group">
+          <label style="margin-bottom: 1rem; display: flex; gap: 0.5rem; cursor: pointer;">
+            <input type="checkbox" checked>
+            <span>Publier immédiatement</span>
+          </label>
+          <label style="margin-bottom: 1rem; display: flex; gap: 0.5rem; cursor: pointer;">
+            <input type="checkbox">
+            <span>Activer les commentaires</span>
+          </label>
+          <label style="margin-bottom: 1rem; display: flex; gap: 0.5rem; cursor: pointer;">
+            <input type="checkbox" checked>
+            <span>Indexable par les moteurs de recherche</span>
+          </label>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>URL personnalisée (optionnel)</label>
+            <input type="text" placeholder="https://ventistudio.fr/...">
+          </div>
+          <div class="form-group">
+            <label>Image en vedette</label>
+            <input type="file" accept="image/*">
+          </div>
+        </div>
+
+        <button class="btn btn-primary" style="width: 100%; padding: 1rem; font-size: 1rem; margin-top: 1rem;">Publier le Contenu</button>
+        <button class="btn btn-secondary" style="width: 100%; padding: 1rem; margin-top: 1rem;">Sauvegarder comme Brouillon</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function switchTab(tab) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.getElementById(tab).classList.add('active');
+      document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+      event.target.classList.add('active');
+    }
+
+    function insertText(before, after) {
+      const textarea = document.getElementById('pageContent');
+      const start = textarea.selectionStart;
+      const end = textarea.selectionEnd;
+      const selected = textarea.value.substring(start, end);
+      textarea.value = textarea.value.substring(0, start) + before + selected + after + textarea.value.substring(end);
+      textarea.selectionStart = textarea.selectionEnd = start + before.length;
+      textarea.focus();
+    }
+
+    function insertBlogText(before, after) {
+      const textarea = document.getElementById('blogContent');
+      const start = textarea.selectionStart;
+      const end = textarea.selectionEnd;
+      const selected = textarea.value.substring(start, end);
+      textarea.value = textarea.value.substring(0, start) + before + selected + after + textarea.value.substring(end);
+      textarea.focus();
+    }
+
+    function savePage() {
+      const title = document.getElementById('pageTitle').value;
+      const slug = document.getElementById('pageSlug').value;
+      if (title && slug) {
+        alert(`✅ Page "${title}" sauvegardée sur ${slug}`);
+      }
+    }
+
+    function saveBlogPost() {
+      const title = document.getElementById('blogTitle').value;
+      if (title) {
+        alert(`✅ Article "${title}" publié!`);
+      }
+    }
+
+    function createAlert() {
+      const title = document.getElementById('alertTitle').value;
+      const message = document.getElementById('alertMessage').value;
+      if (title && message) {
+        alert(`✅ Alerte "${title}" créée et affichée!`);
+      }
+    }
+
+    function deleteAlert(btn) {
+      btn.parentElement.remove();
+      alert('✅ Alerte archivée');
+    }
+  </script>
+</body>
+</html>
