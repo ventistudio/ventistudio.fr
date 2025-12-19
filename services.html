@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Découvrez nos services et outils innovants chez VentiStudio v6">
+  <title>Services - VentiStudio v6</title>
+  <link rel="icon" type="image/avif" href="https://ventistudio.fr/favicon.avif">
+  
+  <style>
+    :root {
+      --primary: #8b5cf6;
+      --secondary: #06b6d4;
+      --bg-primary: #ffffff;
+      --bg-secondary: #f8fafc;
+      --text-primary: #1f2937;
+      --text-secondary: #6b7280;
+      --border: #e5e7eb;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    [data-theme="dark"] {
+      --bg-primary: #0f172a;
+      --bg-secondary: #1e293b;
+      --text-primary: #f1f5f9;
+      --text-secondary: #cbd5e1;
+      --border: #334155;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      transition: var(--transition);
+    }
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    [data-theme="dark"] header {
+      background: rgba(15, 23, 42, 0.95);
+    }
+    .header-content {
+      max-width: 1400px; margin: 0 auto; padding: 1rem 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; font-weight: 700; color: var(--text-primary); font-size: 1.5rem; }
+    .logo img { width: 40px; height: 40px; border-radius: 8px; }
+    nav a { color: var(--text-secondary); text-decoration: none; font-weight: 500; transition: var(--transition); margin-left: 2rem; }
+    nav a:hover { color: var(--primary); }
+    main { max-width: 1000px; margin: 0 auto; padding: 5rem 2rem; }
+    h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin: 3rem 0; }
+    .service-card { background: var(--bg-secondary); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); transition: var(--transition); }
+    .service-card:hover { transform: translateY(-4px); box-shadow: 0 10px 15px rgba(139, 92, 246, 0.1); }
+    .service-card h3 { color: var(--primary); margin-bottom: 1rem; }
+    footer { background: var(--bg-secondary); border-top: 1px solid var(--border); padding: 3rem 2rem; text-align: center; color: var(--text-secondary); margin-top: 5rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <a href="/" class="logo">
+        <img src="https://ventistudio.fr/favicon.avif" alt="Logo" decoding="async" loading="lazy">
+        <span>VentiStudio</span>
+      </a>
+      <nav>
+        <a href="/">Accueil</a>
+        <a href="/services">Services</a>
+        <a href="/about">À propos</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <h1>Nos Services</h1>
+    <p style="font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 3rem;">Explorez nos outils et services innovants conçus pour les créatifs modernes.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <h3>🎵 Player Audio</h3>
+        <p>Un lecteur audio professionnel avec support complet des formats modernes et synchronisation cloud.</p>
+      </div>
+      <div class="service-card">
+        <h3>🔐 Encryption Tool</h3>
+        <p>Chiffrez vos données sensibles avec les algorithmes de sécurité les plus avancés.</p>
+      </div>
+      <div class="service-card">
+        <h3>📚 Wiki Complet</h3>
+        <p>Documentation exhaustive et guides détaillés pour tous les outils de VentiStudio.</p>
+      </div>
+      <div class="service-card">
+        <h3>🌐 API Publique</h3>
+        <p>Accédez à notre API pour intégrer VentiStudio dans vos applications personnalisées.</p>
+      </div>
+      <div class="service-card">
+        <h3>💬 Communauté Discord</h3>
+        <p>Rejoignez notre communauté active pour l'assistance, le partage et la collaboration.</p>
+      </div>
+      <div class="service-card">
+        <h3>👨‍🎓 Université VentiStudio</h3>
+        <p>Cours gratuits et certifications pour maîtriser tous les aspects de VentiStudio.</p>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <p>&copy; 2025 VentiStudio. Tous droits réservés. | v6.0.0</p>
+  </footer>
+</body>
+</html>
