@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel - VentiStudio</title>
+  <link rel="icon" type="image/avif" href="https://ventistudio.fr/favicon.avif">
+  <style>
+    :root {
+      --primary: #8b5cf6;
+      --secondary: #06b6d4;
+      --danger: #ef4444;
+      --success: #10b981;
+      --bg-primary: #0f172a;
+      --bg-secondary: #1e293b;
+      --text-primary: #f1f5f9;
+      --text-secondary: #cbd5e1;
+      --border: #334155;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, monospace;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+    .admin-container { display: grid; grid-template-columns: 250px 1fr; min-height: 100vh; }
+    .sidebar {
+      background: var(--bg-secondary);
+      border-right: 1px solid var(--border);
+      padding: 2rem 1rem;
+      overflow-y: auto;
+    }
+    .sidebar h1 { font-size: 1.2rem; margin-bottom: 2rem; color: var(--primary); }
+    .sidebar-nav { display: flex; flex-direction: column; gap: 0.5rem; }
+    .sidebar-nav a {
+      padding: 0.75rem 1rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      border-left: 3px solid transparent;
+    }
+    .sidebar-nav a:hover, .sidebar-nav a.active { background: var(--bg-primary); color: var(--primary); border-left-color: var(--primary); }
+    .admin-content { padding: 2rem; overflow-y: auto; }
+    .admin-header { margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 1rem; }
+    .admin-header h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+    .admin-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+    .admin-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+    }
+    .admin-card:hover { border-color: var(--primary); box-shadow: 0 0 15px rgba(139, 92, 246, 0.2); }
+    .admin-card h3 { color: var(--primary); margin-bottom: 0.5rem; }
+    .admin-card .stat { font-size: 2rem; font-weight: bold; color: var(--secondary); margin: 1rem 0; }
+    .form-group { margin-bottom: 1.5rem; }
+    .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-primary); }
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%;
+      padding: 0.75rem;
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text-primary);
+      font-family: inherit;
+      transition: all 0.3s ease;
+    }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+    }
+    .btn {
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    .btn-primary { background: var(--primary); color: white; }
+    .btn-primary:hover { background: #7c3aed; transform: translateY(-2px); }
+    .btn-danger { background: var(--danger); color: white; }
+    .btn-success { background: var(--success); color: white; }
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--bg-secondary);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .table th { background: var(--bg-primary); padding: 1rem; text-align: left; color: var(--primary); font-weight: 700; }
+    .table td { padding: 0.75rem 1rem; border-top: 1px solid var(--border); }
+    .table tr:hover { background: var(--bg-primary); }
+  </style>
+</head>
+<body>
+  <div class="admin-container">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <h1>🛠️ Admin Panel</h1>
+      <nav class="sidebar-nav">
+        <a href="#" class="active" onclick="loadSection('dashboard')">📊 Dashboard</a>
+        <a href="#" onclick="loadSection('pages')">📄 Pages</a>
+        <a href="#" onclick="loadSection('alerts')">⚠️ Alertes</a>
+        <a href="#" onclick="loadSection('blog')">📝 Blog</a>
+        <a href="#" onclick="loadSection('users')">👥 Utilisateurs</a>
+        <a href="#" onclick="loadSection('settings')">⚙️ Paramètres</a>
+        <a href="#" onclick="logout()">🚪 Déconnexion</a>
+      </nav>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="admin-content">
+      <div class="admin-header">
+        <h1 id="sectionTitle">Dashboard</h1>
+        <p id="sectionDesc">Bienvenue dans le panneau d'administration VentiStudio</p>
+      </div>
+
+      <div id="content"></div>
+    </main>
+  </div>
+
+  <script>
+    // Admin sections
+    const sections = {
+      dashboard: `
+        <div class="admin-grid">
+          <div class="admin-card">
+            <h3>📊 Pages Publiées</h3>
+            <div class="stat">12</div>
+            <p>Articles actifs sur le site</p>
+          </div>
+          <div class="admin-card">
+            <h3>👥 Utilisateurs</h3>
+            <div class="stat">248</div>
+            <p>Visiteurs uniques ce mois</p>
+          </div>
+          <div class="admin-card">
+            <h3>⚠️ Alertes Actives</h3>
+            <div class="stat">3</div>
+            <p>Annonces en direct</p>
+          </div>
+          <div class="admin-card">
+            <h3>💬 Commentaires</h3>
+            <div class="stat">45</div>
+            <p>Nécessitant une modération</p>
+          </div>
+        </div>
+      `,
+      
+      pages: `
+        <div class="admin-card" style="margin-bottom: 2rem;">
+          <h3>Créer une Nouvelle Page</h3>
+          <form onsubmit="return savePage(event)">
+            <div class="form-group">
+              <label>Titre</label>
+              <input type="text" placeholder="Titre de la page" required>
+            </div>
+            <div class="form-group">
+              <label>Slug (URL)</label>
+              <input type="text" placeholder="slug-de-page" required>
+            </div>
+            <div class="form-group">
+              <label>Contenu</label>
+              <textarea placeholder="Contenu de la page" rows="6" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Publier Page</button>
+          </form>
+        </div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Titre</th>
+              <th>Slug</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Accueil</td>
+              <td>/</td>
+              <td>✅ Publié</td>
+              <td><button class="btn btn-danger" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Éditer</button></td>
+            </tr>
+            <tr>
+              <td>À propos</td>
+              <td>/about</td>
+              <td>✅ Publié</td>
+              <td><button class="btn btn-danger" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Éditer</button></td>
+            </tr>
+          </tbody>
+        </table>
+      `,
+      
+      alerts: `
+        <div class="admin-card" style="margin-bottom: 2rem;">
+          <h3>Créer une Alerte (Evangelion-Style)</h3>
+          <form onsubmit="return createAlert(event)">
+            <div class="form-group">
+              <label>Titre de l'Alerte</label>
+              <input type="text" placeholder="Titre" required>
+            </div>
+            <div class="form-group">
+              <label>Message</label>
+              <textarea placeholder="Message d'alerte" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+              <label>Priorité</label>
+              <select required>
+                <option>Normale</option>
+                <option>Haute</option>
+                <option>URGENTE</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-danger">Créer Alerte</button>
+          </form>
+        </div>
+      `,
+      
+      blog: `
+        <div class="admin-card" style="margin-bottom: 2rem;">
+          <h3>Écrire un Nouvel Article</h3>
+          <form onsubmit="return saveBlogPost(event)">
+            <div class="form-group">
+              <label>Titre de l'Article</label>
+              <input type="text" placeholder="Titre" required>
+            </div>
+            <div class="form-group">
+              <label>Auteur</label>
+              <input type="text" placeholder="Auteur" required>
+            </div>
+            <div class="form-group">
+              <label>Contenu (Markdown)</label>
+              <textarea placeholder="Contenu en Markdown" rows="10" required></textarea>
+            </div>
+            <div class="form-group">
+              <label>Tags</label>
+              <input type="text" placeholder="tag1, tag2, tag3">
+            </div>
+            <button type="submit" class="btn btn-primary">Publier Article</button>
+          </form>
+        </div>
+      `,
+      
+      users: `
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Utilisateur</th>
+              <th>Email</th>
+              <th>Rôle</th>
+              <th>Jointure</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Admin User</td>
+              <td>admin@ventistudio.fr</td>
+              <td>Administrateur</td>
+              <td>2025-12-19</td>
+              <td><button class="btn btn-danger" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Gérer</button></td>
+            </tr>
+          </tbody>
+        </table>
+      `,
+      
+      settings: `
+        <div class="admin-card">
+          <h3>Paramètres du Site</h3>
+          <form onsubmit="return saveSettings(event)">
+            <div class="form-group">
+              <label>Titre du Site</label>
+              <input type="text" value="VentiStudio ULTIMATE" required>
+            </div>
+            <div class="form-group">
+              <label>Description</label>
+              <textarea rows="3">Plateforme créative révolutionnaire</textarea>
+            </div>
+            <div class="form-group">
+              <label>Email de Contact</label>
+              <input type="email" value="support@ventistudio.fr" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Enregistrer</button>
+          </form>
+        </div>
+      `
+    };
+
+    function loadSection(section) {
+      const titles = {
+        dashboard: 'Dashboard',
+        pages: 'Gestion des Pages',
+        alerts: 'Système d\'Alertes',
+        blog: 'Gestion du Blog',
+        users: 'Gestion des Utilisateurs',
+        settings: 'Paramètres'
+      };
+      
+      document.getElementById('sectionTitle').textContent = titles[section] || 'Dashboard';
+      document.getElementById('content').innerHTML = sections[section] || '';
+      document.querySelectorAll('.sidebar-nav a').forEach(a => a.classList.remove('active'));
+      event.target.classList.add('active');
+    }
+
+    function savePage(e) {
+      e.preventDefault();
+      alert('✅ Page sauvegardée avec succès!');
+      return false;
+    }
+
+    function createAlert(e) {
+      e.preventDefault();
+      alert('✅ Alerte créée! Elle apparaîtra sur le site.');
+      return false;
+    }
+
+    function saveBlogPost(e) {
+      e.preventDefault();
+      alert('✅ Article publié!');
+      return false;
+    }
+
+    function saveSettings(e) {
+      e.preventDefault();
+      alert('✅ Paramètres enregistrés!');
+      return false;
+    }
+
+    function logout() {
+      window.location.href = '/';
+    }
+  </script>
+</body>
+</html>
