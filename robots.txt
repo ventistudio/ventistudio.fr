@@ -1,4 +1,69 @@
+# VentiStudio v6 - SEO Robots Configuration
+
 User-agent: *
 Allow: /
+Disallow: /private/
+Disallow: /admin/
+Disallow: /api/internal/
+Disallow: /*.json$
+Disallow: /*.xml$
+Disallow: /*?*sort=
+Disallow: /*?*filter=
 
 Sitemap: https://ventistudio.fr/sitemap.xml
+
+Crawl-delay: 0
+Request-rate: 30/1m
+
+# Google
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Bing
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Yahoo
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+# Baidu
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 1
+
+# DuckDuckGo
+User-agent: DuckDuckBot
+Allow: /
+
+# Archive.org
+User-agent: ia_archiver
+Allow: /
+
+# Facebook
+User-agent: facebookexternalhit
+Allow: /
+
+# Twitter
+User-agent: Twitterbot
+Allow: /
+
+# LinkedIn
+User-agent: LinkedInBot
+Allow: /
+
+# Reject bad bots
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
