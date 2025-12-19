@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Découvrez l'histoire et la mission de VentiStudio - une plateforme créative innovante">
+  <meta name="og:title" content="À propos de VentiStudio v6">
+  <meta name="og:description" content="Découvrez l'histoire et la mission de VentiStudio">
+  <title>À propos - VentiStudio v6</title>
+  <link rel="icon" type="image/avif" href="https://ventistudio.fr/favicon.avif">
+  
+  <style>
+    :root {
+      --primary: #8b5cf6;
+      --primary-dark: #7c3aed;
+      --secondary: #06b6d4;
+      --bg-primary: #ffffff;
+      --bg-secondary: #f8fafc;
+      --text-primary: #1f2937;
+      --text-secondary: #6b7280;
+      --text-muted: #9ca3af;
+      --border: #e5e7eb;
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    [data-theme="dark"] {
+      --bg-primary: #0f172a;
+      --bg-secondary: #1e293b;
+      --text-primary: #f1f5f9;
+      --text-secondary: #cbd5e1;
+      --text-muted: #94a3b8;
+      --border: #334155;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      transition: var(--transition);
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    }
+
+    [data-theme="dark"] header {
+      background: rgba(15, 23, 42, 0.95);
+    }
+
+    .header-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      font-weight: 700;
+      color: var(--text-primary);
+      font-size: 1.5rem;
+    }
+
+    .logo img {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+    }
+
+    nav a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+      margin-left: 2rem;
+    }
+
+    nav a:hover {
+      color: var(--primary);
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .intro {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      margin-bottom: 3rem;
+      line-height: 1.8;
+    }
+
+    h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-top: 3rem;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+    }
+
+    section {
+      margin-bottom: 3rem;
+    }
+
+    section p {
+      margin-bottom: 1rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+    }
+
+    .values {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .value-card {
+      background: var(--bg-secondary);
+      padding: 2rem;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+
+    .value-card h3 {
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      font-size: 1.25rem;
+    }
+
+    .value-card p {
+      margin: 0;
+      font-size: 0.95rem;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 1rem 2rem;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: var(--transition);
+      margin-top: 2rem;
+      border: none;
+      cursor: pointer;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 35px rgba(139, 92, 246, 0.4);
+    }
+
+    footer {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border);
+      padding: 3rem 2rem;
+      text-align: center;
+      color: var(--text-muted);
+      margin-top: 5rem;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      main {
+        padding: 3rem 1rem;
+      }
+
+      nav a {
+        margin-left: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <a href="/" class="logo">
+        <img src="https://ventistudio.fr/favicon.avif" alt="Logo" decoding="async" loading="lazy">
+        <span>VentiStudio</span>
+      </a>
+      <nav>
+        <a href="/">Accueil</a>
+        <a href="/about">À propos</a>
+        <a href="/sitemap">Sitemap</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <h1>À propos de VentiStudio</h1>
+    <p class="intro">VentiStudio est bien plus qu'une plateforme. C'est une communauté dédiée à l'innovation, la créativité et l'excellence. Fondée avec une vision claire, nous construisons des outils qui font la différence.</p>
+
+    <section>
+      <h2>Notre Histoire</h2>
+      <p>VentiStudio a été créée pour résoudre un problème simple mais fondamental : il n'existait pas de plateforme unique où les créatifs pouvaient collaborer, apprendre et partager leurs passions. Depuis ses débuts, VentiStudio a évolué pour devenir un écosystème complet de services et d'outils.</p>
+      <p>Chaque itération - de la V1 à la V6 - représente notre engagement envers l'amélioration continue et l'excellence en matière de conception et de fonctionnalité.</p>
+    </section>
+
+    <section>
+      <h2>Notre Mission</h2>
+      <p>Empowering creators worldwide through innovative tools, collaborative communities, and unwavering support.</p>
+      <p>Nous croyons que la créativité n'a pas de limites. Notre mission est de fournir à chaque créatif - qu'il soit artiste, musicien, développeur ou entrepreneur - les outils et la communauté nécessaires pour transformer leurs idées en réalité.</p>
+    </section>
+
+    <section>
+      <h2>Nos Valeurs</h2>
+      <div class="values">
+        <div class="value-card">
+          <h3>🎯 Innovation</h3>
+          <p>Nous innovons constamment pour rester à l'avant-garde de la technologie et du design.</p>
+        </div>
+        <div class="value-card">
+          <h3>🤝 Collaboration</h3>
+          <p>La collaboration est au cœur de tout ce que nous faisons, croyant au pouvoir du travail collectif.</p>
+        </div>
+        <div class="value-card">
+          <h3>♿ Accessibilité</h3>
+          <p>Nos produits sont conçus pour être inclusifs et accessibles à tous, indépendamment des capacités.</p>
+        </div>
+        <div class="value-card">
+          <h3>🔒 Transparence</h3>
+          <p>Nous croyons à la transparence totale dans nos opérations et nos relations avec la communauté.</p>
+        </div>
+        <div class="value-card">
+          <h3>🌟 Excellence</h3>
+          <p>L'excellence n'est pas une destination, c'est un voyage continu d'amélioration.</p>
+        </div>
+        <div class="value-card">
+          <h3>❤️ Passion</h3>
+          <p>Nous mettons notre cœur et notre âme dans chaque aspect de VentiStudio.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Prêt à Rejoindre ?</h2>
+      <p>Rejoignez notre communauté croissante de créatifs et d'innovateurs. Ensemble, nous construisons l'avenir.</p>
+      <a href="/sitemap" class="cta-button">Explorer VentiStudio</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 VentiStudio. Tous droits réservés. | v6.0.0</p>
+  </footer>
+
+  <script>
+    // Theme toggle
+    const html = document.documentElement;
+    const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    html.setAttribute('data-theme', savedTheme);
+  </script>
+</body>
+</html>
