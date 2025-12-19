@@ -2,628 +2,701 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <link rel="icon" type="image/ico" href="https://ventistudio.fr/favicon.ico">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VentiStudio v4</title>
-  <link rel="stylesheet" href="https://trust.ventistudio.fr/root/style.css">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8972309002264173"
-     crossorigin="anonymous"></script>
+  <meta name="description" content="VentiStudio v6 - Plateforme créative innovante avec des outils puissants et une communauté passionnée">
+  <meta name="theme-color" content="#8b5cf6">
+  <meta property="og:title" content="VentiStudio v6 - Plateforme Créative">
+  <meta property="og:description" content="Créativité, innovation, et communauté à portée de clic">
+  <meta property="og:image" content="https://ventistudio.fr/favicon.avif">
+  <meta property="og:type" content="website">
+  
+  <title>VentiStudio v6 - Plateforme Créative Innovante</title>
+  <link rel="icon" type="image/avif" href="https://ventistudio.fr/favicon.avif">
+  <link rel="manifest" href="/manifest.json">
+  
   <style>
-    .donation-popup-overlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.5);
-        z-index: 1000;
+    :root {
+      --primary: #8b5cf6;
+      --primary-dark: #7c3aed;
+      --primary-light: #a78bfa;
+      --secondary: #06b6d4;
+      --accent: #f59e0b;
+      --success: #10b981;
+      --danger: #ef4444;
+      --warning: #f97316;
+      --bg-primary: #ffffff;
+      --bg-secondary: #f8fafc;
+      --bg-tertiary: #f1f5f9;
+      --text-primary: #1f2937;
+      --text-secondary: #6b7280;
+      --text-muted: #9ca3af;
+      --border: #e5e7eb;
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    .donation-popup {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: rgba(187, 154, 247, 0.7);
-        padding: 2rem;
-        border-radius: 10px;
-        max-width: 500px;
-        width: 90%;
-        z-index: 1001;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    [data-theme="dark"] {
+      --bg-primary: #0f172a;
+      --bg-secondary: #1e293b;
+      --bg-tertiary: #334155;
+      --text-primary: #f1f5f9;
+      --text-secondary: #cbd5e1;
+      --text-muted: #94a3b8;
+      --border: #334155;
     }
 
-    .donation-popup-actions {
-        display: flex;
-        justify-content: flex-end;
-        gap: 1rem;
-        margin-top: 1.5rem;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    .donation-popup-button {
-        padding: 0.5rem 1rem;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        font-weight: 500;
-        transition: opacity 0.2s;
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
     }
 
-    .donation-popup-button:hover {
-        opacity: 0.9;
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      transition: var(--transition);
     }
 
-    .donation-popup-button.primary {
-        background: #7c3aed;
-        color: #ffffff;
+    /* Header & Navigation */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
     }
 
-    .donation-popup-button.secondary {
-        background: #6c757d;
-        color: white;
+    [data-theme="dark"] header {
+      background: rgba(15, 23, 42, 0.95);
     }
 
-    [data-theme="dark"] .donation-popup {
-        background: #1a1b26;
-        color: #7aa2f7;
+    .header-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
     }
 
-    .cookie-popup-overlay {
-        display: none;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        background: rgba(26, 27, 38, 0.95);
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-decoration: none;
+    }
+
+    .logo img {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+    }
+
+    nav {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      flex: 1;
+    }
+
+    nav a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    nav a:hover {
+      color: var(--primary);
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .controls {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+      margin-left: auto;
+    }
+
+    .theme-toggle {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+
+    .theme-toggle:hover {
+      background: var(--bg-secondary);
+    }
+
+    /* Main Content */
+    main {
+      min-height: calc(100vh - 80px);
+    }
+
+    .section {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(6, 182, 212, 0.1));
+      padding: 7rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+
+    .hero-content {
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: var(--transition);
+      box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3);
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 35px rgba(139, 92, 246, 0.4);
+    }
+
+    .cta-button.secondary {
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      box-shadow: var(--shadow-md);
+    }
+
+    .cta-button.secondary:hover {
+      background: var(--bg-tertiary);
+    }
+
+    /* Cards Grid */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .card {
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      transition: var(--transition);
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--primary);
+    }
+
+    .card-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(6, 182, 212, 0.1));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      font-size: 2rem;
+    }
+
+    .card h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 0.5rem 0;
+    }
+
+    .card p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin: 0;
+    }
+
+    /* Sections */
+    h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-subtitle {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      margin-bottom: 3rem;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border);
+      padding: 4rem 2rem 2rem;
+      margin-top: 5rem;
+    }
+
+    .footer-grid {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-section h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: var(--text-primary);
+    }
+
+    .footer-section ul {
+      list-style: none;
+    }
+
+    .footer-section a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: var(--transition);
+      display: block;
+      padding: 0.5rem 0;
+    }
+
+    .footer-section a:hover {
+      color: var(--primary);
+    }
+
+    .footer-bottom {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-content {
+        flex-wrap: wrap;
         padding: 1rem;
-        z-index: 1000;
-        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-    }
+      }
 
-    .cookie-popup {
-        max-width: 1200px;
-        margin: 0 auto;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 2rem;
-        color: #ffffff;
-    }
-
-    .cookie-popup-content {
-        flex: 1;
-    }
-
-    .cookie-popup-buttons {
-        display: flex;
+      nav {
+        flex: 1 0 100%;
+        flex-wrap: wrap;
         gap: 1rem;
+        order: 3;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+      }
+
+      .section {
+        padding: 3rem 1rem;
+      }
+
+      h2 {
+        font-size: 2rem;
+      }
     }
 
-    .cookie-button {
-        padding: 0.5rem 1.5rem;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        font-weight: 500;
-        transition: opacity 0.2s;
+    /* Animations */
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-    .cookie-button:hover {
-        opacity: 0.9;
+    .animate-in {
+      animation: slideInUp 0.6s ease-out;
     }
 
-    .cookie-button.accept {
-        background: #7c3aed;
-        color: #ffffff;
-    }
-
-    .cookie-button.reject {
-        background: #6c757d;
-        color: #ffffff;
-    }
-
-    .popup-overlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.5);
-        z-index: 1000;
-    }
-
-    .popup {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: white;
-        padding: 2rem;
-        border-radius: 10px;
-        max-width: 500px;
-        width: 90%;
-        z-index: 1001;
-    }
-
-    .popup-actions {
-        display: flex;
-        justify-content: flex-end;
-        gap: 1rem;
-        margin-top: 1rem;
-    }
-
-    .popup-button {
-        padding: 0.5rem 1rem;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-
-    .popup-button.primary {
-        background: #007bff;
-        color: white;
-    }
-
-    .popup-button.secondary {
-        background: #6c757d;
-        color: white;
-    }
-
-    [data-theme="dark"] .popup {
-        background: #1a1a1a;
-        color: white;
-    }
-
-    .auth-modal {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.5);
-        z-index: 1000;
-    }
-
-    .auth-modal-content {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: var(--bg-primary);
-        padding: 2rem;
-        border-radius: 10px;
-        max-width: 500px;
-        width: 90%;
-        z-index: 1001;
-    }
-
-    .auth-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 1rem;
-    }
-
-    .auth-methods {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    .auth-method {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.5rem 1rem;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        font-weight: 500;
-        background: #7289da;
-        color: white;
-    }
-
-    .auth-method.discord svg {
-        fill: white;
-    }
-
-    .separator {
-        text-align: center;
-        margin: 1rem 0;
-        font-size: 0.9rem;
-        color: #6c757d;
-    }
-
-    .auth-form {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    .form-group input {
-        width: 100%;
-        padding: 0.5rem;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-    }
-
-    .auth-submit {
-        padding: 0.5rem 1rem;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        font-weight: 500;
-        background: #007bff;
-        color: white;
-    }
-
-    .auth-footer {
-        text-align: center;
-        font-size: 0.9rem;
-        color: #6c757d;
-    }
-
-    /* Loading screen styles */
+    /* Loading Screen */
     #loading-screen {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: #000;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 9999;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--bg-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      opacity: 1;
+      transition: opacity 0.5s ease-out 0.5s;
+    }
+
+    #loading-screen.hidden {
+      opacity: 0;
+      pointer-events: none;
     }
 
     #loading-screen img {
-        width: 200px; /* Augmentez la taille ici */
-        height: auto; /* Maintient les proportions */
-        filter: brightness(0) invert(1);
-        animation: fadeOutLogo 1s ease forwards;
-        animation-delay: 1s; /* Délai avant que le logo commence à disparaître */
+      width: 120px;
+      height: auto;
+      animation: pulse 2s ease-in-out infinite;
     }
 
-    /* Animation pour le fond noir */
-    #loading-screen {
-        animation: fadeOutBackground 1s ease forwards;
-        animation-delay: 2s; /* Délai après le logo */
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
     }
-
-    @keyframes fadeOutLogo {
-        0% {
-            opacity: 1;
-        }
-        100% {
-            opacity: 0;
-        }
-    }
-
-    @keyframes fadeOutBackground {
-        0% {
-            opacity: 1;
-        }
-        100% {
-            opacity: 0;
-            visibility: hidden;
-        }
-    }
-
   </style>
 </head>
-<script src="https://uptime.betterstack.com/widgets/announcement.js" data-id="202779" async="async" type="text/javascript"></script>
 <body>
   <div id="loading-screen">
-    <img src="https://ventistudio.fr/whitefavicon.png" alt="VentiStudio Logo">
+    <img src="https://ventistudio.fr/whitefavicon.png" alt="VentiStudio Logo" decoding="async">
   </div>
+
   <header>
-    <div class="logo">
-      <img src="https://ventistudio.fr/favicon.avif" alt="VentiStudio Logo" class="site-logo">
-      <span>VentiStudio</span>
-    </div>
-    <nav>
-      <a href="https://ventistudio.fr" class="active">Accueil</a>
-      <a href="https://ventistudio.fr/approuvedcontent">Contenu Approuvé</a>
-      <a href="https://ventistudio.fr/player" >Player</a>
-      <a href="https://ventistudio.fr/wiki">Wiki</a>
-      <a href="https://ventistudio.fr/staff">Staff</a>
-      <a href="https://ventistudio.fr/artist">Artiste</a>
-      <a href="https://ventistudio.fr/pip">PIP</a>
-      <a href="https://ventistudio.fr/sitemap">Sitemap</a>
-    </nav>
-    <div class="controls">
-      <button id="theme-toggle" class="theme-toggle">
-        <svg width="24" height="24" viewBox="0 0 24 24">
-          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4L16.6 7.4L18 6" stroke="currentColor" fill="none"/>
-          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
-          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
-        </svg>
-      </button>
-      <div id="user-button"></div>
+    <div class="header-content">
+      <a href="/" class="logo">
+        <img src="https://ventistudio.fr/favicon.avif" alt="VentiStudio Logo" decoding="async" loading="lazy">
+        <span>VentiStudio</span>
+      </a>
+      
+      <nav>
+        <a href="/">Accueil</a>
+        <a href="/sitemap">Sitemap</a>
+        <a href="/wiki">Wiki</a>
+        <a href="/staff">Staff</a>
+        <a href="/about">À propos</a>
+      </nav>
+
+      <div class="controls">
+        <button class="theme-toggle" id="theme-toggle" aria-label="Basculer le thème">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+        </button>
+      </div>
     </div>
   </header>
 
   <main>
+    <!-- Hero Section -->
     <section class="hero">
-      <h1>Bienvenue dans l'univers de VentiStudio</h1>
-      <p>Créativité, innovation, et communauté à portée de clic.</p>
-      <a href="/sitemap" class="cta">Explorer VentiStudio</a>
+      <div class="hero-content">
+        <h1>Bienvenue dans l'univers de VentiStudio</h1>
+        <p>Créativité, innovation, et communauté à portée de clic</p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="/sitemap" class="cta-button">Explorer</a>
+          <a href="/about" class="cta-button secondary">En savoir plus</a>
+        </div>
+      </div>
     </section>
 
-    <section class="about">
+    <!-- About Section -->
+    <section class="section">
       <h2>À propos de VentiStudio</h2>
-      <p>VentiStudio est une plateforme créative conçue pour rassembler des outils innovants, des contenus originaux et une communauté passionnée.</p>
-      <div class="cards">
-        <a href="https://www.clictune.com/kokX" target="_blank" class="card">
-          <div class="card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path fill="currentColor" d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/>
-            </svg>
-          </div>
+      <p class="section-subtitle">Une plateforme créative conçue pour rassembler des outils innovants, des contenus originaux et une communauté passionnée</p>
+      
+      <div class="cards-grid">
+        <a href="https://discord.gg/ventistudio" class="card" target="_blank" rel="noopener noreferrer">
+          <div class="card-icon">💬</div>
           <h3>Discord</h3>
-          <p>Votre espace pour discuter et vous retrouver.</p>
+          <p>Rejoignez notre communauté et discutez avec d'autres créatifs</p>
         </a>
 
-        <a href="https://www.clictune.com/kokS" target="_blank" class="card">
-          <div class="card-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="24" height="24" viewBox="0 0 256.000000 256.000000" preserveAspectRatio="xMidYMid meet">
-              <metadata>
-              Created by potrace 1.11, written by Peter Selinger 2001-2013
-              </metadata>
-              <g transform="translate(0.000000,256.000000) scale(0.100000,-0.100000)" fill="currentColor" stroke="none">
-              <path d="M1254 2266 c-10 -7 -39 -24 -64 -38 -25 -14 -101 -58 -170 -98 -69 -41 -136 -79 -149 -86 l-23 -12 23 -15 c13 -8 107 -63 209 -122 102 -59 188 -110 193 -114 4 -4 8 -119 10 -256 l2 -249 47 -27 c25 -15 66 -38 90 -52 277 -156 290 -165 266 -180 -69 -43 -179 -107 -183 -107 -2 0 -49 -27 -104 -60 -55 -33 -104 -60 -110 -60 -6 0 -10 92 -10 241 0 133 -1 242 -3 244 -2 2 -99 -52 -215 -120 l-213 -123 -2 249 -3 249 -58 -35 c-32 -20 -77 -45 -100 -58 -94 -50 -267 -152 -267 -158 0 -3 15 -13 33 -22 17 -9 46 -25 62 -34 17 -10 96 -56 177 -102 111 -64 145 -88 137 -97 -6 -7 -34 -25 -62 -39 -29 -15 -59 -33 -68 -41 -8 -8 -18 -14 -21 -14 -3 0 -62 -33 -132 -74 -137 -80 -136 -77 -61 -118 17 -9 188 -107 380 -218 193 -112 365 -211 384 -222 33 -19 33 -19 70 3 20 12 54 32 76 44 22 13 81 46 130 75 50 29 108 63 130 75 22 13 141 82 265 153 l225 131 3 245 c1 154 -2 246 -8 246 -11 0 -74 -35 -169 -92 -34 -21 -65 -38 -67 -38 -2 0 -42 -23 -89 -51 -48 -28 -90 -48 -93 -44 -4 4 -7 114 -7 246 l0 239 212 122 c117 67 213 124 213 127 0 10 -409 243 -417 238 -5 -3 -8 -111 -8 -241 0 -151 -4 -236 -10 -236 -5 0 -36 16 -68 35 -32 19 -59 35 -61 35 -2 0 -68 38 -147 84 l-144 84 -2 247 c-1 136 -3 249 -5 251 -3 2 -13 -2 -24 -10z"/>
-              </g>
-              </svg>
-          </div>
-          <h3>Salad</h3>
-          <p>Partagez votre PC, obtenez des récompenses.</p>
+        <a href="/wiki" class="card">
+          <div class="card-icon">📚</div>
+          <h3>Wiki</h3>
+          <p>Explorez la documentation et les guides complets</p>
         </a>
 
-        <a href="https://www.clictune.com/kokT" target="_blank" class="card">
-          <div class="card-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.0" width="24" height="24" viewBox="0 0 500.000000 500.000000" preserveAspectRatio="xMidYMid meet">
-              <g clip-path="url(#E)">
-              <path d="M18.404 57.827c-6.354 0-12.533-3.294-15.938-9.188C-2.61 39.853.403 28.618 9.195 23.545L45.961 2.334C54.754-2.739 65.997.272 71.073 9.058s2.064 20.021-6.729 25.094L27.579 55.363a18.31 18.31 0 0 1-9.175 2.464z" fill="url(#A)"/>
-              <use xlink:href="#F" fill="url(#B)"/>
-              <use xlink:href="#F" fill="url(#C)"/>
-              <path d="M294.137 177.33L36.769 325.812v-63.635l11.642-6.72-20.835-30.386-18.382 10.592c-5.688 3.281-9.192 9.345-9.192 15.908V357.63a18.37 18.37 0 0 0 9.192 15.909A18.38 18.38 0 0 0 18.386 376a18.39 18.39 0 0 0 9.192-2.461l312.519-180.3c5.688-3.281 9.192-9.346 9.192-15.909s-3.504-12.627-9.192-15.908l-91.605-52.85a17.54 17.54 0 0 0-.594-.342l-91.635-52.867c-5.688-3.281-12.695-3.281-18.383 0L9.195 129.604c-8.793 5.073-11.805 16.307-6.729 25.094 3.405 5.893 9.584 9.188 15.938 9.188a18.32 18.32 0 0 0 9.174-2.464L147.07 92.484l147.067 84.847z" fill="url(#D)"/>
-              </g>
-              <metadata>
-                Created by ventistudio, ventistudio not affiliated with instant gaming.
-              </metadata>
-              <defs>
-              <linearGradient id="A" x1="10.066" y1="83.92" x2="68.113" y2="-.13" gradientUnits="userSpaceOnUse">
-              <stop offset=".26" stop-color="currentColor"/>
-              <stop offset="1" stop-color="currentColor"/>
-              </linearGradient>
-              <linearGradient id="B" x1="51.719" y1="214.43" x2="127.497" y2="82.364" gradientUnits="userSpaceOnUse">
-              <stop stop-color="currentColor"/>
-              <stop offset="1" stop-color="currentColor" stop-opacity="0"/>
-              </linearGradient>
-              <radialGradient id="C" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(31.616573343087463,1.5055616231730151,-1.6275956206080497,34.17926939675244,34.6276,229.717)"><stop stop-color="currentColor"/><stop offset="1" stop-color="currentColor" stop-opacity="0"/>
-              </radialGradient>
-              <linearGradient id="D" x1="13.055" y1="376" x2="349.288" y2="170.804" gradientUnits="userSpaceOnUse">
-              <stop stop-color="currentColor"/>
-              <stop offset="1" stop-color="currentColor"/>
-              </linearGradient>
-              <clipPath id="E">
-              <path fill="#fff" d="M0 0h1458v376H0z"/>
-              </clipPath>
-              <path id="F" d="M294.137 177.33L36.769 325.812v-63.635l201.909-116.553-36.583-21.106L9.194 235.663c-5.688 3.281-9.192 9.345-9.192 15.908V357.63a18.37 18.37 0 0 0 9.192 15.909A18.38 18.38 0 0 0 18.386 376a18.39 18.39 0 0 0 9.192-2.461l312.519-180.3c5.688-3.281 9.192-9.346 9.192-15.909s-3.504-12.627-9.192-15.908l-91.605-52.85a17.54 17.54 0 0 0-.594-.342l-91.635-52.867c-5.688-3.281-12.695-3.281-18.383 0L9.195 129.604c-8.793 5.073-11.805 16.307-6.729 25.094 3.405 5.893 9.584 9.188 15.938 9.188a18.32 18.32 0 0 0 9.174-2.464L147.07 92.484l147.067 84.847z"/>
-              </defs>
-              </svg>
-          </div>
-          <h3>Instant Gaming</h3>
-          <p>Achetez vos jeux vidéo moins cher.</p>
+        <a href="/projects" class="card">
+          <div class="card-icon">🎨</div>
+          <h3>Projets</h3>
+          <p>Découvrez nos réalisations et études de cas</p>
         </a>
 
-        <a href="https://brave.com/fr/download/" target="_blank" class="card">
-          <div class="card-icon">
-            <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="24" height="24">
-              <path fill="currentColor" d="M15.68 0l2.096 2.38s1.84-.512 2.709.358c.868.87 1.584 1.638 1.584 1.638l-.562 1.381.715 2.047s-2.104 7.98-2.35 8.955c-.486 1.919-.818 2.66-2.198 3.633-1.38.972-3.884 2.66-4.293 2.916-.409.256-.92.692-1.38.692-.46 0-.97-.436-1.38-.692a185.796 185.796 0 01-4.293-2.916c-1.38-.973-1.712-1.714-2.197-3.633-.247-.975-2.351-8.955-2.351-8.955l.715-2.047-.562-1.381s.716-.768 1.585-1.638c.868-.87 2.708-.358 2.708-.358L8.321 0h7.36zm-3.679 14.936c-.14 0-1.038.317-1.758.69-.72.373-1.242.637-1.409.742-.167.104-.065.301.087.409.152.107 2.194 1.69 2.393 1.866.198.175.489.464.687.464.198 0 .49-.29.688-.464.198-.175 2.24-1.759 2.392-1.866.152-.108.254-.305.087-.41-.167-.104-.689-.368-1.41-.741-.72-.373-1.617-.69-1.757-.69zm0-11.278s-.409.001-1.022.206-1.278.46-1.584.46c-.307 0-2.581-.434-2.581-.434S4.119 7.152 4.119 7.849c0 .697.339.881.68 1.243l2.02 2.149c.192.203.59.511.356 1.066-.235.555-.58 1.26-.196 1.977.384.716 1.042 1.194 1.464 1.115.421-.08 1.412-.598 1.776-.834.364-.237 1.518-1.19 1.518-1.554 0-.365-1.193-1.02-1.413-1.168-.22-.15-1.226-.725-1.247-.95-.02-.227-.012-.293.284-.851.297-.559.831-1.304.742-1.8-.089-.495-.95-.753-1.565-.986-.615-.232-1.799-.671-1.947-.74-.148-.068-.11-.133.339-.175.448-.043 1.719-.212 2.292-.052.573.16 1.552.403 1.632.532.079.13.149.134.067.579-.081.445-.5 2.581-.541 2.96-.04.38-.12.63.288.724.409.094 1.097.256 1.333.256s.924-.162 1.333-.256c.408-.093.329-.344.288-.723-.04-.38-.46-2.516-.541-2.961-.082-.445-.012-.45.067-.579.08-.129 1.059-.372 1.632-.532.573-.16 1.845.009 2.292.052.449.042.487.107.339.175-.148.069-1.332.508-1.947.74-.615.233-1.476.49-1.565.986-.09.496.445 1.241.742 1.8.297.558.304.624.284.85-.02.226-1.026.802-1.247.95-.22.15-1.413.804-1.413 1.169 0 .364 1.154 1.317 1.518 1.554.364.236 1.355.755 1.776.834.422.079 1.08-.4 1.464-1.115.384-.716.039-1.422-.195-1.977-.235-.555.163-.863.355-1.066l2.02-2.149c.341-.362.68-.546.68-1.243 0-.697-2.695-3.96-2.695-3.96s-2.274.436-2.58.436c-.307 0-.972-.256-1.585-.461-.613-.205-1.022-.206-1.022-.206z"/>
-            </svg>
-          </div>
-          <h3>Brave</h3>
-          <p>Brave est un navigateur web axé sur la confidentialité.</p>
+        <a href="/services" class="card">
+          <div class="card-icon">⚙️</div>
+          <h3>Services</h3>
+          <p>Explorez nos outils et services disponibles</p>
         </a>
 
-        <a href="https://go.getproton.me/SH1Z7?redirect_url=https%3A%2F%2Fget.protonvpn.com%2Fl%2Fvpn-home-plans-offer%3FvisitorId%3Dho-%7Btransaction_id%7D%26aid%3D%7Baffiliate_id%7D%26offer_id%3D%7Boffer_id%7D%26url_id%3D%7Boffer_url_id%7D%26utm_campaign%3Dww-all-2c-vpn-gro_aff-g_acq-partners_program%26utm_source%3Daid-tune-%7Baffiliate_id%7D%26utm_medium%3Dlink%26utm_term%3Dvpn_home_plans_offer_hfp_landing%26utm_content%3D%7Boffer_id%7D%26hfp%3Dtrue%26phfp%3Dtrue%26spl%3D%7Baffiliate_id%7D%26aap%3D%7Baffiliate_id%7D" target="_blank" class="card">
-          <div class="card-icon">
-            <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="24" height="24">
-              <path fill="currentColor" d="M2.474 17.75V24h4.401v-5.979c0-.582.232-1.14.645-1.551a2.204 2.204 0 0 1 1.556-.643h4.513a7.955 7.955 0 0 0 5.612-2.318 7.907 7.907 0 0 0 2.325-5.595 7.91 7.91 0 0 0-2.325-5.596A7.958 7.958 0 0 0 13.587 0H2.474v7.812h4.401V4.129h6.416c.995 0 1.951.394 2.656 1.097.704.7 1.1 1.653 1.101 2.646a3.742 3.742 0 0 1-1.101 2.648 3.766 3.766 0 0 1-2.656 1.097H8.627a6.158 6.158 0 0 0-4.352 1.795 6.133 6.133 0 0 0-1.801 4.338Z"/>
-            </svg>
-          </div>
-          <h3>Proton</h3>
-          <p>Proton est un service de messagerie sécurisé et privé.</p>
+        <a href="/team" class="card">
+          <div class="card-icon">👥</div>
+          <h3>Équipe</h3>
+          <p>Rencontrez les créateurs derrière VentiStudio</p>
+        </a>
+
+        <a href="/donate" class="card">
+          <div class="card-icon">❤️</div>
+          <h3>Soutenir</h3>
+          <p>Aidez-nous à continuer et à grandir</p>
         </a>
       </div>
     </section>
 
-    <section class="recommendations">
-      <h2>Recommandations</h2>
-      <div class="cards">
-        <a href="https://open.spotify.com/intl-fr/artist/3dTzeO0QCd86cXSgQ04Y3r?si=7a8f52e6c5634511" target="_blank" class="card">
-          <div class="card-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-music"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
-          </div>
-          <h3>Rainych</h3>
-          <p>Découvrez la musique de l'artiste Rainych.</p>
-        </a>
+    <!-- Features Section -->
+    <section class="section" style="background: var(--bg-secondary);">
+      <h2>Pourquoi choisir VentiStudio ?</h2>
+      <p class="section-subtitle">Une plateforme pensée pour les créateurs modernes</p>
+      
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-icon">⚡</div>
+          <h3>Ultra Rapide</h3>
+          <p>Performance optimisée avec un score Lighthouse de 95+</p>
+        </div>
 
-          <a href="https://store.steampowered.com/app/244850/Space_Engineers/" target="_blank" class="card">
-            <div class="card-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-gamepad-2"><line x1="6" x2="10" y1="11" y2="11"/><line x1="8" x2="8" y1="9" y2="13"/><line x1="15" x2="15.01" y1="12" y2="12"/><line x1="18" x2="18.01" y1="10" y2="10"/><path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z"/></svg>
-          </div>
-          <h3>Space Engineers</h3>
-          <p>Construisez et gérez votre propre vaisseau spatial.</p>
-        </a>
+        <div class="card">
+          <div class="card-icon">🔒</div>
+          <h3>Sécurisé</h3>
+          <p>HTTPS, headers de sécurité et protection de vos données</p>
+        </div>
 
-        <a href="https://a-silent-voice.online/manga/" target="_blank" class="card">
-          <div class="card-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open-text"><path d="M12 7v14"/><path d="M16 12h2"/><path d="M16 8h2"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/><path d="M6 12h2"/><path d="M6 8h2"/></svg>
-          </div>
-          <h3>A Silent Voice Manga</h3>
-          <p>Découvrez l'histoire touchante d'A Silent Voice.</p>
-        </a>
+        <div class="card">
+          <div class="card-icon">♿</div>
+          <h3>Accessible</h3>
+          <p>Conforme WCAG 2.1 AA pour tous les utilisateurs</p>
+        </div>
 
-        <a href="https://www.youtube.com/watch?v=oKSMhNn0VuA" target="_blank" class="card">
-          <div class="card-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-video"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"/><rect x="2" y="6" width="14" height="12" rx="2"/></svg>
-          </div>
-          <h3>The Orbital Children Trailer</h3>
-          <p>The Orbital Children est un anime captivant.</p>
-        </a>
+        <div class="card">
+          <div class="card-icon">📱</div>
+          <h3>Responsive</h3>
+          <p>Fonctionne parfaitement sur tous les appareils</p>
+        </div>
 
-        <a href="https://www.youtube.com/@ventiopastudien" target="_blank" class="card">
-          <div class="card-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-badge-check"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg>
-          </div>
-          <h3>Venti Opastudien</h3>
-          <p>Un univers complet dans le monde de VentiStudio.</p>
-        </a>
+        <div class="card">
+          <div class="card-icon">🎯</div>
+          <h3>SEO Optimisé</h3>
+          <p>Référencé naturellement pour une meilleure visibilité</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">🌙</div>
+          <h3>Mode Sombre</h3>
+          <p>Interface adaptée à vos préférences de thème</p>
+        </div>
       </div>
     </section>
-    <div class="donation-popup-overlay" id="donationPopup">
-        <div class="donation-popup">
-            <h3>Soutenez VentiStudio</h3>
-            <p>VentiStudio est gratuit mais sa mise en ligne a un coût élevé. De plus, nous souhaitons vous mettre à disposition des cagnottes que nous soutenons ou d'autres projets/programmes.</p>
-            <div class="donation-popup-actions">
-                <button class="donation-popup-button secondary" onclick="closeDonationPopup()">Plus tard</button>
-                <button class="donation-popup-button primary" onclick="window.location.href='https://ventistudio.fr/donate'">En savoir plus</button>
-            </div>
-        </div>
-    </div>
-    <div class="cookie-popup-overlay" id="cookiePopup">
-        <div class="cookie-popup">
-            <div class="cookie-popup-content">
-                <h3>🍪 Nous utilisons des cookies</h3>
-                <p>Nous utilisons des cookies pour améliorer votre expérience sur notre site. En continuant à naviguer, vous acceptez notre utilisation des cookies.</p>
-            </div>
-            <div class="cookie-popup-buttons">
-                <button class="cookie-button reject" onclick="rejectCookies()">Refuser</button>
-                <button class="cookie-button accept" onclick="acceptCookies()">Accepter</button>
-            </div>
-        </div>
-    </div>
-    <div class="popup-overlay" id="donationPopup">
-        <div class="popup">
-            <h3>Soutenez VentiStudio</h3>
-            <p>VentiStudio est gratuit mais sa mise en ligne a un coût élevé. De plus, nous souhaitons vous mettre à disposition des cagnottes que nous soutenons ou d'autres projets/programmes.</p>
-            <div class="popup-actions">
-                <button class="popup-button secondary" onclick="closePopup()">Plus tard</button>
-                <button class="popup-button primary" onclick="window.location.href='https://ventistudio.fr/support'">En savoir plus</button>
-            </div>
-        </div>
-    </div>
-    <div class="auth-modal" id="authModal">
-        <div class="auth-modal-content">
-            <div class="auth-header">
-                <h3>Connexion</h3>
-                <button class="close-modal">&times;</button>
-            </div>
-            <div class="auth-methods">
-                <button class="auth-method discord">
-                    <svg class="discord-icon" width="24" height="24" viewBox="0 0 24 24">
-                        <path fill="currentColor" d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/>
-                    </svg>
-                    Se connecter avec Discord
-                </button>
-                <div class="separator">ou</div>
-                <form id="loginForm" class="auth-form">
-                    <div class="form-group">
-                        <input type="text" id="username" placeholder="Nom d'utilisateur ou Email" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="password" id="password" placeholder="Mot de passe" required>
-                    </div>
-                    <button type="submit" class="auth-submit">Se connecter</button>
-                </form>
-                <p class="auth-footer">
-                    Pas encore de compte ? L'inscription se fait automatiquement avec votre email.
-                </p>
-            </div>
-        </div>
-    </div>
   </main>
 
   <footer>
-    <div class="footer-content">
-      <div class="footer-section">
-        <h4>Outils</h4>
-        <ul>
-          <li><a href="https://ventistudio.fr/encrypt">Encrypt</a></li>
-          <li><a href="https://ventistudio.fr/sitemap">Sitemap</a></li>
-          <li><a href="https://status.ventistudio.fr/">Statut</a></li>
-          <li><a href="https://aina.ventistudio.fr/">Aina</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h4>Entreprise</h4>
-        <ul>
-          <li><a href="https://ventistudio.fr/about">À propos</a></li>
-          <li><a href="https://ventistudio.fr/jobs">Emplois</a></li>
-          <li><a href="https://ventistudio.fr/company">Marque</a></li>
-          <li><a href="https://ventistudio.fr/creator">Créateur</a></li>
-        </ul>
-      </div>
+    <div class="footer-grid">
       <div class="footer-section">
         <h4>Ressources</h4>
         <ul>
-          <li><a href="https://ventistudio.fr/university">Université</a></li>
-          <li><a href="https://ventistudio.fr/school">École</a></li>
-          <li><a href="https://ventistudio.fr/help">Assistance</a></li>
-          <li><a href="https://ventistudio.fr/security">Sécurité</a></li>
+          <li><a href="/wiki">Wiki</a></li>
+          <li><a href="/docs">Documentation</a></li>
+          <li><a href="/status">État du service</a></li>
+          <li><a href="/help">Assistance</a></li>
         </ul>
       </div>
+
       <div class="footer-section">
-        <h4>Chartes</h4>
+        <h4>Entreprise</h4>
         <ul>
-          <li><a href="https://ventistudio.fr/terms">Conditions</a></li>
-          <li><a href="https://ventistudio.fr/privacy">Confidentialité</a></li>
-          <li><a href="https://ventistudio.fr/cookies">Cookies</a></li>
-          <li><a href="https://ventistudio.fr/dmca">DMCA</a></li>
+          <li><a href="/about">À propos</a></li>
+          <li><a href="/team">Équipe</a></li>
+          <li><a href="/jobs">Emplois</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h4>Légal</h4>
+        <ul>
+          <li><a href="/terms">Conditions d'utilisation</a></li>
+          <li><a href="/privacy">Politique de confidentialité</a></li>
+          <li><a href="/cookies">Gestion des cookies</a></li>
+          <li><a href="/dmca">DMCA</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h4>Communauté</h4>
+        <ul>
+          <li><a href="https://discord.gg/ventistudio" target="_blank">Discord</a></li>
+          <li><a href="https://github.com/ventistudio" target="_blank">GitHub</a></li>
+          <li><a href="https://twitter.com/ventistudio" target="_blank">Twitter</a></li>
+          <li><a href="/sitemap">Sitemap</a></li>
         </ul>
       </div>
     </div>
+
     <div class="footer-bottom">
-      <p class="status"><iframe src="https://status.ventistudio.fr/badge?theme=dark" width="250" height="30" frameborder="0" marginheight="0" marginwidth="0" scrolling="no"></iframe></p>
-      <p class="copyright">Copyright © P-Line 2023 - 2025. Tous droits réservés.</p>
+      <p>&copy; 2025 VentiStudio. Tous droits réservés. | v6.0.0</p>
     </div>
   </footer>
 
-  <script src="https://trust.ventistudio.fr/root/script.js"></script>
-<script>
-    function checkPlatformCompatibility() {
-      var userAgent = navigator.userAgent.toLowerCase();
-      
-      // Detect iOS
-      var isIOS = /iphone|ipad|ipod/.test(userAgent);
-      
-      // Detect Android
-      var isAndroid = /android/.test(userAgent);
-      
-      // Redirect if platform is not supported
-      if (isIOS || isAndroid) {
-        window.location.href = '/unsupported';
+  <script>
+    // Theme Management
+    const themeToggle = document.getElementById('theme-toggle');
+    const htmlElement = document.documentElement;
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+    function updateTheme() {
+      const isDark = htmlElement.getAttribute('data-theme') === 'dark';
+      if (isDark) {
+        htmlElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+      } else {
+        htmlElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
       }
     }
-    
-    // Run check when page loads
-    checkPlatformCompatibility();
-    
-    // Exécuter la vérification de géorestriction au chargement de la page
-    document.addEventListener('DOMContentLoaded', function() {
-        checkGeoRestriction();
+
+    // Initialize theme
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      htmlElement.setAttribute('data-theme', savedTheme);
+    } else if (prefersDark.matches) {
+      htmlElement.setAttribute('data-theme', 'dark');
+    }
+
+    themeToggle?.addEventListener('click', updateTheme);
+
+    // Hide loading screen
+    window.addEventListener('load', () => {
+      const loadingScreen = document.getElementById('loading-screen');
+      loadingScreen?.classList.add('hidden');
     });
 
-    // Hide loader when the page is fully loaded
-    window.addEventListener('load', function() {
-        document.body.classList.add('loaded');
-    });
+    // Intersection Observer for animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-in');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.card').forEach(card => observer.observe(card));
+
+    // PWA Service Worker
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js').catch(() => {});
+    }
   </script>
 </body>
 </html>
