@@ -1,3 +1,48 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
+  <meta name="theme-color" content="#6366f1">
+  <title>VentiStudio v4</title>
+  <link rel="stylesheet" href="../../style.css">
+</title>
+</head>
+<body>
+  <header>
+
+    <div class="logo">
+      <img src="../../favicon.ico" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
+      <span>VentiStudio</span>
+    </div>
+    <nav aria-label="Navigation principale">
+      <a href="../../" class="active">Accueil</a>
+      <a href="../../approuvedcontent/">Contenu Approuvé</a>
+      <a href="../../player">Lecteur</a>
+      <a href="../../wiki">Wiki</a>
+      <a href="../../staff">Équipe</a>
+      <a href="../../news">News</a>
+      <a href="../../pip">PIP</a>
+      <a href="../../sitemap">Plan du site</a>
+    </nav>
+    <div class="controls" role="toolbar" aria-label="Contrôles">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
+          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
+          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
+        </svg>
+      </button>
+      <div id="user-button" role="region" aria-label="Authentification"></div>
+    </div>
+  
+  </header>
+
+  <main>
+
+
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>VentiStudio - Chargement GMod</title>
 <style>
@@ -203,22 +248,22 @@
   </div>
   <div class="loading-container">
     <section class="section">
-      <h2 class="section-title">Règles & Astuces</h2>
+      <h2 class="section-title">RÃ¨gles & Astuces</h2>
       <div class="rule-card">
-        <h3>Règle #1 - Respect</h3>
-        <p>Respectez tous les joueurs et le staff. Aucune forme de harcèlement ou de discrimination ne sera tolérée.</p>
+        <h3>RÃ¨gle #1 - Respect</h3>
+        <p>Respectez tous les joueurs et le staff. Aucune forme de harcÃ¨lement ou de discrimination ne sera tolÃ©rÃ©e.</p>
       </div>
       <div class="rule-card">
-        <h3>Règle #2 - RolePlay</h3>
-        <p>Restez dans votre rôle en tout temps. Le FailRP peut entraîner un avertissement ou un bannissement.</p>
+        <h3>RÃ¨gle #2 - RolePlay</h3>
+        <p>Restez dans votre rÃ´le en tout temps. Le FailRP peut entraÃ®ner un avertissement ou un bannissement.</p>
       </div>
       <div class="rule-card">
-        <h3>Règle #3 - Exploitation</h3>
+        <h3>RÃ¨gle #3 - Exploitation</h3>
         <p>L'utilisation de bugs ou de cheats est strictement interdite.</p>
       </div>
       <div class="rule-card">
         <h3>Astuce #1</h3>
-        <p>N'oubliez pas de télécharger la collection.</p>
+        <p>N'oubliez pas de tÃ©lÃ©charger la collection.</p>
       </div>
       <div class="rule-card">
         <h3>Astuce #2</h3>
@@ -235,7 +280,7 @@
         <div class="staff-info">
           <h3>Hikari Umaishi</h3>
           <div class="staff-role">Fondateur</div>
-          <p>Créateur et administrateur principal du serveur</p>
+          <p>CrÃ©ateur et administrateur principal du serveur</p>
         </div>
       </div>
       <div class="staff-card">
@@ -244,8 +289,8 @@
         </div>
         <div class="staff-info">
           <h3>DJ MRS3RKILER</h3>
-          <div class="staff-role">Co-créateur</div>
-          <p>Co-Créateur principal du serveur</p>
+          <div class="staff-role">Co-crÃ©ateur</div>
+          <p>Co-CrÃ©ateur principal du serveur</p>
         </div>
       </div>
       <div class="staff-card">
@@ -254,13 +299,13 @@
         </div>
         <div class="staff-info">
           <h3>Maitre Corbeau</h3>
-          <div class="staff-role">Gérant Staff</div>
-          <p>Sur un arbre perché, tenait en son bec un fromage.</p>
+          <div class="staff-role">GÃ©rant Staff</div>
+          <p>Sur un arbre perchÃ©, tenait en son bec un fromage.</p>
         </div>
       </div>
       <div class="staff-card">
         <div class="staff-avatar">
-          <img src="https://avatars.fastly.steamstatic.com/776a1fee96dc25e6f6e9237a2510b14acbe3e436_full.jpg" alt="Modérateur">
+          <img src="https://avatars.fastly.steamstatic.com/776a1fee96dc25e6f6e9237a2510b14acbe3e436_full.jpg" alt="ModÃ©rateur">
         </div>
         <div class="staff-info">
           <h3>Futo Gensei</h3>
@@ -283,9 +328,9 @@
     const tips = [
       "N'oubliez pas de rejoindre notre Discord !",
       "Utilisez T pour chatter avec les autres joueurs",
-      "Appuyez sur F4 pour voir les métiers disponibles",
-      "Le respect des règles garantit une meilleure expérience pour tous",
-      "N'hésitez pas à demander de l'aide au staff"
+      "Appuyez sur F4 pour voir les mÃ©tiers disponibles",
+      "Le respect des rÃ¨gles garantit une meilleure expÃ©rience pour tous",
+      "N'hÃ©sitez pas Ã  demander de l'aide au staff"
     ];
 
     let currentTip = 0;
@@ -362,7 +407,7 @@
         src: "/gmod/music/music1.mp3"
       },
       {
-        title: "Hymne de la Zone Rétribution",
+        title: "Hymne de la Zone RÃ©tribution",
         artist: "DJ MRS3RKILER x Suno",
         src: "/gmod/music/hzr.mp3"
       },
@@ -372,57 +417,57 @@
         src: "/gmod/music/music2.mp3"
       },
       {
-        title: "Le Site Oublié Zone Retribution 1",
+        title: "Le Site OubliÃ© Zone Retribution 1",
         artist: "Venti Opastudien x Suno",
         src: "/gmod/music/lso1.mp3"
       },
       {
-        title: "Le Site Oublié Zone Retribution 2",
+        title: "Le Site OubliÃ© Zone Retribution 2",
         artist: "Venti Opastudien x Suno",
         src: "/gmod/music/lso2.mp3"
       },
       {
-        title: "Le Site Oublié Zone Retribution 3",
+        title: "Le Site OubliÃ© Zone Retribution 3",
         artist: "Venti Opastudien x Suno",
         src: "/gmod/music/lso3.mp3"
       },
       {
-        title: "Le Site Oublié Zone Retribution 4",
+        title: "Le Site OubliÃ© Zone Retribution 4",
         artist: "Venti Opastudien x Suno",
         src: "/gmod/music/lso4.mp3"
       },
       {
-        title: "Le Site Oublié Zone Retribution 5",
+        title: "Le Site OubliÃ© Zone Retribution 5",
         artist: "Venti Opastudien x Suno",
         src: "/gmod/music/lso5.mp3"
       },
       {
-        title: "Le Sauveur Éclairé 1",
+        title: "Le Sauveur Ã‰clairÃ© 1",
         artist: "Venti Opastudien x Suno",
         src: "/gmod/music/lse1.mp3"
       },
       {
-        title: "Le Sauveur Éclairé 2",
+        title: "Le Sauveur Ã‰clairÃ© 2",
         artist: "Venti Opastudien x Suno",
         src: "/gmod/music/lse2.mp3"
       },
       {
-        title: "Évacuation Zone Retribution",
+        title: "Ã‰vacuation Zone Retribution",
         artist: "Venti Opastudien x Suno",
         src: "/gmod/music/ezr.mp3"
       },
       {
-        title: "Évacuation Imminente",
+        title: "Ã‰vacuation Imminente",
         artist: "Venti Opastudien x Suno",
         src: "/gmod/music/ei.mp3"
       },
       {
-        title: "Hikari, ombre sacrifiée",
+        title: "Hikari, ombre sacrifiÃ©e",
         artist: "Venti Opastudien x Suno",
         src: "/gmod/music/hos.mp3"
       },
       {
-        title: "Sécurisé Contenir Protéger",
+        title: "SÃ©curisÃ© Contenir ProtÃ©ger",
         artist: "Venti Opastudien x Suno",
         src: "/gmod/music/scp.mp3"
       },
@@ -457,10 +502,10 @@
       const volumeSlider = document.getElementById('volumeSlider');
       const skipBtn = document.getElementById('skipTrack');
       const nowPlayingText = document.getElementById('nowPlaying');
-      // Définir le volume à 25% (0.25)
+      // DÃ©finir le volume Ã  25% (0.25)
       audio.volume = 0.15;
       
-      // Si vous avez un volumeSlider, mettez également sa valeur à 25
+      // Si vous avez un volumeSlider, mettez Ã©galement sa valeur Ã  25
       if (volumeSlider) {
         volumeSlider.value = 15;
       }
@@ -472,14 +517,14 @@
       function loadAndPlayTrack(index) {
         const track = playlist[index];
         audio.src = track.src;
-        nowPlayingText.textContent = `▶️ ${track.title} - ${track.artist}`;
+        nowPlayingText.textContent = `â–¶ï¸ ${track.title} - ${track.artist}`;
         audio.load();
         
         // Force la lecture
         forceAutoplay();
       }
 
-      // Fonction pour jouer une piste aléatoire
+      // Fonction pour jouer une piste alÃ©atoire
       function playRandomTrack() {
         const previousIndex = currentTrackIndex;
         do {
@@ -488,7 +533,7 @@
         loadAndPlayTrack(currentTrackIndex);
       }
       
-      // Démarrage immédiat de la première piste
+      // DÃ©marrage immÃ©diat de la premiÃ¨re piste
       playRandomTrack();
 
       // Gestion de la fin d'une piste
@@ -496,7 +541,7 @@
         playRandomTrack();
       });
 
-      // Interaction utilisateur pour débloquer l'audio sur certains navigateurs
+      // Interaction utilisateur pour dÃ©bloquer l'audio sur certains navigateurs
       document.addEventListener('click', () => {
         if (audio.paused) {
           forceAutoplay();
@@ -507,14 +552,14 @@
       toggleBtn.addEventListener('click', () => {
         if (audio.muted) {
           audio.muted = false;
-          toggleBtn.textContent = '🔇 Muet';
+          toggleBtn.textContent = 'ðŸ”‡ Muet';
         } else {
           audio.muted = true;
-          toggleBtn.textContent = '🔊 Non muet';
+          toggleBtn.textContent = 'ðŸ”Š Non muet';
         }
       });
 
-      // Contrôle du volume
+      // ContrÃ´le du volume
       volumeSlider.addEventListener('input', (e) => {
         audio.volume = e.target.value / 100;
       });
@@ -524,7 +569,7 @@
         playRandomTrack();
       });
 
-      // Gestion de la visibilité de la page
+      // Gestion de la visibilitÃ© de la page
       document.addEventListener('visibilitychange', () => {
         if (document.hidden) {
           audio.pause();
@@ -538,3 +583,55 @@
   </script>
 </body>
 </html>
+  
+  
+  </main>
+
+  <footer>
+
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Outils</h4>
+        <ul>
+          <li><a href="#">Encrypt</a></li>
+          <li><a href="#">Plan du site</a></li>
+          <li><a href="#">Statut</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Entreprise</h4>
+        <ul>
+          <li><a href="#">À propos</a></li>
+          <li><a href="#">Emplois</a></li>
+          <li><a href="#">Marque</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Ressources</h4>
+        <ul>
+          <li><a href="#">Université</a></li>
+          <li><a href="#">Assistance</a></li>
+          <li><a href="#">Sécurité</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Chartes</h4>
+        <ul>
+          <li><a href="#">Conditions</a></li>
+          <li><a href="#">Confidentialité</a></li>
+          <li><a href="#">Information DMCA</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
+      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
+    </div>
+  
+  </footer>
+
+  <script src="../../script.js" defer></script>
+</body>
+</html>
+
+

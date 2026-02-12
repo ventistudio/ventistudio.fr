@@ -1,16 +1,61 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
+  <meta name="theme-color" content="#6366f1">
+  <title>VentiStudio v4</title>
+  <link rel="stylesheet" href="../../../../style.css">
+</title>
+</head>
+<body>
+  <header>
+
+    <div class="logo">
+      <img src="../../../../favicon.ico" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
+      <span>VentiStudio</span>
+    </div>
+    <nav aria-label="Navigation principale">
+      <a href="../../../../" class="active">Accueil</a>
+      <a href="../../../../approuvedcontent/">Contenu Approuvé</a>
+      <a href="../../../../player">Lecteur</a>
+      <a href="../../../../wiki">Wiki</a>
+      <a href="../../../../staff">Équipe</a>
+      <a href="../../../../news">News</a>
+      <a href="../../../../pip">PIP</a>
+      <a href="../../../../sitemap">Plan du site</a>
+    </nav>
+    <div class="controls" role="toolbar" aria-label="Contrôles">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
+          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
+          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
+        </svg>
+      </button>
+      <div id="user-button" role="region" aria-label="Authentification"></div>
+    </div>
+  
+  </header>
+
+  <main>
+
+
 <!DOCTYPE html>
-<html><head><base href="https://ventistudio.fr/music">
+<html><head><base href="https://ventistudio.eu/music">
   <meta charset="utf-8">
   <meta name="viewport">
   <html lang="fr"></html>
   <link rel="icon" type="image/gif" href="favicon.avif">
   <meta property="og:title" content="Bienvenu sur VentiStudio">
   <meta property="og:site_name" content="VentiStudio Komiyuniti">
-  <meta property="og:url" content="https://ventistudio.fr">
-  <meta property="og:description" content="Hey, je suis Hikari Umaishi (光馬石), mais je préfère que l'on m'appelle Hiuma (ヒウマ).
-Laissez-moi vous présenter ma communauté, un espace où l'art et la créativité se rencontrent.">
+  <meta property="og:url" content="https://ventistudio.eu">
+  <meta property="og:description" content="Hey, je suis Hikari Umaishi (å…‰é¦¬çŸ³), mais je prÃ©fÃ¨re que l'on m'appelle Hiuma (Ã¢’ã‚¦Ã¢ž).
+Laissez-moi vous prÃ©senter ma communautÃ©, un espace oÃ¹ l'art et la crÃ©ativitÃ© se rencontrent.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="https://ventistudio.fr/favicon.gif">
+  <meta property="og:image" content="https://ventistudio.eu/favicon.gif">
   <title>VentiStudio - Musique</title>
   <style>
     :root {
@@ -164,13 +209,13 @@ Laissez-moi vous présenter ma communauté, un espace où l'art et la créativit
 </head>
 <body>
   <nav class="navbar">
-    <img src="/favicon.avif" alt="Logo VentiStudio - Design circulaire noir et blanc avec symboles français et japonais" class="logo">
+    <img src="/favicon.avif" alt="Logo VentiStudio - Design circulaire noir et blanc avec symboles franÃ§ais et japonais" class="logo">
     <div class="nav-links">
       <a href="/">Accueil</a>
       <a href="/approvedcontent/">Contenu Approuvé</a>
       <a href="/wiki">Wiki</a>
       <a href="/staff">Staff</a>
-      <a href="/artist">Artiste</a>
+      <a href="/news">News</a>
       <a href="/pip">PIP</a>
     </div>
   </nav>
@@ -194,57 +239,57 @@ Laissez-moi vous présenter ma communauté, un espace où l'art et la créativit
     const contentData = [
       {
         id: 1,
-        title: "VOYAGEUR D'ÉTERNITÉ",
-        description: "Voyageurs d’Éternité est une composition musicale créée après la reconstruction de Venti Opastudien, alors qu’il était au plus mal. Cette musique évoque, sans paroles, un voyage qui semble avoir duré une éternité, en raison de la répétition mélodique qui se reflète également dans presque toutes les œuvres du style musical Aoki Sound ('Aoki Sound Style by Venti Opastudien'). En réalité, Voyageurs d’Éternité n’est pas une simple pièce musicale, malgré sa simplicité.",
+        title: "VOYAGEUR D'Ã‰TERNITÃ‰",
+        description: "Voyageurs dâ€™Ã‰ternitÃ© est une composition musicale crÃ©Ã©e aprÃ¨s la reconstruction de Venti Opastudien, alors quâ€™il Ã©tait au plus mal. Cette musique Ã©voque, sans paroles, un voyage qui semble avoir durÃ© une Ã©ternitÃ©, en raison de la rÃ©pÃ©tition mÃ©lodique qui se reflÃ¨te Ã©galement dans presque toutes les Å“uvres du style musical Aoki Sound ('Aoki Sound Style by Venti Opastudien'). En rÃ©alitÃ©, Voyageurs dâ€™Ã‰ternitÃ© nâ€™est pas une simple piÃ¨ce musicale, malgrÃ© sa simplicitÃ©.",
         type: "ventiopastudien",
         image: "1"
       },
       {
         id: 2,
         title: "CHAOS! - MOON VERSE",
-        description: "Une musique qui nous déboussole : il semble y avoir un côté rebelle. Cette musique entraînante cache comme un lourd fardeau ou un secret. Et maintenant, la question se pose : “Que ressens-tu ?”",
+        description: "Une musique qui nous dÃ©boussole : il semble y avoir un cÃ´tÃ© rebelle. Cette musique entraÃ®nante cache comme un lourd fardeau ou un secret. Et maintenant, la question se pose : â€œQue ressens-tu ?â€",
         type: "p0lterg3iist",
         image: "2"
       },
       {
         id: 3,
         title: "AOKI UNIVERS",
-        description: "Aoki Univers est un ensemble de musique créer dans le but de présenté un OST pour un futur titre qui porterais le nom d'Aoki Univers.",
+        description: "Aoki Univers est un ensemble de musique crÃ©er dans le but de prÃ©sentÃ© un OST pour un futur titre qui porterais le nom d'Aoki Univers.",
         type: "ventiopastudien",
         image: "3"
       },
       {
         id: 4,
         title: "AOKI UNIVERS 2",
-        description: "Aoki Univers 2 est un ensemble de musique créer dans le but de présenté un OST pour un futur titre qui porterais le nom d'Aoki Univers.",
+        description: "Aoki Univers 2 est un ensemble de musique crÃ©er dans le but de prÃ©sentÃ© un OST pour un futur titre qui porterais le nom d'Aoki Univers.",
         type: "ventiopastudien",
         image: "4"
       },
       {
         id: 5,
         title: "AOKI UNIVERS 3",
-        description: "Aoki Univers 3 est un ensemble de musique créer dans le but de présenté un OST pour un futur titre qui porterais le nom d'Aoki Univers.",
+        description: "Aoki Univers 3 est un ensemble de musique crÃ©er dans le but de prÃ©sentÃ© un OST pour un futur titre qui porterais le nom d'Aoki Univers.",
         type: "ventiopastudien",
         image: "5"
       },
       {
         id: 6,
         title: "AOKI UNIVERS 4",
-        description: "Aoki Univers 4 est un ensemble de musique créer dans le but de présenté un OST pour un futur titre qui porterais le nom d'Aoki Univers.",
+        description: "Aoki Univers 4 est un ensemble de musique crÃ©er dans le but de prÃ©sentÃ© un OST pour un futur titre qui porterais le nom d'Aoki Univers.",
         type: "ventiopastudien",
         image: "6"
       },
       {
         id: 7,
         title: "AOKI UNIVERS 5",
-        description: "Aoki Univers 5 est un ensemble de musique créer dans le but de présenté un OST pour un futur titre qui porterais le nom d'Aoki Univers.",
+        description: "Aoki Univers 5 est un ensemble de musique crÃ©er dans le but de prÃ©sentÃ© un OST pour un futur titre qui porterais le nom d'Aoki Univers.",
         type: "ventiopastudien",
         image: "7"
       },
       {
         id: 8,
         title: "Sakura Yamazakura - Star of Love",
-        description: "Sakura Yamazakura - Star of Love est une composition musicale créée pour Sakura Umaishi.",
+        description: "Sakura Yamazakura - Star of Love est une composition musicale crÃ©Ã©e pour Sakura Umaishi.",
         type: "ventiopastudien",
         image: "8"
       },
@@ -258,28 +303,28 @@ Laissez-moi vous présenter ma communauté, un espace où l'art et la créativit
       {
         id: 10,
         title: "Legendary Eternal Love",
-        description: "Legendary Eternal Love est une musique créer pour la fête de l'amour.",
+        description: "Legendary Eternal Love est une musique crÃ©er pour la fÃªte de l'amour.",
         type: "ventiopastudien",
         image: "10"
       },
       {
         id: 11,
         title: "Stranger Birthday",
-        description: "Stranger Birthday à été créer pour Tomo Umaishi.",
+        description: "Stranger Birthday Ã  Ã©tÃ© crÃ©er pour Tomo Umaishi.",
         type: "ventiopastudien",
         image: "11"
       },
       {
         id: 12,
         title: "IS CHRISTMAS DAY",
-        description: "IS CHRISTMAS DAY, alors joyeux noël ! ho! Ho! HO!",
+        description: "IS CHRISTMAS DAY, alors joyeux noÃ«l ! ho! Ho! HO!",
         type: "ventiopastudien",
         image: "12"
       },
       {
         id: 13,
         title: "ANNIVERSAIRE SPECIAL 2023",
-        description: "ANNIVERSAIRE SPECIAL 2023, est une musique pour l'anniversaire du créteur !",
+        description: "ANNIVERSAIRE SPECIAL 2023, est une musique pour l'anniversaire du crÃ©teur !",
         type: "ventiopastudien",
         image: "13"
       },
@@ -407,3 +452,55 @@ Laissez-moi vous présenter ma communauté, un espace où l'art et la créativit
     });
   </script>
 </body></html>
+  
+  
+  </main>
+
+  <footer>
+
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Outils</h4>
+        <ul>
+          <li><a href="#">Encrypt</a></li>
+          <li><a href="#">Plan du site</a></li>
+          <li><a href="#">Statut</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Entreprise</h4>
+        <ul>
+          <li><a href="#">À propos</a></li>
+          <li><a href="#">Emplois</a></li>
+          <li><a href="#">Marque</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Ressources</h4>
+        <ul>
+          <li><a href="#">Université</a></li>
+          <li><a href="#">Assistance</a></li>
+          <li><a href="#">Sécurité</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Chartes</h4>
+        <ul>
+          <li><a href="#">Conditions</a></li>
+          <li><a href="#">Confidentialité</a></li>
+          <li><a href="#">Information DMCA</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
+      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
+    </div>
+  
+  </footer>
+
+  <script src="../../../../script.js" defer></script>
+</body>
+</html>
+
+

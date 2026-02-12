@@ -1,4 +1,4 @@
-// --- Variables globales ---
+﻿// --- Variables globales ---
     musicData = [
       { title: "Bohemian Rhapsody", artist: "Queen", album: "A Night at the Opera", style: "Rock", cover: "default-cover.jpg", src: "music/song1.mp3" },
       { title: "Billie Jean", artist: "Michael Jackson", album: "Thriller", style: "Pop", cover: "default-cover.jpg", src: "music/song2.mp3" },

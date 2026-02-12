@@ -1,148 +1,169 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
+
   <meta charset="UTF-8">
-  <link rel="icon" type="image/ico" href="https://ventistudio.fr/favicon.ico">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Accès Restreint - VentiStudio</title>
-  <link rel="stylesheet" href="https://trust.ventistudio.fr/root/style.css">
-  <style>
-    .restricted-container {
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 2rem;
-      background: rgba(187, 154, 247, 0.1);
-      border-radius: 10px;
-    }
-
-    .countries-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-
-    .country-card {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(187, 154, 247, 0.05);
-      padding: 1rem;
-      border-radius: 5px;
-      text-align: center;
-    }
-
-    .flag {
-      font-size: 2rem;
-    }
-
-    .country-name {
-      font-size: 0.9rem;
-    }
-
-    .warning-icon {
-      font-size: 3rem;
-      color: #ff6b6b;
-      margin-bottom: 1rem;
-    }
-
-    [data-theme="dark"] .restricted-container {
-      background: rgba(26, 27, 38, 0.8);
-    }
-
-    [data-theme="dark"] .country-card {
-      background: rgba(26, 27, 38, 0.5);
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
+  <meta name="theme-color" content="#6366f1">
+  <title>VentiStudio v4</title>
+  <link rel="stylesheet" href="../style.css">
+  AccÃ¨s Restreint - VentiStudio</title>
 </head>
 <body>
   <header>
+
     <div class="logo">
-      <img src="https://ventistudio.fr/favicon.avif" alt="VentiStudio Logo" class="site-logo">
+      <img src="../favicon.ico" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
       <span>VentiStudio</span>
     </div>
+    <nav aria-label="Navigation principale">
+      <a href="../" class="active">Accueil</a>
+      <a href="../approuvedcontent/">Contenu Approuvé</a>
+      <a href="../player">Lecteur</a>
+      <a href="../wiki">Wiki</a>
+      <a href="../staff">Équipe</a>
+      <a href="../news">News</a>
+      <a href="../pip">PIP</a>
+      <a href="../sitemap">Plan du site</a>
+    </nav>
+    <div class="controls" role="toolbar" aria-label="Contrôles">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
+          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
+          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
+        </svg>
+      </button>
+      <div id="user-button" role="region" aria-label="Authentification"></div>
+    </div>
+  
   </header>
 
   <main>
-    <div class="restricted-container">
-      <h1>⚠️ Accès Restreint</h1>
-      
-      <h2>Votre connexion a été interrompue, mais pourquoi ?</h2>
-      <p>Votre pays n'entre pas dans les critères de VentiStudio. Pour contourner cette restriction, vous pouvez utiliser un VPN ou un proxy.</p>
 
-      <h3>Pays autorisés :</h3>
+
+
+    <div class="restricted-container">
+      <h1>âš ï¸ AccÃ¨s Restreint</h1>
+      
+      <h2>Votre connexion a Ã©tÃ© interrompue, mais pourquoi ?</h2>
+      <p>Votre pays n'entre pas dans les critÃ¨res de VentiStudio. Pour contourner cette restriction, vous pouvez utiliser un VPN ou un proxy.</p>
+
+      <h3>Pays autorisÃ©s :</h3>
       <div class="countries-grid">
         <div class="country-card" data-country="FR">
-          <span class="flag">🇫🇷</span>
+          <span class="flag">ðŸ‡«ðŸ‡·</span>
           <span class="country-name">France</span>
         </div>
         <div class="country-card" data-country="DE">
-          <span class="flag">🇩🇪</span>
+          <span class="flag">ðŸ‡©ðŸ‡ª</span>
           <span class="country-name">Allemagne</span>
         </div>
         <div class="country-card" data-country="GB">
-          <span class="flag">🇬🇧</span>
+          <span class="flag">ðŸ‡¬ðŸ‡§</span>
           <span class="country-name">Royaume-Uni</span>
         </div>
         <div class="country-card" data-country="ES">
-          <span class="flag">🇪🇸</span>
+          <span class="flag">ðŸ‡ªðŸ‡¸</span>
           <span class="country-name">Espagne</span>
         </div>
         <div class="country-card" data-country="IT">
-          <span class="flag">🇮🇹</span>
+          <span class="flag">ðŸ‡®ðŸ‡¹</span>
           <span class="country-name">Italie</span>
         </div>
         <div class="country-card" data-country="PT">
-          <span class="flag">🇵🇹</span>
+          <span class="flag">ðŸ‡µðŸ‡¹</span>
           <span class="country-name">Portugal</span>
         </div>
         <div class="country-card" data-country="BE">
-          <span class="flag">🇧🇪</span>
+          <span class="flag">ðŸ‡§ðŸ‡ª</span>
           <span class="country-name">Belgique</span>
         </div>
         <div class="country-card" data-country="NL">
-          <span class="flag">🇳🇱</span>
+          <span class="flag">ðŸ‡³ðŸ‡±</span>
           <span class="country-name">Pays-Bas</span>
         </div>
         <div class="country-card" data-country="CH">
-          <span class="flag">🇨🇭</span>
+          <span class="flag">ðŸ‡¨ðŸ‡­</span>
           <span class="country-name">Suisse</span>
         </div>
         <div class="country-card" data-country="AT">
-          <span class="flag">🇦🇹</span>
+          <span class="flag">ðŸ‡¦ðŸ‡¹</span>
           <span class="country-name">Autriche</span>
         </div>
         <div class="country-card" data-country="IE">
-          <span class="flag">🇮🇪</span>
+          <span class="flag">ðŸ‡®ðŸ‡ª</span>
           <span class="country-name">Irlande</span>
         </div>
         <div class="country-card" data-country="SE">
-          <span class="flag">🇸🇪</span>
-          <span class="country-name">Suède</span>
+          <span class="flag">ðŸ‡¸ðŸ‡ª</span>
+          <span class="country-name">SuÃ¨de</span>
         </div>
         <div class="country-card" data-country="NO">
-          <span class="flag">🇳🇴</span>
-          <span class="country-name">Norvège</span>
+          <span class="flag">ðŸ‡³ðŸ‡´</span>
+          <span class="country-name">NorvÃ¨ge</span>
         </div>
         <div class="country-card" data-country="FI">
-          <span class="flag">🇫🇮</span>
+          <span class="flag">ðŸ‡«ðŸ‡®</span>
           <span class="country-name">Finlande</span>
         </div>
         <div class="country-card" data-country="DK">
-          <span class="flag">🇩🇰</span>
+          <span class="flag">ðŸ‡©ðŸ‡°</span>
           <span class="country-name">Danemark</span>
         </div>
       </div>
     </div>
+  
+  
+  
   </main>
 
   <footer>
-    <div class="footer-bottom">
-      <p class="copyright">Copyright © P-Line 2023 - 2025. Tous droits réservés.</p>
+
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Outils</h4>
+        <ul>
+          <li><a href="#">Encrypt</a></li>
+          <li><a href="#">Plan du site</a></li>
+          <li><a href="#">Statut</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Entreprise</h4>
+        <ul>
+          <li><a href="#">À propos</a></li>
+          <li><a href="#">Emplois</a></li>
+          <li><a href="#">Marque</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Ressources</h4>
+        <ul>
+          <li><a href="#">Université</a></li>
+          <li><a href="#">Assistance</a></li>
+          <li><a href="#">Sécurité</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Chartes</h4>
+        <ul>
+          <li><a href="#">Conditions</a></li>
+          <li><a href="#">Confidentialité</a></li>
+          <li><a href="#">Information DMCA</a></li>
+        </ul>
+      </div>
     </div>
+    <div class="footer-bottom">
+      <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
+      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
+    </div>
+  
   </footer>
 
-  <script src="https://trust.ventistudio.fr/root/script.js"></script>
+  <script src="../script.js" defer></script>
 </body>
 </html>
+
+

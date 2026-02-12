@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="Détail évaluation - VentiStudio">
+  <meta name="theme-color" content="#6366f1">
+  <title>Détail Évaluation - VentiStudio</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    .detail-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .detail-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 2rem;
+      padding: 2rem;
+      align-items: start;
+    }
+
+    .detail-image {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      aspect-ratio: 2/3;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+      position: relative;
+    }
+
+    .detail-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .detail-image::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .detail-info h1 {
+      font-size: 2.5rem;
+      margin: 0 0 1rem 0;
+      line-height: 1.2;
+    }
+
+    .detail-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .meta-label {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .meta-value {
+      font-size: 1rem;
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    .rating-display {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: rgba(99, 102, 241, 0.1);
+      padding: 1.5rem;
+      border-radius: 1rem;
+      border: 1px solid var(--glass-border);
+    }
+
+    .rating-stars {
+      font-size: 2rem;
+      color: var(--accent);
+    }
+
+    .rating-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .rating-score {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .rating-text {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .tags-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+
+    .tag {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      color: var(--accent);
+      padding: 0.5rem 1rem;
+      border-radius: 1rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .badge-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 1rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .description-section {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 2rem;
+      padding: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .description-section h2 {
+      margin: 0 0 1rem 0;
+      font-size: 1.5rem;
+    }
+
+    .description-text {
+      color: var(--text-secondary);
+      line-height: 1.8;
+      font-size: 1rem;
+    }
+
+    .notes-section {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(99, 102, 241, 0.05) 100%);
+      border: 1px solid var(--glass-border);
+      border-radius: 1.5rem;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .notes-section h3 {
+      margin: 0 0 1rem 0;
+      color: var(--accent);
+    }
+
+    .notes-text {
+      font-style: italic;
+      color: var(--text-secondary);
+    }
+
+    .navigation-section {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 3rem;
+    }
+
+    .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      color: var(--text-primary);
+      padding: 1rem 2rem;
+      border-radius: 1rem;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    .nav-btn:hover {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .nav-btn-primary {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+      color: white;
+      border-color: transparent;
+    }
+
+    .nav-btn-primary:hover {
+      box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+    }
+
+    .error-state {
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+
+    .error-state h2 {
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+    }
+
+    .error-state a {
+      display: inline-block;
+      margin-top: 1rem;
+      background: var(--accent);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.75rem;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    .error-state a:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+    }
+
+    .loading-state {
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+
+    .loading-spinner {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      border: 4px solid var(--glass-border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 768px) {
+      .detail-header {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .detail-info h1 {
+        font-size: 1.8rem;
+      }
+
+      .detail-container {
+        padding: 1rem;
+      }
+
+      .detail-image {
+        aspect-ratio: 16/9;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="/favicon.avif" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
+      <span>VentiStudio</span>
+    </div>
+    <nav aria-label="Navigation principale">
+      <a href="/">Accueil</a>
+      <a href="/evaluation" class="active">Évaluation</a>
+      <a href="/player">Lecteur</a>
+      <a href="/wiki">Wiki</a>
+      <a href="/staff">Équipe</a>
+      <a href="/news">News</a>
+      <a href="/pip">PIP</a>
+      <a href="/sitemap">Plan du site</a>
+    </nav>
+    <div class="controls" role="toolbar" aria-label="Contrôles">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
+          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
+          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
+        </svg>
+      </button>
+      <div id="user-button" role="region" aria-label="Authentification"></div>
+    </div>
+  </header>
+
+  <main>
+    <div class="detail-container" id="content"></div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Outils</h4>
+        <ul>
+          <li><a href="/security">Encrypt</a></li>
+          <li><a href="/sitemap">Plan du site</a></li>
+          <li><a href="#status">Statut</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Entreprise</h4>
+        <ul>
+          <li><a href="/about">À propos</a></li>
+          <li><a href="/jobs">Emplois</a></li>
+          <li><a href="#brand">Marque</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Ressources</h4>
+        <ul>
+          <li><a href="/university">Université</a></li>
+          <li><a href="/lawful/support">Assistance</a></li>
+          <li><a href="/lawful/security">Sécurité</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Chartes</h4>
+        <ul>
+          <li><a href="/terms">Conditions</a></li>
+          <li><a href="/privacy">Confidentialité</a></li>
+          <li><a href="/lawful/dmcainfo">Information DMCA</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
+      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <script src="/script.js" defer></script>
+  <script src="../evaluation-data.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const contentDiv = document.getElementById('content');
+
+      // Get ID from URL params
+      const params = new URLSearchParams(window.location.search);
+      const id = parseInt(params.get('id'));
+
+      if (!window.evaluationSystem) {
+        contentDiv.innerHTML = '<div class="error-state"><h2>⚠️ Système non disponible</h2><p>Impossible de charger les données d\'évaluation.</p><a href="/evaluation">Retour aux évaluations</a></div>';
+        return;
+      }
+
+      if (!id) {
+        contentDiv.innerHTML = '<div class="error-state"><h2>❌ Évaluation non spécifiée</h2><p>Veuillez sélectionner une évaluation.</p><a href="/evaluation">Retour aux évaluations</a></div>';
+        return;
+      }
+
+      const item = window.evaluationSystem.getById(id);
+
+      if (!item) {
+        contentDiv.innerHTML = '<div class="error-state"><h2>❌ Évaluation non trouvée</h2><p>L\'évaluation demandée n\'existe pas.</p><a href="/evaluation">Retour aux évaluations</a></div>';
+        return;
+      }
+
+      // Update page title
+      document.title = `${item.title} - Évaluation - VentiStudio`;
+
+      // Render content
+      const typeLabel = {
+        films: 'Film',
+        series: 'Série',
+        'series-animations': 'Série Animée',
+        animations: 'Animation',
+        musique: 'Musique',
+        jeux: 'Jeu',
+        manga: 'Manga',
+        applications: 'Application'
+      }[item.type] || 'Contenu';
+
+      const ratingStars = '★'.repeat(Math.floor(item.rating)) + (item.rating % 1 ? '½' : '');
+
+      // Get all items for navigation
+      const allItems = window.evaluationSystem.getAllItems();
+      const currentIndex = allItems.findIndex(i => i.id === id);
+      const prevItem = currentIndex > 0 ? allItems[currentIndex - 1] : null;
+      const nextItem = currentIndex < allItems.length - 1 ? allItems[currentIndex + 1] : null;
+
+      contentDiv.innerHTML = `
+        <div class="detail-header">
+          <div class="detail-image">
+            <img src="${item.image}" alt="${item.title}" onerror="this.style.display='none'">
+          </div>
+          <div class="detail-info">
+            <h1>${item.title}</h1>
+            
+            <div class="detail-meta">
+              <div class="meta-item">
+                <span class="meta-label">Type</span>
+                <span class="meta-value">${typeLabel}</span>
+              </div>
+              ${item.creator ? `
+              <div class="meta-item">
+                <span class="meta-label">Créateur / Studio</span>
+                <span class="meta-value">${item.creator}</span>
+              </div>
+              ` : ''}
+              ${item.date ? `
+              <div class="meta-item">
+                <span class="meta-label">Date</span>
+                <span class="meta-value">${new Date(item.date).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+              </div>
+              ` : ''}
+            </div>
+
+            <div class="rating-display">
+              <div class="rating-stars">${ratingStars}</div>
+              <div class="rating-info">
+                <div class="rating-score">${item.rating}/5</div>
+                <div class="rating-text">Note moyenne</div>
+              </div>
+            </div>
+
+            ${item.tags && item.tags.length > 0 ? `
+            <div class="tags-section">
+              ${item.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+            </div>
+            ` : ''}
+
+            ${item.featured || item.community ? `
+            <div class="badge-section">
+              ${item.featured ? '<span class="badge">⭐ Choix VentiStudio</span>' : ''}
+              ${item.community ? '<span class="badge">👥 Populaire</span>' : ''}
+            </div>
+            ` : ''}
+          </div>
+        </div>
+
+        ${item.description ? `
+        <div class="description-section">
+          <h2>Description</h2>
+          <div class="description-text">${item.description}</div>
+        </div>
+        ` : ''}
+
+        ${item.notes ? `
+        <div class="notes-section">
+          <h3>Avis VentiStudio</h3>
+          <p class="notes-text">"${item.notes}"</p>
+        </div>
+        ` : ''}
+
+        <div class="navigation-section">
+          <a href="/evaluation" class="nav-btn">↶ Retour aux évaluations</a>
+          ${prevItem ? `<a href="/evaluation/content/?id=${prevItem.id}" class="nav-btn">← ${prevItem.title}</a>` : ''}
+          ${nextItem ? `<a href="/evaluation/content/?id=${nextItem.id}" class="nav-btn">${nextItem.title} →</a>` : ''}
+        </div>
+      `;
+    });
+  </script>
+</body>
+</html>

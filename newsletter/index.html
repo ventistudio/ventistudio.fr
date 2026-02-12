@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="Inscrivez-vous à la newsletter de VentiStudio pour rester à jour">
+  <meta name="theme-color" content="#6366f1">
+  <title>Newsletter VentiStudio - Inscrivez-vous!</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    .newsletter-container {
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 40px 20px;
+    }
+
+    .newsletter-card {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%);
+      border: 2px solid rgba(99, 102, 241, 0.3);
+      border-radius: 16px;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .newsletter-card h1 {
+      color: #6366f1;
+      margin-bottom: 10px;
+      font-size: 2em;
+    }
+
+    .newsletter-card p {
+      color: #a0aec0;
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+
+    .newsletter-benefits {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+      margin: 30px 0;
+      text-align: left;
+    }
+
+    .benefit {
+      background: rgba(99, 102, 241, 0.1);
+      padding: 15px;
+      border-radius: 8px;
+      border-left: 4px solid #6366f1;
+    }
+
+    .benefit-icon {
+      font-size: 1.5em;
+      margin-right: 8px;
+    }
+
+    .benefit-title {
+      color: #e2e8f0;
+      font-weight: 600;
+      font-size: 0.9em;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 10px;
+      margin: 30px 0;
+      flex-direction: column;
+    }
+
+    .newsletter-form input {
+      padding: 12px 16px;
+      border: 2px solid rgba(99, 102, 241, 0.3);
+      border-radius: 8px;
+      background: rgba(30, 41, 59, 0.5);
+      color: #e2e8f0;
+      font-size: 1em;
+      transition: all 0.3s ease;
+    }
+
+    .newsletter-form input:focus {
+      outline: none;
+      border-color: #6366f1;
+      background: rgba(30, 41, 59, 0.8);
+      box-shadow: 0 0 12px rgba(99, 102, 241, 0.2);
+    }
+
+    .newsletter-form button {
+      padding: 12px 24px;
+      background: linear-gradient(135deg, #6366f1, #9333ea);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 1em;
+      transition: all 0.3s ease;
+    }
+
+    .newsletter-form button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+    }
+
+    .newsletter-form button:active {
+      transform: translateY(0);
+    }
+
+    .newsletter-message {
+      margin-top: 20px;
+      padding: 12px 16px;
+      border-radius: 8px;
+      display: none;
+      animation: slideIn 0.3s ease;
+    }
+
+    .newsletter-message.success {
+      background: rgba(34, 197, 94, 0.2);
+      border: 1px solid #22c55e;
+      color: #86efac;
+      display: block;
+    }
+
+    .newsletter-message.error {
+      background: rgba(239, 68, 68, 0.2);
+      border: 1px solid #ef4444;
+      color: #fca5a5;
+      display: block;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .newsletter-list {
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+      padding: 20px;
+      margin-top: 30px;
+      text-align: left;
+    }
+
+    .newsletter-list h3 {
+      color: #6366f1;
+      margin-bottom: 15px;
+    }
+
+    .subscriber-item {
+      background: rgba(99, 102, 241, 0.1);
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.9em;
+    }
+
+    .subscriber-item .email {
+      color: #cbd5e1;
+    }
+
+    .subscriber-item .date {
+      color: #64748b;
+      font-size: 0.85em;
+    }
+
+    .subscriber-item button {
+      background: #ef4444;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 4px 10px;
+      cursor: pointer;
+      font-size: 0.85em;
+      transition: all 0.2s;
+    }
+
+    .subscriber-item button:hover {
+      background: #dc2626;
+    }
+
+    .admin-section {
+      margin-top: 40px;
+      padding-top: 40px;
+      border-top: 2px solid rgba(99, 102, 241, 0.2);
+    }
+
+    .admin-section h2 {
+      color: #6366f1;
+      margin-bottom: 20px;
+    }
+
+    .admin-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .admin-buttons button {
+      padding: 10px 16px;
+      background: rgba(99, 102, 241, 0.2);
+      border: 1px solid #6366f1;
+      color: #6366f1;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9em;
+      transition: all 0.2s;
+    }
+
+    .admin-buttons button:hover {
+      background: rgba(99, 102, 241, 0.3);
+    }
+
+    @media (max-width: 640px) {
+      .newsletter-card {
+        padding: 20px;
+      }
+
+      .newsletter-card h1 {
+        font-size: 1.5em;
+      }
+
+      .newsletter-benefits {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="../favicon.ico" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
+      <span>VentiStudio</span>
+    </div>
+    <nav aria-label="Navigation principale">
+      <a href="/">Accueil</a>
+      <a href="/news/">Chroniques</a>
+      <a href="/news/archive/">Archive</a>
+      <a href="/tags/">Tags</a>
+      <a href="/stats/">Stats</a>
+      <a href="/newsletter/" class="active">Infolettre</a>
+      <a href="/équipe/">Équipe</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="newsletter-container">
+      <div class="newsletter-card">
+        <h1>📧 Infolettre VentiStudio</h1>
+        <p>Recevez les dernières chroniques et actualités de VentiStudio directement dans votre boîte mail</p>
+
+        <div class="newsletter-benefits">
+          <div class="benefit">
+            <div><span class="benefit-icon">📰</span></div>
+            <div class="benefit-title">Chroniques exclusives</div>
+          </div>
+          <div class="benefit">
+            <div><span class="benefit-icon">🎉</span></div>
+            <div class="benefit-title">Événements en avant-première</div>
+          </div>
+          <div class="benefit">
+            <div><span class="benefit-icon">✨</span></div>
+            <div class="benefit-title">Mises à jour en priorité</div>
+          </div>
+          <div class="benefit">
+            <div><span class="benefit-icon">🔐</span></div>
+            <div class="benefit-title">Sans spam garanti</div>
+          </div>
+        </div>
+
+        <form class="newsletter-form" id="newsletterForm">
+          <input type="email" id="subscribeEmail" placeholder="Votre adresse email" required>
+          <button type="submit">S'abonner maintenant</button>
+        </form>
+
+        <div id="newsletterMessage" class="newsletter-message"></div>
+      </div>
+
+      <div class="newsletter-list">
+        <h3>📊 Abonnés enregistrés</h3>
+        <div id="subscribersList"></div>
+      </div>
+
+      <div class="admin-section">
+        <h2>🔧 Outils Administrateur</h2>
+        <p style="color: #a0aec0; margin-bottom: 15px; font-size: 0.9em;">
+          Ces boutons permettent de gérer les abonnements et d'envoyer des emails test
+        </p>
+        <div class="admin-buttons">
+          <button onclick="sendTestNewsletter()">📬 Envoyer email test</button>
+          <button onclick="exportSubscribers()">📥 Exporter abonnés (JSON)</button>
+          <button onclick="clearAllSubscribers()">🗑️ Effacer tous les abonnés</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 VentiStudio. Tous droits réservés.</p>
+  </footer>
+
+  <script src="newsletter.js"></script>
+</body>
+</html>

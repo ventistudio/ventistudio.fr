@@ -1,47 +1,54 @@
-<!DOCTYPE html>
-  <html lang="fr">
+﻿<!DOCTYPE html>
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <link rel="icon" type="image/ico" href="https://ventistudio.fr/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Umaishi Corp - Accueil</title>
-    <link rel="stylesheet" href="https://trust.ventistudio.fr/root/style.css">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
+  <meta name="theme-color" content="#6366f1">
+  <title>VentiStudio v4</title>
+  <link rel="stylesheet" href="../style.css">
+</title>
 </head>
 <body>
   <header>
+
     <div class="logo">
-      <img src="https://ventistudio.fr/favicon.avif" alt="VentiStudio Logo" class="site-logo">
+      <img src="../favicon.ico" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
       <span>VentiStudio</span>
     </div>
-    <nav>
-      <a href="https://ventistudio.fr" class="active">Accueil</a>
-      <a href="https://ventistudio.fr/approuvedcontent">Contenu Approuvé</a>
-      <a href="https://ventistudio.fr/player">Player</a>
-      <a href="https://ventistudio.fr/wiki">Wiki</a>
-      <a href="https://ventistudio.fr/staff">Staff</a>
-      <a href="https://ventistudio.fr/artist">Artiste</a>
-      <a href="https://ventistudio.fr/pip">PIP</a>
-      <a href="https://ventistudio.fr/sitemap">Sitemap</a>
+    <nav aria-label="Navigation principale">
+      <a href="../" class="active">Accueil</a>
+      <a href="../approuvedcontent/">Contenu Approuvé</a>
+      <a href="../player">Lecteur</a>
+      <a href="../wiki">Wiki</a>
+      <a href="../staff">Équipe</a>
+      <a href="../news">News</a>
+      <a href="../pip">PIP</a>
+      <a href="../sitemap">Plan du site</a>
     </nav>
-    <div class="controls">
-      <button id="theme-toggle" class="theme-toggle">
-        <svg width="24" height="24" viewBox="0 0 24 24">
+    <div class="controls" role="toolbar" aria-label="Contrôles">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
           <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
           <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
           <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
         </svg>
       </button>
-      <div id="user-button"></div>
+      <div id="user-button" role="region" aria-label="Authentification"></div>
     </div>
+  
   </header>
 
-  <!-- Section principale -->
   <main>
+
+
+
     </section>
     <section class="hero">
       <h1>Umaishi Corp</h1>
-      <p>L'innovation au service de la créativité et de la technologie</p>
-      <button href="#divisions" class="cta">Découvrir nos divisions</button>
+      <p>L'innovation au service de la crÃ©ativitÃ© et de la technologie</p>
+      <button href="#divisions" class="cta">DÃ©couvrir nos divisions</button>
     </section>
 
     <section id="divisions" class="about">
@@ -49,11 +56,11 @@
       <div class="cards">
         <div class="card">
           <h3>VentiStudio</h3>
-          <p>La créativité sans limites - Notre plateforme centrale dédiée aux médias interactifs.</p>
+          <p>La crÃ©ativitÃ© sans limites - Notre plateforme centrale dÃ©diÃ©e aux mÃ©dias interactifs.</p>
         </div>
         <div class="card">
           <h3>Retribution Studio</h3>
-          <p>Votre allié dans le jeu vidéo - Développement de jeux innovants.</p>
+          <p>Votre alliÃ© dans le jeu vidÃ©o - DÃ©veloppement de jeux innovants.</p>
         </div>
         <div class="card">
           <h3>RushKA Studio</h3>
@@ -67,97 +74,100 @@
       <div class="cards">
         <div class="card">
           <h3>Nexus Lumina</h3>
-          <p>Le cœur des créateurs - Hub artistique communautaire pour la diffusion d'œuvres.</p>
+          <p>Le cÅ“ur des crÃ©ateurs - Hub artistique communautaire pour la diffusion d'Å“uvres.</p>
         </div>
         <div class="card">
           <h3>Subo Awards</h3>
-          <p>Récompense des talents - Célébration annuelle des créateurs exceptionnels.</p>
+          <p>RÃ©compense des talents - CÃ©lÃ©bration annuelle des crÃ©ateurs exceptionnels.</p>
         </div>
         <div class="card">
-          <h3>Étoile Tasukete</h3>
-          <p>La solidarité au cœur de la communauté - Soutien et entraide communautaire.</p>
+          <h3>Ã‰toile Tasukete</h3>
+          <p>La solidaritÃ© au cÅ“ur de la communautÃ© - Soutien et entraide communautaire.</p>
         </div>
         <div class="card">
           <h3>Phare Teikei</h3>
-          <p>La lumière de l'innovation - Programme partenaire et incubateur technologique.</p>
+          <p>La lumiÃ¨re de l'innovation - Programme partenaire et incubateur technologique.</p>
         </div>
       </div>
     </section>
 
     <section class="about">
-      <h2>Actualités et Événements</h2>
+      <h2>ActualitÃ©s et Ã‰vÃ©nements</h2>
       <div class="cards">
         <div class="card">
-          <h3>Concours de Noël</h3>
-          <p>Participez à notre événement festif sur Discord !</p>
+          <h3>Concours de NoÃ«l</h3>
+          <p>Participez Ã  notre Ã©vÃ©nement festif sur Discord !</p>
         </div>
         <div class="card">
-          <h3>Mises à jour techniques</h3>
-          <p>PWA et support AV1 ajoutés</p>
+          <h3>Mises Ã  jour techniques</h3>
+          <p>PWA et support AV1 ajoutÃ©s</p>
         </div>
         <div class="card">
-          <h3>Projets à venir</h3>
-          <p>Découvrez ce qui arrive bientôt</p>
+          <h3>Projets Ã  venir</h3>
+          <p>DÃ©couvrez ce qui arrive bientÃ´t</p>
         </div>
       </div>
-      <a href="/player/news" class="cta">Lire plus d'actualités</a>
+      <a href="/player/news" class="cta">Lire plus d'actualitÃ©s</a>
     </section>
 
     <section class="about">
-      <h2>Rejoignez la communauté</h2>
-      <p>Que vous soyez créateur, joueur, ou simplement curieux, VentiStudio est votre espace pour explorer, apprendre et partager.</p>
+      <h2>Rejoignez la communautÃ©</h2>
+      <p>Que vous soyez crÃ©ateur, joueur, ou simplement curieux, VentiStudio est votre espace pour explorer, apprendre et partager.</p>
       <div class="button-group">
         <a href="/social/?redirect=" class="cta">Nous rejoindre sur Discord</a>
         <a href="/player/story/gazette" class="cta">Lire la Gazette</a>
       </div>
     </section>
+  
+  
+  
   </main>
 
   <footer>
+
     <div class="footer-content">
       <div class="footer-section">
         <h4>Outils</h4>
         <ul>
-          <li><a href="https://ventistudio.fr/encrypt">Encrypt</a></li>
-          <li><a href="https://ventistudio.fr/sitemap">Sitemap</a></li>
-          <li><a href="https://status.ventistudio.fr/">Statut</a></li>
-          <li><a href="https://aina.ventistudio.fr/">Aina</a></li>
+          <li><a href="#">Encrypt</a></li>
+          <li><a href="#">Plan du site</a></li>
+          <li><a href="#">Statut</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Entreprise</h4>
         <ul>
-          <li><a href="https://ventistudio.fr/about">À propos</a></li>
-          <li><a href="https://ventistudio.fr/jobs">Emplois</a></li>
-          <li><a href="https://ventistudio.fr/company">Marque</a></li>
-          <li><a href="https://ventistudio.fr/creator">Créateur</a></li>
+          <li><a href="#">À propos</a></li>
+          <li><a href="#">Emplois</a></li>
+          <li><a href="#">Marque</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Ressources</h4>
         <ul>
-          <li><a href="https://ventistudio.fr/university">Université</a></li>
-          <li><a href="https://ventistudio.fr/school">École</a></li>
-          <li><a href="https://ventistudio.fr/help">Assistance</a></li>
-          <li><a href="https://ventistudio.fr/security">Sécurité</a></li>
+          <li><a href="#">Université</a></li>
+          <li><a href="#">Assistance</a></li>
+          <li><a href="#">Sécurité</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Chartes</h4>
         <ul>
-          <li><a href="https://ventistudio.fr/terms">Conditions</a></li>
-          <li><a href="https://ventistudio.fr/privacy">Confidentialité</a></li>
-          <li><a href="https://ventistudio.fr/cookies">Cookies</a></li>
-          <li><a href="https://ventistudio.fr/dmca">DMCA</a></li>
+          <li><a href="#">Conditions</a></li>
+          <li><a href="#">Confidentialité</a></li>
+          <li><a href="#">Information DMCA</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p class="status"><iframe src="https://status.ventistudio.fr/badge?theme=dark" width="250" height="30" frameborder="0" marginheight="0" marginwidth="0" scrolling="no"></iframe></p>
-      <p class="copyright">Copyright © P-Line 2023 - 2025. Tous droits réservés.</p>
+      <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
+      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
     </div>
+  
   </footer>
 
-  <script src="https://trust.ventistudio.fr/root/script.js"></script>
+  <script src="../script.js" defer></script>
 </body>
 </html>
+
+

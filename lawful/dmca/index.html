@@ -1,193 +1,58 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/ico" href="https://ventistudio.fr/favicon.ico">
-  <title>VentiStudio - DMCA</title>
-  <link rel="stylesheet" href="https://trust.ventistudio.fr/root/style.css">
-  <style>
-    /* Styles spécifiques pour la page DMCA */
-
-.dmca-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
-}
-
-.hero-section {
-  text-align: center;
-  padding: 4rem 2rem;
-  background: var(--bg-gradient);
-  margin-bottom: 2rem;
-}
-
-.hero-section h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  color: var(--text-primary);
-}
-
-.section {
-  margin-bottom: 3rem;
-}
-
-.section-title {
-  font-size: 1.8rem;
-  margin-bottom: 1.5rem;
-  color: var(--text-primary);
-}
-
-.section-subtitle {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  color: var(--text-secondary);
-  margin-bottom: 2rem;
-}
-
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
-}
-
-.service-card {
-  background: var(--bg-secondary);
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-}
-
-.service-card:hover {
-  transform: translateY(-5px);
-}
-
-.service-card h3 {
-  font-size: 1.3rem;
-  margin-bottom: 1rem;
-  color: var(--text-primary);
-}
-
-.service-card p {
-  color: var(--text-secondary);
-  line-height: 1.5;
-}
-
-/* Styles du formulaire */
-.auth-form {
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.form-group {
-  margin-bottom: 1.5rem;
-}
-
-.form-group input,
-.form-group textarea {
-  width: 100%;
-  padding: 0.8rem;
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  background: var(--bg-input);
-  color: var(--text-primary);
-  font-size: 1rem;
-  transition: border-color 0.3s ease;
-}
-
-.form-group textarea {
-  min-height: 120px;
-  resize: vertical;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-  border-color: var(--accent-color);
-  outline: none;
-}
-
-.cta-button {
-  width: 100%;
-  padding: 1rem;
-  background: var(--accent-color);
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.cta-button:hover {
-  background: var(--accent-color-hover);
-}
-
-/* Support du thème sombre */
-[data-theme="dark"] .service-card {
-  background: var(--bg-card-dark);
-}
-
-/* Media Queries */
-@media (max-width: 768px) {
-  .hero-section {
-    padding: 3rem 1rem;
-  }
-
-  .hero-section h1 {
-    font-size: 2rem;
-  }
-
-  .dmca-container {
-    padding: 1rem;
-  }
-
-  .services-grid {
-    grid-template-columns: 1fr;
-  }
-}
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
+  <meta name="theme-color" content="#6366f1">
+  <title>VentiStudio v4</title>
+  <link rel="stylesheet" href="../../style.css">
+</title>
 </head>
 <body>
   <header>
+
     <div class="logo">
-      <img src="https://ventistudio.fr/favicon.avif" alt="VentiStudio Logo" class="site-logo">
+      <img src="../../favicon.ico" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
       <span>VentiStudio</span>
     </div>
-    <nav>
-      <a href="/">Accueil</a>
-      <a href="/approuvedcontent">Contenu Approuvé</a>
-      <a href="/player">Player</a>
-      <a href="/wiki">Wiki</a>
-      <a href="/staff">Staff</a>
-      <a href="/artist">Artiste</a>
-      <a href="/pip">PIP</a>
-      <a href="/sitemap">Sitemap</a>
+    <nav aria-label="Navigation principale">
+      <a href="../../" class="active">Accueil</a>
+      <a href="../../approuvedcontent/">Contenu Approuvé</a>
+      <a href="../../player">Lecteur</a>
+      <a href="../../wiki">Wiki</a>
+      <a href="../../staff">Équipe</a>
+      <a href="../../news">News</a>
+      <a href="../../pip">PIP</a>
+      <a href="../../sitemap">Plan du site</a>
     </nav>
-    <div class="controls">
-      <button id="theme-toggle" class="theme-toggle">
-        <svg width="24" height="24" viewBox="0 0 24 24">
+    <div class="controls" role="toolbar" aria-label="Contrôles">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
           <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
           <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
           <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
         </svg>
       </button>
-      <div id="user-button"></div>
+      <div id="user-button" role="region" aria-label="Authentification"></div>
     </div>
+  
   </header>
 
   <main>
+
+
+
     <section class="hero-section">
       <h1>DMCA - Retrait de contenu</h1>
-      <p>Protection des droits d'auteur et procédure de notification</p>
+      <p>Protection des droits d'auteur et procÃ©dure de notification</p>
     </section>
 
     <div class="dmca-container">
       <section class="section">
         <h2 class="section-title">Politique DMCA</h2>
-        <p class="section-subtitle">VentiStudio respecte les droits de propriété intellectuelle d'autrui et attend de ses utilisateurs qu'ils fassent de même. Conformément au Digital Millennium Copyright Act (DMCA), nous répondrons rapidement aux notifications de violation de droits d'auteur.</p>
+        <p class="section-subtitle">VentiStudio respecte les droits de propriÃ©tÃ© intellectuelle d'autrui et attend de ses utilisateurs qu'ils fassent de mÃªme. ConformÃ©ment au Digital Millennium Copyright Act (DMCA), nous rÃ©pondrons rapidement aux notifications de violation de droits d'auteur.</p>
       </section>
 
       <section class="section">
@@ -195,25 +60,25 @@
         <div class="services-grid">
           <div class="service-card">
             <h3>Identification</h3>
-            <p>Une signature physique ou électronique du titulaire des droits ou de son représentant autorisé.</p>
+            <p>Une signature physique ou Ã©lectronique du titulaire des droits ou de son reprÃ©sentant autorisÃ©.</p>
           </div>
           <div class="service-card">
             <h3>Description</h3>
-            <p>Identification de l'œuvre protégée par le droit d'auteur qui aurait été violée.</p>
+            <p>Identification de l'Å“uvre protÃ©gÃ©e par le droit d'auteur qui aurait Ã©tÃ© violÃ©e.</p>
           </div>
           <div class="service-card">
             <h3>Localisation</h3>
-            <p>Identification du contenu qui viole les droits d'auteur et qui doit être retiré.</p>
+            <p>Identification du contenu qui viole les droits d'auteur et qui doit Ãªtre retirÃ©.</p>
           </div>
           <div class="service-card">
             <h3>Contact</h3>
-            <p>Vos coordonnées pour que nous puissions vous contacter concernant la notification.</p>
+            <p>Vos coordonnÃ©es pour que nous puissions vous contacter concernant la notification.</p>
           </div>
         </div>
       </section>
 
       <section class="section">
-        <h2 class="section-title">Formulaire de réclamation</h2>
+        <h2 class="section-title">Formulaire de rÃ©clamation</h2>
         <form class="auth-form" id="dmcaForm">
           <div class="form-group">
             <input type="text" id="name" placeholder="Nom complet *" required>
@@ -222,90 +87,68 @@
             <input type="email" id="email" placeholder="Email *" required>
           </div>
           <div class="form-group">
-            <input type="url" id="content-url" placeholder="URL du contenu concerné *" required>
+            <input type="url" id="content-url" placeholder="URL du contenu concernÃ© *" required>
           </div>
           <div class="form-group">
-            <textarea id="description" placeholder="Description de l'œuvre protégée *" required></textarea>
+            <textarea id="description" placeholder="Description de l'Å“uvre protÃ©gÃ©e *" required></textarea>
           </div>
           <div class="form-group">
-            <textarea id="declaration" placeholder="Déclaration de bonne foi *" required></textarea>
+            <textarea id="declaration" placeholder="DÃ©claration de bonne foi *" required></textarea>
           </div>
-          <button type="submit" class="cta-button">Soumettre la réclamation</button>
+          <button type="submit" class="cta-button">Soumettre la rÃ©clamation</button>
         </form>
       </section>
     </div>
+  
+  
+  
   </main>
 
   <footer>
+
     <div class="footer-content">
       <div class="footer-section">
         <h4>Outils</h4>
         <ul>
-          <li><a href="https://ventistudio.fr/encrypt">Encrypt</a></li>
-          <li><a href="https://ventistudio.fr/sitemap">Sitemap</a></li>
-          <li><a href="https://status.ventistudio.fr/">Statut</a></li>
-          <li><a href="https://aina.ventistudio.fr/">Aina</a></li>
+          <li><a href="#">Encrypt</a></li>
+          <li><a href="#">Plan du site</a></li>
+          <li><a href="#">Statut</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Entreprise</h4>
         <ul>
-          <li><a href="https://ventistudio.fr/about">À propos</a></li>
-          <li><a href="https://ventistudio.fr/jobs">Emplois</a></li>
-          <li><a href="https://ventistudio.fr/company">Marque</a></li>
-          <li><a href="https://ventistudio.fr/creator">Créateur</a></li>
+          <li><a href="#">À propos</a></li>
+          <li><a href="#">Emplois</a></li>
+          <li><a href="#">Marque</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Ressources</h4>
         <ul>
-          <li><a href="https://ventistudio.fr/university">Université</a></li>
-          <li><a href="https://ventistudio.fr/school">École</a></li>
-          <li><a href="https://ventistudio.fr/help">Assistance</a></li>
-          <li><a href="https://ventistudio.fr/security">Sécurité</a></li>
+          <li><a href="#">Université</a></li>
+          <li><a href="#">Assistance</a></li>
+          <li><a href="#">Sécurité</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Chartes</h4>
         <ul>
-          <li><a href="https://ventistudio.fr/terms">Conditions</a></li>
-          <li><a href="https://ventistudio.fr/privacy">Confidentialité</a></li>
-          <li><a href="https://ventistudio.fr/cookies">Cookies</a></li>
-          <li><a href="https://ventistudio.fr/dmca">DMCA</a></li>
+          <li><a href="#">Conditions</a></li>
+          <li><a href="#">Confidentialité</a></li>
+          <li><a href="#">Information DMCA</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p class="status"><iframe src="https://status.ventistudio.fr/badge?theme=dark" width="250" height="30" frameborder="0" marginheight="0" marginwidth="0" scrolling="no"></iframe></p>
-      <p class="copyright">Copyright © P-Line 2023 - 2025. Tous droits réservés.</p>
+      <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
+      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
     </div>
+  
   </footer>
 
-  <script src="https://trust.ventistudio.fr/root/script.js"></script>
-  <script>
-    document.getElementById('dmcaForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      const emailBody = `
-DMCA Takedown Request
-
-Name: ${document.getElementById('name').value}
-Email: ${document.getElementById('email').value}
-Content URL: ${document.getElementById('content-url').value}
-
-Description of copyrighted work:
-${document.getElementById('description').value}
-
-Declaration of good faith:
-${document.getElementById('declaration').value}
-
-This email was generated from the VentiStudio DMCA form.
-`;
-
-      window.location.href = `mailto:dmca@ventistudio.fr?subject=DMCA%20Takedown%20Request&body=${encodeURIComponent(emailBody)}`;
-      this.reset();
-      alert('Le formulaire de réclamation DMCA va s\'ouvrir dans votre client email par défaut.');
-    });
-  </script>
+  <script src="../../script.js" defer></script>
 </body>
 </html>
+
+

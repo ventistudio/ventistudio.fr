@@ -1,9 +1,54 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
+  <meta name="theme-color" content="#6366f1">
+  <title>VentiStudio v4</title>
+  <link rel="stylesheet" href="../style.css">
+</title>
+</head>
+<body>
+  <header>
+
+    <div class="logo">
+      <img src="../favicon.ico" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
+      <span>VentiStudio</span>
+    </div>
+    <nav aria-label="Navigation principale">
+      <a href="../" class="active">Accueil</a>
+      <a href="../approuvedcontent/">Contenu Approuvé</a>
+      <a href="../player">Lecteur</a>
+      <a href="../wiki">Wiki</a>
+      <a href="../staff">Équipe</a>
+      <a href="../news">News</a>
+      <a href="../pip">PIP</a>
+      <a href="../sitemap">Plan du site</a>
+    </nav>
+    <div class="controls" role="toolbar" aria-label="Contrôles">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
+          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
+          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
+        </svg>
+      </button>
+      <div id="user-button" role="region" aria-label="Authentification"></div>
+    </div>
+  
+  </header>
+
+  <main>
+
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/ico" href="https://ventistudio.fr/favicon.ico">
+    <link rel="icon" type="image/ico" href="https://ventistudio.eu/favicon.ico">
     <title>VentiStudio - Cooldown</title>
     <style>
         :root {
@@ -112,7 +157,7 @@
 <body>
     <div class="container">
         <div class="countdown-wrapper">
-            <h1 class="countdown-title">Prochain événement</h1>
+            <h1 class="countdown-title">Prochain Ã©vÃ©nement</h1>
             <div class="countdown" id="countdown">
                 <div class="countdown-item">
                     <div class="countdown-number" id="days">--</div>
@@ -139,41 +184,41 @@
     <script>
         const events = [
             { 
-                name: "Noël", 
+                name: "NoÃ«l", 
                 date: "2024-12-25", 
-                startTime: "00:00",  // Ajout de l'heure de début
-                icon: "🎄" 
+                startTime: "00:00",  // Ajout de l'heure de dÃ©but
+                icon: "ðŸŽ„" 
             },
             { 
                 name: "Anniversaire d'Hikari", 
                 date: "2024-12-15", 
                 startTime: "00:00",
-                icon: "🎂" 
+                icon: "ðŸŽ‚" 
             },
             { 
                 name: "Anniversaire VentiStudio", 
                 date: "2024-09-24", 
                 startTime: "00:00",
-                icon: "🎉" 
+                icon: "ðŸŽ‰" 
             },
             { 
                 name: "Halloween", 
                 date: "2024-10-31", 
-                startTime: "20:00", // L'événement commence à 20h00
-                icon: "🎃" 
+                startTime: "20:00", // L'Ã©vÃ©nement commence Ã  20h00
+                icon: "ðŸŽƒ" 
             },
             { 
-                name: "Fête Nationale", 
+                name: "FÃªte Nationale", 
                 date: "2024-07-14", 
                 startTime: "00:00",
-                icon: "🇫🇷" 
+                icon: "ðŸ‡«ðŸ‡·" 
             }
         ];
 
         function updateCountdown() {
             const now = new Date().getTime();
             
-            // Trouver le prochain événement
+            // Trouver le prochain Ã©vÃ©nement
             const nextEvent = events
                 .map(event => {
                     const [year, month, day] = event.date.split('-');
@@ -187,14 +232,14 @@
             if (nextEvent) {
                 const timeLeft = nextEvent.timestamp - now;
                 
-                // Mettre à jour le titre avec le nom de l'événement et l'heure de début
+                // Mettre Ã  jour le titre avec le nom de l'Ã©vÃ©nement et l'heure de dÃ©but
                 const eventDate = new Date(nextEvent.timestamp);
                 const formattedTime = eventDate.toLocaleTimeString('fr-FR', { 
                     hour: '2-digit', 
                     minute: '2-digit' 
                 });
                 document.querySelector('.countdown-title').textContent = 
-                    `${nextEvent.icon} ${nextEvent.name} (débute à ${formattedTime})`;
+                    `${nextEvent.icon} ${nextEvent.name} (dÃ©bute Ã  ${formattedTime})`;
                 
                 if (timeLeft < 0) {
                     document.getElementById('days').textContent = "0";
@@ -214,7 +259,7 @@
                 document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
                 document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
             } else {
-                document.querySelector('.countdown-title').textContent = "Aucun événement à venir";
+                document.querySelector('.countdown-title').textContent = "Aucun Ã©vÃ©nement Ã  venir";
             }
         }
 
@@ -230,7 +275,7 @@
                     const eventElement = document.createElement('div');
                     eventElement.className = 'event-item';
                     
-                    // Ajouter une classe si l'événement est passé
+                    // Ajouter une classe si l'Ã©vÃ©nement est passÃ©
                     if (eventDate < now) {
                         eventElement.classList.add('past-event');
                     }
@@ -243,10 +288,10 @@
                 });
         }
 
-        // Mettre à jour le compte à rebours chaque seconde
+        // Mettre Ã  jour le compte Ã  rebours chaque seconde
         setInterval(updateCountdown, 1000);
         
-        // Afficher la liste des événements
+        // Afficher la liste des Ã©vÃ©nements
         displayEventList();
         
         // Initial update
@@ -254,3 +299,55 @@
     </script>
 </body>
 </html>
+  
+  
+  </main>
+
+  <footer>
+
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Outils</h4>
+        <ul>
+          <li><a href="#">Encrypt</a></li>
+          <li><a href="#">Plan du site</a></li>
+          <li><a href="#">Statut</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Entreprise</h4>
+        <ul>
+          <li><a href="#">À propos</a></li>
+          <li><a href="#">Emplois</a></li>
+          <li><a href="#">Marque</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Ressources</h4>
+        <ul>
+          <li><a href="#">Université</a></li>
+          <li><a href="#">Assistance</a></li>
+          <li><a href="#">Sécurité</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Chartes</h4>
+        <ul>
+          <li><a href="#">Conditions</a></li>
+          <li><a href="#">Confidentialité</a></li>
+          <li><a href="#">Information DMCA</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
+      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
+    </div>
+  
+  </footer>
+
+  <script src="../script.js" defer></script>
+</body>
+</html>
+
+

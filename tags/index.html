@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="Parcourez les tags et catégories de VentiStudio">
+  <meta name="theme-color" content="#6366f1">
+  <title>Tags - VentiStudio</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    .tags-hero {
+      text-align: center;
+      padding: 60px 20px;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%);
+      border-radius: 16px;
+      margin-bottom: 40px;
+    }
+
+    .tags-hero h1 {
+      color: #6366f1;
+      margin-bottom: 10px;
+      font-size: 2.5em;
+    }
+
+    .tags-hero p {
+      color: #a0aec0;
+      font-size: 1.1em;
+    }
+
+    .tags-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      margin: 40px 0;
+    }
+
+    .tag-card {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%);
+      border: 2px solid rgba(99, 102, 241, 0.3);
+      border-radius: 12px;
+      padding: 24px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .tag-card:hover {
+      transform: translateY(-4px);
+      border-color: #6366f1;
+      box-shadow: 0 8px 24px rgba(99, 102, 241, 0.2);
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(147, 51, 234, 0.2) 100%);
+    }
+
+    .tag-icon {
+      font-size: 2.5em;
+      line-height: 1;
+    }
+
+    .tag-name {
+      font-size: 1.3em;
+      font-weight: 600;
+      color: #e2e8f0;
+    }
+
+    .tag-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.9em;
+      color: #a0aec0;
+    }
+
+    .tag-count {
+      background: rgba(99, 102, 241, 0.2);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+
+    .categories-section {
+      margin-top: 60px;
+    }
+
+    .categories-section h2 {
+      color: #6366f1;
+      margin-bottom: 30px;
+      font-size: 1.8em;
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+    }
+
+    .category-btn {
+      background: rgba(99, 102, 241, 0.1);
+      border: 2px solid rgba(99, 102, 241, 0.3);
+      border-radius: 8px;
+      padding: 16px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: #e2e8f0;
+      text-decoration: none;
+      display: block;
+    }
+
+    .category-btn:hover {
+      background: rgba(99, 102, 241, 0.2);
+      border-color: #6366f1;
+      transform: translateY(-2px);
+    }
+
+    .category-btn-icon {
+      font-size: 2em;
+      margin-bottom: 8px;
+    }
+
+    .category-btn-name {
+      font-weight: 600;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .category-btn-count {
+      font-size: 0.85em;
+      color: #a0aec0;
+    }
+
+    .tag-stats {
+      background: rgba(99, 102, 241, 0.1);
+      border-radius: 12px;
+      padding: 24px;
+      margin-top: 40px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+    }
+
+    .stat-box {
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 2em;
+      font-weight: 700;
+      color: #6366f1;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      color: #a0aec0;
+      font-size: 0.9em;
+    }
+
+    .search-tags {
+      margin-bottom: 30px;
+    }
+
+    .search-tags input {
+      width: 100%;
+      padding: 12px 16px;
+      background: rgba(30, 41, 59, 0.5);
+      border: 2px solid rgba(99, 102, 241, 0.3);
+      border-radius: 8px;
+      color: #e2e8f0;
+      font-size: 1em;
+      transition: all 0.3s ease;
+    }
+
+    .search-tags input:focus {
+      outline: none;
+      border-color: #6366f1;
+      background: rgba(30, 41, 59, 0.8);
+    }
+
+    @media (max-width: 640px) {
+      .tags-hero h1 {
+        font-size: 1.8em;
+      }
+
+      .tags-container {
+        grid-template-columns: 1fr;
+      }
+
+      .tag-stats {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="../favicon.ico" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
+      <span>VentiStudio</span>
+    </div>
+    <nav aria-label="Navigation principale">
+      <a href="/">Accueil</a>
+      <a href="/news/">Chroniques</a>
+      <a href="/news/archive/">Archive</a>
+      <a href="/tags/" class="active">Tags</a>
+      <a href="/stats/">Stats</a>
+      <a href="/newsletter/">Infolettre</a>
+      <a href="/équipe/">Équipe</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="tags-hero">
+        <h1>🏷️ Tags & Catégories</h1>
+        <p>Trouvez les articles par sujet et thématique</p>
+      </div>
+
+      <div class="search-tags">
+        <input type="text" id="searchInput" placeholder="🔍 Rechercher un tag...">
+      </div>
+
+      <div class="categories-section">
+        <h2>📂 Catégories principales</h2>
+        <div class="category-grid">
+          <a href="#update" class="category-btn">
+            <div class="category-btn-icon">📦</div>
+            <span class="category-btn-name">Mise à jour</span>
+            <span class="category-btn-count" id="count-update">0 articles</span>
+          </a>
+          <a href="#announcement" class="category-btn">
+            <div class="category-btn-icon">📢</div>
+            <span class="category-btn-name">Annonce</span>
+            <span class="category-btn-count" id="count-announcement">0 articles</span>
+          </a>
+          <a href="#feature" class="category-btn">
+            <div class="category-btn-icon">✨</div>
+            <span class="category-btn-name">Fonctionnalité</span>
+            <span class="category-btn-count" id="count-feature">0 articles</span>
+          </a>
+          <a href="#event" class="category-btn">
+            <div class="category-btn-icon">🎪</div>
+            <span class="category-btn-name">Événement</span>
+            <span class="category-btn-count" id="count-event">0 articles</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="tags-section">
+        <h2 style="color: #6366f1; margin: 50px 0 30px 0; font-size: 1.8em;">🔍 Tags disponibles</h2>
+        <div class="tags-container" id="tagsContainer">
+          <!-- Tags générés dynamiquement -->
+        </div>
+      </div>
+
+      <div class="tag-stats">
+        <div class="stat-box">
+          <div class="stat-value" id="totalTags">0</div>
+          <div class="stat-label">Tags</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-value" id="totalArticles">0</div>
+          <div class="stat-label">Articles</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-value" id="avgPerTag">0</div>
+          <div class="stat-label">Articles/Tag</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-value" id="mostUsedTag">-</div>
+          <div class="stat-label">Tag populaire</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 VentiStudio. Tous droits réservés.</p>
+  </footer>
+
+  <script src="../news/news-data.js"></script>
+  <script>
+    // Tags disponibles
+    const AVAILABLE_TAGS = {
+      'update': { icon: '📦', name: 'Mise à jour', color: '#3b82f6' },
+      'announcement': { icon: '📢', name: 'Annonce', color: '#ef4444' },
+      'feature': { icon: '✨', name: 'Fonctionnalité', color: '#f59e0b' },
+      'event': { icon: '🎪', name: 'Événement', color: '#10b981' },
+      'tutorial': { icon: '📚', name: 'Tutoriel', color: '#8b5cf6' },
+      'important': { icon: '⚠️', name: 'Important', color: '#ec4899' },
+      'community': { icon: '👥', name: 'Communauté', color: '#06b6d4' },
+      'milestone': { icon: '🎯', name: 'Jalon', color: '#d97706' }
+    };
+
+    let filteredTags = {};
+
+    document.addEventListener('DOMContentLoaded', function() {
+      loadTags();
+      setupSearch();
+    });
+
+    function loadTags() {
+      if (typeof newsData === 'undefined') {
+        console.error('newsData non chargée');
+        return;
+      }
+
+      // Construire les tags depuis newsData
+      const tagCounts = {};
+      const categoryCounts = {};
+
+      newsData.forEach(article => {
+        // Compter catégories
+        categoryCounts[article.category] = (categoryCounts[article.category] || 0) + 1;
+
+        // Compter tags (si présents)
+        if (article.tags && Array.isArray(article.tags)) {
+          article.tags.forEach(tag => {
+            tagCounts[tag] = (tagCounts[tag] || 0) + 1;
+          });
+        }
+      });
+
+      // Si pas de tags, utiliser les catégories
+      if (Object.keys(tagCounts).length === 0) {
+        Object.entries(categoryCounts).forEach(([cat, count]) => {
+          tagCounts[cat] = count;
+        });
+      }
+
+      filteredTags = tagCounts;
+      renderTags(filteredTags);
+      updateStats(filteredTags, categoryCounts);
+    }
+
+    function renderTags(tags) {
+      const container = document.getElementById('tagsContainer');
+      container.innerHTML = '';
+
+      const sortedTags = Object.entries(tags)
+        .sort((a, b) => b[1] - a[1]);
+
+      sortedTags.forEach(([tag, count]) => {
+        const tagInfo = AVAILABLE_TAGS[tag] || { icon: '🏷️', name: tag };
+        const card = document.createElement('div');
+        card.className = 'tag-card';
+        card.innerHTML = `
+          <a href="/news/archive/?search=${tag}" style="text-decoration: none; color: inherit;">
+            <div class="tag-icon">${tagInfo.icon}</div>
+            <div class="tag-name">${tagInfo.name}</div>
+            <div class="tag-info">
+              <span class="tag-count">${count} articles</span>
+            </div>
+          </a>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function updateStats(tags, categories) {
+      const totalTags = Object.keys(tags).length;
+      const totalArticles = Object.values(tags).reduce((a, b) => a + b, 0);
+      const avgPerTag = totalArticles > 0 ? (totalArticles / totalTags).toFixed(1) : 0;
+
+      const mostUsedTag = Object.entries(tags)
+        .sort((a, b) => b[1] - a[1])[0];
+
+      document.getElementById('totalTags').textContent = totalTags;
+      document.getElementById('totalArticles').textContent = totalArticles;
+      document.getElementById('avgPerTag').textContent = avgPerTag;
+      document.getElementById('mostUsedTag').textContent = mostUsedTag?.[0] || '-';
+
+      // Mettre à jour les comptes de catégories
+      for (const [cat, count] of Object.entries(categories)) {
+        const elem = document.getElementById(`count-${cat}`);
+        if (elem) {
+          elem.textContent = `${count} article${count > 1 ? 's' : ''}`;
+        }
+      }
+    }
+
+    function setupSearch() {
+      document.getElementById('searchInput').addEventListener('input', function(e) {
+        const search = e.target.value.toLowerCase();
+        const filtered = Object.fromEntries(
+          Object.entries(filteredTags).filter(([tag]) => 
+            tag.toLowerCase().includes(search) || 
+            (AVAILABLE_TAGS[tag]?.name || tag).toLowerCase().includes(search)
+          )
+        );
+        renderTags(filtered);
+      });
+    }
+  </script>
+</body>
+</html>

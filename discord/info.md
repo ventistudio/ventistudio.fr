@@ -1,4 +1,4 @@
-# ✦・ヴェンティスタジオ・✦
+﻿# ✦・ヴェンティスタジオ・✦
 
 Hey, je suis **Hikari Umaishi** (光馬石), mais je préfère que l'on m'appelle **Hiuma** (ヒウマ).  
 Laissez-moi vous présenter ma communauté, un espace où l'art et la créativité se rencontrent.
