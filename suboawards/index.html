@@ -1,268 +1,52 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
-<head><base href="https://ventistudio.fr/suboawards">
+<head>
+
   <meta charset="UTF-8">
-  <link rel="icon" type="image/ico" href="https://ventistudio.fr/favicon.ico">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Subo Awards - VentiStudio</title>
-  <link rel="stylesheet" href="https://trust.ventistudio.fr/root/style.css">
-  <style>
-    /* Hero Section */
-    .awards-hero {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--accent1) 100%);
-      padding: 4rem 2rem;
-      text-align: center;
-      margin-bottom: 2rem;
-      border-radius: 0 0 20px 20px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    }
-
-    .awards-hero h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      color: var(--text);
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-    }
-
-    .awards-hero p {
-      font-size: 1.2rem;
-      color: var(--text-secondary);
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    /* Grid Layout */
-    .awards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      padding: 2rem;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    /* Award Cards */
-    .award-card {
-      background: var(--bg-secondary);
-      border-radius: 15px;
-      overflow: hidden;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      position: relative;
-    }
-
-    .award-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-    }
-
-    .award-year {
-      background: var(--primary);
-      color: var(--text);
-      padding: 0.75rem;
-      text-align: center;
-      font-weight: bold;
-      font-size: 1.2rem;
-      letter-spacing: 1px;
-    }
-
-    .award-content {
-      padding: 1.5rem;
-    }
-
-    .award-category {
-      font-size: 1.5rem;
-      margin: 1rem 0;
-      color: var(--text);
-    }
-
-    /* Winner Badge */
-    .winner-badge {
-      background: linear-gradient(135deg, #ffd700 0%, #ffaa00 100%);
-      color: #000;
-      padding: 0.4rem 1rem;
-      border-radius: 20px;
-      font-size: 0.9rem;
-      font-weight: bold;
-      display: inline-block;
-      margin-bottom: 1rem;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    /* Year Filter */
-    .year-filter {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin: 2rem 0;
-      padding: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .year-button {
-      background: var(--bg-secondary);
-      border: none;
-      padding: 0.75rem 2rem;
-      border-radius: 25px;
-      color: var(--text);
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-weight: 500;
-      font-size: 1rem;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    .year-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    }
-
-    .year-button.active {
-      background: var(--primary);
-      color: var(--text);
-      font-weight: bold;
-    }
-
-    /* Vote Button */
-    .vote-button {
-      background: var(--primary);
-      color: var(--text);
-      border: none;
-      padding: 0.75rem 2rem;
-      border-radius: 25px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-weight: 500;
-      font-size: 1rem;
-      width: 100%;
-      margin-top: 1rem;
-    }
-
-    .vote-button:hover {
-      background: var(--accent1);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    }
-
-    /* Award Content */
-    .award-content p {
-      margin: 0.5rem 0;
-      color: var(--text-secondary);
-      font-size: 0.95rem;
-      line-height: 1.5;
-    }
-
-    /* Animations */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .award-card {
-      animation: fadeIn 0.5s ease-out forwards;
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      .awards-hero h1 {
-        font-size: 2rem;
-      }
-
-      .awards-grid {
-        grid-template-columns: 1fr;
-        padding: 1rem;
-        gap: 1.5rem;
-      }
-
-      .year-filter {
-        padding: 0.5rem;
-      }
-
-      .year-button {
-        padding: 0.5rem 1.5rem;
-        font-size: 0.9rem;
-      }
-
-      .award-card {
-        margin: 0 1rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .awards-hero {
-        padding: 2rem 1rem;
-      }
-
-      .award-category {
-        font-size: 1.2rem;
-      }
-
-      .winner-badge {
-        font-size: 0.8rem;
-        padding: 0.3rem 0.8rem;
-      }
-    }
-
-    /* Dark Mode Adjustments */
-    [data-theme="dark"] .award-card {
-      background: var(--bg-secondary-dark);
-    }
-
-    [data-theme="dark"] .winner-badge {
-      background: linear-gradient(135deg, #ffd700 0%, #ff8c00 100%);
-    }
-
-    /* Loading State */
-    .loading {
-      opacity: 0.7;
-      pointer-events: none;
-      position: relative;
-    }
-
-    .loading::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(2px);
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
+  <meta name="theme-color" content="#6366f1">
+  <title>VentiStudio v4</title>
+  <link rel="stylesheet" href="../style.css">
+</title>
 </head>
 <body>
   <header>
+
     <div class="logo">
-      <img src="https://ventistudio.fr/favicon.avif" alt="VentiStudio Logo" class="site-logo">
+      <img src="../favicon.ico" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
       <span>VentiStudio</span>
     </div>
-    <nav>
-      <a href="https://ventistudio.fr" class="active">Accueil</a>
-      <a href="https://ventistudio.fr/approuvedcontent">Contenu Approuvé</a>
-      <a href="https://ventistudio.fr/player">Player</a>
-      <a href="https://ventistudio.fr/wiki">Wiki</a>
-      <a href="https://ventistudio.fr/staff">Staff</a>
-      <a href="https://ventistudio.fr/artist">Artiste</a>
-      <a href="https://ventistudio.fr/pip">PIP</a>
-      <a href="https://ventistudio.fr/sitemap">Sitemap</a>
+    <nav aria-label="Navigation principale">
+      <a href="../" class="active">Accueil</a>
+      <a href="../approuvedcontent/">Contenu Approuvé</a>
+      <a href="../player">Lecteur</a>
+      <a href="../wiki">Wiki</a>
+      <a href="../staff">Équipe</a>
+      <a href="../news">News</a>
+      <a href="../pip">PIP</a>
+      <a href="../sitemap">Plan du site</a>
     </nav>
-    <div class="controls">
-      <button id="theme-toggle" class="theme-toggle">
-        <svg width="24" height="24" viewBox="0 0 24 24">
+    <div class="controls" role="toolbar" aria-label="Contrôles">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
           <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
           <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
           <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
         </svg>
       </button>
-      <div id="user-button"></div>
+      <div id="user-button" role="region" aria-label="Authentification"></div>
     </div>
+  
   </header>
 
-  <main class="main-content">
+  <main>
+
+
+
     <section class="awards-hero">
       <h1>Subo Awards</h1>
-      <p>Célébrez l'excellence créative avec nous</p>
+      <p>CÃ©lÃ©brez l'excellence crÃ©ative avec nous</p>
     </section>
 
     <div class="year-filter">
@@ -291,18 +75,18 @@
           <p>Meilleur Jeu favori des joueurs - Minecraft - 2011</p>
           <p>Meilleure Bande Originale - Genshin Impact - 2020</p>
           <p>Meilleur Graphisme et Design - Red Dead Redemption 2 - 2018</p>
-          <p>Meilleur Jeu Indépendant - Hollow Knight - 2017</p>
+          <p>Meilleur Jeu IndÃ©pendant - Hollow Knight - 2017</p>
           <p>Meilleur Jeu Multijoueur - Among Us - 2018</p>
-          <p>Meilleur Jeu de Stratégie - Age of Empires IV - 2024</p>
+          <p>Meilleur Jeu de StratÃ©gie - Age of Empires IV - 2024</p>
           <p>Meilleur Jeu de Simulation - Microsoft Flight Simulator - 2024</p>
           <p>Meilleur Bande sonore - Genshin Impact - 2020</p>
-          <p>Meilleur Jeu de Réflexion ou Puzzle - Portal 2 - 2011</p>
-          <p>Meilleur Jeu Révolutionnaire - Dark Souls - 2011</p>
-          <p>Meilleur Jeu Rétro - Streets of Rage 4 - 2024</p>
+          <p>Meilleur Jeu de RÃ©flexion ou Puzzle - Portal 2 - 2011</p>
+          <p>Meilleur Jeu RÃ©volutionnaire - Dark Souls - 2011</p>
+          <p>Meilleur Jeu RÃ©tro - Streets of Rage 4 - 2024</p>
           <p>Meilleur Narration - Breaking Bad - 2008-2013</p>
-          <p>Meilleur Film ou Série - Game of Thrones - 2011-2019</p>
+          <p>Meilleur Film ou SÃ©rie - Game of Thrones - 2011-2019</p>
           <p>Meilleur Manga - A Silent Voice - 2013</p>
-          <p>Meilleur Animation - Moi, quand je me réincarne en Slime - 2018</p>
+          <p>Meilleur Animation - Moi, quand je me rÃ©incarne en Slime - 2018</p>
         </div>
       </div>
       <div class="award-card">
@@ -314,248 +98,68 @@
           <p>Meilleur Studio de Jeu - Hoyoverse pour Genshin Impact - 2020</p>
           <p>Meilleur Anime - The Seven Deadly Sins: Cursed by Light</p>
           <p>Meilleur Studio d'Animation/Manga - Akana pour Wakfu</p>
-          <p>Meilleur Créateur de Contenu - Garry's School</p>
+          <p>Meilleur CrÃ©ateur de Contenu - Garry's School</p>
           <p>Meilleur Jeu Multijoueur - Fornite</p>
-          <p>Meilleur Jeu Indépendant - Unpacking</p>
+          <p>Meilleur Jeu IndÃ©pendant - Unpacking</p>
           <p>Meilleur jeu RPG - Genshin Impact - 2020</p>
           <p>Meilleur Bande sonore - Genshin Impact - 2020</p>
           <p>Meilleur Direction artistique - Genshin Impact - 2020</p>
           <p>Meilleur jeu Esportif - Counter-Strike: Global Offensive</p>
           <p>Meilleur Narration de Jeu - Genshin Impact - 2020</p>
-          <p>Prix de la Communauté - Genshin Impact - 2020</p>
+          <p>Prix de la CommunautÃ© - Genshin Impact - 2020</p>
         </div>
       </div>
     </div>
+  
+  
+  
   </main>
 
   <footer>
+
     <div class="footer-content">
       <div class="footer-section">
         <h4>Outils</h4>
         <ul>
-          <li><a href="https://ventistudio.fr/encrypt">Encrypt</a></li>
-          <li><a href="https://ventistudio.fr/sitemap">Sitemap</a></li>
-          <li><a href="https://status.ventistudio.fr/">Statut</a></li>
-          <li><a href="https://aina.ventistudio.fr/">Aina</a></li>
+          <li><a href="#">Encrypt</a></li>
+          <li><a href="#">Plan du site</a></li>
+          <li><a href="#">Statut</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Entreprise</h4>
         <ul>
-          <li><a href="https://ventistudio.fr/about">À propos</a></li>
-          <li><a href="https://ventistudio.fr/jobs">Emplois</a></li>
-          <li><a href="https://ventistudio.fr/company">Marque</a></li>
-          <li><a href="https://ventistudio.fr/creator">Créateur</a></li>
+          <li><a href="#">À propos</a></li>
+          <li><a href="#">Emplois</a></li>
+          <li><a href="#">Marque</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Ressources</h4>
         <ul>
-          <li><a href="https://ventistudio.fr/university">Université</a></li>
-          <li><a href="https://ventistudio.fr/school">École</a></li>
-          <li><a href="https://ventistudio.fr/help">Assistance</a></li>
-          <li><a href="https://ventistudio.fr/security">Sécurité</a></li>
+          <li><a href="#">Université</a></li>
+          <li><a href="#">Assistance</a></li>
+          <li><a href="#">Sécurité</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Chartes</h4>
         <ul>
-          <li><a href="https://ventistudio.fr/terms">Conditions</a></li>
-          <li><a href="https://ventistudio.fr/privacy">Confidentialité</a></li>
-          <li><a href="https://ventistudio.fr/cookies">Cookies</a></li>
-          <li><a href="https://ventistudio.fr/dmca">DMCA</a></li>
+          <li><a href="#">Conditions</a></li>
+          <li><a href="#">Confidentialité</a></li>
+          <li><a href="#">Information DMCA</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p class="status"><iframe src="https://status.ventistudio.fr/badge?theme=dark" width="250" height="30" frameborder="0" marginheight="0" marginwidth="0" scrolling="no"></iframe></p>
-      <p class="copyright">Copyright © P-Line 2023 - 2025. Tous droits réservés.</p>
+      <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
+      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
     </div>
+  
   </footer>
 
-  <script src="https://trust.ventistudio.fr/root/script.js"></script>
-  <script>
-    const mobileMenuButton = document.querySelector('.mobile-menu-button');
-    const navLinks = document.querySelector('.nav-links');
-    const navItems = document.querySelectorAll('.nav-item');
-
-    mobileMenuButton.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-    });
-
-    if (window.innerWidth <= 768) {
-      navItems.forEach(item => {
-        item.addEventListener('click', (e) => {
-          if (e.target.closest('.nav-item') === item) {
-            item.classList.toggle('active');
-            navItems.forEach(otherItem => {
-              if (otherItem !== item) {
-                otherItem.classList.remove('active');
-              }
-            });
-          }
-        });
-      });
-    }
-
-    document.addEventListener('click', (e) => {
-      if (!e.target.closest('.navbar')) {
-        navLinks.classList.remove('active');
-        navItems.forEach(item => item.classList.remove('active'));
-      }
-    });
-
-    function checkHolidays() {
-      const today = new Date();
-      const day = today.getDate();
-      const month = today.getMonth() + 1; 
-      const banner = document.getElementById('celebration-banner');
-      const message = document.getElementById('celebration-message');
-      let celebrationMessage = '';
-
-      if (month === 12 && day >= 1 && day <= 25) {
-        celebrationMessage = "Joyeux Noël ! ";
-      }
-      
-      if (month === 12 && day === 15) {
-        celebrationMessage = "Joyeux anniversaire Hikari Umaishi !  Et joyeux Noël ! ";
-      }
-      
-      if (month === 9 && day === 24) {
-        celebrationMessage = "Joyeux anniversaire VentiStudio ! ";
-      }
-      
-      if (month === 10 && day >= 25 && day <= 31) {
-        celebrationMessage = "Joyeux Halloween ! ";
-      }
-      
-      if (month === 7 && day === 14) {
-        celebrationMessage = "Bonne fête nationale ! ";
-      }
-      
-      if ((month === 12 && day >= 31) || (month === 1 && day <= 3)) {
-        celebrationMessage = "Bonne année ! ";
-      }
-      
-      if (month === 9 && day === 9) {
-        celebrationMessage = "Bonne fête de l'automne ! ";
-      }
-      
-      if (month === 3 && (day === 20 || day === 21)) {
-        celebrationMessage = "Bienvenue au printemps ! ";
-      }
-
-      if (celebrationMessage) {
-        message.textContent = celebrationMessage;
-        banner.style.display = 'block';
-      } else {
-        banner.style.display = 'none';
-      }
-    }
-
-    checkHolidays();
-
-    function openVoting(contentId) {
-      document.getElementById('votingOverlay').style.display = 'flex';
-    }
-
-    function closeVoting() {
-      document.getElementById('votingOverlay').style.display = 'none';
-    }
-
-    function voteWithDiscord() {
-      window.location.href = 'https://ventistudio.fr/social/FiTsZ/?redirect=https://discord.com/invite/BupfZHSBbC';
-    }
-
-    const yearButtons = document.querySelectorAll('.year-button');
-    yearButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        yearButtons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-        filterAwardsByYear(button.textContent);
-      });
-    });
-
-    function filterAwardsByYear(year) {
-      const cards = document.querySelectorAll('.award-card');
-      cards.forEach(card => {
-        const cardYear = card.querySelector('.award-year').textContent;
-        if (cardYear === year) {
-          card.style.display = 'block';
-          // Animation de fondu à l'apparition
-          card.style.opacity = '0';
-          setTimeout(() => {
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-          }, 100);
-        } else {
-          // Animation de fondu à la disparition
-          card.style.opacity = '0';
-          card.style.transform = 'translateY(20px)';
-          setTimeout(() => {
-            card.style.display = 'none';
-          }, 300);
-        }
-      });
-
-      // Mise à jour du texte de la section hero
-      const heroText = document.querySelector('.awards-hero p');
-      switch(year) {
-        case '2025':
-          heroText.textContent = 'Votez pour vos favoris de l\'année en cours !';
-          break;
-        case '2024':
-          heroText.textContent = 'Découvrez les gagnants de 2024';
-          break;
-        case '2023':
-          heroText.textContent = 'Redécouvrez les lauréats de 2023';
-          break;
-      }
-    }
-
-    // Initialisation: afficher seulement les awards de 2025 au chargement
-    document.addEventListener('DOMContentLoaded', function() {
-      const yearButtons = document.querySelectorAll('.year-button');
-      
-      // Configuration des boutons de filtrage
-      yearButtons.forEach(button => {
-        button.addEventListener('click', () => {
-          // Retirer la classe active de tous les boutons
-          yearButtons.forEach(btn => btn.classList.remove('active'));
-          // Ajouter la classe active au bouton cliqué
-          button.classList.add('active');
-          // Filtrer les awards
-          filterAwardsByYear(button.textContent);
-        });
-      });
-
-      // Afficher par défaut l'année 2025 au chargement
-      filterAwardsByYear('2025');
-    });
-
-    function checkPlatformCompatibility() {
-      var userAgent = navigator.userAgent.toLowerCase();
-      var isIOS = /iphone|ipad|ipod/.test(userAgent);
-      var isAndroid = /android/.test(userAgent);
-      
-      if (isIOS || isAndroid) {
-        window.location.href = '/unsupported';
-      }
-    }
-    
-    checkPlatformCompatibility();
-    
-    document.addEventListener('DOMContentLoaded', function() {
-      // Gestion des filtres par année
-      const yearButtons = document.querySelectorAll('.year-button');
-      yearButtons.forEach(button => {
-        button.addEventListener('click', () => {
-          yearButtons.forEach(btn => btn.classList.remove('active'));
-          button.classList.add('active');
-          filterAwardsByYear(button.textContent);
-        });
-      });
-    });
-  </script>
+  <script src="../script.js" defer></script>
 </body>
 </html>
+
+

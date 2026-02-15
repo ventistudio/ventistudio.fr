@@ -1,60 +1,73 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Université VentiStudio</title>
-  <link rel="icon" type="image/png" href="https://ventistudio.fr/favicon.ico">
-  <link rel="stylesheet" href="https://trust.ventistudio.fr/root/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
+  <meta name="theme-color" content="#6366f1">
+  <title>VentiStudio v4</title>
+  <link rel="stylesheet" href="../style.css">
+  UniversitÃ© VentiStudio</title>
 </head>
 <body>
   <header>
+
     <div class="logo">
-      <img src="https://ventistudio.fr/favicon.avif" alt="VentiStudio Logo" class="site-logo">
+      <img src="../favicon.ico" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
       <span>VentiStudio</span>
     </div>
-    <nav>
-      <a href="https://ventistudio.fr">Accueil</a>
-      <a href="#programmes">Programmes</a>
-      <a href="#resources">Ressources</a>
-      <a href="#faq">FAQ</a>
+    <nav aria-label="Navigation principale">
+      <a href="../" class="active">Accueil</a>
+      <a href="../approuvedcontent/">Contenu Approuvé</a>
+      <a href="../player">Lecteur</a>
+      <a href="../wiki">Wiki</a>
+      <a href="../staff">Équipe</a>
+      <a href="../news">News</a>
+      <a href="../pip">PIP</a>
+      <a href="../sitemap">Plan du site</a>
     </nav>
-    <div class="controls">
-      <button id="theme-toggle" class="theme-toggle">
-        <svg width="24" height="24" viewBox="0 0 24 24">
+    <div class="controls" role="toolbar" aria-label="Contrôles">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
           <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
           <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
           <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
         </svg>
       </button>
+      <div id="user-button" role="region" aria-label="Authentification"></div>
     </div>
+  
   </header>
 
   <main>
+
+
+
     <section class="hero">
-      <h1>Bienvenue à l'Université VentiStudio</h1>
-      <p>L'espace dédié à l'apprentissage et au partage de notre écosystème créatif.</p>
-      <p>Découvrez nos cours, contribuez à nos projets et rejoignez une communauté passionnée.</p>
+      <h1>Bienvenue Ã  l'UniversitÃ© VentiStudio</h1>
+      <p>L'espace dÃ©diÃ© Ã  l'apprentissage et au partage de notre Ã©cosystÃ¨me crÃ©atif.</p>
+      <p>DÃ©couvrez nos cours, contribuez Ã  nos projets et rejoignez une communautÃ© passionnÃ©e.</p>
     </section>
 
     <section id="programmes" class="about">
       <h2>Nos Programmes</h2>
       <div class="cards">
         <div class="card">
-          <h3>Développement Web</h3>
-          <p>Apprenez à créer des applications modernes avec nos guides et exemples.</p>
+          <h3>DÃ©veloppement Web</h3>
+          <p>Apprenez Ã  crÃ©er des applications modernes avec nos guides et exemples.</p>
         </div>
         <div class="card">
           <h3>Art & Design</h3>
-          <p>Explorez la création graphique et sonore à travers des ateliers pratiques.</p>
+          <p>Explorez la crÃ©ation graphique et sonore Ã  travers des ateliers pratiques.</p>
         </div>
         <div class="card">
-          <h3>Communauté</h3>
-          <p>Contribuez à la gestion et à l'animation de nos espaces collaboratifs.</p>
+          <h3>CommunautÃ©</h3>
+          <p>Contribuez Ã  la gestion et Ã  l'animation de nos espaces collaboratifs.</p>
         </div>
         <div class="card">
           <h3>Open Source</h3>
-          <p>Participez au développement de la plateforme et apprenez en code réel.</p>
+          <p>Participez au dÃ©veloppement de la plateforme et apprenez en code rÃ©el.</p>
         </div>
       </div>
     </section>
@@ -64,19 +77,19 @@
       <div class="cards">
         <div class="card">
           <h3>Documentation</h3>
-          <p>Trouvez toutes les informations techniques pour maîtriser VentiStudio.</p>
+          <p>Trouvez toutes les informations techniques pour maÃ®triser VentiStudio.</p>
         </div>
         <div class="card">
-          <h3>Tutoriels vidéo</h3>
-          <p>Suivez nos tutoriels étape par étape pour progresser rapidement.</p>
+          <h3>Tutoriels vidÃ©o</h3>
+          <p>Suivez nos tutoriels Ã©tape par Ã©tape pour progresser rapidement.</p>
         </div>
         <div class="card">
           <h3>Forum communautaire</h3>
-          <p>Posez vos questions et partagez vos découvertes avec d'autres étudiants.</p>
+          <p>Posez vos questions et partagez vos dÃ©couvertes avec d'autres Ã©tudiants.</p>
         </div>
         <div class="card">
           <h3>Projets pratiques</h3>
-          <p>Mettez vos connaissances en application en contribuant à nos dépôts.</p>
+          <p>Mettez vos connaissances en application en contribuant Ã  nos dÃ©pÃ´ts.</p>
         </div>
       </div>
     </section>
@@ -84,65 +97,68 @@
     <section id="faq" class="faq">
       <h2>FAQ</h2>
       <div class="faq-item">
-        <h3>Qu'est-ce que l'Université VentiStudio ?</h3>
-        <p>Un ensemble de ressources gratuites pour apprendre à utiliser et améliorer notre plateforme.</p>
+        <h3>Qu'est-ce que l'UniversitÃ© VentiStudio ?</h3>
+        <p>Un ensemble de ressources gratuites pour apprendre Ã  utiliser et amÃ©liorer notre plateforme.</p>
       </div>
       <div class="faq-item">
-        <h3>Comment rejoindre la communauté ?</h3>
-        <p>Vous pouvez nous rejoindre sur Discord et GitHub pour échanger et proposer vos idées.</p>
+        <h3>Comment rejoindre la communautÃ© ?</h3>
+        <p>Vous pouvez nous rejoindre sur Discord et GitHub pour Ã©changer et proposer vos idÃ©es.</p>
       </div>
       <div class="faq-item">
         <h3>Est-ce vraiment gratuit ?</h3>
-        <p>Oui, l'ensemble de nos contenus pédagogiques sont ouverts et accessibles à tous.</p>
+        <p>Oui, l'ensemble de nos contenus pÃ©dagogiques sont ouverts et accessibles Ã  tous.</p>
       </div>
     </section>
+  
+  
+  
   </main>
 
   <footer>
+
     <div class="footer-content">
       <div class="footer-section">
         <h4>Outils</h4>
         <ul>
-          <li><a href="https://ventistudio.fr/encrypt">Encrypt</a></li>
-          <li><a href="https://ventistudio.fr/sitemap">Sitemap</a></li>
-          <li><a href="https://status.ventistudio.fr/">Statut</a></li>
-          <li><a href="https://aina.ventistudio.fr/">Aina</a></li>
+          <li><a href="#">Encrypt</a></li>
+          <li><a href="#">Plan du site</a></li>
+          <li><a href="#">Statut</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Entreprise</h4>
         <ul>
-          <li><a href="https://ventistudio.fr/about">À propos</a></li>
-          <li><a href="https://ventistudio.fr/jobs">Emplois</a></li>
-          <li><a href="https://ventistudio.fr/company">Marque</a></li>
-          <li><a href="https://ventistudio.fr/creator">Créateur</a></li>
+          <li><a href="#">À propos</a></li>
+          <li><a href="#">Emplois</a></li>
+          <li><a href="#">Marque</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Ressources</h4>
         <ul>
-          <li><a href="https://ventistudio.fr/university" class="active">Université</a></li>
-          <li><a href="https://ventistudio.fr/help">Assistance</a></li>
-          <li><a href="https://ventistudio.fr/security">Sécurité</a></li>
-          <li><a href="https://ventistudio.fr/wiki">Wiki</a></li>
+          <li><a href="#">Université</a></li>
+          <li><a href="#">Assistance</a></li>
+          <li><a href="#">Sécurité</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Chartes</h4>
         <ul>
-          <li><a href="https://ventistudio.fr/terms">Conditions</a></li>
-          <li><a href="https://ventistudio.fr/privacy">Confidentialité</a></li>
-          <li><a href="https://ventistudio.fr/cookies">Cookies</a></li>
-          <li><a href="https://ventistudio.fr/dmca">DMCA</a></li>
+          <li><a href="#">Conditions</a></li>
+          <li><a href="#">Confidentialité</a></li>
+          <li><a href="#">Information DMCA</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p class="status"><iframe src="https://status.ventistudio.fr/badge?theme=dark" width="250" height="30" frameborder="0" scrolling="no"></iframe></p>
-      <p class="copyright">Copyright © P-Line 2023 - 2025. Tous droits réservés.</p>
+      <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
+      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
     </div>
+  
   </footer>
 
-  <script src="https://trust.ventistudio.fr/root/script.js"></script>
+  <script src="../script.js" defer></script>
 </body>
 </html>
+
+

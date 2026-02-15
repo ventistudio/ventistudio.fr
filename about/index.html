@@ -1,94 +1,69 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>À propos - VentiStudio</title>
-  <link rel="icon" type="image/png" href="https://ventistudio.fr/favicon.ico">
-  <link rel="stylesheet" href="https://trust.ventistudio.fr/root/style.css">
-  <style>
-    a {
-      color: white;
-      text-decoration: none;
-    }
-  
-    a:hover {
-      text-decoration: underline;
-    }
-
-  .team-member {
-    display: flex;
-    align-items: center;
-    gap: 1rem; /* Espace entre l'image et le texte */
-  }
-
-  .team-member img {
-    flex-shrink: 0; /* Empêche l'image de se redimensionner */
-  }
-
-  .team-member-content {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .team-member-content h3 {
-    margin: 0;
-    font-size: 1.5rem;
-    color: #7c3aed; /* Couleur personnalisée */
-  }
-
-
-</style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
+  <meta name="theme-color" content="#6366f1">
+  <title>VentiStudio v4</title>
+  <link rel="stylesheet" href="../style.css">
+  Ã€ propos - VentiStudio</title>
 </head>
 <body>
   <header>
+
     <div class="logo">
-      <img src="https://ventistudio.fr/favicon.avif" alt="VentiStudio Logo" class="site-logo">
+      <img src="../favicon.ico" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
       <span>VentiStudio</span>
     </div>
-    <nav>
-      <a href="https://ventistudio.fr">Accueil</a>
-      <a href="https://ventistudio.fr/approuvedcontent">Contenu Approuvé</a>
-      <a href="https://ventistudio.fr/player">Player</a>
-      <a href="https://ventistudio.fr/wiki">Wiki</a>
-      <a href="https://ventistudio.fr/staff">Staff</a>
-      <a href="https://ventistudio.fr/artist">Artiste</a>
-      <a href="https://ventistudio.fr/pip">PIP</a>
-      <a href="https://ventistudio.fr/sitemap">Sitemap</a>
+    <nav aria-label="Navigation principale">
+      <a href="../" class="active">Accueil</a>
+      <a href="../approuvedcontent/">Contenu Approuvé</a>
+      <a href="../player">Lecteur</a>
+      <a href="../wiki">Wiki</a>
+      <a href="../staff">Équipe</a>
+      <a href="../news">News</a>
+      <a href="../pip">PIP</a>
+      <a href="../sitemap">Plan du site</a>
     </nav>
-    <div class="controls">
-      <button id="theme-toggle" class="theme-toggle">
-        <svg width="24" height="24" viewBox="0 0 24 24">
+    <div class="controls" role="toolbar" aria-label="Contrôles">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
           <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
           <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
           <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
         </svg>
       </button>
-      <div id="user-button"></div>
+      <div id="user-button" role="region" aria-label="Authentification"></div>
     </div>
+  
   </header>
 
   <main>
+
+
+
     <section class="hero">
-      <h1>À propos de VentiStudio</h1>
+      <h1>Ã€ propos de VentiStudio</h1>
       <p>Notre histoire, notre mission, nos valeurs.</p>
     </section>
 
     <section class="about">
       <h2>Notre Mission</h2>
-      <p>VentiStudio est né de la vision de créer une plateforme créative innovante qui rassemble artistes, créateurs et passionnés dans un environnement collaboratif et enrichissant.</p>
+      <p>VentiStudio est nÃ© de la vision de crÃ©er une plateforme crÃ©ative innovante qui rassemble artistes, crÃ©ateurs et passionnÃ©s dans un environnement collaboratif et enrichissant.</p>
       <div class="cards">
         <div class="card">
           <h3>Passion</h3>
-          <p>Nous mettons notre passion au service de la créativité et de l'innovation.</p>
+          <p>Nous mettons notre passion au service de la crÃ©ativitÃ© et de l'innovation.</p>
         </div>
         <div class="card">
-          <h3>Communauté</h3>
-          <p>Une communauté forte et bienveillante au cœur de notre projet.</p>
+          <h3>CommunautÃ©</h3>
+          <p>Une communautÃ© forte et bienveillante au cÅ“ur de notre projet.</p>
         </div>
         <div class="card">
           <h3>Innovation</h3>
-          <p>Toujours à la pointe de la technologie pour offrir le meilleur à nos utilisateurs.</p>
+          <p>Toujours Ã  la pointe de la technologie pour offrir le meilleur Ã  nos utilisateurs.</p>
         </div>
       </div>
     </section>
@@ -97,105 +72,109 @@
       <h2>Notre Histoire</h2>
       <div class="timeline-item">
         <h3>Septembre 2023</h3>
-        <p>Création de VentiStudio et lancement officiel de la plateforme.</p>
+        <p>CrÃ©ation de VentiStudio et lancement officiel de la plateforme.</p>
       </div>
       <div class="timeline-item">
-        <h3>Décembre 2023</h3>
-        <p>Premier anniversaire d'Hikari Umaishi, célébré avec la communauté.</p>
+        <h3>DÃ©cembre 2023</h3>
+        <p>Premier anniversaire d'Hikari Umaishi, cÃ©lÃ©brÃ© avec la communautÃ©.</p>
       </div>
       <div class="timeline-item">
         <h3>Janvier 2024</h3>
-        <p>Expansion continue avec de nouveaux projets et fonctionnalités.</p>
+        <p>Expansion continue avec de nouveaux projets et fonctionnalitÃ©s.</p>
       </div>
       <div class="timeline-item">
         <h3>Octobre 2024</h3>
-        <p>Arrivé de la v3 de VentiStudio.fr.</p>
+        <p>ArrivÃ© de la v3 de ventistudio.eu.</p>
       </div>
       <div class="timeline-item">
-        <h3>Décembre 2024</h3>
-        <p>Début officiel du développement de VentiStudio.fr v4.</p>
+        <h3>DÃ©cembre 2024</h3>
+        <p>DÃ©but officiel du dÃ©veloppement de ventistudio.eu v4.</p>
       </div>
       <div class="timeline-item">
-        <h3>Février 2025</h3>
-        <p>Introduction de nouvelles fonctionnalités basées sur les retours des utilisateurs.</p>
+        <h3>FÃ©vrier 2025</h3>
+        <p>Introduction de nouvelles fonctionnalitÃ©s basÃ©es sur les retours des utilisateurs.</p>
       </div>
       <div class="timeline-item">
         <h3>Mars 2025</h3>
-        <p>VentiStudio v4 arrive progréssivement avec les début de géorestriction.</p>
+        <p>VentiStudio v4 arrive progrÃ©ssivement avec les dÃ©but de gÃ©orestriction.</p>
       </div>
       <div class="timeline-item">
         <h3>Avril 2024</h3>
-        <p>Fin de la mise à jour de VentiStudio v4.</p>
+        <p>Fin de la mise Ã  jour de VentiStudio v4.</p>
       </div>
     </section>
 
     <section class="team">
-      <h2>Notre Créateur</h2>
+      <h2>Notre CrÃ©ateur</h2>
       <div class="team-grid">
         <div class="team-member">
           <img src="/a-files/image/hikariumaishi.avif" alt="Fondateur" style="max-width: 150px; height: auto; border-radius: 50%;">
           <div class="team-member-content">
             <h3>Hikari Umaishi</h3>
             <p>Fondateur & Artiste</p>
-            <p>Hikari Umaishi est un artiste passionné et visionnaire qui a fondé VentiStudio pour rassembler une communauté créative et innovante. Avec une expertise en art numérique et une passion pour la technologie, il continue de guider la plateforme vers de nouveaux sommets.</p>
+            <p>Hikari Umaishi est un artiste passionnÃ© et visionnaire qui a fondÃ© VentiStudio pour rassembler une communautÃ© crÃ©ative et innovante. Avec une expertise en art numÃ©rique et une passion pour la technologie, il continue de guider la plateforme vers de nouveaux sommets.</p>
           </div>
         </div>
-          <p><strong>Prénom réel :</strong> Lùka</p>
-          <p><strong>Nom réel :</strong> Guyonvarch</p>
-          <p><strong>Prénom virtuel :</strong> Hikari</p>
+          <p><strong>PrÃ©nom rÃ©el :</strong> LÃ¹ka</p>
+          <p><strong>Nom rÃ©el :</strong> Guyonvarch</p>
+          <p><strong>PrÃ©nom virtuel :</strong> Hikari</p>
           <p><strong>Nom virtuel :</strong> Umaishi</p>
           <p><strong>Nom amical :</strong> Hiuma</p> 
-          <p><strong>Prénom d'artiste :</strong> Venti</p>
+          <p><strong>PrÃ©nom d'artiste :</strong> Venti</p>
           <p><strong>Nom d'artiste :</strong> Opastudien</p>
-          *Plus d'informations sur Hikari Umaishi peuvent être trouvées sur son <a href="https://ventistudio.fr/wiki/hikariumaishi">wiki</a>.
+          *Plus d'informations sur Hikari Umaishi peuvent Ãªtre trouvÃ©es sur son <a href="https://ventistudio.eu/wiki/hikariumaishi">wiki</a>.
       </div>
     </section>
-  </main> 
+  
+  
+  
+  </main>
 
   <footer>
+
     <div class="footer-content">
       <div class="footer-section">
         <h4>Outils</h4>
         <ul>
-          <li><a href="https://ventistudio.fr/encrypt">Encrypt</a></li>
-          <li><a href="https://ventistudio.fr/sitemap">Sitemap</a></li>
-          <li><a href="https://status.ventistudio.fr/">Statut</a></li>
-          <li><a href="https://aina.ventistudio.fr/">Aina</a></li>
+          <li><a href="#">Encrypt</a></li>
+          <li><a href="#">Plan du site</a></li>
+          <li><a href="#">Statut</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Entreprise</h4>
         <ul>
-          <li><a href="https://ventistudio.fr/about">À propos</a></li>
-          <li><a href="https://ventistudio.fr/jobs">Emplois</a></li>
-          <li><a href="https://ventistudio.fr/company">Marque</a></li>
-          <li><a href="https://ventistudio.fr/creator">Créateur</a></li>
+          <li><a href="#">À propos</a></li>
+          <li><a href="#">Emplois</a></li>
+          <li><a href="#">Marque</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Ressources</h4>
         <ul>
-          <li><a href="https://ventistudio.fr/university">Université</a></li>
-          <li><a href="https://ventistudio.fr/school">École</a></li>
-          <li><a href="https://ventistudio.fr/help">Assistance</a></li>
-          <li><a href="https://ventistudio.fr/security">Sécurité</a></li>
+          <li><a href="#">Université</a></li>
+          <li><a href="#">Assistance</a></li>
+          <li><a href="#">Sécurité</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Chartes</h4>
         <ul>
-          <li><a href="https://ventistudio.fr/terms">Conditions</a></li>
-          <li><a href="https://ventistudio.fr/privacy">Confidentialité</a></li>
-          <li><a href="https://ventistudio.fr/cookies">Cookies</a></li>
-          <li><a href="https://ventistudio.fr/dmca">DMCA</a></li>
+          <li><a href="#">Conditions</a></li>
+          <li><a href="#">Confidentialité</a></li>
+          <li><a href="#">Information DMCA</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p class="status"><iframe src="https://status.ventistudio.fr/badge?theme=dark" width="250" height="30" frameborder="0" marginheight="0" marginwidth="0" scrolling="no"></iframe></p>
-      <p class="copyright">Copyright © P-Line 2023 - 2025. Tous droits réservés.</p>
+      <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
+      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
     </div>
+  
   </footer>
-  <script src="https://trust.ventistudio.fr/root/script.js"></script>
+
+  <script src="../script.js" defer></script>
 </body>
 </html>
+
+

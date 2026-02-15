@@ -1,684 +1,107 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VentiStudio - Anniversaire</title>
-  <link rel="icon" type="image/png" href="favicon.ico">
-  <meta property="og:title" content="Bienvenu sur VentiStudio">
-  <meta property="og:site_name" content="VentiStudio Komiyuniti">
-  <meta property="og:url" content="https://ventistudio.fr">
-  <meta property="og:description" content="Hey, je suis Hikari Umaishi (&#x5149;&#x99ac;&#x77f3;), mais je pr&#xe9;f&#xe8;re que l&apos;on m&apos;appelle Hiuma (&#x30d2;&#x30a6;&#x30ma;).
-Laissez-moi vous pr&#xe9;senter ma communaut&#xe9;, un espace o&#xf9; l&apos;art et la cr&#xe9;ativit&#xe9; se rencontrent.">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="https://ventistudio.fr/favicon.gif">
-  <link rel="stylesheet" href="https://trust.ventistudio.fr/root/style.css">
-  <style>
-    .candles-container {
-      display: flex;
-      justify-content: center;
-      align-items: flex-end;
-      gap: 2rem;
-      padding: 4rem 2rem 2rem;
-      min-height: 200px;
-      perspective: 1000px;
-    }
-    .candle {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin: 0 20px;
-      transform-style: preserve-3d;
-      transition: transform 0.3s ease;
-    }
-    .candle:hover {
-      transform: translateY(-10px) scale(1.05);
-    }
-    .candle-body {
-      width: 40px;
-      height: 120px;
-      background: linear-gradient(to right, #f1f1f1, #ffffff, #f1f1f1);
-      border-radius: 10px;
-      position: relative;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      transform-style: preserve-3d;
-    }
-    .candle-body::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 4px;
-      height: 10px; /* Réduit de 15px à 10px */
-      background: #333;
-      border-radius: 2px;
-      z-index: 1; /* Assure que la mèche soit au-dessus */
-    }
-    .candle-body::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: -10px;
-      right: -10px;
-      height: 20px;
-      background: radial-gradient(ellipse at center, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0) 70%);
-      border-radius: 50%;
-      transform: rotateX(90deg) translateZ(-10px);
-    }
-    .flame {
-      position: absolute;
-      top: -20px; 
-      left: 50%;
-      transform: translateX(0%);
-      width: 12px; 
-      height: 25px; 
-    }
-    .flame::before {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 100%;
-      background: linear-gradient(to top, 
-        #ff9800 20%, 
-        #ff5722 60%, 
-        #ffeb3b 80%
-      );
-      border-radius: 50% 50% 20% 20%;
-      box-shadow: 
-        0 0 15px #ff9800,
-        0 0 30px #ff5722,
-        0 0 45px #f44336,
-        0 -15px 30px rgba(255, 152, 0, 0.4);
-      transform-origin: center bottom;
-      animation: var(--flame-animation);
-    }
-    .flame::after {
-      content: '';
-      position: absolute;
-      bottom: 40%;
-      left: 25%;
-      right: 25%;
-      height: 40%;
-      background: rgba(255, 255, 255, 0.8);
-      border-radius: 50%;
-      filter: blur(2px);
-      animation: var(--glow-animation);
-    }
-    @keyframes flicker1 {
-      0%, 100% { transform: translateX(-50%) scale(1) rotate(-1deg); }
-      25% { transform: translateX(-51%) scale(1.05) rotate(0.5deg); }
-      50% { transform: translateX(-49%) scale(0.95) rotate(-0.5deg); }
-      75% { transform: translateX(-50%) scale(1.1) rotate(1deg); }
-    }
-    @keyframes flicker2 {
-      0%, 100% { transform: translateX(-50%) scale(0.95) rotate(0.5deg); }
-      33% { transform: translateX(-51%) scale(1.05) rotate(-1deg); }
-      66% { transform: translateX(-49%) scale(1) rotate(1deg); }
-    }
-    @keyframes flicker3 {
-      0%, 100% { transform: translateX(-50%) scale(1.05) rotate(-0.5deg); }
-      50% { transform: translateX(-50%) scale(0.95) rotate(0.5deg); }
-    }
-    @keyframes glow1 {
-      0%, 100% { opacity: 0.5; }
-      50% { opacity: 0.8; }
-    }
-    @keyframes glow2 {
-      0%, 100% { opacity: 0.6; }
-      33% { opacity: 0.9; }
-      66% { opacity: 0.7; }
-    }
-    .seasonal-decorations {
-      text-align: center;
-      margin-top: 2rem;
-    }
-    .seasonal-decorations img {
-      max-width: 100px;
-      margin: 0 10px;
-    }
-    .seasonal-decorations {
-      position: relative;
-      min-height: 200px;
-      overflow: hidden;
-    }
-
-    /* Effet de neige */
-    .snowing::before {
-      content: '';
-      position: absolute;
-      top: -10px;
-      left: 0;
-      right: 0;
-      height: 10px;
-      background: white;
-      animation: snow 3s linear infinite;
-    }
-
-    /* Effet coeurs flottants */
-    .floating-hearts img {
-      animation: float 3s ease-in-out infinite;
-    }
-
-    /* Effet pétales qui tombent */
-    .falling-petals img {
-      animation: fall 5s linear infinite;
-    }
-
-    /* Effet de pluie */
-    .raining::before {
-      content: '';
-      position: absolute;
-      width: 2px;
-      height: 10px;
-      background: #88d1f1;
-      animation: rain 1s linear infinite;
-    }
-
-    /* Animations */
-    @keyframes snow {
-      0% { transform: translateY(0) rotate(0deg); }
-      100% { transform: translateY(200px) rotate(360deg); }
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-20px); }
-    }
-
-    @keyframes fall {
-      0% { transform: translateY(-100%) rotate(0deg); }
-      100% { transform: translateY(100vh) rotate(360deg); }
-    }
-
-    @keyframes rain {
-      0% { transform: translateY(-100%); }
-      100% { transform: translateY(100vh); }
-    }
-
-/* Styles de base pour les décorations */
-.decoration {
-  position: absolute;
-  pointer-events: none;
-}
-
-/* Styles spécifiques pour chaque type de décoration */
-.firework {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #ff6b6b;
-  animation: explode 1s ease-out forwards;
-}
-
-.heart {
-  width: 20px;
-  height: 20px;
-  background: #ff4d6d;
-  position: relative;
-  transform: rotate(45deg);
-  animation: float 3s ease-in-out infinite;
-}
-
-.heart::before,
-.heart::after {
-  content: '';
-  width: 20px;
-  height: 20px;
-  background: #ff4d6d;
-  border-radius: 50%;
-  position: absolute;
-}
-
-.heart::before {
-  left: -10px;
-}
-
-.heart::after {
-  top: -10px;
-}
-
-.petal {
-  width: 15px;
-  height: 15px;
-  background: #ffb5b5;
-  border-radius: 15px 0;
-  animation: fall 5s linear infinite;
-}
-
-.raindrop {
-  width: 2px;
-  height: 10px;
-  background: #88d1f1;
-  border-radius: 2px;
-  animation: rain 1s linear infinite;
-}
-
-.ghost {
-  width: 20px;
-  height: 25px;
-  background: #fff;
-  border-radius: 10px 10px 0 0;
-  position: relative;
-  animation: float 3s ease-in-out infinite;
-}
-
-.ghost::before {
-  content: '';
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  width: 20px;
-  height: 5px;
-  background: #fff;
-  border-radius: 0 0 5px 5px;
-}
-
-.snowflake {
-  width: 8px;
-  height: 8px;
-  background: white;
-  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-  animation: snow 3s linear infinite;
-}
-
-/* Nouvelles décorations saisonnières */
-.sun {
-  width: 40px;
-  height: 40px;
-  background: #ffeb3b;
-  border-radius: 50%;
-  box-shadow: 0 0 30px #ff9800;
-  animation: pulse 2s ease-in-out infinite;
-}
-
-.leaf {
-  width: 20px;
-  height: 20px;
-  background: #4caf50;
-  border-radius: 0 50% 50% 50%;
-  transform: rotate(45deg);
-  animation: spin-fall 6s linear infinite;
-}
-
-.umbrella {
-  width: 30px;
-  height: 25px;
-  background: #2196f3;
-  border-radius: 50% 50% 0 0;
-  position: relative;
-  transform-origin: center bottom;
-  animation: sway 3s ease-in-out infinite;
-}
-
-.umbrella::after {
-  content: '';
-  position: absolute;
-  bottom: -15px;
-  left: 50%;
-  width: 2px;
-  height: 15px;
-  background: #666;
-  transform: translateX(-50%);
-}
-
-.flower {
-  width: 20px;
-  height: 20px;
-  position: relative;
-}
-
-.flower::before {
-  content: '';
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background: #ff80ab;
-  border-radius: 50%;
-  animation: bloom 4s ease-in-out infinite;
-}
-
-.flower::after {
-  content: '';
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  width: 4px;
-  height: 4px;
-  background: #ffd700;
-  border-radius: 50%;
-}
-
-.star {
-  width: 0;
-  height: 0;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-bottom: 20px solid #ffd700;
-  position: relative;
-  animation: twinkle 1.5s ease-in-out infinite;
-}
-
-.star::after {
-  content: '';
-  position: absolute;
-  top: 6px;
-  left: -10px;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-top: 20px solid #ffd700;
-}
-
-.firefly {
-  width: 4px;
-  height: 4px;
-  background: #90ff90;
-  border-radius: 50%;
-  box-shadow: 0 0 10px #50ff50;
-  animation: firefly 3s ease-in-out infinite;
-}
-
-/* Animations */
-@keyframes explode {
-  0% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(20); opacity: 0.5; }
-  100% { transform: scale(30); opacity: 0; }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0) rotate(45deg); }
-  50% { transform: translateY(-20px) rotate(45deg); }
-}
-
-@keyframes fall {
-  0% { 
-    transform: translateY(-100vh) rotate(0deg);
-    opacity: 1;
-  }
-  100% { 
-    transform: translateY(100vh) rotate(360deg);
-    opacity: 0;
-  }
-}
-
-@keyframes snow {
-  0% { 
-    transform: translateY(-10px) rotate(0deg);
-    opacity: 1;
-  }
-  100% { 
-    transform: translateY(100vh) rotate(360deg);
-    opacity: 0;
-  }
-}
-
-/* Nouvelles animations */
-@keyframes spin-fall {
-  0% {
-    transform: translateY(-100vh) rotate(0deg);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(100vh) rotate(720deg);
-    opacity: 0;
-  }
-}
-
-@keyframes sway {
-  0%, 100% { transform: rotate(-5deg); }
-  50% { transform: rotate(5deg); }
-}
-
-@keyframes bloom {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.2); }
-}
-
-@keyframes twinkle {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
-}
-
-@keyframes firefly {
-  0% { opacity: 0; transform: translateX(0) translateY(0); }
-  50% { opacity: 1; }
-  100% { opacity: 0; transform: translateX(100px) translateY(-100px); }
-}
-
-@keyframes pulse {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.1); opacity: 0.8; }
-}
-</style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
+  <meta name="theme-color" content="#6366f1">
+  <title>VentiStudio v4</title>
+  <link rel="stylesheet" href="../style.css">
+</title>
 </head>
 <body>
   <header>
+
     <div class="logo">
-      <img src="https://ventistudio.fr/favicon.avif" alt="VentiStudio Logo" class="site-logo">
+      <img src="../favicon.ico" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
       <span>VentiStudio</span>
     </div>
-    <nav>
-      <a href="https://ventistudio.fr" class="active">Accueil</a>
-      <a href="https://ventistudio.fr/approuvedcontent">Contenu Approuvé</a>
-      <a href="https://ventistudio.fr/player">Player</a>
-      <a href="https://ventistudio.fr/wiki">Wiki</a>
-      <a href="https://ventistudio.fr/staff">Staff</a>
-      <a href="https://ventistudio.fr/artist">Artiste</a>
-      <a href="https://ventistudio.fr/pip">PIP</a>
-      <a href="https://ventistudio.fr/sitemap">Sitemap</a>
+    <nav aria-label="Navigation principale">
+      <a href="../" class="active">Accueil</a>
+      <a href="../approuvedcontent/">Contenu Approuvé</a>
+      <a href="../player">Lecteur</a>
+      <a href="../wiki">Wiki</a>
+      <a href="../staff">Équipe</a>
+      <a href="../news">News</a>
+      <a href="../pip">PIP</a>
+      <a href="../sitemap">Plan du site</a>
     </nav>
-    <div class="controls">
-      <button id="theme-toggle" class="theme-toggle">
-        <svg width="24" height="24" viewBox="0 0 24 24">
+    <div class="controls" role="toolbar" aria-label="Contrôles">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
           <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
           <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
           <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
         </svg>
       </button>
-      <div id="user-button"></div>
+      <div id="user-button" role="region" aria-label="Authentification"></div>
     </div>
+  
   </header>
 
   <main>
+
+
+
     <section class="hero">
-      <h1>Nos années de service</h1>
-      <p>VentiStudio illumine vos expériences depuis 2016</p>
+      <h1>Nos annÃ©es de service</h1>
+      <p>VentiStudio illumine vos expÃ©riences depuis 2016</p>
     </section>
     <section id="anniversary-section">
       <div class="candles-container"></div>
       <div id="decorations" class="seasonal-decorations"></div>
     </section>
+  
+  
+  
   </main>
 
   <footer>
+
     <div class="footer-content">
       <div class="footer-section">
         <h4>Outils</h4>
         <ul>
-          <li><a href="https://ventistudio.fr/encrypt">Encrypt</a></li>
-          <li><a href="https://ventistudio.fr/sitemap">Sitemap</a></li>
-          <li><a href="https://status.ventistudio.fr/">Statut</a></li>
-          <li><a href="https://aina.ventistudio.fr/">Aina</a></li>
+          <li><a href="#">Encrypt</a></li>
+          <li><a href="#">Plan du site</a></li>
+          <li><a href="#">Statut</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Entreprise</h4>
         <ul>
-          <li><a href="https://ventistudio.fr/about">À propos</a></li>
-          <li><a href="https://ventistudio.fr/jobs">Emplois</a></li>
-          <li><a href="https://ventistudio.fr/company">Marque</a></li>
-          <li><a href="https://ventistudio.fr/creator">Créateur</a></li>
+          <li><a href="#">À propos</a></li>
+          <li><a href="#">Emplois</a></li>
+          <li><a href="#">Marque</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Ressources</h4>
         <ul>
-          <li><a href="https://ventistudio.fr/university">Université</a></li>
-          <li><a href="https://ventistudio.fr/school">École</a></li>
-          <li><a href="https://ventistudio.fr/help">Assistance</a></li>
-          <li><a href="https://ventistudio.fr/security">Sécurité</a></li>
+          <li><a href="#">Université</a></li>
+          <li><a href="#">Assistance</a></li>
+          <li><a href="#">Sécurité</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Chartes</h4>
         <ul>
-          <li><a href="https://ventistudio.fr/terms">Conditions</a></li>
-          <li><a href="https://ventistudio.fr/privacy">Confidentialité</a></li>
-          <li><a href="https://ventistudio.fr/cookies">Cookies</a></li>
-          <li><a href="https://ventistudio.fr/dmca">DMCA</a></li>
+          <li><a href="#">Conditions</a></li>
+          <li><a href="#">Confidentialité</a></li>
+          <li><a href="#">Information DMCA</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p class="status"><iframe src="https://status.ventistudio.fr/badge?theme=dark" width="250" height="30" frameborder="0" marginheight="0" marginwidth="0" scrolling="no"></iframe></p>
-      <p class="copyright">Copyright © P-Line 2023 - 2025. Tous droits réservés.</p>
+      <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
+      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
     </div>
+  
   </footer>
 
-  <script src="https://trust.ventistudio.fr/root/script.js"></script>
-  <script>
-    function createCandles() {
-      const container = document.querySelector('.candles-container');
-      const startYear = 2016;
-      const currentYear = new Date().getFullYear();
-      
-      const flickerAnimations = [
-        'flicker1 1.5s infinite',
-        'flicker2 2s infinite',
-        'flicker3 1.8s infinite'
-      ];
-      
-      const glowAnimations = [
-        'glow1 2s infinite',
-        'glow2 1.5s infinite'
-      ];
-
-      for (let year = startYear; year <= currentYear; year++) {
-        const candle = document.createElement('div');
-        candle.className = 'candle';
-        
-        const body = document.createElement('div');
-        body.className = 'candle-body';
-        
-        const flame = document.createElement('div');
-        flame.className = 'flame';
-        
-        // Animations aléatoires pour chaque bougie
-        const randomFlicker = flickerAnimations[Math.floor(Math.random() * flickerAnimations.length)];
-        const randomGlow = glowAnimations[Math.floor(Math.random() * glowAnimations.length)];
-        
-        flame.style.setProperty('--flame-animation', randomFlicker);
-        flame.style.setProperty('--glow-animation', randomGlow);
-        
-        const label = document.createElement('div');
-        label.textContent = year;
-        label.style.marginTop = '10px';
-        label.style.color = 'var(--text)';
-        
-        body.appendChild(flame);
-        candle.appendChild(body);
-        candle.appendChild(label);
-        container.appendChild(candle);
-      }
-    }
-
-    function createDecoration(type) {
-      const decoration = document.createElement('div');
-      decoration.className = `decoration ${type}`;
-      
-      // Position aléatoire sur l'axe X
-      decoration.style.left = `${Math.random() * 100}%`;
-      
-      return decoration;
-    }
-
-    function addSeasonalDecorations() {
-      const decorations = document.getElementById('decorations');
-      const currentMonth = new Date().getMonth();
-      
-      const decorationsByMonth = {
-        0: { // Janvier
-          items: ['firework', 'snowflake', 'star'],
-          count: 25
-        },
-        1: { // Février
-          items: ['heart', 'flower'],
-          count: 20
-        },
-        2: { // Mars
-          items: ['petal', 'flower', 'leaf'],
-          count: 30
-        },
-        3: { // Avril
-          items: ['raindrop', 'umbrella', 'flower'],
-          count: 40
-        },
-        4: { // Mai
-          items: ['petal', 'flower', 'firefly'],
-          count: 35
-        },
-        5: { // Juin
-          items: ['sun', 'firefly'],
-          count: 15
-        },
-        6: { // Juillet
-          items: ['sun', 'star'],
-          count: 20
-        },
-        7: { // Août
-          items: ['star', 'firefly'],
-          count: 25
-        },
-        8: { // Septembre
-          items: ['leaf', 'petal'],
-          count: 30
-        },
-        9: { // Octobre
-          items: ['ghost', 'leaf'],
-          count: 25
-        },
-        10: { // Novembre
-          items: ['leaf', 'raindrop'],
-          count: 35
-        },
-        11: { // Décembre
-          items: ['snowflake', 'star'],
-          count: 40
-        }
-      };
-
-      if (decorationsByMonth[currentMonth]) {
-        const { items, count } = decorationsByMonth[currentMonth];
-        decorations.innerHTML = '';
-        
-        for (let i = 0; i < count; i++) {
-          const type = items[Math.floor(Math.random() * items.length)];
-          const decoration = createDecoration(type);
-          
-          // Délai aléatoire pour l'animation
-          decoration.style.animationDelay = `${Math.random() * 2}s`;
-          
-          decorations.appendChild(decoration);
-          
-          // Supprimer l'élément une fois l'animation terminée
-          decoration.addEventListener('animationend', () => {
-            decoration.remove();
-            // Créer un nouvel élément pour maintenir le nombre constant
-            decorations.appendChild(createDecoration(type));
-          });
-        }
-      }
-    }
-
-    // Mettre à jour les décorations toutes les 100ms
-    setInterval(addSeasonalDecorations, 100);
-
-    document.addEventListener('DOMContentLoaded', () => {
-      createCandles();
-      addSeasonalDecorations();
-    });
-  </script>
+  <script src="../script.js" defer></script>
 </body>
 </html>
+
+

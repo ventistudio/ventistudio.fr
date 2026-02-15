@@ -1,4 +1,4 @@
-# Contents of README.md
+﻿# Contents of README.md
 # Warning Page
 
 This project is a simple warning page that displays a message indicating that access to the site has been denied. The purpose of this page is to inform users about the current status of VentiStudio.fr.

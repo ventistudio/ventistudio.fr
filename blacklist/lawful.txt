@@ -1,4 +1,4 @@
-Conditions d'ajout à la liste noire :
+﻿Conditions d'ajout à la liste noire :
 
 Comportement inapproprié : Tout comportement qui est considéré comme inapproprié, tel que des insultes, des menaces, des propos haineux, des attaques personnelles, etc.
 Non-respect des règles : Tout non-respect des règles du site web, tel que le spam, les publicités non autorisées, les liens vers des sites web malveillants, etc.

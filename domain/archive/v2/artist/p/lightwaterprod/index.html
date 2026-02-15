@@ -1,207 +1,54 @@
-<!DOCTYPE html>
-<html><head><base href="https://ventistudio.fr/artist/p/lightwaterprod">
-  <meta charset="utf-8">
-  <meta name="viewport">
-  <html lang="fr"></html>
-  <link rel="icon" type="image/gif" href="favicon.avif">
-  <meta property="og:title" content="Bienvenu sur VentiStudio">
-  <meta property="og:site_name" content="VentiStudio Komiyuniti">
-  <meta property="og:url" content="https://ventistudio.fr/artist/p/lightwaterprod">
-  <meta property="og:description" content="LIGHTWATER est un artiste du Nexus Lumina on peu dire de lui que c'est une nouvelle recrue.">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="https://ventistudio.fr/artist/p/lightwaterprod/image.avif">
-  <title>LIGHTWATER - VentiStudio</title>
-  <style>
-    :root {
-      --primary: #8b5cf6;
-      --dark: #1a1a1a;
-      --text: #ffffff;
-    }
-    
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: var(--dark);
-      color: var(--text);
-    }
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
 
-    .navbar {
-      background: rgba(0,0,0,0.8);
-      padding: 1rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: fixed;
-      width: 100%;
-      box-sizing: border-box;
-      z-index: 1000;
-    }
-
-    .logo {
-      width: 50px;
-      height: 50px;
-      transition: transform 0.3s ease;
-    }
-
-    .logo:hover {
-      transform: rotate(360deg);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-    }
-
-    .nav-links a {
-      color: var(--text);
-      text-decoration: none;
-      font-weight: 500;
-      transition: all 0.3s;
-      padding: 0.5rem 1rem;
-      border-radius: 4px;
-    }
-
-    .nav-links a:hover {
-      color: var(--primary);
-      background: rgba(139, 92, 246, 0.1);
-    }
-
-    .artist-profile {
-      padding: 8rem 2rem 4rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .artist-header {
-      display: grid;
-      grid-template-columns: 300px 1fr;
-      gap: 2rem;
-      margin-bottom: 3rem;
-    }
-
-    .artist-photo {
-      width: 300px;
-      height: 300px;
-      object-fit: cover;
-      border-radius: 8px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-    }
-
-    .artist-info h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      color: var(--primary);
-    }
-
-    .social-links {
-      display: flex;
-      gap: 1rem;
-      margin: 1rem 0;
-    }
-
-    .social-link {
-      padding: 0.5rem 1rem;
-      background: rgba(255,255,255,0.1);
-      border-radius: 4px;
-      color: var(--text);
-      text-decoration: none;
-      transition: all 0.3s;
-    }
-
-    .social-link:hover {
-      background: var(--primary);
-    }
-
-    .donate-button {
-      background: linear-gradient(45deg, #f6bc5c, #ec4899);
-      padding: 0.5rem 2rem;
-      border-radius: 4px;
-      color: white;
-      text-decoration: none;
-      display: inline-block;
-      margin-top: 1rem;
-    }
-
-    .section {
-      margin: 3rem 0;
-      padding: 2rem;
-      background: rgba(255,255,255,0.05);
-      border-radius: 8px;
-    }
-
-    .works-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-
-    .work-card {
-      background: rgba(255,255,255,0.08);
-      border-radius: 8px;
-      overflow: hidden;
-      transition: transform 0.3s;
-    }
-
-    .work-card:hover {
-      transform: translateY(-5px);
-    }
-
-    .work-image {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-    }
-
-    .work-info {
-      padding: 1rem;
-    }
-
-    .work-title {
-      color: var(--primary);
-      margin: 0 0 0.5rem 0;
-    }
-
-    .sources {
-      font-size: 0.9rem;
-      opacity: 0.7;
-    }
-
-    .sources a {
-      color: var(--primary);
-      text-decoration: none;
-    }
-
-    .sources a:hover {
-      text-decoration: underline;
-    }
-
-    @media (max-width: 768px) {
-      .nav-links {
-        display: none;
-      }
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
+  <meta name="theme-color" content="#6366f1">
+  <title>VentiStudio v4</title>
+  <link rel="stylesheet" href="../../../../../../style.css">
+</title>
 </head>
 <body>
-  <nav class="navbar">
-    <img src="/favicon.avif" alt="Logo VentiStudio - Design circulaire noir et blanc avec symboles français et japonais" class="logo">
-    <div class="nav-links">
-      <a href="/">Accueil</a>
-      <a href="/approvedcontent">Contenu Approuvé</a>
-      <a href="/wiki">Wiki</a>
-      <a href="/staff">Staff</a>
-      <a href="/artist">Artiste</a>
-      <a href="/pip">PIP</a>
-    </div>
-  </nav>
+  <header>
 
-  <main class="artist-profile">
+    <div class="logo">
+      <img src="../../../../../../favicon.ico" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
+      <span>VentiStudio</span>
+    </div>
+    <nav aria-label="Navigation principale">
+      <a href="../../../../../../" class="active">Accueil</a>
+      <a href="../../../../../../approuvedcontent/">Contenu Approuvé</a>
+      <a href="../../../../../../player">Lecteur</a>
+      <a href="../../../../../../wiki">Wiki</a>
+      <a href="../../../../../../staff">Équipe</a>
+      <a href="../../../../../../news">News</a>
+      <a href="../../../../../../pip">PIP</a>
+      <a href="../../../../../../sitemap">Plan du site</a>
+    </nav>
+    <div class="controls" role="toolbar" aria-label="Contrôles">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
+          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
+          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
+        </svg>
+      </button>
+      <div id="user-button" role="region" aria-label="Authentification"></div>
+    </div>
+  
+  </header>
+
+  <main>
+
+
+
     <div class="artist-header">
       <img src="/artist/p/lightwaterprod/image.avif" alt="Portrait professionnel de l'artiste dans son studio" class="artist-photo">
       <div class="artist-info">
         <h1>LIGHTWATER</h1>
-        <p>Artiste spécialisé dans l'art numérique et la musique pop, hip-hop, drill et freestyle.</p>
+        <p>Artiste spÃ©cialisÃ© dans l'art numÃ©rique et la musique pop, hip-hop, drill et freestyle.</p>
         
         <div class="social-links">
           <a href="/social/FiTsZ/discord?xZZMdn7byF" class="social-link">Discord</a>
@@ -218,9 +65,9 @@
 
     <section class="section">
       <h2>Biographie</h2>
-      <p>Depuis ses débuts, notre jeune artiste est passé par des moments de doute, mais c’est grâce à la musique qu’il a trouvé sa voie. Aujourd’hui, il se concentre sur l’amélioration de ses productions, la recherche de son style unique, et le partage de son univers avec tous ses fans.</p>
-      <p>Il a alors commencé à créer ses propres sons. Ses premiers essais étaient corrects pour un débutant, mais il sentait que ce n’était pas encore ce qu’il voulait. Trouver son style a été un vrai cheminement. En tant que beatmaker, il a dû apprendre les bases : les placements de beats, les hi-hats, les snares, et bien plus encore. Les débuts n’ont pas été simples, mais sa persévérance a payé.</p>
-      <p>Petit à petit, il a commencé à comprendre comment structurer ses morceaux, où placer les éléments pour obtenir le son qu’il avait en tête. C’est à ce moment-là qu’on lui a proposé une opportunité incroyable : participer à un concert à Dell, près de l’Alsace et de la frontière suisse, lors de la première semaine de juin 2025. Bien qu’il ait hésité au départ, il a finalement accepté. C’était une expérience intimidante, mais aussi enrichissante, et il est ravi d’avoir relevé ce défi.</p>
+      <p>Depuis ses dÃ©buts, notre jeune artiste est passÃ© par des moments de doute, mais câ€™est grÃ¢ce Ã  la musique quâ€™il a trouvÃ© sa voie. Aujourdâ€™hui, il se concentre sur lâ€™amÃ©lioration de ses productions, la recherche de son style unique, et le partage de son univers avec tous ses fans.</p>
+      <p>Il a alors commencÃ© Ã  crÃ©er ses propres sons. Ses premiers essais Ã©taient corrects pour un dÃ©butant, mais il sentait que ce nâ€™Ã©tait pas encore ce quâ€™il voulait. Trouver son style a Ã©tÃ© un vrai cheminement. En tant que beatmaker, il a dÃ» apprendre les bases : les placements de beats, les hi-hats, les snares, et bien plus encore. Les dÃ©buts nâ€™ont pas Ã©tÃ© simples, mais sa persÃ©vÃ©rance a payÃ©.</p>
+      <p>Petit Ã  petit, il a commencÃ© Ã  comprendre comment structurer ses morceaux, oÃ¹ placer les Ã©lÃ©ments pour obtenir le son quâ€™il avait en tÃªte. Câ€™est Ã  ce moment-lÃ  quâ€™on lui a proposÃ© une opportunitÃ© incroyable : participer Ã  un concert Ã  Dell, prÃ¨s de lâ€™Alsace et de la frontiÃ¨re suisse, lors de la premiÃ¨re semaine de juin 2025. Bien quâ€™il ait hÃ©sitÃ© au dÃ©part, il a finalement acceptÃ©. Câ€™Ã©tait une expÃ©rience intimidante, mais aussi enrichissante, et il est ravi dâ€™avoir relevÃ© ce dÃ©fi.</p>
     </section>
 
     <section class="section">
@@ -229,54 +76,54 @@
     </section>
 
     <section class="section">
-      <h2>Créations</h2>
+      <h2>CrÃ©ations</h2>
       <div class="works-grid">
         <article class="work-card">
-          <img src="/music/15/image.avif" alt="Installation numérique interactive" class="work-image">
+          <img src="/music/15/image.avif" alt="Installation numÃ©rique interactive" class="work-image">
           <div class="work-info">
             <h3 class="work-title">paisible- (officiel)</h3>
             <p>paisible- (officiel)</p>
-            <a href="/music/15/" class="cta-button">Voir l'œuvre</a>
+            <a href="/music/15/" class="cta-button">Voir l'Å“uvre</a>
           </div>
         </article>
         <article class="work-card">
-          <img src="/music/16/image.avif" alt="Installation numérique interactive" class="work-image">
+          <img src="/music/16/image.avif" alt="Installation numÃ©rique interactive" class="work-image">
           <div class="work-info">
             <h3 class="work-title">vertex- (officiel)</h3>
             <p>vertex- (officiel)</p>
-            <a href="/music/16/" class="cta-button">Voir l'œuvre</a>
+            <a href="/music/16/" class="cta-button">Voir l'Å“uvre</a>
           </div>
         </article>
         <article class="work-card">
-          <img src="/music/17/image.avif" alt="Installation numérique interactive" class="work-image">
+          <img src="/music/17/image.avif" alt="Installation numÃ©rique interactive" class="work-image">
           <div class="work-info">
             <h3 class="work-title">Mixtape- (album officiel)</h3>
             <p>Mixtape- (album officiel)</p>
-            <a href="/music/17/" class="cta-button">Voir l'œuvre</a>
+            <a href="/music/17/" class="cta-button">Voir l'Å“uvre</a>
           </div>
         </article>
         <article class="work-card">
-          <img src="/music/18/image.avif" alt="Installation numérique interactive" class="work-image">
+          <img src="/music/18/image.avif" alt="Installation numÃ©rique interactive" class="work-image">
           <div class="work-info">
             <h3 class="work-title">artex- (officiel)</h3>
             <p>artex- (officiel)</p>
-            <a href="/music/18/" class="cta-button">Voir l'œuvre</a>
+            <a href="/music/18/" class="cta-button">Voir l'Å“uvre</a>
           </div>
         </article>
         <article class="work-card">
-          <img src="/music/19/image.avif" alt="Installation numérique interactive" class="work-image">
+          <img src="/music/19/image.avif" alt="Installation numÃ©rique interactive" class="work-image">
           <div class="work-info">
             <h3 class="work-title">Rastafari</h3>
             <p>Rastafari</p>
-            <a href="/music/19/" class="cta-button">Voir l'œuvre</a>
+            <a href="/music/19/" class="cta-button">Voir l'Å“uvre</a>
           </div>
         </article>
         <article class="work-card">
-          <img src="/music/20/image.avif" alt="Installation numérique interactive" class="work-image">
+          <img src="/music/20/image.avif" alt="Installation numÃ©rique interactive" class="work-image">
           <div class="work-info">
             <h3 class="work-title">vertex- (officiel)</h3>
             <p>vertex- (officiel)</p>
-            <a href="/music/20/" class="cta-button">Voir l'œuvre</a>
+            <a href="/music/20/" class="cta-button">Voir l'Å“uvre</a>
           </div>
         </article>
 
@@ -297,28 +144,56 @@
         <p>Via le discord de l'artiste.</p>
       </div>
     </section>
+  
+  
+  
   </main>
 
-  <script>
-    window.addEventListener('scroll', () => {
-      const navbar = document.querySelector('.navbar');
-      if (window.scrollY > 50) {
-        navbar.style.background = 'rgba(0,0,0,0.95)';
-        navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.3)';
-      } else {
-        navbar.style.background = 'rgba(0,0,0,0.8)';
-        navbar.style.boxShadow = 'none';
-      }
-    });
+  <footer>
 
-    document.querySelectorAll('.work-card').forEach(card => {
-      card.addEventListener('mouseenter', () => {
-        card.style.transform = 'translateY(-5px)';
-      });
-      
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = 'translateY(0)';
-      });
-    });
-  </script>
-</body></html>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Outils</h4>
+        <ul>
+          <li><a href="#">Encrypt</a></li>
+          <li><a href="#">Plan du site</a></li>
+          <li><a href="#">Statut</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Entreprise</h4>
+        <ul>
+          <li><a href="#">À propos</a></li>
+          <li><a href="#">Emplois</a></li>
+          <li><a href="#">Marque</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Ressources</h4>
+        <ul>
+          <li><a href="#">Université</a></li>
+          <li><a href="#">Assistance</a></li>
+          <li><a href="#">Sécurité</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Chartes</h4>
+        <ul>
+          <li><a href="#">Conditions</a></li>
+          <li><a href="#">Confidentialité</a></li>
+          <li><a href="#">Information DMCA</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
+      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
+    </div>
+  
+  </footer>
+
+  <script src="../../../../../../script.js" defer></script>
+</body>
+</html>
+
+

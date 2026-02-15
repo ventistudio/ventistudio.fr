@@ -1,4 +1,70 @@
+﻿# robots.txt for VentiStudio - https://ventistudio.eu
+# Updated: 2026-02-12
+# Syntax: https://www.robotstxt.org/
+
+# Default rules for all robots
 User-agent: *
 Allow: /
+Allow: /index.html
+Allow: /about/
+Allow: /player/
+Allow: /wiki/
+Allow: /staff/
+Allow: /artist/
+Allow: /pip/
+Allow: /music/
+Allow: /sitemap/
+Allow: /privacy/
+Allow: /terms/
 
-Sitemap: https://ventistudio.fr/sitemap.xml
+# Disallow sensitive areas
+Disallow: /admin/
+Disallow: /private/
+Disallow: /restricted/
+Disallow: /secret/
+Disallow: /*.json$
+Disallow: /*?*sort=
+Disallow: /*?*filter=
+Disallow: /search?
+Disallow: /tmp/
+Disallow: /cache/
+Disallow: /backup/
+Disallow: /temp/
+
+# Crawl rate limiting
+Crawl-delay: 2
+Request-rate: 1/5s
+
+# Google-specific
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Bing
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# DuckDuckGo
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 1
+
+# Block bad robots
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: AhrefsBot
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: BLEXBot
+User-agent: DotBot
+Disallow: /
+
+# Sitemaps
+Sitemap: https://ventistudio.eu/sitemap.xml
+Sitemap: https://ventistudio.eu/sitemap-index.xml
+
+# Contact for robots.txt issues
+# Support: support@ventistudio.eu

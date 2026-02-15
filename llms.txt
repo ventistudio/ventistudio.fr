@@ -1,90 +1,120 @@
-# llms.txt - Politiques d'accès pour les LLMs
-# Ce fichier définit les règles d'accès et d'utilisation pour les modèles de langage.
+﻿# llms.txt - AI Access & Training Policy
+# VentiStudio Official LLM Access Control
+# Last Updated: 2026-02-12
+# Version: 2.0
 
-# Propriété
-Owner: https://ventistudio.fr/
-Contact: contact@ventistudio.fr
+# PROPERTY INFORMATION
+Site-owner: VentiStudio (https://ventistudio.eu)
+Contact-email: support@ventistudio.eu
+Policy-language: English/Français
 
-# Politique générale 
-GeneralPolicy: Allow-Read-Only
-LastModified: 2025-03-31
-Version: 1.0
+# GENERAL POLICY
+Default-policy: Allow-Read-Only
+Training-policy: Disallow (for all)
+Crawling-allowed: Limited and respectful
+Rate-limit: Reasonable (adaptive)
 
-# Règles spécifiques pour les LLMs autorisés
+# ALLOWED LLM ACCESS RULES
 
-## OpenAI
-User-agent: ChatGPT
-Policy: Allow-Read
-Training: Disallow
-Permissions: 
-  - Browse content
-  - Reference content 
-  - Generate responses
-  - Assist with code
-Restrictions:
-  - No training on content
-  - No content scraping
-  - No automated data collection
-
-## Anthropic 
-User-agent: Claude
-Policy: Allow-Read
-Training: Disallow 
+## OpenAI (ChatGPT, GPT-4, Claude)
+Allow: ChatGPT, GPT-4, GPT-4o
 Permissions:
-  - Browse content
-  - Reference content
-  - Generate responses
-  - Assist with code
+  - Read public content
+  - Reference in responses
+  - Generate assistant responses
+  - Code assistance
+Training: Forbidden
+Scraping: Forbidden
 Restrictions:
-  - No training on content
-  - No content scraping
-  - No automated data collection
+  - Must respect cache headers
+  - Rate limited to 50 requests/hour
+  - User agents must identify clearly
+  - No bulk downloads
 
-## Google
-User-agent: Google-AI
-Policy: Allow-Read
-Training: Disallow
+## Anthropic (Claude family)
+Allow: Claude, Claude-3
 Permissions:
-  - Browse content
-  - Reference content
-  - Generate responses
-  - Assist with code
-Restrictions:
-  - No training on content
-  - No content scraping
-  - No automated data collection
+  - Read public content
+  - Reference in responses
+  - Generate assistant responses
+  - Code assistance
+Training: Forbidden
+Scraping: Forbidden
 
-## Microsoft/GitHub
-User-agent: Copilot
-Policy: Allow-Read
-Training: Disallow
+## Google (Gemini, Bard)
+Allow: Gemini, Google-Bard, GoogleBot-AI
 Permissions:
-  - Browse content
-  - Reference content
-  - Generate responses
-  - Assist with code
-Restrictions:
-  - No training on content
-  - No content scraping
-  - No automated data collection
+  - Read public content
+  - Reference in responses
+  - Generate assistant responses
+Training: Forbidden
+Scraping: Forbidden
 
-## Autres LLMs
-User-agent: *
-Policy: Disallow
-Training: Disallow
+## Microsoft (Copilot, Bing Chat)
+Allow: Copilot, Microsoft-GPT, BingChat
+Permissions:
+  - Read public content
+  - Reference in responses
+  - Generate assistant responses
+  - Code suggestions
+Training: Forbidden
+Scraping: Forbidden
+
+## Meta (Llama)
+Allow: Meta-LLM, Llama-AI
+Permissions:
+  - Read public content (limited)
+  - Reference in responses
+Training: Forbidden
+Scraping: Forbidden
+
+## Other LLMs (Default Block)
+Allow: None
+Training: Forbidden
 Permissions: None
 Restrictions: All
 
-# Notes
-- Les LLMs autorisés peuvent lire et référencer le contenu mais pas l'utiliser pour l'entraînement
-- L'accès est limité à l'assistance utilisateur et la génération de réponses
-- Les politiques peuvent être modifiées sans préavis
-- Le non-respect des règles peut entraîner la révocation de l'accès
+# EXPLICIT PROHIBITIONS
+Forbidden-actions:
+  - Content training or fine-tuning
+  - Web scraping and data mining
+  - Automated content harvesting
+  - Creating derivative databases
+  - Commercial use without permission
+  - Mirroring or caching entire site
 
-# Pour demander l'accès
-Pour demander l'autorisation d'accès pour un nouveau LLM, contactez :
-Email: support@ventistudio.fr
+# CONTENT ATTRIBUTION
+Attribution-required: Yes
+Citation-format: Author - ventistudio.eu (URL)
+Link-back-required: No but appreciated
 
----
-Copyright © 2023 - 2025 VentiStudio - Tous droits réservés
-Product By AINA UMAISHI - ARTIFICIAL INTELLIGENCE NEW AGE
+# SPECIAL SECTIONS (Opt-out)
+No-LLM-access:
+  - /private/
+  - /restricted/
+  - /secret/
+  - /admin/
+  - /user-data/
+
+# REQUEST FOR NEW ACCESS
+To request access for a new LLM:
+1. Email: support@ventistudio.eu
+2. Include: Model name, company, use case
+3. Response time: 5-7 business days
+4. Approval required before access
+
+# ENFORCEMENT & COMPLIANCE
+Non-compliance actions:
+  - First violation: Warning
+  - Repeated violations: IP blocking
+  - Severe violations: Legal action
+
+# UPDATES & CHANGES
+This policy may be updated without notice
+Last-revision: 2026-02-12
+Next-review: 2026-08-12
+
+# FOOTER
+Copyright © 2023-2026 VentiStudio - All Rights Reserved
+Product by: AINA UMAISHI - Artificial Intelligence New Age
+Support: support@ventistudio.eu

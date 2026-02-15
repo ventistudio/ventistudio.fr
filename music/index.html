@@ -1,12 +1,57 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
+  <meta name="theme-color" content="#6366f1">
+  <title>VentiStudio v4</title>
+  <link rel="stylesheet" href="../style.css">
+</title>
+</head>
+<body>
+  <header>
+
+    <div class="logo">
+      <img src="../favicon.ico" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
+      <span>VentiStudio</span>
+    </div>
+    <nav aria-label="Navigation principale">
+      <a href="../" class="active">Accueil</a>
+      <a href="../approuvedcontent/">Contenu Approuvé</a>
+      <a href="../player">Lecteur</a>
+      <a href="../wiki">Wiki</a>
+      <a href="../staff">Équipe</a>
+      <a href="../news">News</a>
+      <a href="../pip">PIP</a>
+      <a href="../sitemap">Plan du site</a>
+    </nav>
+    <div class="controls" role="toolbar" aria-label="Contrôles">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
+          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
+          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
+        </svg>
+      </button>
+      <div id="user-button" role="region" aria-label="Authentification"></div>
+    </div>
+  
+  </header>
+
+  <main>
+
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Plateforme musicale interactive de VentiStudio avec lecteur audio avancé." />
-  <link rel="canonical" href="https://ventistudio.fr/music" />
+  <meta name="description" content="Plateforme musicale interactive de VentiStudio avec lecteur audio avancÃ©." />
+  <link rel="canonical" href="https://ventistudio.eu/music" />
   <title>VentiStudio Music</title>
-  <link rel="stylesheet" href="https://trust.ventistudio.fr/root/style.css">
+  <link rel="stylesheet" href="https://trust.ventistudio.eu/root/style.css">
   <link rel="stylesheet" href="/music/styles.css">
 </head>
 <body>
@@ -17,7 +62,7 @@
       <select id="sortSelect">
         <option value="">Trier par...</option>
         <option value="title">Titre</option>
-        <option value="artist">Artiste</option>
+        <option value="artist">News</option>
         <option value="album">Album</option>
       </select>
     </div>
@@ -46,7 +91,7 @@
         <span id="totalTime">0:00</span>
       </div>
       <div class="player-buttons">
-        <button class="btn btn-sm" title="Titre précédent" onclick="prevTrack()">
+        <button class="btn btn-sm" title="Titre prÃ©cÃ©dent" onclick="prevTrack()">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polygon points="19 20 9 12 19 4 19 20"></polygon>
             <line x1="5" y1="19" x2="5" y2="5"></line>
@@ -77,7 +122,7 @@
         <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.8">
       </div>
       <div class="extras">
-        <button class="btn btn-sm" id="loopBtn" title="Répéter" onclick="toggleLoop()">
+        <button class="btn btn-sm" id="loopBtn" title="RÃ©pÃ©ter" onclick="toggleLoop()">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M17 2l4 4-4 4"></path>
             <path d="M3 11v-1a4 4 0 0 1 4-4h14"></path>
@@ -85,7 +130,7 @@
             <path d="M21 13v1a4 4 0 0 1-4 4H3"></path>
           </svg>
         </button>
-        <button class="btn btn-sm" id="shuffleBtn" title="Lecture aléatoire" onclick="toggleShuffle()">
+        <button class="btn btn-sm" id="shuffleBtn" title="Lecture alÃ©atoire" onclick="toggleShuffle()">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M16 3h5v5"></path>
             <path d="M4 20L21 3"></path>
@@ -103,7 +148,7 @@
             <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
           </svg>
         </button>
-        <button class="btn btn-sm" title="Plein écran" onclick="enterFullscreenLed()">
+        <button class="btn btn-sm" title="Plein Ã©cran" onclick="enterFullscreenLed()">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M8 3H5a2 2 0 0 0-2 2v3"></path>
             <path d="M21 8V5a2 2 0 0 0-2-2h-3"></path>
@@ -114,17 +159,70 @@
       </div>
     </div>
   </div>
-  <!-- Mode plein écran LED -->
+  <!-- Mode plein Ã©cran LED -->
   <div id="fullscreenLed">
     <canvas class="led-canvas"></canvas>
     <div class="led-content">
       <img class="led-album" src="" alt="Album cover">
       <div class="led-title"></div>
       <div class="led-artist"></div>
-      <button class="led-exit" onclick="exitFullscreenLed()">Quitter le plein écran</button>
+      <button class="led-exit" onclick="exitFullscreenLed()">Quitter le plein Ã©cran</button>
     </div>
   </div>
   <audio id="mainAudio"></audio>
   <script src="/music/app.js" defer></script>
 </body>
 </html>
+
+  
+  
+  </main>
+
+  <footer>
+
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Outils</h4>
+        <ul>
+          <li><a href="#">Encrypt</a></li>
+          <li><a href="#">Plan du site</a></li>
+          <li><a href="#">Statut</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Entreprise</h4>
+        <ul>
+          <li><a href="#">À propos</a></li>
+          <li><a href="#">Emplois</a></li>
+          <li><a href="#">Marque</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Ressources</h4>
+        <ul>
+          <li><a href="#">Université</a></li>
+          <li><a href="#">Assistance</a></li>
+          <li><a href="#">Sécurité</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Chartes</h4>
+        <ul>
+          <li><a href="#">Conditions</a></li>
+          <li><a href="#">Confidentialité</a></li>
+          <li><a href="#">Information DMCA</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
+      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
+    </div>
+  
+  </footer>
+
+  <script src="../script.js" defer></script>
+</body>
+</html>
+
+

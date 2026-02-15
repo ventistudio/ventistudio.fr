@@ -1,29 +1,55 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VentiStudio Survival Server - Minecraft</title>
-    <link rel="stylesheet" href="https://trust.ventistudio.fr/root/style.css">
-    <link rel="stylesheet" href="https://trust.ventistudio.fr/root/mc/style.css">
-    <link rel="icon" type="image/ico" href="https://ventistudio.fr/favicon.ico">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
+  <meta name="theme-color" content="#6366f1">
+  <title>VentiStudio v4</title>
+  <link rel="stylesheet" href="../style.css">
+</title>
 </head>
 <body>
-    <div class="minecraft-background"></div>
-    
-    <header>
-        <nav>
-            <a href="https://ventistudio.fr" class="nav-link">Retour au site</a>
-        </nav>
-    </header>
+  <header>
 
-    <main class="container">
+    <div class="logo">
+      <img src="../favicon.ico" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
+      <span>VentiStudio</span>
+    </div>
+    <nav aria-label="Navigation principale">
+      <a href="../" class="active">Accueil</a>
+      <a href="../approuvedcontent/">Contenu Approuvé</a>
+      <a href="../player">Lecteur</a>
+      <a href="../wiki">Wiki</a>
+      <a href="../staff">Équipe</a>
+      <a href="../news">News</a>
+      <a href="../pip">PIP</a>
+      <a href="../sitemap">Plan du site</a>
+    </nav>
+    <div class="controls" role="toolbar" aria-label="Contrôles">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
+          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
+          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
+        </svg>
+      </button>
+      <div id="user-button" role="region" aria-label="Authentification"></div>
+    </div>
+  
+  </header>
+
+  <main>
+
+
+
         <h1>VentiStudio Survival Server</h1>
         
         <section class="server-info">
             <div class="minecraft-block">
                 <h2>Bienvenue sur VentiStudio Minecraft</h2>
-                <p>Plongez dans une expérience Minecraft unique avec notre serveur survival personnalisé. Construisez, explorez et survivez dans un monde riche en aventures et en possibilités.</p>
+                <p>Plongez dans une expÃ©rience Minecraft unique avec notre serveur survival personnalisÃ©. Construisez, explorez et survivez dans un monde riche en aventures et en possibilitÃ©s.</p>
                 <div class="server-stats">
                     <div class="stat">
                         <span class="stat-label">Statut:</span>
@@ -45,55 +71,99 @@
             <h2>Rejoindre le serveur</h2>
             <div class="buttons">
                 <a href="https://download.radmin-vpn.com/download/files/Radmin_VPN_1.4.4642.1.exe" class="minecraft-button">
-                    <span class="button-icon">📥</span>
-                    Télécharger Radmin VPN
+                    <span class="button-icon">ðŸ“¥</span>
+                    TÃ©lÃ©charger Radmin VPN
                 </a>
-                <a href="https://ventistudio.fr/mc/vs.1.0.0.zip" class="minecraft-button">
-                    <span class="button-icon">🎮</span>
-                    Télécharger les mods
+                <a href="https://ventistudio.eu/mc/vs.1.0.0.zip" class="minecraft-button">
+                    <span class="button-icon">ðŸŽ®</span>
+                    TÃ©lÃ©charger les mods
                 </a>
             </div>
             <div class="install-steps">
                 <h3>Instructions d'installation</h3>
                 <ol>
                     <li>Installez Radmin VPN</li>
-                    <li>Rejoignez notre réseau VPN (les détails seront fournis sur Discord)</li>
+                    <li>Rejoignez notre rÃ©seau VPN (les dÃ©tails seront fournis sur Discord)</li>
                     <li>Installez les mods dans votre dossier Minecraft</li>
                     <li>Lancez Minecraft version 1.20.4</li>
-                    <li>Connectez-vous au serveur avec l'adresse IP: play.ventistudio.fr</li>
+                    <li>Connectez-vous au serveur avec l'adresse IP: play.ventistudio.eu</li>
                 </ol>
             </div>
         </section>
 
         <section class="features">
             <div class="minecraft-block">
-                <h3>Caractéristiques du serveur</h3>
+                <h3>CaractÃ©ristiques du serveur</h3>
                 <ul>
-                    <li>✨ Survival amélioré avec des fonctionnalités exclusives</li>
-                    <li>👥 Communauté active et accueillante</li>
-                    <li>🛠️ Mods soigneusement sélectionnés et optimisés</li>
-                    <li>🎉 Events réguliers et récompenses uniques</li>
-                    <li>🔒 Protection anti-cheat et sauvegardes régulières</li>
-                    <li>🤝 Support technique disponible sur Discord</li>
+                    <li>âœ¨ Survival amÃ©liorÃ© avec des fonctionnalitÃ©s exclusives</li>
+                    <li>ðŸ‘¥ CommunautÃ© active et accueillante</li>
+                    <li>ðŸ› ï¸ Mods soigneusement sÃ©lectionnÃ©s et optimisÃ©s</li>
+                    <li>ðŸŽ‰ Events rÃ©guliers et rÃ©compenses uniques</li>
+                    <li>ðŸ”’ Protection anti-cheat et sauvegardes rÃ©guliÃ¨res</li>
+                    <li>ðŸ¤ Support technique disponible sur Discord</li>
                 </ul>
             </div>
         </section>
 
         <section class="community">
             <div class="minecraft-block">
-                <h3>Rejoignez notre communauté</h3>
+                <h3>Rejoignez notre communautÃ©</h3>
                 <a href="https://discord.gg/ventistudio" class="discord-button">
                     <svg class="discord-icon" viewBox="0 0 24 24"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/></svg>
                     Rejoindre le Discord
                 </a>
             </div>
         </section>
-    </main>
+    
+  
+  
+  </main>
 
-    <footer>
-        <p>Copyright © P-Line 2023 - 2025. Tous droits réservés.</p>
-    </footer>
+  <footer>
 
-    <script src="https://trust.ventistudio.fr/root/mc/script.js"></script>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Outils</h4>
+        <ul>
+          <li><a href="#">Encrypt</a></li>
+          <li><a href="#">Plan du site</a></li>
+          <li><a href="#">Statut</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Entreprise</h4>
+        <ul>
+          <li><a href="#">À propos</a></li>
+          <li><a href="#">Emplois</a></li>
+          <li><a href="#">Marque</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Ressources</h4>
+        <ul>
+          <li><a href="#">Université</a></li>
+          <li><a href="#">Assistance</a></li>
+          <li><a href="#">Sécurité</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Chartes</h4>
+        <ul>
+          <li><a href="#">Conditions</a></li>
+          <li><a href="#">Confidentialité</a></li>
+          <li><a href="#">Information DMCA</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
+      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
+    </div>
+  
+  </footer>
+
+  <script src="../script.js" defer></script>
 </body>
 </html>
+
+

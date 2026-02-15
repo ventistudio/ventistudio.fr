@@ -1,22 +1,124 @@
 {
-    "name": "VentiStudio.Fr",
-    "short_name": "VentiMusic",
-    "start_url": "/",
-    "display": "standalone",
-    "background_color": "#1a1b26",
-    "theme_color": "#7c3aed",
-    "description": "Créativité, innovation, et communauté à portée de clic.",
-    "icons": [
-      {
-        "src": "/favicon-192.png",
-        "sizes": "192x192",
-        "type": "image/png"
-      },
-      {
-        "src": "/favicon-512.png",
-        "sizes": "512x512",
-        "type": "image/png"
-      }
-    ]
-  }
-  
+  "name": "VentiStudio - Creative Hub & Entertainment Platform",
+  "short_name": "VentiStudio",
+  "description": "VentiStudio - Your premier destination for creativity, innovation, and digital entertainment. Explore unique experiences, artist collaborations, and immersive content.",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "background_color": "#0a0a0f",
+  "theme_color": "#6366f1",
+  "categories": ["entertainment", "productivity", "graphics"],
+  "screenshots": [
+    {
+      "src": "/favicon.avif",
+      "sizes": "192x192",
+      "type": "image/avif",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "/favicon.avif",
+      "sizes": "512x512",
+      "type": "image/avif",
+      "form_factor": "wide"
+    }
+  ],
+  "icons": [
+    {
+      "src": "/favicon.avif",
+      "sizes": "192x192",
+      "type": "image/avif",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon.avif",
+      "sizes": "512x512",
+      "type": "image/avif",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon.avif",
+      "sizes": "192x192",
+      "type": "image/avif",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Wiki",
+      "short_name": "Wiki",
+      "description": "Access the VentiStudio Wiki",
+      "url": "/wiki/",
+      "icons": [
+        {
+          "src": "/favicon.avif",
+          "sizes": "192x192",
+          "type": "image/avif"
+        }
+      ]
+    },
+    {
+      "name": "About",
+      "short_name": "About",
+      "description": "Learn about VentiStudio",
+      "url": "/about/",
+      "icons": [
+        {
+          "src": "/favicon.avif",
+          "sizes": "192x192",
+          "type": "image/avif"
+        }
+      ]
+    },
+    {
+      "name": "Artist",
+      "short_name": "Artist",
+      "description": "Explore artist submissions",
+      "url": "/artist/",
+      "icons": [
+        {
+          "src": "/favicon.avif",
+          "sizes": "192x192",
+          "type": "image/avif"
+        }
+      ]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "share_target": {
+    "action": "/share/",
+    "method": "POST",
+    "enctype": "application/x-www-form-urlencoded",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  },
+  "screenshots_desktop": [
+    {
+      "src": "/favicon.avif",
+      "sizes": "1024x768",
+      "type": "image/avif",
+      "form_factor": "wide"
+    }
+  ],
+  "share_data": {
+    "title": "VentiStudio",
+    "text": "Check out VentiStudio - A creative hub for digital experiences!",
+    "url": "https://ventistudio.eu"
+  },
+  "colors": [
+    {
+      "space": "srgb",
+      "color": "#6366f1"
+    },
+    {
+      "space": "srgb",
+      "color": "#0a0a0f"
+    }
+  ],
+  "prefer_dark_mode": true,
+  "handle_links": "preferred"
+}

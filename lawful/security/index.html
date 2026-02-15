@@ -1,224 +1,66 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
+
   <meta charset="UTF-8">
-  <link rel="icon" type="image/ico" href="https://ventistudio.fr/favicon.ico">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VentiStudio - Sécurité</title>
-  <link rel="stylesheet" href="https://trust.ventistudio.fr/root/style.css">
-  <style>
-    /* Styles pour la page de sécurité */
-
-    .hero-section {
-      text-align: center;
-      padding: 4rem 2rem;
-      background: var(--bg-secondary);
-      border-radius: 10px;
-      margin-bottom: 2rem;
-    }
-
-    .hero-section h1 {
-      font-size: 2.5rem;
-      color: var(--text-primary);
-      margin-bottom: 1rem;
-    }
-
-    .hero-section p {
-      font-size: 1.2rem;
-      color: var(--text-secondary);
-    }
-
-    .security-section {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 2rem;
-    }
-
-    .security-card {
-      background: var(--bg-secondary);
-      border-radius: 10px;
-      padding: 2rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    .security-card h3 {
-      color: var(--text-primary);
-      margin-bottom: 1rem;
-      font-size: 1.5rem;
-    }
-
-    .security-card p {
-      color: var(--text-secondary);
-      line-height: 1.6;
-    }
-
-    .security-card ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .security-card ul li {
-      color: var(--text-secondary);
-      padding: 0.5rem 0;
-      display: flex;
-      align-items: center;
-    }
-
-    .security-card ul li:before {
-      content: "•";
-      color: var(--accent-color);
-      margin-right: 1rem;
-    }
-
-    .report-form {
-      background: var(--bg-secondary);
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    .section-title {
-      color: var(--text-primary);
-      margin-bottom: 2rem;
-      font-size: 1.8rem;
-      text-align: center;
-    }
-
-    .form-group {
-      margin-bottom: 1.5rem;
-    }
-
-    .form-group label {
-      display: block;
-      margin-bottom: 0.5rem;
-      color: var(--text-primary);
-      font-weight: 500;
-    }
-
-    .form-group select,
-    .form-group textarea,
-    .form-group input {
-      width: 100%;
-      padding: 0.8rem;
-      border: 1px solid var(--border-color);
-      border-radius: 5px;
-      background: var(--bg-input);
-      color: var(--text-primary);
-      font-size: 1rem;
-    }
-
-    .form-group textarea {
-      min-height: 120px;
-      resize: vertical;
-    }
-
-    .submit-button {
-      width: 100%;
-      padding: 1rem;
-      background: var(--accent-color);
-      color: white;
-      border: none;
-      border-radius: 5px;
-      font-size: 1rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-
-    .submit-button:hover {
-      background: var(--accent-color-hover);
-    }
-
-    .error-message {
-      color: var(--error-color);
-      margin-top: 1rem;
-      text-align: center;
-      display: none;
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      .hero-section {
-        padding: 2rem 1rem;
-      }
-
-      .hero-section h1 {
-        font-size: 2rem;
-      }
-
-      .security-section {
-        padding: 1rem;
-      }
-
-      .security-card {
-        padding: 1.5rem;
-      }
-    }
-
-    /* Dark Mode Specific Styles */
-    [data-theme="dark"] .security-card {
-      background: var(--bg-dark-secondary);
-    }
-
-    [data-theme="dark"] .report-form {
-      background: var(--bg-dark-secondary);
-    }
-
-    [data-theme="dark"] .form-group select,
-    [data-theme="dark"] .form-group textarea,
-    [data-theme="dark"] .form-group input {
-      background: var(--bg-dark-input);
-      border-color: var(--border-dark-color);
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
+  <meta name="theme-color" content="#6366f1">
+  <title>VentiStudio v4</title>
+  <link rel="stylesheet" href="../../style.css">
+  VentiStudio - SÃ©curitÃ©</title>
 </head>
 <body>
   <header>
+
     <div class="logo">
-      <img src="https://ventistudio.fr/favicon.avif" alt="VentiStudio Logo" class="site-logo">
+      <img src="../../favicon.ico" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
       <span>VentiStudio</span>
     </div>
-    <nav>
-      <a href="https://ventistudio.fr">Accueil</a>
-      <a href="https://ventistudio.fr/approuvedcontent">Contenu Approuvé</a>
-      <a href="https://ventistudio.fr/player">Player</a>
-      <a href="https://ventistudio.fr/wiki">Wiki</a>
-      <a href="https://ventistudio.fr/staff">Staff</a>
-      <a href="https://ventistudio.fr/artist">Artiste</a>
-      <a href="https://ventistudio.fr/pip">PIP</a>
-      <a href="https://ventistudio.fr/sitemap">Sitemap</a>
+    <nav aria-label="Navigation principale">
+      <a href="../../" class="active">Accueil</a>
+      <a href="../../approuvedcontent/">Contenu Approuvé</a>
+      <a href="../../player">Lecteur</a>
+      <a href="../../wiki">Wiki</a>
+      <a href="../../staff">Équipe</a>
+      <a href="../../news">News</a>
+      <a href="../../pip">PIP</a>
+      <a href="../../sitemap">Plan du site</a>
     </nav>
-    <div class="controls">
-      <button id="theme-toggle" class="theme-toggle">
-        <svg width="24" height="24" viewBox="0 0 24 24">
+    <div class="controls" role="toolbar" aria-label="Contrôles">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
           <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
           <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
           <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
         </svg>
       </button>
-      <div id="user-button"></div>
+      <div id="user-button" role="region" aria-label="Authentification"></div>
     </div>
+  
   </header>
 
   <main>
+
+
+
     <section class="hero-section">
-      <h1>Centre de Sécurité VentiStudio</h1>
-      <p>Aidez-nous à maintenir VentiStudio sûr et sécurisé pour tous</p>
+      <h1>Centre de SÃ©curitÃ© VentiStudio</h1>
+      <p>Aidez-nous Ã  maintenir VentiStudio sÃ»r et sÃ©curisÃ© pour tous</p>
     </section>
 
     <section class="security-section">
       <div class="security-card">
-        <h3>Signalement de Problèmes</h3>
-        <p>Nous prenons la sécurité très au sérieux. Si vous découvrez une vulnérabilité ou un comportement inapproprié, veuillez nous en faire part immédiatement.</p>
+        <h3>Signalement de ProblÃ¨mes</h3>
+        <p>Nous prenons la sÃ©curitÃ© trÃ¨s au sÃ©rieux. Si vous dÃ©couvrez une vulnÃ©rabilitÃ© ou un comportement inappropriÃ©, veuillez nous en faire part immÃ©diatement.</p>
       </div>
 
       <div class="security-card">
         <h3>Types de Signalements</h3>
         <ul>
-          <li>Vulnérabilités de sécurité</li>
+          <li>VulnÃ©rabilitÃ©s de sÃ©curitÃ©</li>
           <li>Bugs techniques</li>
-          <li>Comportements inappropriés</li>
+          <li>Comportements inappropriÃ©s</li>
           <li>Contenu suspect</li>
         </ul>
       </div>
@@ -229,33 +71,33 @@
         <div class="form-group">
           <label for="type">Type de Signalement</label>
           <select id="type" required>
-            <option value="">Sélectionner un type</option>
-            <option value="security">Vulnérabilité de Sécurité</option>
+            <option value="">SÃ©lectionner un type</option>
+            <option value="security">VulnÃ©rabilitÃ© de SÃ©curitÃ©</option>
             <option value="bug">Bug Technique</option>
-            <option value="behavior">Comportement Inapproprié</option>
+            <option value="behavior">Comportement InappropriÃ©</option>
             <option value="content">Contenu Suspect</option>
           </select>
         </div>
 
         <div class="form-group">
-          <label for="severity">Niveau de Gravité</label>
+          <label for="severity">Niveau de GravitÃ©</label>
           <select id="severity" required>
-            <option value="">Sélectionner un niveau</option>
+            <option value="">SÃ©lectionner un niveau</option>
             <option value="low">Faible</option>
             <option value="medium">Moyen</option>
-            <option value="high">Élevé</option>
+            <option value="high">Ã‰levÃ©</option>
             <option value="critical">Critique</option>
           </select>
         </div>
 
         <div class="form-group">
-          <label for="description">Description Détaillée</label>
-          <textarea id="description" required placeholder="Décrivez le problème en détail..."></textarea>
+          <label for="description">Description DÃ©taillÃ©e</label>
+          <textarea id="description" required placeholder="DÃ©crivez le problÃ¨me en dÃ©tail..."></textarea>
         </div>
 
         <div class="form-group">
-          <label for="steps">Étapes pour Reproduire</label>
-          <textarea id="steps" placeholder="Étapes pour reproduire le problème..."></textarea>
+          <label for="steps">Ã‰tapes pour Reproduire</label>
+          <textarea id="steps" placeholder="Ã‰tapes pour reproduire le problÃ¨me..."></textarea>
         </div>
 
         <div class="form-group">
@@ -267,77 +109,56 @@
         <div class="error-message" id="errorMessage"></div>
       </form>
     </section>
+  
+  
+  
   </main>
 
   <footer>
+
     <div class="footer-content">
       <div class="footer-section">
         <h4>Outils</h4>
         <ul>
-          <li><a href="https://ventistudio.fr/encrypt">Encrypt</a></li>
-          <li><a href="https://ventistudio.fr/sitemap">Sitemap</a></li>
-          <li><a href="https://status.ventistudio.fr/">Statut</a></li>
-          <li><a href="https://aina.ventistudio.fr/">Aina</a></li>
+          <li><a href="#">Encrypt</a></li>
+          <li><a href="#">Plan du site</a></li>
+          <li><a href="#">Statut</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Entreprise</h4>
         <ul>
-          <li><a href="https://ventistudio.fr/about">À propos</a></li>
-          <li><a href="https://ventistudio.fr/jobs">Emplois</a></li>
-          <li><a href="https://ventistudio.fr/company">Marque</a></li>
-          <li><a href="https://ventistudio.fr/creator">Créateur</a></li>
+          <li><a href="#">À propos</a></li>
+          <li><a href="#">Emplois</a></li>
+          <li><a href="#">Marque</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Ressources</h4>
         <ul>
-          <li><a href="https://ventistudio.fr/university">Université</a></li>
-          <li><a href="https://ventistudio.fr/school">École</a></li>
-          <li><a href="https://ventistudio.fr/help">Assistance</a></li>
-          <li><a href="https://ventistudio.fr/security">Sécurité</a></li>
+          <li><a href="#">Université</a></li>
+          <li><a href="#">Assistance</a></li>
+          <li><a href="#">Sécurité</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Chartes</h4>
         <ul>
-          <li><a href="https://ventistudio.fr/terms">Conditions</a></li>
-          <li><a href="https://ventistudio.fr/privacy">Confidentialité</a></li>
-          <li><a href="https://ventistudio.fr/cookies">Cookies</a></li>
-          <li><a href="https://ventistudio.fr/dmca">DMCA</a></li>
+          <li><a href="#">Conditions</a></li>
+          <li><a href="#">Confidentialité</a></li>
+          <li><a href="#">Information DMCA</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p class="status"><iframe src="https://status.ventistudio.fr/badge?theme=dark" width="250" height="30" frameborder="0" marginheight="0" marginwidth="0" scrolling="no"></iframe></p>
-      <p class="copyright">Copyright © P-Line 2023 - 2025. Tous droits réservés.</p>
+      <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
+      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
     </div>
+  
   </footer>
 
-  <script src="https://trust.ventistudio.fr/root/script.js"></script>
-  <script>
-    function handleSubmit(event) {
-      event.preventDefault();
-      
-      const type = document.getElementById('type').value;
-      const severity = document.getElementById('severity').value;
-      const description = document.getElementById('description').value;
-      const steps = document.getElementById('steps').value;
-      const contact = document.getElementById('contact').value;
-
-      const subject = `Signalement de Sécurité: ${type} - ${severity}`;
-      const body = `Type: ${type}
-Gravité: ${severity}
-Description: ${description}
-
-Étapes pour reproduire:
-${steps}
-
-Contact: ${contact}`;
-
-      window.location.href = `mailto:security@ventistudio.fr?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      return false;
-    }
-  </script>
+  <script src="../../script.js" defer></script>
 </body>
 </html>
+
+

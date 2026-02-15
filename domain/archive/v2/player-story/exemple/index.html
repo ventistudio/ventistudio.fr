@@ -1,5 +1,50 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
+  <meta name="theme-color" content="#6366f1">
+  <title>VentiStudio v4</title>
+  <link rel="stylesheet" href="../../../../../style.css">
+  VentiStudio - Livre NumÃ©rique</title>
+</head>
+<body>
+  <header>
+
+    <div class="logo">
+      <img src="../../../../../favicon.ico" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
+      <span>VentiStudio</span>
+    </div>
+    <nav aria-label="Navigation principale">
+      <a href="../../../../../" class="active">Accueil</a>
+      <a href="../../../../../approuvedcontent/">Contenu Approuvé</a>
+      <a href="../../../../../player">Lecteur</a>
+      <a href="../../../../../wiki">Wiki</a>
+      <a href="../../../../../staff">Équipe</a>
+      <a href="../../../../../news">News</a>
+      <a href="../../../../../pip">PIP</a>
+      <a href="../../../../../sitemap">Plan du site</a>
+    </nav>
+    <div class="controls" role="toolbar" aria-label="Contrôles">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
+          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
+          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
+        </svg>
+      </button>
+      <div id="user-button" role="region" aria-label="Authentification"></div>
+    </div>
+  
+  </header>
+
+  <main>
+
+
 <html><head><base href="https://example.com">
-  <title>VentiStudio - Livre Numérique</title>
+  <title>VentiStudio - Livre NumÃ©rique</title>
   <style>
     :root {
       --primary: #8b5cf6;
@@ -116,13 +161,13 @@
     <div class="book">
       <div class="page" id="currentPage">
         <div class="page-content">
-          <h1 class="chapter-title">Les Mystères de VentiStudio</h1>
+          <h1 class="chapter-title">Les MystÃ¨res de VentiStudio</h1>
           
-          <p>Dans l'univers numérique en constante évolution, VentiStudio se dresse comme un phare pour les créateurs et les passionnés. Ce lieu unique, où la musique, l'art et la technologie convergent, raconte une histoire fascinante qui mérite d'être partagée.</p>
+          <p>Dans l'univers numÃ©rique en constante Ã©volution, VentiStudio se dresse comme un phare pour les crÃ©ateurs et les passionnÃ©s. Ce lieu unique, oÃ¹ la musique, l'art et la technologie convergent, raconte une histoire fascinante qui mÃ©rite d'Ãªtre partagÃ©e.</p>
 
-          <p>Notre voyage commence par une simple idée : créer un espace où les artistes peuvent s'épanouir, où les technologies peuvent être explorées, et où la créativité n'a pas de limites. Chaque jour, de nouveaux chapitres s'écrivent dans cette aventure collective.</p>
+          <p>Notre voyage commence par une simple idÃ©e : crÃ©er un espace oÃ¹ les artistes peuvent s'Ã©panouir, oÃ¹ les technologies peuvent Ãªtre explorÃ©es, et oÃ¹ la crÃ©ativitÃ© n'a pas de limites. Chaque jour, de nouveaux chapitres s'Ã©crivent dans cette aventure collective.</p>
 
-          <p>Les murs virtuels de VentiStudio résonnent des échos de milliers de créations, chacune portant en elle une partie de l'âme de son créateur. C'est un lieu où les rêves prennent forme, où les idées deviennent réalité, et où chaque membre contribue à enrichir notre histoire commune.</p>
+          <p>Les murs virtuels de VentiStudio rÃ©sonnent des Ã©chos de milliers de crÃ©ations, chacune portant en elle une partie de l'Ã¢me de son crÃ©ateur. C'est un lieu oÃ¹ les rÃªves prennent forme, oÃ¹ les idÃ©es deviennent rÃ©alitÃ©, et oÃ¹ chaque membre contribue Ã  enrichir notre histoire commune.</p>
 
           <div class="page-number">1</div>
         </div>
@@ -130,7 +175,7 @@
     </div>
     
     <div class="controls">
-      <button class="control-button" id="prevButton" disabled>Page Précédente</button>
+      <button class="control-button" id="prevButton" disabled>Page PrÃ©cÃ©dente</button>
       <button class="control-button" id="nextButton">Page Suivante</button>
     </div>
   </div>
@@ -140,33 +185,33 @@
     const totalPages = 3;
     const pages = [
       {
-        title: "Les Mystères de VentiStudio",
+        title: "Les MystÃ¨res de VentiStudio",
         content: `
-          <p>Dans l'univers numérique en constante évolution, VentiStudio se dresse comme un phare pour les créateurs et les passionnés. Ce lieu unique, où la musique, l'art et la technologie convergent, raconte une histoire fascinante qui mérite d'être partagée.</p>
+          <p>Dans l'univers numÃ©rique en constante Ã©volution, VentiStudio se dresse comme un phare pour les crÃ©ateurs et les passionnÃ©s. Ce lieu unique, oÃ¹ la musique, l'art et la technologie convergent, raconte une histoire fascinante qui mÃ©rite d'Ãªtre partagÃ©e.</p>
 
-          <p>Notre voyage commence par une simple idée : créer un espace où les artistes peuvent s'épanouir, où les technologies peuvent être explorées, et où la créativité n'a pas de limites. Chaque jour, de nouveaux chapitres s'écrivent dans cette aventure collective.</p>
+          <p>Notre voyage commence par une simple idÃ©e : crÃ©er un espace oÃ¹ les artistes peuvent s'Ã©panouir, oÃ¹ les technologies peuvent Ãªtre explorÃ©es, et oÃ¹ la crÃ©ativitÃ© n'a pas de limites. Chaque jour, de nouveaux chapitres s'Ã©crivent dans cette aventure collective.</p>
 
-          <p>Les murs virtuels de VentiStudio résonnent des échos de milliers de créations, chacune portant en elle une partie de l'âme de son créateur. C'est un lieu où les rêves prennent forme, où les idées deviennent réalité, et où chaque membre contribue à enrichir notre histoire commune.</p>
+          <p>Les murs virtuels de VentiStudio rÃ©sonnent des Ã©chos de milliers de crÃ©ations, chacune portant en elle une partie de l'Ã¢me de son crÃ©ateur. C'est un lieu oÃ¹ les rÃªves prennent forme, oÃ¹ les idÃ©es deviennent rÃ©alitÃ©, et oÃ¹ chaque membre contribue Ã  enrichir notre histoire commune.</p>
         `
       },
       {
-        title: "La Communauté Créative",
+        title: "La CommunautÃ© CrÃ©ative",
         content: `
-          <p>Au cœur de VentiStudio bat une communauté vibrante et diverse. Des artistes aux développeurs, des musiciens aux designers, chacun apporte sa pierre à l'édifice. La collaboration est notre force, l'innovation notre moteur.</p>
+          <p>Au cÅ“ur de VentiStudio bat une communautÃ© vibrante et diverse. Des artistes aux dÃ©veloppeurs, des musiciens aux designers, chacun apporte sa pierre Ã  l'Ã©difice. La collaboration est notre force, l'innovation notre moteur.</p>
 
-          <p>Chaque jour, de nouveaux projets voient le jour, portés par la passion et l'engagement de nos membres. Les frontières entre les disciplines s'estompent, donnant naissance à des créations uniques et inspirantes.</p>
+          <p>Chaque jour, de nouveaux projets voient le jour, portÃ©s par la passion et l'engagement de nos membres. Les frontiÃ¨res entre les disciplines s'estompent, donnant naissance Ã  des crÃ©ations uniques et inspirantes.</p>
 
-          <p>Notre Wiki collaboratif grandit, alimenté par le savoir collectif. Les espaces dédiés aux artistes s'enrichissent de nouvelles œuvres, tandis que notre système de contenu approuvé garantit qualité et pertinence.</p>
+          <p>Notre Wiki collaboratif grandit, alimentÃ© par le savoir collectif. Les espaces dÃ©diÃ©s aux artistes s'enrichissent de nouvelles Å“uvres, tandis que notre systÃ¨me de contenu Approuvé garantit qualitÃ© et pertinence.</p>
         `
       },
       {
         title: "L'Avenir de VentiStudio",
         content: `
-          <p>Alors que nous regardons vers l'avenir, VentiStudio continue d'évoluer et de se réinventer. Nos ambitions sont grandes, portées par la vision d'un espace toujours plus innovant et inclusif.</p>
+          <p>Alors que nous regardons vers l'avenir, VentiStudio continue d'Ã©voluer et de se rÃ©inventer. Nos ambitions sont grandes, portÃ©es par la vision d'un espace toujours plus innovant et inclusif.</p>
 
-          <p>De nouvelles fonctionnalités sont en développement, des partenariats se créent, et notre communauté ne cesse de grandir. Chaque jour qui passe nous rapproche un peu plus de notre objectif : devenir la référence en matière de création numérique collaborative.</p>
+          <p>De nouvelles fonctionnalitÃ©s sont en dÃ©veloppement, des partenariats se crÃ©ent, et notre communautÃ© ne cesse de grandir. Chaque jour qui passe nous rapproche un peu plus de notre objectif : devenir la rÃ©fÃ©rence en matiÃ¨re de crÃ©ation numÃ©rique collaborative.</p>
 
-          <p>L'aventure ne fait que commencer, et nous vous invitons à en faire partie. Rejoignez-nous dans cette quête d'excellence et d'innovation, où chaque voix compte et où chaque création trouve sa place.</p>
+          <p>L'aventure ne fait que commencer, et nous vous invitons Ã  en faire partie. Rejoignez-nous dans cette quÃªte d'excellence et d'innovation, oÃ¹ chaque voix compte et oÃ¹ chaque crÃ©ation trouve sa place.</p>
         `
       }
     ];
@@ -212,3 +257,55 @@
     });
   </script>
 </body></html>
+  
+  
+  </main>
+
+  <footer>
+
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Outils</h4>
+        <ul>
+          <li><a href="#">Encrypt</a></li>
+          <li><a href="#">Plan du site</a></li>
+          <li><a href="#">Statut</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Entreprise</h4>
+        <ul>
+          <li><a href="#">À propos</a></li>
+          <li><a href="#">Emplois</a></li>
+          <li><a href="#">Marque</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Ressources</h4>
+        <ul>
+          <li><a href="#">Université</a></li>
+          <li><a href="#">Assistance</a></li>
+          <li><a href="#">Sécurité</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Chartes</h4>
+        <ul>
+          <li><a href="#">Conditions</a></li>
+          <li><a href="#">Confidentialité</a></li>
+          <li><a href="#">Information DMCA</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
+      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
+    </div>
+  
+  </footer>
+
+  <script src="../../../../../script.js" defer></script>
+</body>
+</html>
+
+

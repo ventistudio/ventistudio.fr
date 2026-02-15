@@ -1,501 +1,147 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+
   <meta charset="UTF-8">
-  <title>Équipes – VentiStudio</title>
-  <link rel="stylesheet" href="https://trust.ventistudio.fr/root/style.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      margin: 0;
-      font-family: sans-serif;
-    }
-
-    .artist-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 2rem;
-      padding: 2rem;
-    }
-    .artist-card {
-      background: var(--bg-secondary, #f4f4f4);
-      padding: 1rem;
-      border-radius: 10px;
-      text-align: center;
-      cursor: pointer;
-      transition: transform 0.2s;
-    }
-    .artist-card:hover {
-      transform: scale(1.02);
-    }
-    .artist-card img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 1rem;
-    }
-    .artist-name {
-      font-size: 1.1rem;
-      font-weight: bold;
-      color: var(--text-primary, #333);
-    }
-
-    .artist-modal {
-      display: none;
-      position: fixed;
-      z-index: 1002;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      max-width: 600px;
-      width: 95%;
-      background: var(--bg-primary, white);
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.3);
-    }
-
-    .artist-modal h3 {
-      margin-top: 0;
-      font-size: 1.5rem;
-    }
-
-    .artist-modal img {
-      width: 100px;
-      height: 100px;
-      object-fit: cover;
-      border-radius: 50%;
-      margin-bottom: 1rem;
-    }
-
-    .artist-overlay {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.6);
-      z-index: 1001;
-    }
-
-    .close-modal {
-      float: right;
-      cursor: pointer;
-      font-size: 1.5rem;
-      background: none;
-      border: none;
-      color: var(--text-primary, #333);
-    }
-
-    .artist-info {
-      text-align: left;
-      line-height: 1.6;
-    }
-
-    .artist-buttons {
-      margin-top: 1rem;
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .artist-buttons a {
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      background: #7c3aed;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background 0.2s;
-    }
-
-    .artist-buttons a:hover {
-      background: #5b21b6;
-    }
-
-    [data-theme="dark"] .artist-card {
-      background: #1a1b26;
-      color: #c0caf5;
-    }
-
-    [data-theme="dark"] .artist-modal {
-      background: #1a1a1a;
-      color: #c0caf5;
-    }
-
-    [data-theme="dark"] .close-modal {
-      color: #c0caf5;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
+  <meta name="theme-color" content="#6366f1">
+  <title>VentiStudio v4</title>
+  <link rel="stylesheet" href="../style.css">
+</title>
 </head>
-<body>
-
-</head>
-
 <body>
   <header>
+
     <div class="logo">
-      <img src="https://ventistudio.fr/favicon.avif" alt="VentiStudio Logo" class="site-logo">
+      <img src="../favicon.ico" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
       <span>VentiStudio</span>
     </div>
-    <nav>
-      <a href="https://ventistudio.fr">Accueil</a>
-      <a href="https://ventistudio.fr/approuvedcontent">Contenu Approuvé</a>
-      <a href="https://ventistudio.fr/player">Player</a>
-      <a href="https://ventistudio.fr/wiki">Wiki</a>
-      <a href="https://ventistudio.fr/staff" class="active">Staff</a>
-      <a href="https://ventistudio.fr/artist">Artiste</a>
-      <a href="https://ventistudio.fr/pip">PIP</a>
-      <a href="https://ventistudio.fr/sitemap">Sitemap</a>
+    <nav aria-label="Navigation principale">
+      <a href="../">Accueil</a>
+      <a href="../approuvedcontent/">Contenu Approuvé</a>
+      <a href="../player">Lecteur</a>
+      <a href="../wiki">Wiki</a>
+      <a href="../staff" class="active">Équipe</a>
+      <a href="../news">News</a>
+      <a href="../pip">PIP</a>
+      <a href="../sitemap">Plan du site</a>
     </nav>
-    <div class="controls">
-      <button id="theme-toggle" class="theme-toggle">
-        <svg width="24" height="24" viewBox="0 0 24 24">
+    <div class="controls" role="toolbar" aria-label="Contrôles">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
           <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
           <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
           <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
         </svg>
       </button>
-      <div id="user-button"></div>
+      <div id="user-button" role="region" aria-label="Authentification"></div>
     </div>
-  </header>
   
+  </header>
+
   <main>
-    <div class="artist-grid">
-      <!-- Carte artiste -->
-      <div class="artist-card" onclick="openArtistModal('staff1')">
-        <img src="/a-files/image/hikariumaishi.avif" alt="Hikari Umaishi">
-        <div class="artist-name">Hikari Umaishi</div>
-      </div>
 
-      <div class="artist-card" onclick="openArtistModal('staff2')">
-        <img src="/a-files/image/tomoumaishi.avif" alt="Tomo Umaishi">
-        <div class="artist-name">Tomo Umaishi</div>
-      </div>
 
-      <div class="artist-card" onclick="openArtistModal('staff3')">
-        <img src="/a-files/image/clementfernandez.avif" alt="Clément Fernandez">
-        <div class="artist-name">Clément Fernandez</div>
-      </div>
 
-      <div class="artist-card" onclick="openArtistModal('staff4')">
-        <img src="/a-files/image/kalashnikov.avif" alt="Kalashnikov">
-        <div class="artist-name">Kalashnikov</div>
-      </div>
+    <section class="page-header">
+      <h1>Notre Ã‰quipe</h1>
+      <p>DÃ©couvrez les personnes passionnÃ©es qui font de VentiStudio une rÃ©alitÃ©.</p>
+    </section>
 
-      <div class="artist-card" onclick="openArtistModal('staff5')">
-        <img src="/a-files/image/sokinasawa.avif" alt="Soki Nasawa">
-        <div class="artist-name">Soki Nasawa</div>
-      </div>
-
-      <div class="artist-card" onclick="openArtistModal('staff6')">
-        <img src="/a-files/image/maitrecorbeau.avif" alt="Maître Corbeau">
-        <div class="artist-name">Maître Corbeau</div>
-      </div>
-
-      <div class="artist-card" onclick="openArtistModal('staff7')">
-        <img src="/a-files/image/petitepatatekawaii.avif" alt="Petite Patate Kawaii">
-        <div class="artist-name">Petite Patate Kawaii</div>
-      </div>
-
-      <div class="artist-card" onclick="openArtistModal('staff8')">
-        <img src="/a-files/image/futogensei.avif" alt="Futo Gensei">
-        <div class="artist-name">Futo Gensei</div>
-      </div>
-
-      <div class="artist-card" onclick="openArtistModal('staff9')">
-        <img src="/a-files/image/losttanuu.avif" alt="Lost Tanuu">
-        <div class="artist-name">Lost Tanuu</div>
-      </div>
-
-      <div class="artist-card" onclick="openArtistModal('staff10')">
-        <img src="/a-files/image/rayansilverhand.avif" alt="Rayan Silverhand">
-        <div class="artist-name">Rayan Silverhand</div>
-      </div>
-
-      <div class="artist-card" onclick="openArtistModal('staff11')">
-        <img src="/a-files/image/yaso.avif" alt="Yaso">
-        <div class="artist-name">Yaso</div>
-      </div>
-    </div>
-    
-
-    <!-- Overlay et modale -->
-    <div class="artist-overlay" id="artistOverlay" onclick="closeArtistModal()"></div>
-
-    <div class="artist-modal" id="staff1">
-      <button class="close-modal" onclick="closeArtistModal()">✕</button>
-      <div style="text-align: center;">
-        <img src="/a-files/image/hikariumaishi.avif" alt="Hikari Umaishi">
-        <h3>Hikari Umaishi</h3>
-      </div>
-      <div class="artist-info">
-        <p><strong>Nom :</strong> Hikari Umaishi</p>
-        <p><strong>Pseudo :</strong> Hiuma</p>
-        <p><strong>Rank :</strong> 🧑‍🎨 • Archon Primordiaux</p>
-        <p><strong>Présentation :</strong> Hikari Umaishi est le fondateur de VentiStudio.</p>
-        <p><strong>Biographie :</strong> Voyageur, Voyageuse, Bienvenue dans notre monde ou l'avenir est notre présent. Teyvat fait appel !</p>
-        <p><strong>Discord :</strong> @ventistudio</p>
-      </div>
-      <div class="artist-buttons">
-        <a href="https://ventistudio.fr/player?music=voyageur-deternite" target="_blank">🎵 Voir la fiche d'artiste</a>
-        <a href="https://ventistudio.fr/wiki/Hikari_Umaishi" target="_blank">📘 Voir le Wiki</a>
-        <a href="https://ventistudio.fr" target="_blank">🌐 Site Officiel</a>
-      </div>
+    <div class="team-filters">
+      <button class="filter-btn active" data-team="all">Tous</button>
+      <button class="filter-btn" data-team="direction">Direction</button>
+      <button class="filter-btn" data-team="dev">DÃ©veloppement</button>
+      <button class="filter-btn" data-team="mod">ModÃ©ration</button>
+      <button class="filter-btn" data-team="content">Contenu</button>
     </div>
 
-    <div class="artist-modal" id="staff2">
-      <button class="close-modal" onclick="closeArtistModal()">✕</button>
-      <div style="text-align: center;">
-        <img src="/a-files/image/tomoumaishi.avif" alt="Tomo Umaishi">
-        <h3>Tomo Umaishi</h3>
+    <section class="team-grid">
+      <div class="team-category" id="direction-team">
+        <h2>Direction</h2>
+        <div class="team-members">
+          <!-- Populated by JavaScript -->
+        </div>
       </div>
-      <div class="artist-info">
-        <p><strong>Nom :</strong> Tomo Umaishi</p>
-        <p><strong>Pseudo :</strong> Hugo GVH</p>
-        <p><strong>Rank :</strong> 🧑‍🎨 • Archon Supérieur</p>
-        <p><strong>Présentation :</strong> Tomo Umaishi est pas vraiment du staff c'est simplement le frêre d'Hikari Umaishi.</p>
-        <p><strong>Biographie :</strong> (Aucune)</p>
-        <p><strong>Discord :</strong> @hugo_gvh_49815</p>
-      </div>
-      <div class="artist-buttons">
-        <a href="https://ventistudio.fr/artist" target="_blank">🎵 Voir la fiche d'artiste</a>
-        <a href="https://ventistudio.fr/wiki/Tomo_Umaishi" target="_blank">📘 Voir le Wiki</a>
-      </div>
-    </div>
 
-    <div class="artist-modal" id="staff3">
-      <button class="close-modal" onclick="closeArtistModal()">✕</button>
-      <div style="text-align: center;">
-        <img src="/a-files/image/clementfernandez.avif" alt="Clément Fernandez">
-        <h3>Clément Fernandez</h3>
+      <div class="team-category" id="dev-team">
+        <h2>Ã‰quipe de DÃ©veloppement</h2>
+        <div class="team-members">
+          <!-- Populated by JavaScript -->
+        </div>
       </div>
-      <div class="artist-info">
-        <p><strong>Nom :</strong> Clément Fernandez</p>
-        <p><strong>Pseudo :</strong> Clem</p>
-        <p><strong>Rank :</strong> 🧑‍🎨 • Archon Ambassadeur</p>
-        <p><strong>Présentation :</strong> Clément Fernandez est un des 3 ambassadeur fondateur de VentiStudio.</p>
-        <p><strong>Biographie :</strong> (Aucune)</p>
-        <p><strong>Discord :</strong> @clem442</p>
-      </div>
-      <div class="artist-buttons">
-        <a href="https://ventistudio.fr/wiki/Hikari_Umaishi" target="_blank">📘 Voir le Wiki</a>
-      </div>
-    </div>
 
-    <div class="artist-modal" id="staff4">
-      <button class="close-modal" onclick="closeArtistModal()">✕</button>
-      <div style="text-align: center;">
-        <img src="/a-files/image/kalashnikov.avif" alt="Kalashnikov">
-        <h3>Kalashnikov</h3>
+      <div class="team-category" id="mod-team">
+        <h2>Ã‰quipe de ModÃ©ration</h2>
+        <div class="team-members">
+          <!-- Populated by JavaScript -->
+        </div>
       </div>
-      <div class="artist-info">
-        <p><strong>Nom :</strong> Kalashnikov</p>
-        <p><strong>Pseudo :</strong> Moonlight</p>
-        <p><strong>Rank :</strong> 🧑‍🎨 • Archon Ambassadeur</p>
-        <p><strong>Présentation :</strong> Kalashnikov est un des 3 ambassadeur fondateur de VentiStudio.</p>
-        <p><strong>Biographie :</strong> Moon/poltergeist/vendetta or Kalashnikov</p>
-        <p><strong>Discord :</strong> @moonlightvoc</p>
-      </div>
-      <div class="artist-buttons">
-        <a href="https://ventistudio.fr/player?music=voyageur-deternite" target="_blank">🎵 Voir la fiche d'artiste</a>
-        <a href="https://ventistudio.fr/wiki/Hikari_Umaishi" target="_blank">📘 Voir le Wiki</a>
-      </div>
-    </div>
 
-    <div class="artist-modal" id="staff5">
-      <button class="close-modal" onclick="closeArtistModal()">✕</button>
-      <div style="text-align: center;">
-        <img src="/a-files/image/sokinasawa.avif" alt="Soki Nasawa">
-        <h3>Soki Nasawa</h3>
+      <div class="team-category" id="content-team">
+        <h2>Ã‰quipe de Contenu</h2>
+        <div class="team-members">
+          <!-- Populated by JavaScript -->
+        </div>
       </div>
-      <div class="artist-info">
-        <p><strong>Nom :</strong> Soki Nasawa</p>
-        <p><strong>Pseudo :</strong> Pompom</p>
-        <p><strong>Rank :</strong> 🧑‍🎨 • Archon Ambassadeur</p>
-        <p><strong>Présentation :</strong> Soki Nasawa est un des 3 ambassadeur fondateur de VentiStudio.</p>
-        <p><strong>Biographie :</strong> (Aucune)</p>
-        <p><strong>Discord :</strong> @daeth1gun</p>
-      </div>
-      <div class="artist-buttons">
-        <a href="https://ventistudio.fr/wiki/Hikari_Umaishi" target="_blank">📘 Voir le Wiki</a>
-      </div>
-    </div>
+    </section>
 
-    <div class="artist-modal" id="staff6">
-      <button class="close-modal" onclick="closeArtistModal()">✕</button>
-      <div style="text-align: center;">
-        <img src="/a-files/image/maitrecorbeau.avif" alt="Maître Corbeau">
-        <h3>Maître Corbeau</h3>
-      </div>
-      <div class="artist-info">
-        <p><strong>Nom :</strong> Maître Corbeau</p>
-        <p><strong>Pseudo :</strong> Corbeau Sauvage</p>
-        <p><strong>Rank :</strong> 🧑‍🎨 • Archon Responsable</p>
-        <p><strong>Présentation :</strong> Maître Corbeau est le responsable global de VentiStudio.</p>
-        <p><strong>Biographie :</strong> ♪fly me to the moon⁓🥀, Goth/Dark academia Aesthetic enjoyer/INFP-T, ❤ The Cat Returns, why the heck am I still alive..., ♪Live in a fantasy world,the real one suck</p>
-        <p><strong>Discord :</strong> @_corbeau__</p>
-      </div>
-      <div class="artist-buttons">
-        <a href="https://ventistudio.fr/wiki/Hikari_Umaishi" target="_blank">📘 Voir le Wiki</a>
-      </div>
-    </div>
-
-    <div class="artist-modal" id="staff7">
-      <button class="close-modal" onclick="closeArtistModal()">✕</button>
-      <div style="text-align: center;">
-        <img src="/a-files/image/petitepatatekawaii.avif" alt="Petite Patate Kawaii">
-        <h3>Petite Patate Kawaii</h3>
-      </div>
-      <div class="artist-info">
-        <p><strong>Nom :</strong> Petite Patate Kawaii</p>
-        <p><strong>Pseudo :</strong> Cookies</p>
-        <p><strong>Rank :</strong> 🧑‍🎨 • Archon Porte Parole</p>
-        <p><strong>Présentation :</strong> Petite Patate Kawaii est le Porte Parole Officiel de VentiStudio.</p>
-        <p><strong>Biographie :</strong> il ne faut pas se fier à un sourire parce qu'on ne sait jamais se qu'il peut se cacher derrière, un sourire est un outil très précieux très chères, il inspire tes amis fait douter tes ennemis.</p>
-        <p><strong>Discord :</strong> @petite_patate_kawaii</p>
-      </div>
-      <div class="artist-buttons">
-        <a href="https://ventistudio.fr/wiki/Hikari_Umaishi" target="_blank">📘 Voir le Wiki</a>
-      </div>
-    </div>
-
-    <div class="artist-modal" id="staff8">
-      <button class="close-modal" onclick="closeArtistModal()">✕</button>
-      <div style="text-align: center;">
-        <img src="/a-files/image/futogensei.avif" alt="Futo Gensei">
-        <h3>Futo Gensei</h3>
-      </div>
-      <div class="artist-info">
-        <p><strong>Nom :</strong> Futo Gensei</p>
-        <p><strong>Pseudo :</strong> Feeway</p>
-        <p><strong>Rank :</strong> 🔧 • Archonte</p>
-        <p><strong>Présentation :</strong> Futo Genshei est l'assistent fondateur de VentiStudio.</p>
-        <p><strong>Biographie :</strong> Music is my escape from reality.</p>
-        <p><strong>Discord :</strong> @feewaytv</p>
-      </div>
-      <div class="artist-buttons">
-        <a href="https://ventistudio.fr/wiki/Hikari_Umaishi" target="_blank">📘 Voir le Wiki</a>
-      </div>
-    </div>
-
-
-    <div class="artist-modal" id="staff9">
-      <button class="close-modal" onclick="closeArtistModal()">✕</button>
-      <div style="text-align: center;">
-        <img src="/a-files/image/losttanuu.avif" alt="Lost Tanuu">
-        <h3>Lost Tanuu</h3>
-      </div>
-      <div class="artist-info">
-        <p><strong>Nom :</strong> Lost Tanuu</p>
-        <p><strong>Pseudo :</strong> Nikano</p>
-        <p><strong>Rank :</strong> 👔 • Adepte</p>
-        <p><strong>Présentation :</strong> Lost Tanuu est le responsable staff et avocat de VentiStudio.</p>
-        <p><strong>Biographie :</strong> Slt...</p>
-        <p><strong>Discord :</strong> @nikano09_7</p>
-      </div>
-      <div class="artist-buttons">
-        <a href="https://ventistudio.fr/wiki/Hikari_Umaishi" target="_blank">📘 Voir le Wiki</a>
-      </div>
-    </div>
-
-    <div class="artist-modal" id="staff10">
-      <button class="close-modal" onclick="closeArtistModal()">✕</button>
-      <div style="text-align: center;">
-        <img src="/a-files/image/rayansilverhand.avif" alt="Rayan Silverhand">
-        <h3>Rayan Silverhand</h3>
-      </div>
-      <div class="artist-info">
-        <p><strong>Nom :</strong> Rayan Silverhand</p>
-        <p><strong>Pseudo :</strong> Rayan</p>
-        <p><strong>Rank :</strong> ⚖️ • Shogun</p>
-        <p><strong>Présentation :</strong> Rayan Silverhand est un des juge de VentiStudio.</p>
-        <p><strong>Biographie :</strong> "Le meilleur tir est celui que l'on ne doit jamais faire." – Colonel Jeff Cooper.</p>
-        <p><strong>Discord :</strong> @rayan_001_</p>
-      </div>
-      <div class="artist-buttons">
-        <a href="https://ventistudio.fr/wiki/Hikari_Umaishi" target="_blank">📘 Voir le Wiki</a>
-      </div>
-    </div>
-
-    <div class="artist-modal" id="staff11">
-      <button class="close-modal" onclick="closeArtistModal()">✕</button>
-      <div style="text-align: center;">
-        <img src="/a-files/image/yaso.avif" alt="Yaso">
-        <h3>Yaso</h3>
-      </div>
-      <div class="artist-info">
-        <p><strong>Nom :</strong> Yaso</p>
-        <p><strong>Pseudo :</strong> (Aucun)</p>
-        <p><strong>Rank :</strong> ⚖️ • Shogun</p>
-        <p><strong>Présentation :</strong> Yaso est un des juge de VentiStudio.</p>
-        <p><strong>Biographie :</strong> ⚒️ small dev⚒️, 🔴 Small content creator🔴.</p>
-        <p><strong>Discord :</strong> @yaso1.1</p>
-      </div>
-      <div class="artist-buttons">
-        <a href="https://ventistudio.fr/wiki/Hikari_Umaishi" target="_blank">📘 Voir le Wiki</a>
-      </div>
-    </div>
+    <section class="join-team">
+      <h2>Rejoindre l'Ã‰quipe</h2>
+      <p>Vous souhaitez faire partie de l'aventure ? Consultez nos offres actuelles !</p>
+      <button class="cta">Voir les Postes Disponibles</button>
+    </section>
+  
+  
+  
   </main>
 
   <footer>
+
     <div class="footer-content">
       <div class="footer-section">
         <h4>Outils</h4>
         <ul>
-          <li><a href="https://ventistudio.fr/encrypt">Encrypt</a></li>
-          <li><a href="https://ventistudio.fr/sitemap">Sitemap</a></li>
-          <li><a href="https://status.ventistudio.fr/">Statut</a></li>
-          <li><a href="https://aina.ventistudio.fr/">Aina</a></li>
+          <li><a href="#">Encrypt</a></li>
+          <li><a href="#">Plan du site</a></li>
+          <li><a href="#">Statut</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Entreprise</h4>
         <ul>
-          <li><a href="https://ventistudio.fr/about">À propos</a></li>
-          <li><a href="https://ventistudio.fr/jobs">Emplois</a></li>
-          <li><a href="https://ventistudio.fr/company">Marque</a></li>
-          <li><a href="https://ventistudio.fr/creator">Créateur</a></li>
+          <li><a href="#">À propos</a></li>
+          <li><a href="#">Emplois</a></li>
+          <li><a href="#">Marque</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Ressources</h4>
         <ul>
-          <li><a href="https://ventistudio.fr/university">Université</a></li>
-          <li><a href="https://ventistudio.fr/school">École</a></li>
-          <li><a href="https://ventistudio.fr/help">Assistance</a></li>
-          <li><a href="https://ventistudio.fr/security">Sécurité</a></li>
+          <li><a href="#">Université</a></li>
+          <li><a href="#">Assistance</a></li>
+          <li><a href="#">Sécurité</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Chartes</h4>
         <ul>
-          <li><a href="https://ventistudio.fr/terms">Conditions</a></li>
-          <li><a href="https://ventistudio.fr/privacy">Confidentialité</a></li>
-          <li><a href="https://ventistudio.fr/cookies">Cookies</a></li>
-          <li><a href="https://ventistudio.fr/dmca">DMCA</a></li>
+          <li><a href="#">Conditions</a></li>
+          <li><a href="#">Confidentialité</a></li>
+          <li><a href="#">Information DMCA</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p class="status"><iframe src="https://status.ventistudio.fr/badge?theme=dark" width="250" height="30" frameborder="0" marginheight="0" marginwidth="0" scrolling="no"></iframe></p>
-      <p class="copyright">Copyright © P-Line 2023 - 2025. Tous droits réservés.</p>
+      <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
+      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
     </div>
+  
   </footer>
 
-  <script src="https://trust.ventistudio.fr/root/script.js"></script>
-  <script>
-    function openArtistModal(id) {
-      document.getElementById('artistOverlay').style.display = 'block';
-      document.getElementById(id).style.display = 'block';
-    }
-
-    function closeArtistModal() {
-      document.getElementById('artistOverlay').style.display = 'none';
-      document.querySelectorAll('.artist-modal').forEach(modal => {
-        modal.style.display = 'none';
-      });
-    }
-  </script>
+  <script src="../script.js" defer></script>
 </body>
 </html>
+
+

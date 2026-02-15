@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="Évaluation - Découvrez nos contenus approuvés et évalués avec soin.">
+  <meta name="theme-color" content="#6366f1">
+  <title>Évaluation - VentiStudio</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    .evaluation-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .page-header {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 2rem;
+      margin-bottom: 3rem;
+      box-shadow: var(--glass-shadow);
+    }
+
+    .page-header h1 {
+      margin: 0 0 0.5rem 0;
+      font-size: 2.5rem;
+    }
+
+    .page-header p {
+      margin: 0;
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+
+    .controls-section {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .search-box {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .search-box input {
+      flex: 1;
+      padding: 1rem;
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: 1rem;
+      color: var(--text-primary);
+      font-size: 1rem;
+    }
+
+    .search-box input::placeholder {
+      color: var(--text-secondary);
+    }
+
+    .filter-groups {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .filter-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .filter-group label {
+      font-weight: 600;
+      color: var(--text-primary);
+      font-size: 0.9rem;
+    }
+
+    .filter-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .filter-btn {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      color: var(--text-primary);
+      border: 1px solid var(--glass-border);
+      padding: 0.75rem 1.5rem;
+      border-radius: 2rem;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    .filter-btn:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+    }
+
+    .filter-btn.active {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+      color: white;
+      border-color: transparent;
+      box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .stat-card .stat-value {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-card .stat-label {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .content-grid {
+      display: grid;
+      gap: 3rem;
+    }
+
+    .content-category {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: 1.5rem;
+      padding: 2rem;
+    }
+
+    .content-category h2 {
+      margin: 0 0 1.5rem 0;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid var(--accent);
+      font-size: 1.5rem;
+    }
+
+    .content-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .content-card {
+      background: rgba(99, 102, 241, 0.05);
+      border: 1px solid var(--glass-border);
+      border-radius: 1.25rem;
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .content-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--accent);
+      box-shadow: 0 12px 40px rgba(99, 102, 241, 0.2);
+      background: rgba(99, 102, 241, 0.1);
+    }
+
+    .card-image {
+      width: 100%;
+      height: 160px;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .card-image::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 60%);
+    }
+
+    .card-content {
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      flex-grow: 1;
+    }
+
+    .card-type-badge {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      margin: 0;
+    }
+
+    .card-meta {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .card-rating {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 600;
+      color: var(--accent);
+      font-size: 0.9rem;
+    }
+
+    .stars {
+      display: inline-flex;
+      gap: 0.1rem;
+      color: var(--accent);
+      font-size: 0.9rem;
+    }
+
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.5rem;
+    }
+
+    .tag {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      color: var(--accent);
+      padding: 0.25rem 0.75rem;
+      border-radius: 0.75rem;
+      font-size: 0.7rem;
+      font-weight: 500;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 3rem 2rem;
+      grid-column: 1 / -1;
+    }
+
+    .empty-state h3 {
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+    }
+
+    .pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .pagination-btn {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      color: var(--text-primary);
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.75rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-weight: 500;
+    }
+
+    .pagination-btn:hover:not(:disabled) {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .pagination-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .page-info {
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .featured-badge {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+      color: white;
+      padding: 0.25rem 0.75rem;
+      border-radius: 0.5rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .community-badge {
+      position: absolute;
+      bottom: 0.5rem;
+      right: 0.5rem;
+      background: rgba(99, 102, 241, 0.8);
+      color: white;
+      padding: 0.25rem 0.75rem;
+      border-radius: 0.5rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    @media (min-width: 768px) {
+      .filter-buttons {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .page-header h1 {
+        font-size: 1.8rem;
+      }
+
+      .content-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .evaluation-container {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="/favicon.avif" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
+      <span>VentiStudio</span>
+    </div>
+    <nav aria-label="Navigation principale">
+      <a href="/">Accueil</a>
+      <a href="/evaluation" class="active">Évaluation</a>
+      <a href="/player">Lecteur</a>
+      <a href="/wiki">Wiki</a>
+      <a href="/staff">Équipe</a>
+      <a href="/news">News</a>
+      <a href="/pip">PIP</a>
+      <a href="/sitemap">Plan du site</a>
+    </nav>
+    <div class="controls" role="toolbar" aria-label="Contrôles">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
+          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
+          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
+        </svg>
+      </button>
+      <div id="user-button" role="region" aria-label="Authentification"></div>
+    </div>
+  </header>
+
+  <main>
+    <div class="evaluation-container">
+      <section class="page-header">
+        <h1>Évaluation</h1>
+        <p>Une sélection soigneusement curée de contenu vérifié et approuvé par notre équipe.</p>
+      </section>
+
+      <!-- Stats Section -->
+      <div class="stats-grid" id="stats-section"></div>
+
+      <!-- Controls Section -->
+      <div class="controls-section">
+        <div class="search-box">
+          <input type="text" id="search-input" placeholder="🔍 Rechercher une évaluation..." />
+        </div>
+
+        <div class="filter-groups">
+          <div class="filter-group">
+            <label>Filtre:</label>
+            <div class="filter-buttons" id="type-filters"></div>
+          </div>
+          <div class="filter-group">
+            <label>Catégorie:</label>
+            <div class="filter-buttons" id="view-filters"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Content Grid -->
+      <div class="content-grid" id="content-grid"></div>
+
+      <!-- Pagination -->
+      <div class="pagination" id="pagination"></div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Outils</h4>
+        <ul>
+          <li><a href="/security">Encrypt</a></li>
+          <li><a href="/sitemap">Plan du site</a></li>
+          <li><a href="#status">Statut</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Entreprise</h4>
+        <ul>
+          <li><a href="/about">À propos</a></li>
+          <li><a href="/jobs">Emplois</a></li>
+          <li><a href="#brand">Marque</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Ressources</h4>
+        <ul>
+          <li><a href="/university">Université</a></li>
+          <li><a href="/lawful/support">Assistance</a></li>
+          <li><a href="/lawful/security">Sécurité</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Chartes</h4>
+        <ul>
+          <li><a href="/terms">Conditions</a></li>
+          <li><a href="/privacy">Confidentialité</a></li>
+          <li><a href="/lawful/dmcainfo">Information DMCA</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
+      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <script src="/script.js" defer></script>
+  <script src="evaluation-data.js" defer></script>
+  <script>
+    let allData = [];
+    let currentPage = 1;
+    const itemsPerPage = 12;
+    let filteredData = [];
+    let currentTypeFilter = 'all';
+    let currentViewFilter = 'all';
+    let searchQuery = '';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      if (!window.evaluationSystem) {
+        console.error('evaluationSystem not loaded');
+        return;
+      }
+
+      allData = window.evaluationSystem.getAllItems().sort((a, b) => b.featured - a.featured);
+      filteredData = allData;
+
+      initializeUI();
+      renderUI();
+    });
+
+    function initializeUI() {
+      // Initialize stats
+      renderStats();
+
+      // Initialize type filters
+      const typeFilters = document.getElementById('type-filters');
+      const types = ['all', 'films', 'series', 'series-animations', 'animations', 'musique', 'jeux', 'manga', 'applications'];
+      const typeLabels = {
+        all: 'Tout',
+        films: 'Films',
+        series: 'Séries',
+        'series-animations': 'Séries Anim.',
+        animations: 'Animations',
+        musique: 'Musique',
+        jeux: 'Jeux',
+        manga: 'Manga',
+        applications: 'Apps'
+      };
+
+      types.forEach(type => {
+        const btn = document.createElement('button');
+        btn.className = `filter-btn ${type === 'all' ? 'active' : ''}`;
+        btn.textContent = typeLabels[type];
+        btn.onclick = () => filterByType(type, btn);
+        typeFilters.appendChild(btn);
+      });
+
+      // Initialize view filters
+      const viewFilters = document.getElementById('view-filters');
+      const views = [
+        { id: 'all', label: 'Tout' },
+        { id: 'featured', label: '⭐ Recommandé' },
+        { id: 'recent', label: '🆕 Récent' },
+        { id: 'popular', label: '👥 Populaire' }
+      ];
+
+      views.forEach(view => {
+        const btn = document.createElement('button');
+        btn.className = `filter-btn ${view.id === 'all' ? 'active' : ''}`;
+        btn.textContent = view.label;
+        btn.onclick = () => filterByView(view.id, btn);
+        viewFilters.appendChild(btn);
+      });
+
+      // Search input
+      document.getElementById('search-input').addEventListener('input', (e) => {
+        searchQuery = e.target.value;
+        currentPage = 1;
+        applyFilters();
+      });
+    }
+
+    function renderStats() {
+      const stats = window.evaluationSystem.getStats();
+      const statsContainer = document.getElementById('stats-section');
+      statsContainer.innerHTML = `
+        <div class="stat-card">
+          <div class="stat-value">${stats.total}</div>
+          <div class="stat-label">Contenus</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">${stats.categories}</div>
+          <div class="stat-label">Catégories</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">${stats.avgRating}</div>
+          <div class="stat-label">Note moyenne</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">${stats.communityCount}</div>
+          <div class="stat-label">Populaire</div>
+        </div>
+      `;
+    }
+
+    function filterByType(type, button) {
+      currentTypeFilter = type;
+      document.querySelectorAll('#type-filters .filter-btn').forEach(b => b.classList.remove('active'));
+      button.classList.add('active');
+      currentPage = 1;
+      applyFilters();
+    }
+
+    function filterByView(view, button) {
+      currentViewFilter = view;
+      document.querySelectorAll('#view-filters .filter-btn').forEach(b => b.classList.remove('active'));
+      button.classList.add('active');
+      currentPage = 1;
+      applyFilters();
+    }
+
+    function applyFilters() {
+      let data = allData;
+
+      // Type filter
+      if (currentTypeFilter !== 'all') {
+        data = data.filter(item => item.type === currentTypeFilter);
+      }
+
+      // View filter
+      if (currentViewFilter === 'featured') {
+        data = data.filter(item => item.featured);
+      } else if (currentViewFilter === 'recent') {
+        data = [...data].reverse();
+      } else if (currentViewFilter === 'popular') {
+        data = data.filter(item => item.community);
+      }
+
+      // Search
+      if (searchQuery) {
+        data = window.evaluationSystem.search(searchQuery);
+      }
+
+      filteredData = data;
+      renderUI();
+    }
+
+    function renderUI() {
+      const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+      const start = (currentPage - 1) * itemsPerPage;
+      const end = start + itemsPerPage;
+      const pageData = filteredData.slice(start, end);
+
+      // Render content grid
+      const grid = document.getElementById('content-grid');
+      if (pageData.length === 0) {
+        grid.innerHTML = '<div class="empty-state"><h3>Aucun résultat trouvé</h3></div>';
+      } else {
+        grid.innerHTML = pageData.map(item => `
+          <div class="content-card" data-id="${item.id}" onclick="goToDetail(${item.id})">
+            <div class="card-image" style="background-image: url('${item.image}'); background-size: cover;">
+              ${item.featured ? '<div class="featured-badge">⭐ Choix</div>' : ''}
+              ${item.community ? '<div class="community-badge">👥 Populaire</div>' : ''}
+            </div>
+            <div class="card-content">
+              <div class="card-type-badge">${item.type.toUpperCase()}</div>
+              <h3 class="card-title">${item.title}</h3>
+              <div class="card-meta">
+                <span>${item.creator || 'Unknown'}</span>
+                <span>${new Date(item.date).toLocaleDateString('fr-FR', { year: 'numeric', month: 'long' })}</span>
+              </div>
+              <div class="card-rating">
+                <span class="stars">${'★'.repeat(Math.floor(item.rating))} ${item.rating % 1 ? '½' : ''}</span>
+                <span>${item.rating}/5</span>
+              </div>
+              ${item.tags && item.tags.length > 0 ? `
+                <div class="card-tags">
+                  ${item.tags.slice(0, 2).map(tag => `<span class="tag">${tag}</span>`).join('')}
+                  ${item.tags.length > 2 ? `<span class="tag">+${item.tags.length - 2}</span>` : ''}
+                </div>
+              ` : ''}
+            </div>
+          </div>
+        `).join('');
+      }
+
+      // Render pagination
+      const paginationContainer = document.getElementById('pagination');
+      if (totalPages > 1) {
+        paginationContainer.innerHTML = `
+          <button class="pagination-btn" onclick="goToPage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}>← Précédent</button>
+          <span class="page-info">Page ${currentPage} sur ${totalPages}</span>
+          <button class="pagination-btn" onclick="goToPage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}>Suivant →</button>
+        `;
+      } else {
+        paginationContainer.innerHTML = '';
+      }
+    }
+
+    function goToPage(page) {
+      const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+      if (page >= 1 && page <= totalPages) {
+        currentPage = page;
+        renderUI();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function goToDetail(id) {
+      window.location.href = `/evaluation/content/?id=${id}`;
+    }
+  </script>
+</body>
+</html>

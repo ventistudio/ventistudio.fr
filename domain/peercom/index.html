@@ -1,11 +1,56 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
+  <meta name="theme-color" content="#6366f1">
+  <title>VentiStudio v4</title>
+  <link rel="stylesheet" href="../../style.css">
+</title>
+</head>
+<body>
+  <header>
+
+    <div class="logo">
+      <img src="../../favicon.ico" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
+      <span>VentiStudio</span>
+    </div>
+    <nav aria-label="Navigation principale">
+      <a href="../../" class="active">Accueil</a>
+      <a href="../../approuvedcontent/">Contenu Approuvé</a>
+      <a href="../../player">Lecteur</a>
+      <a href="../../wiki">Wiki</a>
+      <a href="../../staff">Équipe</a>
+      <a href="../../news">News</a>
+      <a href="../../pip">PIP</a>
+      <a href="../../sitemap">Plan du site</a>
+    </nav>
+    <div class="controls" role="toolbar" aria-label="Contrôles">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
+          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
+          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
+        </svg>
+      </button>
+      <div id="user-button" role="region" aria-label="Authentification"></div>
+    </div>
+  
+  </header>
+
+  <main>
+
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <link rel="icon" type="image/ico" href="https://ventistudio.fr/favicon.ico">
+  <link rel="icon" type="image/ico" href="https://ventistudio.eu/favicon.ico">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Peercom - VentiStudio</title>
-  <link rel="stylesheet" href="https://trust.ventistudio.fr/root/style.css">
+  <link rel="stylesheet" href="https://trust.ventistudio.eu/root/style.css">
   <style>
     :root {
       --neon-primary: #7c3aed;
@@ -135,11 +180,11 @@
     <p>Recherchez tout ce que vous voulez, redirection temporaire vers Brave.</p>
     <form action="https://search.brave.com/search" method="get" target="_blank" id="searchForm">
       <input type="text" name="q" id="searchInput" placeholder="Entrez votre recherche ici..." required autocomplete="off">
-      <input type="hidden" name="source" value="ventistudio.fr">
+      <input type="hidden" name="source" value="ventistudio.eu">
       <button type="submit">Rechercher</button>
       <div class="suggestions" id="suggestions"></div>
     </form>
-    <p>Note : Peercom est en cours de développement.</p>
+    <p>Note : Peercom est en cours de dÃ©veloppement.</p>
   </div>
 
   <script>
@@ -147,7 +192,7 @@
     const suggestionsContainer = document.getElementById('suggestions');
     let suggestions = [];
 
-    // Simuler une API de suggestions (à remplacer par votre propre API)
+    // Simuler une API de suggestions (Ã  remplacer par votre propre API)
     const getSuggestions = async (query) => {
       if (!query) return [];
       try {
@@ -155,7 +200,7 @@
         const data = await response.json();
         return data.map(item => item.word).slice(0, 5);
       } catch (error) {
-        console.error('Erreur lors de la récupération des suggestions:', error);
+        console.error('Erreur lors de la rÃ©cupÃ©ration des suggestions:', error);
         return [];
       }
     };
@@ -192,3 +237,55 @@
   </script>
 </body>
 </html>
+  
+  
+  </main>
+
+  <footer>
+
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Outils</h4>
+        <ul>
+          <li><a href="#">Encrypt</a></li>
+          <li><a href="#">Plan du site</a></li>
+          <li><a href="#">Statut</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Entreprise</h4>
+        <ul>
+          <li><a href="#">À propos</a></li>
+          <li><a href="#">Emplois</a></li>
+          <li><a href="#">Marque</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Ressources</h4>
+        <ul>
+          <li><a href="#">Université</a></li>
+          <li><a href="#">Assistance</a></li>
+          <li><a href="#">Sécurité</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Chartes</h4>
+        <ul>
+          <li><a href="#">Conditions</a></li>
+          <li><a href="#">Confidentialité</a></li>
+          <li><a href="#">Information DMCA</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
+      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
+    </div>
+  
+  </footer>
+
+  <script src="../../script.js" defer></script>
+</body>
+</html>
+
+

@@ -1,177 +1,75 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VentiStudio - Compatibilité</title>
-  <link rel="stylesheet" href="https://trust.ventistudio.fr/root/style.css">
-  <style>
-    .brave-banner {
-      background: var(--bg-secondary);
-      padding: 2rem;
-      border-radius: 1rem;
-      text-align: center;
-      margin: 2rem 0;
-      box-shadow: var(--neon-glow);
-    }
-
-    .brave-banner h2 {
-      color: var(--accent);
-      margin-bottom: 1rem;
-    }
-
-    .brave-banner .cta {
-      display: inline-block;
-      background: var(--accent);
-      color: var(--bg-primary);
-      padding: 1rem 2rem;
-      border-radius: 2rem;
-      text-decoration: none;
-      font-weight: bold;
-      margin-top: 1rem;
-      transition: all 0.3s;
-      box-shadow: var(--neon-glow);
-    }
-
-    .brave-banner .cta:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 0 20px rgba(187, 154, 247, 0.7);
-    }
-
-    .compatibility-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      margin: 3rem 0;
-    }
-
-    .browser-card {
-      background: var(--bg-secondary);
-      padding: 2rem;
-      border-radius: 1rem;
-      transition: transform 0.3s;
-    }
-
-    .browser-card:hover {
-      transform: translateY(-5px);
-    }
-
-    .browser-card h3 {
-      color: var(--text-secondary);
-      margin-bottom: 1rem;
-    }
-
-    .browser-card ul {
-      list-style: none;
-    }
-
-    .browser-card li {
-      display: flex;
-      align-items: center;
-      margin: 0.5rem 0;
-      color: var(--text-primary);
-    }
-
-    .status-icon {
-      display: inline-flex;
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      margin-right: 0.75rem;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-    }
-
-    .status-tested {
-      background: #4ade80;
-      color: var(--bg-primary);
-    }
-
-    .status-untested {
-      background: #fbbf24;
-      color: var(--bg-primary);
-    }
-
-    .status-unsupported {
-      background: #ef4444;
-      color: var(--bg-primary);
-    }
-
-    @media (max-width: 768px) {
-      .compatibility-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .brave-banner {
-        margin: 1rem;
-        padding: 1.5rem;
-      }
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
+  <meta name="theme-color" content="#6366f1">
+  <title>VentiStudio v4</title>
+  <link rel="stylesheet" href="../style.css">
+  VentiStudio - CompatibilitÃ©</title>
 </head>
 <body>
   <header>
+
     <div class="logo">
-      <img src="../favicon.avif" alt="VentiStudio Logo" class="site-logo">
+      <img src="../favicon.ico" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
       <span>VentiStudio</span>
     </div>
-    <nav>
-      <a href="https://ventistudio.fr">Accueil</a>
-      <a href="https://ventistudio.fr/approuvedcontent">Contenu Approuvé</a>
-      <a href="https://ventistudio.fr/player">Player</a>
-      <a href="https://ventistudio.fr/wiki">Wiki</a>
-      <a href="https://ventistudio.fr/staff">Staff</a>
-      <a href="https://ventistudio.fr/artist">Artiste</a>
-      <a href="https://ventistudio.fr/pip">PIP</a>
-      <a href="https://ventistudio.fr/sitemap">Sitemap</a>
+    <nav aria-label="Navigation principale">
+      <a href="../" class="active">Accueil</a>
+      <a href="../approuvedcontent/">Contenu Approuvé</a>
+      <a href="../player">Lecteur</a>
+      <a href="../wiki">Wiki</a>
+      <a href="../staff">Équipe</a>
+      <a href="../news">News</a>
+      <a href="../pip">PIP</a>
+      <a href="../sitemap">Plan du site</a>
     </nav>
-    <div class="controls">
-      <a href="https://github.com/ventistudio/ventistudio.fr/issues" 
-         class="github-issues" 
-         target="_blank" 
-         rel="noopener noreferrer"
-         title="Signaler un problème">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <path d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2Z" stroke-width="2"/>
-          <path d="M12 8V13" stroke-width="2" stroke-linecap="round"/>
-          <circle cx="12" cy="16" r="1" fill="currentColor"/>
+    <div class="controls" role="toolbar" aria-label="Contrôles">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
+          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
+          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
         </svg>
-      </a>
-      <button id="theme-toggle" class="theme-toggle">
-        <svg class="sun" width="24" height="24" viewBox="0 0 24 24"><!-- ... --></svg>
-        <svg class="moon" width="24" height="24" viewBox="0 0 24 24"><!-- ... --></svg>
       </button>
+      <div id="user-button" role="region" aria-label="Authentification"></div>
     </div>
+  
   </header>
 
   <main>
+
+
+
     <section class="hero">
-      <h1>Compatibilité du Site</h1>
-      <p>Découvrez les navigateurs et systèmes d'exploitation supportés</p>
+      <h1>CompatibilitÃ© du Site</h1>
+      <p>DÃ©couvrez les navigateurs et systÃ¨mes d'exploitation supportÃ©s</p>
     </section>
 
     <div class="brave-banner">
       <h2>VentiStudio recommande fortement l'utilisation de Brave</h2>
-      <p>Pour une expérience optimale, sécurisée et respectueuse de votre vie privée</p>
-      <a href="https://brave.com/download" class="cta" target="_blank">Télécharger Brave</a>
+      <p>Pour une expÃ©rience optimale, sÃ©curisÃ©e et respectueuse de votre vie privÃ©e</p>
+      <a href="https://brave.com/download" class="cta" target="_blank">TÃ©lÃ©charger Brave</a>
     </div>
 
     <section class="compatibility-grid">
       <div class="browser-card">
-        <h3>Navigateurs Testés</h3>
+        <h3>Navigateurs TestÃ©s</h3>
         <ul>
-          <li><span class="status-icon status-tested">✓</span>Brave</li>
-          <li><span class="status-icon status-tested">✓</span>Opera Gx</li>
-          <li><span class="status-icon status-tested">✓</span>Opera Crypto</li>
-          <li><span class="status-icon status-tested">✓</span>Opera Air</li>
-          <li><span class="status-icon status-tested">✓</span>Firefox</li>
-          <li><span class="status-icon status-tested">✓</span>Tor Browser</li>
+          <li><span class="status-icon status-tested">âœ“</span>Brave</li>
+          <li><span class="status-icon status-tested">âœ“</span>Opera Gx</li>
+          <li><span class="status-icon status-tested">âœ“</span>Opera Crypto</li>
+          <li><span class="status-icon status-tested">âœ“</span>Opera Air</li>
+          <li><span class="status-icon status-tested">âœ“</span>Firefox</li>
+          <li><span class="status-icon status-tested">âœ“</span>Tor Browser</li>
         </ul>
       </div>
 
       <div class="browser-card">
-        <h3>Compatibilité Partielle</h3>
+        <h3>CompatibilitÃ© Partielle</h3>
         <ul>
           <li><span class="status-icon status-untested">?</span>Opera Dev</li>
           <li><span class="status-icon status-untested">?</span>Opera One</li>
@@ -183,60 +81,63 @@
       </div>
 
       <div class="browser-card">
-        <h3>Non Supportés</h3>
+        <h3>Non SupportÃ©s</h3>
         <ul>
           <li><span class="status-icon status-unsupported">!</span>Windows XP/Vista/7/8 Browsers</li>
           <li><span class="status-icon status-unsupported">!</span>iOS Browsers</li>
         </ul>
       </div>
     </section>
+  
+  
+  
   </main>
 
   <footer>
+
     <div class="footer-content">
       <div class="footer-section">
         <h4>Outils</h4>
         <ul>
-          <li><a href="https://ventistudio.fr/encrypt">Encrypt</a></li>
-          <li><a href="https://ventistudio.fr/sitemap">Sitemap</a></li>
-          <li><a href="https://status.ventistudio.fr/">Statut</a></li>
-          <li><a href="https://aina.ventistudio.fr/">Aina</a></li>
+          <li><a href="#">Encrypt</a></li>
+          <li><a href="#">Plan du site</a></li>
+          <li><a href="#">Statut</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Entreprise</h4>
         <ul>
-          <li><a href="https://ventistudio.fr/about">À propos</a></li>
-          <li><a href="https://ventistudio.fr/jobs">Emplois</a></li>
-          <li><a href="https://ventistudio.fr/company">Marque</a></li>
-          <li><a href="https://ventistudio.fr/creator">Créateur</a></li>
+          <li><a href="#">À propos</a></li>
+          <li><a href="#">Emplois</a></li>
+          <li><a href="#">Marque</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Ressources</h4>
         <ul>
-          <li><a href="https://ventistudio.fr/university">Université</a></li>
-          <li><a href="https://ventistudio.fr/school">École</a></li>
-          <li><a href="https://ventistudio.fr/help">Assistance</a></li>
-          <li><a href="https://ventistudio.fr/security">Sécurité</a></li>
+          <li><a href="#">Université</a></li>
+          <li><a href="#">Assistance</a></li>
+          <li><a href="#">Sécurité</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Chartes</h4>
         <ul>
-          <li><a href="https://ventistudio.fr/terms">Conditions</a></li>
-          <li><a href="https://ventistudio.fr/privacy">Confidentialité</a></li>
-          <li><a href="https://ventistudio.fr/cookies">Cookies</a></li>
-          <li><a href="https://ventistudio.fr/dmca">DMCA</a></li>
+          <li><a href="#">Conditions</a></li>
+          <li><a href="#">Confidentialité</a></li>
+          <li><a href="#">Information DMCA</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p class="status"><iframe src="https://status.ventistudio.fr/badge?theme=dark" width="250" height="30" frameborder="0" marginheight="0" marginwidth="0" scrolling="no"></iframe></p>
-      <p class="copyright">Copyright © P-Line 2023 - 2025. Tous droits réservés.</p>
+      <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
+      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
     </div>
+  
   </footer>
 
-  <script src="https://trust.ventistudio.fr/root/script.js"></script>
+  <script src="../script.js" defer></script>
 </body>
 </html>
+
+

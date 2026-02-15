@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+﻿document.addEventListener('DOMContentLoaded', () => {
     const detectedCountry = localStorage.getItem('detectedCountry');
     if (detectedCountry) {
         const messageElement = document.querySelector('.restricted-message');

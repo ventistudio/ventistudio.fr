@@ -1,16 +1,61 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
+  <meta name="theme-color" content="#6366f1">
+  <title>VentiStudio v4</title>
+  <link rel="stylesheet" href="../../../../../../style.css">
+</title>
+</head>
+<body>
+  <header>
+
+    <div class="logo">
+      <img src="../../../../../../favicon.ico" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
+      <span>VentiStudio</span>
+    </div>
+    <nav aria-label="Navigation principale">
+      <a href="../../../../../../" class="active">Accueil</a>
+      <a href="../../../../../../approuvedcontent/">Contenu Approuvé</a>
+      <a href="../../../../../../player">Lecteur</a>
+      <a href="../../../../../../wiki">Wiki</a>
+      <a href="../../../../../../staff">Équipe</a>
+      <a href="../../../../../../news">News</a>
+      <a href="../../../../../../pip">PIP</a>
+      <a href="../../../../../../sitemap">Plan du site</a>
+    </nav>
+    <div class="controls" role="toolbar" aria-label="Contrôles">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
+          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
+          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
+        </svg>
+      </button>
+      <div id="user-button" role="region" aria-label="Authentification"></div>
+    </div>
+  
+  </header>
+
+  <main>
+
+
 <!DOCTYPE html>
-<html><head><base href="https://ventistudio.fr/social/fitsz/tiktok">
+<html><head><base href="https://ventistudio.eu/social/fitsz/tiktok">
   <meta charset="utf-8">
   <meta name="viewport">
   <html lang="fr"></html>
   <link rel="icon" type="image/gif" href="favicon.avif">
   <meta property="og:title" content="Bienvenu sur VentiStudio">
   <meta property="og:site_name" content="VentiStudio Komiyuniti">
-  <meta property="og:url" content="https://ventistudio.fr">
-  <meta property="og:description" content="Hey, je suis Hikari Umaishi (光馬石), mais je préfère que l'on m'appelle Hiuma (ヒウマ).
-Laissez-moi vous présenter ma communauté, un espace où l'art et la créativité se rencontrent.">
+  <meta property="og:url" content="https://ventistudio.eu">
+  <meta property="og:description" content="Hey, je suis Hikari Umaishi (å…‰é¦¬çŸ³), mais je prÃ©fÃ¨re que l'on m'appelle Hiuma (Ã¢’ã‚¦Ã¢ž).
+Laissez-moi vous prÃ©senter ma communautÃ©, un espace oÃ¹ l'art et la crÃ©ativitÃ© se rencontrent.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="https://ventistudio.fr/favicon.gif">
+  <meta property="og:image" content="https://ventistudio.eu/favicon.gif">
   <title>VentiStudio - Redirection TikTok</title>
   <style>
     :root {
@@ -107,7 +152,7 @@ Laissez-moi vous présenter ma communauté, un espace où l'art et la créativit
   <div class="redirect-container">
     <svg class="tiktok-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ffffff"><path d="M19.321 5.562a5.122 5.122 0 0 1-3.585-1.476A5.122 5.122 0 0 1 14.26.5h-3.915v13.638a2.838 2.838 0 0 1-5.677 0 2.838 2.838 0 0 1 2.84-2.838c.183 0 .361.017.535.05V6.955a6.806 6.806 0 0 0-.535-.021A6.733 6.733 0 0 0 .773 13.67a6.733 6.733 0 0 0 6.733 6.734 6.733 6.733 0 0 0 6.734-6.734V7.825a8.891 8.891 0 0 0 5.081 1.576V5.563z"/></svg>
     <h1>Suivez-nous sur TikTok</h1>
-    <p>Vous allez être redirigé vers le compte TikTok de VentiStudio dans quelques secondes...</p>
+    <p>Vous allez Ãªtre redirigÃ© vers le compte TikTok de VentiStudio dans quelques secondes...</p>
     <div class="progress-bar">
       <div class="progress"></div>
     </div>
@@ -117,22 +162,74 @@ Laissez-moi vous présenter ma communauté, un espace où l'art et la créativit
     document.addEventListener('DOMContentLoaded', () => {
     const progress = document.querySelector('.progress');
     progress.style.width = '100%';
-    // Récupérez l'URL actuelle
+    // RÃ©cupÃ©rez l'URL actuelle
     const currentUrl = window.location.href;
       
-    // Trouvez la position du caractère "?"
+    // Trouvez la position du caractÃ¨re "?"
     const questionMarkIndex = currentUrl.indexOf('?');
        
     if (questionMarkIndex !== -1) {
-    // Extrait le texte après le "?"
+    // Extrait le texte aprÃ¨s le "?"
     const queryString = currentUrl.substring(questionMarkIndex + 1);
           
-    // Redirigez vers l'URL Discord appropriée
+    // Redirigez vers l'URL Discord appropriÃ©e
     window.location.href = `https://www.tiktok.com/${queryString}`;
     } else {
-    // Redirigez vers une page par défaut si aucun texte n'est trouvé après le "?"
+    // Redirigez vers une page par dÃ©faut si aucun texte n'est trouvÃ© aprÃ¨s le "?"
     window.location.href = 'https://www.tiktok.com/@ventiopastudien';
       }
     });
   </script>
 </body></html>
+  
+  
+  </main>
+
+  <footer>
+
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Outils</h4>
+        <ul>
+          <li><a href="#">Encrypt</a></li>
+          <li><a href="#">Plan du site</a></li>
+          <li><a href="#">Statut</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Entreprise</h4>
+        <ul>
+          <li><a href="#">À propos</a></li>
+          <li><a href="#">Emplois</a></li>
+          <li><a href="#">Marque</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Ressources</h4>
+        <ul>
+          <li><a href="#">Université</a></li>
+          <li><a href="#">Assistance</a></li>
+          <li><a href="#">Sécurité</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Chartes</h4>
+        <ul>
+          <li><a href="#">Conditions</a></li>
+          <li><a href="#">Confidentialité</a></li>
+          <li><a href="#">Information DMCA</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
+      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
+    </div>
+  
+  </footer>
+
+  <script src="../../../../../../script.js" defer></script>
+</body>
+</html>
+
+

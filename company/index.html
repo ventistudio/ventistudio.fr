@@ -1,326 +1,79 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
+
   <meta charset="UTF-8">
-  <link rel="icon" type="image/ico" href="https://ventistudio.fr/favicon.ico">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VentiStudio - Company</title>
-  <link rel="stylesheet" href="https://trust.ventistudio.fr/root/style.css">
-  <meta property="og:title" content="Bienvenu sur VentiStudio">
-  <meta property="og:site_name" content="VentiStudio Komiyuniti">
-  <meta property="og:url" content="https://ventistudio.fr">
-  <meta property="og:description" content="Hey, je suis Hikari Umaishi (光馬石), mais je préfère que l'on m'appelle Hiuma (ヒウマ).
-Laissez-moi vous présenter ma communauté, un espace où l'art et la créativité se rencontrent.">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="https://ventistudio.fr/favicon.gif">
-  <style>
-    /* Nouveaux styles à ajouter */
-    .brand-guidelines ul {
-      list-style: none;
-      padding-left: 0;
-    }
-
-    .brand-guidelines li {
-      margin-bottom: 1rem;
-      padding-left: 1.5rem;
-      position: relative;
-    }
-
-    .brand-guidelines li::before {
-      content: "•";
-      color: var(--primary);
-      font-size: 1.2rem;
-      position: absolute;
-      left: 0;
-    }
-
-    .download-section {
-      position: relative;
-      overflow: hidden;
-      background: var(--bg-secondary);
-      border-radius: 16px;
-      padding: 4rem 2rem;
-      text-align: center;
-      margin: 4rem 0;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    }
-
-    .download-section::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: radial-gradient(circle at center, rgba(123, 102, 255, 0.15) 0%, transparent 70%);
-      animation: pulse 4s ease-in-out infinite;
-    }
-
-    .section-title {
-      position: relative;
-      z-index: 1;
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: var(--accent);
-      margin-bottom: 1rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    .section-subtitle {
-      position: relative;
-      z-index: 1;
-      font-size: 1.1rem;
-      color: var(--text-secondary);
-      margin-bottom: 2rem;
-      position: relative;
-      z-index: 1;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .cta-button {
-      position: relative;
-      z-index: 1;
-      display: inline-block;
-      margin-top: 1rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--accent);
-      color: white;
-      padding: 1rem 2rem;
-      border-radius: 8px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      position: relative;
-      z-index: 1;
-      border: 2px solid transparent;
-    }
-
-    .cta-button:hover {
-      background: transparent;
-      border-color: var(--accent);
-      color: var(--accent);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(123, 102, 255, 0.2);
-    }
-
-    .cta-button::after {
-      content: '→';
-      margin-left: 0.5rem;
-      transition: transform 0.3s ease;
-    }
-
-    .cta-button:hover::after {
-      transform: translateX(4px);
-    }
-
-    .brand-card ul {
-      padding-left: 1.2rem;
-      margin: 0;
-    }
-
-    .brand-card li {
-      margin-bottom: 0.5rem;
-      color: var(--text);
-      opacity: 0.9;
-    }
-
-    .asset-preview {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-    }
-
-    .asset-preview p {
-      margin: 0;
-      color: var(--text);
-      opacity: 0.9;
-    }
-
-    @media screen and (max-width: 480px) {
-      .brand-hero h1 {
-        font-size: 2rem;
-      }
-      
-      .brand-hero p {
-        font-size: 1rem;
-      }
-      
-      .color-item {
-        width: 100%;
-      }
-      
-      .brand-guidelines {
-        padding: 1rem;
-      }
-    }
-
-    /* Styles pour la palette de couleurs */
-    .color-palette {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1.5rem;
-        justify-content: center;
-        align-items: center;
-        margin: 2rem auto;
-        max-width: 900px;
-    }
-
-    .color-item {
-        flex: 0 0 200px;
-        height: 120px;
-        border-radius: 8px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        color: white;
-        text-align: center;
-        font-weight: 500;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        transition: transform 0.2s ease;
-    }
-
-    .color-item:hover {
-        transform: translateY(-4px);
-    }
-
-    /* Animation pour le pulse effect */
-    @keyframes pulse {
-        0% { opacity: 0.6; }
-        50% { opacity: 1; }
-        100% { opacity: 0.6; }
-    }
-
-    @media screen and (max-width: 768px) {
-      .download-section {
-        padding: 3rem 1.5rem;
-        margin: 2rem 0;
-      }
-
-      .section-title {
-        font-size: 2rem;
-      }
-
-      .section-subtitle {
-        font-size: 1rem;
-      }
-
-      .cta-button {
-        padding: 0.8rem 1.5rem;
-      }
-    }
-
-    .download-buttons {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      align-items: center;
-    }
-
-    .cta-button.signature {
-      background: transparent;
-      border: 2px solid var(--accent);
-      color: var(--accent);
-      position: relative;
-    }
-
-    .cta-button.signature:hover {
-      background: var(--accent);
-      color: white;
-    }
-
-    .sig-info {
-      position: absolute;
-      bottom: -2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      width: max-content;
-      font-size: 0.8rem;
-      color: var(--text-secondary);
-      opacity: 0.8;
-    }
-
-    @media screen and (max-width: 768px) {
-      .download-buttons {
-        gap: 2.5rem;
-      }
-      
-      .sig-info {
-        font-size: 0.7rem;
-        bottom: -1.8rem;
-      }
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
+  <meta name="theme-color" content="#6366f1">
+  <title>VentiStudio v4</title>
+  <link rel="stylesheet" href="../style.css">
+</title>
 </head>
 <body>
   <header>
+
     <div class="logo">
-      <img src="https://ventistudio.fr/favicon.avif" alt="VentiStudio Logo" class="site-logo">
+      <img src="../favicon.ico" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
       <span>VentiStudio</span>
     </div>
-    <nav>
-      <a href="/">Accueil</a>
-      <a href="/approuvedcontent">Contenu Approuvé</a>
-      <a href="/player">Player</a>
-      <a href="/wiki">Wiki</a>
-      <a href="/staff">Staff</a>
-      <a href="/artist">Artiste</a>
-      <a href="/pip">PIP</a>
-      <a href="/sitemap">Sitemap</a>
+    <nav aria-label="Navigation principale">
+      <a href="../" class="active">Accueil</a>
+      <a href="../approuvedcontent/">Contenu Approuvé</a>
+      <a href="../player">Lecteur</a>
+      <a href="../wiki">Wiki</a>
+      <a href="../staff">Équipe</a>
+      <a href="../news">News</a>
+      <a href="../pip">PIP</a>
+      <a href="../sitemap">Plan du site</a>
     </nav>
-    <div class="controls">
-      <button id="theme-toggle" class="theme-toggle">
-        <svg width="24" height="24" viewBox="0 0 24 24">
+    <div class="controls" role="toolbar" aria-label="Contrôles">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
           <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
           <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
           <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
         </svg>
       </button>
-      <div id="user-button"></div>
+      <div id="user-button" role="region" aria-label="Authentification"></div>
     </div>
+  
   </header>
 
   <main>
+
+
+
     <section class="brand-hero">
       <h1>Notre Marque</h1>
-      <p>Découvrez l'identité visuelle et les valeurs qui font VentiStudio</p>
+      <p>DÃ©couvrez l'identitÃ© visuelle et les valeurs qui font VentiStudio</p>
     </section>
 
     <div class="brand-grid">
       <div class="brand-card">
         <h2>Notre Mission</h2>
-        <p>VentiStudio s'engage à créer un espace numérique innovant où la créativité et la communauté se rencontrent. Notre plateforme est conçue pour inspirer, connecter et permettre à chacun d'exprimer sa créativité.</p>
+        <p>VentiStudio s'engage Ã  crÃ©er un espace numÃ©rique innovant oÃ¹ la crÃ©ativitÃ© et la communautÃ© se rencontrent. Notre plateforme est conÃ§ue pour inspirer, connecter et permettre Ã  chacun d'exprimer sa crÃ©ativitÃ©.</p>
       </div>
 
       <div class="brand-card">
         <h2>Nos Valeurs</h2>
         <ul>
           <li>Innovation continue</li>
-          <li>Créativité sans limites</li>
-          <li>Communauté inclusive</li>
+          <li>CrÃ©ativitÃ© sans limites</li>
+          <li>CommunautÃ© inclusive</li>
           <li>Excellence technique</li>
-          <li>Sécurité et confiance</li>
+          <li>SÃ©curitÃ© et confiance</li>
         </ul>
       </div>
 
       <div class="brand-card">
         <h2>Notre Vision</h2>
-        <p>Devenir la référence mondiale en matière de plateforme créative, en offrant des outils innovants et un espace d'expression unique pour notre communauté.</p>
+        <p>Devenir la rÃ©fÃ©rence mondiale en matiÃ¨re de plateforme crÃ©ative, en offrant des outils innovants et un espace d'expression unique pour notre communautÃ©.</p>
       </div>
     </div>
 
     <section class="section">
-      <h2 class="section-title">Notre Identité Visuelle</h2>
+      <h2 class="section-title">Notre IdentitÃ© Visuelle</h2>
       
       <div class="brand-guidelines">
         <h3>Palette de Couleurs</h3>
@@ -351,7 +104,7 @@ Laissez-moi vous présenter ma communauté, un espace où l'art et la créativit
         <h3>Notre Logo</h3>
         <div class="brand-assets">
           <div class="asset-preview">
-            <img src="https://ventistudio.fr/favicon.avif" alt="VentiStudio Logo">
+            <img src="https://ventistudio.eu/favicon.avif" alt="VentiStudio Logo">
             <p>Logo Principal</p>
           </div>
         </div>
@@ -363,68 +116,71 @@ Laissez-moi vous présenter ma communauté, un espace où l'art et la créativit
           <li>Inter pour le texte courant</li>
         </ul>
         <h3>Utilisation des Polices</h3>
-        <p>Les polices doivent être utilisées de manière cohérente à travers tous les supports.</p>
+        <p>Les polices doivent Ãªtre utilisÃ©es de maniÃ¨re cohÃ©rente Ã  travers tous les supports.</p>
       </div>
     </section>
 
     <section class="download-section">
       <h2 class="section-title">Kit de Marque</h2>
-      <p class="section-subtitle">Téléchargez nos ressources de marque pour une utilisation approuvée</p>
+      <p class="section-subtitle">TÃ©lÃ©chargez nos ressources de marque pour une utilisation Approuvée</p>
       <div class="download-buttons">
-        <a href="/company/presskit.zip" class="cta-button">Télécharger le Kit</a>
+        <a href="/company/presskit.zip" class="cta-button">TÃ©lÃ©charger le Kit</a>
         <a href="/company/presskit.zip.gpg" class="cta-button signature">
-          Télécharger la version signée*
+          TÃ©lÃ©charger la version signÃ©e*
           <span class="sig-info">Peut demander l'utilisation d'un logiciel tiers comme Kleopatra</span>
         </a>
       </div>
     </section>
+  
+  
+  
   </main>
 
   <footer>
+
     <div class="footer-content">
       <div class="footer-section">
         <h4>Outils</h4>
         <ul>
-          <li><a href="/encrypt">Encrypt</a></li>
-          <li><a href="/sitemap">Sitemap</a></li>
-          <li><a href="https://status.ventistudio.fr/">Statut</a></li>
-          <li><a href="https://aina.ventistudio.fr/">Aina</a></li>
+          <li><a href="#">Encrypt</a></li>
+          <li><a href="#">Plan du site</a></li>
+          <li><a href="#">Statut</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Entreprise</h4>
         <ul>
-          <li><a href="/about">À propos</a></li>
-          <li><a href="/jobs">Emplois</a></li>
-          <li><a href="/company" class="active">Marque</a></li>
-          <li><a href="/creator">Créateur</a></li>
+          <li><a href="#">À propos</a></li>
+          <li><a href="#">Emplois</a></li>
+          <li><a href="#">Marque</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Ressources</h4>
         <ul>
-          <li><a href="/university">Université</a></li>
-          <li><a href="/school">École</a></li>
-          <li><a href="/help">Assistance</a></li>
-          <li><a href="/security">Sécurité</a></li>
+          <li><a href="#">Université</a></li>
+          <li><a href="#">Assistance</a></li>
+          <li><a href="#">Sécurité</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Chartes</h4>
         <ul>
-          <li><a href="/terms">Conditions</a></li>
-          <li><a href="/privacy">Confidentialité</a></li>
-          <li><a href="/cookies">Cookies</a></li>
-          <li><a href="/dmca">DMCA</a></li>
+          <li><a href="#">Conditions</a></li>
+          <li><a href="#">Confidentialité</a></li>
+          <li><a href="#">Information DMCA</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p class="status"><iframe src="https://status.ventistudio.fr/badge?theme=dark" width="250" height="30" frameborder="0" scrolling="no"></iframe></p>
-      <p class="copyright">Copyright © P-Line 2023 - 2025. Tous droits réservés.</p>
+      <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
+      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
     </div>
+  
   </footer>
 
-  <script src="https://trust.ventistudio.fr/root/script.js"></script>
+  <script src="../script.js" defer></script>
 </body>
 </html>
+
+

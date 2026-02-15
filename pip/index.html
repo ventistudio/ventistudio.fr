@@ -1,291 +1,179 @@
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="https://ventistudio.fr/favicon.ico">
-    <meta property="og:title" content="Bienvenu sur VentiStudio">
-    <meta property="og:site_name" content="VentiStudio Komiyuniti">
-    <meta property="og:url" content="https://ventistudio.fr">
-    <meta property="og:description" content="Hey, je suis Hikari Umaishi (光馬石), mais je préfère que l'on m'appelle Hiuma (ヒウマ).
-  Laissez-moi vous présenter ma communauté, un espace où l'art et la créativité se rencontrent.">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="https://ventistudio.fr/favicon.gif">
-    <title>VentiStudio - PIP</title>
-    <link rel="stylesheet" href="https://trust.ventistudio.fr/root/style.css">
-    <link rel="stylesheet" href="https://trust.ventistudio.fr/root/pip/style.css">
-    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css">
-    <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/libde265-wasm@0.3.1/libde265.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@webav/libvpx-wasm@1.1.0/dist/libvpx.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/matroska-demuxer@2.1.1/dist/matroska-demuxer.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/opus-decoder@0.4.0/opus.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/wasm-vorbis@0.1.0/vorbis.min.js"></script>
-    <style>
-        .ventistudio-videos {
-            margin: 2rem 0;
-            text-align: center;
-        }
-        .videos-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1rem;
-        }
-        .video-item {
-            background: var(--bg-secondary);
-            border-radius: 10px;
-            padding: 1rem;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: 200px;
-        }
-        .video-thumbnail {
-            width: 100%;
-            border-radius: 10px;
-            margin-bottom: 0.5rem;
-        }
-        .video-title {
-            font-size: 1rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-        .play-button {
-            padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 5px;
-            background: var(--accent);
-            color: var(--bg-secondary);
-            cursor: pointer;
-        }
-        .play-button:hover {
-            padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 5px;
-            background: var(--bg-primary);
-            color: var(--accent);
-            cursor: pointer;
-        }
-    </style>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
+  <meta name="theme-color" content="#6366f1">
+  <title>VentiStudio v4</title>
+  <link rel="stylesheet" href="../style.css">
+</title>
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <img src="https://ventistudio.fr/favicon.avif" alt="VentiStudio Logo" class="site-logo">
-            <span>VentiStudio</span>
+  <header>
+
+    <div class="logo">
+      <img src="../favicon.ico" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
+      <span>VentiStudio</span>
+    </div>
+    <nav aria-label="Navigation principale">
+      <a href="../" class="active">Accueil</a>
+      <a href="../approuvedcontent/">Contenu Approuvé</a>
+      <a href="../player">Lecteur</a>
+      <a href="../wiki">Wiki</a>
+      <a href="../staff">Équipe</a>
+      <a href="../news">News</a>
+      <a href="../pip">PIP</a>
+      <a href="../sitemap">Plan du site</a>
+    </nav>
+    <div class="controls" role="toolbar" aria-label="Contrôles">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
+          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
+          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
+        </svg>
+      </button>
+      <div id="user-button" role="region" aria-label="Authentification"></div>
+    </div>
+  
+  </header>
+
+  <main>
+
+
+
+    <section class="page-header">
+      <h1>Picture-in-Picture</h1>
+      <p>Profitez de vos contenus en mode flottant tout en naviguant sur le site.</p>
+    </section>
+
+    <div class="pip-container">
+      <div class="video-container">
+        <div id="player-container">
+          <div id="placeholder-video">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/>
+              <path d="M10 8l6 4-6 4V8z"/>
+            </svg>
+            <p>SÃ©lectionnez un contenu pour commencer</p>
+          </div>
         </div>
-        <nav>
-            <a href="/">Accueil</a>
-            <a href="/approuvedcontent">Contenu Approuvé</a>
-            <a href="/player">Player</a>
-            <a href="/wiki">Wiki</a>
-            <a href="/staff">Staff</a>
-            <a href="/artist">Artiste</a>
-            <a href="/pip" class="active">PIP</a>
-            <a href="/sitemap">Sitemap</a>
-        </nav>
-        <div class="controls">
-            <button id="theme-toggle" class="theme-toggle">
-                <svg width="24" height="24" viewBox="0 0 24 24">
-                    <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
-                    <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
-                    <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
-                </svg>
-            </button>
-            <div id="user-button"></div>
+        <div class="video-controls">
+          <button id="pip-toggle" class="control-btn" disabled>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/>
+              <rect x="14" y="14" width="7" height="7" rx="1" ry="1"/>
+            </svg>
+            Activer PIP
+          </button>
+          <button id="fullscreen" class="control-btn" disabled>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+            </svg>
+            Plein Ã©cran
+          </button>
         </div>
-    </header>
+      </div>
 
-    <main class="main-content">
-        <section class="hero-section">
-            <h1>Lecteur Picture In Picture</h1>
-            <p>La vidéo, à votre façon, où que vous soyez.</p>
-        </section>
-
-        <section class="pip-section">
-            <div class="player-container">
-                <div class="video-wrapper">
-                    <video id="videoPlayer" class="plyr-video" playsinline controls>
-                        <source src="" type="video/mp4">
-                        <track kind="captions" label="Français" srclang="fr" src="">
-                        <track kind="captions" label="English" srclang="en" src="">
-                    </video>
-                    <div class="video-overlay">
-                        <div class="overlay-message">
-                            <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M8 5v14l11-7z"/>
-                            </svg>
-                            <span>Sélectionnez une vidéo pour commencer</span>
-                        </div>
-                    </div>
-                    <div class="loading-indicator" style="display: none;">
-                        <div class="spinner"></div>
-                        <span>Chargement du fichier MKV...</span>
-                        <div class="audio-status"></div>
-                    </div>
-                </div>
-                <div class="player-controls">
-                    <button id="prevVideo" class="control-button" disabled>
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path>
-                        </svg>
-                        Précédent
-                    </button>
-                    <button id="pipButton" class="control-button">Mode PIP</button>
-                    <button id="nextVideo" class="control-button" disabled>
-                        Suivant
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M10.59 6L12 7.41 16.17 12l-4.17 4.59L10.59 18l6-6z"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-
-            <div class="input-section">
-                <h2>Ajouter des vidéos</h2>
-                <div class="input-methods">
-                    <div class="local-files">
-                        <label for="localFiles" class="file-input-label">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path>
-                            </svg>
-                            Fichiers locaux
-                        </label>
-                        <input type="file" id="localFiles" multiple accept="video/*,.mkv" style="display: none">
-                    </div>
-                    <div class="url-input">
-                        <input type="text" id="videoUrl" placeholder="Entrez l'URL de la vidéo">
-                        <button id="addUrlVideo" class="cta-button">Ajouter</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="playlist-section">
-                <h2>Liste de lecture</h2>
-                <div id="playlistContainer" class="playlist-container">
-                    <!-- Playlist items will be added here dynamically -->
-                </div>
-            </div>
-        </section>
-
-        <section class="ventistudio-videos">
-            <h2>Vidéos intégrées à VentiStudio</h2>
-            <div id="ventistudioVideosContainer" class="videos-container">
-                <!-- Les vidéos intégrées seront ajoutées ici dynamiquement -->
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>Outils</h4>
-                <ul>
-                    <li><a href="https://ventistudio.fr/encrypt">Encrypt</a></li>
-                    <li><a href="https://ventistudio.fr/sitemap">Sitemap</a></li>
-                    <li><a href="https://status.ventistudio.fr/">Statut</a></li>
-                    <li><a href="https://aina.ventistudio.fr/">Aina</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Entreprise</h4>
-                <ul>
-                    <li><a href="https://ventistudio.fr/about">À propos</a></li>
-                    <li><a href="https://ventistudio.fr/jobs">Emplois</a></li>
-                    <li><a href="https://ventistudio.fr/company">Marque</a></li>
-                    <li><a href="https://ventistudio.fr/creator">Créateur</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Ressources</h4>
-                <ul>
-                    <li><a href="https://ventistudio.fr/university">Université</a></li>
-                    <li><a href="https://ventistudio.fr/school">École</a></li>
-                    <li><a href="https://ventistudio.fr/help">Assistance</a></li>
-                    <li><a href="https://ventistudio.fr/security">Sécurité</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Chartes</h4>
-                <ul>
-                    <li><a href="https://ventistudio.fr/terms">Conditions</a></li>
-                    <li><a href="https://ventistudio.fr/privacy">Confidentialité</a></li>
-                    <li><a href="https://ventistudio.fr/cookies">Cookies</a></li>
-                    <li><a href="https://ventistudio.fr/dmca">DMCA</a></li>
-                </ul>
-            </div>
+      <div class="content-selector">
+        <h2>Contenus disponibles</h2>
+        <div class="content-filters">
+          <button class="filter-btn active" data-type="all">Tout</button>
+          <button class="filter-btn" data-type="video">VidÃ©os</button>
+          <button class="filter-btn" data-type="music">Musique</button>
         </div>
-        <div class="footer-bottom">
-            <p class="status">
-                <iframe src="https://status.ventistudio.fr/badge?theme=dark" width="250" height="30" frameborder="0" marginheight="0" marginwidth="0" scrolling="no"></iframe>
-            </p>
-            <p class="copyright">Copyright © P-Line 2023 - 2025. Tous droits réservés.</p>
+        <div class="content-list" id="content-list">
+          <!-- Populated by JavaScript -->
         </div>
-    </footer>
+      </div>
+    </div>
 
-    <script src="https://trust.ventistudio.fr/root/script.js"></script>
-    <script src="https://trust.ventistudio.fr/root/pip/script.js"></script>
-    <script>
-        // Fonction pour enregistrer une vidéo dans l'historique
-        function saveVideoToHistory(videoUrl, videoTitle) {
-            const history = JSON.parse(localStorage.getItem('videoHistory')) || [];
-            const videoEntry = { url: videoUrl, title: videoTitle, timestamp: new Date().toISOString() };
-    
-            // Éviter les doublons
-            if (!history.some(video => video.url === videoUrl)) {
-                history.push(videoEntry);
-                localStorage.setItem('videoHistory', JSON.stringify(history));
-            }
-        }
-    
-        // Exemple : Ajouter un événement pour enregistrer une vidéo lue
-        const videoPlayer = document.getElementById('videoPlayer');
-        videoPlayer.addEventListener('play', () => {
-            const videoUrl = videoPlayer.currentSrc;
-            const videoTitle = document.title; // Vous pouvez personnaliser le titre
-            saveVideoToHistory(videoUrl, videoTitle);
-        });
+    <section class="pip-info">
+      <h2>Comment Ã§a marche ?</h2>
+      <div class="info-cards">
+        <div class="info-card">
+          <div class="card-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M10 8l6 4-6 4V8z"/>
+            </svg>
+          </div>
+          <h3>1. SÃ©lectionnez</h3>
+          <p>Choisissez votre contenu dans la liste</p>
+        </div>
+        <div class="info-card">
+          <div class="card-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/>
+              <rect x="14" y="14" width="7" height="7" rx="1" ry="1"/>
+            </svg>
+          </div>
+          <h3>2. Activez PIP</h3>
+          <p>Cliquez sur le bouton PIP</p>
+        </div>
+        <div class="info-card">
+          <div class="card-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+          </div>
+          <h3>3. Profitez</h3>
+          <p>Continuez Ã  naviguer sur le site</p>
+        </div>
+      </div>
+    </section>
+  
+  
+  
+  </main>
 
-        // Liste des vidéos intégrées à VentiStudio
-        const ventistudioVideos = [
-            {
-                title: "A SILENT VOICE - BANDE ANNONCE",
-                url: "https://ventistudio.fr/a-files/video/asilentvoicevfbandeannonce.mp4",
-                thumbnail: "https://ventistudio.fr/favicon.gif"
-            },
-            {
-                title: "CALL OF DUTY: CLIP TWITCH",
-                url: "https://ventistudio.fr/a-files/video/codcliptwitch.mp4",
-                thumbnail: "https://ventistudio.fr/favicon.gif"
-            },
-            {
-                title: "INTRO VENTISTUDIO",
-                url: "https://ventistudio.fr/a-files/video/introventistudio.mp4",
-                thumbnail: "https://ventistudio.fr/favicon.gif"
-            }
-        ];
+  <footer>
 
-        // Charger les vidéos intégrées dans la section
-        const videosContainer = document.getElementById('ventistudioVideosContainer');
-        ventistudioVideos.forEach(video => {
-            const videoElement = document.createElement('div');
-            videoElement.classList.add('video-item');
-            videoElement.innerHTML = `
-                <img src="${video.thumbnail}" alt="${video.title}" class="video-thumbnail">
-                <h3 class="video-title">${video.title}</h3>
-                <button class="play-button" onclick="playVentistudioVideo('${video.url}', '${video.title}')">Lire</button>
-            `;
-            videosContainer.appendChild(videoElement);
-        });
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Outils</h4>
+        <ul>
+          <li><a href="#">Encrypt</a></li>
+          <li><a href="#">Plan du site</a></li>
+          <li><a href="#">Statut</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Entreprise</h4>
+        <ul>
+          <li><a href="#">À propos</a></li>
+          <li><a href="#">Emplois</a></li>
+          <li><a href="#">Marque</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Ressources</h4>
+        <ul>
+          <li><a href="#">Université</a></li>
+          <li><a href="#">Assistance</a></li>
+          <li><a href="#">Sécurité</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Chartes</h4>
+        <ul>
+          <li><a href="#">Conditions</a></li>
+          <li><a href="#">Confidentialité</a></li>
+          <li><a href="#">Information DMCA</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
+      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
+    </div>
+  
+  </footer>
 
-        // Fonction pour lire une vidéo intégrée
-        function playVentistudioVideo(videoUrl, videoTitle) {
-            const videoPlayer = document.getElementById('videoPlayer');
-            videoPlayer.src = videoUrl;
-            videoPlayer.play();
-            saveVideoToHistory(videoUrl, videoTitle); // Enregistrer dans l'historique
-        }
-    </script>
+  <script src="../script.js" defer></script>
 </body>
 </html>
+
+

@@ -1,13 +1,21 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <link rel="icon" type="image/ico" href="https://ventistudio.fr/favicon.ico">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VentiStudio - Easter Eggs</title>
-  <link rel="stylesheet" href="https://trust.ventistudio.fr/root/style.css">
 
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
+  <meta name="theme-color" content="#6366f1">
+  <title>VentiStudio v4</title>
+  <link rel="stylesheet" href="style.css">
+</title>
+
+  <title>VentiStudio - Easter Eggs</title>
   <style>
+
+
+
     .easter-egg-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -140,40 +148,50 @@
             opacity: 1;
         }
     }
+  
+  
+  
   </style>
 </head>
 <body>
   <header>
+
+
     <div class="logo">
-      <img src="https://ventistudio.fr/favicon.avif" alt="VentiStudio Logo" class="site-logo">
+      <img src="favicon.ico" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
       <span>VentiStudio</span>
     </div>
-    <nav>
-      <a href="https://ventistudio.fr" class="active">Accueil</a>
-      <a href="https://ventistudio.fr/approuvedcontent">Contenu Approuvé</a>
-      <a href="https://ventistudio.fr/player">Player</a>
-      <a href="https://ventistudio.fr/wiki">Wiki</a>
-      <a href="https://ventistudio.fr/staff">Staff</a>
-      <a href="https://ventistudio.fr/artist">Artiste</a>
-      <a href="https://ventistudio.fr/pip">PIP</a>
-      <a href="https://ventistudio.fr/sitemap">Sitemap</a>
+    <nav aria-label="Navigation principale">
+      <a href="" class="active">Accueil</a>
+      <a href="approuvedcontent/">Contenu Approuvé</a>
+      <a href="player">Lecteur</a>
+      <a href="wiki">Wiki</a>
+      <a href="staff">Équipe</a>
+      <a href="artist">Artiste</a>
+      <a href="pip">PIP</a>
+      <a href="sitemap">Plan du site</a>
     </nav>
-    <div class="controls">
-      <button id="theme-toggle" class="theme-toggle">
-        <svg width="24" height="24" viewBox="0 0 24 24">
+    <div class="controls" role="toolbar" aria-label="Contrôles">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
           <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
           <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
           <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
         </svg>
       </button>
-      <div id="user-button"></div>
+      <div id="user-button" role="region" aria-label="Authentification"></div>
     </div>
+  
+  
   </header>
 
-  <main class="main-content">
+  <main>
+
+
+
     <section class="hero-section">
       <h1>Easter Eggs VentiStudio</h1>
-      <p>Découvrez les secrets cachés derrière chaque emoji</p>
+      <p>DÃ©couvrez les secrets cachÃ©s derriÃ¨re chaque emoji</p>
     </section>
 
     <section class="section">
@@ -190,276 +208,67 @@
         <p class="modal-description" id="modalDescription"></p>
       </div>
     </div>
+  
+  
+  
   </main>
 
   <footer>
+
+
     <div class="footer-content">
       <div class="footer-section">
         <h4>Outils</h4>
         <ul>
-          <li><a href="https://ventistudio.fr/encrypt">Encrypt</a></li>
-          <li><a href="https://ventistudio.fr/sitemap">Sitemap</a></li>
-          <li><a href="https://status.ventistudio.fr/">Statut</a></li>
-          <li><a href="https://aina.ventistudio.fr/">Aina</a></li>
+          <li><a href="#">Encrypt</a></li>
+          <li><a href="#">Plan du site</a></li>
+          <li><a href="#">Statut</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Entreprise</h4>
         <ul>
-          <li><a href="https://ventistudio.fr/about">À propos</a></li>
-          <li><a href="https://ventistudio.fr/jobs">Emplois</a></li>
-          <li><a href="https://ventistudio.fr/company">Marque</a></li>
-          <li><a href="https://ventistudio.fr/creator">Créateur</a></li>
+          <li><a href="#">À propos</a></li>
+          <li><a href="#">Emplois</a></li>
+          <li><a href="#">Marque</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Ressources</h4>
         <ul>
-          <li><a href="https://ventistudio.fr/university">Université</a></li>
-          <li><a href="https://ventistudio.fr/school">École</a></li>
-          <li><a href="https://ventistudio.fr/help">Assistance</a></li>
-          <li><a href="https://ventistudio.fr/security">Sécurité</a></li>
+          <li><a href="#">Université</a></li>
+          <li><a href="#">Assistance</a></li>
+          <li><a href="#">Sécurité</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Chartes</h4>
         <ul>
-          <li><a href="https://ventistudio.fr/terms">Conditions</a></li>
-          <li><a href="https://ventistudio.fr/privacy">Confidentialité</a></li>
-          <li><a href="https://ventistudio.fr/cookies">Cookies</a></li>
-          <li><a href="https://ventistudio.fr/dmca">DMCA</a></li>
+          <li><a href="#">Conditions</a></li>
+          <li><a href="#">Confidentialité</a></li>
+          <li><a href="#">Information DMCA</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p class="status"><iframe src="https://status.ventistudio.fr/badge?theme=dark" width="250" height="30" frameborder="0" marginheight="0" marginwidth="0" scrolling="no"></iframe></p>
-      <p class="copyright">Copyright © P-Line 2023 - 2025. Tous droits réservés.</p>
+      <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
+      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
     </div>
+  
+  
   </footer>
 
-  <script src="https://trust.ventistudio.fr/root/script.js"></script>
+  <script src="../script.js" defer></script>
   <script>
-    const easterEggs = [
-      {
-        emoji: "🗡️",
-        title: "Sword Art Online",
-        description: "Référence à l'épée emblématique de Kirito dans SAO. Cette série a révolutionné le genre 'trapped in a game' et inspire encore aujourd'hui de nombreux créateurs."
-      },
-      {
-        emoji: "🎮",
-        title: "Ready Player One",
-        description: "Le symbole du gaming virtuel, rappelant l'OASIS de Ready Player One, où les joueurs peuvent vivre une seconde vie dans un monde virtuel illimité."
-      },
-      {
-        emoji: "🐉",
-        title: "Le Hobbit",
-        description: "Smaug, le dragon légendaire du Hobbit. Un rappel de l'œuvre magistrale de Tolkien qui a défini le genre fantasy moderne."
-      },
-      {
-        emoji: "🌟",
-        title: "Star Wars",
-        description: "La Force est avec vous ! Une référence à l'univers épique de Star Wars, qui continue d'inspirer des générations."
-      },
-      {
-        emoji: "🧙‍♂️",
-        title: "Harry Potter",
-        description: "Le monde magique de Poudlard et ses sorciers. Une série qui a marqué toute une génération avec ses sorts et ses créatures fantastiques."
-      },
-      {
-        emoji: "🤖",
-        title: "Ghost in the Shell",
-        description: "L'essence du cyberpunk japonais, explorant les thèmes de l'humanité dans un monde dominé par la technologie."
-      },
-      {
-        emoji: "📱",
-        title: "Black Mirror",
-        description: "Une réflexion sur notre relation avec la technologie, inspirée de la série qui nous fait réfléchir sur notre futur numérique."
-      },
-      {
-        emoji: "🎲",
-        title: "No Game No Life",
-        description: "Le monde de Disboard, où tout se décide par des jeux. Une série qui célèbre l'intelligence et la stratégie."
-      },
-      {
-        emoji: "💬",
-        title: "Discord",
-        description: "Une plateforme de chat et de communication conçue pour les joueurs, mais parfaite pour tout le monde. Créez des communautés, discutez, partagez et passez du temps avec vos amis !"
-      },
-      { 
-        emoji: "🎮",
-        title: "Nintendo",
-        description: "La légendaire entreprise de jeux vidéo derrière Mario, Zelda et de nombreuses autres franchises appréciées. Elle apporte de la joie aux joueurs depuis 1889."
-      },
-      {
-        emoji: "👊",
-        title: "Street Fighter",
-        description: "La série emblématique de jeux de combat de Capcom. Affrontez des adversaires du monde entier avec des personnages classiques comme Ryu et Ken."
-      },
-      {
-        emoji: "🏰",
-        title: "Disney",
-        description: "L’empire magique du divertissement qui donne vie à des histoires et à des personnages à travers l’animation, les parcs à thème et bien plus encore."
-      },
-      {
-        emoji: "⚡",
-        title: "Genshin Impact",
-        description: "Embarquez pour un voyage à travers Teyvat dans ce RPG d’action en monde ouvert. Collectionnez des personnages et maîtrisez le pouvoir des différents éléments."
-      },
-      {
-        emoji: "⚔️",
-        title: "Honkai Impact",
-        description: "Un jeu d’action au style manga mettant en scène des Valkyries combattant contre le Honkai."
-      },
-      {
-        emoji: "🌐",
-        title: "Zenless Zone Zero",
-        description: "Un RPG d’action fantastique urbain se déroulant dans une métropole post-apocalyptique."
-      },
-      { 
-        emoji: "🏠",
-        title: "The Sims 4",
-        description: "Créez et contrôlez des personnages dans un monde virtuel où tout est possible."
-      },
-      {
-        emoji: "🎧",
-        title: "A Silent Voice",
-        description: "Un touchant film d’animation sur l’amitié, la rédemption et la compréhension."
-      },
-      { 
-        emoji: "🛸",
-        title: "The Orbital Children",
-        description: "Un anime de science-fiction sur des enfants nés dans une station spatiale confrontés à une crise."
-      },
-      {
-        emoji: "👻",
-        title: "Yo-kai Watch",
-        description: "Découvrez et liez-vous d’amitié avec des créatures surnaturelles dans cette charmante série RPG."
-      },
-      {
-        emoji: "🦸",
-        title: "My Hero Academia",
-        description: "Dans un monde où les superpouvoirs sont courants, de jeunes héros s’entraînent pour devenir les meilleurs."
-      },
-      {
-        emoji: "⛏️",
-        title: "Minecraft",
-        description: "Construisez, explorez et survivez dans ce jeu de bac à sable créatif illimité."
-      },
-      {
-        emoji: "🎵",
-        title: "Spotify",
-        description: "Diffusez votre musique et vos podcasts préférés à tout moment, n’importe où."
-      },
-      {
-        emoji: "⚡",
-        title: "Fullmetal Alchemist",
-        description: "L’histoire de deux frères cherchant à restaurer leurs corps grâce au pouvoir de l’alchimie."
-      },
-      {
-        emoji: "☁️",
-        title: "Final Fantasy VII",
-        description: "Le RPG légendaire qui a redéfini la narration dans les jeux vidéo."
-      },
-      {
-        emoji: "👾",
-        title: "Pac-Man",
-        description: "Le jeu d’arcade classique qui a lancé une révolution du jeu."
-      },
-      {
-        emoji: "🔫",
-        title: "Tom Clancy's The Division",
-        description: "Jeu de tir stratégique se déroulant dans un monde dévasté par une pandémie."
-      },
-      {
-        emoji: "☢️",
-        title: "Fallout 4",
-        description: "Survivez et reconstruisez dans un Boston post-apocalyptique."
-      },
-      {
-        emoji: "🕴️",
-        title: "Hitman",
-        description: "Incarnez l’Agent 47 dans cette série d’action furtive axée sur l’assassinat professionnel."
-      },
-      {
-        emoji: "🗡️",
-        title: "Eternal Return",
-        description: "Jeu de bataille royale stratégique avec des éléments de MOBA."
-      },
-      {
-        emoji: "🔧",
-        title: "Garry's Mod",
-        description: "Un bac à sable physique où tout est possible grâce à la créativité."
-      },
-      {
-        emoji: "🪂",
-        title: "Just Cause",
-        description: "Action-aventure explosive avec des mécaniques de destruction créative."
-      },
-      {
-        emoji: "⚡",
-        title: "Hogwarts Legacy",
-        description: "Créez votre propre héritage dans le monde des sorciers d’Harry Potter."
-      },
-      {
-        emoji: "🌅",
-        title: "Dawnlands",
-        description: "Aventurez-vous dans un monde mystique à l’aube."
-      },
-      {
-        emoji: "🎯",
-        title: "PUBG",
-        description: "Jeu de bataille royale où un seul joueur ou une seule équipe survit."
-      },
-      {
-        emoji: "⚙️",
-        title: "Satisfactory",
-        description: "Jeu de construction de fabrique à la première personne axé sur l’automatisation et l’efficacité."
-      },
-      {
-        emoji: "🗼",
-        title: "Tower of Fantasy",
-        description: "MMORPG en monde ouvert partagé, situé dans un univers de science-fiction."
-      }
-    ];
 
-    document.addEventListener('DOMContentLoaded', () => {
-        const grid = document.querySelector('.easter-egg-grid');
-        const modal = document.getElementById('easterModal');
-        const modalEmoji = document.getElementById('modalEmoji');
-        const modalTitle = document.getElementById('modalTitle');
-        const modalDescription = document.getElementById('modalDescription');
 
-        // Créer les cartes d'easter eggs
-        easterEggs.forEach(egg => {
-            const card = document.createElement('div');
-            card.className = 'easter-egg-card';
-            card.innerHTML = `
-                <div class="easter-egg-emoji">${egg.emoji}</div>
-                <h3>${egg.title}</h3>
-            `;
 
-            card.addEventListener('click', () => {
-                modalEmoji.textContent = egg.emoji;
-                modalTitle.textContent = egg.title;
-                modalDescription.textContent = egg.description;
-                modal.style.display = 'block';
-            });
 
-            grid.appendChild(card);
-        });
+  
 
-        // Fermer le modal quand on clique sur le bouton de fermeture
-        document.querySelector('.close-modal').addEventListener('click', () => {
-            modal.style.display = 'none';
-        });
 
-        // Fermer le modal quand on clique en dehors
-        window.addEventListener('click', (event) => {
-            if (event.target === modal) {
-                modal.style.display = 'none';
-            }
-        });
-    });
   </script>
 </body>
 </html>
+
+
