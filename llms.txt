@@ -115,6 +115,6 @@ Last-revision: 2026-02-12
 Next-review: 2026-08-12
 
 # FOOTER
-Copyright © 2023-2026 VentiStudio - All Rights Reserved
-Product by: AINA UMAISHI - Artificial Intelligence New Age
+Copyright © 2023-2026 VentiStudio All Rights Reserved
+Product by: AINA UMAISHI : Artificial Intelligence New Age
 Support: support@ventistudio.eu

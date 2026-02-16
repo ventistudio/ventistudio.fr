@@ -1,18 +1,16 @@
 ﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <meta name="description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
+  <meta name="description" content="Lecteur PIP VentiStudio - Gérez vos vidéos et musiques avec import local et protection avancée.">
   <meta name="theme-color" content="#6366f1">
-  <title>VentiStudio v4</title>
+  <title>Lecteur PIP - VentiStudio</title>
   <link rel="stylesheet" href="../style.css">
-</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-
     <div class="logo">
       <img src="../favicon.ico" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
       <span>VentiStudio</span>
@@ -37,100 +35,151 @@
       </button>
       <div id="user-button" role="region" aria-label="Authentification"></div>
     </div>
-  
   </header>
 
   <main>
-
-
-
     <section class="page-header">
-      <h1>Picture-in-Picture</h1>
-      <p>Profitez de vos contenus en mode flottant tout en naviguant sur le site.</p>
+      <h1>Lecteur Multimédia - Picture-in-Picture</h1>
+      <p>Organisez et visionnez vos vidéos et musiques avec protection avancée.</p>
     </section>
 
     <div class="pip-container">
-      <div class="video-container">
-        <div id="player-container">
-          <div id="placeholder-video">
-            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/>
-              <path d="M10 8l6 4-6 4V8z"/>
-            </svg>
-            <p>SÃ©lectionnez un contenu pour commencer</p>
+      <div class="player-section">
+        <div class="player-wrapper">
+          <div id="player-container" class="player-container">
+            <div class="placeholder-media">
+              <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/>
+                <path d="M10 8l6 4-6 4V8z"/>
+              </svg>
+              <p>Sélectionnez un contenu pour commencer</p>
+            </div>
+          </div>
+          <div id="screen-capture-overlay" class="screen-capture-overlay hidden" aria-label="Protection écran activée">
+            <span>🔒 Capture protégée</span>
           </div>
         </div>
-        <div class="video-controls">
-          <button id="pip-toggle" class="control-btn" disabled>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/>
-              <rect x="14" y="14" width="7" height="7" rx="1" ry="1"/>
-            </svg>
-            Activer PIP
+
+        <div class="player-controls">
+          <button id="pip-toggle" class="control-btn" disabled title="Mode Picture-in-Picture">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="2" width="20" height="20" rx="2"/>
+              <rect x="14" y="14" width="7" height="7" rx="1"/>
+            </svg><span>PIP</span>
           </button>
-          <button id="fullscreen" class="control-btn" disabled>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
-            </svg>
-            Plein Ã©cran
+          <button id="cinema-mode" class="control-btn" disabled title="Mode cinéma">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="2" width="20" height="20" rx="2"/>
+              <path d="M7 7h10m-10 4h10m-10 4h10"/>
+            </svg><span>Cinéma</span>
           </button>
+          <button id="fullscreen-btn" class="control-btn" disabled title="Plein écran">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M8 3H5c-1.1 0-2 .9-2 2v3m18 0V5c0-1.1-.9-2-2-2h-3m0 18h3c1.1 0 2-.9 2-2v-3M3 16v3c0 1.1.9 2 2 2h3"/>
+            </svg><span>Plein écran</span>
+          </button>
+        </div>
+
+        <div id="media-info" class="media-info hidden">
+          <h3 id="media-title">Sans titre</h3>
+          <p id="media-subtitle">Aucune source sélectionnée</p>
         </div>
       </div>
 
-      <div class="content-selector">
-        <h2>Contenus disponibles</h2>
-        <div class="content-filters">
-          <button class="filter-btn active" data-type="all">Tout</button>
-          <button class="filter-btn" data-type="video">VidÃ©os</button>
-          <button class="filter-btn" data-type="music">Musique</button>
-        </div>
-        <div class="content-list" id="content-list">
-          <!-- Populated by JavaScript -->
-        </div>
+      <div class="sidebar">
+        <section class="upload-section">
+          <h2>Importer des contenus</h2>
+          
+          <div class="upload-tabs">
+            <button class="upload-tab active" data-tab="local">Local</button>
+            <button class="upload-tab" data-tab="url">URL</button>
+          </div>
+
+          <div id="local-tab" class="upload-tab-content active">
+            <div id="drop-zone" class="drop-zone">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="17 8 12 3 7 8"/>
+                <line x1="12" y1="3" x2="12" y2="15"/>
+              </svg>
+              <p>Déposez vos fichiers ici</p>
+              <p class="text-small">ou</p>
+              <button id="file-input-btn" class="file-input-btn">Parcourir</button>
+              <input type="file" id="file-input" multiple accept="video/*,audio/*" hidden />
+            </div>
+            <div class="upload-formats">
+              <small>Formats : MP4, WebM, Ogg, MP3, WAV, FLAC</small>
+            </div>
+          </div>
+
+          <div id="url-tab" class="upload-tab-content hidden">
+            <form id="url-form" class="url-form">
+              <input type="url" id="url-input" placeholder="https://exemple.com/video.mp4" required />
+              <input type="text" id="url-title" placeholder="Titre (facultatif)" />
+              <button type="submit" class="control-btn">Ajouter</button>
+            </form>
+          </div>
+        </section>
+
+        <section class="playlist-section">
+          <div class="playlist-header">
+            <h2>Liste de lecture</h2>
+            <span id="item-count" class="item-count">0</span>
+          </div>
+
+          <div class="playlist-filters">
+            <button class="filter-btn active" data-filter="all">Tous</button>
+            <button class="filter-btn" data-filter="video">Vidéos</button>
+            <button class="filter-btn" data-filter="audio">Audio</button>
+          </div>
+
+          <div id="playlist" class="playlist">
+            <div class="empty-state"><p>Aucun média</p></div>
+          </div>
+
+          <button id="clear-list" class="control-btn danger hidden">Effacer tout</button>
+        </section>
       </div>
     </div>
 
-    <section class="pip-info">
-      <h2>Comment Ã§a marche ?</h2>
-      <div class="info-cards">
-        <div class="info-card">
-          <div class="card-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <circle cx="12" cy="12" r="10"/>
-              <path d="M10 8l6 4-6 4V8z"/>
-            </svg>
-          </div>
-          <h3>1. SÃ©lectionnez</h3>
-          <p>Choisissez votre contenu dans la liste</p>
+    <section class="features-section">
+      <h2>Fonctionnalités</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">📁</div>
+          <h3>Import Local</h3>
+          <p>Vos propres vidéos et musiques</p>
         </div>
-        <div class="info-card">
-          <div class="card-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/>
-              <rect x="14" y="14" width="7" height="7" rx="1" ry="1"/>
-            </svg>
-          </div>
-          <h3>2. Activez PIP</h3>
-          <p>Cliquez sur le bouton PIP</p>
+        <div class="feature-card">
+          <div class="feature-icon">🔗</div>
+          <h3>Lecture URL</h3>
+          <p>Liens web directs</p>
         </div>
-        <div class="info-card">
-          <div class="card-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-            </svg>
-          </div>
-          <h3>3. Profitez</h3>
-          <p>Continuez Ã  naviguer sur le site</p>
+        <div class="feature-card">
+          <div class="feature-icon">🎬</div>
+          <h3>Mode Cinéma</h3>
+          <p>Amélioration des couleurs</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔊</div>
+          <h3>Visualiseur Audio</h3>
+          <p>Analyseur de fréquences</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3>Protection Écran</h3>
+          <p>Anti-capture (Konami)</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📺</div>
+          <h3>Picture-in-Picture</h3>
+          <p>Fenêtre flottante</p>
         </div>
       </div>
     </section>
-  
-  
-  
   </main>
 
   <footer>
-
     <div class="footer-content">
       <div class="footer-section">
         <h4>Outils</h4>
@@ -166,13 +215,13 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
+      <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services en ligne</p>
       <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
     </div>
-  
   </footer>
 
   <script src="../script.js" defer></script>
+  <script src="script.js" defer></script>
 </body>
 </html>
 

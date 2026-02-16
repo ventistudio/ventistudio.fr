@@ -1,79 +1,141 @@
 ﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <meta name="description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
+  <meta name="description" content="VentiStudio Music - Plateforme musicale interactive avec lecteur audio avancé.">
   <meta name="theme-color" content="#6366f1">
-  <title>VentiStudio v4</title>
-  <link rel="stylesheet" href="../style.css">
-</title>
-</head>
-<body>
-  <header>
-
-    <div class="logo">
-      <img src="../favicon.ico" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
-      <span>VentiStudio</span>
-    </div>
-    <nav aria-label="Navigation principale">
-      <a href="../" class="active">Accueil</a>
-      <a href="../approuvedcontent/">Contenu Approuvé</a>
-      <a href="../player">Lecteur</a>
-      <a href="../wiki">Wiki</a>
-      <a href="../staff">Équipe</a>
-      <a href="../news">News</a>
-      <a href="../pip">PIP</a>
-      <a href="../sitemap">Plan du site</a>
-    </nav>
-    <div class="controls" role="toolbar" aria-label="Contrôles">
-      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
-        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
-          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
-          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
-          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
-        </svg>
-      </button>
-      <div id="user-button" role="region" aria-label="Authentification"></div>
-    </div>
-  
-  </header>
-
-  <main>
-
-
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Plateforme musicale interactive de VentiStudio avec lecteur audio avancÃ©." />
-  <link rel="canonical" href="https://ventistudio.eu/music" />
   <title>VentiStudio Music</title>
-  <link rel="stylesheet" href="https://trust.ventistudio.eu/root/style.css">
+  <link rel="stylesheet" href="../style.css">
   <link rel="stylesheet" href="/music/styles.css">
 </head>
 <body>
-  <div class="music-app">
-    <h1>VentiStudio Music</h1>
-    <div class="search-sort">
-      <input type="text" id="searchInput" placeholder="Rechercher une musique, un artiste, un album...">
-      <select id="sortSelect">
-        <option value="">Trier par...</option>
-        <option value="title">Titre</option>
-        <option value="artist">News</option>
-        <option value="album">Album</option>
-      </select>
+  <main>
+    <div class="music-app">
+      <h1>VentiStudio Music</h1>
+      <div class="search-sort">
+        <input type="text" id="searchInput" placeholder="Rechercher une musique, un artiste, un album...">
+        <select id="sortSelect">
+          <option value="">Trier par...</option>
+          <option value="title">Titre</option>
+          <option value="artist">Artiste</option>
+          <option value="album">Album</option>
+        </select>
+      </div>
+      <div class="track-list" id="trackList"></div>
+      <div style="height: 250px;"></div>
     </div>
-    <div class="track-list" id="trackList"></div>
-    <div style="height: 250px;"></div>
-  </div>
+
+    <div class="player-controls">
+      <div class="player-top">
+        <div class="now-playing active" id="nowPlayingContainer">
+          <div class="album-art" id="albumArt">
+            <img id="currentAlbumImage" src="../favicon.avif" alt="Album cover" style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
+          <div class="track-info-player">
+            <p class="track-title-player" id="nowPlayingTitle">Aucune musique</p>
+            <p class="track-artist" id="nowPlayingArtist">-</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="player-main">
+        <div class="progress-wrapper" id="progressWrapper">
+          <div class="progress-bar" id="progressBar"></div>
+          <div class="progress-handle" id="progressHandle"></div>
+        </div>
+        <div class="time-display">
+          <span id="currentTime">0:00</span>
+          <span id="totalTime">0:00</span>
+        </div>
+        <div class="player-buttons">
+          <button class="btn btn-sm" title="Titre précédent" onclick="prevTrack()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="19 20 9 12 19 4 19 20"></polygon>
+              <line x1="5" y1="19" x2="5" y2="5"></line>
+            </svg>
+          </button>
+          <button class="btn btn-play btn-lg" id="playPauseBtn" title="Lecture/Pause" onclick="togglePlay()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+          </button>
+          <button class="btn btn-sm" title="Titre suivant" onclick="nextTrack()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="5 4 15 12 5 20 5 4"></polygon>
+              <line x1="19" y1="5" x2="19" y2="19"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="player-footer">
+        <div class="player-volume">
+          <button class="btn btn-sm" title="Volume">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+            </svg>
+          </button>
+          <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.8">
+        </div>
+        <div class="extras">
+          <button class="btn btn-sm" id="loopBtn" title="Répéter" onclick="toggleLoop()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 2l4 4-4 4"></path>
+              <path d="M3 11v-1a4 4 0 0 1 4-4h14"></path>
+              <path d="M7 22l-4-4 4-4"></path>
+              <path d="M21 13v1a4 4 0 0 1-4 4H3"></path>
+            </svg>
+          </button>
+          <button class="btn btn-sm" id="shuffleBtn" title="Lecture aléatoire" onclick="toggleShuffle()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 3h5v5"></path>
+              <path d="M4 20L21 3"></path>
+              <path d="M21 16v5h-5"></path>
+              <path d="M15 15l6 6"></path>
+              <path d="M4 4l5 5"></path>
+            </svg>
+          </button>
+          <button class="btn btn-sm" title="Partager" onclick="shareTrack()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="18" cy="5" r="3"></circle>
+              <circle cx="6" cy="12" r="3"></circle>
+              <circle cx="18" cy="19" r="3"></circle>
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+            </svg>
+          </button>
+          <button class="btn btn-sm" title="Plein écran" onclick="enterFullscreenLed()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 3H5a2 2 0 0 0-2 2v3"></path>
+              <path d="M21 8V5a2 2 0 0 0-2-2h-3"></path>
+              <path d="M3 16v3a2 2 0 0 0 2 2h3"></path>
+              <path d="M16 21h3a2 2 0 0 0 2-2v-3"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mode plein écran LED -->
+    <div id="fullscreenLed">
+      <canvas class="led-canvas"></canvas>
+      <div class="led-content">
+        <img class="led-album" src="" alt="Album cover">
+        <div class="led-title"></div>
+        <div class="led-artist"></div>
+        <button class="led-exit" onclick="exitFullscreenLed()">Quitter le plein écran</button>
+      </div>
+    </div>
+  </main>
+
   <div class="player-controls">
     <div class="player-top">
       <div class="now-playing active" id="nowPlayingContainer">
         <div class="album-art" id="albumArt">
-          <img id="currentAlbumImage" src="/favicon.gif" alt="Album cover" style="width: 100%; height: 100%; object-fit: cover;">
+          <img id="currentAlbumImage" src="../favicon.avif" alt="Album cover" style="width: 100%; height: 100%; object-fit: cover;">
         </div>
         <div class="track-info-player">
           <p class="track-title-player" id="nowPlayingTitle">Aucune musique</p>
@@ -91,7 +153,7 @@
         <span id="totalTime">0:00</span>
       </div>
       <div class="player-buttons">
-        <button class="btn btn-sm" title="Titre prÃ©cÃ©dent" onclick="prevTrack()">
+        <button class="btn btn-sm" title="Titre précédent" onclick="prevTrack()">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polygon points="19 20 9 12 19 4 19 20"></polygon>
             <line x1="5" y1="19" x2="5" y2="5"></line>
@@ -122,7 +184,7 @@
         <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.8">
       </div>
       <div class="extras">
-        <button class="btn btn-sm" id="loopBtn" title="RÃ©pÃ©ter" onclick="toggleLoop()">
+        <button class="btn btn-sm" id="loopBtn" title="Répéter" onclick="toggleLoop()">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M17 2l4 4-4 4"></path>
             <path d="M3 11v-1a4 4 0 0 1 4-4h14"></path>
@@ -130,7 +192,7 @@
             <path d="M21 13v1a4 4 0 0 1-4 4H3"></path>
           </svg>
         </button>
-        <button class="btn btn-sm" id="shuffleBtn" title="Lecture alÃ©atoire" onclick="toggleShuffle()">
+        <button class="btn btn-sm" id="shuffleBtn" title="Lecture aléatoire" onclick="toggleShuffle()">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M16 3h5v5"></path>
             <path d="M4 20L21 3"></path>
@@ -148,7 +210,7 @@
             <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
           </svg>
         </button>
-        <button class="btn btn-sm" title="Plein Ã©cran" onclick="enterFullscreenLed()">
+        <button class="btn btn-sm" title="Plein écran" onclick="enterFullscreenLed()">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M8 3H5a2 2 0 0 0-2 2v3"></path>
             <path d="M21 8V5a2 2 0 0 0-2-2h-3"></path>
@@ -159,68 +221,22 @@
       </div>
     </div>
   </div>
-  <!-- Mode plein Ã©cran LED -->
+  
+  <!-- Mode plein écran LED -->
   <div id="fullscreenLed">
     <canvas class="led-canvas"></canvas>
     <div class="led-content">
       <img class="led-album" src="" alt="Album cover">
       <div class="led-title"></div>
       <div class="led-artist"></div>
-      <button class="led-exit" onclick="exitFullscreenLed()">Quitter le plein Ã©cran</button>
+      <button class="led-exit" onclick="exitFullscreenLed()">Quitter le plein écran</button>
     </div>
   </div>
-  <audio id="mainAudio"></audio>
-  <script src="/music/app.js" defer></script>
-</body>
-</html>
 
-  
-  
   </main>
 
-  <footer>
-
-    <div class="footer-content">
-      <div class="footer-section">
-        <h4>Outils</h4>
-        <ul>
-          <li><a href="#">Encrypt</a></li>
-          <li><a href="#">Plan du site</a></li>
-          <li><a href="#">Statut</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h4>Entreprise</h4>
-        <ul>
-          <li><a href="#">À propos</a></li>
-          <li><a href="#">Emplois</a></li>
-          <li><a href="#">Marque</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h4>Ressources</h4>
-        <ul>
-          <li><a href="#">Université</a></li>
-          <li><a href="#">Assistance</a></li>
-          <li><a href="#">Sécurité</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h4>Chartes</h4>
-        <ul>
-          <li><a href="#">Conditions</a></li>
-          <li><a href="#">Confidentialité</a></li>
-          <li><a href="#">Information DMCA</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
-      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
-    </div>
-  
-  </footer>
-
+  <audio id="mainAudio"></audio>
+  <script src="/music/app.js" defer></script>
   <script src="../script.js" defer></script>
 </body>
 </html>

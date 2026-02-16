@@ -8,7 +8,311 @@
   <meta name="theme-color" content="#6366f1">
   <title>VentiStudio v4</title>
   <link rel="stylesheet" href="../../../style.css">
-</title>
+  <style>
+    .hero {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 2rem;
+      margin: 2rem;
+      box-shadow: var(--glass-shadow);
+    }
+
+    .hero h1 {
+      margin: 0 0 0.5rem 0;
+      font-size: 2.5rem;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      margin: 0;
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+
+    .section {
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .book-container {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .book-pages {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+      perspective: 1000px;
+    }
+
+    .book-page {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: 0.5rem;
+      padding: 2.5rem;
+      min-height: 500px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .book-page::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.05) 100%);
+      pointer-events: none;
+    }
+
+    .book-page-content {
+      position: relative;
+      z-index: 1;
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--text-primary);
+    }
+
+    .page-number {
+      position: absolute;
+      bottom: 1.5rem;
+      right: 2rem;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      z-index: 2;
+    }
+
+    .book-content {
+      display: none;
+    }
+
+    .book-content.active {
+      display: block;
+    }
+
+    .page-navigation {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+
+    .page-button {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      color: var(--text-primary);
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.75rem;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      font-weight: 500;
+    }
+
+    .page-button:hover:not(:disabled) {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+    }
+
+    .page-button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .page-select {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      color: var(--text-primary);
+      padding: 0.75rem 1rem;
+      border-radius: 0.75rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-weight: 500;
+    }
+
+    .page-select:hover {
+      border-color: var(--accent);
+    }
+
+    .page-select:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+    }
+
+    .page-info {
+      color: var(--text-secondary);
+      font-weight: 500;
+      min-width: 100px;
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      .book-pages {
+        grid-template-columns: 1fr;
+      }
+
+      .book-page {
+        min-height: 400px;
+        padding: 1.5rem;
+      }
+
+      .hero {
+        margin: 1rem;
+        padding: 2rem 1rem;
+      }
+
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+
+      .section {
+        padding: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .page-navigation {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .page-button, .page-select {
+        width: 100%;
+      }
+    }
+
+    /* Page animations */
+    @keyframes pageSlideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes pageSlideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes pageSlideOutLeft {
+      from {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      to {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+    }
+
+    @keyframes pageSlideOutRight {
+      from {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      to {
+        opacity: 0;
+        transform: translateX(30px);
+      }
+    }
+
+    @keyframes pageFlip {
+      0% {
+        transform: rotateY(0deg) scaleX(1);
+        opacity: 1;
+      }
+      50% {
+        opacity: 0;
+        transform: rotateY(90deg) scaleX(0.5);
+      }
+      100% {
+        transform: rotateY(0deg) scaleX(1);
+        opacity: 1;
+      }
+    }
+
+    .book-page {
+      animation-duration: 0.6s;
+      animation-timing-function: ease-in-out;
+      animation-fill-mode: both;
+    }
+
+    .book-page.slide-in-left {
+      animation-name: pageSlideInLeft;
+    }
+
+    .book-page.slide-in-right {
+      animation-name: pageSlideInRight;
+    }
+
+    .book-page.slide-out-left {
+      animation-name: pageSlideOutLeft;
+    }
+
+    .book-page.slide-out-right {
+      animation-name: pageSlideOutRight;
+    }
+
+    .book-page.flip {
+      animation-name: pageFlip;
+    }
+
+    .book-pages.next-animation .book-page:nth-child(1) {
+      animation-name: pageSlideOutLeft;
+    }
+
+    .book-pages.next-animation .book-page:nth-child(2) {
+      animation-name: pageSlideOutLeft;
+    }
+
+    .book-pages.prev-animation .book-page:nth-child(1) {
+      animation-name: pageSlideOutRight;
+    }
+
+    .book-pages.prev-animation .book-page:nth-child(2) {
+      animation-name: pageSlideOutRight;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -51,14 +355,22 @@
 
     <section class="section">
       <div class="book-container">
-        <div class="book-content" id="bookContent">
-          <!-- Content will be dynamically inserted here -->
-          <span class="page-number" id="pageNumber">Page 1</span>
+        <div class="book-pages">
+          <div class="book-page">
+            <div class="book-page-content" id="page-left"></div>
+            <span class="page-number" id="page-left-number"></span>
+          </div>
+          <div class="book-page">
+            <div class="book-page-content" id="page-right"></div>
+            <span class="page-number" id="page-right-number"></span>
+          </div>
         </div>
+
         <div class="page-navigation">
-          <button class="page-button" id="prevPage">Page prÃ©cÃ©dente</button>
+          <button class="page-button" id="prevPage">← Page précédente</button>
+          <span class="page-info" id="pageInfo">Page 1</span>
           <select class="page-select" id="pageSelect"></select>
-          <button class="page-button" id="nextPage">Page suivante</button>
+          <button class="page-button" id="nextPage">Page suivante →</button>
         </div>
       </div>
     </section>
@@ -111,7 +423,139 @@
   </footer>
 
   <script src="../../../script.js" defer></script>
-</body>
+  <script>
+    // Sample book content - can be replaced with actual content
+    const bookContent = [
+      "Chapter I: The Beginning\n\nLa galaxie tremblait sous la menace Borg. Les vaisseaux de la fédération rassemblaient toutes leurs forces pour repousser cette menace existentielle. Notre équipe de l'USS Umaishi se retrouvait aux premières lignes de ce conflit terrible.",
+      "Les capteurs détectaient des signatures Borg partout dans le secteur. Le capitaine ordonna à toutes les mains aux postes de combat. Le destin de la galaxie se jouait dans les prochaines heures.",
+      "Les réacteurs fonctionnaient à pleine capacité. Les boucliers étaient en place, et les armes principales étaient prêtes. Mais nous savions que cela ne suffirait peut-être pas contre la pure logique de la menace Borg.",
+      "\"Toutes les mains, attention,\" cria le capitaine par le système d'intercom. \"Les Borg arrivent à grande vitesse. Nous avons quelques minutes pour nous préparer.\"",
+      "L'écran tactique s'illumina avec des dizaines de points rouges convergeant vers notre position. Nous n'avions jamais affronté une force aussi massive. La peur était palpable sur la passerelle.",
+      "\"Que tous les officiers sachent,\" déclara le capitaine, \"aujourd'hui, on remet notre vie entre les mains du cosmos. Mais nous combattrons. Et nous défendrons ce que nous croyons être juste. Umaishi, répondez à ma confiance.\"",
+      "Les canons à phaser commencèrent à crépiter. Les missiles photoniques perçaient l'espace noir. C'était le début d'une bataille qui changerait à jamais le cours de la galaxie.",
+      "Les Borg avaient réagi. Leurs cubes de destruction s'avançaient inexorablement. Aucun d'entre nous ne savait ce qu'apporterait l'aube de ce nouveau jour."
+    ];
+
+    let currentPage = 0;
+    let lastPage = 0;
+    const totalPages = Math.ceil(bookContent.length / 2);
+
+    function initializeBook() {
+      const pageSelect = document.getElementById('pageSelect');
+      
+      // Populate page selector
+      for (let i = 1; i <= totalPages; i++) {
+        const option = document.createElement('option');
+        option.value = i - 1;
+        option.textContent = `Aller à la page ${i}`;
+        pageSelect.appendChild(option);
+      }
+
+      pageSelect.addEventListener('change', (e) => {
+        goToPage(parseInt(e.target.value));
+      });
+
+      document.getElementById('prevPage').addEventListener('click', () => {
+        if (currentPage > 0) goToPage(currentPage - 1);
+      });
+
+      document.getElementById('nextPage').addEventListener('click', () => {
+        if (currentPage < totalPages - 1) goToPage(currentPage + 1);
+      });
+
+      renderPages();
+    }
+
+    function animatePages(direction) {
+      const bookPages = document.querySelector('.book-pages');
+      const pages = document.querySelectorAll('.book-page');
+      
+      // Remove old animations
+      bookPages.classList.remove('next-animation', 'prev-animation');
+      pages.forEach(page => {
+        page.classList.remove('slide-in-left', 'slide-in-right', 'slide-out-left', 'slide-out-right', 'flip');
+      });
+
+      // Add new animations
+      if (direction === 'next') {
+        bookPages.classList.add('next-animation');
+        setTimeout(() => {
+          pages.forEach(page => {
+            page.classList.add('slide-in-right');
+          });
+        }, 10);
+      } else if (direction === 'prev') {
+        bookPages.classList.add('prev-animation');
+        setTimeout(() => {
+          pages.forEach(page => {
+            page.classList.add('slide-in-left');
+          });
+        }, 10);
+      }
+
+      // Clear animations after they finish
+      setTimeout(() => {
+        bookPages.classList.remove('next-animation', 'prev-animation');
+        pages.forEach(page => {
+          page.classList.remove('slide-in-left', 'slide-in-right', 'slide-out-left', 'slide-out-right', 'flip');
+        });
+      }, 600);
+    }
+
+    function renderPages() {
+      const leftIndex = currentPage * 2;
+      const rightIndex = leftIndex + 1;
+
+      const leftPage = document.getElementById('page-left');
+      const rightPage = document.getElementById('page-right');
+      const pageInfo = document.getElementById('pageInfo');
+      const pageSelect = document.getElementById('pageSelect');
+
+      // Render left page
+      if (leftIndex < bookContent.length) {
+        leftPage.textContent = bookContent[leftIndex];
+        document.getElementById('page-left-number').textContent = `Page ${leftIndex + 1}`;
+      } else {
+        leftPage.textContent = '';
+        document.getElementById('page-left-number').textContent = '';
+      }
+
+      // Render right page
+      if (rightIndex < bookContent.length) {
+        rightPage.textContent = bookContent[rightIndex];
+        document.getElementById('page-right-number').textContent = `Page ${rightIndex + 1}`;
+      } else {
+        rightPage.textContent = '';
+        document.getElementById('page-right-number').textContent = '';
+      }
+
+      // Update info and selector
+      pageInfo.textContent = `Double page ${currentPage + 1} de ${totalPages}`;
+      pageSelect.value = currentPage;
+
+      // Update button states
+      document.getElementById('prevPage').disabled = currentPage === 0;
+      document.getElementById('nextPage').disabled = currentPage === totalPages - 1;
+    }
+
+    function goToPage(pageIndex) {
+      if (pageIndex >= 0 && pageIndex < totalPages && pageIndex !== currentPage) {
+        const direction = pageIndex > currentPage ? 'next' : 'prev';
+        lastPage = currentPage;
+        currentPage = pageIndex;
+        animatePages(direction);
+        
+        // Update content after animation starts
+        setTimeout(() => {
+          renderPages();
+        }, 300);
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', initializeBook);
+  </script>
 </html>
 
 
