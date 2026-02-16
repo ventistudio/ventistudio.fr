@@ -16,14 +16,14 @@
 
     .detail-header {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      margin-bottom: 3rem;
+      grid-template-columns: 250px 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
       background: var(--glass-bg);
       backdrop-filter: blur(20px);
       border: 1px solid var(--glass-border);
-      border-radius: 2rem;
-      padding: 2rem;
+      border-radius: 1.5rem;
+      padding: 1.5rem;
       align-items: start;
     }
 
@@ -32,7 +32,7 @@
       align-items: center;
       justify-content: center;
       aspect-ratio: 2/3;
-      border-radius: 1.5rem;
+      border-radius: 1rem;
       overflow: hidden;
       background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
       position: relative;
@@ -53,17 +53,17 @@
     }
 
     .detail-info h1 {
-      font-size: 2.5rem;
-      margin: 0 0 1rem 0;
-      line-height: 1.2;
+      font-size: 1.8rem;
+      margin: 0 0 0.75rem 0;
+      line-height: 1.3;
     }
 
     .detail-meta {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
-      margin-bottom: 2rem;
-      padding-bottom: 2rem;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
       border-bottom: 1px solid var(--glass-border);
     }
 
@@ -90,9 +90,54 @@
       align-items: center;
       gap: 1rem;
       background: rgba(99, 102, 241, 0.1);
-      padding: 1.5rem;
-      border-radius: 1rem;
+      padding: 1rem;
+      border-radius: 0.75rem;
       border: 1px solid var(--glass-border);
+      margin-bottom: 1rem;
+    }
+
+    .action-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 1.5rem 0;
+      padding: 1.5rem;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.05) 100%);
+      border: 1px solid var(--glass-border);
+      border-radius: 1rem;
+    }
+
+    .action-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.25rem;
+      border: 1px solid var(--accent);
+      background: rgba(99, 102, 241, 0.1);
+      color: var(--accent);
+      border-radius: 0.75rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+    }
+
+    .action-button:hover {
+      background: var(--accent);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+    }
+
+    .action-button.primary {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+      color: white;
+      border-color: transparent;
+    }
+
+    .action-button.primary:hover {
+      box-shadow: 0 12px 30px rgba(99, 102, 241, 0.4);
     }
 
     .rating-stars {
@@ -279,11 +324,11 @@
     @media (max-width: 768px) {
       .detail-header {
         grid-template-columns: 1fr;
-        gap: 2rem;
+        gap: 1.5rem;
       }
 
       .detail-info h1 {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
       }
 
       .detail-container {
@@ -292,6 +337,16 @@
 
       .detail-image {
         aspect-ratio: 16/9;
+        max-width: 100%;
+      }
+
+      .action-buttons {
+        flex-direction: column;
+      }
+
+      .action-button {
+        flex: 1;
+        justify-content: center;
       }
     }
   </style>
@@ -413,6 +468,85 @@
 
       const ratingStars = '★'.repeat(Math.floor(item.rating)) + (item.rating % 1 ? '½' : '');
 
+      // Generate action buttons based on content type
+      let actionButtons = '';
+      
+      function generateActionButtons(type, platform) {
+        // Si une plateforme est spécifiée, afficher un seul bouton
+        if (platform) {
+          const singlePlatformActions = {
+            netflix: `<a href="https://www.netflix.com/search?q=${encodeURIComponent(item.title)}" target="_blank" class="action-button primary">▶ Netflix</a>`,
+            disneyplus: `<a href="https://www.disneyplus.com/search?q=${encodeURIComponent(item.title)}" target="_blank" class="action-button primary">▶ Disney+</a>`,
+            primevideo: `<a href="https://www.primevideo.com/search?q=${encodeURIComponent(item.title)}" target="_blank" class="action-button primary">▶ Prime Video</a>`,
+            crunchyroll: `<a href="https://www.crunchyroll.com/search?q=${encodeURIComponent(item.title)}" target="_blank" class="action-button primary">▶ Crunchyroll</a>`,
+            spotify: `<a href="https://open.spotify.com/search/${encodeURIComponent(item.title)}" target="_blank" class="action-button primary">🎵 Spotify</a>`,
+            applemusic: `<a href="https://music.apple.com/search?term=${encodeURIComponent(item.title)}" target="_blank" class="action-button primary">🎵 Apple Music</a>`,
+            youtube: `<a href="https://www.youtube.com/search?q=${encodeURIComponent(item.title)}" target="_blank" class="action-button primary">🎵 YouTube</a>`,
+            steam: `<a href="https://store.steampowered.com/search/?term=${encodeURIComponent(item.title)}" target="_blank" class="action-button primary">🎮 Steam</a>`,
+            epicgames: `<a href="https://www.epicgames.com/fr/browse?q=${encodeURIComponent(item.title)}" target="_blank" class="action-button primary">🎮 Epic Games</a>`,
+            gog: `<a href="https://www.gog.com/games?search=${encodeURIComponent(item.title)}" target="_blank" class="action-button primary">🎮 GOG</a>`,
+            appstore: `<a href="https://apps.apple.com/search?term=${encodeURIComponent(item.title)}" target="_blank" class="action-button primary">📱 App Store</a>`,
+            playstore: `<a href="https://play.google.com/store/search?q=${encodeURIComponent(item.title)}" target="_blank" class="action-button primary">🤖 Play Store</a>`,
+            microsoftstore: `<a href="https://www.microsoft.com/store/search?q=${encodeURIComponent(item.title)}" target="_blank" class="action-button primary">🪟 Microsoft Store</a>`,
+            comikey: `<a href="https://www.comikey.com/" target="_blank" class="action-button primary">📖 Comikey</a>`,
+            amazon: `<a href="https://www.amazon.com/s?k=${encodeURIComponent(item.title)}" target="_blank" class="action-button primary">🛒 Amazon</a>`,
+            myanimelist: `<a href="https://myanimelist.net/search/manga?q=${encodeURIComponent(item.title)}" target="_blank" class="action-button primary">📚 MyAnimeList</a>`
+          };
+          return singlePlatformActions[platform] || `<button class="action-button primary">📌 Consulter</button>`;
+        }
+        
+        // Sinon afficher tous les boutons pour ce type
+        const actions = {
+          films: `
+            <a href="https://www.netflix.com/search?q=${encodeURIComponent(item.title)}" target="_blank" class="action-button primary">▶ Netflix</a>
+            <a href="https://www.disneyplus.com/search?q=${encodeURIComponent(item.title)}" target="_blank" class="action-button">▶ Disney+</a>
+            <a href="https://www.primevideo.com/search?q=${encodeURIComponent(item.title)}" target="_blank" class="action-button">▶ Prime Video</a>
+          `,
+          series: `
+            <a href="https://www.netflix.com/search?q=${encodeURIComponent(item.title)}" target="_blank" class="action-button primary">▶ Netflix</a>
+            <a href="https://www.disneyplus.com/search?q=${encodeURIComponent(item.title)}" target="_blank" class="action-button">▶ Disney+</a>
+            <a href="https://www.primevideo.com/search?q=${encodeURIComponent(item.title)}" target="_blank" class="action-button">▶ Prime Video</a>
+          `,
+          'series-animations': `
+            <a href="https://www.netflix.com/search?q=${encodeURIComponent(item.title)}" target="_blank" class="action-button primary">▶ Netflix</a>
+            <a href="https://www.crunchyroll.com/search?q=${encodeURIComponent(item.title)}" target="_blank" class="action-button">▶ Crunchyroll</a>
+            <a href="https://www.disneyplus.com/search?q=${encodeURIComponent(item.title)}" target="_blank" class="action-button">▶ Disney+</a>
+          `,
+          animations: `
+            <a href="https://www.netflix.com/search?q=${encodeURIComponent(item.title)}" target="_blank" class="action-button primary">▶ Netflix</a>
+            <a href="https://www.crunchyroll.com/search?q=${encodeURIComponent(item.title)}" target="_blank" class="action-button">▶ Crunchyroll</a>
+            <a href="https://www.disneyplus.com/search?q=${encodeURIComponent(item.title)}" target="_blank" class="action-button">▶ Disney+</a>
+          `,
+          musique: `
+            <a href="https://open.spotify.com/search/${encodeURIComponent(item.title)}" target="_blank" class="action-button primary">🎵 Spotify</a>
+            <a href="https://music.apple.com/search?term=${encodeURIComponent(item.title)}" target="_blank" class="action-button">🎵 Apple Music</a>
+            <a href="https://www.youtube.com/search?q=${encodeURIComponent(item.title)}" target="_blank" class="action-button">🎵 YouTube</a>
+          `,
+          jeux: `
+            <a href="https://store.steampowered.com/search/?term=${encodeURIComponent(item.title)}" target="_blank" class="action-button primary">🎮 Steam</a>
+            <a href="https://www.epicgames.com/store/search?q=${encodeURIComponent(item.title)}" target="_blank" class="action-button">🎮 Epic Games</a>
+            <a href="https://www.gog.com/games?search=${encodeURIComponent(item.title)}" target="_blank" class="action-button">🎮 GOG</a>
+          `,
+          manga: `
+            <a href="https://www.comikey.com/" target="_blank" class="action-button primary">📖 Lire</a>
+            <a href="https://www.amazon.com/s?k=${encodeURIComponent(item.title)}" target="_blank" class="action-button">🛒 Acheter</a>
+            <a href="https://myanimelist.net/search/manga?q=${encodeURIComponent(item.title)}" target="_blank" class="action-button">📚 MyAnimeList</a>
+          `,
+          applications: `
+            <a href="https://apps.apple.com/search?term=${encodeURIComponent(item.title)}" target="_blank" class="action-button primary">📱 App Store</a>
+            <a href="https://play.google.com/store/search?q=${encodeURIComponent(item.title)}" target="_blank" class="action-button">🤖 Play Store</a>
+            <a href="https://www.microsoft.com/store/search?q=${encodeURIComponent(item.title)}" target="_blank" class="action-button">🪟 Microsoft Store</a>
+          `
+        };
+        return actions[type] || `
+          <button class="action-button primary">📌 Consulter</button>
+          <a href="#" class="action-button">🔗 Partager</a>
+          <button class="action-button">❤ Ajouter</button>
+        `;
+      }
+
+      actionButtons = generateActionButtons(item.type);
+
       // Get all items for navigation
       const allItems = window.evaluationSystem.getAllItems();
       const currentIndex = allItems.findIndex(i => i.id === id);
@@ -452,6 +586,12 @@
                 <div class="rating-score">${item.rating}/5</div>
                 <div class="rating-text">Note moyenne</div>
               </div>
+            </div>
+
+            <div class="action-buttons">
+              ${actionButtons}
+              <button class="action-button" onclick="navigator.share({title: '${item.title}', url: window.location.href}).catch(e => console.log(e))">🔗 Partager</button>
+              <button class="action-button" onclick="this.innerHTML = this.innerHTML.includes('❤') ? '🤍 Retirer' : '❤ Ajouté'">❤ Ajouter</button>
             </div>
 
             ${item.tags && item.tags.length > 0 ? `

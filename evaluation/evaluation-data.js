@@ -5,6 +5,7 @@ const evaluationData = [
     title: "LE JEUX DE LA DAME",
     type: "series",
     creator: "Netflix",
+    platform: "netflix",
     date: "2024-01-15",
     image: "/a-files/image/jdld-image.avif",
     description: "Placée en orphelinat à 9 ans, Beth développe un talent étonnant pour les échecs. Championne national à 16 ans, elle doit apprendre à gérer son succès et ses démons personnels.",
@@ -19,6 +20,7 @@ const evaluationData = [
     title: "A SILENT VOICE",
     type: "animations",
     creator: "Kyoto Animation",
+    platform: "netflix",
     date: "2024-01-10",
     image: "/a-files/image/asv-image.avif",
     description: "Nishimiya est une élève douce mais qui elle est harcelée par Ishida. Un film touchant sur la rédemption et l'amitié.",
@@ -27,7 +29,7 @@ const evaluationData = [
     featured: true,
     notes: "Animation magnifique avec une histoire émouvante",
     community: true
-  }
+  },
   {
     id: 3,
     title: "THE ORBITAL CHILDREN",
@@ -41,7 +43,7 @@ const evaluationData = [
     featured: false,
     notes: "Sci-fi captivante avec des personnages attachants",
     community: true
-  }
+  },
   {
     id: 4,
     title: "OSHI NO KO",
@@ -55,7 +57,7 @@ const evaluationData = [
     featured: true,
     notes: "Anime complexe avec twists narratifs de folie",
     community: true
-  }
+  },
   {
     id: 5,
     title: "THE TURRET ANTHEM",
@@ -69,7 +71,7 @@ const evaluationData = [
     featured: false,
     notes: "Musique iconique du gaming",
     community: false
-  }
+  },
   {
     id: 6,
     title: "GENSHIN IMPACT",
@@ -155,7 +157,7 @@ const evaluationData = [
     id: 15,
     title: "Discord",
     type: "applications",
-    image: "/a-files/image/discord-image.avif",
+    image: "/a-files/image/d-image.avif",
     description: "Discord est une plateforme de VoIP et de messagerie instantanée.",
     rating: 4.7,
     notes: "Application indispensable pour les communautés"

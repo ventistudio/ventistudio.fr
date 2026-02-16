@@ -1,11 +1,22 @@
 ﻿// --- Variables globales ---
-    musicData = [
-      { title: "Bohemian Rhapsody", artist: "Queen", album: "A Night at the Opera", style: "Rock", cover: "default-cover.jpg", src: "music/song1.mp3" },
-      { title: "Billie Jean", artist: "Michael Jackson", album: "Thriller", style: "Pop", cover: "default-cover.jpg", src: "music/song2.mp3" },
-      { title: "Imagine", artist: "John Lennon", album: "Imagine", style: "Rock", cover: "default-cover.jpg", src: "music/song3.mp3" }
-    ];
-    renderTracks(musicData);
-    restoreMusicSession();
+let musicData = [];
+let currentIndex = 0;
+let isLoop = false;
+let isShuffle = false;
+let audioCtxInitialized = false;
+let audioCtx = null;
+let analyser = null;
+let source = null;
+let dataArray = null;
+let ledColors = [];
+
+// Initialiser DOMContentLoaded pour charger les données
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', fetchMusic);
+} else {
+  // Le DOM est déjà chargé
+  fetchMusic();
+}
 
 const audio = document.getElementById('mainAudio');
 const progressBar = document.getElementById('progressBar');
@@ -443,8 +454,9 @@ async function fetchMusic() {
     ];
     renderTracks(musicData);
     restoreMusicSession();
+  }
 }
-fetchMusic();
+
 function saveToHistory(track) {
   let history = JSON.parse(localStorage.getItem('musicHistory') || '[]');
   let existingTrack = history.find(item => item.title === track.title);
