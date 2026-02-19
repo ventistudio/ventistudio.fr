@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="VentiStudio Music — Page album">
+  <meta name="theme-color" content="#6366f1">
+  <title>Album — VentiStudio Music</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <script>
+    // Redirect to the main player with album param
+    const params = new URLSearchParams(window.location.search);
+    const albumName = params.get('name');
+    const artistName = params.get('artist');
+    if (albumName && artistName) {
+      window.location.href = `/music?album=${encodeURIComponent(albumName + '___' + artistName)}`;
+    } else if (albumName) {
+      window.location.href = `/music?album=${encodeURIComponent(albumName)}`;
+    } else {
+      window.location.href = '/music';
+    }
+  </script>
+</body>
+</html>

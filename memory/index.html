@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Page d'hommage - VentiStudio">
+  <meta name="theme-color" content="#6366f1">
+  <title>Mémoire - VentiStudio</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    .homage-hero {
+      text-align: center;
+      padding: 4rem 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .homage-hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .homage-subtitle {
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      color: var(--text-secondary);
+      margin-bottom: 3rem;
+      font-style: italic;
+    }
+
+    .tribute-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .tribute-section {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 1.5rem;
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--glass-shadow);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .tribute-section:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px 0 rgba(99, 102, 241, 0.3);
+    }
+
+    .tribute-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid var(--glass-border);
+    }
+
+    .tribute-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+      border-radius: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .tribute-header h2 {
+      font-size: clamp(1.3rem, 3vw, 1.8rem);
+      color: var(--text-primary);
+      margin: 0;
+      font-weight: 700;
+    }
+
+    .tribute-content {
+      color: var(--text-secondary);
+      line-height: 1.8;
+      font-size: clamp(0.95rem, 2vw, 1.1rem);
+    }
+
+    .tribute-content p {
+      margin-bottom: 1rem;
+    }
+
+    .tribute-content strong {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .tribute-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .tribute-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .tribute-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 25px rgba(99, 102, 241, 0.2);
+    }
+
+    .tribute-card h3 {
+      color: var(--text-primary);
+      margin-bottom: 0.75rem;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .tribute-card h3::before {
+      content: '✦';
+      color: var(--accent);
+      font-size: 1.2rem;
+    }
+
+    .memorial-quote {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+      border-left: 4px solid var(--accent);
+      padding: 2rem;
+      margin: 2rem 0;
+      border-radius: 0.5rem;
+      font-style: italic;
+      color: var(--text-primary);
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      text-align: center;
+    }
+
+    .memorial-quote::before {
+      content: '"';
+      font-size: 3rem;
+      color: var(--accent);
+      opacity: 0.3;
+      display: block;
+      line-height: 0;
+      margin-bottom: 1rem;
+    }
+
+    .signature {
+      text-align: right;
+      color: var(--text-secondary);
+      font-style: italic;
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--glass-border);
+    }
+
+    @media (max-width: 768px) {
+      .homage-hero {
+        padding: 2rem 1rem;
+      }
+
+      .tribute-container {
+        padding: 1rem;
+      }
+
+      .tribute-section {
+        padding: 1.5rem;
+      }
+
+      .tribute-header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .tribute-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .memorial-quote {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="/favicon.ico" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
+      <span>VentiStudio</span>
+    </div>
+    <nav aria-label="Navigation principale">
+      <a href="/">Accueil</a>
+      <a href="/evaluation">Contenu Approuvé</a>
+      <a href="/player">Lecteur</a>
+      <a href="/wiki">Wiki</a>
+      <a href="/staff">Équipe</a>
+      <a href="/news">News</a>
+      <a href="/homage" class="active">Hommage</a>
+    </nav>
+    <div class="controls" role="toolbar" aria-label="Contrôles">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
+          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
+          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
+        </svg>
+      </button>
+      <div id="user-button" role="region" aria-label="Authentification"></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="homage-hero">
+      <h1>En Mémoire</h1>
+      <p class="homage-subtitle">Un hommage à ceux qui ont marqué notre histoire</p>
+    </section>
+
+    <div class="tribute-container">
+      <div class="tribute-section">
+        <div class="tribute-header">
+          <div class="tribute-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+            </svg>
+          </div>
+          <h2>Notre Histoire, Nos Souvenirs</h2>
+        </div>
+        <div class="tribute-content">
+          <p>
+            Cette page est dédiée à la mémoire de toutes les personnes qui ont contribué à façonner VentiStudio, 
+            à ceux qui nous ont inspirés, et à ceux qui continuent de vivre dans nos cœurs et nos créations.
+          </p>
+          <p>
+            Chaque projet, chaque ligne de code, chaque moment partagé porte en lui l'empreinte de ceux qui nous ont 
+            accompagnés. <strong>Leur héritage perdure</strong> dans chaque innovation, dans chaque succès, et dans 
+            l'esprit de notre communauté.
+          </p>
+        </div>
+      </div>
+
+      <div class="memorial-quote">
+        Ce que nous honorons en eux, c'est la passion, le dévouement et l'esprit créatif qui continuent d'illuminer notre chemin.
+      </div>
+
+      <div class="tribute-section">
+        <div class="tribute-header">
+          <div class="tribute-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+            </svg>
+          </div>
+          <h2>Valeurs Perpétuées</h2>
+        </div>
+        <div class="tribute-content">
+          <div class="tribute-grid">
+            <div class="tribute-card">
+              <h3>Créativité</h3>
+              <p>L'innovation et l'imagination qui nous poussent toujours plus loin dans la création de contenus uniques.</p>
+            </div>
+            <div class="tribute-card">
+              <h3>Communauté</h3>
+              <p>L'esprit d'entraide et de partage qui fait la force de VentiStudio et unit nos membres.</p>
+            </div>
+            <div class="tribute-card">
+              <h3>Passion</h3>
+              <p>Le feu intérieur qui anime chaque projet et chaque membre de notre communauté créative.</p>
+            </div>
+            <div class="tribute-card">
+              <h3>Excellence</h3>
+              <p>La quête constante de qualité et de perfectionnement dans tout ce que nous entreprenons.</p>
+            </div>
+            <div class="tribute-card">
+              <h3>Mémoire</h3>
+              <p>Le respect de notre histoire et l'honneur que nous portons à ceux qui nous ont précédés.</p>
+            </div>
+            <div class="tribute-card">
+              <h3>Vision</h3>
+              <p>La capacité à rêver grand et à transformer ces rêves en réalités tangibles pour tous.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tribute-section">
+        <div class="tribute-header">
+          <div class="tribute-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M12 2v20M2 12h20"/>
+            </svg>
+          </div>
+          <h2>L'Héritage Continue</h2>
+        </div>
+        <div class="tribute-content">
+          <p>
+            Aujourd'hui, nous continuons à bâtir sur les fondations solides établies par ceux qui nous ont précédés. 
+            Leur vision, leur travail acharné et leur passion continuent de nous inspirer quotidiennement.
+          </p>
+          <p>
+            À travers <strong>chaque ligne de code</strong>, chaque design, chaque création musicale, et chaque histoire 
+            racontée, nous perpétuons leur mémoire. Nous nous efforçons de maintenir vivant cet esprit d'innovation 
+            et d'excellence qui a toujours caractérisé VentiStudio.
+          </p>
+          <p>
+            Cette page n'est pas un au revoir, mais une célébration. Une célébration de la vie, de la créativité, 
+            et de l'impact durable que chacun peut avoir sur une communauté. <strong>Nous n'oublions jamais.</strong>
+          </p>
+        </div>
+      </div>
+
+      <div class="signature">
+        <p>— L'équipe VentiStudio, avec gratitude et respect</p>
+        <p style="font-size: 0.9em; margin-top: 0.5rem;">{{ date }}</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="/">Accueil</a></li>
+          <li><a href="/about">À propos</a></li>
+          <li><a href="/sitemap">Plan du site</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Communauté</h4>
+        <ul>
+          <li><a href="/staff">Équipe</a></li>
+          <li><a href="/news">Actualités</a></li>
+          <li><a href="/homage">Hommage</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Ressources</h4>
+        <ul>
+          <li><a href="/wiki">Wiki</a></li>
+          <li><a href="/player">Lecteur</a></li>
+          <li><a href="/evaluation">Contenu Approuvé</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Légal</h4>
+        <ul>
+          <li><a href="/terms">Conditions</a></li>
+          <li><a href="/privacy">Confidentialité</a></li>
+          <li><a href="/mentions-legales">Mentions légales</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
+      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <script src="/script.js" defer></script>
+</body>
+</html>

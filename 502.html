@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <meta name="theme-color" content="#6366f1">
-    <meta name="description" content="Secteur non détecté. Déconnexion requise du réseau Lyoko.">
-    <title>404 - Secteur Virtualisé</title>
+    <meta name="description" content="Passerelle défectueuse. Erreur de connexion au réseau Lyoko.">
+    <title>502 - Passerelle Défectueuse</title>
     
     <!-- Preload resources -->
     <link rel="preload" href="/style.css" as="style">
@@ -283,13 +283,13 @@
         <div class="error-box">
             <h1>Code LYOKO</h1>
             
-            <h2>SECTEUR NON DÉTECTÉ</h2>
+            <h2>PASSERELLE DÉFECTUEUSE</h2>
             
             <p>
-                Cette page a été désactivée ou n'existe pas dans le réseau. La tour de ce secteur a peut-être été atteinte.
+                La passerelle de connexion au réseau virtuel ne répond pas correctement. Impossible d'établir la liaison.
             </p>
             <p class="error-alert">
-                ⚠️ VIRTUALISATION EN COURS... 
+                ⚠️ CONNEXION INSTABLE
             </p>
             
             <nav class="nav-404">
@@ -299,7 +299,7 @@
             </nav>
             
             <p class="error-footer">
-                [ERREUR] Secteur virtualisé / Code : 404 | <a href="/">Éjecter du réseau</a>
+                [ERREUR] Passerelle invalide / Code : 502 | <a href="/">Éjecter du réseau</a>
             </p>
         </div>
     </div>
@@ -308,11 +308,11 @@
     <script>
         // Séquence d'animation de chargement Code Lyoko
         const loadingMessages = [
-            { text: '> Connection au secteur', delay: 1800 },
-            { text: '> Secteur non détecté', delay: 1600 },
-            { text: '> Analyse en cours', delay: 2000 },
-            { text: '> Impossible de contacter la tour de virtualisation', delay: 2400 },
-            { text: '> ERREUR 404 - Secteur introuvable', delay: 2000, error: true }
+            { text: '> Établissement de la connexion réseau', delay: 1800 },
+            { text: '> Tentative d\'accès à la passerelle', delay: 1600 },
+            { text: '> Délai d\'attente dépassé', delay: 2000 },
+            { text: '> Passerelle ne répond pas - Connexion perdue', delay: 2400 },
+            { text: '> ERREUR 502 - Passerelle défectueuse', delay: 2000, error: true }
         ];
         
         const loadingContent = document.getElementById('loadingContent');

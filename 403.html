@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <meta name="theme-color" content="#6366f1">
-    <meta name="description" content="Secteur non détecté. Déconnexion requise du réseau Lyoko.">
-    <title>404 - Secteur Virtualisé</title>
+    <meta name="description" content="Accès interdit. Zone protégée du réseau Lyoko.">
+    <title>403 - Accès Interdit</title>
     
     <!-- Preload resources -->
     <link rel="preload" href="/style.css" as="style">
@@ -283,13 +283,13 @@
         <div class="error-box">
             <h1>Code LYOKO</h1>
             
-            <h2>SECTEUR NON DÉTECTÉ</h2>
+            <h2>ZONE PROTÉGÉE</h2>
             
             <p>
-                Cette page a été désactivée ou n'existe pas dans le réseau. La tour de ce secteur a peut-être été atteinte.
+                Accès interdit à ce secteur. Vos permissions ne vous autorisent pas à franchir cette barrière de sécurité.
             </p>
             <p class="error-alert">
-                ⚠️ VIRTUALISATION EN COURS... 
+                🔒 SECTEUR VERROUILLÉ
             </p>
             
             <nav class="nav-404">
@@ -299,7 +299,7 @@
             </nav>
             
             <p class="error-footer">
-                [ERREUR] Secteur virtualisé / Code : 404 | <a href="/">Éjecter du réseau</a>
+                [ERREUR] Accès interdit / Code : 403 | <a href="/">Éjecter du réseau</a>
             </p>
         </div>
     </div>
@@ -308,11 +308,11 @@
     <script>
         // Séquence d'animation de chargement Code Lyoko
         const loadingMessages = [
-            { text: '> Connection au secteur', delay: 1800 },
-            { text: '> Secteur non détecté', delay: 1600 },
-            { text: '> Analyse en cours', delay: 2000 },
-            { text: '> Impossible de contacter la tour de virtualisation', delay: 2400 },
-            { text: '> ERREUR 404 - Secteur introuvable', delay: 2000, error: true }
+            { text: '> Vérification des permissions d\'accès', delay: 1800 },
+            { text: '> Identification du niveau de sécurité', delay: 1600 },
+            { text: '> Analyse des droits utilisateur', delay: 2000 },
+            { text: '> Secteur protégé - Accès refusé', delay: 2400 },
+            { text: '> ERREUR 403 - Accès interdit', delay: 2000, error: true }
         ];
         
         const loadingContent = document.getElementById('loadingContent');

@@ -147,9 +147,13 @@
 # END: MIME Types
 
 # BEGIN: Error Documents
+ErrorDocument 400 /400.html
+ErrorDocument 401 /401.html
+ErrorDocument 403 /403.html
 ErrorDocument 404 /404.html
-# ErrorDocument 403 /403.html
-# ErrorDocument 500 /500.html
+ErrorDocument 500 /500.html
+ErrorDocument 502 /502.html
+ErrorDocument 503 /503.html
 # END: Error Documents
 
 # BEGIN: Access Control
@@ -184,4 +188,4 @@ ErrorDocument 404 /404.html
 
 # VentiStudio Apache Configuration
 # For support: support@ventistudio.eu
-# Last Modified: 2026-02-12
+# Last Modified: 2026-02-17

@@ -8,7 +8,7 @@ Piratage : Tout comportement qui est considéré comme du piratage, tel que des 
 Non-respect des lois : Tout comportement qui est contraire aux lois et réglementations en vigueur, tel que la promotion de la violence, la discrimination, la fraude, etc.
 Conditions de retrait de la liste noire :
 
-Excuses sincères : Si l'individu ou le contenu a été ajouté à la liste noire à cause d'un malentendu ou d'une erreur, et que des excuses sincères sont présentées.
+Excuses sincères : Si l'individu ou le contenu a été ajouté à la liste noire à cause d'un malentendu ou d'une erreur, et/ou que des excuses sincères sont présentées.
 Changement de comportement : Si l'individu ou le contenu a changé de comportement et a démontré une volonté de respecter les règles et les autres utilisateurs.
 Révision de la décision : Si la décision d'ajouter l'individu ou le contenu à la liste noire est révisée et considérée comme injuste ou erronée.
 Demande de retrait : Si l'individu ou le contenu demande à être retiré de la liste noire et que la demande est considérée comme légitime.

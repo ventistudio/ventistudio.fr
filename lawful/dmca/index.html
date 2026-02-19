@@ -1,25 +1,23 @@
 ﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <meta name="description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
+  <meta name="description" content="VentiStudio - DMCA Retrait de contenu">
   <meta name="theme-color" content="#6366f1">
-  <title>VentiStudio v4</title>
+  <title>VentiStudio - DMCA</title>
   <link rel="stylesheet" href="../../style.css">
-</title>
+  <link rel="stylesheet" href="../lawful.css">
 </head>
 <body>
   <header>
-
     <div class="logo">
       <img src="../../favicon.ico" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
       <span>VentiStudio</span>
     </div>
     <nav aria-label="Navigation principale">
-      <a href="../../" class="active">Accueil</a>
-      <a href="../../approuvedcontent/">Contenu Approuvé</a>
+      <a href="../../">Accueil</a>
+      <a href="../../evaluation/">Contenu Approuvé</a>
       <a href="../../player">Lecteur</a>
       <a href="../../wiki">Wiki</a>
       <a href="../../staff">Équipe</a>
@@ -37,22 +35,18 @@
       </button>
       <div id="user-button" role="region" aria-label="Authentification"></div>
     </div>
-  
   </header>
 
   <main>
-
-
-
     <section class="hero-section">
       <h1>DMCA - Retrait de contenu</h1>
-      <p>Protection des droits d'auteur et procÃ©dure de notification</p>
+      <p>Protection des droits d'auteur et procédure de notification</p>
     </section>
 
     <div class="dmca-container">
       <section class="section">
         <h2 class="section-title">Politique DMCA</h2>
-        <p class="section-subtitle">VentiStudio respecte les droits de propriÃ©tÃ© intellectuelle d'autrui et attend de ses utilisateurs qu'ils fassent de mÃªme. ConformÃ©ment au Digital Millennium Copyright Act (DMCA), nous rÃ©pondrons rapidement aux notifications de violation de droits d'auteur.</p>
+        <p class="section-subtitle">VentiStudio respecte les droits de propriété intellectuelle d'autrui et attend de ses utilisateurs qu'ils fassent de même. Conformément au Digital Millennium Copyright Act (DMCA), nous répondrons rapidement aux notifications de violation de droits d'auteur.</p>
       </section>
 
       <section class="section">
@@ -60,25 +54,25 @@
         <div class="services-grid">
           <div class="service-card">
             <h3>Identification</h3>
-            <p>Une signature physique ou Ã©lectronique du titulaire des droits ou de son reprÃ©sentant autorisÃ©.</p>
+            <p>Une signature physique ou électronique du titulaire des droits ou de son représentant autorisé.</p>
           </div>
           <div class="service-card">
             <h3>Description</h3>
-            <p>Identification de l'Å“uvre protÃ©gÃ©e par le droit d'auteur qui aurait Ã©tÃ© violÃ©e.</p>
+            <p>Identification de l'œuvre protégée par le droit d'auteur qui aurait été violée.</p>
           </div>
           <div class="service-card">
             <h3>Localisation</h3>
-            <p>Identification du contenu qui viole les droits d'auteur et qui doit Ãªtre retirÃ©.</p>
+            <p>Identification du contenu qui viole les droits d'auteur et qui doit être retiré.</p>
           </div>
           <div class="service-card">
             <h3>Contact</h3>
-            <p>Vos coordonnÃ©es pour que nous puissions vous contacter concernant la notification.</p>
+            <p>Vos coordonnées pour que nous puissions vous contacter concernant la notification.</p>
           </div>
         </div>
       </section>
 
       <section class="section">
-        <h2 class="section-title">Formulaire de rÃ©clamation</h2>
+        <h2 class="section-title">Formulaire de réclamation</h2>
         <form class="auth-form" id="dmcaForm">
           <div class="form-group">
             <input type="text" id="name" placeholder="Nom complet *" required>
@@ -87,25 +81,21 @@
             <input type="email" id="email" placeholder="Email *" required>
           </div>
           <div class="form-group">
-            <input type="url" id="content-url" placeholder="URL du contenu concernÃ© *" required>
+            <input type="url" id="content-url" placeholder="URL du contenu concerné *" required>
           </div>
           <div class="form-group">
-            <textarea id="description" placeholder="Description de l'Å“uvre protÃ©gÃ©e *" required></textarea>
+            <textarea id="description" placeholder="Description de l'œuvre protégée *" required></textarea>
           </div>
           <div class="form-group">
-            <textarea id="declaration" placeholder="DÃ©claration de bonne foi *" required></textarea>
+            <textarea id="declaration" placeholder="Déclaration de bonne foi *" required></textarea>
           </div>
-          <button type="submit" class="cta-button">Soumettre la rÃ©clamation</button>
+          <button type="submit" class="cta-button">Soumettre la réclamation</button>
         </form>
       </section>
     </div>
-  
-  
-  
   </main>
 
   <footer>
-
     <div class="footer-content">
       <div class="footer-section">
         <h4>Outils</h4>
@@ -144,10 +134,30 @@
       <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
       <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
     </div>
-  
   </footer>
 
   <script src="../../script.js" defer></script>
+  <script>
+    document.getElementById('dmcaForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const contentUrl = document.getElementById('content-url').value;
+      const description = document.getElementById('description').value;
+      const declaration = document.getElementById('declaration').value;
+      
+      const subject = 'DMCA - Réclamation de retrait de contenu';
+      const body = `Nom complet: ${name}\n` +
+                   `Email: ${email}\n` +
+                   `URL du contenu concerné: ${contentUrl}\n\n` +
+                   `Description de l'œuvre protégée:\n${description}\n\n` +
+                   `Déclaration de bonne foi:\n${declaration}`;
+      
+      const mailtoLink = `mailto:lawful@ventistudio.eu?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = mailtoLink;
+    });
+  </script>
 </body>
 </html>
 

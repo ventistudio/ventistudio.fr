@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="VentiStudio - Découvrez notre équipe et nos artistes.">
+  <meta name="theme-color" content="#6366f1">
+  <title>Personnel — VentiStudio v4</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="../favicon.ico" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
+      <span>VentiStudio</span>
+    </div>
+    <nav aria-label="Navigation principale">
+      <a href="../">Accueil</a>
+      <a href="../evaluation">Contenu Approuvé</a>
+      <a href="../player">Lecteur</a>
+      <a href="../wiki">Wiki</a>
+      <a href="../personnel" class="active">Personnel</a>
+      <a href="../news">News</a>
+      <a href="../pip">PIP</a>
+      <a href="../sitemap">Plan du site</a>
+    </nav>
+    <div class="controls" role="toolbar" aria-label="Contrôles">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
+          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
+          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
+        </svg>
+      </button>
+      <div id="user-button" role="region" aria-label="Authentification"></div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- En-tête de page -->
+    <section class="page-header">
+      <h1>Notre Personnel</h1>
+      <p>Découvrez les personnes passionnées qui font de VentiStudio une réalité équipe et artistes réunis.</p>
+    </section>
+
+    <!-- Onglets principaux -->
+    <div class="personnel-tabs">
+      <button class="tab-btn active" data-tab="staff">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+        Équipe
+      </button>
+      <button class="tab-btn" data-tab="artists">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 18V5l12-2v13"/>
+          <circle cx="6" cy="18" r="3"/>
+          <circle cx="18" cy="16" r="3"/>
+        </svg>
+        Artistes
+      </button>
+    </div>
+
+    <!-- ======================== -->
+    <!-- SECTION ÉQUIPE (STAFF)   -->
+    <!-- ======================== -->
+    <div class="tab-content active" id="tab-staff">
+
+      <div class="team-filters">
+        <button class="filter-btn active" data-team="all">Tous</button>
+        <button class="filter-btn" data-team="direction">Direction</button>
+        <button class="filter-btn" data-team="dev">Développement</button>
+        <button class="filter-btn" data-team="mod">Modération</button>
+        <button class="filter-btn" data-team="content">Contenu</button>
+        <button class="filter-btn" data-team="bot">Bots</button>
+      </div>
+      <section class="team-grid">
+        <div class="team-category" id="direction-team">
+          <h2>Direction</h2>
+          <div class="team-members"></div>
+        </div>
+        <div class="team-category" id="dev-team">
+          <h2>Équipe de Développement</h2>
+          <div class="team-members"></div>
+        </div>
+        <div class="team-category" id="mod-team">
+          <h2>Équipe de Modération</h2>
+          <div class="team-members"></div>
+        </div>
+        <div class="team-category" id="content-team">
+          <h2>Équipe de Contenu</h2>
+          <div class="team-members"></div>
+        </div>
+        <div class="team-category" id="bot-team">
+          <h2>Équipe des Bots</h2>
+          <div class="team-members"></div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ======================== -->
+    <!-- SECTION ARTISTES          -->
+    <!-- ======================== -->
+    <div class="tab-content" id="tab-artists">
+
+      <div class="artist-grid" id="artist-grid">
+        <!-- Populated by JavaScript -->
+      </div>
+
+    </div>
+
+    <!-- Overlay & Modales artistes -->
+    <div class="artist-overlay" id="artistOverlay"></div>
+    <div id="artist-modals"></div>
+
+    <!-- Bloc "Rejoindre" -->
+    <section class="join-team">
+      <h2>Rejoindre l'Équipe</h2>
+      <p>Vous souhaitez faire partie de l'aventure ? Consultez nos offres actuelles !</p>
+      <a href="../jobs" class="cta">Voir les Postes Disponibles</a>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Outils</h4>
+        <ul>
+          <li><a href="#">Encrypt</a></li>
+          <li><a href="../sitemap">Plan du site</a></li>
+          <li><a href="../stats">Statut</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Entreprise</h4>
+        <ul>
+          <li><a href="../about">À propos</a></li>
+          <li><a href="../jobs">Emplois</a></li>
+          <li><a href="../logo">Marque</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Ressources</h4>
+        <ul>
+          <li><a href="../university">Université</a></li>
+          <li><a href="../lawful/support">Assistance</a></li>
+          <li><a href="../lawful/security">Sécurité</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Chartes</h4>
+        <ul>
+          <li><a href="../lawful/tos">Conditions</a></li>
+          <li><a href="../privacy">Confidentialité</a></li>
+          <li><a href="../lawful/dmcainfo">Information DMCA</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
+      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <script src="../script.js" defer></script>
+  <script src="script.js" defer></script>
+</body>
+</html>

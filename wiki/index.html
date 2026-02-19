@@ -1,27 +1,25 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <meta name="description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
+  <meta name="description" content="Wiki VentiStudio – Découvrez l'univers, les projets et le lore de VentiStudio, Aoki Univers, SCP et plus encore.">
   <meta name="theme-color" content="#6366f1">
-  <title>VentiStudio v4</title>
+  <title>Wiki — VentiStudio</title>
   <link rel="stylesheet" href="../style.css">
-</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-
     <div class="logo">
       <img src="../favicon.ico" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
       <span>VentiStudio</span>
     </div>
     <nav aria-label="Navigation principale">
-      <a href="../" class="active">Accueil</a>
-      <a href="../approuvedcontent/">Contenu Approuvé</a>
+      <a href="../">Accueil</a>
+      <a href="../evaluation/">Contenu Approuvé</a>
       <a href="../player">Lecteur</a>
-      <a href="../wiki">Wiki</a>
+      <a href="../wiki" class="active">Wiki</a>
       <a href="../staff">Équipe</a>
       <a href="../news">News</a>
       <a href="../pip">PIP</a>
@@ -37,103 +35,142 @@
       </button>
       <div id="user-button" role="region" aria-label="Authentification"></div>
     </div>
-  
   </header>
 
   <main>
-
-
-
     <div class="wiki-container">
-      <input 
-        type="text" 
-        class="search-bar" 
-        placeholder="Rechercher dans le wiki..."
-        id="wikiSearch"
-      >
 
-      <div class="wiki-grid">
-        <div class="wiki-section">
-          <h2>VentiStudio</h2>
-          <ul>
-            <li><a href="/wiki/ventistudio/artventistudio">L'Art de VentiStudio</a></li>
-            <li><a href="/wiki/ventistudio/whatisventistudio">C'est quoi VentiStudio</a></li>
-            <li><a href="/wiki/ventistudio/ainapad">AINA PAD</a></li>
-            <li><a href="/wiki/ventistudio/uia">UIA</a></li>
-          </ul>
+      <div class="wiki-hero">
+        <h1>Wiki VentiStudio</h1>
+        <p>Explorez l'ensemble de notre univers créatif, nos projets et notre lore.</p>
+      </div>
+
+      <div class="wiki-search">
+        <span class="search-icon">🔍</span>
+        <input type="text" placeholder="Rechercher un article…" id="wikiSearch">
+      </div>
+
+      <div class="wiki-stats">
+        <div class="wiki-stat">
+          <span class="stat-number">4</span>
+          <span class="stat-label">Catégories</span>
         </div>
-
-        <div class="wiki-section">
-          <h2>Aoki Univers</h2>
-          <ul>
-            <li><a href="/wiki/aokiunivers/lore">Histoire</a></li>
-            <li><a href="/wiki/aokiunivers/aina">AINA</a></li>
-            <li><a href="/wiki/aokiunivers/biss">BISS</a></li>
-            <li><a href="/wiki/aokiunivers/lore">Lore</a></li>
-            <li><a href="/wiki/aokiunivers/timeline">Chronologie</a></li>
-            <li><a href="/wiki/aokiunivers/dystopiaprequel">Dystopia Prequel</a></li>
-            <li><a href="/wiki/aokiunivers/dystopia">Dystopia</a></li>
-          </ul>
-        </div>
-
-        <div class="wiki-section">
-          <h2>SCP Universe</h2>
-          <ul>
-            <li><a href="/wiki/scp/zone98">Zone RÃ©tribution 98</a></li>
-            <li><a href="/wiki/scp/site98">Site Omega 98 FR</a></li>
-            <li><a href="/wiki/scp/protocols">Protocoles</a></li>
-            <li><a href="/wiki/scp/scp-ls">Lore SCP:LS</a></li>
-            <li><a href="/wiki/scp/zonerp">Zone Retribution RP</a></li>
-          </ul>
-        </div>
-
-        <div class="wiki-section">
-          <h2>Autres</h2>
-          <ul>
-            <li><a href="/wiki/other/aumashi">Aumashi</a></li>
-            <li><a href="/wiki/other/lukaguyonvarch">LÃ¹ka Guyonvarch</a></li>
-          </ul>
+        <div class="wiki-stat">
+          <span class="stat-number">16</span>
+          <span class="stat-label">Articles</span>
         </div>
       </div>
+
+      <div class="wiki-grid">
+
+        <!-- VentiStudio -->
+        <div class="wiki-section">
+          <div class="wiki-section-header">
+            <div class="wiki-section-icon">🏢</div>
+            <h2>VentiStudio</h2>
+          </div>
+          <p class="wiki-section-desc">Tout sur l'organisation, son histoire et ses technologies.</p>
+          <ul>
+            <li><a href="ventistudio/whatisventistudio/">C'est quoi VentiStudio</a></li>
+            <li><a href="ventistudio/artventistudio/">L'Art de VentiStudio</a></li>
+            <li><a href="ventistudio/ainapad/">AINA PAD</a></li>
+            <li><a href="ventistudio/uia/">UIA</a></li>
+          </ul>
+          <div class="wiki-section-footer">
+            <a href="ventistudio/">Voir la catégorie →</a>
+          </div>
+        </div>
+
+        <!-- Aoki Univers -->
+        <div class="wiki-section">
+          <div class="wiki-section-header">
+            <div class="wiki-section-icon">🌌</div>
+            <h2>Aoki Univers</h2>
+          </div>
+          <p class="wiki-section-desc">L'univers fictif, le lore, les personnages et les événements.</p>
+          <ul>
+            <li><a href="aokiunivers/lore/">Lore</a></li>
+            <li><a href="aokiunivers/aina/">AINA</a></li>
+            <li><a href="aokiunivers/biss/">BISS</a></li>
+            <li><a href="aokiunivers/dystopiaprequel/">Dystopia — Préquel</a></li>
+            <li><a href="aokiunivers/dystopia/">Dystopia</a></li>
+          </ul>
+          <div class="wiki-section-footer">
+            <a href="aokiunivers/">Voir la catégorie →</a>
+          </div>
+        </div>
+
+        <!-- SCP Universe -->
+        <div class="wiki-section">
+          <div class="wiki-section-header">
+            <div class="wiki-section-icon">🔬</div>
+            <h2>SCP Universe</h2>
+          </div>
+          <p class="wiki-section-desc">Zones, sites, protocoles et le lore SCP:LS.</p>
+          <ul>
+            <li><a href="scp/zone98/">Zone Rétribution 98</a></li>
+            <li><a href="scp/site98/">Site Omega 98 FR</a></li>
+            <li><a href="scp/protocols/">Protocoles</a></li>
+            <li><a href="scp/scp-ls/">Lore SCP:LS</a></li>
+            <li><a href="scp/zonerp/">Zone Retribution RP</a></li>
+          </ul>
+          <div class="wiki-section-footer">
+            <a href="scp/">Voir la catégorie →</a>
+          </div>
+        </div>
+
+        <!-- Autres -->
+        <div class="wiki-section">
+          <div class="wiki-section-header">
+            <div class="wiki-section-icon">📚</div>
+            <h2>Autres</h2>
+          </div>
+          <p class="wiki-section-desc">Articles divers : histoires personnelles et biographies.</p>
+          <ul>
+            <li><a href="other/aumashi/">Aumashi</a></li>
+            <li><a href="other/lukaguyonvarch/">Lùka Guyonvarch</a></li>
+          </ul>
+          <div class="wiki-section-footer">
+            <a href="other/">Voir la catégorie →</a>
+          </div>
+        </div>
+
+      </div>
     </div>
-  
-  
-  
   </main>
 
   <footer>
-
     <div class="footer-content">
       <div class="footer-section">
         <h4>Outils</h4>
         <ul>
           <li><a href="#">Encrypt</a></li>
-          <li><a href="#">Plan du site</a></li>
-          <li><a href="#">Statut</a></li>
+          <li><a href="../sitemap">Plan du site</a></li>
+          <li><a href="../stats">Statut</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Entreprise</h4>
         <ul>
-          <li><a href="#">À propos</a></li>
-          <li><a href="#">Emplois</a></li>
-          <li><a href="#">Marque</a></li>
+          <li><a href="../about">À propos</a></li>
+          <li><a href="../jobs">Emplois</a></li>
+          <li><a href="../logo">Marque</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Ressources</h4>
         <ul>
-          <li><a href="#">Université</a></li>
-          <li><a href="#">Assistance</a></li>
-          <li><a href="#">Sécurité</a></li>
+          <li><a href="../university">Université</a></li>
+          <li><a href="../lawful/support">Assistance</a></li>
+          <li><a href="../lawful/security">Sécurité</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Chartes</h4>
         <ul>
-          <li><a href="#">Conditions</a></li>
-          <li><a href="#">Confidentialité</a></li>
-          <li><a href="#">Information DMCA</a></li>
+          <li><a href="../lawful/cgv">Conditions</a></li>
+          <li><a href="../privacy">Confidentialité</a></li>
+          <li><a href="../lawful/dmcainfo">Information DMCA</a></li>
         </ul>
       </div>
     </div>
@@ -141,11 +178,24 @@
       <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
       <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
     </div>
-  
   </footer>
 
   <script src="../script.js" defer></script>
+  <script>
+    document.getElementById('wikiSearch').addEventListener('input', function() {
+      const query = this.value.toLowerCase().trim();
+      document.querySelectorAll('.wiki-section').forEach(section => {
+        const items = section.querySelectorAll('ul li');
+        let hasMatch = false;
+        items.forEach(item => {
+          const text = item.textContent.toLowerCase();
+          const match = !query || text.includes(query);
+          item.style.display = match ? '' : 'none';
+          if (match) hasMatch = true;
+        });
+        section.style.display = (!query || hasMatch) ? '' : 'none';
+      });
+    });
+  </script>
 </body>
 </html>
-
-

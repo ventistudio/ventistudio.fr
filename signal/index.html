@@ -1,380 +1,2512 @@
 ﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
-
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <meta name="description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
-  <meta name="theme-color" content="#6366f1">
-  <title>VentiStudio v4</title>
-  <link rel="stylesheet" href="../style.css">
-</title>
-</head>
-<body>
-  <header>
-
-    <div class="logo">
-      <img src="../favicon.ico" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
-      <span>VentiStudio</span>
-    </div>
-    <nav aria-label="Navigation principale">
-      <a href="../" class="active">Accueil</a>
-      <a href="../approuvedcontent/">Contenu Approuvé</a>
-      <a href="../player">Lecteur</a>
-      <a href="../wiki">Wiki</a>
-      <a href="../staff">Équipe</a>
-      <a href="../news">News</a>
-      <a href="../pip">PIP</a>
-      <a href="../sitemap">Plan du site</a>
-    </nav>
-    <div class="controls" role="toolbar" aria-label="Contrôles">
-      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
-        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
-          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
-          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
-          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
-        </svg>
-      </button>
-      <div id="user-button" role="region" aria-label="Authentification"></div>
-    </div>
-  
-  </header>
-
-  <main>
-
-
-<!DOCTYPE html>
-<html><head><base href="https://ventistudio.eu/signal">
-  <meta charset="utf-8">
-  <meta name="viewport">
-  <html lang="fr"></html>
-  <link rel="icon" type="image/gif" href="favicon.avif">
-  <meta property="og:title" content="Bienvenu sur VentiStudio">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="VentiStudio Signal Terminal - Interface de communication post-apocalyptique RobCo Industries">
+  <meta name="theme-color" content="#00ff41">
+  <meta property="og:title" content="VentiStudio Terminal">
   <meta property="og:site_name" content="VentiStudio Komiyuniti">
-  <meta property="og:url" content="https://ventistudio.eu">
-  <meta property="og:description" content="Hey, je suis Hikari Umaishi (å…‰é¦¬çŸ³), mais je prÃ©fÃ¨re que l'on m'appelle Hiuma (Ã¢’ã‚¦Ã¢ž).
-Laissez-moi vous prÃ©senter ma communautÃ©, un espace oÃ¹ l'art et la crÃ©ativitÃ© se rencontrent.">
+  <meta property="og:url" content="https://ventistudio.eu/signal">
+  <meta property="og:description" content="Terminal RobCo Industries - Accédez aux signaux cryptés et aux archives de l'Abri Hikari.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="https://ventistudio.eu/favicon.gif">
-  <title>VentiStudio Terminal</title>
+  <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
+  <link rel="icon" type="image/avif" href="../favicon.avif">
+  <title>VentiStudio — RobCo Terminal v4.2</title>
   <style>
-    body {
-      margin: 0;
-      padding: 20px;
-      background: #000;
-      color: #2ecc71;
-      font-family: monospace;
-      font-size: 16px;
-      line-height: 1.4;
-      height: 100vh;
+    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+    :root {
+      --term-green: #00ff41;
+      --term-green-dim: #00cc33;
+      --term-green-dark: #003b00;
+      --term-amber: #ffb000;
+      --term-red: #ff3333;
+      --term-cyan: #00ffff;
+      --term-bg: #0a0a0a;
+      --term-glow: 0 0 10px rgba(0,255,65,0.4), 0 0 40px rgba(0,255,65,0.1);
+      --crt-curve: 3px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      width: 100%; height: 100%;
       overflow: hidden;
+      background: #000;
+      font-family: 'Share Tech Mono', 'Courier New', monospace;
     }
 
-    #terminal {
-      height: calc(100vh - 40px);
-      overflow-y: auto;
-      padding: 10px;
-      background: rgba(0,0,0,0.9);
-      border: 2px solid #2ecc71;
-      border-radius: 5px;
-      position: relative;
-    }
-
-    #output {
-      margin-bottom: 20px;
-      white-space: pre-wrap;
-    }
-
-    .input-line {
+    /* ── CRT Monitor Frame ── */
+    .crt-monitor {
+      position: fixed;
+      inset: 0;
       display: flex;
       align-items: center;
-      margin-bottom: 5px;
+      justify-content: center;
+      background: radial-gradient(ellipse at center, #111 0%, #000 80%);
     }
 
-    .prompt {
-      color: #2ecc71;
-      margin-right: 10px;
+    .crt-bezel {
+      position: relative;
+      width: min(96vw, 1200px);
+      height: min(92vh, 850px);
+      background: linear-gradient(145deg, #1a1a1a 0%, #0d0d0d 50%, #1a1a1a 100%);
+      border-radius: 18px;
+      padding: 8px;
+      box-shadow:
+        0 0 0 2px #333,
+        0 0 0 4px #111,
+        inset 0 0 30px rgba(0,0,0,0.8),
+        0 20px 60px rgba(0,0,0,0.8),
+        0 0 120px rgba(0,255,65,0.05);
     }
 
-    #input {
+    .crt-screen-wrap {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--term-bg);
+    }
+
+    /* ── Scanlines overlay ── */
+    .crt-scanlines {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 50;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 1px,
+        rgba(0,0,0,0.15) 1px,
+        rgba(0,0,0,0.15) 2px
+      );
+    }
+
+    /* ── CRT Flicker ── */
+    .crt-flicker {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 51;
+      opacity: 0;
+      background: rgba(0,255,65,0.02);
+      animation: flicker 0.15s infinite;
+    }
+
+    @keyframes flicker {
+      0%   { opacity: 0.02; }
+      5%   { opacity: 0.06; }
+      10%  { opacity: 0.01; }
+      15%  { opacity: 0.08; }
+      20%  { opacity: 0.01; }
+      50%  { opacity: 0.04; }
+      80%  { opacity: 0.01; }
+      100% { opacity: 0.03; }
+    }
+
+    /* ── Vignette ── */
+    .crt-vignette {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 49;
+      background: radial-gradient(
+        ellipse at center,
+        transparent 60%,
+        rgba(0,0,0,0.6) 100%
+      );
+    }
+
+    /* ── Screen Noise ── */
+    .crt-noise {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 48;
+      opacity: 0.03;
+      animation: noise 0.3s steps(8) infinite;
+    }
+
+    @keyframes noise {
+      0%   { transform: translate(0,0); }
+      10%  { transform: translate(-1px,1px); }
+      20%  { transform: translate(1px,-1px); }
+      30%  { transform: translate(-2px,0); }
+      40%  { transform: translate(0,2px); }
+      50%  { transform: translate(1px,-2px); }
+      60%  { transform: translate(-1px,2px); }
+      70%  { transform: translate(2px,1px); }
+      80%  { transform: translate(-2px,-1px); }
+      90%  { transform: translate(1px,0); }
+      100% { transform: translate(0,-1px); }
+    }
+
+    /* ── RGB Split Glitch ── */
+    .crt-rgb-split {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 52;
+      opacity: 0;
+      animation: rgbGlitch 8s ease-in-out infinite;
+    }
+
+    @keyframes rgbGlitch {
+      0%, 96%  { opacity: 0; }
+      97%      { opacity: 1; box-shadow: -2px 0 rgba(255,0,0,0.15), 2px 0 rgba(0,0,255,0.15); }
+      98%      { opacity: 0; }
+      99%      { opacity: 1; box-shadow: 1px 0 rgba(255,0,0,0.1), -1px 0 rgba(0,255,0,0.1); }
+      100%     { opacity: 0; }
+    }
+
+    /* ── Screen Content ── */
+    .screen-content {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Top Bar ── */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px 8px;
+      border-bottom: 1px solid var(--term-green-dark);
+      color: var(--term-green-dim);
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      flex-shrink: 0;
+      text-shadow: var(--term-glow);
+    }
+
+    .top-bar .sys-name {
+      color: var(--term-green);
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .top-bar .sys-status {
+      display: flex;
+      gap: 15px;
+    }
+
+    .top-bar .status-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--term-green);
+      box-shadow: 0 0 6px var(--term-green);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+
+    .status-dot.warn { background: var(--term-amber); box-shadow: 0 0 6px var(--term-amber); }
+    .status-dot.err  { background: var(--term-red); box-shadow: 0 0 6px var(--term-red); }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    /* ── Terminal Body ── */
+    .terminal-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px 20px;
+      color: var(--term-green);
+      font-size: 14px;
+      line-height: 1.6;
+      text-shadow: 0 0 8px rgba(0,255,65,0.3);
+      scroll-behavior: smooth;
+    }
+
+    .terminal-body::-webkit-scrollbar { width: 6px; }
+    .terminal-body::-webkit-scrollbar-track { background: transparent; }
+    .terminal-body::-webkit-scrollbar-thumb { background: var(--term-green-dark); border-radius: 3px; }
+    .terminal-body::-webkit-scrollbar-thumb:hover { background: var(--term-green-dim); }
+
+    /* ── Output Styling ── */
+    .line { margin-bottom: 2px; white-space: pre-wrap; word-wrap: break-word; }
+    .line-cmd { color: var(--term-green); opacity: 0.7; }
+    .line-error { color: var(--term-red); text-shadow: 0 0 8px rgba(255,51,51,0.4); }
+    .line-warn { color: var(--term-amber); text-shadow: 0 0 8px rgba(255,176,0,0.3); }
+    .line-success { color: var(--term-green); }
+    .line-info { color: var(--term-cyan); text-shadow: 0 0 8px rgba(0,255,255,0.3); }
+    .line-system { color: var(--term-green-dim); font-size: 12px; opacity: 0.6; }
+    .line-header {
+      color: var(--term-green);
+      font-size: 13px;
+      border-bottom: 1px solid var(--term-green-dark);
+      padding-bottom: 4px;
+      margin: 8px 0 4px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    .line-classified {
+      color: var(--term-amber);
+      background: rgba(255,176,0,0.05);
+      border-left: 3px solid var(--term-amber);
+      padding: 8px 12px;
+      margin: 6px 0;
+    }
+    .line-corrupted {
+      color: var(--term-red);
+      animation: corrupt-text 0.5s steps(4) infinite;
+      font-style: italic;
+    }
+
+    @keyframes corrupt-text {
+      0%   { opacity: 1; letter-spacing: 0; }
+      25%  { opacity: 0.8; letter-spacing: 1px; }
+      50%  { opacity: 1; letter-spacing: -1px; }
+      75%  { opacity: 0.6; letter-spacing: 2px; }
+      100% { opacity: 1; letter-spacing: 0; }
+    }
+
+    /* ── ASCII art ── */
+    .ascii-art {
+      color: var(--term-green);
+      font-size: 10px;
+      line-height: 1.2;
+      text-shadow: 0 0 5px rgba(0,255,65,0.5);
+      margin: 4px 0;
+    }
+
+    /* ── Signal bars animation ── */
+    .signal-bars {
+      display: inline-flex;
+      gap: 2px;
+      align-items: flex-end;
+      height: 14px;
+      vertical-align: middle;
+      margin-left: 6px;
+    }
+
+    .signal-bars .bar {
+      width: 3px;
+      background: var(--term-green);
+      animation: signal-pulse 1.5s ease-in-out infinite;
+    }
+
+    .signal-bars .bar:nth-child(1) { height: 4px;  animation-delay: 0s; }
+    .signal-bars .bar:nth-child(2) { height: 7px;  animation-delay: 0.15s; }
+    .signal-bars .bar:nth-child(3) { height: 10px; animation-delay: 0.3s; }
+    .signal-bars .bar:nth-child(4) { height: 14px; animation-delay: 0.45s; }
+
+    @keyframes signal-pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    /* ── Progress bar ── */
+    .progress-bar-container {
+      display: inline-block;
+      width: 200px;
+      height: 12px;
+      border: 1px solid var(--term-green-dim);
+      position: relative;
+      vertical-align: middle;
+      margin: 4px 8px;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: var(--term-green);
+      box-shadow: 0 0 8px rgba(0,255,65,0.5);
+      transition: width 0.1s linear;
+    }
+
+    /* ── Boot Matrix Animation ── */
+    #boot-matrix {
+      position: absolute;
+      inset: 0;
+      z-index: 40;
+      overflow: hidden;
+      background: var(--term-bg);
+    }
+
+    #boot-matrix canvas {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* ── Input Line ── */
+    .input-area {
+      flex-shrink: 0;
+      padding: 10px 20px 14px;
+      border-top: 1px solid var(--term-green-dark);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .prompt-symbol {
+      color: var(--term-green);
+      font-size: 14px;
+      text-shadow: var(--term-glow);
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    #cmd-input {
+      flex: 1;
       background: transparent;
       border: none;
-      color: #2ecc71;
-      font-family: monospace;
-      font-size: 16px;
-      flex-grow: 1;
+      color: var(--term-green);
+      font-family: 'Share Tech Mono', 'Courier New', monospace;
+      font-size: 14px;
       outline: none;
+      caret-color: var(--term-green);
+      text-shadow: 0 0 8px rgba(0,255,65,0.3);
     }
 
-    .error {
-      color: #e74c3c;
+    #cmd-input::placeholder {
+      color: var(--term-green-dark);
+      opacity: 0.5;
     }
 
-    .success {
-      color: #2ecc71;
+    .cursor-blink {
+      display: inline-block;
+      width: 8px;
+      height: 16px;
+      background: var(--term-green);
+      box-shadow: 0 0 6px var(--term-green);
+      animation: cursor-blink 1s step-end infinite;
     }
 
-    .warning {
-      color: #f1c40f;
-    }
-
-    @keyframes blink {
+    @keyframes cursor-blink {
       0%, 100% { opacity: 1; }
       50% { opacity: 0; }
     }
 
-    .cursor {
-      display: inline-block;
-      width: 8px;
-      height: 16px;
-      background: #2ecc71;
-      margin-left: 5px;
-      animation: blink 1s infinite;
+    /* ── Bottom status ── */
+    .bottom-bar {
+      flex-shrink: 0;
+      display: flex;
+      justify-content: space-between;
+      padding: 4px 20px 8px;
+      font-size: 10px;
+      color: var(--term-green-dark);
+      letter-spacing: 1px;
     }
 
-    .scan-animation {
-      margin: 10px 0;
-    }
-
-    .loading {
-      display: inline-block;
-      margin-left: 10px;
-    }
-
-    .loading:after {
-      content: '.';
-      animation: dots 1.5s steps(5, end) infinite;
-    }
-
-    @keyframes dots {
-      0%, 20% { content: '.'; }
-      40% { content: '..'; }
-      60% { content: '...'; }
-      80%, 100% { content: ''; }
-    }
-
-    .crt-effect {
+    /* ── Glitch Overlay on open ── */
+    .glitch-overlay {
       position: absolute;
-      top: 0;
+      inset: 0;
+      z-index: 100;
+      background: var(--term-green);
+      pointer-events: none;
+      opacity: 0;
+    }
+
+    .glitch-overlay.flash {
+      animation: power-on 1.5s ease-out forwards;
+    }
+
+    @keyframes power-on {
+      0%   { opacity: 1; background: #fff; }
+      5%   { opacity: 0.8; background: var(--term-green); }
+      10%  { opacity: 0; }
+      12%  { opacity: 0.6; background: #fff; }
+      15%  { opacity: 0; }
+      20%  { opacity: 0.3; background: var(--term-green); }
+      25%  { opacity: 0; }
+      100% { opacity: 0; }
+    }
+
+    /* ── Typing Cursor in output ── */
+    .typing-cursor::after {
+      content: '\2588';
+      animation: cursor-blink 0.7s step-end infinite;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .crt-bezel { width: 100vw; height: 100vh; border-radius: 0; padding: 2px; }
+      .crt-screen-wrap { border-radius: 0; }
+      .terminal-body { font-size: 12px; padding: 10px 12px; }
+      .top-bar { font-size: 9px; padding: 8px 12px 6px; }
+      .input-area { padding: 8px 12px 10px; }
+      .ascii-art { font-size: 7px; }
+    }
+
+    /* ── Power-off effect ── */
+    .power-off {
+      animation: power-off 0.5s ease-in forwards;
+    }
+
+    @keyframes power-off {
+      0%   { transform: scale(1); filter: brightness(1); }
+      50%  { transform: scaleY(0.005); filter: brightness(2); }
+      80%  { transform: scaleY(0.005) scaleX(0.2); filter: brightness(3); }
+      100% { transform: scaleY(0) scaleX(0); filter: brightness(0); opacity: 0; }
+    }
+
+    /* ── Decorative screws on bezel ── */
+    .bezel-screw {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #555, #222);
+      box-shadow: inset 0 1px 2px rgba(255,255,255,0.1), 0 1px 3px rgba(0,0,0,0.5);
+    }
+
+    .bezel-screw::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 20%;
+      right: 20%;
+      height: 1px;
+      background: #111;
+      transform: rotate(45deg);
+    }
+
+    .bezel-screw.tl { top: 12px; left: 12px; }
+    .bezel-screw.tr { top: 12px; right: 12px; }
+    .bezel-screw.bl { bottom: 12px; left: 12px; }
+    .bezel-screw.br { bottom: 12px; right: 12px; }
+
+    /* ── Power LED ── */
+    .power-led {
+      position: absolute;
+      bottom: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--term-green);
+      box-shadow: 0 0 10px var(--term-green), 0 0 20px var(--term-green);
+      animation: led-pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes led-pulse {
+      0%, 100% { opacity: 1; box-shadow: 0 0 10px var(--term-green), 0 0 20px var(--term-green); }
+      50% { opacity: 0.6; box-shadow: 0 0 5px var(--term-green); }
+    }
+
+    /* ── Scan effect ── */
+    .scan-line-moving {
+      position: absolute;
       left: 0;
       width: 100%;
-      height: 100%;
+      height: 2px;
+      background: rgba(0,255,65,0.15);
+      box-shadow: 0 0 15px rgba(0,255,65,0.2);
+      z-index: 53;
       pointer-events: none;
-      z-index: 10;
-      background: linear-gradient(
-        rgba(46, 204, 113, 0.1) 50%,
-        rgba(0, 0, 0, 0.1) 50%
-      );
-      background-size: 100% 4px;
-      animation: scan 0.5s linear infinite;
+      animation: scan-move 6s linear infinite;
     }
 
-    @keyframes scan {
-      0% { background-position: 0 0; }
-      100% { background-position: 0 4px; }
+    @keyframes scan-move {
+      0%   { top: -2px; }
+      100% { top: 100%; }
+    }
+
+    /* ── Tab hints ── */
+    .tab-hint {
+      color: var(--term-green-dark);
+      font-size: 12px;
+      opacity: 0.5;
+      margin-left: 4px;
+    }
+
+    /* ── Color Themes ── */
+    .theme-amber {
+      --term-green: #ffb000;
+      --term-green-dim: #cc8d00;
+      --term-green-dark: #3b2800;
+      --term-glow: 0 0 10px rgba(255,176,0,0.4), 0 0 40px rgba(255,176,0,0.1);
+    }
+    .theme-blue {
+      --term-green: #00bfff;
+      --term-green-dim: #0099cc;
+      --term-green-dark: #002b3b;
+      --term-glow: 0 0 10px rgba(0,191,255,0.4), 0 0 40px rgba(0,191,255,0.1);
+    }
+    .theme-red {
+      --term-green: #ff4444;
+      --term-green-dim: #cc3333;
+      --term-green-dark: #3b0000;
+      --term-glow: 0 0 10px rgba(255,68,68,0.4), 0 0 40px rgba(255,68,68,0.1);
+    }
+    .theme-white {
+      --term-green: #e0e0e0;
+      --term-green-dim: #aaaaaa;
+      --term-green-dark: #333333;
+      --term-glow: 0 0 10px rgba(224,224,224,0.3), 0 0 40px rgba(224,224,224,0.1);
+    }
+
+    /* ── Hack minigame ── */
+    .hack-word {
+      cursor: pointer;
+      padding: 1px 3px;
+      transition: background 0.15s;
+    }
+    .hack-word:hover {
+      background: rgba(0,255,65,0.2);
+      text-decoration: underline;
+    }
+    .hack-word.correct {
+      color: var(--term-green);
+      background: rgba(0,255,65,0.15);
+      font-weight: bold;
+    }
+    .hack-word.wrong {
+      color: var(--term-red);
+      text-decoration: line-through;
+      opacity: 0.5;
+    }
+
+    /* ── Pip-Boy inventory ── */
+    .inv-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 2px 0;
+      border-bottom: 1px dotted var(--term-green-dark);
+    }
+    .inv-qty { color: var(--term-amber); min-width: 40px; text-align: right; }
+    .inv-cat { color: var(--term-cyan); font-size: 11px; min-width: 80px; }
+
+    /* ── Audio visualizer ── */
+    .audio-vis {
+      display: flex;
+      gap: 2px;
+      align-items: flex-end;
+      height: 30px;
+      margin: 6px 0;
+    }
+    .audio-vis .vis-bar {
+      width: 4px;
+      background: var(--term-green);
+      animation: vis-bounce 0.8s ease-in-out infinite alternate;
+    }
+
+    @keyframes vis-bounce {
+      0% { height: 3px; }
+      100% { height: 28px; }
+    }
+
+    /* ── Radio Player UI ── */
+    .radio-panel {
+      border: 1px solid var(--term-green-dark);
+      padding: 10px 14px;
+      margin: 8px 0;
+      position: relative;
+      background: rgba(0, 255, 65, 0.02);
+    }
+    .radio-panel::before {
+      content: '';
+      position: absolute;
+      top: -1px; left: 10px;
+      padding: 0 6px;
+      font-size: 9px;
+      letter-spacing: 2px;
+      color: var(--term-green-dark);
+    }
+    .radio-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+    .radio-station-name {
+      color: var(--term-cyan);
+      font-size: 14px;
+      text-shadow: 0 0 8px rgba(0, 191, 255, 0.4);
+    }
+    .radio-status {
+      font-size: 10px;
+      padding: 2px 8px;
+      border: 1px solid;
+      letter-spacing: 1px;
+    }
+    .radio-status.on {
+      color: var(--term-green);
+      border-color: var(--term-green);
+      text-shadow: 0 0 6px var(--term-green);
+    }
+    .radio-status.off {
+      color: var(--term-red);
+      border-color: var(--term-red);
+    }
+    .radio-track {
+      padding: 4px 0;
+    }
+    .radio-track-title {
+      color: var(--term-amber);
+      font-size: 13px;
+    }
+    .radio-track-artist {
+      color: var(--term-green-dim);
+      font-size: 11px;
+    }
+    .radio-progress {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 6px 0 4px;
+      font-size: 10px;
+      color: var(--term-green-dim);
+    }
+    .radio-bar-bg {
+      flex: 1;
+      height: 4px;
+      background: var(--term-green-dark);
+      opacity: 0.3;
+      position: relative;
+    }
+    .radio-bar-fill {
+      position: absolute;
+      top: 0; left: 0;
+      height: 100%;
+      background: var(--term-green);
+      box-shadow: 0 0 4px var(--term-green);
+      transition: width 1s linear;
+    }
+    .radio-controls {
+      display: flex;
+      gap: 12px;
+      font-size: 11px;
+      margin-top: 6px;
+      color: var(--term-green-dim);
+    }
+    .radio-controls span {
+      cursor: pointer;
+      transition: color 0.2s, text-shadow 0.2s;
+    }
+    .radio-controls span:hover {
+      color: var(--term-green);
+      text-shadow: 0 0 6px var(--term-green);
+    }
+    .radio-vol {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 10px;
+      color: var(--term-green-dim);
+    }
+    .radio-vol-bar {
+      display: inline-block;
+      width: 60px;
+      height: 4px;
+      background: var(--term-green-dark);
+      opacity: 0.4;
+      position: relative;
+    }
+    .radio-vol-fill {
+      position: absolute;
+      top: 0; left: 0;
+      height: 100%;
+      background: var(--term-amber);
+      box-shadow: 0 0 4px var(--term-amber);
+    }
+    .radio-station-list {
+      margin: 4px 0;
+    }
+    .radio-station-item {
+      padding: 2px 0;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .radio-station-item:hover {
+      color: var(--term-green);
+      text-shadow: 0 0 6px var(--term-green);
+    }
+    .radio-station-item.active {
+      color: var(--term-cyan);
+    }
+    .now-playing-bar {
+      display: none;
+      overflow: hidden;
+      white-space: nowrap;
+      max-width: 220px;
+    }
+    .now-playing-bar.active {
+      display: inline-block;
+    }
+    .now-playing-bar .np-text {
+      display: inline-block;
+      animation: np-scroll 12s linear infinite;
+      color: var(--term-amber);
+    }
+    @keyframes np-scroll {
+      0%   { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    /* ── Countdown ── */
+    .countdown-display {
+      font-size: 18px;
+      color: var(--term-red);
+      text-shadow: 0 0 15px rgba(255,51,51,0.6);
+      letter-spacing: 4px;
+      margin: 8px 0;
+    }
+
+    /* ── Neofetch ── */
+    .neofetch-grid {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0 20px;
+    }
+    .neofetch-logo { grid-row: 1 / 20; }
+    .neofetch-label { color: var(--term-cyan); }
+    .neofetch-val { color: var(--term-green); }
+    .neofetch-bar {
+      display: inline-block;
+      height: 10px;
+      background: var(--term-green);
+      box-shadow: 0 0 4px var(--term-green);
+    }
+    .neofetch-bar-bg {
+      display: inline-block;
+      height: 10px;
+      background: var(--term-green-dark);
+      opacity: 0.4;
     }
   </style>
 </head>
 <body>
-  <div id="terminal">
-    <div class="crt-effect"></div>
-    <div id="output">ROBCO INDUSTRIES UNIFIED OPERATING SYSTEM
-COPYRIGHT 2075-2077 ROBCO INDUSTRIES
--Server 6-
-VentiStudio Terminal v1.0
 
-Initializing system...</div>
-    <div class="input-line">
-      <span class="prompt">>></span>
-      <input type="text" id="input" autocomplete="off" autofocus>
+  <div class="crt-monitor">
+    <div class="crt-bezel">
+      <!-- Decorative screws -->
+      <div class="bezel-screw tl"></div>
+      <div class="bezel-screw tr"></div>
+      <div class="bezel-screw bl"></div>
+      <div class="bezel-screw br"></div>
+      <div class="power-led" id="powerLed"></div>
+
+      <div class="crt-screen-wrap" id="screenWrap">
+        <!-- CRT effects layers -->
+        <div class="crt-scanlines"></div>
+        <div class="crt-flicker"></div>
+        <div class="crt-vignette"></div>
+        <div class="crt-noise" id="crtNoise"></div>
+        <div class="crt-rgb-split"></div>
+        <div class="scan-line-moving"></div>
+        <div class="glitch-overlay" id="glitchOverlay"></div>
+
+        <!-- Boot matrix rain -->
+        <div id="boot-matrix"><canvas id="matrixCanvas"></canvas></div>
+
+        <!-- Screen content -->
+        <div class="screen-content" id="screenContent" style="display:none;">
+
+          <!-- Top status bar -->
+          <div class="top-bar">
+            <div>
+              <span class="sys-name">ROBCO INDUSTRIES (TM) TERMLINK</span>
+            </div>
+            <div class="sys-status">
+              <div class="status-item"><div class="status-dot"></div> SYS</div>
+              <div class="status-item"><div class="status-dot warn" id="sigDot"></div> SIG</div>
+              <div class="status-item"><div class="status-dot" id="netDot"></div> NET</div>
+              <div id="clock">00:00:00</div>
+            </div>
+          </div>
+
+          <!-- Terminal output -->
+          <div class="terminal-body" id="terminalBody"></div>
+
+          <!-- Input -->
+          <div class="input-area" id="inputArea">
+            <span class="prompt-symbol">root@abri-hikari:~$</span>
+            <input type="text" id="cmd-input" autocomplete="off" spellcheck="false" placeholder="Entrez une commande...">
+          </div>
+
+          <!-- Bottom bar -->
+          <div class="bottom-bar">
+            <span>MEM: 640K OK &nbsp;|&nbsp; HOLODISK: READY</span>
+            <span id="nowPlaying" class="now-playing-bar">&#9835; <span class="np-text" id="npText"></span></span>
+            <span id="bottomInfo">VentiStudio Terminal v4.2 &nbsp;|&nbsp; Server-6</span>
+          </div>
+
+        </div>
+      </div>
     </div>
   </div>
 
   <script>
-    const terminal = {
-      frequencies: {
-        "415.67": "Je suis Hikari Umaishi crÃ©ateur de l'Umaishi Corp et de VentiStudio j'ai crÃ©er ventistudio qui est comme mon fils pour moi",
-        "379.06": "Signal perdu",
-        "844.16": "Le signal semble brouiller",
-        "107.07": "\nHistorique de transmission - Radio Vinci Autoroute\n\Transmission d'Urgence â€“ Radio Vinci Autoroute (Le jour ou tout commance)\n\nUne musique de fond est brusquement coupÃ©e, un bourdonnement d'alerte suivi d'une voix calme, mais urgente.\n\nPrÃ©sentateur :\nÂ« Radio Vinci Autoroute. Nous vous interrompons pour une annonce de la plus haute importance. Veuillez nous prÃªter une attention particuliÃ¨re. Ce nâ€™est pas une alerte mÃ©tÃ©orologique. Ce nâ€™est pas une simple perturbation de trafic. Il s'agit d'une situation d'urgence nationale. Une attaque nuclÃ©aire est actuellement en cours. Oui, vous avez bien entendu : une attaque nuclÃ©aire. Â»\n\nLe ton du prÃ©sentateur se fait plus grave, avec une lÃ©gÃ¨re pause pour laisser lâ€™information sâ€™imprÃ©gner.\n\nPrÃ©sentateur :\nÂ« Nous savons que cela peut paraÃ®tre irrÃ©el, que câ€™est une annonce que vous nâ€™aviez jamais imaginÃ©e entendre sur vos ondes. Mais les informations sont formelles : des explosions nuclÃ©aires ont Ã©tÃ© dÃ©tectÃ©es Ã  plusieurs endroits dans le pays. Des protocoles de sÃ©curitÃ© sont en place. Si vous Ãªtes en voiture, il est impÃ©ratif de vous rendre immÃ©diatement vers le plus proche abri ou refuge. Ã‰vitez de vous rendre en ville. Restez Ã  l'Ã©cart des zones susceptibles dâ€™Ãªtre touchÃ©es. Â»\n\nLe ton devient un peu plus rassurant, comme pour calmer lâ€™inquiÃ©tude des auditeurs qui pourraient Ãªtre sur la route.\n\nPrÃ©sentateur :\nÂ« Ã€ l'heure actuelle, les services d'urgence sont en train de mettre en place des points de rassemblement et des zones de sÃ©curitÃ©. Si vous Ãªtes sur l'autoroute, ne paniquez pas. Conformez-vous aux instructions des autoritÃ©s locales et des forces de l'ordre. Il est essentiel de suivre les panneaux de signalisation et de prendre les routes secondaires pour Ã©viter les zones de danger. Â»\n\nUne pause, le prÃ©sentateur prend une respiration avant de poursuivre dans un ton plus posÃ©.\n\nPrÃ©sentateur :\nÂ« Nous rÃ©pÃ©tons, restez calmes. La prioritÃ© est de se protÃ©ger des effets immÃ©diats de l'attaque : les radiations, les retombÃ©es, et le souffle des explosions. Si vous Ãªtes Ã  proximitÃ© d'un abri ou dâ€™un centre de secours, dirigez-vous immÃ©diatement vers celui-ci. Le rÃ©seau routier est en cours de gestion active, mais des embouteillages massifs sont Ã  prÃ©voir. Ne vous arrÃªtez pas en dehors des zones sÃ©curisÃ©es. Â»\n\nUne nouvelle pause, puis la voix se fait plus solennelle.\n\nPrÃ©sentateur :\nÂ« La situation Ã©volue rapidement. Nous continuerons Ã  vous fournir des mises Ã  jour dÃ¨s que nous recevrons de nouvelles informations. En attendant, restez Ã  l'Ã©coute de la frÃ©quence 107.7. Nous sommes lÃ  pour vous, et nous ferons tout notre possible pour vous guider Ã  travers cette Ã©preuve. Â»\n\nUne derniÃ¨re pause, un lÃ©ger changement de ton, plus rassurant.\n\nPrÃ©sentateur :\nÂ« Prenez soin de vous et de vos proches. Tenez-vous informÃ©s et respectez les consignes. Nous reviendrons vers vous dans quelques instants. Â»\n\nDes annonces locales commencent Ã  se superposer, signalant les fermetures de routes et les zones de sÃ©curitÃ©.\n\n\nMessage prÃ©enregistrÃ© â€“ Radio Vinci Autoroute (DÃ©but le 23 octobre 2077)\n\nUn lÃ©ger bourdonnement statique se fait entendre avant que la voix claire et monotone du message prÃ©enregistrÃ© ne prenne la parole.\n\nVoix prÃ©enregistrÃ©e :\nÂ« Vous Ã©coutez actuellement la Radio Vinci Autoroute. Ce message est prÃ©enregistrÃ© dans le cadre des consignes Ã©mises par l'ASN (AutoritÃ© de SÃ»retÃ© NuclÃ©aire) et l'IRSN (Institut de Radioprotection et de SÃ»retÃ© NuclÃ©aire). Ce message a dÃ©butÃ© le 23 octobre 2077. Nous sommes actuellement le 23 octobre 2127. Ce message constitue notre derniÃ¨re diffusion. L'antenne radio sera bientÃ´t hors service et ne sera plus fonctionnelle dans quelques instants. Â»\n\nUne courte pause, et le message reprend dans un ton plus grave.\n\nVoix prÃ©enregistrÃ©e :\nÂ« Les autoritÃ©s compÃ©tentes ont Ã©valuÃ© la situation et confirment que lâ€™impact des retombÃ©es nuclÃ©aires et des radiations est dÃ©sormais irrÃ©versible pour cette zone et ses alentours. Nous vous recommandons de prendre immÃ©diatement les mesures de protection les plus strictes : refuge, confinement, et Ã©vitement de toute exposition extÃ©rieure. Si vous avez un accÃ¨s aux rÃ©serves d'urgence, assurez-vous de les utiliser de maniÃ¨re rationnelle. Â»\n\nUn lÃ©ger bruit de fond de transmission dÃ©gradÃ©e sâ€™entend, avant que la voix ne continue.\n\nVoix prÃ©enregistrÃ©e :\nÂ« Nous vous rappelons que lâ€™accÃ¨s aux zones de sÃ©curitÃ© ou abris dÃ©signÃ©s nâ€™est plus assurÃ© par les voies autoroutiÃ¨res. Les informations relatives Ã  ces zones ne sont plus disponibles via cette station. Si vous Ãªtes en voiture, nous vous conseillons de stationner en un lieu sÃ»r et de ne pas poursuivre vos dÃ©placements. Lâ€™antenne radio cessera de diffuser dans quelques minutes. Â»\n\nUne nouvelle pause, plus longue cette fois, une voix plus froide, marquÃ©e par le poids du temps et de lâ€™Ã©vÃ©nement.\n\nVoix prÃ©enregistrÃ©e :\nÂ« Ce message, en tant quâ€™avertissement final, marque la fin de notre capacitÃ© Ã  communiquer via cette frÃ©quence. Les Ã©metteurs de la Radio Vinci Autoroute seront inactifs Ã  compter de cet instant. Nous vous laissons sur ces derniÃ¨res paroles, dans lâ€™espoir que vous trouverez la force nÃ©cessaire pour affronter ce qui reste du monde. Â»\n\nUn silence prolongÃ© avant que la voix ne conclut dans un murmure presque inaudible.\n\nVoix prÃ©enregistrÃ©e :\nÂ« Ceci est la fin. Â»\n\nLe message s'Ã©teint avec un bruit de grÃ©sillement, et l'antenne tombe dÃ©finitivement en silence.",
-      },
-      programs: {
-        "ventistudio.exe": "https://ventistudio.eu",
-        "discord.exe": "https://discord.gg/BupfZHSBbC",
-        "steam.exe": "https://steamcommunity.com/groups/VentiStudio",
-        "github.exe": "https://github.com/ventistudio/ventistudio.eu"
-      },
-      disks: {
-        "1": "Il semblerais que le disque est vide.",
-        "2": "ERR 0xFFF21012 : DonnÃ©es rÃ©siduelles dÃ©tectÃ©es.\nV@$Â¤Â¤S#%5Â¤\ l'Â¤@Â¤$Â¤# Â¤@$ Â¤#%\\ pÂ¤@$Â¤Â¤@ $Â¤Â¤#% bien#%\- Â¤@$Â¤ Â¤#%\\ univers\n...\n...\n...\nÂ¤Â¤Â¤STOP : multiples erreurs dÃ©tectÃ©es.\nERR 0xFA770171 : erreur de segmentation.\nERR 0x0D890102 : redÃ©marrage secteur incorrect/corrompu.\nERR 0xFFF11011 : erreur mÃ©moire.\nERR 0xC0001011 : erreur mÃ©moire.\nERR 0x00001001 : erreur critique.",
-        "3": "Ce disk est corrompu et ilisible.",
-        "4": "...VÃ©rification de l'autorisation..........\n...AUTORISATION ACCORDÃ‰E.................\nAttention, Attention.\nCe document contient des information confidentiel.\nCe document porte la mention RB-2851 et ne doit etre lu seulement par le personnel autorisÃ© toute lecture l'ouverture 'accidentelle' de ce document ne saurait Ãªtre tolÃ©rÃ©e.\nUne telle infraction se solderait par un renvoi immÃ©diat, assorti d'un interrogatoire poussÃ© menÃ© par nos amis d'en bas.\n...\n...\n...\nAoki Univers est le plus gros projet de VentiStudio crÃ©er par Hikari Umaishi cette histoire vais l'objet d'un travaille trÃ¨s intence ce qui impacte fortement les autre projet au jour d'aujourd'hui mais tout semble roulÃ© comme sur des roulette.",
-        "5": "Les terminaux ont Ã©tÃ© coupÃ©s.\nVeuillez vÃ©rifier que tout le matÃ©riel et les logiciels nÃ©cessaires ont Ã©tÃ© correctement installÃ©s.\nSi le problÃ¨me persiste, contactez votre centre d'assistance RobCo le plus proche.",
-        "6": "Journal du Superviseur â€“ Hikari Umaishi\nJour 1 â€“ Une nouvelle Ã¨re\nÂ« Je suis le Superviseur. Ces mots rÃ©sonnent dans ma tÃªte comme un Ã©cho dâ€™un passÃ© que je mâ€™efforce dÃ©jÃ  de comprendre. Je nâ€™ai jamais demandÃ© Ã  porter cette responsabilitÃ©, mais le monde tel que nous le connaissions nâ€™existe plus. Et avec lui, les choix faciles. Â»\n\nQuand le monde a implosÃ© sous les champignons nuclÃ©aires, je nâ€™Ã©tais quâ€™un rÃªveur parmi tant dâ€™autres. Mon esprit Ã©tait occupÃ© Ã  concevoir des idÃ©es, Ã  bÃ¢tir un avenir oÃ¹ la connaissance serait reine et oÃ¹ lâ€™art numÃ©rique servirait Ã  reconstruire lâ€™humanitÃ©. Ironique, nâ€™est-ce pas ? Mes crÃ©ations â€“ projets insignifiants pour certains â€“ ont peut-Ãªtre sauvÃ© ma vie.\n\nJour 14 â€“ Les fondations de lâ€™abri\nJâ€™ai Ã©tÃ© recrutÃ© par un programme de survie peu avant que tout bascule. Officiellement, un simple collaborateur technologique ; officieusement, lâ€™architecte des archives culturelles. Mon rÃ´le Ã©tait clair : garantir que lâ€™humanitÃ© conserve sa mÃ©moire, ses rÃ©cits, ses espoirs. Ainsi, naquit lâ€™idÃ©e de lâ€™Abri Hikari, un refuge non seulement pour les corps, mais aussi pour les esprits.\n\nVentiStudio fut la pierre angulaire de cet abri. La Gazette dâ€™Opastudien, autrefois un simple projet numÃ©rique, est devenue une source dâ€™informations prÃ©cieuse pour nos survivants. Chaque Ã©dition est un tÃ©moignage, une leÃ§on pour le futur.\n\nJour 87 â€“ Le poids du titre\nÂ« ÃŠtre superviseur, câ€™est jongler avec des choix impossibles. Qui survit ? Qui est sacrifiÃ© ? Tout cela pÃ¨se lourd, mais lâ€™histoire en marche ne sâ€™arrÃªte pas pour une seule Ã¢me. Â»\n\nIls mâ€™ont confiÃ© les clÃ©s. Une dÃ©cision collective, mâ€™a-t-on dit, bien que je soupÃ§onne que personne dâ€™autre ne voulait ce fardeau. Chaque jour, je consigne les donnÃ©es : les ressources, les progrÃ¨s, les Ã©checs. Mais ce journal est diffÃ©rent. Câ€™est mon sanctuaire, ma confession nocturne.\n\nJour 365 â€“ Un an aprÃ¨s la chute\nLâ€™abri tient bon. Nous avons transformÃ© nos archives numÃ©riques en une bibliothÃ¨que vivante. La Gazette est devenue un symbole de rÃ©silience. Mais ce nâ€™est pas suffisant. Les portes de lâ€™abri sont fermÃ©es depuis trop longtemps. Le monde extÃ©rieur nâ€™a pas cessÃ© dâ€™exister, mÃªme sâ€™il est devenu mÃ©connaissable.\n\nCe matin, jâ€™ai pris une dÃ©cision : nous devons rÃ©Ã©merger. Nous ne pouvons pas seulement survivre ; nous devons vivre. Cela implique des risques, des sacrifices. Mais nâ€™est-ce pas lÃ  le sens de lâ€™humanitÃ© ?\n\nFichier de l'A.A.C. â€“ Qui est Hikari Umaishi ?\nHikari Umaishi nâ€™est pas seulement un superviseur. Il est un rÃªveur, un bÃ¢tisseur, un gardien des rÃ©cits. La lumiÃ¨re quâ€™il porte en lui brille encore dans les corridors sombres de lâ€™abri, et peut-Ãªtre, un jour, dans le ciel ravagÃ© dâ€™un monde reconstruit."
-      },
-      currentSignal: null,
-      isScanning: false,
-      
-      async handleCommand(cmd) {
-        cmd = cmd.toLowerCase().trim();
-        
-        if (cmd.startsWith("decrypt ")) {
-          const freq = cmd.split(" ")[1];
-          if (this.frequencies[freq]) {
-            return `DÃ©cryptage du signal ${freq}:\n${this.frequencies[freq]}`;
-          }
-          return "FrÃ©quence invalide. Veuillez rechercher les frÃ©quences disponibles avec la commande 'scan'.";
-        }
+  (() => {
+    'use strict';
 
-        if (cmd.startsWith("run ")) {
-          const program = cmd.split(" ")[1].toLowerCase();
-          if (this.programs[program]) {
-            window.location.href = this.programs[program];
-            return `Lancement de ${program}...`;
-          }
-          return "Programme non trouvÃ©. Utilisez la commande 'program' pour voir les programmes disponibles.";
-        }
-        
-        switch(cmd) {
-          case "help":
-            return `Commandes disponibles:
-- help: Afficher ce message d'aide
-- open: Tentative d'ouverture de la porte de la voÃ»te
-- exit: Retour au site principal
-- scan: Rechercher des signaux valides
-- decrypt [frÃ©quence]: DÃ©crypter le contenu de frÃ©quence spÃ©cifiÃ©
-- delete: Effacer les donnÃ©es du terminal
-- disk: Liste des disques valides
-- read: Lire les donnÃ©es du disque
-- fallout: Visitez le site officiel de Fallout
-- admin: AccÃ©der aux donnÃ©es du site privÃ©
-- program: Liste des programmes disponibles
-- run [programme]: ExÃ©cuter le programme spÃ©cifiÃ©`;
-            
-          case "program":
-            return `Programmes disponibles:
-- ventistudio.exe: AccÃ©der au site VentiStudio
-- discord.exe: Rejoindre le serveur VentiStudio Discord
-- steam.exe: Visiter la page de la communautÃ© Steam
-- github.exe: AccÃ©der au dÃ©pÃ´t GitHub
+    /* ── Refs ── */
+    const $ = id => document.getElementById(id);
+    const termBody   = $('terminalBody');
+    const cmdInput   = $('cmd-input');
+    const bootMatrix = $('boot-matrix');
+    const matrixCvs  = $('matrixCanvas');
+    const screenContent = $('screenContent');
+    const glitchOverlay = $('glitchOverlay');
+    const clockEl    = $('clock');
 
-Use 'run [program]' to execute (e.g., 'run ventistudio.exe')`;
-            
-          case "open":
-            return "ERR0R: D00R_MECH@NISM_CORRUPT3D\nSYST3M_FA1LURE\nATTEMPT_AB0RT3D";
-            
-          case "exit":
-            window.location.href = "/";
-            return "Redirecting to home page...";
-            
-          case "scan":
-            this.isScanning = true;
-            await new Promise(resolve => setTimeout(resolve, 3000));
-            this.isScanning = false;
-            return "Scanning complete. Found frequencies:\n- 415.67 MHz\n- 379.06 MHz\n- 844.16 MHz\n- 107.07 MHz\nUse 'decrypt [frequency]' to decode signal content.";
-            
-          case "delete":
-            return "TERMINAL WIPED. NO USABLE DATA REMAINING.";
-            
-          case "disk":
-            return "Available disks:\n- Disk 1\n- Disk 2\n- Disk 3\n- Disk 4\n- Disk 5\n- Disk 6";
-            
-          case "read":
-            return "Please specify disk number (usage: read 1)";
-            
-          case "fallout":
-            window.location.href = "https://fallout.bethesda.net";
-            return "Redirecting to Fallout official website...";
-            
-          case "admin":
-            window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
-            return "Accessing private data...";
-            
-          default:
-            if (cmd.startsWith("read ")) {
-              const diskNum = cmd.split(" ")[1];
-              if (this.disks[diskNum]) {
-                if (diskNum === "4") {
-                  return "...VÃ©rification de l'autorisation..........\n...AUTORISATION ACCORDÃ‰E.................\nAttention, Attention.\nCe document contient des information confidentiel.\nCe document porte la mention RB-2851 et ne doit etre lu seulement par le personnel autorisÃ© toute lecture l'ouverture 'accidentelle' de ce document ne saurait Ãªtre tolÃ©rÃ©e.\nUne telle infraction se solderait par un renvoi immÃ©diat, assorti d'un interrogatoire poussÃ© menÃ© par nos amis d'en bas.\n...\n...\n...\nAoki Univers est le plus gros projet de VentiStudio crÃ©er par Hikari Umaishi cette histoire vais l'objet d'un travaille trÃ¨s intence ce qui impacte fortement les autre projet au jour d'aujourd'hui mais tout semble roulÃ© comme sur des roulette.";
-                }
-                return this.disks[diskNum];
-              }
-              return "Invalid disk number.";
-            }
-            return "Command not recognized. Type 'help' for available commands.";
-        }
+    /* ── State ── */
+    let history = [];
+    let histIdx = -1;
+    let booted  = false;
+    let inputLocked = false;
+    let bootTime = Date.now();
+
+    /* hack minigame state */
+    let hackInProgress = false;
+    let hackAnswer = '';
+    let hackAttempts = 0;
+
+    /* radio state */
+    let radioPlaying = false;
+    let radioAudio = null;
+    let radioStation = 'hikari';
+    let radioTrackIdx = 0;
+    let radioVolume = 0.5;
+    let radioNowPlayingEl = null;
+    let radioBlocked = false;
+    let radioBlockedMsgShown = false;
+
+    /* ── Radio Stations & Playlists ── */
+    var radioStations = {
+      hikari: {
+        name: 'Radio Hikari \u2606',
+        desc: 'La voix de l\'Abri \u2014 vari\u00e9t\u00e9s et d\u00e9couvertes',
+        tracks: [
+          { title: 'Le Vent des Cultures', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/This Is VentStudio FiTsZ/Le Vent des Cultures.mp3' },
+          { title: 'Bienvenue \u00e0 VentiStudio', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/This Is VentStudio FiTsZ/Bienvenue \u00e0 VentiStudio.mp3' },
+          { title: 'Dans un souffle venu d\'ailleurs', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/This Is VentStudio FiTsZ/Dans un souffle venu d\'ailleurs.mp3' },
+          { title: 'Port\u00e9 par le vent', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/This Is VentStudio FiTsZ/Port\u00e9 par le vent.mp3' },
+          { title: 'Arcade Stage', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers 4/Arcade Stage.mp3' },
+          { title: 'Good Day', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers Deluxe/Good Day.mp3' },
+          { title: 'Jour de f\u00eates', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers Deluxe/Jour de f\u00eates.mp3' },
+          { title: 'Aoki Univers F\u00eates des culture', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/This Is VentStudio FiTsZ/Aoki Univers F\u00eates des culture.mp3' },
+          { title: 'LoFi', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers Deluxe/LoFi.mp3' },
+          { title: 'Retro Arcade', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers Deluxe/Retro Arcade.mp3' }
+        ]
+      },
+      wasteland: {
+        name: 'Wasteland FM',
+        desc: 'Sons du d\u00e9sert nucl\u00e9aire',
+        tracks: [
+          { title: 'Les murs nous regardent', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/The Lost Site/Lost Site - Les murs nous regardent.mp3' },
+          { title: 'Zone Retribution - Main Theme', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/The Lost Site/Zone Retribution - Main Theme.mp3' },
+          { title: 'Zone Retribution - Pandora', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/The Lost Site/Zone Retribution - Pandora.mp3' },
+          { title: 'Site Omega 98', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/The Lost Site/Site Omega 98.mp3' },
+          { title: 'Chant du N\u00e9ant', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/neolyaofaokiunivers3/Chant du N\u00e9ant.mp3' },
+          { title: 'Dernier Rite', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/neolyaofaokiunivers3/Dernier Rite.mp3' },
+          { title: 'Kage no Yume', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/neolyaofaokiunivers3/Kage no Yume.mp3' },
+          { title: 'Ombre des \u00c9toiles', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/neolyaofaokiunivers3/Ombre des \u00c9toiles.mp3' },
+          { title: 'Cr\u00e9puscule Interstellaire', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/neolyaofaokiunivers3/Cr\u00e9puscule Interstellaire.mp3' },
+          { title: 'L\'abysse de l\'Ordre', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/neolyaofaokiunivers2/L\'abysse de l\'Ordre.mp3' }
+        ]
+      },
+      classique: {
+        name: 'Classique Abri',
+        desc: 'Orchestral \u00e9pique du monde d\'avant',
+        tracks: [
+          { title: 'Aoki - Astral Symphony (Epic)', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Time Of Aoki/Aoki - Astral Symphony (epic orchestral).mp3' },
+          { title: 'Aoki - Enfant de la lune (Epic)', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Time Of Aoki/Aoki - Enfant de la lune (epic orchestral).mp3' },
+          { title: 'Gardien de l\'univers - Epic', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Gardien de l\'univers/Gardien de l\'univers - Epic.mp3' },
+          { title: 'Constellation de Versailles', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers Deluxe/Constellation de Versailles.mp3' },
+          { title: 'Pri\u00e8re - Orchestral', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers Deluxe/Pri\u00e8re - Orchestral.mp3' },
+          { title: 'Instant de gloire', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers Deluxe/Instant de gloire.mp3' },
+          { title: 'Gloire du d\u00e9sir', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers Deluxe/Gloire du d\u00e9sir.mp3' },
+          { title: 'Soleil Levant', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers Deluxe/Soleil Levant.mp3' },
+          { title: 'Lune d\'Hiro', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers 4/Lune d\'Hiro.mp3' },
+          { title: 'Gravure de Lune', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/neolyaofaokiunivers3/Gravure de Lune.mp3' }
+        ]
+      },
+      combat: {
+        name: 'Combat Radio',
+        desc: 'Pr\u00e9parez-vous au combat',
+        tracks: [
+          { title: 'Legion - Prepare for Battle', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/aokiunivers/Legion - Prepare for Battle.mp3' },
+          { title: 'Yuuki - Enemy Straight Ahead', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/aokiunivers/Yuuki - Enemy Straight Ahead.mp3' },
+          { title: 'Jutsu - Emergency Reverse Propulsion', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/aokiunivers/Jutsu - Emergency Reverse Propulsion.mp3' },
+          { title: 'Jutsu - Warhead Protocol', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/aokiunivers/Jutsu - Warhead Protocol.mp3' },
+          { title: 'Jahaaka Combat', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers Deluxe/Jahaaka Combat.mp3' },
+          { title: 'Jahaaka Space Unit', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers Deluxe/Jahaaka Space Unit.mp3' },
+          { title: 'Trauma Team', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers Deluxe/Trauma Team.mp3' },
+          { title: 'Seeds - Quantum Research of 7', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/aokiunivers/Seeds - Quantum Research of 7.mp3' },
+          { title: 'Jutsu - Please Evacuate', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/aokiunivers/Jutsu - Please Evacuate.mp3' },
+          { title: 'ChaosMoonVerse', artist: 'P0LTERG3IIST', src: '/a-files/music/p0lterg3iist/chaosmoonverse.mp3' }
+        ]
+      },
+      fantome: {
+        name: 'Signal Fant\u00f4me',
+        desc: '\u00c9missions capt\u00e9es du vide',
+        tracks: [
+          { title: 'Enfant de la lune', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/aokiunivers/Aoki - Enfant de la lune.mp3' },
+          { title: 'Kanae - Soothing Medical Breath', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/aokiunivers/Kanae - Soothing Medical Breath.mp3' },
+          { title: 'Silence d\'Osaka', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers 4/Silence d\'Osaka.mp3' },
+          { title: 'Signal de l\'\u00e2me', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers Deluxe/Signal de l\'\u00e2me.mp3' },
+          { title: '\u00c9clat du silence', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers Deluxe/\u00c9clat du silence.mp3' },
+          { title: 'Nuit de Provence', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/neolyaofaokiunivers3/Nuit de Provence.mp3' },
+          { title: 'Murmure sur la Loire', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers Deluxe/Murmure sur la Loire.mp3' },
+          { title: 'Fleur d\'onde', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers Deluxe/Fleur d\'onde.mp3' },
+          { title: 'Deegle - Le rappel', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/aokiunivers/Deegle - Le rappel.mp3' },
+          { title: 'Peercom - Link Start', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/aokiunivers8/Peercom - Link Start.mp3' }
+        ]
       }
     };
 
-    const input = document.getElementById("input");
-    const output = document.getElementById("output");
+    /* ═══════════════════════════════
+       MATRIX RAIN BOOT ANIMATION
+    ═══════════════════════════════ */
+    function initMatrixRain() {
+      const ctx = matrixCvs.getContext('2d');
+      const W = matrixCvs.width  = matrixCvs.parentElement.clientWidth;
+      const H = matrixCvs.height = matrixCvs.parentElement.clientHeight;
+      const cols = Math.floor(W / 14);
+      const drops = Array.from({length: cols}, () => Math.random() * -50);
+      const chars = '\u30A2\u30A4\u30A6\u30A8\u30AA\u30AB\u30AD\u30AF\u30B1\u30B3\u30B5\u30B7\u30B9\u30BB\u30BD\u30BF\u30C1\u30C4\u30C6\u30C8\u30CA\u30CB\u30CC\u30CD\u30CE\u30CF\u30D2\u30D5\u30D8\u30DB\u30DE\u30DF\u30E0\u30E1\u30E2\u30E4\u30E6\u30E8\u30E9\u30EA\u30EB\u30EC\u30ED\u30EF\u30F2\u30F30123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ@#$%&';
 
-    input.addEventListener("keypress", async function(e) {
-      if (e.key === "Enter") {
-        const command = this.value;
-        this.value = "";
-        
-        output.innerHTML += `\n>> ${command}\n`;
-        const response = await terminal.handleCommand(command);
-        output.innerHTML += response + "\n";
-        
-        output.scrollTop = output.scrollHeight;
+      function draw() {
+        ctx.fillStyle = 'rgba(10,10,10,0.05)';
+        ctx.fillRect(0, 0, W, H);
+        ctx.fillStyle = '#00ff41';
+        ctx.font = '13px Share Tech Mono, monospace';
+
+        for (let i = 0; i < cols; i++) {
+          const ch = chars[Math.floor(Math.random() * chars.length)];
+          const x = i * 14;
+          const y = drops[i] * 14;
+
+          ctx.globalAlpha = Math.random() * 0.5 + 0.5;
+          ctx.fillText(ch, x, y);
+          ctx.globalAlpha = 1;
+
+          if (y > H && Math.random() > 0.975) drops[i] = 0;
+          drops[i]++;
+        }
+      }
+
+      const interval = setInterval(draw, 40);
+      return () => clearInterval(interval);
+    }
+
+    /* ═══════════════════════════════
+       TYPING ANIMATION
+    ═══════════════════════════════ */
+    function typeText(text, cls = '', speed = 20) {
+      return new Promise(resolve => {
+        const el = document.createElement('div');
+        el.className = 'line ' + cls;
+        termBody.appendChild(el);
+        let i = 0;
+        const iv = setInterval(() => {
+          if (i < text.length) {
+            el.textContent += text[i];
+            i++;
+            termBody.scrollTop = termBody.scrollHeight;
+          } else {
+            clearInterval(iv);
+            resolve(el);
+          }
+        }, speed);
+      });
+    }
+
+    function addLine(text, cls) {
+      cls = cls || '';
+      const el = document.createElement('div');
+      el.className = 'line ' + cls;
+      el.textContent = text;
+      termBody.appendChild(el);
+      termBody.scrollTop = termBody.scrollHeight;
+      return el;
+    }
+
+    function addHTML(html, cls) {
+      cls = cls || '';
+      const el = document.createElement('div');
+      el.className = 'line ' + cls;
+      el.innerHTML = html;
+      termBody.appendChild(el);
+      termBody.scrollTop = termBody.scrollHeight;
+      return el;
+    }
+
+    function addBlank() { addLine(''); }
+
+    function wait(ms) { return new Promise(function(r) { setTimeout(r, ms); }); }
+
+    /* ═══════════════════════════════
+       PROGRESS BAR ANIMATION
+    ═══════════════════════════════ */
+    function showProgress(label, duration) {
+      duration = duration || 2000;
+      return new Promise(function(resolve) {
+        var wrapper = document.createElement('div');
+        wrapper.className = 'line';
+        wrapper.innerHTML = label + ' <span class="progress-bar-container"><span class="progress-bar-fill" style="width:0%"></span></span> <span class="pct">0%</span>';
+        termBody.appendChild(wrapper);
+        termBody.scrollTop = termBody.scrollHeight;
+
+        var fill = wrapper.querySelector('.progress-bar-fill');
+        var pct  = wrapper.querySelector('.pct');
+        var p = 0;
+        var step = 30;
+        var inc  = 100 / (duration / step);
+
+        var iv = setInterval(function() {
+          p = Math.min(100, p + inc * (0.5 + Math.random()));
+          fill.style.width = p + '%';
+          pct.textContent = Math.floor(p) + '%';
+          termBody.scrollTop = termBody.scrollHeight;
+          if (p >= 100) {
+            clearInterval(iv);
+            pct.textContent = '100% \u2713';
+            pct.style.color = 'var(--term-green)';
+            resolve();
+          }
+        }, step);
+      });
+    }
+
+    /* ═══════════════════════════════
+       BOOT SEQUENCE
+    ═══════════════════════════════ */
+    async function bootSequence() {
+      var stopRain = initMatrixRain();
+
+      await wait(2500);
+      stopRain();
+      bootMatrix.style.display = 'none';
+
+      // Power-on flash
+      glitchOverlay.classList.add('flash');
+      screenContent.style.display = 'flex';
+
+      await wait(400);
+
+      // ASCII Header
+      var ascii = '\n ██████╗  ██████╗ ██████╗  ██████╗ ██████╗ \n ██╔══██╗██╔═══██╗██╔══██╗██╔════╝██╔═══██╗\n ██████╔╝██║   ██║██████╔╝██║     ██║   ██║\n ██╔══██╗██║   ██║██╔══██╗██║     ██║   ██║\n ██║  ██║╚██████╔╝██████╔╝╚██████╗╚██████╔╝\n ╚═╝  ╚═╝ ╚═════╝ ╚═════╝  ╚═════╝ ╚═════╝\n    INDUSTRIES (TM) UNIFIED OPERATING SYSTEM';
+
+      addLine(ascii, 'ascii-art');
+      addBlank();
+      await typeText('COPYRIGHT 2075-2077 ROBCO INDUSTRIES', 'line-system', 25);
+      await typeText('TOUS DROITS R\u00c9SERV\u00c9S \u2014 LICENCE EXCLUSIVE ABRI-HIKARI', 'line-system', 25);
+      addBlank();
+      await typeText('\u25a0 Serveur : ABRI-HIKARI // Noeud 6', 'line-info', 18);
+      await typeText('\u25a0 Terminal : VentiStudio v4.2 [BUILD 2077.10.23]', 'line-info', 18);
+      addBlank();
+
+      // Boot checks
+      await typeText('Initialisation du syst\u00e8me...', '', 30);
+      await wait(300);
+
+      await showProgress('  [BIOS]      V\u00e9rification POST', 800);
+      await showProgress('  [M\u00c9MOIRE]   Test RAM 640K', 600);
+      await showProgress('  [DISQUES]   Scan lecteurs holodisk', 1000);
+      await showProgress('  [R\u00c9SEAU]    Connexion au r\u00e9seau de l\'Abri', 1200);
+      await showProgress('  [SIGNAUX]   Calibration antenne radio', 900);
+      await showProgress('  [S\u00c9CURIT\u00c9]  V\u00e9rification protocoles', 700);
+
+      addBlank();
+      await typeText('Tous les syst\u00e8mes sont op\u00e9rationnels.', 'line-success', 25);
+      addBlank();
+      addLine('\u2500'.repeat(60), 'line-system');
+      await typeText('ATTENTION : Vous acc\u00e9dez \u00e0 un terminal classifi\u00e9 de l\'Abri Hikari.', 'line-warn', 20);
+      await typeText('Toute utilisation non autoris\u00e9e sera signal\u00e9e au Superviseur.', 'line-warn', 20);
+      addLine('\u2500'.repeat(60), 'line-system');
+      addBlank();
+      await typeText('Tapez "help" pour afficher les commandes disponibles.', '', 25);
+      addBlank();
+
+      booted = true;
+      bootTime = Date.now();
+      cmdInput.focus();
+      startClock();
+    }
+
+    /* ═══════════════════════════════
+       CLOCK
+    ═══════════════════════════════ */
+    function startClock() {
+      setInterval(function() {
+        var d = new Date();
+        clockEl.textContent = d.toLocaleTimeString('fr-FR', {hour:'2-digit', minute:'2-digit', second:'2-digit'});
+      }, 1000);
+    }
+
+    /* ═══════════════════════════════
+       NOISE CANVAS
+    ═══════════════════════════════ */
+    function initNoise() {
+      var noise = $('crtNoise');
+      var cvs = document.createElement('canvas');
+      cvs.width = 256; cvs.height = 256;
+      cvs.style.width = '100%'; cvs.style.height = '100%';
+      noise.appendChild(cvs);
+      var ctx = cvs.getContext('2d');
+
+      function drawNoise() {
+        var img = ctx.createImageData(256, 256);
+        for (var i = 0; i < img.data.length; i += 4) {
+          var v = Math.random() * 255;
+          img.data[i] = img.data[i+1] = img.data[i+2] = v;
+          img.data[i+3] = 12;
+        }
+        ctx.putImageData(img, 0, 0);
+        requestAnimationFrame(drawNoise);
+      }
+      drawNoise();
+    }
+
+    /* ═══════════════════════════════
+       DATA: FREQUENCES
+    ═══════════════════════════════ */
+    var frequencies = {
+      "415.67": {
+        name: "Canal Superviseur",
+        strength: "\u2588\u2588\u2588\u2588\u2591\u2591 67%",
+        content: "Je suis Hikari Umaishi, cr\u00e9ateur de l'Umaishi Corp et de VentiStudio.\nJ'ai cr\u00e9\u00e9 VentiStudio qui est comme mon fils pour moi.\nCe projet repr\u00e9sente tout ce en quoi je crois : la cr\u00e9ativit\u00e9, la communaut\u00e9, l'art."
+      },
+      "379.06": {
+        name: "Signal Fant\u00f4me",
+        strength: "\u2588\u2591\u2591\u2591\u2591\u2591 12%",
+        content: "[SIGNAL PERDU]\n\n... bruit blanc ...\n... interf\u00e9rences d\u00e9tect\u00e9es ...\n... source non identifiable ...\n\nLe signal semble provenir d'au-del\u00e0 du p\u00e9rim\u00e8tre de s\u00e9curit\u00e9.\nImpossible de trianguler la position de l'\u00e9metteur."
+      },
+      "844.16": {
+        name: "Fr\u00e9quence Brouill\u00e9e",
+        strength: "\u2588\u2588\u2591\u2591\u2591\u2591 33%",
+        content: "L\u0336e\u0337 \u0335s\u0338i\u0335g\u0337n\u0334a\u0337l\u0335 \u0338s\u0337e\u0337m\u0338b\u0335l\u0335e\u0337 \u0338b\u0338r\u0337o\u0335u\u0336i\u0336l\u0336l\u0338\u00e9\u0338\n\n\u2588\u2593\u2592\u2591 DONN\u00c9ES CORROMPUES \u2591\u2592\u2593\u2588\n\n... fragments r\u00e9cup\u00e9r\u00e9s ...\n... le m\u2588nde n'e\u2588t pa\u2588 ce qu'il \u2588emble ...\n... les p\u2588rtes ne s'ouvr\u2588ront ja\u2588ais ...\n\n[FIN DE TRANSMISSION]"
+      },
+      "107.07": {
+        name: "Radio Vinci Autoroute",
+        strength: "\u2588\u2588\u2588\u2591\u2591\u2591 50%",
+        content: "\u2501\u2501\u2501 HISTORIQUE DE TRANSMISSION \u2501\u2501\u2501\n\u2501\u2501\u2501\u2501 Radio Vinci Autoroute \u2501\u2501\u2501\u2501\u2501\u2501\n\n\u25b8 TRANSMISSION D'URGENCE \u2014 Le jour o\u00f9 tout commence\n\n[Une musique de fond est brusquement coup\u00e9e, un bourdonnement\nd'alerte suivi d'une voix calme, mais urgente.]\n\nPr\u00e9sentateur :\n\u00ab Radio Vinci Autoroute. Nous vous interrompons pour une\nannonce de la plus haute importance. Il s'agit d'une situation\nd'urgence nationale. Une attaque nucl\u00e9aire est actuellement\nen cours. Oui, vous avez bien entendu : une attaque nucl\u00e9aire. \u00bb\n\n\u00ab Si vous \u00eates en voiture, il est imp\u00e9ratif de vous rendre\nimm\u00e9diatement vers le plus proche abri ou refuge. \u00c9vitez de\nvous rendre en ville. Restez \u00e0 l'\u00e9cart des zones susceptibles\nd'\u00eatre touch\u00e9es. \u00bb\n\n\u00ab La priorit\u00e9 est de se prot\u00e9ger des effets imm\u00e9diats : les\nradiations, les retomb\u00e9es, et le souffle des explosions. \u00bb\n\n\u00ab Restez \u00e0 l'\u00e9coute de la fr\u00e9quence 107.7. Nous sommes l\u00e0\npour vous. Prenez soin de vous et de vos proches. \u00bb\n\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\n\u25b8 MESSAGE PR\u00c9ENREGISTR\u00c9 \u2014 D\u00e9but le 23 octobre 2077\n\n\u00ab Vous \u00e9coutez la Radio Vinci Autoroute. Ce message est\npr\u00e9enregistr\u00e9. Ce message a d\u00e9but\u00e9 le 23 octobre 2077.\nNous sommes actuellement le 23 octobre 2127. Ce message\nconstitue notre derni\u00e8re diffusion. L'antenne sera bient\u00f4t\nhors service. \u00bb\n\n\u00ab Les autorit\u00e9s confirment que l'impact des retomb\u00e9es\nnucl\u00e9aires est d\u00e9sormais irr\u00e9versible pour cette zone. \u00bb\n\n\u00ab L'antenne radio cessera de diffuser dans quelques minutes.\nNous vous laissons sur ces derni\u00e8res paroles, dans l'espoir\nque vous trouverez la force n\u00e9cessaire pour affronter ce qui\nreste du monde. \u00bb\n\n[Voix pr\u00e9enregistr\u00e9e, murmure presque inaudible :]\n\u00ab Ceci est la fin. \u00bb\n\n[Gr\u00e9sillement... silence.]"
+      },
+      "256.32": {
+        name: "Balise de d\u00e9tresse Abri-12",
+        strength: "\u2588\u2591\u2591\u2591\u2591\u2591 8%",
+        content: "[BALISE AUTOMATIQUE \u2014 ABRI-12]\n\n... SOS ... SOS ... SOS ...\nSyst\u00e8mes vitaux d\u00e9faillants.\nPopulation restante : INCONNUE\nNiveau de radiation interne : CRITIQUE\n\n... si quelqu'un re\u00e7oit ce message ...\n... les portes sont bloqu\u00e9es ...\n... nous ne pouvons pas sortir ...\n\n[R\u00c9P\u00c9TITION AUTOMATIQUE \u2014 JOUR 18,263]"
+      },
+      "666.00": {
+        name: "??? \u2014 NE PAS \u00c9COUTER",
+        strength: "\u2588\u2588\u2588\u2588\u2588\u2588 100%",
+        content: "\n \u2584\u2584\u2584\u2584\u2584\u2584\u2584\u2584\u2584\u2584\u2584\u2584\u2584\u2584\u2584\u2584\u2584\u2584\u2584\u2584\u2584\u2584\u2584\u2584\u2584\u2584\u2584\u2584\u2584\u2584\u2584\u2584\u2584\n \u2588 AVERTISSEMENT : ANOMALIE D\u00c9TECT\u00c9E \u2588\n \u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580\u2580\n\nIls nous regardent.\nIls ont toujours regard\u00e9.\nLes murs de l'Abri ne prot\u00e8gent de rien.\n\nT\u0336\u0323\u032b\u0336\u030b\u0323o\u0337\u0323\u032b\u0337\u030b\u032b\u0323u\u0334\u0323\u032b\u0337\u032b\u0334\u032b\u0323t\u0334\u0323\u032b \u0337\u0323 e\u0335\u0336\u032b\u032b\u0323s\u0336\u032b\u0323t\u0338\u032b\u0318 \u0337\u032b\u0323f\u0336\u0323\u032b\u0323a\u0336\u0323\u032b\u0336\u0323u\u0337\u0323\u032b\u0323x\u0336\u032b.\u0338\u032b\u0323\n\n[CORRUPTION M\u00c9MOIRE \u2014 SECTEUR 0xFF]\n[FIN DE SIGNAL]"
+      }
+    };
+
+    /* ═══════════════════════════════
+       DATA: DISQUES
+    ═══════════════════════════════ */
+    var disks = {
+      "1": { label: "VIDE", status: "fonctionnel", content: "Le disque est vide. Aucune donn\u00e9e utilisable n'a \u00e9t\u00e9 trouv\u00e9e." },
+      "2": { label: "CORROMPU", status: "endommag\u00e9", content: "ERR 0xFFF21012 : Donn\u00e9es r\u00e9siduelles d\u00e9tect\u00e9es.\n\nV@$\u00a4\u00a4S#%5\u00a4 l'\u00a4@\u00a4$\u00a4# \u00a4@$ \u00a4#%\\\\ p\u00a4@$\u00a4\u00a4@ $\u00a4\u00a4#% bien#%- \u00a4@$ \u00a4#%\\\\ univers\n...\n...\n\u00a4\u00a4\u00a4STOP : multiples erreurs d\u00e9tect\u00e9es.\nERR 0xFA770171 : erreur de segmentation.\nERR 0x0D890102 : red\u00e9marrage secteur incorrect/corrompu.\nERR 0xFFF11011 : erreur m\u00e9moire.\nERR 0xC0001011 : erreur m\u00e9moire.\nERR 0x00001001 : erreur critique.\n\n[LECTURE INTERROMPUE \u2014 DONN\u00c9ES IRR\u00c9CUP\u00c9RABLES]" },
+      "3": { label: "ILLISIBLE", status: "corrompu", content: "Ce disque est corrompu et illisible.\n\n\u2591\u2592\u2593\u2588 SECTEURS ENDOMMAG\u00c9S \u2588\u2593\u2592\u2591\nTentatives de r\u00e9cup\u00e9ration : 47/47 \u00e9chou\u00e9es.\nRecommandation : remplacement du support physique." },
+      "4": { label: "CLASSIFI\u00c9", status: "verrouill\u00e9", content: "...V\u00e9rification de l'autorisation..........\n...AUTORISATION ACCORD\u00c9E.................\n\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502  DOCUMENT CLASSIFI\u00c9 \u2014 MENTION RB-2851   \u2502\n\u2502  LECTURE R\u00c9SERV\u00c9E AU PERSONNEL AUTORIS\u00c9  \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n\nToute lecture \u00ab accidentelle \u00bb de ce document ne saurait\n\u00eatre tol\u00e9r\u00e9e. Une telle infraction se solderait par un\nrenvoi imm\u00e9diat, assorti d'un interrogatoire pouss\u00e9 men\u00e9\npar nos amis d'en bas.\n\n\u2501\u2501\u2501 CONTENU \u2501\u2501\u2501\n\nAoki Univers est le plus gros projet de VentiStudio,\ncr\u00e9\u00e9 par Hikari Umaishi. Cette histoire fait l'objet\nd'un travail tr\u00e8s intense, ce qui impacte fortement les\nautres projets. Mais tout semble rouler comme sur des\nroulettes.\n\n[FIN DU DOCUMENT CLASSIFI\u00c9]" },
+      "5": { label: "LOG SYST\u00c8ME", status: "fonctionnel", content: "Les terminaux ont \u00e9t\u00e9 coup\u00e9s.\n\nVeuillez v\u00e9rifier que tout le mat\u00e9riel et les logiciels\nn\u00e9cessaires ont \u00e9t\u00e9 correctement install\u00e9s.\n\nSi le probl\u00e8me persiste, contactez votre centre\nd'assistance RobCo le plus proche.\n\nNote : le r\u00e9seau inter-abris est hors service depuis\nle 23 octobre 2077. Ne comptez pas sur une assistance\next\u00e9rieure." },
+      "6": { label: "JOURNAL SUPERVISEUR", status: "fonctionnel", content: "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n    JOURNAL DU SUPERVISEUR\n        HIKARI UMAISHI\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\n\u25b8 Jour 1 \u2014 Une nouvelle \u00e8re\n\n\u00ab Je suis le Superviseur. Ces mots r\u00e9sonnent dans ma\nt\u00eate comme un \u00e9cho d'un pass\u00e9 que je m'efforce d\u00e9j\u00e0 de\ncomprendre. Je n'ai jamais demand\u00e9 \u00e0 porter cette\nresponsabilit\u00e9, mais le monde tel que nous le connaissions\nn'existe plus. Et avec lui, les choix faciles. \u00bb\n\n\u25b8 Jour 14 \u2014 Les fondations de l'Abri\n\nJ'ai \u00e9t\u00e9 recrut\u00e9 par un programme de survie. Mon r\u00f4le :\ngarantir que l'humanit\u00e9 conserve sa m\u00e9moire, ses r\u00e9cits,\nses espoirs. Ainsi naquit l'id\u00e9e de l'Abri Hikari, un\nrefuge pour les corps ET pour les esprits.\n\nVentiStudio fut la pierre angulaire de cet abri.\n\n\u25b8 Jour 87 \u2014 Le poids du titre\n\n\u00ab \u00catre superviseur, c'est jongler avec des choix\nimpossibles. Qui survit ? Qui est sacrifi\u00e9 ? Tout cela\np\u00e8se lourd, mais l'histoire en marche ne s'arr\u00eate pas\npour une seule \u00e2me. \u00bb\n\n\u25b8 Jour 365 \u2014 Un an apr\u00e8s la chute\n\nL'abri tient bon. Nous avons transform\u00e9 nos archives\nen biblioth\u00e8que vivante. Ce matin, j'ai pris une\nd\u00e9cision : nous devons r\u00e9\u00e9merger. Nous ne pouvons pas\nseulement survivre ; nous devons vivre.\n\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n   QUI EST HIKARI UMAISHI ?\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\nHikari Umaishi n'est pas seulement un superviseur.\nIl est un r\u00eaveur, un b\u00e2tisseur, un gardien des r\u00e9cits.\nLa lumi\u00e8re qu'il porte en lui brille encore dans les\ncorridors sombres de l'abri, et peut-\u00eatre, un jour,\ndans le ciel ravag\u00e9 d'un monde reconstruit.\n\n[FIN DU JOURNAL]" }
+    };
+
+    /* ═══════════════════════════════
+       DATA: PROGRAMMES
+    ═══════════════════════════════ */
+    var programs = {
+      "ventistudio.exe": { url: "https://ventistudio.eu", desc: "Acc\u00e9der au site VentiStudio" },
+      "discord.exe":     { url: "https://discord.gg/BupfZHSBbC", desc: "Rejoindre le serveur Discord" },
+      "steam.exe":       { url: "https://steamcommunity.com/groups/VentiStudio", desc: "Communaut\u00e9 Steam" },
+      "github.exe":      { url: "https://github.com/ventistudio/ventistudio.eu", desc: "D\u00e9p\u00f4t GitHub" },
+      "aoki.exe":        { url: "https://ventistudio.eu/aokiunivers", desc: "Lore Aoki Univers" },
+      "news.exe":        { url: "https://ventistudio.eu/news", desc: "Gazette d'Opastudien" },
+      "wiki.exe":        { url: "https://ventistudio.eu/wiki", desc: "Wiki VentiStudio" }
+    };
+
+    /* ═══════════════════════════════
+       COMMANDS
+    ═══════════════════════════════ */
+    var commands = {
+
+      help: async function(args) {
+        var page = args[0] ? parseInt(args[0]) : 1;
+        addLine('\u2500'.repeat(55), 'line-system');
+        addLine('  COMMANDES DISPONIBLES \u2014 TERMINAL ABRI-HIKARI', 'line-header');
+        addLine('\u2500'.repeat(55), 'line-system');
+        addBlank();
+
+        var allCmdsList = [
+          ['\u2501 NAVIGATION & SYST\u00c8ME \u2501', ''],
+          ['help [page]',        'Affiche ce message d\'aide (2 pages)'],
+          ['clear',              'Effacer l\'\u00e9cran du terminal'],
+          ['exit',               'Retour au site principal'],
+          ['reboot',             'Red\u00e9marrer le terminal'],
+          ['color <th\u00e8me>',     'Changer la couleur (green/amber/blue/red/white)'],
+          ['neofetch',           'Infos syst\u00e8me avanc\u00e9es'],
+          ['whoami',             'Identit\u00e9 de l\'utilisateur courant'],
+          ['date',               'Date et heure dans le Wasteland'],
+          ['uptime',             'Temps depuis le dernier red\u00e9marrage'],
+          ['', ''],
+          ['\u2501 SIGNAUX & RADIO \u2501', ''],
+          ['scan',               'Scanner les fr\u00e9quences radio'],
+          ['decrypt <freq>',     'D\u00e9crypter un signal radio'],
+          ['morse <texte>',      'Convertir du texte en morse'],
+          ['ping <abri>',        'Ping un abri distant (ex: ping 12)'],
+          ['radio',              'Lecteur musical (5 stations)'],
+          ['radio list',         'Voir les stations disponibles'],
+        ];
+
+        var allCmdsList2 = [
+          ['\u2501 DONN\u00c9ES & ARCHIVES \u2501', ''],
+          ['disk',               'Lister les holodisks'],
+          ['read <n>',           'Lire un holodisk'],
+          ['program',            'Programmes install\u00e9s'],
+          ['run <prog>',         'Ex\u00e9cuter un programme'],
+          ['log',                'Journal d\'acc\u00e8s du terminal'],
+          ['delete',             'Purger les donn\u00e9es'],
+          ['encrypt <texte>',    'Chiffrer un message'],
+          ['', ''],
+          ['\u2501 ABRI & EXPLORATION \u2501', ''],
+          ['status',             '\u00c9tat des syst\u00e8mes de l\'Abri'],
+          ['map',                'Carte de l\'Abri Hikari'],
+          ['open',               'Tenter d\'ouvrir le sas'],
+          ['inventory',          'Inventaire de survie'],
+          ['weather',            'M\u00e9t\u00e9o et radiations du Wasteland'],
+          ['countdown',          'Compte \u00e0 rebours myst\u00e9rieux'],
+          ['', ''],
+          ['\u2501 MINI-JEUX & DIVERS \u2501', ''],
+          ['hack',               'Mini-jeu de hacking RobCo'],
+          ['dice [n]',           'Lancer des d\u00e9s (ex: dice 3)'],
+          ['8ball <question>',   'Boule magique post-apocalyptique'],
+          ['echo <texte>',       'R\u00e9p\u00e9ter un message'],
+          ['credits',            'Cr\u00e9dits de VentiStudio'],
+          ['admin',              'Acc\u00e8s administrateur...'],
+          ['fallout',            'Site officiel Fallout'],
+        ];
+
+        var list = (page === 2) ? allCmdsList2 : allCmdsList;
+        list.forEach(function(c) {
+          if (c[0] === '' && c[1] === '') { addBlank(); return; }
+          if (c[1] === '') { addLine('  ' + c[0], 'line-header'); return; }
+          addHTML('  <span style="color:var(--term-cyan);min-width:200px;display:inline-block">' + c[0].padEnd(22) + '</span> ' + c[1]);
+        });
+        addBlank();
+        addLine('\u2500'.repeat(55), 'line-system');
+        if (page === 1) {
+          addLine('  Page 1/2 \u2014 Tapez "help 2" pour plus de commandes', 'line-system');
+        } else {
+          addLine('  Page 2/2 \u2014 Tapez "help" pour la page 1', 'line-system');
+        }
+        addLine('  \u2191\u2193 = historique | Tab = auto-compl\u00e9tion | Ctrl+L = clear', 'line-system');
+        addLine('\u2500'.repeat(55), 'line-system');
+      },
+
+      scan: async function() {
+        addLine('Initialisation du scan radio...', 'line-info');
+        await wait(500);
+
+        addHTML('Calibration antenne <span class="signal-bars"><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span></span>');
+        await wait(1500);
+
+        await showProgress('Balayage 100-900 MHz', 3000);
+        addBlank();
+
+        addLine('\u2501\u2501\u2501 SIGNAUX D\u00c9TECT\u00c9S \u2501\u2501\u2501', 'line-header');
+        addBlank();
+
+        for (var freq in frequencies) {
+          if (frequencies.hasOwnProperty(freq)) {
+            var data = frequencies[freq];
+            await wait(200);
+            var color = data.strength.indexOf('100%') !== -1 ? 'var(--term-red)' :
+                            data.strength.indexOf('8%') !== -1 ? 'var(--term-amber)' :
+                            'var(--term-green)';
+            addHTML('  <span style="color:var(--term-cyan)">' + freq + ' MHz</span>  \u2502  ' + data.strength + '  \u2502  <span style="color:' + color + '">' + data.name + '</span>');
+          }
+        }
+
+        addBlank();
+        addLine('Scan termin\u00e9. 6 fr\u00e9quences d\u00e9tect\u00e9es.', 'line-success');
+        addLine('Utilisez "decrypt <fr\u00e9quence>" pour d\u00e9coder.', 'line-system');
+      },
+
+      decrypt: async function(args) {
+        var freq = args[0];
+        if (!freq) {
+          addLine('Usage : decrypt <fr\u00e9quence>', 'line-warn');
+          addLine('Exemple : decrypt 415.67', 'line-system');
+          return;
+        }
+        if (!frequencies[freq]) {
+          addLine('Fr\u00e9quence ' + freq + ' MHz introuvable.', 'line-error');
+          addLine('Utilisez "scan" pour voir les fr\u00e9quences disponibles.', 'line-system');
+          return;
+        }
+
+        var sig = frequencies[freq];
+        addLine('Accrochage sur ' + freq + ' MHz \u2014 ' + sig.name + '...', 'line-info');
+        await showProgress('D\u00e9cryptage du signal', 2500);
+
+        if (freq === '666.00') {
+          await wait(200);
+          addBlank();
+          await typeText(sig.content, 'line-corrupted', 10);
+          addBlank();
+          addLine('[ANOMALIE SYST\u00c8ME \u2014 RED\u00c9MARRAGE RECOMMAND\u00c9]', 'line-error');
+
+          glitchOverlay.style.opacity = '0.3';
+          glitchOverlay.style.background = 'var(--term-red)';
+          await wait(100);
+          glitchOverlay.style.opacity = '0';
+          glitchOverlay.style.background = '';
+        } else {
+          addBlank();
+          addLine('\u2501\u2501\u2501 TRANSMISSION : ' + sig.name.toUpperCase() + ' \u2501\u2501\u2501', 'line-header');
+          addLine('Force du signal : ' + sig.strength, 'line-system');
+          addBlank();
+          await typeText(sig.content, '', 8);
+          addBlank();
+          addLine('[FIN DE TRANSMISSION]', 'line-system');
+        }
+      },
+
+      disk: async function() {
+        addLine('\u2501\u2501\u2501 HOLODISKS DISPONIBLES \u2501\u2501\u2501', 'line-header');
+        addBlank();
+        for (var num in disks) {
+          if (disks.hasOwnProperty(num)) {
+            var d = disks[num];
+            var statusColor = d.status === 'fonctionnel' ? 'var(--term-green)' :
+                              d.status === 'verrouill\u00e9' ? 'var(--term-amber)' :
+                              'var(--term-red)';
+            addHTML('  Disque ' + num + '  \u2502  ' + d.label.padEnd(20) + '  \u2502  <span style="color:' + statusColor + '">[' + d.status.toUpperCase() + ']</span>');
+          }
+        }
+        addBlank();
+        addLine('Utilisez "read <num\u00e9ro>" pour lire un disque.', 'line-system');
+      },
+
+      read: async function(args) {
+        var num = args[0];
+        if (!num) {
+          addLine('Usage : read <num\u00e9ro>', 'line-warn');
+          addLine('Exemple : read 4', 'line-system');
+          return;
+        }
+        if (!disks[num]) {
+          addLine('Disque ' + num + ' non trouv\u00e9.', 'line-error');
+          return;
+        }
+
+        var d = disks[num];
+        addLine('Insertion de l\'holodisk ' + num + ' [' + d.label + ']...', 'line-info');
+        await showProgress('Lecture des donn\u00e9es', 1800);
+        addBlank();
+
+        var cls = d.status === 'corrompu' ? 'line-corrupted' :
+                    d.status === 'endommag\u00e9' ? 'line-error' :
+                    d.status === 'verrouill\u00e9' ? 'line-classified' : '';
+
+        await typeText(d.content, cls, 6);
+        addBlank();
+      },
+
+      program: async function() {
+        addLine('\u2501\u2501\u2501 PROGRAMMES INSTALL\u00c9S \u2501\u2501\u2501', 'line-header');
+        addBlank();
+        for (var name in programs) {
+          if (programs.hasOwnProperty(name)) {
+            var p = programs[name];
+            addHTML('  <span style="color:var(--term-cyan)">' + name.padEnd(22) + '</span> ' + p.desc);
+          }
+        }
+        addBlank();
+        addLine('Utilisez "run <programme>" pour ex\u00e9cuter.', 'line-system');
+      },
+
+      run: async function(args) {
+        var prog = args[0] ? args[0].toLowerCase() : '';
+        if (!prog) {
+          addLine('Usage : run <programme>', 'line-warn');
+          return;
+        }
+        if (!programs[prog]) {
+          addLine('Programme "' + prog + '" non trouv\u00e9.', 'line-error');
+          addLine('Utilisez "program" pour voir la liste.', 'line-system');
+          return;
+        }
+
+        addLine('Lancement de ' + prog + '...', 'line-info');
+        await showProgress('Chargement', 1200);
+        addLine('Redirection vers ' + programs[prog].desc + '...', 'line-success');
+        await wait(800);
+        window.location.href = programs[prog].url;
+      },
+
+      status: async function() {
+        addLine('\u2501\u2501\u2501 \u00c9TAT DES SYST\u00c8MES \u2014 ABRI HIKARI \u2501\u2501\u2501', 'line-header');
+        addBlank();
+
+        var systems = [
+          ['R\u00e9acteur principal',    'EN LIGNE',     'green'],
+          ['Filtration d\'air',     'OP\u00c9RATIONNEL', 'green'],
+          ['Purification d\'eau',   'OP\u00c9RATIONNEL', 'green'],
+          ['Porte du sas',          'VERROUILL\u00c9E',  'amber'],
+          ['R\u00e9seau inter-abris',    'HORS SERVICE', 'red'],
+          ['Antenne radio',         'D\u00c9GRAD\u00c9',      'amber'],
+          ['G\u00e9n\u00e9rateur secours',    'STANDBY',      'amber'],
+          ['Archive num\u00e9rique',     'EN LIGNE',     'green'],
+          ['D\u00e9fenses p\u00e9rim\u00e8tre',    'ACTIVES',      'green'],
+          ['Infirmerie',            'OP\u00c9RATIONNEL', 'green'],
+        ];
+
+        for (var i = 0; i < systems.length; i++) {
+          var s = systems[i];
+          var c = s[2] === 'green' ? 'var(--term-green)' :
+                    s[2] === 'amber' ? 'var(--term-amber)' : 'var(--term-red)';
+          addHTML('  ' + s[0].padEnd(28) + ' <span style="color:' + c + '">[' + s[1] + ']</span>');
+          await wait(100);
+        }
+
+        addBlank();
+        addLine('Population de l\'Abri : 247 r\u00e9sidents', 'line-info');
+        addLine('Jour depuis la Grande Guerre : ~18,263', 'line-info');
+        addLine('Niveau de radiation externe : 42 mSv/h', 'line-warn');
+        addLine('R\u00e9serves alimentaires : 73 jours', 'line-warn');
+        addBlank();
+      },
+
+      map: async function() {
+        var mapArt = '\n \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n \u2502                  ABRI HIKARI                      \u2502\n \u2502               Plan \u2014 Niveau 1                     \u2502\n \u251c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2524\n \u2502                                                   \u2502\n \u2502   \u250c\u2500\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510   \u2502\n \u2502   \u2502 SAS \u2502\u2500\u2500\u2500\u2502 HALL     \u2502\u2500\u2500\u2500\u2502 QUARTIERS       \u2502   \u2502\n \u2502   \u2502\u2588\u2588\u2588\u2588\u2588\u2502   \u2502 PRINCIPAL\u2502   \u2502 R\u00c9SIDENTIELS    \u2502   \u2502\n \u2502   \u2514\u2500\u2500\u252c\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518   \u2502\n \u2502      \u2502           \u2502                   \u2502            \u2502\n \u2502   \u250c\u2500\u2500\u2534\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510   \u2502\n \u2502   \u2502ARMUR\u2502   \u2502 TERMINAL \u2502   \u2502 INFIRMERIE      \u2502   \u2502\n \u2502   \u2502-RIE \u2502   \u2502 [VOUS]   \u2502   \u2502                 \u2502   \u2502\n \u2502   \u2514\u2500\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518   \u2502\n \u2502                  \u2502                                \u2502\n \u2502   \u250c\u2500\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510   \u2502\n \u2502   \u2502REACT\u2502   \u2502 ARCHIVES \u2502   \u2502 R\u00c9FECTOIRE      \u2502   \u2502\n \u2502   \u2502-EUR \u2502   \u2502 CULTURE  \u2502   \u2502 & CUISINE       \u2502   \u2502\n \u2502   \u2514\u2500\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518   \u2502\n \u2502                                                   \u2502\n \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518';
+        addLine(mapArt, 'ascii-art');
+        addBlank();
+        addLine('Vous \u00eates ici : TERMINAL \u2014 Niveau 1', 'line-info');
+      },
+
+      open: async function() {
+        addLine('Tentative d\'ouverture du sas principal...', 'line-info');
+        await showProgress('V\u00e9rification protocoles', 1500);
+        addBlank();
+
+        addLine('ERR0R: D00R_MECH@NISM_CORRUPT3D', 'line-error');
+        addLine('SYS7EM_FA1LURE : M\u00e9canisme hydraulique endommag\u00e9', 'line-error');
+        addLine('ATTEMPT_AB0RT3D : Verrouillage de s\u00e9curit\u00e9 activ\u00e9', 'line-error');
+        addBlank();
+        addLine('Le sas est verrouill\u00e9 depuis le 23/10/2077.', 'line-warn');
+        addLine('Contactez le Superviseur pour une autorisation manuelle.', 'line-system');
+      },
+
+      admin: async function() {
+        addLine('Acc\u00e8s aux donn\u00e9es priv\u00e9es du site...', 'line-info');
+        await showProgress('V\u00e9rification des accr\u00e9ditations', 2000);
+        addBlank();
+        addLine('ACC\u00c8S AUTORIS\u00c9 \u2014 Niveau de s\u00e9curit\u00e9 : SUPERVISEUR', 'line-success');
+        await wait(800);
+        addLine('Redirection vers le panneau d\'administration...', 'line-info');
+        await wait(500);
+        window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
+      },
+
+      fallout: async function() {
+        addLine('Connexion au r\u00e9seau Bethesda...', 'line-info');
+        await wait(1000);
+        addLine('Redirection...', 'line-success');
+        await wait(500);
+        window.location.href = 'https://fallout.bethesda.net';
+      },
+
+      clear: async function() {
+        termBody.innerHTML = '';
+        addLine('Terminal pr\u00eat.', 'line-system');
+      },
+
+      delete: async function() {
+        addLine('ATTENTION : Purge des donn\u00e9es en cours...', 'line-warn');
+        await showProgress('Effacement m\u00e9moire', 2000);
+
+        for (var i = 0; i < 8; i++) {
+          addLine('\u2588'.repeat(Math.floor(Math.random() * 50 + 10)), 'line-corrupted');
+          await wait(80);
+        }
+
+        termBody.innerHTML = '';
+        addBlank();
+        addLine('\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588', 'line-warn');
+        addLine('  TERMINAL PURG\u00c9 \u2014 AUCUNE DONN\u00c9E RESTANTE', 'line-warn');
+        addLine('\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588', 'line-warn');
+        addBlank();
+        addLine('Tapez "reboot" pour red\u00e9marrer le syst\u00e8me.', 'line-system');
+      },
+
+      exit: async function() {
+        addLine('D\u00e9connexion du terminal...', 'line-info');
+        await wait(500);
+
+        var screen = $('screenWrap');
+        screen.classList.add('power-off');
+        await wait(600);
+        window.location.href = '/';
+      },
+
+      reboot: async function() {
+        addLine('Red\u00e9marrage du terminal...', 'line-warn');
+        await wait(500);
+
+        var screen = $('screenWrap');
+        screen.classList.add('power-off');
+        await wait(600);
+        location.reload();
+      },
+
+      /* ═══════════════════════════════
+         COLOR THEME SWITCHER
+      ═══════════════════════════════ */
+      color: async function(args) {
+        var theme = args[0] ? args[0].toLowerCase() : '';
+        var valid = ['green', 'amber', 'blue', 'red', 'white'];
+        if (!theme || valid.indexOf(theme) === -1) {
+          addLine('Usage : color <th\u00e8me>', 'line-warn');
+          addLine('Th\u00e8mes : ' + valid.join(', '), 'line-system');
+          return;
+        }
+        var wrap = $('screenWrap');
+        valid.forEach(function(t) { wrap.classList.remove('theme-' + t); });
+        if (theme !== 'green') wrap.classList.add('theme-' + theme);
+
+        var led = $('powerLed');
+        var colors = { green: '#00ff41', amber: '#ffb000', blue: '#00bfff', red: '#ff4444', white: '#e0e0e0' };
+        led.style.background = colors[theme];
+        led.style.boxShadow = '0 0 10px ' + colors[theme] + ', 0 0 20px ' + colors[theme];
+
+        addLine('Th\u00e8me chang\u00e9 : ' + theme.toUpperCase(), 'line-success');
+        addLine('Les couleurs du terminal ont \u00e9t\u00e9 mises \u00e0 jour.', 'line-system');
+      },
+
+      /* ═══════════════════════════════
+         WHOAMI
+      ═══════════════════════════════ */
+      whoami: async function() {
+        addLine('\u2501\u2501\u2501 IDENTIFICATION UTILISATEUR \u2501\u2501\u2501', 'line-header');
+        addBlank();
+        addHTML('  Utilisateur    : <span style="color:var(--term-cyan)">root</span>');
+        addHTML('  Niveau acc\u00e8s  : <span style="color:var(--term-amber)">SUPERVISEUR</span>');
+        addHTML('  Terminal       : <span style="color:var(--term-cyan)">ABRI-HIKARI / Noeud 6</span>');
+        addHTML('  Session ID     : <span style="color:var(--term-green-dim)">' + Math.random().toString(36).substring(2, 10).toUpperCase() + '</span>');
+        addHTML('  Derni\u00e8re co.  : <span style="color:var(--term-green-dim)">23/10/2077 08:47:11</span>');
+        addHTML('  Tentatives     : <span style="color:var(--term-red)">4,892 \u00e9chou\u00e9es depuis la derni\u00e8re session</span>');
+        addBlank();
+      },
+
+      /* ═══════════════════════════════
+         DATE (IN-UNIVERSE)
+      ═══════════════════════════════ */
+      date: async function() {
+        var now = new Date();
+        var wastelandYear = now.getFullYear() + 51;
+        var months = ['Janvier','F\u00e9vrier','Mars','Avril','Mai','Juin','Juillet','Ao\u00fbt','Septembre','Octobre','Novembre','D\u00e9cembre'];
+        var days = ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
+        var daysSinceWar = Math.floor((now - new Date(2077, 9, 23)) / 86400000);
+
+        addLine('\u2501\u2501\u2501 HORODATAGE SYST\u00c8ME \u2501\u2501\u2501', 'line-header');
+        addBlank();
+        addHTML('  Date locale    : <span style="color:var(--term-cyan)">' + days[now.getDay()] + ' ' + now.getDate() + ' ' + months[now.getMonth()] + ' ' + wastelandYear + '</span>');
+        addHTML('  Heure          : <span style="color:var(--term-cyan)">' + now.toLocaleTimeString('fr-FR') + '</span>');
+        addHTML('  \u00c8re            : <span style="color:var(--term-amber)">Post-Grande Guerre</span>');
+        addHTML('  Jours \u00e9coul\u00e9s  : <span style="color:var(--term-red)">' + daysSinceWar.toLocaleString() + ' depuis le 23/10/2077</span>');
+        addBlank();
+      },
+
+      /* ═══════════════════════════════
+         UPTIME
+      ═══════════════════════════════ */
+      uptime: async function() {
+        var secs = Math.floor((Date.now() - bootTime) / 1000);
+        var h = Math.floor(secs / 3600);
+        var m = Math.floor((secs % 3600) / 60);
+        var s = secs % 60;
+        addLine('Uptime terminal : ' + h + 'h ' + m + 'm ' + s + 's', 'line-info');
+        addLine('Uptime Abri     : ~18,263 jours (estimation)', 'line-system');
+      },
+
+      /* ═══════════════════════════════
+         PING OTHER ABRIS
+      ═══════════════════════════════ */
+      ping: async function(args) {
+        var target = args[0];
+        if (!target) {
+          addLine('Usage : ping <abri>', 'line-warn');
+          addLine('Exemple : ping 12, ping hikari, ping robco', 'line-system');
+          return;
+        }
+
+        addLine('PING abri-' + target + '.vault-tec.net ...', 'line-info');
+        addBlank();
+
+        var abris = {
+          'hikari': { status: 'online', latency: function() { return Math.floor(Math.random() * 5 + 1); } },
+          '12':     { status: 'timeout', latency: function() { return -1; } },
+          '13':     { status: 'partial', latency: function() { return Math.floor(Math.random() * 800 + 200); } },
+          '76':     { status: 'online', latency: function() { return Math.floor(Math.random() * 150 + 50); } },
+          '101':    { status: 'offline', latency: function() { return -1; } },
+          '111':    { status: 'partial', latency: function() { return Math.floor(Math.random() * 2000 + 500); } },
+          'robco':  { status: 'online', latency: function() { return Math.floor(Math.random() * 20 + 2); } },
+        };
+
+        var info = abris[target.toLowerCase()];
+        var sent = 0, received = 0;
+
+        for (var i = 0; i < 4; i++) {
+          await wait(800);
+          sent++;
+          if (!info || info.status === 'offline') {
+            addLine('  R\u00e9ponse de abri-' + target + ' : D\u00e9lai d\u00e9pass\u00e9.', 'line-error');
+          } else if (info.status === 'timeout') {
+            addLine('  R\u00e9ponse de abri-' + target + ' : Pas de r\u00e9ponse (SOS en cours)', 'line-warn');
+          } else if (info.status === 'partial' && Math.random() > 0.5) {
+            addLine('  R\u00e9ponse de abri-' + target + ' : D\u00e9lai d\u00e9pass\u00e9.', 'line-error');
+          } else {
+            var lat = info ? info.latency() : Math.floor(Math.random() * 3000 + 500);
+            received++;
+            var latColor = lat < 100 ? 'var(--term-green)' : lat < 500 ? 'var(--term-amber)' : 'var(--term-red)';
+            addHTML('  64 octets depuis abri-' + target + ' : temps=<span style="color:' + latColor + '">' + lat + 'ms</span> TTL=64');
+          }
+        }
+
+        addBlank();
+        var loss = Math.round((1 - received / sent) * 100);
+        var lossColor = loss === 0 ? 'var(--term-green)' : loss < 75 ? 'var(--term-amber)' : 'var(--term-red)';
+        addHTML('  --- R\u00e9sum\u00e9 : ' + sent + ' envoy\u00e9s, ' + received + ' re\u00e7us, <span style="color:' + lossColor + '">' + loss + '% perte</span>');
+        addBlank();
+      },
+
+      /* ═══════════════════════════════
+         MORSE CODE
+      ═══════════════════════════════ */
+      morse: async function(args) {
+        var text = args.join(' ').toUpperCase();
+        if (!text) {
+          addLine('Usage : morse <texte>', 'line-warn');
+          return;
+        }
+        var morseMap = {
+          'A':'.-','B':'-...','C':'-.-.','D':'-..','E':'.','F':'..-.','G':'--.','H':'....','I':'..','J':'.---',
+          'K':'-.-','L':'.-..','M':'--','N':'-.','O':'---','P':'.--.','Q':'--.-','R':'.-.','S':'...','T':'-',
+          'U':'..-','V':'...-','W':'.--','X':'-..-','Y':'-.--','Z':'--..','0':'-----','1':'.----','2':'..---',
+          '3':'...--','4':'....-','5':'.....','6':'-....','7':'--...','8':'---..','9':'----.','?':'..--..','!':'-.-.--','.':'.-.-.-',',':', --..--',' ':' / '
+        };
+        var result = '';
+        for (var i = 0; i < text.length; i++) {
+          var ch = text[i];
+          result += (morseMap[ch] || '?') + ' ';
+        }
+        addLine('Texte original : ' + text, 'line-info');
+        addBlank();
+        await typeText('\u25b8 ' + result.trim(), 'line-success', 15);
+        addBlank();
+        addLine('[Transmission morse termin\u00e9e]', 'line-system');
+      },
+
+      /* ═══════════════════════════════
+         RADIO STATIC SOUND
+      ═══════════════════════════════ */
+      radio: async function(args) {
+        var sub = args[0] ? args[0].toLowerCase() : '';
+
+        // ── radio off ──
+        if (sub === 'off' || sub === 'stop') {
+          if (!radioPlaying) { addLine('La radio est d\u00e9j\u00e0 \u00e9teinte.', 'line-system'); return; }
+          stopRadio();
+          addLine('Radio d\u00e9sactiv\u00e9e.', 'line-system');
+          return;
+        }
+
+        // ── radio next ──
+        if (sub === 'next' || sub === 'skip') {
+          if (!radioPlaying) { addLine('La radio n\'est pas allum\u00e9e.', 'line-warn'); return; }
+          radioTrackIdx = (radioTrackIdx + 1) % radioStations[radioStation].tracks.length;
+          playRadioTrack();
+          showRadioNowPlaying();
+          return;
+        }
+
+        // ── radio prev ──
+        if (sub === 'prev') {
+          if (!radioPlaying) { addLine('La radio n\'est pas allum\u00e9e.', 'line-warn'); return; }
+          radioTrackIdx = (radioTrackIdx - 1 + radioStations[radioStation].tracks.length) % radioStations[radioStation].tracks.length;
+          playRadioTrack();
+          showRadioNowPlaying();
+          return;
+        }
+
+        // ── radio vol <0-100> ──
+        if (sub === 'vol' || sub === 'volume') {
+          var v = parseInt(args[1]);
+          if (isNaN(v) || v < 0 || v > 100) {
+            addLine('Usage : radio vol <0-100>', 'line-warn');
+            return;
+          }
+          radioVolume = v / 100;
+          if (radioAudio) radioAudio.volume = radioVolume;
+          var bars = Math.round(radioVolume * 20);
+          var volBar = '\u2588'.repeat(bars) + '\u2591'.repeat(20 - bars);
+          addHTML('  Volume : [<span style="color:var(--term-amber)">' + volBar + '</span>] ' + v + '%');
+          return;
+        }
+
+        // ── radio list ──
+        if (sub === 'list' || sub === 'stations') {
+          addLine('\u2501\u2501\u2501 STATIONS RADIO DISPONIBLES \u2501\u2501\u2501', 'line-header');
+          addBlank();
+          Object.keys(radioStations).forEach(function(key) {
+            var s = radioStations[key];
+            var active = (key === radioStation && radioPlaying) ? ' \u25c0 EN COURS' : '';
+            var cls = (key === radioStation && radioPlaying) ? 'line-info' : '';
+            addHTML('  <span style="color:var(--term-cyan)">' + key.padEnd(12) + '</span> ' + s.name + ' <span style="color:var(--term-green-dim)">\u2014 ' + s.desc + '</span><span style="color:var(--term-amber)">' + active + '</span>', cls);
+          });
+          addBlank();
+          addLine('Usage : radio <station> pour changer de station', 'line-system');
+          return;
+        }
+
+        // ── radio <station> ── switch station
+        if (sub && radioStations[sub]) {
+          radioStation = sub;
+          radioTrackIdx = 0;
+          if (radioPlaying) {
+            addLine('Changement de station...', 'line-info');
+            await showProgress('Syntonisation ' + radioStations[sub].name, 1200);
+            playRadioTrack();
+          } else {
+            await radioStartup();
+          }
+          showRadioNowPlaying();
+          return;
+        }
+
+        // ── radio (toggle or status) ──
+        if (!sub || sub === 'on' || sub === 'play') {
+          if (radioPlaying) {
+            showRadioStatus();
+            return;
+          }
+          await radioStartup();
+          return;
+        }
+
+        // ── radio tracks ── show playlist
+        if (sub === 'tracks' || sub === 'playlist') {
+          var st = radioStations[radioStation];
+          addLine('\u2501\u2501\u2501 ' + st.name.toUpperCase() + ' \u2014 PLAYLIST \u2501\u2501\u2501', 'line-header');
+          addBlank();
+          st.tracks.forEach(function(t, i) {
+            var marker = (i === radioTrackIdx && radioPlaying) ? ' \u25b6' : '  ';
+            var cls = (i === radioTrackIdx && radioPlaying) ? 'line-info' : '';
+            addHTML(marker + ' <span style="color:var(--term-green-dim)">' + String(i + 1).padStart(2, '0') + '.</span> <span style="color:var(--term-amber)">' + t.title + '</span> <span style="color:var(--term-green-dim)">\u2014 ' + t.artist + '</span>', cls);
+          });
+          addBlank();
+          return;
+        }
+
+        // ── unknown subcommand ──
+        addLine('Commande radio inconnue : ' + sub, 'line-error');
+        showRadioHelp();
+      },
+
+      /* ═══════════════════════════════
+         ENCRYPT MESSAGE
+      ═══════════════════════════════ */
+      encrypt: async function(args) {
+        var text = args.join(' ');
+        if (!text) {
+          addLine('Usage : encrypt <message>', 'line-warn');
+          return;
+        }
+        addLine('Chiffrement en cours...', 'line-info');
+        await showProgress('Algorithme ROT-13 + AES-256', 1800);
+        addBlank();
+
+        // ROT13 + hex representation
+        var rot13 = text.replace(/[a-zA-Z]/g, function(c) {
+          return String.fromCharCode((c <= 'Z' ? 90 : 122) >= (c = c.charCodeAt(0) + 13) ? c : c - 26);
+        });
+        var hex = '';
+        for (var i = 0; i < rot13.length; i++) {
+          hex += rot13.charCodeAt(i).toString(16).toUpperCase().padStart(2, '0') + ' ';
+        }
+
+        addLine('Message original :', 'line-system');
+        addLine('  ' + text, '');
+        addBlank();
+        addLine('Message chiffr\u00e9 (ROT-13) :', 'line-system');
+        addLine('  ' + rot13, 'line-info');
+        addBlank();
+        addLine('Repr\u00e9sentation hexad\u00e9cimale :', 'line-system');
+        addLine('  ' + hex.trim(), 'line-warn');
+        addBlank();
+        addLine('Cl\u00e9 de d\u00e9chiffrement : [CLASSIFI\u00c9E]', 'line-classified');
+      },
+
+      /* ═══════════════════════════════
+         INVENTORY
+      ═══════════════════════════════ */
+      inventory: async function() {
+        addLine('\u2501\u2501\u2501 INVENTAIRE DE SURVIE \u2014 ABRI HIKARI \u2501\u2501\u2501', 'line-header');
+        addBlank();
+
+        var items = [
+          { cat: 'ARMES', name: 'Pistolet laser 10mm', qty: 1, cond: '78%' },
+          { cat: 'ARMES', name: 'Batte de baseball (modifi\u00e9e)', qty: 1, cond: '92%' },
+          { cat: 'TENUE', name: 'Combinaison d\'Abri (bleue)', qty: 2, cond: '65%' },
+          { cat: 'TENUE', name: 'Pip-Boy 3000 Mark IV', qty: 1, cond: '100%' },
+          { cat: 'AIDE', name: 'Stimpak', qty: 12, cond: '\u2014' },
+          { cat: 'AIDE', name: 'RadAway', qty: 5, cond: '\u2014' },
+          { cat: 'AIDE', name: 'Eau purifi\u00e9e', qty: 8, cond: '\u2014' },
+          { cat: 'AIDE', name: 'Nuka-Cola', qty: 3, cond: '\u2014' },
+          { cat: 'DIVERS', name: 'Capsules (monnaie)', qty: 247, cond: '\u2014' },
+          { cat: 'DIVERS', name: 'Holodisks', qty: 6, cond: '\u2014' },
+          { cat: 'DIVERS', name: 'Cl\u00e9 de l\'Abri', qty: 1, cond: '\u2014' },
+          { cat: 'DIVERS', name: 'Gazette d\'Opastudien', qty: 14, cond: '\u2014' },
+          { cat: 'DIVERS', name: 'Figurine Bobblehead (Intelligence)', qty: 1, cond: '\u2014' },
+        ];
+
+        var lastCat = '';
+        items.forEach(function(item) {
+          if (item.cat !== lastCat) {
+            addBlank();
+            addLine('  \u25b8 ' + item.cat, 'line-header');
+            lastCat = item.cat;
+          }
+          var condColor = item.cond === '\u2014' ? 'var(--term-green-dim)' :
+                          parseInt(item.cond) > 75 ? 'var(--term-green)' :
+                          parseInt(item.cond) > 40 ? 'var(--term-amber)' : 'var(--term-red)';
+          addHTML('    ' + item.name.padEnd(38) + ' <span class="inv-qty">x' + item.qty + '</span> <span style="color:' + condColor + ';margin-left:12px">[' + item.cond + ']</span>');
+        });
+
+        addBlank();
+        addLine('Poids total : 42.7 / 200.0 kg', 'line-system');
+        addBlank();
+      },
+
+      /* ═══════════════════════════════
+         WEATHER / RADIATION
+      ═══════════════════════════════ */
+      weather: async function() {
+        addLine('Consultation des capteurs ext\u00e9rieurs...', 'line-info');
+        await showProgress('Analyse atmosph\u00e9rique', 2000);
+        addBlank();
+
+        var rad = Math.floor(Math.random() * 60 + 15);
+        var temp = Math.floor(Math.random() * 35 + 5);
+        var wind = Math.floor(Math.random() * 80 + 5);
+        var vis = Math.floor(Math.random() * 5 + 1);
+
+        var conditions = [
+          'Temp\u00eate de poussi\u00e8re radioactive',
+          'Ciel jaun\u00e2tre \u2014 retomb\u00e9es l\u00e9g\u00e8res',
+          'Brouillard toxique dense',
+          'Pluie acide intermittente',
+          'Calme relatif \u2014 visibilit\u00e9 r\u00e9duite',
+          'Orage \u00e9lectromagn\u00e9tique',
+          'Nuages de cendres en altitude',
+        ];
+        var cond = conditions[Math.floor(Math.random() * conditions.length)];
+
+        addLine('\u2501\u2501\u2501 M\u00c9T\u00c9O WASTELAND \u2501\u2501\u2501', 'line-header');
+        addBlank();
+
+        var weatherArt = '      .  *  .    *       .   *\n   *    .-""-.    .  *      .\n  .   /\u2592\u2592\u2592\u2592\u2592\u2592\\  .    .   *\n     |\u2592\u2592\u2592\u2592\u2592\u2592\u2592\u2592|   *    .\n  *  |\u2592\u2592\u2592\u2592\u2592\u2592\u2592\u2592| .   *     .\n   . \\______/  .   .  *\n  \u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591\u2591';
+        addLine(weatherArt, 'ascii-art');
+        addBlank();
+
+        var radColor = rad < 25 ? 'var(--term-green)' : rad < 45 ? 'var(--term-amber)' : 'var(--term-red)';
+        addHTML('  Condition      : <span style="color:var(--term-amber)">' + cond + '</span>');
+        addHTML('  Temp\u00e9rature    : <span style="color:var(--term-cyan)">' + temp + '\u00b0C</span>');
+        addHTML('  Vent           : <span style="color:var(--term-cyan)">' + wind + ' km/h</span>');
+        addHTML('  Visibilit\u00e9     : <span style="color:' + (vis < 3 ? 'var(--term-red)' : 'var(--term-amber)') + '">' + vis + ' km</span>');
+        addHTML('  Radiation      : <span style="color:' + radColor + '">' + rad + ' mSv/h</span>');
+        addBlank();
+        if (rad > 40) {
+          addLine('  \u26a0 DANGER : Sortie d\u00e9conseill\u00e9e sans tenue anti-radiation', 'line-error');
+        } else if (rad > 25) {
+          addLine('  \u26a0 PR\u00c9CAUTION : Exposition limit\u00e9e recommand\u00e9e', 'line-warn');
+        } else {
+          addLine('  \u2713 Niveau acceptable pour sortie br\u00e8ve', 'line-success');
+        }
+        addBlank();
+      },
+
+      /* ═══════════════════════════════
+         COUNTDOWN
+      ═══════════════════════════════ */
+      countdown: async function() {
+        addLine('\u2501\u2501\u2501 COMPTE \u00c0 REBOURS CLASSIFI\u00c9 \u2501\u2501\u2501', 'line-header');
+        addBlank();
+        addLine('Source : Secteur classifi\u00e9 0x7F \u2014 Origine inconnue', 'line-system');
+        addBlank();
+
+        // Countdown to a mysterious date (100 days from now)
+        var target = new Date();
+        target.setDate(target.getDate() + 100);
+        var diff = target - new Date();
+        var d = Math.floor(diff / 86400000);
+        var h = Math.floor((diff % 86400000) / 3600000);
+        var m = Math.floor((diff % 3600000) / 60000);
+        var s = Math.floor((diff % 60000) / 1000);
+
+        var countStr = d.toString().padStart(3, '0') + ':' + h.toString().padStart(2, '0') + ':' + m.toString().padStart(2, '0') + ':' + s.toString().padStart(2, '0');
+        addHTML('  <span class="countdown-display">' + countStr + '</span>');
+        addBlank();
+        addLine('     JOURS  HEURES  MIN  SEC', 'line-system');
+        addBlank();
+        addLine('Destination : \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588 [DONN\u00c9ES EFFAC\u00c9ES]', 'line-corrupted');
+        addLine('Objectif    : \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588 [ACC\u00c8S REFUS\u00c9]', 'line-corrupted');
+        addLine('Initiateur  : Superviseur H.U.', 'line-classified');
+        addBlank();
+        addLine('"Quand le compteur atteindra z\u00e9ro, les portes s\'ouvriront."', 'line-warn');
+        addBlank();
+      },
+
+      /* ═══════════════════════════════
+         HACK MINIGAME
+      ═══════════════════════════════ */
+      hack: async function() {
+        if (hackInProgress) {
+          addLine('Un hack est d\u00e9j\u00e0 en cours !', 'line-warn');
+          return;
+        }
+
+        var wordList = [
+          'OVERRIDE','TERMINAL','SYSTEME','ARCHIVE','ABRI','REACTOR',
+          'SECURITE','RADAWAY','STIMPAK','NUCLEAIRE','BUNKER','TUNNEL',
+          'FALLOUT','SHELTER','VAULTEC','DECODER','SIGNAL','HIVERNAL'
+        ];
+
+        // Pick 8 random words + 1 correct
+        var shuffled = wordList.sort(function() { return Math.random() - 0.5; });
+        var selected = shuffled.slice(0, 8);
+        hackAnswer = selected[Math.floor(Math.random() * selected.length)];
+        hackAttempts = 4;
+        hackInProgress = true;
+
+        addLine('\u2501\u2501\u2501 ROBCO INDUSTRIES (TM) TERMLINK PROTOCOL \u2501\u2501\u2501', 'line-header');
+        addLine('MOT DE PASSE REQUIS', 'line-warn');
+        addBlank();
+        addLine('Tentatives restantes : \u2588 \u2588 \u2588 \u2588', 'line-info');
+        addBlank();
+
+        // Generate hex addresses + words display
+        var hexAddr = 0xF4A0;
+        for (var i = 0; i < selected.length; i++) {
+          var addr = '0x' + (hexAddr + i * 12).toString(16).toUpperCase();
+          var junk = '';
+          for (var j = 0; j < 6; j++) junk += '.#@$%&!*+<>[]{}()'[Math.floor(Math.random() * 18)];
+
+          addHTML('  ' + addr + '  ' + junk.substring(0, 3) + ' <span class="hack-word" data-word="' + selected[i] + '" onclick="window._hackGuess(\'' + selected[i] + '\')">' + selected[i] + '</span> ' + junk.substring(3));
+        }
+
+        addBlank();
+        addLine('Cliquez sur un mot ou tapez "guess <mot>" pour deviner.', 'line-system');
+      },
+
+      guess: async function(args) {
+        if (!hackInProgress) {
+          addLine('Aucun hack en cours. Tapez "hack" d\'abord.', 'line-warn');
+          return;
+        }
+        var g = args[0] ? args[0].toUpperCase() : '';
+        if (!g) { addLine('Usage : guess <mot>', 'line-warn'); return; }
+        processHackGuess(g);
+      },
+
+      /* ═══════════════════════════════
+         LOG - ACCESS LOG
+      ═══════════════════════════════ */
+      log: async function() {
+        addLine('\u2501\u2501\u2501 JOURNAL D\'ACC\u00c8S TERMINAL \u2501\u2501\u2501', 'line-header');
+        addBlank();
+
+        var logs = [
+          { date: '23/10/2077 06:12', user: 'hikari_u', action: 'Connexion initiale', level: 'info' },
+          { date: '23/10/2077 08:47', user: 'hikari_u', action: 'Activation protocole d\'urgence', level: 'warn' },
+          { date: '23/10/2077 09:03', user: 'SYSTEME', action: 'D\u00e9tection impact nucl\u00e9aire \u2014 Verrouillage sas', level: 'error' },
+          { date: '23/10/2077 09:05', user: 'SYSTEME', action: 'Passage en mode autonome', level: 'warn' },
+          { date: '24/10/2077 00:00', user: 'SYSTEME', action: 'Premi\u00e8re rotation de maintenance', level: 'info' },
+          { date: '15/01/2078 14:22', user: 'tech_asc03', action: 'Tentative acc\u00e8s non autoris\u00e9', level: 'error' },
+          { date: '15/01/2078 14:23', user: 'SYSTEME', action: 'Verrouillage compte tech_asc03', level: 'error' },
+          { date: '01/07/2078 08:00', user: 'hikari_u', action: 'Mise \u00e0 jour archives culturelles', level: 'info' },
+          { date: '23/10/2078 00:00', user: 'hikari_u', action: 'Journal Superviseur \u2014 Jour 365', level: 'info' },
+          { date: '??/??/2127 ??:??', user: 'INCONNU', action: 'Acc\u00e8s externe d\u00e9tect\u00e9 \u2014 Origine : ???', level: 'error' },
+          { date: new Date().toLocaleDateString('fr-FR') + ' ' + new Date().toLocaleTimeString('fr-FR').substring(0,5), user: 'root', action: 'Session courante', level: 'info' },
+        ];
+
+        logs.forEach(function(l) {
+          var cls = l.level === 'error' ? 'line-error' : l.level === 'warn' ? 'line-warn' : '';
+          var icon = l.level === 'error' ? '\u2716' : l.level === 'warn' ? '\u26a0' : '\u25cf';
+          addHTML('  <span style="color:var(--term-green-dim)">[' + l.date + ']</span> ' + icon + ' <span style="color:var(--term-cyan)">' + l.user.padEnd(12) + '</span> ' + l.action, cls);
+        });
+
+        addBlank();
+        addLine('11 entr\u00e9es dans le journal.', 'line-system');
+        addBlank();
+      },
+
+      /* ═══════════════════════════════
+         DICE ROLLER
+      ═══════════════════════════════ */
+      dice: async function(args) {
+        var n = parseInt(args[0]) || 1;
+        if (n > 10) n = 10;
+        if (n < 1) n = 1;
+
+        var results = [];
+        var total = 0;
+        for (var i = 0; i < n; i++) {
+          var val = Math.floor(Math.random() * 6) + 1;
+          results.push(val);
+          total += val;
+        }
+
+        var diceFaces = {
+          1: '  \u2680  ', 2: '  \u2681  ', 3: '  \u2682  ',
+          4: '  \u2683  ', 5: '  \u2684  ', 6: '  \u2685  '
+        };
+
+        var diceStr = results.map(function(r) { return diceFaces[r]; }).join(' ');
+        addLine('Lancer de ' + n + ' d\u00e9(s) :', 'line-info');
+        addLine(diceStr, 'line-success');
+        addLine('R\u00e9sultats : [' + results.join(', ') + ']  Total : ' + total, '');
+        addBlank();
+      },
+
+      /* ═══════════════════════════════
+         8BALL - MAGIC 8 BALL
+      ═══════════════════════════════ */
+      '8ball': async function(args) {
+        var question = args.join(' ');
+        if (!question) {
+          addLine('Usage : 8ball <question>', 'line-warn');
+          return;
+        }
+
+        addLine('\u25b8 ' + question, 'line-info');
+        addLine('Consultation de la Boule Magique du Wasteland...', 'line-system');
+        await wait(1500);
+
+        var responses = [
+          { text: 'Les \u00e9toiles irr\u00e9di\u00e9es disent oui.', cls: 'line-success' },
+          { text: 'Absolument. Comme la mort est certaine dans le Wasteland.', cls: 'line-success' },
+          { text: 'Mes capteurs indiquent que oui.', cls: 'line-success' },
+          { text: 'C\'est aussi probable qu\'une attaque de Deathclaw.', cls: 'line-success' },
+          { text: 'Affirmatif, soldat.', cls: 'line-success' },
+          { text: 'Signal brouill\u00e9. R\u00e9essayez.', cls: 'line-warn' },
+          { text: 'Mieux vaut ne pas r\u00e9pondre dans la zone irr\u00e9di\u00e9e.', cls: 'line-warn' },
+          { text: 'Demandez apr\u00e8s avoir pris du RadAway.', cls: 'line-warn' },
+          { text: 'Les chances sont aussi minces qu\'un Nuka-Cola frais.', cls: 'line-warn' },
+          { text: 'N\u00e9gatif. Comme les chances de rouvrir le sas.', cls: 'line-error' },
+          { text: 'N\'y comptez pas. M\u00eame les Super Mutants riraient.', cls: 'line-error' },
+          { text: 'Tr\u00e8s improbable. Retournez dans votre Abri.', cls: 'line-error' },
+          { text: 'ERR0R: PR3DICTION_C0RRUPT3D. Mais probablement non.', cls: 'line-error' },
+        ];
+
+        var resp = responses[Math.floor(Math.random() * responses.length)];
+        addLine('\u2588 ' + resp.text, resp.cls);
+        addBlank();
+      },
+
+      /* ═══════════════════════════════
+         ECHO
+      ═══════════════════════════════ */
+      echo: async function(args) {
+        var text = args.join(' ');
+        if (!text) {
+          addLine('Usage : echo <texte>', 'line-warn');
+          return;
+        }
+        addLine(text, '');
+      },
+
+      /* ═══════════════════════════════
+         NEOFETCH
+      ═══════════════════════════════ */
+      neofetch: async function() {
+        var logo = '        ___________\n       /           \\\n      /  VAULT-TEC  \\\n     /   ________   \\\n    |   |  \\  /  |   |\n    |   |   \\/   |   |\n    |   |  ABRI  |   |\n    |   | HIKARI |   |\n     \\  |________|  /\n      \\            /\n       \\__________/';
+
+        addLine(logo, 'ascii-art');
+        addBlank();
+
+        var info = [
+          ['OS',        'RobCo Unified OS v4.2.77'],
+          ['Kernel',    'ROBCO-TERM 2077.10.23-vault'],
+          ['Uptime',    Math.floor((Date.now() - bootTime) / 60000) + ' min'],
+          ['Shell',     'Abri-Shell v2.1'],
+          ['Terminal',  'TERMLINK CRT 80x24'],
+          ['CPU',       'RobCo Processor Unit X-01 @ 4.77MHz'],
+          ['GPU',       'VectaGraph CRT Adapter'],
+          ['M\u00e9moire',   '640K / 640K (100%)'],
+          ['Disques',   '6 holodisks d\u00e9tect\u00e9s'],
+          ['R\u00e9seau',    'Vault-NET (partiel)'],
+          ['Locale',    'fr_FR.wasteland'],
+          ['Th\u00e8me',     document.getElementById('screenWrap').className.replace('crt-screen-wrap','').trim() || 'green (d\u00e9faut)'],
+        ];
+
+        info.forEach(function(i) {
+          addHTML('  <span style="color:var(--term-cyan);font-weight:bold">' + i[0].padEnd(12) + '</span> ' + i[1]);
+        });
+
+        addBlank();
+        // Color palette
+        var palette = '';
+        var colors = ['#ff3333','#ffb000','#00ff41','#00bfff','#aa44ff','#ff44aa','#e0e0e0','#666666'];
+        colors.forEach(function(c) {
+          palette += '<span style="background:' + c + ';display:inline-block;width:24px;height:12px;margin-right:2px"></span>';
+        });
+        addHTML('  ' + palette);
+        addBlank();
+      },
+
+      /* ═══════════════════════════════
+         CREDITS
+      ═══════════════════════════════ */
+      credits: async function() {
+        addLine('\u2501\u2501\u2501 CR\u00c9DITS \u2501\u2501\u2501', 'line-header');
+        addBlank();
+
+        var credits = [
+          ['VentiStudio', 'Cr\u00e9\u00e9 et d\u00e9velopp\u00e9 par'],
+          ['Hikari Umaishi (\u5149\u99ac\u77f3)', 'Fondateur & Superviseur'],
+          ['', ''],
+          ['Umaishi Corp', 'Entreprise parente'],
+          ['FiTsZ Company', 'Partenaire technologique'],
+          ['P-Line', 'Distribution'],
+          ['', ''],
+          ['RobCo Industries', 'Fournisseur du terminal (fictif)'],
+          ['Vault-Tec', 'Concepteur de l\'Abri (fictif)'],
+          ['', ''],
+          ['Communaut\u00e9 VentiStudio', 'Merci \u00e0 tous les membres !'],
+        ];
+
+        for (var i = 0; i < credits.length; i++) {
+          var c = credits[i];
+          if (c[0] === '' && c[1] === '') { addBlank(); continue; }
+          await wait(200);
+          addHTML('  <span style="color:var(--term-cyan)">' + c[0].padEnd(28) + '</span> <span style="color:var(--term-green-dim)">' + c[1] + '</span>');
+        }
+
+        addBlank();
+        addLine('Copyright \u00a9 2023 - 2026 P-Line, VentiStudio FiTsZ Company', 'line-system');
+        addLine('Tous droits r\u00e9serv\u00e9s. War never changes.', 'line-system');
+        addBlank();
+      }
+
+    };
+
+    /* ═══════════════════════════════
+       HACK MINIGAME LOGIC
+    ═══════════════════════════════ */
+    function processHackGuess(word) {
+      if (!hackInProgress) return;
+
+      word = word.toUpperCase();
+      hackAttempts--;
+
+      if (word === hackAnswer) {
+        addLine('\u25b8 ' + word, 'line-cmd');
+        addBlank();
+        addLine('\u2588\u2588\u2588 ACC\u00c8S AUTORIS\u00c9 \u2588\u2588\u2588', 'line-success');
+        addLine('Mot de passe accept\u00e9. Bienvenue, Superviseur.', 'line-success');
+        hackInProgress = false;
+        hackAnswer = '';
+        return;
+      }
+
+      // Calculate likeness
+      var likeness = 0;
+      for (var i = 0; i < Math.min(word.length, hackAnswer.length); i++) {
+        if (word[i] === hackAnswer[i]) likeness++;
+      }
+
+      addLine('\u25b8 ' + word, 'line-cmd');
+      addLine('  Entr\u00e9e refus\u00e9e. Similitude : ' + likeness + '/' + hackAnswer.length, 'line-error');
+
+      var blockStr = '';
+      for (var i = 0; i < hackAttempts; i++) blockStr += '\u2588 ';
+      addLine('  Tentatives restantes : ' + (blockStr || 'AUCUNE'), hackAttempts > 1 ? 'line-warn' : 'line-error');
+
+      if (hackAttempts <= 0) {
+        addBlank();
+        addLine('\u2588\u2588\u2588 VERROUILLAGE DU TERMINAL \u2588\u2588\u2588', 'line-error');
+        addLine('Trop de tentatives. Le terminal est verrouill\u00e9 pendant 10 secondes.', 'line-error');
+        addLine('(Le mot \u00e9tait : ' + hackAnswer + ')', 'line-system');
+        hackInProgress = false;
+        hackAnswer = '';
+        inputLocked = true;
+        setTimeout(function() {
+          inputLocked = false;
+          addLine('Terminal d\u00e9verrouill\u00e9. Vous pouvez r\u00e9essayer.', 'line-success');
+        }, 10000);
+      }
+    }
+
+    window._hackGuess = processHackGuess;
+
+    /* ═══════════════════════════════
+       RADIO HELPER FUNCTIONS
+    ═══════════════════════════════ */
+    function formatTime(s) {
+      if (isNaN(s) || !isFinite(s)) return '--:--';
+      var m = Math.floor(s / 60);
+      var sec = Math.floor(s % 60);
+      return m + ':' + (sec < 10 ? '0' : '') + sec;
+    }
+
+    async function radioStartup() {
+      addLine('Activation de la radio...', 'line-info');
+      await showProgress('Syntonisation ' + radioStations[radioStation].name, 2000);
+
+      radioPlaying = true;
+      radioTrackIdx = Math.floor(Math.random() * radioStations[radioStation].tracks.length);
+      playRadioTrack();
+      showRadioStatus();
+
+      $('sigDot').classList.remove('warn');
+      $('sigDot').classList.add('err');
+    }
+
+    function playRadioTrack() {
+      var station = radioStations[radioStation];
+      var track = station.tracks[radioTrackIdx];
+
+      if (radioAudio) {
+        radioAudio.pause();
+        radioAudio.removeEventListener('ended', onRadioTrackEnd);
+        radioAudio = null;
+      }
+
+      radioAudio = new Audio(track.src);
+      radioAudio.volume = radioVolume;
+      radioAudio.addEventListener('ended', onRadioTrackEnd);
+      radioAudio.addEventListener('error', function(e) {
+        // Ignore errors on tracks that were stopped/replaced
+        if (radioAudio !== this) return;
+        addLine('  \u26a0 Impossible de lire : ' + track.title, 'line-error');
+        addLine('  Passage au morceau suivant...', 'line-system');
+        setTimeout(function() { onRadioTrackEnd(); }, 1500);
+      });
+
+      var playPromise = radioAudio.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(function(err) {
+          // Autoplay blocked — show message only once and wait for user interaction
+          if (!radioBlockedMsgShown) {
+            radioBlockedMsgShown = true;
+            addLine('  \u26a0 Lecture bloqu\u00e9e par le navigateur.', 'line-warn');
+            addLine('  Cliquez n\'importe o\u00f9 sur la page pour d\u00e9marrer la musique.', 'line-system');
+          }
+          radioBlocked = true;
+
+          // Resume playback on next user interaction
+          function resumeOnClick() {
+            document.removeEventListener('click', resumeOnClick);
+            document.removeEventListener('keydown', resumeOnClick);
+            if (radioBlocked && radioPlaying && radioAudio) {
+              radioBlocked = false;
+              radioAudio.play().then(function() {
+                addLine('  \u266b Radio d\u00e9marr\u00e9e !', 'line-success');
+              }).catch(function() {});
+            }
+          }
+          document.addEventListener('click', resumeOnClick, { once: true });
+          document.addEventListener('keydown', resumeOnClick, { once: true });
+        });
+      }
+
+      // Update bottom bar
+      var npBar = $('nowPlaying');
+      var npText = $('npText');
+      if (npBar && npText) {
+        npBar.classList.add('active');
+        npText.textContent = track.title + ' \u2014 ' + track.artist + '  \u266b  ' + station.name;
+      }
+    }
+
+    function onRadioTrackEnd() {
+      if (!radioPlaying) return;
+      radioTrackIdx = (radioTrackIdx + 1) % radioStations[radioStation].tracks.length;
+      playRadioTrack();
+      // Announce new track in terminal
+      var track = radioStations[radioStation].tracks[radioTrackIdx];
+      addHTML('  <span style="color:var(--term-green-dim)">\u266b En cours :</span> <span style="color:var(--term-amber)">' + track.title + '</span> <span style="color:var(--term-green-dim)">\u2014 ' + track.artist + '</span>');
+    }
+
+    function stopRadio() {
+      radioPlaying = false;
+      radioBlocked = false;
+      radioBlockedMsgShown = false;
+      if (radioAudio) {
+        radioAudio.pause();
+        radioAudio.removeEventListener('ended', onRadioTrackEnd);
+        radioAudio = null;
+      }
+      $('sigDot').classList.remove('err');
+      $('sigDot').classList.add('warn');
+
+      var npBar = $('nowPlaying');
+      if (npBar) npBar.classList.remove('active');
+    }
+
+    function showRadioStatus() {
+      var station = radioStations[radioStation];
+      var track = station.tracks[radioTrackIdx];
+      var volPct = Math.round(radioVolume * 100);
+      var bars = Math.round(radioVolume * 20);
+      var volBar = '\u2588'.repeat(bars) + '\u2591'.repeat(20 - bars);
+
+      var panelHTML = '<div class="radio-panel">';
+      panelHTML += '<div class="radio-header">';
+      panelHTML += '  <span class="radio-station-name">\u25C9 ' + station.name + '</span>';
+      panelHTML += '  <span class="radio-status on">ON AIR</span>';
+      panelHTML += '</div>';
+      panelHTML += '<div class="radio-track">';
+      panelHTML += '  <div class="radio-track-title">\u266b ' + track.title + '</div>';
+      panelHTML += '  <div class="radio-track-artist">' + track.artist + '</div>';
+      panelHTML += '</div>';
+
+      // Visualizer
+      panelHTML += '<div class="audio-vis">';
+      for (var i = 0; i < 32; i++) {
+        panelHTML += '<span class="vis-bar" style="animation-delay:' + (Math.random() * 0.8).toFixed(2) + 's;animation-duration:' + (0.3 + Math.random() * 0.6).toFixed(2) + 's"></span>';
+      }
+      panelHTML += '</div>';
+
+      // Volume
+      panelHTML += '<div class="radio-vol">VOL [<span style="color:var(--term-amber)">' + volBar + '</span>] ' + volPct + '%</div>';
+      panelHTML += '</div>';
+
+      addHTML(panelHTML);
+      addBlank();
+      showRadioHelp();
+    }
+
+    function showRadioNowPlaying() {
+      var station = radioStations[radioStation];
+      var track = station.tracks[radioTrackIdx];
+      addHTML('  <span style="color:var(--term-green-dim)">\u266b En cours :</span> <span style="color:var(--term-amber)">' + track.title + '</span> <span style="color:var(--term-green-dim)">\u2014 ' + track.artist + '</span> <span style="color:var(--term-green-dim)">[' + station.name + ']</span>');
+    }
+
+    function showRadioHelp() {
+      addLine('  Commandes radio :', 'line-system');
+      addHTML('    <span style="color:var(--term-cyan)">radio</span>         D\u00e9marrer / afficher le statut');
+      addHTML('    <span style="color:var(--term-cyan)">radio off</span>     Arr\u00eater la radio');
+      addHTML('    <span style="color:var(--term-cyan)">radio next</span>    Morceau suivant');
+      addHTML('    <span style="color:var(--term-cyan)">radio prev</span>    Morceau pr\u00e9c\u00e9dent');
+      addHTML('    <span style="color:var(--term-cyan)">radio list</span>    Voir les stations');
+      addHTML('    <span style="color:var(--term-cyan)">radio tracks</span>  Voir la playlist');
+      addHTML('    <span style="color:var(--term-cyan)">radio vol 50</span>  R\u00e9gler le volume (0-100)');
+      addHTML('    <span style="color:var(--term-cyan)">radio &lt;id&gt;</span>    Changer de station');
+      addBlank();
+    }
+
+    /* ═══════════════════════════════
+       COMMAND HANDLER
+    ═══════════════════════════════ */
+    async function handleCommand(raw) {
+      var parts = raw.trim().split(/\s+/);
+      var cmd   = parts[0] ? parts[0].toLowerCase() : '';
+      var args  = parts.slice(1);
+
+      if (!cmd) return;
+
+      // Show user command
+      addLine('root@abri-hikari:~$ ' + raw, 'line-cmd');
+
+      if (commands[cmd]) {
+        await commands[cmd](args);
+      } else {
+        addLine('Commande "' + cmd + '" non reconnue.', 'line-error');
+        addLine('Tapez "help" pour la liste des commandes.', 'line-system');
+      }
+      addBlank();
+    }
+
+    /* ═══════════════════════════════
+       INPUT HANDLING
+    ═══════════════════════════════ */
+    var allCmds = Object.keys(commands);
+
+    cmdInput.addEventListener('keydown', async function(e) {
+      if (inputLocked) { e.preventDefault(); return; }
+
+      // Ctrl+L = clear
+      if (e.ctrlKey && e.key === 'l') {
+        e.preventDefault();
+        termBody.innerHTML = '';
+        return;
+      }
+
+      if (e.key === 'Enter') {
+        var val = cmdInput.value.trim();
+        if (val) {
+          history.unshift(val);
+          histIdx = -1;
+        }
+        cmdInput.value = '';
+        if (val) {
+          inputLocked = true;
+          await handleCommand(val);
+          inputLocked = false;
+          cmdInput.focus();
+        }
+      }
+
+      // History navigation
+      if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (histIdx < history.length - 1) {
+          histIdx++;
+          cmdInput.value = history[histIdx];
+        }
+      }
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        if (histIdx > 0) {
+          histIdx--;
+          cmdInput.value = history[histIdx];
+        } else {
+          histIdx = -1;
+          cmdInput.value = '';
+        }
+      }
+
+      // Tab completion
+      if (e.key === 'Tab') {
+        e.preventDefault();
+        var val2 = cmdInput.value.toLowerCase();
+        if (val2) {
+          var match = allCmds.find(function(c) { return c.startsWith(val2); });
+          if (match) cmdInput.value = match;
+        }
       }
     });
 
-    input.focus();
-    window.addEventListener("click", () => input.focus());
+    // Always focus input
+    document.addEventListener('click', function() { if (booted) cmdInput.focus(); });
+
+    /* ═══════════════════════════════
+       INIT
+    ═══════════════════════════════ */
+    initNoise();
+    bootSequence();
+
+  })();
   </script>
-</body></html>
-  
-  
-  </main>
 
-  <footer>
-
-    <div class="footer-content">
-      <div class="footer-section">
-        <h4>Outils</h4>
-        <ul>
-          <li><a href="#">Encrypt</a></li>
-          <li><a href="#">Plan du site</a></li>
-          <li><a href="#">Statut</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h4>Entreprise</h4>
-        <ul>
-          <li><a href="#">À propos</a></li>
-          <li><a href="#">Emplois</a></li>
-          <li><a href="#">Marque</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h4>Ressources</h4>
-        <ul>
-          <li><a href="#">Université</a></li>
-          <li><a href="#">Assistance</a></li>
-          <li><a href="#">Sécurité</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h4>Chartes</h4>
-        <ul>
-          <li><a href="#">Conditions</a></li>
-          <li><a href="#">Confidentialité</a></li>
-          <li><a href="#">Information DMCA</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
-      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
-    </div>
-  
-  </footer>
-
-  <script src="../script.js" defer></script>
 </body>
 </html>
-
 
