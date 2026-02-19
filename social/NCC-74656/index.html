@@ -1,223 +1,130 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <meta name="description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
-  <meta name="theme-color" content="#6366f1">
-  <title>VentiStudio v4</title>
-  <link rel="stylesheet" href="../../style.css">
-</title>
-</head>
-<body>
-  <header>
-
-    <div class="logo">
-      <img src="../../favicon.ico" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
-      <span>VentiStudio</span>
-    </div>
-    <nav aria-label="Navigation principale">
-      <a href="../../" class="active">Accueil</a>
-      <a href="../../approuvedcontent/">Contenu Approuvé</a>
-      <a href="../../player">Lecteur</a>
-      <a href="../../wiki">Wiki</a>
-      <a href="../../staff">Équipe</a>
-      <a href="../../news">News</a>
-      <a href="../../pip">PIP</a>
-      <a href="../../sitemap">Plan du site</a>
-    </nav>
-    <div class="controls" role="toolbar" aria-label="Contrôles">
-      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
-        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
-          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
-          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
-          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
-        </svg>
-      </button>
-      <div id="user-button" role="region" aria-label="Authentification"></div>
-    </div>
-  
-  </header>
-
-  <main>
-
-
-<!DOCTYPE html>
-<html><head><base href="https://ventistudio.eu/social/NCC-74656">
-  <meta charset="utf-8">
-  <meta name="viewport">
-  <html lang="fr"></html>
-  <link rel="icon" type="image/png" href="favicon.ico">
-  <meta property="og:title" content="Bienvenu sur VentiStudio">
-  <meta property="og:site_name" content="VentiStudio Komiyuniti">
-  <meta property="og:url" content="https://ventistudio.eu">
-  <meta property="og:description" content="Hey, je suis Hikari Umaishi (å…‰é¦¬çŸ³), mais je prÃ©fÃ¨re que l'on m'appelle Hiuma (Ã¢’ã‚¦Ã¢ž).
-Laissez-moi vous prÃ©senter ma communautÃ©, un espace oÃ¹ l'art et la crÃ©ativitÃ© se rencontrent.">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="https://ventistudio.eu/favicon.gif">
-  <title>VentiStudio - Social</title>
-<style>
-:root {
-  --lcars-orange: #FF9C00;
-  --lcars-purple: #CC99CC;
-  --lcars-blue: #9999FF;
-  --lcars-brown: #FF9966;
-  --lcars-red: #FF0000;
-  --lcars-yellow: #FFD700;
-  --background: #000000;
-  --text: #FFFFFF;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  background-color: var(--background);
-  color: var(--text);
-  font-family: 'Helvetica', sans-serif;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
-
-.lcars-container {
-  position: relative;
-  width: 800px;
-  height: 400px;
-  background: var(--background);
-  border: 2px solid var(--lcars-orange);
-  border-radius: 20px;
-  padding: 20px;
-  box-shadow: 0 0 20px var(--lcars-orange);
-}
-
-.alert-lights {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 10px;
-}
-
-.alert-lights.left {
-  left: -20px;
-}
-
-.alert-lights.right {
-  right: -20px;
-}
-
-.alert-light {
-  width: 100%;
-  height: 30px;
-  margin: 10px 0;
-  border-radius: 5px;
-  animation: blink 1s infinite;
-}
-
-.alert-red {
-  background-color: var(--lcars-red);
-  box-shadow: 0 0 10px var(--lcars-red);
-}
-
-.alert-blue {
-  background-color: var(--lcars-blue);
-  box-shadow: 0 0 10px var(--lcars-blue);
-}
-
-.alert-yellow {
-  background-color: var(--lcars-yellow);
-  box-shadow: 0 0 10px var(--lcars-yellow);
-}
-
-.lcars-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.lcars-title {
-  color: var(--lcars-orange);
-  font-size: 24px;
-  margin-left: 20px;
-}
-
-.lcars-content {
-  text-align: center;
-  padding: 20px;
-}
-
-.redirect-message {
-  color: var(--text);
-  font-size: 18px;
-  margin-bottom: 20px;
-}
-
-.loading-bar {
-  width: 100%;
-  height: 20px;
-  background: var(--lcars-purple);
-  border-radius: 10px;
-  overflow: hidden;
-  margin: 20px 0;
-}
-
-.loading-progress {
-  width: 0%;
-  height: 100%;
-  background: var(--lcars-orange);
-  animation: loading 3s linear forwards;
-}
-
-.starship-info {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-  color: var(--lcars-blue);
-}
-
-.warp-effect {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(ellipse at center, transparent 0%, var(--background) 70%);
-  opacity: 0.5;
-  animation: warpPulse 2s infinite;
-}
-
-@keyframes loading {
-  0% { width: 0%; }
-  100% { width: 100%; }
-}
-
-@keyframes warpPulse {
-  0% { opacity: 0.3; }
-  50% { opacity: 0.7; }
-  100% { opacity: 0.3; }
-}
-
-@keyframes blink {
-  0% { opacity: 1; }
-  50% { opacity: 0; }
-  100% { opacity: 1; }
-}
-
-.ship-status {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  color: var(--lcars-blue);
-  font-size: 14px;
-}
-
-.alert {
-  color: var(--lcars-red);
-  animation: blink 1s infinite;
-}
-</style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>USS Voyager NCC-74656 - VentiStudio</title>
+  <style>
+    :root {
+      --lcars-orange: #FF9C00;
+      --lcars-purple: #CC99CC;
+      --lcars-blue: #9999FF;
+      --lcars-brown: #FF9966;
+      --lcars-red: #FF0000;
+      --lcars-yellow: #FFD700;
+      --background: #000000;
+      --text: #FFFFFF;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--text);
+      font-family: 'Helvetica', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+    .lcars-container {
+      position: relative;
+      width: 800px;
+      max-width: 95vw;
+      height: 400px;
+      background: var(--background);
+      border: 2px solid var(--lcars-orange);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 0 20px var(--lcars-orange);
+    }
+    .alert-lights {
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 10px;
+    }
+    .alert-lights.left { left: -20px; }
+    .alert-lights.right { right: -20px; }
+    .alert-light {
+      width: 100%; height: 30px;
+      margin: 10px 0;
+      border-radius: 5px;
+      animation: blink 1s infinite;
+    }
+    .alert-red { background-color: var(--lcars-red); box-shadow: 0 0 10px var(--lcars-red); }
+    .alert-blue { background-color: var(--lcars-blue); box-shadow: 0 0 10px var(--lcars-blue); }
+    .alert-yellow { background-color: var(--lcars-yellow); box-shadow: 0 0 10px var(--lcars-yellow); }
+    .lcars-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .lcars-title {
+      color: var(--lcars-orange);
+      font-size: 24px;
+      margin-left: 20px;
+    }
+    .lcars-content {
+      text-align: center;
+      padding: 20px;
+    }
+    .redirect-message {
+      color: var(--text);
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+    .loading-bar {
+      width: 100%; height: 20px;
+      background: var(--lcars-purple);
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 20px 0;
+    }
+    .loading-progress {
+      width: 0%; height: 100%;
+      background: var(--lcars-orange);
+      animation: loading 3s linear forwards;
+    }
+    .starship-info {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+      color: var(--lcars-blue);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .warp-effect {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(ellipse at center, transparent 0%, var(--background) 70%);
+      opacity: 0.5;
+      animation: warpPulse 2s infinite;
+    }
+    @keyframes loading {
+      0% { width: 0%; }
+      100% { width: 100%; }
+    }
+    @keyframes warpPulse {
+      0% { opacity: 0.3; }
+      50% { opacity: 0.7; }
+      100% { opacity: 0.3; }
+    }
+    @keyframes blink {
+      0% { opacity: 1; }
+      50% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+    .ship-status {
+      position: absolute;
+      bottom: 20px; right: 20px;
+      color: var(--lcars-blue);
+      font-size: 14px;
+    }
+    .alert {
+      color: var(--lcars-red);
+      animation: blink 1s infinite;
+    }
+  </style>
 </head>
 <body>
   <div class="lcars-container">
@@ -240,12 +147,12 @@ body {
       <div class="lcars-title">USS Voyager NCC-74656</div>
     </div>
     <div class="lcars-content">
-      <div class="redirect-message">INITIALISATION SÃ‰QUENCE DE TÃ‰LÃ‰PORTATION</div>
+      <div class="redirect-message">INITIALISATION SÉQUENCE DE TÉLÉPORTATION</div>
       <div class="loading-bar">
         <div class="loading-progress"></div>
       </div>
       <div class="starship-info">
-        <span>SystÃ¨me: LCARS</span>
+        <span>Système: LCARS</span>
         <span>Statut: EN COURS</span>
         <span>Destination: <span id="destination">CHARGEMENT...</span></span>
       </div>
@@ -253,128 +160,57 @@ body {
     <div class="ship-status">
       <div>Boucliers: ACTIFS</div>
       <div>Vitesse de distorsion: 9.975</div>
-      <div class="alert">TÃ‰LÃ‰PORTATION EN COURS...</div>
+      <div class="alert">TÉLÉPORTATION EN COURS...</div>
     </div>
   </div>
 
   <script>
-    // Liste noire d'URLs
-    const blacklistedUrls = [
-      'malicious.com',
-      'spam.com',
-      'unsafe.net'
-    ];
+    const blacklistedUrls = ['malicious.com', 'spam.com', 'unsafe.net'];
 
-    // Fonction pour vÃ©rifier si une URL est valide
     function isValidUrl(string) {
-      try {
-        new URL(string);
-        return true;
-      } catch (_) {
-        return false;
-      }
+      try { new URL(string); return true; }
+      catch (_) { return false; }
     }
 
-    // Fonction pour vÃ©rifier si une URL est dans la liste noire
     function isBlacklisted(url) {
-      return blacklistedUrls.some(blacklisted => url.includes(blacklisted));
+      return blacklistedUrls.some(b => url.includes(b));
     }
 
-    // Fonction pour dÃ©finir l'Ã©tat d'alerte
     function setAlertState(state) {
-      const alertLights = document.querySelectorAll('.alert-light');
-      alertLights.forEach(light => {
+      document.querySelectorAll('.alert-light').forEach(light => {
         light.classList.remove('alert-red', 'alert-blue', 'alert-yellow');
         light.classList.add(`alert-${state}`);
       });
     }
 
-    // Fonction pour obtenir le paramÃ¨tre de redirection de l'URL
     function getRedirectUrl() {
       const urlParams = new URLSearchParams(window.location.search);
       return urlParams.get('redirect');
     }
 
-    // Fonction pour gÃ©rer la redirection
     function handleRedirect() {
       const redirectUrl = getRedirectUrl();
-      
       if (!redirectUrl) {
         setAlertState('red');
-        document.getElementById('destination').textContent = 'DESTINATION NON SPÃ‰CIFIÃ‰E';
+        document.getElementById('destination').textContent = 'DESTINATION NON SPÉCIFIÉE';
         return;
       }
-
       if (!isValidUrl(redirectUrl)) {
         setAlertState('blue');
         document.getElementById('destination').textContent = 'INVALIDE';
         return;
       }
-
       if (isBlacklisted(redirectUrl)) {
         setAlertState('yellow');
-        document.getElementById('destination').textContent = 'NON AUTORISÃ‰E';
+        document.getElementById('destination').textContent = 'NON AUTORISÉE';
         return;
       }
-
       document.getElementById('destination').textContent = redirectUrl;
-      setTimeout(() => {
-        window.location.href = redirectUrl;
-      }, 3000);
+      setTimeout(() => { window.location.href = redirectUrl; }, 3000);
     }
 
-    // DÃ©marrer la redirection au chargement de la page
     document.addEventListener('DOMContentLoaded', handleRedirect);
   </script>
-</body></html>
-  
-  
-  </main>
-
-  <footer>
-
-    <div class="footer-content">
-      <div class="footer-section">
-        <h4>Outils</h4>
-        <ul>
-          <li><a href="#">Encrypt</a></li>
-          <li><a href="#">Plan du site</a></li>
-          <li><a href="#">Statut</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h4>Entreprise</h4>
-        <ul>
-          <li><a href="#">À propos</a></li>
-          <li><a href="#">Emplois</a></li>
-          <li><a href="#">Marque</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h4>Ressources</h4>
-        <ul>
-          <li><a href="#">Université</a></li>
-          <li><a href="#">Assistance</a></li>
-          <li><a href="#">Sécurité</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h4>Chartes</h4>
-        <ul>
-          <li><a href="#">Conditions</a></li>
-          <li><a href="#">Confidentialité</a></li>
-          <li><a href="#">Information DMCA</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
-      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
-    </div>
-  
-  </footer>
-
-  <script src="../../script.js" defer></script>
 </body>
 </html>
 

@@ -1,31 +1,204 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <meta name="description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
+  <meta name="description" content="VentiStudio - Ce site est soumis à des restrictions géographiques. Consultez les régions autorisées.">
   <meta name="theme-color" content="#6366f1">
-  <title>VentiStudio v4</title>
-  <link rel="stylesheet" href="../style.css">
-  AccÃ¨s Restreint - VentiStudio</title>
+  <title>Géo-Restriction - VentiStudio</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    .geo-hero {
+      text-align: center;
+      padding: 4rem 2rem 2rem;
+    }
+    .geo-hero .geo-icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      display: block;
+      animation: pulse-geo 2s ease-in-out infinite;
+    }
+    @keyframes pulse-geo {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.1); opacity: .85; }
+    }
+    .geo-hero h1 {
+      font-size: 2.2rem;
+      margin-bottom: .5rem;
+    }
+    .geo-hero .subtitle {
+      font-size: 1.1rem;
+      opacity: .75;
+      max-width: 600px;
+      margin: 0 auto 1.5rem;
+    }
+
+    .geo-notice {
+      max-width: 700px;
+      margin: 0 auto 2.5rem;
+      padding: 1.5rem 2rem;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-left: 4px solid var(--accent);
+      border-radius: 12px;
+      backdrop-filter: blur(12px);
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .geo-notice .notice-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .geo-notice p {
+      margin: 0;
+      line-height: 1.6;
+    }
+    .geo-notice strong {
+      color: var(--accent);
+    }
+
+    .geo-section {
+      max-width: 900px;
+      margin: 0 auto 3rem;
+      padding: 0 1.5rem;
+    }
+    .geo-section h2 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+    .geo-section h2 .section-icon {
+      font-size: 1.3rem;
+    }
+
+    .countries-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 1rem;
+    }
+    .country-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      padding: 1rem;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      transition: transform .2s, border-color .2s, box-shadow .2s;
+      cursor: default;
+    }
+    .country-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+      box-shadow: 0 8px 24px var(--glass-shadow);
+    }
+    .country-card .flag {
+      font-size: 2rem;
+      display: block;
+      margin-bottom: .4rem;
+    }
+    .country-card .country-name {
+      font-size: .9rem;
+      font-weight: 600;
+      opacity: .9;
+    }
+
+    .geo-info-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+    }
+    .geo-info-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      backdrop-filter: blur(10px);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .geo-info-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px var(--glass-shadow);
+    }
+    .geo-info-card .card-icon {
+      font-size: 1.8rem;
+      margin-bottom: .5rem;
+      display: block;
+    }
+    .geo-info-card h3 {
+      font-size: 1rem;
+      margin-bottom: .4rem;
+    }
+    .geo-info-card p {
+      font-size: .85rem;
+      opacity: .7;
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    .geo-detected {
+      max-width: 700px;
+      margin: 0 auto 2.5rem;
+      padding: 1rem 1.5rem;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      backdrop-filter: blur(12px);
+      text-align: center;
+      font-size: .95rem;
+      display: none;
+    }
+    .geo-detected.visible { display: block; }
+    .geo-detected .detected-label { opacity: .6; }
+    .geo-detected .detected-value { font-weight: 700; color: var(--accent); margin-left: .3rem; }
+
+    .geo-cta {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .geo-cta a {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .8rem 2rem;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background .2s, transform .2s;
+    }
+    .geo-cta a:hover {
+      background: var(--accent-secondary);
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 600px) {
+      .geo-hero h1 { font-size: 1.6rem; }
+      .countries-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: .8rem; }
+      .geo-notice { flex-direction: column; padding: 1.2rem; }
+    }
+  </style>
 </head>
 <body>
   <header>
-
     <div class="logo">
-      <img src="../favicon.ico" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
+      <img src="/favicon.avif" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
       <span>VentiStudio</span>
     </div>
     <nav aria-label="Navigation principale">
-      <a href="../" class="active">Accueil</a>
-      <a href="../approuvedcontent/">Contenu Approuvé</a>
-      <a href="../player">Lecteur</a>
-      <a href="../wiki">Wiki</a>
-      <a href="../staff">Équipe</a>
-      <a href="../news">News</a>
-      <a href="../pip">PIP</a>
-      <a href="../sitemap">Plan du site</a>
+      <a href="/">Accueil</a>
+      <a href="/evaluation">Contenu Approuvé</a>
+      <a href="/player">Lecteur</a>
+      <a href="/wiki">Wiki</a>
+      <a href="/staff">Équipe</a>
+      <a href="/news">News</a>
+      <a href="/pip">PIP</a>
+      <a href="/sitemap">Plan du site</a>
     </nav>
     <div class="controls" role="toolbar" aria-label="Contrôles">
       <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
@@ -37,121 +210,157 @@
       </button>
       <div id="user-button" role="region" aria-label="Authentification"></div>
     </div>
-  
   </header>
 
   <main>
+    <!-- Hero -->
+    <section class="geo-hero">
+      <span class="geo-icon" aria-hidden="true">🌐</span>
+      <h1>Site Géo-Restreint</h1>
+      <p class="subtitle">L'accès à VentiStudio est limité à certaines régions géographiques pour des raisons légales et de conformité.</p>
+    </section>
 
+    <!-- Détection -->
+    <div class="geo-detected" id="geo-detected">
+      <span class="detected-label">Pays détecté :</span>
+      <span class="detected-value" id="detected-country"></span>
+    </div>
 
+    <!-- Notice -->
+    <div class="geo-notice">
+      <span class="notice-icon" aria-hidden="true">ℹ️</span>
+      <div>
+        <p>Vous voyez cette page car <strong>votre localisation géographique</strong> ne fait pas partie des régions autorisées par VentiStudio. Il est possible de contourner cette restriction en utilisant un <strong>VPN</strong> ou un <strong>proxy</strong> situé dans l'un des pays listés ci-dessous.</p>
+      </div>
+    </div>
 
-    <div class="restricted-container">
-      <h1>âš ï¸ AccÃ¨s Restreint</h1>
-      
-      <h2>Votre connexion a Ã©tÃ© interrompue, mais pourquoi ?</h2>
-      <p>Votre pays n'entre pas dans les critÃ¨res de VentiStudio. Pour contourner cette restriction, vous pouvez utiliser un VPN ou un proxy.</p>
-
-      <h3>Pays autorisÃ©s :</h3>
+    <!-- Pays autorisés -->
+    <section class="geo-section">
+      <h2><span class="section-icon" aria-hidden="true">✅</span> Régions autorisées</h2>
       <div class="countries-grid">
         <div class="country-card" data-country="FR">
-          <span class="flag">ðŸ‡«ðŸ‡·</span>
+          <span class="flag">🇫🇷</span>
           <span class="country-name">France</span>
         </div>
         <div class="country-card" data-country="DE">
-          <span class="flag">ðŸ‡©ðŸ‡ª</span>
+          <span class="flag">🇩🇪</span>
           <span class="country-name">Allemagne</span>
         </div>
         <div class="country-card" data-country="GB">
-          <span class="flag">ðŸ‡¬ðŸ‡§</span>
+          <span class="flag">🇬🇧</span>
           <span class="country-name">Royaume-Uni</span>
         </div>
         <div class="country-card" data-country="ES">
-          <span class="flag">ðŸ‡ªðŸ‡¸</span>
+          <span class="flag">🇪🇸</span>
           <span class="country-name">Espagne</span>
         </div>
         <div class="country-card" data-country="IT">
-          <span class="flag">ðŸ‡®ðŸ‡¹</span>
+          <span class="flag">🇮🇹</span>
           <span class="country-name">Italie</span>
         </div>
         <div class="country-card" data-country="PT">
-          <span class="flag">ðŸ‡µðŸ‡¹</span>
+          <span class="flag">🇵🇹</span>
           <span class="country-name">Portugal</span>
         </div>
         <div class="country-card" data-country="BE">
-          <span class="flag">ðŸ‡§ðŸ‡ª</span>
+          <span class="flag">🇧🇪</span>
           <span class="country-name">Belgique</span>
         </div>
         <div class="country-card" data-country="NL">
-          <span class="flag">ðŸ‡³ðŸ‡±</span>
+          <span class="flag">🇳🇱</span>
           <span class="country-name">Pays-Bas</span>
         </div>
         <div class="country-card" data-country="CH">
-          <span class="flag">ðŸ‡¨ðŸ‡­</span>
+          <span class="flag">🇨🇭</span>
           <span class="country-name">Suisse</span>
         </div>
         <div class="country-card" data-country="AT">
-          <span class="flag">ðŸ‡¦ðŸ‡¹</span>
+          <span class="flag">🇦🇹</span>
           <span class="country-name">Autriche</span>
         </div>
         <div class="country-card" data-country="IE">
-          <span class="flag">ðŸ‡®ðŸ‡ª</span>
+          <span class="flag">🇮🇪</span>
           <span class="country-name">Irlande</span>
         </div>
         <div class="country-card" data-country="SE">
-          <span class="flag">ðŸ‡¸ðŸ‡ª</span>
-          <span class="country-name">SuÃ¨de</span>
+          <span class="flag">🇸🇪</span>
+          <span class="country-name">Suède</span>
         </div>
         <div class="country-card" data-country="NO">
-          <span class="flag">ðŸ‡³ðŸ‡´</span>
-          <span class="country-name">NorvÃ¨ge</span>
+          <span class="flag">🇳🇴</span>
+          <span class="country-name">Norvège</span>
         </div>
         <div class="country-card" data-country="FI">
-          <span class="flag">ðŸ‡«ðŸ‡®</span>
+          <span class="flag">🇫🇮</span>
           <span class="country-name">Finlande</span>
         </div>
         <div class="country-card" data-country="DK">
-          <span class="flag">ðŸ‡©ðŸ‡°</span>
+          <span class="flag">🇩🇰</span>
           <span class="country-name">Danemark</span>
         </div>
       </div>
+    </section>
+
+    <!-- Informations -->
+    <section class="geo-section">
+      <h2><span class="section-icon" aria-hidden="true">📋</span> Pourquoi cette restriction ?</h2>
+      <div class="geo-info-cards">
+        <div class="geo-info-card">
+          <span class="card-icon" aria-hidden="true">⚖️</span>
+          <h3>Conformité légale</h3>
+          <p>VentiStudio respecte les réglementations locales en matière de contenu numérique et de protection des données (RGPD).</p>
+        </div>
+        <div class="geo-info-card">
+          <span class="card-icon" aria-hidden="true">🛡️</span>
+          <h3>Sécurité</h3>
+          <p>La restriction géographique contribue à protéger la plateforme et ses utilisateurs contre les accès malveillants.</p>
+        </div>
+        <div class="geo-info-card">
+          <span class="card-icon" aria-hidden="true">🌍</span>
+          <h3>Couverture future</h3>
+          <p>Nous travaillons à étendre progressivement l'accès à de nouvelles régions. Restez informés via nos actualités.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <div class="geo-cta">
+      <a href="/">← Retour à l'accueil</a>
     </div>
-  
-  
-  
   </main>
 
   <footer>
-
     <div class="footer-content">
       <div class="footer-section">
         <h4>Outils</h4>
         <ul>
           <li><a href="#">Encrypt</a></li>
-          <li><a href="#">Plan du site</a></li>
-          <li><a href="#">Statut</a></li>
+          <li><a href="/sitemap">Plan du site</a></li>
+          <li><a href="/stats">Statut</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Entreprise</h4>
         <ul>
-          <li><a href="#">À propos</a></li>
-          <li><a href="#">Emplois</a></li>
-          <li><a href="#">Marque</a></li>
+          <li><a href="/about">À propos</a></li>
+          <li><a href="/jobs">Emplois</a></li>
+          <li><a href="/logo">Marque</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Ressources</h4>
         <ul>
-          <li><a href="#">Université</a></li>
-          <li><a href="#">Assistance</a></li>
-          <li><a href="#">Sécurité</a></li>
+          <li><a href="/university">Université</a></li>
+          <li><a href="/lawful/support">Assistance</a></li>
+          <li><a href="/lawful/security">Sécurité</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Chartes</h4>
         <ul>
-          <li><a href="#">Conditions</a></li>
-          <li><a href="#">Confidentialité</a></li>
-          <li><a href="#">Information DMCA</a></li>
+          <li><a href="/lawful/tos">Conditions</a></li>
+          <li><a href="/lawful/cookies">Confidentialité</a></li>
+          <li><a href="/lawful/dmcainfo">Information DMCA</a></li>
         </ul>
       </div>
     </div>
@@ -159,11 +368,9 @@
       <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
       <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
     </div>
-  
   </footer>
 
-  <script src="../script.js" defer></script>
+  <script src="/script.js" defer></script>
+  <script src="/restricted/script.js" defer></script>
 </body>
 </html>
-
-

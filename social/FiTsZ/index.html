@@ -1,189 +1,116 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <meta name="description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
-  <meta name="theme-color" content="#6366f1">
-  <title>VentiStudio v4</title>
-  <link rel="stylesheet" href="../../style.css">
-</title>
-</head>
-<body>
-  <header>
-
-    <div class="logo">
-      <img src="../../favicon.ico" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
-      <span>VentiStudio</span>
-    </div>
-    <nav aria-label="Navigation principale">
-      <a href="../../" class="active">Accueil</a>
-      <a href="../../approuvedcontent/">Contenu Approuvé</a>
-      <a href="../../player">Lecteur</a>
-      <a href="../../wiki">Wiki</a>
-      <a href="../../staff">Équipe</a>
-      <a href="../../news">News</a>
-      <a href="../../pip">PIP</a>
-      <a href="../../sitemap">Plan du site</a>
-    </nav>
-    <div class="controls" role="toolbar" aria-label="Contrôles">
-      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
-        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
-          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
-          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
-          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
-        </svg>
-      </button>
-      <div id="user-button" role="region" aria-label="Authentification"></div>
-    </div>
-  
-  </header>
-
-  <main>
-
-
-<!DOCTYPE html>
-<html><head><base href="https://ventistudio.eu/social/FiTsZ">
-  <meta charset="utf-8">
-  <meta name="viewport">
-  <html lang="fr"></html>
-  <link rel="icon" type="image/png" href="favicon.ico">
-  <meta property="og:title" content="Bienvenu sur VentiStudio">
-  <meta property="og:site_name" content="VentiStudio Komiyuniti">
-  <meta property="og:url" content="https://ventistudio.eu">
-  <meta property="og:description" content="Hey, je suis Hikari Umaishi (å…‰é¦¬çŸ³), mais je prÃ©fÃ¨re que l'on m'appelle Hiuma (Ã¢’ã‚¦Ã¢ž).
-Laissez-moi vous prÃ©senter ma communautÃ©, un espace oÃ¹ l'art et la crÃ©ativitÃ© se rencontrent.">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="https://ventistudio.eu/favicon.gif">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VentiStudio - Social</title>
-<style>
-:root {
-  --primary: #7B66FF;
-  --secondary: #2A2D3A;
-  --background: #1A1B26;
-  --text: #FFFFFF;
-  --hover: #9F86FF;
-  --orbit-blue: #4A90E2;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--background);
-  font-family: 'Inter', sans-serif;
-  color: var(--text);
-  overflow: hidden;
-}
-
-.redirect-container {
-  text-align: center;
-  padding: 2rem;
-  position: relative;
-  z-index: 2;
-}
-
-.logo {
-  width: 150px;
-  margin-bottom: 2rem;
-  animation: float 3s ease-in-out infinite;
-}
-
-@keyframes float {
-  0% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-20px) rotate(5deg); }
-  100% { transform: translateY(0px) rotate(0deg); }
-}
-
-.redirect-text {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  text-shadow: 0 0 10px var(--orbit-blue);
-}
-
-.loader {
-  width: 80px;
-  height: 80px;
-  margin: 1rem auto;
-  position: relative;
-}
-
-.orbit {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border: 2px solid var(--orbit-blue);
-  border-radius: 50%;
-  animation: orbit 2s linear infinite;
-}
-
-.orbit::after {
-  content: '';
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  background: var(--primary);
-  border-radius: 50%;
-  top: -5px;
-  left: 50%;
-  box-shadow: 0 0 10px var(--primary);
-}
-
-.orbit:nth-child(2) {
-  width: 60px;
-  height: 60px;
-  margin: 10px;
-  animation-duration: 3s;
-  animation-direction: reverse;
-}
-
-.orbit:nth-child(3) {
-  width: 40px;
-  height: 40px;
-  margin: 20px;
-  animation-duration: 1.5s;
-}
-
-@keyframes orbit {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-.countdown {
-  font-size: 1.2rem;
-  color: var(--primary);
-  text-shadow: 0 0 5px var(--primary);
-}
-
-.stars {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.star {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: white;
-  border-radius: 50%;
-  animation: twinkle var(--duration) linear infinite;
-  opacity: var(--opacity);
-}
-
-@keyframes twinkle {
-  0%, 100% { opacity: var(--opacity); }
-  50% { opacity: 0.2; }
-}
-</style>
+  <style>
+    :root {
+      --primary: #7B66FF;
+      --secondary: #2A2D3A;
+      --background: #1A1B26;
+      --text: #FFFFFF;
+      --hover: #9F86FF;
+      --orbit-blue: #4A90E2;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--background);
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      overflow: hidden;
+    }
+    .redirect-container {
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+    .logo {
+      width: 150px;
+      margin-bottom: 2rem;
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+      100% { transform: translateY(0px) rotate(0deg); }
+    }
+    .redirect-text {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 10px var(--orbit-blue);
+    }
+    .loader {
+      width: 80px;
+      height: 80px;
+      margin: 1rem auto;
+      position: relative;
+    }
+    .orbit {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border: 2px solid var(--orbit-blue);
+      border-radius: 50%;
+      animation: orbit 2s linear infinite;
+    }
+    .orbit::after {
+      content: '';
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: var(--primary);
+      border-radius: 50%;
+      top: -5px;
+      left: 50%;
+      box-shadow: 0 0 10px var(--primary);
+    }
+    .orbit:nth-child(2) {
+      width: 60px; height: 60px;
+      margin: 10px;
+      animation-duration: 3s;
+      animation-direction: reverse;
+    }
+    .orbit:nth-child(3) {
+      width: 40px; height: 40px;
+      margin: 20px;
+      animation-duration: 1.5s;
+    }
+    @keyframes orbit {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .countdown {
+      font-size: 1.2rem;
+      color: var(--primary);
+      text-shadow: 0 0 5px var(--primary);
+    }
+    .stars {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .star {
+      position: absolute;
+      width: 2px; height: 2px;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle var(--duration) linear infinite;
+      opacity: var(--opacity);
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: var(--opacity); }
+      50% { opacity: 0.2; }
+    }
+  </style>
 </head>
 <body>
   <div class="stars" id="starField"></div>
@@ -195,13 +122,12 @@ body {
       <div class="orbit"></div>
       <div class="orbit"></div>
     </div>
-    <div class="countdown">TÃ©lÃ©portation dans <span id="timer">5</span> secondes</div>
+    <div class="countdown">Téléportation dans <span id="timer">5</span> secondes</div>
   </div>
 
   <script>
-    // Create starfield
     const starField = document.getElementById('starField');
-    for(let i = 0; i < 100; i++) {
+    for (let i = 0; i < 100; i++) {
       const star = document.createElement('div');
       star.className = 'star';
       star.style.left = `${Math.random() * 100}%`;
@@ -224,68 +150,17 @@ body {
       const countdown = setInterval(() => {
         timeLeft--;
         timerElement.textContent = timeLeft;
-        
         if (timeLeft <= 0) {
           clearInterval(countdown);
           window.location.href = redirectUrl;
         }
       }, 1000);
     } else {
-      document.querySelector('.redirect-text').textContent = 'Erreur de coordonnÃ©es spatiales';
+      document.querySelector('.redirect-text').textContent = 'Erreur de coordonnées spatiales';
       document.querySelector('.loader').style.display = 'none';
       document.querySelector('.countdown').style.display = 'none';
     }
   </script>
-</body>
-</html>
-  
-  
-  </main>
-
-  <footer>
-
-    <div class="footer-content">
-      <div class="footer-section">
-        <h4>Outils</h4>
-        <ul>
-          <li><a href="#">Encrypt</a></li>
-          <li><a href="#">Plan du site</a></li>
-          <li><a href="#">Statut</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h4>Entreprise</h4>
-        <ul>
-          <li><a href="#">À propos</a></li>
-          <li><a href="#">Emplois</a></li>
-          <li><a href="#">Marque</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h4>Ressources</h4>
-        <ul>
-          <li><a href="#">Université</a></li>
-          <li><a href="#">Assistance</a></li>
-          <li><a href="#">Sécurité</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h4>Chartes</h4>
-        <ul>
-          <li><a href="#">Conditions</a></li>
-          <li><a href="#">Confidentialité</a></li>
-          <li><a href="#">Information DMCA</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
-      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
-    </div>
-  
-  </footer>
-
-  <script src="../../script.js" defer></script>
 </body>
 </html>
 

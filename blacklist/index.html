@@ -1,448 +1,406 @@
-﻿<!DOCTYPE html>
-<html lang="fr">
-<head>
-
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <meta name="description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
-  <meta name="theme-color" content="#6366f1">
-  <title>VentiStudio v4</title>
-  <link rel="stylesheet" href="../style.css">
-</title>
-</head>
-<body>
-  <header>
-
-    <div class="logo">
-      <img src="../favicon.ico" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
-      <span>VentiStudio</span>
-    </div>
-    <nav aria-label="Navigation principale">
-      <a href="../" class="active">Accueil</a>
-      <a href="../approuvedcontent/">Contenu Approuvé</a>
-      <a href="../player">Lecteur</a>
-      <a href="../wiki">Wiki</a>
-      <a href="../staff">Équipe</a>
-      <a href="../news">News</a>
-      <a href="../pip">PIP</a>
-      <a href="../sitemap">Plan du site</a>
-    </nav>
-    <div class="controls" role="toolbar" aria-label="Contrôles">
-      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
-        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
-          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
-          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
-          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
-        </svg>
-      </button>
-      <div id="user-button" role="region" aria-label="Authentification"></div>
-    </div>
-  
-  </header>
-
-  <main>
-
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blacklist - VentiStudio</title>
-    <link rel="stylesheet" href="https://trust.ventistudio.eu/root/style.css">
-    <style>
-        .search-bar {
-            margin: 2rem auto;
-            max-width: 800px;
-            display: flex;
-            justify-content: center;
-            padding: 0 1rem;
-        }
-        
-        .search-bar input {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid var(--border-color);
-            border-radius: 8px;
-            background: var(--bg-secondary);
-            color: var(--text-primary);
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-    
-        .search-bar input:focus {
-            outline: none;
-            border-color: var(--accent-color);
-            box-shadow: 0 0 0 3px rgba(var(--accent-color-rgb), 0.2);
-        }
-    
-        .blacklist-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 2rem auto;
-            max-width: 1200px;
-            padding: 0 1rem;
-            gap: 1rem;
-        }
-    
-        .blacklist-item {
-            background: var(--bg-secondary);
-            border: 2px solid var(--border-color);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin: 0;
-            width: 100%;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: grid;
-            grid-template-columns: auto 1fr;
-            gap: 1.5rem;
-        }
-    
-        .blacklist-item img {
-            width: 64px;
-            height: 64px;
-            border-radius: 8px;
-            object-fit: cover;
-        }
-    
-        .blacklist-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            border-color: var(--accent-color);
-        }
-    
-        .blacklist-item h3 {
-            margin: 0 0 0.5rem 0;
-            color: var(--text-primary);
-            font-size: 1.25rem;
-        }
-    
-        .blacklist-item p {
-            margin: 0.25rem 0;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-    
-        @media (max-width: 768px) {
-            .blacklist-item {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-    
-            .blacklist-item img {
-                margin: 0 auto;
-            }
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="VentiStudio Blacklist - Liste noire officielle.">
+  <meta name="theme-color" content="#121212">
+  <link rel="icon" type="image/avif" href="../favicon.avif">
+  <title>Blacklist - VentiStudio</title>
+  <style>
+    :root {
+      --bg-primary: #121212;
+      --bg-secondary: #1e1e1e;
+      --text-primary: #e0e0e0;
+      --text-secondary: #a0a0a0;
+      --border-color: #333;
+      --accent-color: #f39c12;
+      --accent-color-rgb: 243, 156, 18;
+      --danger: #e74c3c;
+    }
 
-        section {
-            background: var(--bg-secondary);
-            border: 2px solid var(--border-color);
-            border-radius: 12px;
-            padding: 2rem;
-            margin: 2rem auto;
-            max-width: 1200px;
-        }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        section h2 {
-            color: var(--text-primary);
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
+    body {
+      font-family: Arial, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
 
-        section h2:first-child {
-            margin-top: 0;
-        }
+    .page-header {
+      text-align: center;
+      padding: 3rem 1rem 1.5rem;
+    }
 
-        section p {
-            color: var(--text-secondary);
-            margin: 0.75rem 0;
-            line-height: 1.6;
-        }
+    .page-header h1 {
+      font-size: 2.2em;
+      color: var(--accent-color);
+      margin-bottom: 0.25rem;
+    }
 
-        @media (max-width: 768px) {
-            section {
-                padding: 1.5rem;
-                margin: 1.5rem 1rem;
-            }
-        }
+    .page-header p {
+      color: var(--text-secondary);
+      font-size: 1rem;
+    }
 
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
+    .search-bar {
+      margin: 1.5rem auto;
+      max-width: 800px;
+      display: flex;
+      justify-content: center;
+      padding: 0 1rem;
+    }
 
-        .modal-content {
-            background: var(--bg-secondary);
-            border: 2px solid var(--border-color);
-            border-radius: 12px;
-            padding: 2rem;
-            max-width: 600px;
-            width: 90%;
-            position: relative;
-            animation: modalFadeIn 0.3s ease;
-        }
+    .search-bar input {
+      width: 100%;
+      padding: 0.9rem 1.2rem;
+      border: 2px solid var(--border-color);
+      border-radius: 8px;
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      font-size: 1rem;
+      transition: border-color 0.3s;
+    }
 
-        .modal-content h2 {
-            color: var(--text-primary);
-            margin-top: 0;
-            margin-bottom: 1rem;
-        }
+    .search-bar input:focus {
+      outline: none;
+      border-color: var(--accent-color);
+      box-shadow: 0 0 0 3px rgba(var(--accent-color-rgb), 0.2);
+    }
 
-        .modal-content p {
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
+    .blacklist-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 1.5rem auto;
+      max-width: 900px;
+      padding: 0 1rem;
+      gap: 1rem;
+    }
 
-        .modal-close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            font-size: 1.5rem;
-            color: var(--text-secondary);
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
+    .bl-card {
+      background: var(--bg-secondary);
+      border: 2px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.5rem;
+      width: 100%;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      gap: 1.5rem;
+      align-items: start;
+      user-select: none;
+      -webkit-user-select: none;
+    }
 
-        .modal-close:hover {
-            color: var(--text-primary);
-        }
+    .bl-card img {
+      width: 64px;
+      height: 64px;
+      border-radius: 8px;
+      object-fit: cover;
+      pointer-events: none;
+    }
 
-        @keyframes modalFadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+    .bl-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+      border-color: var(--accent-color);
+    }
 
-        @media (max-width: 768px) {
-            .modal-content {
-                width: 95%;
-                padding: 1.5rem;
-                margin: 1rem;
-            }
-        }
-    </style>
+    .bl-card h3 { font-size: 1.2rem; margin-bottom: 0.4rem; }
+    .bl-card .bl-id { color: var(--text-secondary); font-size: 0.85rem; }
+    .bl-card .bl-date { color: var(--text-secondary); font-size: 0.85rem; }
+    .bl-card .bl-status { font-size: 0.85rem; font-weight: 600; }
+    .bl-card .bl-status.active { color: var(--danger); }
+    .bl-card .bl-status.pending { color: #f39c12; }
+    .bl-card .bl-status.pardoned { color: #2ecc71; }
+
+    .bl-card .bl-reason {
+      display: none;
+    }
+
+    /* Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-overlay.open { display: flex; }
+
+    .modal-box {
+      background: var(--bg-secondary);
+      border: 2px solid var(--border-color);
+      border-radius: 12px;
+      padding: 2rem;
+      max-width: 550px;
+      width: 90%;
+      position: relative;
+      animation: modalIn 0.25s ease;
+    }
+
+    .modal-box h2 {
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+      padding-right: 2rem;
+    }
+
+    .modal-box .modal-field {
+      margin: 0.5rem 0;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    .modal-box .modal-field strong {
+      color: var(--text-primary);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1.2rem;
+      font-size: 1.6rem;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: color 0.2s;
+      line-height: 1;
+    }
+
+    .modal-close:hover { color: var(--text-primary); }
+
+    @keyframes modalIn {
+      from { opacity: 0; transform: translateY(-15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Conditions section */
+    .conditions {
+      background: var(--bg-secondary);
+      border: 2px solid var(--border-color);
+      border-radius: 12px;
+      padding: 2rem;
+      margin: 2.5rem auto;
+      max-width: 900px;
+    }
+
+    .conditions h2 {
+      color: var(--accent-color);
+      margin-top: 1.8rem;
+      margin-bottom: 0.8rem;
+      font-size: 1.3rem;
+      border-left: 4px solid var(--accent-color);
+      padding-left: 10px;
+    }
+
+    .conditions h2:first-child { margin-top: 0; }
+
+    .conditions p {
+      color: var(--text-secondary);
+      margin: 0.5rem 0;
+      font-size: 0.92rem;
+    }
+
+    .actions {
+      text-align: center;
+      padding: 2rem 0;
+    }
+
+    .actions a {
+      display: inline-block;
+      padding: 0.7rem 1.5rem;
+      background: var(--accent-color);
+      color: #fff;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: opacity 0.2s;
+    }
+
+    .actions a:hover { opacity: 0.85; }
+
+    @media (max-width: 600px) {
+      .bl-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .bl-card img { margin: 0 auto; }
+      .conditions { margin: 2rem 1rem; padding: 1.5rem; }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <div class="logo">
-          <img src="https://ventistudio.eu/favicon.avif" alt="VentiStudio Logo" class="site-logo">
-          <span>VentiStudio Blacklist</span>
-        </div>
-        <nav>
-          <a href="https://ventistudio.eu">Accueil</a>
-          <a href="https://ventistudio.eu/sitemap">Sitemap</a>
-        </nav>
-        <div class="controls">
-          <button id="theme-toggle" class="theme-toggle">
-            <svg width="24" height="24" viewBox="0 0 24 24">
-              <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
-              <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
-              <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
-            </svg>
-          </button>
-          <div id="user-button"></div>
-        </div>
-      </header>
 
-    <div class="search-bar">
-        <input type="text" id="searchInput" placeholder="Rechercher dans la liste noire...">
+  <div class="page-header">
+    <h1>VentiStudio Blacklist</h1>
+    <p>Liste noire officielle</p>
+  </div>
+
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Rechercher dans la liste noire...">
+  </div>
+
+  <div class="blacklist-container" id="blacklistContainer"></div>
+
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-box" id="modalBox">
+      <span class="modal-close" id="modalClose">&times;</span>
+      <h2 id="mTitle"></h2>
+      <p class="modal-field" id="mId"></p>
+      <p class="modal-field" id="mDate"></p>
+      <p class="modal-field" id="mStatus"></p>
+      <p class="modal-field" id="mReason"></p>
     </div>
+  </div>
 
-    <div class="blacklist-container" id="blacklistContainer">
-        <div class="blacklist-item" onclick="openModal('sarlmarchais')">
-            <img src="https://www.muguet-marchais.com/wp-content/uploads/2021/11/logo_marchais-1.png" alt="sarlmarchais">
-            <h3>S.A.R.L. MARCHAIS</h3>
-            <p>ID: 389-170-499-00013</p>
-            <p>Raison: Violence Moral et Physique</p>
-            <p>Date d'ajout: 2025-04-25</p>
-            <p>Statut: Actif</p>
-        </div>
-        <!-- Add more blacklist items as needed
+  <div class="conditions">
+    <h2>Conditions d'ajout &agrave; la liste noire</h2>
+    <p><strong>Comportement inappropri&eacute;</strong> : Tout comportement consid&eacute;r&eacute; comme inappropri&eacute;, tel que des insultes, des menaces, des propos haineux, des attaques personnelles, etc.</p>
+    <p><strong>Non-respect des r&egrave;gles</strong> : Tout non-respect des r&egrave;gles du site web, tel que le spam, les publicit&eacute;s non autoris&eacute;es, les liens vers des sites web malveillants, etc.</p>
+    <p><strong>Harc&egrave;lement</strong> : Tout comportement consid&eacute;r&eacute; comme du harc&egrave;lement, tel que des messages r&eacute;p&eacute;titifs, des appels t&eacute;l&eacute;phoniques non sollicit&eacute;s, des messages priv&eacute;s non sollicit&eacute;s, etc.</p>
+    <p><strong>Diffamation</strong> : Tout comportement consid&eacute;r&eacute; comme de la diffamation, tel que des accusations fausses, des rumeurs, des mensonges, etc.</p>
+    <p><strong>Piratage</strong> : Tout comportement consid&eacute;r&eacute; comme du piratage, tel que des tentatives de piratage, des attaques par d&eacute;ni de service, des injections de code malveillant, etc.</p>
+    <p><strong>Non-respect des lois</strong> : Tout comportement contraire aux lois et r&eacute;glementations en vigueur, tel que la promotion de la violence, la discrimination, la fraude, etc.</p>
 
-        <div class="blacklist-item" onclick="openModal('exemple')">
-            <img src="http://exemple.com/" alt="exemple">
-            <h3>EXEMPLE</h3>
-            <p>ID: 0123456789</p>
-            <p>Raison: Exemple</p>
-            <p>Date d'ajout: AAAA-MM-JJ</p>
-            <p>Statut: Actif, En Attente, PardonÃ©</p>
-        </div>
-                -->
-    </div>
+    <h2>Conditions de retrait de la liste noire</h2>
+    <p><strong>Excuses sinc&egrave;res</strong> : Si l'individu ou le contenu a &eacute;t&eacute; ajout&eacute; &agrave; la liste noire &agrave; cause d'un malentendu ou d'une erreur, et que des excuses sinc&egrave;res sont pr&eacute;sent&eacute;es.</p>
+    <p><strong>Changement de comportement</strong> : Si l'individu ou le contenu a chang&eacute; de comportement et a d&eacute;montr&eacute; une volont&eacute; de respecter les r&egrave;gles et les autres utilisateurs.</p>
+    <p><strong>R&eacute;vision de la d&eacute;cision</strong> : Si la d&eacute;cision d'ajouter l'individu ou le contenu &agrave; la liste noire est r&eacute;vis&eacute;e et consid&eacute;r&eacute;e comme injuste ou erron&eacute;e.</p>
+    <p><strong>Demande de retrait</strong> : Si l'individu ou le contenu demande &agrave; &ecirc;tre retir&eacute; de la liste noire et que la demande est consid&eacute;r&eacute;e comme l&eacute;gitime.</p>
 
-    <div class="modal" id="modal">
-        <div class="modal-content" id="modalContent">
-            <span onclick="closeModal()" style="cursor:pointer; float:right;">&times;</span>
-            <h2 id="modalTitle"></h2>
-            <p id="modalReason"></p>
-        </div>
-    </div>
-    <section>
-        <h2>Conditions d'ajout Ã  la liste noire</h2>
-        <p>Comportement inappropriÃ© : Tout comportement qui est considÃ©rÃ© comme inappropriÃ©, tel que des insultes, des menaces, des propos haineux, des attaques personnelles, etc.</p>
-        <p>Non-respect des rÃ¨gles : Tout non-respect des rÃ¨gles du site web, tel que le spam, les publicitÃ©s non autorisÃ©es, les liens vers des sites web malveillants, etc.</p>
-        <p>Harcellement : Tout comportement qui est considÃ©rÃ© comme du harcÃ¨lement, tel que des messages rÃ©pÃ©titifs, des appels tÃ©lÃ©phoniques non sollicitÃ©s, des messages privÃ©s non sollicitÃ©s, etc.</p>
-        <p>Diffamation : Tout comportement qui est considÃ©rÃ© comme de la diffamation, tel que des accusations fausses, des rumeurs, des mensonges, etc.</p>
-        <p>Piratage : Tout comportement qui est considÃ©rÃ© comme du piratage, tel que des tentatives de piratage, des attaques par dÃ©ni de service, des injections de code malveillant, etc.</p>
-        <p>Non-respect des lois : Tout comportement qui est contraire aux lois et rÃ©glementations en vigueur, tel que la promotion de la violence, la discrimination, la fraude, etc.</p>
-        <h2>Conditions de retrait de la liste noire</h2>
-        <p>Excuses sincÃ¨res : Si l'individu ou le contenu a Ã©tÃ© ajoutÃ© Ã  la liste noire Ã  cause d'un malentendu ou d'une erreur, et que des excuses sincÃ¨res sont prÃ©sentÃ©es.</p>
-        <p>Changement de comportement : Si l'individu ou le contenu a changÃ© de comportement et a dÃ©montrÃ© une volontÃ© de respecter les rÃ¨gles et les autres utilisateurs.</p>
-        <p>RÃ©vision de la dÃ©cision : Si la dÃ©cision d'ajouter l'individu ou le contenu Ã  la liste noire est rÃ©visÃ©e et considÃ©rÃ©e comme injuste ou erronÃ©e.</p>
-        <p>Demande de retrait : Si l'individu ou le contenu demande Ã  Ãªtre retirÃ© de la liste noire et que la demande est considÃ©rÃ©e comme lÃ©gitime.</p>
-        <h2>ProcÃ©dure de retrait de la liste noire</h2>
-        <p>Demande de retrait : L'individu ou le contenu doit demander Ã  Ãªtre retirÃ© de la liste noire.</p>
-        <p>Examen de la demande : La demande est examinÃ©e par l'Ã©quipe de modÃ©ration pour dÃ©terminer si les conditions de retrait sont remplies.</p>
-        <p>DÃ©cision : La dÃ©cision de retirer ou non l'individu ou le contenu de la liste noire est prise par l'Ã©quipe de modÃ©ration.</p>
-        <p>Notification : L'individu ou le contenu est notifiÃ© de la dÃ©cision.</p>
-        <h2>Note</h2>
-        <p>Chaque ajout et retrait est validÃ© par Aina Umaishi grÃ¢ce au module Ingress 002.</p>
-        <p>Cela signifie que chaque dÃ©cision d'ajouter ou de retirer un individu ou un contenu de la liste noire est examinÃ©e et validÃ©e par mon module de justice interne, Ingress 002, pour garantir que les conditions et procÃ©dures sont respectÃ©es et que les dÃ©cisions sont Ã©quitables et justes.</p>
-    </section>
-    
-    <footer>
-        <div class="footer-content">
-          <div class="footer-section">
-            <h4>Outils</h4>
-            <ul>
-              <li><a href="https://ventistudio.eu/encrypt">Encrypt</a></li>
-              <li><a href="https://ventistudio.eu/sitemap">Sitemap</a></li>
-              <li><a href="https://status.ventistudio.eu/">Statut</a></li>
-              <li><a href="https://aina.ventistudio.eu/">Aina</a></li>
-            </ul>
-          </div>
-          <div class="footer-section">
-            <h4>Entreprise</h4>
-            <ul>
-              <li><a href="https://ventistudio.eu/about">Ã€ propos</a></li>
-              <li><a href="https://ventistudio.eu/jobs">Emplois</a></li>
-              <li><a href="https://ventistudio.eu/company">Marque</a></li>
-              <li><a href="https://ventistudio.eu/creator">CrÃ©ateur</a></li>
-            </ul>
-          </div>
-          <div class="footer-section">
-            <h4>Ressources</h4>
-            <ul>
-              <li><a href="https://ventistudio.eu/university">UniversitÃ©</a></li>
-              <li><a href="https://ventistudio.eu/school">Ã‰cole</a></li>
-              <li><a href="https://ventistudio.eu/help">Assistance</a></li>
-              <li><a href="https://ventistudio.eu/security">SÃ©curitÃ©</a></li>
-            </ul>
-          </div>
-          <div class="footer-section">
-            <h4>Chartes</h4>
-            <ul>
-              <li><a href="https://ventistudio.eu/terms">Conditions</a></li>
-              <li><a href="https://ventistudio.eu/privacy">ConfidentialitÃ©</a></li>
-              <li><a href="https://ventistudio.eu/cookies">Cookies</a></li>
-              <li><a href="https://ventistudio.eu/dmca">DMCA</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="footer-bottom">
-          <p class="status"><iframe src="https://status.ventistudio.eu/badge?theme=dark" width="250" height="30" frameborder="0" marginheight="0" marginwidth="0" scrolling="no"></iframe></p>
-          <p class="copyright">Copyright © P-Line 2023 - 2025. Tous droits réservés.</p>
-        </div>
-      </footer>
-    <script src="https://trust.ventistudio.eu/root/script.js"></script>
-    <script>
-        function openModal(site) {
-            const modal = document.getElementById('modal');
-            const modalTitle = document.getElementById('modalTitle');
-            const modalReason = document.getElementById('modalReason');
+    <h2>Proc&eacute;dure de retrait</h2>
+    <p>1. L'individu ou le contenu doit soumettre une demande de retrait.</p>
+    <p>2. La demande est examin&eacute;e par l'&eacute;quipe de mod&eacute;ration.</p>
+    <p>3. La d&eacute;cision de retirer ou non est prise par l'&eacute;quipe de mod&eacute;ration.</p>
+    <p>4. L'individu ou le contenu est notifi&eacute; de la d&eacute;cision.</p>
 
-            if (site === 'sarlmarchais') {
-                modalTitle.innerText = 'S.A.R.L. MARCHAIS (https://muguet-marchais.com/)';
-                modalReason.innerText = 'Climat de travail toxique et Agression physique.';
-            } else if (site === 'site2') {
-                modalTitle.innerText = 'Site 2';
-                modalReason.innerText = 'DÃ©tails supplÃ©mentaires sur le site 2 et la raison de son ajout Ã  la liste noire.';
-            }
-            modal.style.display = 'flex';
+    <h2>Note</h2>
+    <p>Chaque ajout et retrait est valid&eacute; par Aina Umaishi gr&acirc;ce au module Ingress 002. Cela signifie que chaque d&eacute;cision est examin&eacute;e et valid&eacute;e par le module de justice interne pour garantir que les conditions et proc&eacute;dures sont respect&eacute;es et que les d&eacute;cisions sont &eacute;quitables et justes.</p>
+  </div>
+
+  <div class="actions">
+    <a href="/">Revenir &agrave; l'accueil</a>
+  </div>
+
+  <script>
+    // Blacklist data - reasons are obfuscated (reversed + base64)
+    // This makes it non-trivial to read reasons from source/inspector
+    void function() {
+      var _0x=[
+        '\x43\x6d\x56\x68\x5a\x47\x56\x79',
+        '\x64\x47\x39\x69'
+      ];
+      var _enc = function(s) {
+        return btoa(unescape(encodeURIComponent(s.split('').reverse().join(''))));
+      };
+      var _dec = function(e) {
+        try {
+          return decodeURIComponent(escape(atob(e))).split('').reverse().join('');
+        } catch(x) { return '---'; }
+      };
+
+      // Encoded entries: name, id, img, reason(encoded), date, status, url
+      var _d = [
+        {
+          n: 'S.A.R.L. MARCHAIS',
+          i: '389-170-499-00013',
+          img: 'https://www.muguet-marchais.com/wp-content/uploads/2021/11/logo_marchais-1.png',
+          r: 'LmV1cWlzeWhwIHRlIGxhcm9tIGVjbmVsb2lWID0+IC5lcXV4aW90IGxpYXZhcnQgZWQgdGFtaWxjIHRlIGVxdWlzeWhwIG5vaXNzZXJnQQ==',
+          d: '2025-04-25',
+          s: 'active',
+          u: 'https://muguet-marchais.com/'
         }
+      ];
 
-        function closeModal() {
-            const modal = document.getElementById('modal');
-            modal.style.display = 'none';
-        }
+      var container = document.getElementById('blacklistContainer');
+      var overlay = document.getElementById('modalOverlay');
+      var mTitle = document.getElementById('mTitle');
+      var mId = document.getElementById('mId');
+      var mDate = document.getElementById('mDate');
+      var mStatus = document.getElementById('mStatus');
+      var mReason = document.getElementById('mReason');
+      var mClose = document.getElementById('modalClose');
 
-        document.getElementById('searchInput').addEventListener('input', function() {
-            const filter = this.value.toLowerCase();
-            const items = document.querySelectorAll('.blacklist-item');
+      var statusLabels = {
+        active: 'Actif',
+        pending: 'En Attente',
+        pardoned: 'Pardonn\u00e9'
+      };
 
-            items.forEach(item => {
-                const text = item.innerText.toLowerCase();
-                item.style.display = text.includes(filter) ? '' : 'none';
-            });
+      _d.forEach(function(entry) {
+        var card = document.createElement('div');
+        card.className = 'bl-card';
+        card.setAttribute('data-ref', entry.r);
+        card.setAttribute('data-name', entry.n);
+        card.setAttribute('data-id', entry.i);
+        card.setAttribute('data-date', entry.d);
+        card.setAttribute('data-status', entry.s);
+        card.setAttribute('data-url', entry.u || '');
+
+        var img = document.createElement('img');
+        img.src = entry.img;
+        img.alt = entry.n;
+        img.draggable = false;
+
+        var info = document.createElement('div');
+        info.innerHTML =
+          '<h3>' + entry.n + '</h3>' +
+          '<p class="bl-id">ID : ' + entry.i + '</p>' +
+          '<p class="bl-date">Date d\'ajout : ' + entry.d + '</p>' +
+          '<p class="bl-status ' + entry.s + '">Statut : ' + (statusLabels[entry.s] || entry.s) + '</p>';
+
+        card.appendChild(img);
+        card.appendChild(info);
+        container.appendChild(card);
+
+        card.addEventListener('click', function() {
+          var ref = this.getAttribute('data-ref');
+          var nm = this.getAttribute('data-name');
+          var uid = this.getAttribute('data-id');
+          var dt = this.getAttribute('data-date');
+          var st = this.getAttribute('data-status');
+          var url = this.getAttribute('data-url');
+
+          mTitle.textContent = nm + (url ? ' (' + url + ')' : '');
+          mId.innerHTML = '<strong>ID :</strong> ' + uid;
+          mDate.innerHTML = '<strong>Date :</strong> ' + dt;
+          mStatus.innerHTML = '<strong>Statut :</strong> ' + (statusLabels[st] || st);
+          mReason.innerHTML = '<strong>Raison :</strong> ' + _dec(ref);
+          overlay.classList.add('open');
         });
-    </script>
+      });
+
+      mClose.addEventListener('click', function() {
+        overlay.classList.remove('open');
+      });
+      overlay.addEventListener('click', function(e) {
+        if (e.target === overlay) overlay.classList.remove('open');
+      });
+
+      // Search
+      document.getElementById('searchInput').addEventListener('input', function() {
+        var f = this.value.toLowerCase();
+        var cards = container.querySelectorAll('.bl-card');
+        cards.forEach(function(c) {
+          var txt = c.textContent.toLowerCase();
+          c.style.display = txt.includes(f) ? '' : 'none';
+        });
+      });
+
+      // Block right-click on cards & disable copy of reason in modal
+      container.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+      overlay.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+      overlay.addEventListener('copy', function(e) { e.preventDefault(); });
+      overlay.addEventListener('selectstart', function(e) { e.preventDefault(); });
+    }();
+  </script>
+
 </body>
 </html>
-  
-  
-  </main>
-
-  <footer>
-
-    <div class="footer-content">
-      <div class="footer-section">
-        <h4>Outils</h4>
-        <ul>
-          <li><a href="#">Encrypt</a></li>
-          <li><a href="#">Plan du site</a></li>
-          <li><a href="#">Statut</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h4>Entreprise</h4>
-        <ul>
-          <li><a href="#">À propos</a></li>
-          <li><a href="#">Emplois</a></li>
-          <li><a href="#">Marque</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h4>Ressources</h4>
-        <ul>
-          <li><a href="#">Université</a></li>
-          <li><a href="#">Assistance</a></li>
-          <li><a href="#">Sécurité</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h4>Chartes</h4>
-        <ul>
-          <li><a href="#">Conditions</a></li>
-          <li><a href="#">Confidentialité</a></li>
-          <li><a href="#">Information DMCA</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
-      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
-    </div>
-  
-  </footer>
-
-  <script src="../script.js" defer></script>
-</body>
-</html>
-
-
