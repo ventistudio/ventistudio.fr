@@ -1,0 +1,2 @@
+# Ne pas committer le fichier de config avec les identifiants BDD
+config.php

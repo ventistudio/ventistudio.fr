@@ -39,35 +39,38 @@
   
   </header>
 
+
   <main>
-
-
-<html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <title>ventistudio.eu - Peercom IA
-</title>
     <script async src="https://trust.ventistudio.eu/main/embed.js"></script>
-    <style type="text/css">
-      html { margin: 0; height: 100%; overflow: hidden; }
-      iframe { position: absolute; top: 0; right: 0; bottom: 0; left: 0; border: 0; }
+    <style>
+      .chat-iframe-container {
+        position: relative;
+        width: 100vw;
+        height: 80vh;
+        min-height: 400px;
+        margin: 0 auto;
+        overflow: hidden;
+      }
+      .chat-iframe-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+      }
     </style>
-  </head>
-  <body>
-    <iframe 
-src="https://www.stack-ai.com/chat/68041408a26c749f57f05b2c-1uoynaGlz1nteT0CNo6WKW" 
- width="100%" 
- height="100%" 
- allow="clipboard-read; clipboard-write">
-</iframe>
-  </body>
-</html>
-  
-  
+    <div class="chat-iframe-container">
+      <iframe 
+        src="https://www.stack-ai.com/chat/68041408a26c749f57f05b2c-1uoynaGlz1nteT0CNo6WKW" 
+        allow="clipboard-read; clipboard-write"
+        title="Peercom IA Chat">
+      </iframe>
+    </div>
   </main>
 
-  <footer>
 
+  <footer>
     <div class="footer-content">
       <div class="footer-section">
         <h4>Outils</h4>
@@ -106,11 +109,8 @@ src="https://www.stack-ai.com/chat/68041408a26c749f57f05b2c-1uoynaGlz1nteT0CNo6W
       <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
       <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
     </div>
-  
   </footer>
-
   <script src="/script.js" defer></script>
 </body>
-</html>
 
 
