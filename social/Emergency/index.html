@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emergency</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Share+Tech+Mono&family=Noto+Sans+JP:wght@900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #000;
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+      font-family: 'Share Tech Mono', monospace;
+    }
+
+    /* ========== PHASE CONTAINERS ========== */
+    .phase { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
+    .phase.hidden { display: none; }
+
+    /* =============================================
+       PHASE 1 — INTRO: EMERGENCY WARNING SCREEN
+       ============================================= */
+    #introPhase {
+      background: #0a0a0a;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      opacity: 1;
+    }
+    #introPhase.fadeout {
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    /* Hazard stripes — diagonal red/black repeated bar at top */
+    .hazard-top {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: clamp(50px, 10vh, 100px);
+      background: repeating-linear-gradient(
+        -55deg,
+        #cc0000 0px, #cc0000 20px,
+        #000 20px, #000 40px
+      );
+      background-size: 56px 100%;
+      z-index: 2;
+    }
+
+    /* Japanese text row */
+    .jp-text {
+      font-family: 'Noto Sans JP', 'MS Gothic', sans-serif;
+      font-weight: 900;
+      color: #cc0000;
+      font-size: clamp(28px, 7vw, 80px);
+      letter-spacing: 0.05em;
+      text-align: center;
+      margin-top: clamp(60px, 12vh, 120px);
+      z-index: 3;
+      text-shadow: 0 0 20px rgba(200,0,0,0.4);
+      animation: introFadeIn 0.5s 0.3s both;
+    }
+
+    @keyframes introFadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes introPopIn {
+      from { opacity: 0; transform: scale(0.85); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    /* Yellow/black hazard bar (separator) */
+    .hazard-bar {
+      width: 90%;
+      max-width: 900px;
+      height: clamp(8px, 1.5vh, 16px);
+      margin: clamp(12px, 3vh, 30px) auto;
+      background: repeating-linear-gradient(
+        -55deg,
+        #d4a800 0px, #d4a800 12px,
+        #111 12px, #111 24px
+      );
+      z-index: 3;
+      animation: introFadeIn 0.4s 0.6s both;
+    }
+
+    /* EMERGENCY text */
+    .intro-emergency {
+      font-family: 'Black Ops One', 'Impact', sans-serif;
+      color: #e87000;
+      font-size: clamp(42px, 11vw, 130px);
+      letter-spacing: 0.08em;
+      text-align: center;
+      z-index: 3;
+      text-shadow: 0 0 30px rgba(232,112,0,0.3), 2px 2px 0 rgba(0,0,0,0.8);
+      animation: introPopIn 0.5s 0.8s both;
+    }
+
+    /* WARNING text */
+    .intro-warning {
+      font-family: 'Black Ops One', 'Impact', sans-serif;
+      color: #e87000;
+      font-size: clamp(50px, 13vw, 150px);
+      letter-spacing: 0.1em;
+      text-align: center;
+      z-index: 3;
+      margin-top: clamp(5px, 1vh, 15px);
+      text-shadow: 0 0 30px rgba(232,112,0,0.3), 2px 2px 0 rgba(0,0,0,0.8);
+      animation: introPopIn 0.5s 1.1s both;
+    }
+
+    /* Binary codes on the right */
+    .binary-codes {
+      position: absolute;
+      right: clamp(10px, 4vw, 50px);
+      bottom: clamp(50px, 14vh, 140px);
+      z-index: 3;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: clamp(10px, 1.6vw, 18px);
+      color: rgba(200,200,200,0.7);
+      line-height: 1.7;
+      text-align: right;
+      animation: introFadeIn 0.5s 1.4s both;
+    }
+
+    /* Hazard stripes bottom */
+    .hazard-bottom {
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%; height: clamp(30px, 6vh, 60px);
+      background: repeating-linear-gradient(
+        -55deg,
+        #cc0000 0px, #cc0000 20px,
+        #000 20px, #000 40px
+      );
+      background-size: 56px 100%;
+      z-index: 2;
+    }
+
+    /* Intro flash effect */
+    .intro-flash {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: #fff;
+      z-index: 50;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.1s;
+    }
+    .intro-flash.flash { opacity: 0.8; transition: opacity 0.05s; }
+    .intro-flash.fadeout { opacity: 0; transition: opacity 0.3s; }
+
+    /* =============================================
+       PHASE 2 — LOOP: HEXAGONAL GRID
+       ============================================= */
+    #hexPhase {
+      background: #000;
+      z-index: 5;
+      opacity: 0;
+      transition: opacity 0.6s;
+    }
+    #hexPhase.visible { opacity: 1; }
+
+    .hex-grid-wrapper {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform-origin: center center;
+      pointer-events: none;
+    }
+
+    .hex-cell {
+      position: absolute;
+      user-select: none;
+    }
+
+    /* Hexagon via SVG-based inline background or clip-path */
+    .hex-shape {
+      width: 100%; height: 100%;
+      clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+      background: #dd0000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      transition: none;
+    }
+
+    /* OFF state — hex becomes dark */
+    .hex-cell.off .hex-shape {
+      background: #1a0000;
+    }
+    .hex-cell.off .hex-triangle {
+      border-top-color: #0a0000;
+    }
+    .hex-cell.off .hex-label {
+      color: #0a0000;
+    }
+
+    .hex-triangle {
+      width: 0; height: 0;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-top: 10px solid #000;
+    }
+
+    .hex-label {
+      font-family: 'Black Ops One', 'Impact', sans-serif;
+      font-size: 10px;
+      color: #000;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+      line-height: 1;
+    }
+
+    /* ========== SCANLINES (over everything) ========== */
+    .scanlines {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 40; pointer-events: none;
+      background: repeating-linear-gradient(
+        to bottom,
+        transparent 0px, transparent 2px,
+        rgba(0,0,0,0.07) 2px, rgba(0,0,0,0.07) 4px
+      );
+    }
+
+    /* ========== INFO BAR AT BOTTOM ========== */
+    .info-bar {
+      position: fixed;
+      bottom: 0; left: 0;
+      width: 100%;
+      z-index: 45;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      padding: clamp(8px, 1.5vh, 16px) clamp(12px, 3vw, 30px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      border-top: 2px solid rgba(200, 0, 0, 0.5);
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+    .info-bar.visible { opacity: 1; }
+
+    .info-nerv {
+      font-size: clamp(7px, 1.3vw, 11px);
+      letter-spacing: 5px;
+      color: rgba(255,255,255,0.25);
+      text-transform: uppercase;
+    }
+
+    .info-status {
+      font-size: clamp(10px, 1.8vw, 15px);
+      letter-spacing: 3px;
+      color: rgba(255,200,200,0.8);
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    .info-dest {
+      font-size: clamp(9px, 1.5vw, 13px);
+      color: rgba(255,100,100,0.7);
+      word-break: break-all;
+      text-align: center;
+      max-width: 80vw;
+    }
+
+    .info-countdown {
+      font-size: clamp(16px, 3.5vw, 32px);
+      font-weight: 700;
+      color: #ff2222;
+      letter-spacing: 8px;
+      font-family: 'Black Ops One', monospace;
+      animation: countPulse 1s step-end infinite;
+    }
+    @keyframes countPulse {
+      0%   { opacity: 1; }
+      50%  { opacity: 0.3; }
+    }
+
+    .info-error {
+      font-size: clamp(11px, 2.2vw, 18px);
+      color: #ff4444;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 480px) {
+      .info-nerv { letter-spacing: 3px; }
+      .info-status { letter-spacing: 2px; }
+      .binary-codes { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ======= PHASE 1: INTRO — EMERGENCY WARNING ======= -->
+  <div id="introPhase" class="phase">
+    <div class="hazard-top"></div>
+    <div class="jp-text">緊急事態非常警報発令</div>
+    <div class="hazard-bar"></div>
+    <div class="intro-emergency">EMERGENCY</div>
+    <div class="intro-warning">WARNING</div>
+    <div class="binary-codes">
+      01011001A0<br>
+      00110110C1<br>
+      11101011D1<br>
+      10000110L0
+    </div>
+    <div class="hazard-bottom"></div>
+  </div>
+
+  <!-- ======= PHASE 2: HEX GRID LOOP ======= -->
+  <div id="hexPhase" class="phase hidden">
+    <div class="hex-grid-wrapper" id="hexGrid"></div>
+  </div>
+
+  <!-- Shared overlays -->
+  <div class="intro-flash" id="introFlash"></div>
+  <div class="scanlines"></div>
+
+  <!-- Bottom info bar -->
+  <div class="info-bar" id="infoBar">
+    <div class="info-nerv">NERV &#8212; GOD'S IN HIS HEAVEN. ALL'S RIGHT WITH THE WORLD.</div>
+    <div class="info-status" id="infoStatus">EMERGENCY TRANSPORT SEQUENCE</div>
+    <div class="info-dest" id="infoDest"></div>
+    <div class="info-countdown" id="infoCountdown"></div>
+    <div class="info-error" id="infoError" style="display:none"></div>
+  </div>
+
+  <script>
+    /* ====================================================
+       EVANGELION EMERGENCY — TWO-PHASE ANIMATION
+       Phase 1: Intro warning screen (plays once)
+       Phase 2: Hexagonal grid (loops)
+       ==================================================== */
+
+    /* ---------- HELPERS ---------- */
+    function el(id) { return document.getElementById(id); }
+    function delay(ms) { return new Promise(function(r) { setTimeout(r, ms); }); }
+
+    /* ---------- PHASE 1: INTRO ---------- */
+    var introPhase  = el('introPhase');
+    var hexPhase    = el('hexPhase');
+    var introFlash  = el('introFlash');
+
+    async function playIntro() {
+      /* Intro is already visible (opacity: 1), CSS animations auto-play staggered elements */
+
+      /* Hold the intro screen for the staggered animations + read time */
+      await delay(3800);
+
+      /* Flash transition to hex grid */
+      introFlash.classList.add('flash');
+      await delay(100);
+
+      /* Switch phases */
+      introPhase.classList.add('fadeout');
+      introPhase.classList.remove('visible');
+
+      await delay(150);
+
+      introPhase.classList.add('hidden');
+      hexPhase.classList.remove('hidden');
+
+      /* Short delay then fade in hex */
+      await delay(50);
+      hexPhase.classList.add('visible');
+
+      introFlash.classList.remove('flash');
+      introFlash.classList.add('fadeout');
+      await delay(400);
+      introFlash.classList.remove('fadeout');
+    }
+
+    /* ---------- PHASE 2: HEXAGONAL GRID ---------- */
+    (function() {
+      var wrapper = el('hexGrid');
+      var allCells = [];       /* array of all cell DOM elements */
+      var blinkTimers = [];    /* array of setTimeout IDs for cleanup */
+
+      function getHexSize() {
+        var vw = window.innerWidth;
+        if (vw <= 400)  return 55;
+        if (vw <= 600)  return 70;
+        if (vw <= 900)  return 85;
+        if (vw <= 1200) return 100;
+        if (vw <= 1600) return 115;
+        return 130;
+      }
+
+      /* Schedule a random blink for one cell */
+      function scheduleBlink(cell) {
+        /* Random wait before next blink: 300ms – 3000ms */
+        var waitTime = 300 + Math.random() * 2700;
+        var timer = setTimeout(function() {
+          /* Turn off */
+          cell.classList.add('off');
+
+          /* How long it stays off: 80ms – 250ms */
+          var offTime = 80 + Math.random() * 170;
+          setTimeout(function() {
+            cell.classList.remove('off');
+
+            /* 40% chance of a double-blink (blink again quickly) */
+            if (Math.random() < 0.4) {
+              setTimeout(function() {
+                cell.classList.add('off');
+                setTimeout(function() {
+                  cell.classList.remove('off');
+                  scheduleBlink(cell);
+                }, 60 + Math.random() * 100);
+              }, 50 + Math.random() * 80);
+            } else {
+              scheduleBlink(cell);
+            }
+          }, offTime);
+        }, waitTime);
+        blinkTimers.push(timer);
+      }
+
+      function stopAllBlinks() {
+        for (var i = 0; i < blinkTimers.length; i++) {
+          clearTimeout(blinkTimers[i]);
+        }
+        blinkTimers = [];
+      }
+
+      function buildGrid() {
+        stopAllBlinks();
+        wrapper.innerHTML = '';
+        allCells = [];
+
+        var vw = window.innerWidth;
+        var vh = window.innerHeight;
+        var hexW = getHexSize();
+        var hexH = hexW * 1.155;
+
+        var colStep = hexW * 0.75;
+        var rowStep = hexH;
+        var rowOffset = hexH * 0.5;
+
+        var diagonal = Math.sqrt(vw * vw + vh * vh);
+        var gridSize = diagonal * 1.3;
+        var cols = Math.ceil(gridSize / colStep) + 2;
+        var rows = Math.ceil(gridSize / rowStep) + 2;
+
+        var fontSize = Math.max(6, Math.round(hexW * 0.115));
+        var triSize  = Math.max(4, Math.round(hexW * 0.08));
+
+        wrapper.style.transform = 'translate(-50%, -50%)';
+        wrapper.style.width  = gridSize + 'px';
+        wrapper.style.height = gridSize + 'px';
+
+        var startX = (gridSize - cols * colStep) / 2;
+        var startY = (gridSize - rows * rowStep) / 2;
+
+        var fragment = document.createDocumentFragment();
+
+        for (var c = 0; c < cols; c++) {
+          for (var r = 0; r < rows; r++) {
+            var x = startX + c * colStep;
+            var yShift = (c % 2 === 0) ? 0 : rowOffset;
+            var y = startY + r * rowStep + yShift;
+
+            var cell = document.createElement('div');
+            cell.className = 'hex-cell';
+            cell.style.width  = hexW + 'px';
+            cell.style.height = hexH + 'px';
+            cell.style.left   = x + 'px';
+            cell.style.top    = y + 'px';
+
+            /* Two types: with text or without text */
+            var showText = ((c + r) % 3 !== 0);
+            var inner = '<div class="hex-shape">';
+            inner += '<div class="hex-triangle" style="border-left-width:' + triSize + 'px;border-right-width:' + triSize + 'px;border-top-width:' + Math.round(triSize * 1.6) + 'px"></div>';
+            if (showText) {
+              inner += '<span class="hex-label" style="font-size:' + fontSize + 'px">EMERGENCY</span>';
+            }
+            inner += '</div>';
+
+            cell.innerHTML = inner;
+            fragment.appendChild(cell);
+            allCells.push(cell);
+          }
+        }
+
+        wrapper.appendChild(fragment);
+
+        /* Start individual blink timers for every cell */
+        for (var i = 0; i < allCells.length; i++) {
+          scheduleBlink(allCells[i]);
+        }
+      }
+
+      buildGrid();
+
+      var resizeTimer;
+      window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(buildGrid, 250);
+      });
+    })();
+
+    /* ---------- REDIRECT LOGIC ---------- */
+    var blacklisted = ['malicious.com', 'spam.com', 'unsafe.net'];
+
+    function isValidUrl(s) {
+      try { new URL(s); return true; } catch(e) { return false; }
+    }
+    function isBlacklisted(url) {
+      return blacklisted.some(function(b) { return url.includes(b); });
+    }
+    function getRedirectUrl() {
+      return new URLSearchParams(window.location.search).get('redirect');
+    }
+
+    function showInfo() {
+      el('infoBar').classList.add('visible');
+    }
+
+    function showError(msg) {
+      showInfo();
+      el('infoStatus').style.display = 'none';
+      el('infoCountdown').style.display = 'none';
+      el('infoError').style.display = '';
+      el('infoError').textContent = msg;
+    }
+
+    async function handleRedirect() {
+      var redirectUrl = getRedirectUrl();
+
+      /* Play intro first */
+      await playIntro();
+
+      if (!redirectUrl) {
+        showError('ERROR \u2014 NO TARGET COORDINATES');
+        return;
+      }
+      if (!isValidUrl(redirectUrl)) {
+        showError('ERROR \u2014 INVALID COORDINATES DETECTED');
+        return;
+      }
+      if (isBlacklisted(redirectUrl)) {
+        showError('RESTRICTED AREA \u2014 ACCESS DENIED BY MAGI');
+        return;
+      }
+
+      /* Show info bar with countdown */
+      showInfo();
+      el('infoDest').textContent = redirectUrl;
+
+      var countdown = 5;
+      var countdownEl = el('infoCountdown');
+      countdownEl.textContent = countdown;
+
+      var interval = setInterval(function() {
+        countdown--;
+        if (countdown > 0) {
+          countdownEl.textContent = countdown;
+        } else {
+          clearInterval(interval);
+          countdownEl.textContent = 'TRANSPORT';
+          window.location.href = redirectUrl;
+        }
+      }, 1000);
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      handleRedirect();
+    });
+  </script>
+</body>
+</html>

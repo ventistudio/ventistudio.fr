@@ -880,6 +880,7 @@
     let radioNowPlayingEl = null;
     let radioBlocked = false;
     let radioBlockedMsgShown = false;
+    let radioErrorCount = 0;
 
     /* ── Radio Stations & Playlists ── */
     var radioStations = {
@@ -891,12 +892,12 @@
           { title: 'Bienvenue \u00e0 VentiStudio', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/This Is VentStudio FiTsZ/Bienvenue \u00e0 VentiStudio.mp3' },
           { title: 'Dans un souffle venu d\'ailleurs', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/This Is VentStudio FiTsZ/Dans un souffle venu d\'ailleurs.mp3' },
           { title: 'Port\u00e9 par le vent', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/This Is VentStudio FiTsZ/Port\u00e9 par le vent.mp3' },
-          { title: 'Arcade Stage', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers 4/Arcade Stage.mp3' },
-          { title: 'Good Day', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers Deluxe/Good Day.mp3' },
-          { title: 'Jour de f\u00eates', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers Deluxe/Jour de f\u00eates.mp3' },
+          { title: 'Arcade Stage', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers 4/Arcade Stage (from Aoki Univers).mp3' },
+          { title: 'Good Day', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers Deluxe/Good Day (from Aoki Univers).mp3' },
+          { title: 'Jour de f\u00eates', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers Deluxe/Jour de f\u00eates (from Aoki Univers).mp3' },
           { title: 'Aoki Univers F\u00eates des culture', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/This Is VentStudio FiTsZ/Aoki Univers F\u00eates des culture.mp3' },
-          { title: 'LoFi', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers Deluxe/LoFi.mp3' },
-          { title: 'Retro Arcade', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers Deluxe/Retro Arcade.mp3' }
+          { title: 'LoFi', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers Deluxe/LoFi (from Aoki Univers).mp3' },
+          { title: 'Retro Arcade', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers Deluxe/Retro Arcade (from Aoki Univers).mp3' }
         ]
       },
       wasteland: {
@@ -906,29 +907,29 @@
           { title: 'Les murs nous regardent', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/The Lost Site/Lost Site - Les murs nous regardent.mp3' },
           { title: 'Zone Retribution - Main Theme', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/The Lost Site/Zone Retribution - Main Theme.mp3' },
           { title: 'Zone Retribution - Pandora', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/The Lost Site/Zone Retribution - Pandora.mp3' },
-          { title: 'Site Omega 98', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/The Lost Site/Site Omega 98.mp3' },
-          { title: 'Chant du N\u00e9ant', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/neolyaofaokiunivers3/Chant du N\u00e9ant.mp3' },
-          { title: 'Dernier Rite', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/neolyaofaokiunivers3/Dernier Rite.mp3' },
-          { title: 'Kage no Yume', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/neolyaofaokiunivers3/Kage no Yume.mp3' },
-          { title: 'Ombre des \u00c9toiles', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/neolyaofaokiunivers3/Ombre des \u00c9toiles.mp3' },
-          { title: 'Cr\u00e9puscule Interstellaire', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/neolyaofaokiunivers3/Cr\u00e9puscule Interstellaire.mp3' },
-          { title: 'L\'abysse de l\'Ordre', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/neolyaofaokiunivers2/L\'abysse de l\'Ordre.mp3' }
+          { title: 'Site Omega 98', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/The Lost Site/Lost Site - Site Omega 98.mp3' },
+          { title: 'Chant du N\u00e9ant', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/neolyaofaokiunivers3/Chant du N\u00e9ant (from Aoki Univers).mp3' },
+          { title: 'Dernier Rite', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/neolyaofaokiunivers3/Dernier Rite (from Aoki Univers).mp3' },
+          { title: 'Kage no Yume', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/neolyaofaokiunivers3/Kage no Yume (from Aoki Univers).mp3' },
+          { title: 'Ombre des \u00c9toiles', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/neolyaofaokiunivers3/Ombre des \u00c9toiles (from Aoki Univers).mp3' },
+          { title: 'Cr\u00e9puscule Interstellaire', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/neolyaofaokiunivers3/Cr\u00e9puscule Interstellaire (from Aoki Univers).mp3' },
+          { title: 'L\'abysse de l\'Ordre', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/neolyaofaokiunivers2/L\'abysse de l\'Ordre (from Aoki Univers).mp3' }
         ]
       },
       classique: {
         name: 'Classique Abri',
         desc: 'Orchestral \u00e9pique du monde d\'avant',
         tracks: [
-          { title: 'Aoki - Astral Symphony (Epic)', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Time Of Aoki/Aoki - Astral Symphony (epic orchestral).mp3' },
-          { title: 'Aoki - Enfant de la lune (Epic)', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Time Of Aoki/Aoki - Enfant de la lune (epic orchestral).mp3' },
+          { title: 'Astral Symphony (Epic)', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Time Of Aoki/Teyvat\'s - Astral Symphony (Epic Orchestral).mp3' },
+          { title: 'Enfant de la lune (Epic)', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Time Of Aoki/Aoki - Enfant de la lune (Epic Orchestral).mp3' },
           { title: 'Gardien de l\'univers - Epic', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Gardien de l\'univers/Gardien de l\'univers - Epic.mp3' },
-          { title: 'Constellation de Versailles', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers Deluxe/Constellation de Versailles.mp3' },
-          { title: 'Pri\u00e8re - Orchestral', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers Deluxe/Pri\u00e8re - Orchestral.mp3' },
-          { title: 'Instant de gloire', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers Deluxe/Instant de gloire.mp3' },
-          { title: 'Gloire du d\u00e9sir', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers Deluxe/Gloire du d\u00e9sir.mp3' },
-          { title: 'Soleil Levant', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers Deluxe/Soleil Levant.mp3' },
-          { title: 'Lune d\'Hiro', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers 4/Lune d\'Hiro.mp3' },
-          { title: 'Gravure de Lune', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/neolyaofaokiunivers3/Gravure de Lune.mp3' }
+          { title: 'Constellation de Versailles', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers Deluxe/Constellation de Versailles (from Aoki Univers).mp3' },
+          { title: 'Instant de gloire', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers Deluxe/Instant de gloire (from Aoki Univers).mp3' },
+          { title: 'Gloire du d\u00e9sir', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers Deluxe/Gloire du d\u00e9sir (from Aoki Univers).mp3' },
+          { title: 'Soleil Levant', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers Deluxe/Soleil Levant (from Aoki Univers).mp3' },
+          { title: 'Lune d\'Hiro', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers 4/Lune d\'Hiro (from Aoki Univers).mp3' },
+          { title: 'Gravure de Lune', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/neolyaofaokiunivers3/Gravure de Lune (from Aoki Univers).mp3' },
+          { title: 'Voyageur D\'\u00e9ternit\u00e9 (Epic)', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Time Of Aoki/Voyageur D\'\u00e9ternit\u00e9 (Epic Orchestral).mp3' }
         ]
       },
       combat: {
@@ -939,9 +940,9 @@
           { title: 'Yuuki - Enemy Straight Ahead', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/aokiunivers/Yuuki - Enemy Straight Ahead.mp3' },
           { title: 'Jutsu - Emergency Reverse Propulsion', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/aokiunivers/Jutsu - Emergency Reverse Propulsion.mp3' },
           { title: 'Jutsu - Warhead Protocol', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/aokiunivers/Jutsu - Warhead Protocol.mp3' },
-          { title: 'Jahaaka Combat', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers Deluxe/Jahaaka Combat.mp3' },
-          { title: 'Jahaaka Space Unit', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers Deluxe/Jahaaka Space Unit.mp3' },
-          { title: 'Trauma Team', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers Deluxe/Trauma Team.mp3' },
+          { title: 'Jahaaka Combat', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers Deluxe/Jahaaka Combat (from Aoki Univers).mp3' },
+          { title: 'Jahaaka Space Unit', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers Deluxe/Jahaaka Space Unit (from Aoki Univers).mp3' },
+          { title: 'Trauma Team', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers Deluxe/Trauma Team (from Aoki Univers).mp3' },
           { title: 'Seeds - Quantum Research of 7', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/aokiunivers/Seeds - Quantum Research of 7.mp3' },
           { title: 'Jutsu - Please Evacuate', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/aokiunivers/Jutsu - Please Evacuate.mp3' },
           { title: 'ChaosMoonVerse', artist: 'P0LTERG3IIST', src: '/a-files/music/p0lterg3iist/chaosmoonverse.mp3' }
@@ -953,12 +954,12 @@
         tracks: [
           { title: 'Enfant de la lune', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/aokiunivers/Aoki - Enfant de la lune.mp3' },
           { title: 'Kanae - Soothing Medical Breath', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/aokiunivers/Kanae - Soothing Medical Breath.mp3' },
-          { title: 'Silence d\'Osaka', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers 4/Silence d\'Osaka.mp3' },
-          { title: 'Signal de l\'\u00e2me', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers Deluxe/Signal de l\'\u00e2me.mp3' },
-          { title: '\u00c9clat du silence', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers Deluxe/\u00c9clat du silence.mp3' },
-          { title: 'Nuit de Provence', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/neolyaofaokiunivers3/Nuit de Provence.mp3' },
-          { title: 'Murmure sur la Loire', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers Deluxe/Murmure sur la Loire.mp3' },
-          { title: 'Fleur d\'onde', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers Deluxe/Fleur d\'onde.mp3' },
+          { title: 'Silence d\'Osaka', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers 4/Silence d\'Osaka (from Aoki Univers).mp3' },
+          { title: 'Signal de l\'\u00e2me', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers Deluxe/Signal de l\'\u00e2me (from Aoki Univers).mp3' },
+          { title: '\u00c9clat du silence', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers Deluxe/\u00c9clat du silence (from Aoki Univers).mp3' },
+          { title: 'Nuit de Provence', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/neolyaofaokiunivers3/Nuit de Provence (from Aoki Univers).mp3' },
+          { title: 'Murmure sur la Loire', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers Deluxe/Murmure sur la Loire (from Aoki Univers).mp3' },
+          { title: 'Fleur d\'onde', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/Neolya Of Aoki Univers Deluxe/Fleur d\'onde (from Aoki Univers).mp3' },
           { title: 'Deegle - Le rappel', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/aokiunivers/Deegle - Le rappel.mp3' },
           { title: 'Peercom - Link Start', artist: 'Venti Opastudien', src: '/a-files/music/ventiopastudien/aokiunivers8/Peercom - Link Start.mp3' }
         ]
@@ -1291,7 +1292,75 @@
           ['fallout',            'Site officiel Fallout'],
         ];
 
-        var list = (page === 2) ? allCmdsList2 : allCmdsList;
+        var allCmdsList3 = [
+          ['\u2501 RPG \u2014 S.P.E.C.I.A.L. \u2501', ''],
+          ['special',            'Attributs S.P.E.C.I.A.L.'],
+          ['perks',              'Liste des aptitudes acquises'],
+          ['level',              'Niveau et exp\u00e9rience'],
+          ['caps',               'Solde de capsules'],
+          ['karma',              'Alignement moral'],
+          ['pip',                'R\u00e9sum\u00e9 Pip-Boy 3000'],
+          ['', ''],
+          ['\u2501 RPG \u2014 COMBAT & SURVIE \u2501', ''],
+          ['vats [cible]',       'Syst\u00e8me V.A.T.S.'],
+          ['lockpick',           'Mini-jeu de crochetage'],
+          ['powerarmor',         '\u00c9tat de l\'armure assist\u00e9e'],
+          ['chems',              'Stimulants et drogues'],
+          ['repair [objet]',     'R\u00e9parer un \u00e9quipement'],
+          ['nuka',               'Distributeur Nuka-Cola'],
+          ['recipe',             'Recettes du Wasteland'],
+          ['junk',               'D\u00e9monter des objets'],
+          ['trade',              'Marchands du Wasteland'],
+        ];
+
+        var allCmdsList4 = [
+          ['\u2501 ABRI & EXPLORATION \u2501', ''],
+          ['status',             '\u00c9tat des syst\u00e8mes de l\'Abri'],
+          ['map',                'Carte de l\'Abri Hikari'],
+          ['open',               'Tenter d\'ouvrir le sas'],
+          ['inventory',          'Inventaire de survie'],
+          ['weather',            'M\u00e9t\u00e9o et radiations'],
+          ['scavenge',           'Fouiller (ressources)'],
+          ['geiger',             'Compteur Geiger-M\u00fcller'],
+          ['warp <lieu>',        'Voyage rapide'],
+          ['settlement',         'Gestion de la colonie'],
+          ['faction',            'R\u00e9putation des factions'],
+          ['quests',             'Journal de qu\u00eates'],
+          ['companions',         'Compagnons de route'],
+          ['vault [n]',          'Base Vault-Tec'],
+          ['', ''],
+          ['\u2501 COLLECTION & LORE \u2501', ''],
+          ['bobblehead',         'Collection Bobbleheads'],
+          ['magazine',           'Collection magazines'],
+          ['lore',               'Fragment de lore'],
+          ['', ''],
+          ['\u2501 MINI-JEUX & DIVERS \u2501', ''],
+          ['hack',               'Hacking RobCo'],
+          ['holotape',           'Jeu holotape'],
+          ['dice [n]',           'Lancer des d\u00e9s'],
+          ['8ball <question>',   'Boule magique'],
+          ['roulette',           'Roulette du Wasteland'],
+          ['fortune',            'Biscuit de fortune'],
+          ['brahmin <texte>',    'Un Brahmin vous parle'],
+          ['deathclaw',          'Rencontre al\u00e9atoire...'],
+          ['matrix',             'Pluie matricielle'],
+          ['sleep [heures]',     'Dormir / attendre'],
+          ['save',               'Sauvegarder la partie'],
+          ['load',               'Charger une sauvegarde'],
+          ['broadcast <msg>',    'Diffuser un message'],
+          ['cat <fichier>',      'Lire un fichier'],
+          ['ls [dossier]',       'Lister les fichiers'],
+          ['history',            'Historique commandes'],
+          ['cls',                'Alias pour clear'],
+          ['credits',            'Cr\u00e9dits VentiStudio'],
+          ['admin',              'Acc\u00e8s admin...'],
+          ['fallout',            'Site officiel Fallout'],
+        ];
+
+        var pages = [allCmdsList, allCmdsList2, allCmdsList3, allCmdsList4];
+        var totalPages = pages.length;
+        if (page < 1 || page > totalPages) page = 1;
+        var list = pages[page - 1];
         list.forEach(function(c) {
           if (c[0] === '' && c[1] === '') { addBlank(); return; }
           if (c[1] === '') { addLine('  ' + c[0], 'line-header'); return; }
@@ -1299,11 +1368,7 @@
         });
         addBlank();
         addLine('\u2500'.repeat(55), 'line-system');
-        if (page === 1) {
-          addLine('  Page 1/2 \u2014 Tapez "help 2" pour plus de commandes', 'line-system');
-        } else {
-          addLine('  Page 2/2 \u2014 Tapez "help" pour la page 1', 'line-system');
-        }
+        addLine('  Page ' + page + '/' + totalPages + ' \u2014 Tapez "help <1-' + totalPages + '>" pour naviguer', 'line-system');
         addLine('  \u2191\u2193 = historique | Tab = auto-compl\u00e9tion | Ctrl+L = clear', 'line-system');
         addLine('\u2500'.repeat(55), 'line-system');
       },
@@ -2016,6 +2081,27 @@
       },
 
       guess: async function(args) {
+        // Holotape number guessing game
+        if (window._holotapeActive) {
+          var n = parseInt(args[0]);
+          if (isNaN(n)) { addLine('Tapez un nombre entre 1 et 100.', 'line-warn'); return; }
+          window._holotapeAttempts++;
+          if (n === window._holotapeNumber) {
+            addLine('  \u2588\u2588\u2588 BRAVO ! Le nombre \u00e9tait bien ' + n + ' ! \u2588\u2588\u2588', 'line-success');
+            addLine('  Trouv\u00e9 en ' + window._holotapeAttempts + ' tentative(s). (+50 XP)', 'line-info');
+            window._holotapeActive = false;
+            return;
+          }
+          if (window._holotapeAttempts >= 7) {
+            addLine('  \u2717 Perdu ! Le nombre \u00e9tait : ' + window._holotapeNumber, 'line-error');
+            window._holotapeActive = false;
+            return;
+          }
+          var hint = n < window._holotapeNumber ? 'C\'est plus !' : 'C\'est moins !';
+          addLine('  ' + hint + ' (tentative ' + window._holotapeAttempts + '/7)', n < window._holotapeNumber ? 'line-info' : 'line-warn');
+          return;
+        }
+        // Hack guessing
         if (!hackInProgress) {
           addLine('Aucun hack en cours. Tapez "hack" d\'abord.', 'line-warn');
           return;
@@ -2203,6 +2289,1053 @@
         addLine('Copyright \u00a9 2023 - 2026 P-Line, VentiStudio FiTsZ Company', 'line-system');
         addLine('Tous droits r\u00e9serv\u00e9s. War never changes.', 'line-system');
         addBlank();
+      },
+
+/* ═══════════════════════════════
+         S.P.E.C.I.A.L. STATS
+      ═══════════════════════════════ */
+      special: async function() {
+        addLine('\u2501\u2501\u2501 S.P.E.C.I.A.L. \u2014 ATTRIBUTS DU R\u00c9SIDENT \u2501\u2501\u2501', 'line-header');
+        addBlank();
+        var stats = [
+          { name: 'Strength',     abbr: 'STR', val: 5 },
+          { name: 'Perception',   abbr: 'PER', val: 7 },
+          { name: 'Endurance',    abbr: 'END', val: 4 },
+          { name: 'Charisma',     abbr: 'CHA', val: 8 },
+          { name: 'Intelligence', abbr: 'INT', val: 9 },
+          { name: 'Agility',      abbr: 'AGI', val: 6 },
+          { name: 'Luck',         abbr: 'LCK', val: 3 },
+        ];
+        stats.forEach(function(s) {
+          var bar = '\u2588'.repeat(s.val) + '\u2591'.repeat(10 - s.val);
+          var color = s.val >= 8 ? 'var(--term-green)' : s.val >= 5 ? 'var(--term-amber)' : 'var(--term-red)';
+          addHTML('  <span style="color:var(--term-cyan)">' + s.abbr + '</span> ' + s.name.padEnd(14) + ' <span style="color:' + color + '">[' + bar + ']</span> <span style="color:' + color + '">' + s.val + '/10</span>');
+        });
+        addBlank();
+        var total = stats.reduce(function(a, b) { return a + b.val; }, 0);
+        addLine('  Total S.P.E.C.I.A.L. : ' + total + '/70', 'line-info');
+        addLine('  Classification : Agent de terrain sp\u00e9cialis\u00e9', 'line-system');
+        addBlank();
+      },
+
+      /* ═══════════════════════════════
+         PERKS
+      ═══════════════════════════════ */
+      perks: async function() {
+        addLine('\u2501\u2501\u2501 APTITUDES ACQUISES \u2501\u2501\u2501', 'line-header');
+        addBlank();
+        var perkList = [
+          { name: 'Hacker Expert',        rank: 3, desc: 'Peut pirater les terminaux avanc\u00e9s' },
+          { name: 'Rat de biblioth\u00e8que',   rank: 2, desc: 'Doubl\u00e9 XP sur lecture de holodisks' },
+          { name: 'Bricoleur',             rank: 1, desc: 'Peut modifier les armes de base' },
+          { name: 'Charisme du Wasteland', rank: 2, desc: 'Meilleurs prix chez les marchands' },
+          { name: 'Conscience solitaire',  rank: 1, desc: '+15% d\u00e9g\u00e2ts sans compagnon' },
+          { name: 'T\u00eate de fer',           rank: 1, desc: 'R\u00e9sistance aux radiations +25%' },
+          { name: 'Voyageur aguerri',      rank: 3, desc: 'Voyage rapide sans danger' },
+          { name: 'Radio myst\u00e8re',         rank: 1, desc: 'Capte des signaux secrets' },
+          { name: 'Doigts de f\u00e9e',         rank: 2, desc: 'Crochetage de serrures avanc\u00e9es' },
+          { name: 'Nerd Rage!',            rank: 1, desc: '+20 DT et STR quand PV < 20%' },
+          { name: 'Myst\u00e9rieux inconnu',    rank: 1, desc: 'Un alli\u00e9 appara\u00eet en V.A.T.S.' },
+          { name: 'Cannibale',             rank: 0, desc: '[VERROUILL\u00c9] N\u00e9cessite END 8' },
+        ];
+        perkList.forEach(function(p) {
+          var stars = p.rank > 0 ? '\u2605'.repeat(p.rank) + '\u2606'.repeat(3 - p.rank) : '\ud83d\udd12';
+          var color = p.rank === 0 ? 'var(--term-green-dark)' : 'var(--term-green)';
+          addHTML('  <span style="color:' + color + '">' + stars + '</span> <span style="color:var(--term-cyan)">' + p.name.padEnd(26) + '</span> <span style="color:var(--term-green-dim)">' + p.desc + '</span>');
+        });
+        addBlank();
+        addLine('  11 aptitudes actives \u2014 Prochain perk au niveau 22', 'line-system');
+        addBlank();
+      },
+
+      /* ═══════════════════════════════
+         LEVEL & XP
+      ═══════════════════════════════ */
+      level: async function() {
+        addLine('\u2501\u2501\u2501 NIVEAU & EXP\u00c9RIENCE \u2501\u2501\u2501', 'line-header');
+        addBlank();
+        var lvl = 19;
+        var xp = 14250;
+        var xpNext = 19000;
+        var pct = Math.round((xp / xpNext) * 100);
+        var bar = '\u2588'.repeat(Math.round(pct / 5)) + '\u2591'.repeat(20 - Math.round(pct / 5));
+        addHTML('  Niveau actuel  : <span style="color:var(--term-cyan)">' + lvl + '</span>');
+        addHTML('  Exp\u00e9rience     : <span style="color:var(--term-amber)">' + xp.toLocaleString() + ' / ' + xpNext.toLocaleString() + ' XP</span>');
+        addHTML('  Progression    : [<span style="color:var(--term-green)">' + bar + '</span>] ' + pct + '%');
+        addBlank();
+        addHTML('  Points de perk : <span style="color:var(--term-cyan)">2</span> disponibles');
+        addHTML('  Kills totaux   : <span style="color:var(--term-red)">347</span>');
+        addHTML('  Qu\u00eates finies  : <span style="color:var(--term-green)">23 / 42</span>');
+        addHTML('  Jours surv\u00e9cu  : <span style="color:var(--term-amber)">87</span>');
+        addBlank();
+      },
+
+      /* ═══════════════════════════════
+         CAPS
+      ═══════════════════════════════ */
+      caps: async function() {
+        addLine('\u2501\u2501\u2501 SOLDE DE CAPSULES \u2501\u2501\u2501', 'line-header');
+        addBlank();
+        var balance = 1247;
+        addHTML('  Capsules : <span style="color:var(--term-amber)">\u2299 ' + balance.toLocaleString() + '</span>');
+        addBlank();
+        addLine('  \u25b8 DERNI\u00c8RES TRANSACTIONS', 'line-header');
+        var transactions = [
+          { date: 'Aujourd\'hui', desc: 'Vente \u2014 3x Nuka-Cola', amount: '+45' },
+          { date: 'Aujourd\'hui', desc: 'Achat \u2014 Stimpak', amount: '-75' },
+          { date: 'Hier', desc: 'R\u00e9compense qu\u00eate \u2014 Le signal perdu', amount: '+200' },
+          { date: 'Hier', desc: 'R\u00e9paration \u2014 Pistolet laser', amount: '-120' },
+          { date: 'J-3', desc: 'Crochetage coffre-fort', amount: '+312' },
+          { date: 'J-5', desc: 'Achat \u2014 RadAway x3', amount: '-90' },
+        ];
+        transactions.forEach(function(t) {
+          var color = t.amount.startsWith('+') ? 'var(--term-green)' : 'var(--term-red)';
+          addHTML('    <span style="color:var(--term-green-dim)">' + t.date.padEnd(14) + '</span> ' + t.desc.padEnd(36) + ' <span style="color:' + color + '">' + t.amount + ' \u2299</span>');
+        });
+        addBlank();
+      },
+
+      /* ═══════════════════════════════
+         KARMA
+      ═══════════════════════════════ */
+      karma: async function() {
+        addLine('\u2501\u2501\u2501 ALIGNEMENT KARMA \u2501\u2501\u2501', 'line-header');
+        addBlank();
+        var karmaVal = 450;
+        var title = karmaVal > 750 ? 'Messie du Wasteland' :
+                    karmaVal > 500 ? 'Protecteur de l\'Abri' :
+                    karmaVal > 250 ? 'Gardien des d\u00e9chets' :
+                    karmaVal > 0 ? 'Vagabond neutre' :
+                    karmaVal > -250 ? 'Fauteur de troubles' : 'D\u00e9mon du Wasteland';
+        addHTML('  Karma         : <span style="color:var(--term-cyan)">' + karmaVal + ' / \u00b11000</span>');
+        addHTML('  Titre         : <span style="color:var(--term-amber)">' + title + '</span>');
+        addBlank();
+        addLine('  Bonnes actions : 67  |  Mauvaises : 12', 'line-system');
+        addLine('  "Vos choix d\u00e9finissent qui vous \u00eates dans le Wasteland."', 'line-classified');
+        addBlank();
+      },
+
+      /* ═══════════════════════════════
+         V.A.T.S.
+      ═══════════════════════════════ */
+      vats: async function(args) {
+        var target = args.join(' ') || 'Raider sauvage';
+        addLine('\u2501\u2501\u2501 V.A.T.S. \u2014 VAULT-TEC ASSISTED TARGETING SYSTEM \u2501\u2501\u2501', 'line-header');
+        addBlank();
+        addLine('  Activation V.A.T.S...', 'line-info');
+        await wait(600);
+
+        var bodyParts = [
+          { name: 'T\u00caTe', chance: Math.floor(Math.random() * 30 + 25) },
+          { name: 'TORSE', chance: Math.floor(Math.random() * 20 + 65) },
+          { name: 'BRAS GAUCHE', chance: Math.floor(Math.random() * 25 + 40) },
+          { name: 'BRAS DROIT', chance: Math.floor(Math.random() * 25 + 40) },
+          { name: 'JAMBE GAUCHE', chance: Math.floor(Math.random() * 20 + 50) },
+          { name: 'JAMBE DROITE', chance: Math.floor(Math.random() * 20 + 50) },
+        ];
+
+        addHTML('  Cible : <span style="color:var(--term-red)">' + target.toUpperCase() + '</span>');
+        addHTML('  PA restants : <span style="color:var(--term-cyan)">\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2591\u2591 78/100</span>');
+        addBlank();
+        bodyParts.forEach(function(bp) {
+          var color = bp.chance >= 70 ? 'var(--term-green)' : bp.chance >= 45 ? 'var(--term-amber)' : 'var(--term-red)';
+          addHTML('  \u25ce ' + bp.name.padEnd(14) + ' <span style="color:' + color + '">' + bp.chance + '% touche</span>');
+        });
+        addBlank();
+
+        var selected = bodyParts[Math.floor(Math.random() * bodyParts.length)];
+        var hit = Math.random() * 100 < selected.chance;
+        addHTML('  \u25ba Tir auto \u2192 <span style="color:var(--term-cyan)">' + selected.name + '</span>');
+        await wait(500);
+        if (hit) {
+          var dmg = Math.floor(Math.random() * 40 + 15);
+          var crit = Math.random() > 0.8;
+          addHTML('  <span style="color:var(--term-green)">\u2713 TOUCH\u00c9 !</span> D\u00e9g\u00e2ts : ' + dmg + (crit ? ' <span style="color:var(--term-amber)">\u2605 CRITIQUE !</span>' : ''));
+        } else {
+          addHTML('  <span style="color:var(--term-red)">\u2717 RAT\u00c9 !</span> La cible esquive.');
+        }
+        addBlank();
+        addLine('  [V.A.T.S. d\u00e9sactiv\u00e9 \u2014 PA en recharge]', 'line-system');
+        addBlank();
+      },
+
+      /* ═══════════════════════════════
+         LOCKPICK MINIGAME
+      ═══════════════════════════════ */
+      lockpick: async function() {
+        addLine('\u2501\u2501\u2501 CROCHETAGE DE SERRURE \u2501\u2501\u2501', 'line-header');
+        addBlank();
+        var difficulties = ['Tr\u00e8s facile', 'Facile', 'Moyen', 'Difficile', 'Expert'];
+        var diff = difficulties[Math.floor(Math.random() * difficulties.length)];
+        var diffColor = diff.indexOf('facile') !== -1 ? 'var(--term-green)' :
+                        diff === 'Moyen' ? 'var(--term-amber)' :
+                        diff === 'Difficile' ? 'var(--term-amber)' : 'var(--term-red)';
+        addHTML('  Difficult\u00e9 : <span style="color:' + diffColor + '">[' + diff.toUpperCase() + ']</span>');
+        addLine('  \u00c9pingles restantes : 5', 'line-system');
+        addBlank();
+        addLine('     \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510', 'ascii-art');
+        addLine('     \u2502  \u2554\u2550\u2550\u2550\u2550\u2557  \u25cb LOCK \u25cb \u2502', 'ascii-art');
+        addLine('     \u2502  \u2551 \u2593\u2593 \u2551  \u2502 bobby  \u2502', 'ascii-art');
+        addLine('     \u2502  \u255a\u2550\u2550\u2550\u2550\u255d  \u2502  pin   \u2502', 'ascii-art');
+        addLine('     \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518', 'ascii-art');
+        addBlank();
+
+        await showProgress('Crochetage en cours', 2500);
+        addBlank();
+
+        var success = Math.random() > 0.35;
+        if (success) {
+          addLine('  \u2713 SERRURE OUVERTE !', 'line-success');
+          var loot = ['47 capsules', '1x Stimpak', 'Pistolet 10mm usag\u00e9',
+            'Note myst\u00e9rieuse', '3x Bobby pin', 'Holodisk inconnu',
+            'Nuka-Cola Quantum', '12 munitions .308'];
+          var found = loot[Math.floor(Math.random() * loot.length)];
+          addHTML('  Butin : <span style="color:var(--term-amber)">' + found + '</span>');
+          addLine('  (+15 XP)', 'line-info');
+        } else {
+          addLine('  \u2717 Bobby pin cass\u00e9 ! Crochetage \u00e9chou\u00e9.', 'line-error');
+          addLine('  Bobby pins restants : ' + Math.floor(Math.random() * 8 + 2), 'line-warn');
+        }
+        addBlank();
+      },
+
+      /* ═══════════════════════════════
+         NUKA-COLA VENDING
+      ═══════════════════════════════ */
+      nuka: async function() {
+        addLine('\u2501\u2501\u2501 DISTRIBUTEUR NUKA-COLA \u2501\u2501\u2501', 'line-header');
+        addBlank();
+        var art = '    \u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n    \u2551  \u2605 NUKA-COLA \u2605   \u2551\n    \u2551  \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500  \u2551\n    \u2551  [OG] [QTM] [CHR]  \u2551\n    \u2551  [VIC][GRP] [DRK]  \u2551\n    \u2551   [INSERT CAPS]    \u2551\n    \u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d';
+        addLine(art, 'ascii-art');
+        addBlank();
+        var drinks = [
+          { name: 'Nuka-Cola', price: 12, effect: '+20 PV, +5 RAD', stock: 8 },
+          { name: 'Nuka-Cola Quantum', price: 50, effect: '+400 PV, +15 RAD', stock: 1 },
+          { name: 'Nuka-Cherry', price: 18, effect: '+30 PV, +5 RAD', stock: 4 },
+          { name: 'Nuka-Cola Victory', price: 25, effect: '+50 PV, +8 RAD', stock: 2 },
+          { name: 'Nuka-Grape', price: 20, effect: '+25 PV, +1 CHA', stock: 3 },
+          { name: 'Sunset Sarsaparilla', price: 10, effect: '+15 PV', stock: 6 },
+          { name: 'Nuka-Cola Dark', price: 35, effect: '+75 PV, +2 STR', stock: 1 },
+          { name: 'Vim! Captain\'s Blend', price: 22, effect: '+40 PV', stock: 2 },
+        ];
+        drinks.forEach(function(d, i) {
+          var stockColor = d.stock > 3 ? 'var(--term-green)' : d.stock > 0 ? 'var(--term-amber)' : 'var(--term-red)';
+          addHTML('  <span style="color:var(--term-cyan)">' + (i+1) + '.</span> ' + d.name.padEnd(22) + ' <span style="color:var(--term-amber)">' + d.price + '\u2299</span>  <span style="color:var(--term-green-dim)">' + d.effect + '</span>  <span style="color:' + stockColor + '">[x' + d.stock + ']</span>');
+        });
+        addBlank();
+        addLine('  "Nuka-Cola \u2014 Le go\u00fbt de l\'apocalypse !"', 'line-classified');
+        addBlank();
+      },
+
+      /* ═══════════════════════════════
+         SCAVENGE
+      ═══════════════════════════════ */
+      scavenge: async function() {
+        addLine('Exploration de la zone...', 'line-info');
+        await showProgress('Fouille en cours', 3000);
+        addBlank();
+        var locations = ['un bureau effondr\u00e9', 'une voiture calcin\u00e9e', 'un conteneur rouill\u00e9', 'les d\u00e9combres d\'un magasin', 'un bunker oubli\u00e9', 'une cabane abandonn\u00e9e'];
+        var loc = locations[Math.floor(Math.random() * locations.length)];
+        addHTML('  Lieu fouill\u00e9 : <span style="color:var(--term-cyan)">' + loc + '</span>');
+        addBlank();
+        var lootTable = [
+          { name: 'Capsules', qty: Math.floor(Math.random() * 50 + 5), rarity: 'common' },
+          { name: 'Ferraille', qty: Math.floor(Math.random() * 8 + 1), rarity: 'common' },
+          { name: 'Munitions .38', qty: Math.floor(Math.random() * 15 + 3), rarity: 'common' },
+          { name: 'Adh\u00e9sif', qty: Math.floor(Math.random() * 3 + 1), rarity: 'uncommon' },
+          { name: 'Vis', qty: Math.floor(Math.random() * 5 + 1), rarity: 'uncommon' },
+          { name: 'Stimpak', qty: 1, rarity: 'rare' },
+          { name: 'Nuka-Cola', qty: 1, rarity: 'rare' },
+          { name: 'Mini-nuke', qty: 1, rarity: 'legendary' },
+          { name: 'Plans d\'arme modifi\u00e9e', qty: 1, rarity: 'legendary' },
+        ];
+        var found = [];
+        lootTable.forEach(function(item) {
+          var chance = item.rarity === 'common' ? 0.7 : item.rarity === 'uncommon' ? 0.4 : item.rarity === 'rare' ? 0.2 : 0.05;
+          if (Math.random() < chance) found.push(item);
+        });
+        if (found.length === 0) {
+          addLine('  Rien d\'int\u00e9ressant trouv\u00e9...', 'line-warn');
+        } else {
+          addLine('  \u25b8 OBJETS TROUV\u00c9S', 'line-header');
+          found.forEach(function(item) {
+            var rarColor = item.rarity === 'legendary' ? 'var(--term-amber)' : item.rarity === 'rare' ? 'var(--term-cyan)' : 'var(--term-green-dim)';
+            var prefix = item.rarity === 'legendary' ? '\u2605 ' : item.rarity === 'rare' ? '\u25c6 ' : '  ';
+            addHTML('  ' + prefix + '<span style="color:' + rarColor + '">' + item.name + '</span> x' + item.qty);
+          });
+        }
+        addBlank();
+        addLine('  (+' + Math.floor(Math.random() * 15 + 5) + ' XP)', 'line-info');
+        addBlank();
+      },
+
+      /* ═══════════════════════════════
+         GEIGER COUNTER
+      ═══════════════════════════════ */
+      geiger: async function() {
+        addLine('\u2501\u2501\u2501 COMPTEUR GEIGER-M\u00dcLLER \u2501\u2501\u2501', 'line-header');
+        addBlank();
+        addLine('  Activation du compteur...', 'line-info');
+        await wait(400);
+        var clicks = '';
+        for (var i = 0; i < 40; i++) {
+          clicks += Math.random() > 0.6 ? '\u00b7' : Math.random() > 0.8 ? '\u25cf' : ' ';
+        }
+        addHTML('  <span style="color:var(--term-green-dim)">' + clicks + '</span>');
+        addBlank();
+        var internalRad = Math.floor(Math.random() * 120 + 5);
+        var radPerSec = (Math.random() * 2.5).toFixed(1);
+        var severity = internalRad < 50 ? 'FAIBLE' : internalRad < 200 ? 'MOD\u00c9R\u00c9' : 'CRITIQUE';
+        var sevColor = severity === 'FAIBLE' ? 'var(--term-green)' : severity.indexOf('MOD') !== -1 ? 'var(--term-amber)' : 'var(--term-red)';
+        addHTML('  Radiation interne : <span style="color:' + sevColor + '">' + internalRad + ' RAD</span>');
+        addHTML('  D\u00e9bit de dose     : <span style="color:' + sevColor + '">' + radPerSec + ' RAD/s</span>');
+        addHTML('  S\u00e9v\u00e9rit\u00e9          : <span style="color:' + sevColor + '">[' + severity + ']</span>');
+        addBlank();
+        if (internalRad > 200) { addLine('  \u26a0 DANGER : Prenez du RadAway !', 'line-error'); }
+        else if (internalRad > 50) { addLine('  \u26a0 Pr\u00e9caution : RadAway recommand\u00e9.', 'line-warn'); }
+        else { addLine('  \u2713 Niveau acceptable.', 'line-success'); }
+        addBlank();
+      },
+
+      /* ═══════════════════════════════
+         POWER ARMOR
+      ═══════════════════════════════ */
+      powerarmor: async function() {
+        addLine('\u2501\u2501\u2501 ARMURE ASSIST\u00c9E \u2014 \u00c9TAT \u2501\u2501\u2501', 'line-header');
+        addBlank();
+        var parts = [
+          { name: 'Casque T-60', cond: 87, mod: 'Lampe tactique' },
+          { name: 'Torse T-60', cond: 62, mod: 'Servomoteur Tesla' },
+          { name: 'Bras gauche T-60', cond: 45, mod: 'Blindage optimis\u00e9' },
+          { name: 'Bras droit T-60', cond: 73, mod: 'Aucun' },
+          { name: 'Jambe gauche T-60', cond: 91, mod: 'Calibr\u00e9 (saut)' },
+          { name: 'Jambe droite T-60', cond: 55, mod: 'Aucun' },
+        ];
+        var fc = Math.floor(Math.random() * 60 + 20);
+        addHTML('  Noyau de fusion : <span style="color:' + (fc > 50 ? 'var(--term-green)' : fc > 20 ? 'var(--term-amber)' : 'var(--term-red)') + '">' + fc + '%</span>');
+        addBlank();
+        parts.forEach(function(p) {
+          var color = p.cond > 70 ? 'var(--term-green)' : p.cond > 40 ? 'var(--term-amber)' : 'var(--term-red)';
+          addHTML('  ' + p.name.padEnd(22) + ' <span style="color:' + color + '">[' + p.cond + '%]</span>  mod: <span style="color:var(--term-cyan)">' + p.mod + '</span>');
+        });
+        addBlank();
+        addLine('  DT bonus : +42  |  STR bonus : +2  |  Rad Resist : +50', 'line-info');
+        addBlank();
+      },
+
+      /* ═══════════════════════════════
+         CHEMS
+      ═══════════════════════════════ */
+      chems: async function() {
+        addLine('\u2501\u2501\u2501 STIMULANTS & CHEMS \u2501\u2501\u2501', 'line-header');
+        addBlank();
+        var chemList = [
+          { name: 'Stimpak', qty: 12, effect: 'Restaure PV', duration: 'Instant' },
+          { name: 'Super Stimpak', qty: 2, effect: 'Restaure PV++', duration: 'Instant' },
+          { name: 'RadAway', qty: 5, effect: '-100 RAD', duration: '10s' },
+          { name: 'Rad-X', qty: 3, effect: 'Resist RAD +100', duration: '5 min' },
+          { name: 'Med-X', qty: 1, effect: '+25 DT', duration: '5 min' },
+          { name: 'Jet', qty: 4, effect: 'Ralentit le temps', duration: '15s' },
+          { name: 'Psycho', qty: 2, effect: '+25% d\u00e9g\u00e2ts', duration: '5 min' },
+          { name: 'Buffout', qty: 3, effect: '+3 STR, +3 END', duration: '5 min' },
+          { name: 'Mentats', qty: 6, effect: '+2 INT, +2 PER', duration: '5 min' },
+          { name: 'Day Tripper', qty: 1, effect: '+3 CHA, +3 LCK', duration: '3 min' },
+          { name: 'Addictol', qty: 1, effect: 'Soigne addiction', duration: 'Instant' },
+        ];
+        chemList.forEach(function(c) {
+          var qtyColor = c.qty > 3 ? 'var(--term-green)' : c.qty > 0 ? 'var(--term-amber)' : 'var(--term-red)';
+          addHTML('  ' + c.name.padEnd(18) + ' <span style="color:' + qtyColor + '">x' + c.qty + '</span>  <span style="color:var(--term-green-dim)">' + c.effect.padEnd(20) + '</span>  <span style="color:var(--term-cyan)">' + c.duration + '</span>');
+        });
+        addBlank();
+        addLine('  Addictions actives : Aucune', 'line-success');
+        addBlank();
+      },
+
+      /* ═══════════════════════════════
+         FACTION REPUTATION
+      ═══════════════════════════════ */
+      faction: async function() {
+        addLine('\u2501\u2501\u2501 R\u00c9PUTATION DES FACTIONS \u2501\u2501\u2501', 'line-header');
+        addBlank();
+        var factions = [
+          { name: 'Abri Hikari', rep: 'Idol\u00e2tr\u00e9', color: 'var(--term-green)' },
+          { name: 'VentiStudio', rep: 'Ador\u00e9', color: 'var(--term-green)' },
+          { name: 'Confr\u00e9rie de l\'Acier', rep: 'Accept\u00e9', color: 'var(--term-cyan)' },
+          { name: 'Minutemen', rep: 'Alli\u00e9', color: 'var(--term-green)' },
+          { name: 'L\'Institut', rep: 'Neutre', color: 'var(--term-amber)' },
+          { name: 'Le Railroad', rep: 'Ami', color: 'var(--term-cyan)' },
+          { name: 'Raiders', rep: 'Hostile', color: 'var(--term-red)' },
+          { name: 'Super Mutants', rep: 'D\u00e9test\u00e9', color: 'var(--term-red)' },
+          { name: 'Enfants de l\'Atome', rep: 'M\u00e9fiant', color: 'var(--term-amber)' },
+          { name: 'L\u00e9gion de C\u00e9sar', rep: 'Vilain', color: 'var(--term-red)' },
+          { name: 'RNC', rep: 'Accept\u00e9', color: 'var(--term-cyan)' },
+        ];
+        factions.forEach(function(f) {
+          addHTML('  <span style="color:var(--term-cyan)">' + f.name.padEnd(26) + '</span> <span style="color:' + f.color + '">[' + f.rep.toUpperCase() + ']</span>');
+        });
+        addBlank();
+      },
+
+      /* ═══════════════════════════════
+         QUESTS
+      ═══════════════════════════════ */
+      quests: async function() {
+        addLine('\u2501\u2501\u2501 JOURNAL DE QU\u00caTES \u2501\u2501\u2501', 'line-header');
+        addBlank();
+        var questList = [
+          { name: 'Le Signal Perdu', status: 'active', desc: 'Trouver la source du signal fant\u00f4me sur 379.06 MHz' },
+          { name: 'Les Portes de l\'Abri', status: 'active', desc: 'D\u00e9couvrir pourquoi le sas est verrouill\u00e9' },
+          { name: 'M\u00e9moires Corrompues', status: 'active', desc: 'R\u00e9cup\u00e9rer les holodisks endommag\u00e9s' },
+          { name: 'Le Superviseur', status: 'active', desc: 'En apprendre plus sur Hikari Umaishi' },
+          { name: 'Fr\u00e9quence 666', status: 'misc', desc: 'Enqu\u00eater sur l\'anomalie interdite' },
+          { name: 'Radio Hikari', status: 'misc', desc: '\u00c9couter toutes les stations radio' },
+          { name: 'SOS Abri-12', status: 'misc', desc: 'R\u00e9pondre \u00e0 la balise de d\u00e9tresse' },
+          { name: 'Bienvenue \u00e0 VentiStudio', status: 'done', desc: 'Acc\u00e9der au terminal' },
+          { name: 'Boot Sequence', status: 'done', desc: 'D\u00e9marrer le terminal' },
+          { name: 'Hackeur novice', status: 'done', desc: 'R\u00e9ussir un hack de terminal' },
+        ];
+        addLine('  \u25b8 QU\u00caTES ACTIVES', 'line-header');
+        questList.filter(function(q) { return q.status === 'active'; }).forEach(function(q) {
+          addHTML('    <span style="color:var(--term-amber)">\u25c9</span> <span style="color:var(--term-cyan)">' + q.name + '</span>');
+          addHTML('      <span style="color:var(--term-green-dim)">' + q.desc + '</span>');
+        });
+        addBlank();
+        addLine('  \u25b8 QU\u00caTES DIVERSES', 'line-header');
+        questList.filter(function(q) { return q.status === 'misc'; }).forEach(function(q) {
+          addHTML('    <span style="color:var(--term-green-dim)">\u25cb</span> <span style="color:var(--term-cyan)">' + q.name + '</span>');
+          addHTML('      <span style="color:var(--term-green-dim)">' + q.desc + '</span>');
+        });
+        addBlank();
+        addLine('  \u25b8 QU\u00caTES TERMIN\u00c9ES', 'line-header');
+        questList.filter(function(q) { return q.status === 'done'; }).forEach(function(q) {
+          addHTML('    <span style="color:var(--term-green)">\u2713</span> <span style="color:var(--term-green-dim);text-decoration:line-through">' + q.name + '</span>');
+        });
+        addBlank();
+      },
+
+      /* ═══════════════════════════════
+         COMPANIONS
+      ═══════════════════════════════ */
+      companions: async function() {
+        addLine('\u2501\u2501\u2501 COMPAGNONS DE ROUTE \u2501\u2501\u2501', 'line-header');
+        addBlank();
+        var c = [
+          { name: 'Dogmeat', type: 'Chien fid\u00e8le', status: 'Actif', aff: 95 },
+          { name: 'Codsworth', type: 'Robot Mr. Handy', status: '\u00c0 l\'abri', aff: 72 },
+          { name: 'Piper', type: 'Journaliste', status: 'Disponible', aff: 85 },
+          { name: 'Nick Valentine', type: 'D\u00e9tective Synth', status: 'Disponible', aff: 68 },
+          { name: 'Preston', type: 'Minuteman', status: 'En mission', aff: 55 },
+          { name: 'Curie', type: 'Scientifique Synth', status: 'Disponible', aff: 90 },
+          { name: 'Deacon', type: 'Agent du Railroad', status: 'Infiltr\u00e9', aff: 60 },
+        ];
+        c.forEach(function(comp) {
+          var affColor = comp.aff >= 80 ? 'var(--term-green)' : comp.aff >= 50 ? 'var(--term-amber)' : 'var(--term-red)';
+          var statColor = comp.status === 'Actif' ? 'var(--term-green)' : comp.status === 'En mission' ? 'var(--term-amber)' : 'var(--term-cyan)';
+          addHTML('  <span style="color:var(--term-cyan)">' + comp.name.padEnd(16) + '</span> <span style="color:var(--term-green-dim)">' + comp.type.padEnd(22) + '</span> <span style="color:' + statColor + '">[' + comp.status + ']</span>');
+          addHTML('    Affinit\u00e9: <span style="color:' + affColor + '">' + comp.aff + '%</span>');
+        });
+        addBlank();
+        addLine('  Compagnon actif : Dogmeat', 'line-info');
+        addBlank();
+      },
+
+      /* ═══════════════════════════════
+         SETTLEMENT
+      ═══════════════════════════════ */
+      settlement: async function() {
+        addLine('\u2501\u2501\u2501 GESTION DE COLONIE \u2014 ABRI HIKARI \u2501\u2501\u2501', 'line-header');
+        addBlank();
+        var stats = [
+          { name: 'Population', val: 24, max: 30 },
+          { name: 'Nourriture', val: 28, max: 24 },
+          { name: 'Eau', val: 22, max: 24 },
+          { name: '\u00c9nergie', val: 18, max: 25 },
+          { name: 'D\u00e9fense', val: 42, max: 50 },
+          { name: 'Lits', val: 26, max: 24 },
+          { name: 'Bonheur', val: 78, max: 100 },
+        ];
+        stats.forEach(function(s) {
+          var pct = Math.round((s.val / s.max) * 100);
+          var barLen = Math.min(20, Math.round(pct / 5));
+          var bar = '\u2588'.repeat(barLen) + '\u2591'.repeat(20 - barLen);
+          var color = pct >= 80 ? 'var(--term-green)' : pct >= 50 ? 'var(--term-amber)' : 'var(--term-red)';
+          addHTML('  ' + s.name.padEnd(14) + ' <span style="color:' + color + '">[' + bar + ']</span> ' + s.val + '/' + s.max);
+        });
+        addBlank();
+        addLine('  Ressources : 147 bois, 89 acier, 23 cuivre, 12 cristaux', 'line-system');
+        addLine('  "Une autre colonie a besoin de votre aide." \u2014 Preston', 'line-classified');
+        addBlank();
+      },
+
+      /* ═══════════════════════════════
+         VAULT DATABASE
+      ═══════════════════════════════ */
+      vault: async function(args) {
+        var num = args[0];
+        var vaults = {
+          '13': { loc: 'Californie du Sud', status: 'ABANDONN\u00c9', exp: 'Puce \u00e0 eau d\u00e9fectueuse' },
+          '76': { loc: 'Virginie-Occidentale', status: 'OUVERT', exp: 'Reclamation Day' },
+          '87': { loc: 'Capital Wasteland', status: 'CONTAMIN\u00c9', exp: 'Super Mutants (VEF)' },
+          '101': { loc: 'Capital Wasteland', status: 'SCELL\u00c9', exp: 'Isolement total' },
+          '111': { loc: 'Commonwealth', status: 'CRYOG\u00c9NIE', exp: 'Sujets cryog\u00e9nis\u00e9s' },
+          '112': { loc: 'Capital Wasteland', status: 'SIMULATION', exp: 'Tranquility Lane VR' },
+          'hikari': { loc: 'France', status: 'ACTIF', exp: 'Pr\u00e9servation culturelle' },
+          '22': { loc: 'Mojave', status: 'INFEST\u00c9', exp: 'Spores mortelles' },
+          '108': { loc: 'Capital Wasteland', status: 'DANGEREUX', exp: 'Clones Gary' },
+          '69': { loc: 'Inconnu', status: 'CLASSIFI\u00c9', exp: '[DONN\u00c9ES EFFAC\u00c9ES]' },
+        };
+        if (!num) {
+          addLine('\u2501\u2501\u2501 BASE DE DONN\u00c9ES VAULT-TEC \u2501\u2501\u2501', 'line-header');
+          addBlank();
+          Object.keys(vaults).forEach(function(k) {
+            var v = vaults[k];
+            var sc = v.status === 'ACTIF' ? 'var(--term-green)' : v.status === 'OUVERT' ? 'var(--term-cyan)' : 'var(--term-red)';
+            addHTML('  Abri-' + k.padEnd(8) + ' <span style="color:' + sc + '">[' + v.status + ']</span>  <span style="color:var(--term-green-dim)">' + v.loc + '</span>');
+          });
+          addBlank();
+          addLine('  Tapez "vault <num\u00e9ro>" pour plus de d\u00e9tails.', 'line-system');
+          addBlank();
+          return;
+        }
+        var v = vaults[num.toLowerCase()];
+        if (!v) { addLine('Abri-' + num + ' non trouv\u00e9.', 'line-error'); return; }
+        addLine('\u2501\u2501\u2501 VAULT-TEC \u2014 ABRI ' + num.toUpperCase() + ' \u2501\u2501\u2501', 'line-header');
+        addBlank();
+        addHTML('  Localisation  : <span style="color:var(--term-cyan)">' + v.loc + '</span>');
+        addHTML('  Statut        : <span style="color:var(--term-red)">[' + v.status + ']</span>');
+        addHTML('  Exp\u00e9rience   : <span style="color:var(--term-green-dim)">' + v.exp + '</span>');
+        addBlank();
+      },
+
+      /* ═══════════════════════════════
+         BOBBLEHEADS
+      ═══════════════════════════════ */
+      bobblehead: async function() {
+        addLine('\u2501\u2501\u2501 COLLECTION BOBBLEHEADS \u2501\u2501\u2501', 'line-header');
+        addBlank();
+        var bobbles = [
+          { name: 'Intelligence', found: true, effect: '+1 INT' },
+          { name: 'Perception', found: true, effect: '+1 PER' },
+          { name: 'Endurance', found: true, effect: '+1 END' },
+          { name: 'Force', found: false, effect: '+1 STR' },
+          { name: 'Charisme', found: false, effect: '+1 CHA' },
+          { name: 'Agilit\u00e9', found: true, effect: '+1 AGI' },
+          { name: 'Chance', found: false, effect: '+1 LCK' },
+          { name: 'Armes \u00e9nergie', found: true, effect: '+25% d\u00e9g\u00e2ts' },
+          { name: 'Crochetage', found: true, effect: 'Facilit\u00e9' },
+          { name: 'Explosifs', found: false, effect: '+15% d\u00e9g\u00e2ts' },
+          { name: 'Science', found: true, effect: '+1 hack' },
+          { name: 'M\u00e9decine', found: false, effect: 'Stimpaks +25%' },
+          { name: 'Discours', found: true, effect: 'Persuasion+' },
+        ];
+        var total = bobbles.length;
+        var foundCount = bobbles.filter(function(b) { return b.found; }).length;
+        addLine('  Collection : ' + foundCount + '/' + total, 'line-info');
+        addBlank();
+        bobbles.forEach(function(b) {
+          var icon = b.found ? '<span style="color:var(--term-green)">\u2713</span>' : '<span style="color:var(--term-red)">\u2717</span>';
+          addHTML('  ' + icon + ' ' + b.name.padEnd(18) + ' <span style="color:var(--term-green-dim)">' + b.effect + '</span>');
+        });
+        addBlank();
+      },
+
+      /* ═══════════════════════════════
+         MAGAZINE COLLECTION
+      ═══════════════════════════════ */
+      magazine: async function() {
+        addLine('\u2501\u2501\u2501 COLLECTION DE MAGAZINES \u2501\u2501\u2501', 'line-header');
+        addBlank();
+        var mags = [
+          { name: 'Armes & Munitions', issue: '#7', found: true, effect: '+5% d\u00e9g\u00e2ts' },
+          { name: 'Grognak le Barbare', issue: '#1', found: true, effect: '+5% m\u00eal\u00e9e' },
+          { name: 'Tesla Science', issue: '#9', found: true, effect: '+5% \u00e9nergie' },
+          { name: 'Gazette d\'Opastudien', issue: '#14', found: true, effect: '+10 XP' },
+          { name: 'Tumblers Today', issue: '#3', found: true, effect: '+1 crochetage' },
+          { name: 'U.S. Covert Ops', issue: '#4', found: false, effect: '+5% furtivit\u00e9' },
+          { name: 'La Vie Tumultueuse', issue: '#5', found: false, effect: '+25 capsules' },
+          { name: 'Bricoleur G\u00e9nie', issue: '#12', found: false, effect: 'Mods extra' },
+          { name: 'Surgery Journal', issue: '#2', found: true, effect: 'Stimpak +5%' },
+          { name: 'Taboo Tattoos', issue: '#6', found: false, effect: 'Tattoo sp\u00e9cial' },
+        ];
+        var foundCount = mags.filter(function(m) { return m.found; }).length;
+        addLine('  Magazines : ' + foundCount + '/' + mags.length, 'line-info');
+        addBlank();
+        mags.forEach(function(m) {
+          var icon = m.found ? '<span style="color:var(--term-green)">\u2713</span>' : '<span style="color:var(--term-red)">\u2717</span>';
+          addHTML('  ' + icon + ' <span style="color:var(--term-cyan)">' + m.name.padEnd(24) + '</span> ' + m.issue.padEnd(5) + ' <span style="color:var(--term-green-dim)">' + m.effect + '</span>');
+        });
+        addBlank();
+      },
+
+      /* ═══════════════════════════════
+         BROADCAST
+      ═══════════════════════════════ */
+      broadcast: async function(args) {
+        var msg = args.join(' ');
+        if (!msg) { addLine('Usage : broadcast <message>', 'line-warn'); return; }
+        addLine('Pr\u00e9paration de la diffusion...', 'line-info');
+        await showProgress('Connexion antenne', 1500);
+        addBlank();
+        addLine('\u2501\u2501\u2501 TRANSMISSION EN COURS \u2501\u2501\u2501', 'line-header');
+        addHTML('  Fr\u00e9quence  : <span style="color:var(--term-cyan)">415.67 MHz</span>');
+        addHTML('  Puissance  : <span style="color:var(--term-amber)">250W</span>');
+        addHTML('  Message    : <span style="color:var(--term-green)">' + msg + '</span>');
+        addBlank();
+        await showProgress('Diffusion', 2000);
+        addLine('  Transmission envoy\u00e9e sur toutes les fr\u00e9quences ouvertes.', 'line-success');
+        addLine('  Port\u00e9e estim\u00e9e : ~50 km', 'line-system');
+        addBlank();
+      },
+
+      /* ═══════════════════════════════
+         BRAHMIN (COWSAY)
+      ═══════════════════════════════ */
+      brahmin: async function(args) {
+        var msg = args.join(' ') || 'Meuuuh... Le Wasteland est vaste.';
+        var border = '\u2500'.repeat(Math.min(msg.length + 2, 42));
+        var art = '  \u250c' + border + '\u2510\n  \u2502 ' + msg.substring(0, 40) + ' \u2502\n  \u2514' + border + '\u2518\n        \\   ^__^\n         \\  (oo)\\_______\n            (__)\\       )\\/\\\n              ^||----w |\n                ||     ||\n              (Brahmin 2 t\u00eates)';
+        addLine(art, 'ascii-art');
+        addBlank();
+      },
+
+      /* ═══════════════════════════════
+         MATRIX EFFECT
+      ═══════════════════════════════ */
+      matrix: async function() {
+        addLine('Activation de la pluie matricielle...', 'line-info');
+        for (var row = 0; row < 12; row++) {
+          var line = '';
+          for (var col = 0; col < 55; col++) {
+            var chars = '\u30a2\u30a4\u30a6\u30a8\u30aa\u30ab\u30ad\u30af\u30b1\u30b3\u30b5\u30b7\u30b9\u30bb\u30bd0123456789ABCDEF';
+            line += chars[Math.floor(Math.random() * chars.length)];
+          }
+          addHTML('<span style="color:rgba(0,255,65,' + (0.3 + Math.random() * 0.7).toFixed(2) + ')">' + line + '</span>');
+          await wait(80);
+        }
+        addBlank();
+        addLine('"Wake up, Neo..."', 'line-info');
+        addBlank();
+      },
+
+      /* ═══════════════════════════════
+         FORTUNE COOKIE
+      ═══════════════════════════════ */
+      fortune: async function() {
+        var fortunes = [
+          'La guerre... la guerre ne change jamais.',
+          'Dans le Wasteland, la confiance est la monnaie la plus rare.',
+          'Un Stimpak aujourd\'hui vaut mieux que deux demain.',
+          'Celui qui contr\u00f4le l\'eau contr\u00f4le le monde.',
+          'Le RadAway gu\u00e9rit le corps, mais pas l\'\u00e2me.',
+          'Vault-Tec : Pr\u00e9parer l\'avenir... un cobaye \u00e0 la fois.',
+          'Ne faites jamais confiance \u00e0 un marchand sans capsules.',
+          'Le silence dans le Wasteland n\'est jamais bon signe.',
+          'Chaque balle compte. Surtout la derni\u00e8re.',
+          'Un Bobblehead par jour \u00e9loigne le m\u00e9decin.',
+          'La lumi\u00e8re au bout du tunnel est probablement nucl\u00e9aire.',
+          'Nuka-Cola : parce que l\'eau est radioactive.',
+          'Le Wasteland appartient \u00e0 ceux qui ont un fusil.',
+          'Tunnel Snakes rule!',
+          'Patrolling the Mojave almost makes you wish for a nuclear winter.',
+          'Les Deathclaws ne frappent jamais deux fois. Ils n\'en ont pas besoin.',
+          'Les murs de l\'Abri prot\u00e8gent du monde, pas de la folie.',
+        ];
+        var f = fortunes[Math.floor(Math.random() * fortunes.length)];
+        addLine('\u2501\u2501\u2501 BISCUIT DE FORTUNE IRRADI\u00c9 \u2501\u2501\u2501', 'line-header');
+        addBlank();
+        await typeText('  "' + f + '"', 'line-classified', 25);
+        addBlank();
+      },
+
+      /* ═══════════════════════════════
+         HISTORY
+      ═══════════════════════════════ */
+      history: async function() {
+        addLine('\u2501\u2501\u2501 HISTORIQUE DES COMMANDES \u2501\u2501\u2501', 'line-header');
+        addBlank();
+        if (history.length === 0) {
+          addLine('  Aucune commande dans l\'historique.', 'line-system');
+        } else {
+          var max = Math.min(history.length, 20);
+          for (var i = max - 1; i >= 0; i--) {
+            addHTML('  <span style="color:var(--term-green-dim)">' + String(max - i).padStart(3, ' ') + '.</span> ' + history[i]);
+          }
+        }
+        addBlank();
+      },
+
+      /* ═══════════════════════════════
+         ROULETTE
+      ═══════════════════════════════ */
+      roulette: async function() {
+        addLine('\u2501\u2501\u2501 ROULETTE DU WASTELAND \u2501\u2501\u2501', 'line-header');
+        addBlank();
+        addLine('  Vous tournez le barillet...', 'line-info');
+        await wait(500);
+        addLine('  *click*', 'line-system');
+        await wait(400);
+        addLine('  *click*', 'line-system');
+        await wait(600);
+        addLine('  *click*', 'line-system');
+        await wait(300);
+        var result = Math.random();
+        if (result > 0.83) {
+          addBlank();
+          addLine('  BANG !', 'line-error');
+          addLine('  ... Heureusement, c\'est un terminal virtuel.', 'line-system');
+          addLine('  Vous avez perdu 50 capsules.', 'line-warn');
+        } else {
+          addBlank();
+          addLine('  *click* \u2014 Rien ! Vous survivez.', 'line-success');
+          addLine('  Vous gagnez ' + Math.floor(Math.random() * 100 + 20) + ' capsules !', 'line-info');
+        }
+        addBlank();
+      },
+
+      /* ═══════════════════════════════
+         TRADE
+      ═══════════════════════════════ */
+      trade: async function() {
+        addLine('\u2501\u2501\u2501 MARCHAND DU WASTELAND \u2501\u2501\u2501', 'line-header');
+        addBlank();
+        var merchants = ['Myrna \u2014 Diamond City Surplus', 'Arturo \u2014 Commonwealth Weaponry', 'Cricket \u2014 Marchande ambulante', 'KL-E-0 \u2014 Kill or Be Killed', 'Trudy \u2014 Drumlin Diner'];
+        var merchant = merchants[Math.floor(Math.random() * merchants.length)];
+        addHTML('  Marchand : <span style="color:var(--term-cyan)">' + merchant + '</span>');
+        addBlank();
+        var items = [
+          { name: 'Stimpak', buy: 75, sell: 25 },
+          { name: 'RadAway', buy: 45, sell: 15 },
+          { name: 'Fusil de combat', buy: 350, sell: 120 },
+          { name: 'Munitions 5.56 (x50)', buy: 80, sell: 30 },
+          { name: 'Armure cuir', buy: 200, sell: 70 },
+          { name: 'Nuka-Cola Quantum', buy: 100, sell: 50 },
+          { name: 'Jet', buy: 60, sell: 20 },
+          { name: 'Lame Shishkebab', buy: 500, sell: 180 },
+          { name: 'Mine fragmentation', buy: 55, sell: 18 },
+          { name: 'Power Fist', buy: 400, sell: 150 },
+        ];
+        addLine('  \u25b8 ARTICLES DISPONIBLES', 'line-header');
+        items.forEach(function(item) {
+          addHTML('    ' + item.name.padEnd(24) + ' <span style="color:var(--term-red)">Achat: ' + item.buy + '\u2299</span>  <span style="color:var(--term-green)">Vente: ' + item.sell + '\u2299</span>');
+        });
+        addBlank();
+      },
+
+      /* ═══════════════════════════════
+         HOLOTAPE GAME
+      ═══════════════════════════════ */
+      holotape: async function() {
+        addLine('\u2501\u2501\u2501 HOLOTAPE \u2014 DEVINEZ LE NOMBRE \u2501\u2501\u2501', 'line-header');
+        addBlank();
+        addLine('  Le Pip-Boy a charg\u00e9 un mini-jeu.', 'line-info');
+        addLine('  Je pense \u00e0 un nombre entre 1 et 100.', '');
+        addLine('  Tapez "guess <nombre>" pour deviner !', 'line-system');
+        addBlank();
+        window._holotapeNumber = Math.floor(Math.random() * 100) + 1;
+        window._holotapeAttempts = 0;
+        window._holotapeActive = true;
+        addLine('  (Jeu holotape activ\u00e9 \u2014 7 tentatives max)', 'line-warn');
+        addBlank();
+      },
+
+      /* ═══════════════════════════════
+         PIP-BOY SUMMARY
+      ═══════════════════════════════ */
+      pip: async function() {
+        addLine('\u2501\u2501\u2501 PIP-BOY 3000 MARK IV \u2501\u2501\u2501', 'line-header');
+        addBlank();
+        var art = '  \u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n  \u2551  PIP-BOY 3000 Mark IV     \u2551\n  \u2551  RobCo Industries          \u2551\n  \u2560\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2563\n  \u2551  STAT | INV | DATA | MAP   \u2551\n  \u2551\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2551\n  \u2551  HP: \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2591\u2591\u2591 187/230    \u2551\n  \u2551  AP: \u2588\u2588\u2588\u2588\u2588\u2591\u2591\u2591\u2591\u2591  52/100    \u2551\n  \u2551  LV: 19    CAPS: 1247     \u2551\n  \u2551  RAD: \u2588\u2588\u2591\u2591\u2591\u2591\u2591\u2591   87/1000  \u2551\n  \u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d';
+        addLine(art, 'ascii-art');
+        addBlank();
+        addLine('  Commandes utiles : special, perks, inventory, quests, map', 'line-system');
+        addBlank();
+      },
+
+      /* ═══════════════════════════════
+         RECIPE / COOKING
+      ═══════════════════════════════ */
+      recipe: async function() {
+        addLine('\u2501\u2501\u2501 RECETTES DU WASTELAND \u2501\u2501\u2501', 'line-header');
+        addBlank();
+        var recipes = [
+          { name: 'Steak de Radstag', ingr: 'Viande de Radstag, Sel', effect: '+25 PV, +25 port\u00e9e' },
+          { name: 'Rago\u00fbt de Mirelurk', ingr: 'Chair de Mirelurk, Carottes', effect: '+50 PV, +2 END' },
+          { name: 'Omelette Deathclaw', ingr: 'Oeuf de Deathclaw, Razorgrain', effect: '+75 PV, +3 STR' },
+          { name: 'Noodles Diamond City', ingr: 'Nouilles, Eau purifi\u00e9e', effect: '+30 PV, +15 PA' },
+          { name: 'Squirrel on a Stick', ingr: 'Viande \u00e9cureuil, B\u00e2ton', effect: '+15 PV' },
+          { name: 'BlamCo Mac & Cheese', ingr: 'Pr\u00e9-emball\u00e9 (2077)', effect: '+20 PV, +5 RAD' },
+          { name: 'Soupe Yao Guai', ingr: 'Viande Yao Guai, Mutfruit', effect: '+60 PV, +10% m\u00eal\u00e9e' },
+          { name: 'G\u00e2teau Parfait', ingr: '???', effect: '??? (Trouvez-le!)' },
+        ];
+        recipes.forEach(function(r) {
+          addHTML('  <span style="color:var(--term-cyan)">' + r.name.padEnd(24) + '</span>');
+          addHTML('    Ingr. : <span style="color:var(--term-green-dim)">' + r.ingr + '</span>');
+          addHTML('    Effet : <span style="color:var(--term-amber)">' + r.effect + '</span>');
+        });
+        addBlank();
+      },
+
+      /* ═══════════════════════════════
+         SLEEP / WAIT
+      ═══════════════════════════════ */
+      sleep: async function(args) {
+        var hours = parseInt(args[0]) || 8;
+        if (hours > 24) hours = 24;
+        if (hours < 1) hours = 1;
+        addLine('Vous vous allongez sur votre couchette...', 'line-info');
+        addBlank();
+        var zz = '';
+        for (var i = 0; i < Math.min(hours, 10); i++) {
+          zz += 'z';
+          addLine('  ' + zz.toUpperCase() + '...', 'line-system');
+          await wait(300);
+        }
+        addBlank();
+        addLine('  ' + hours + ' heures se sont \u00e9coul\u00e9es...', 'line-info');
+        var healed = hours * 12;
+        addHTML('  PV restaur\u00e9s : <span style="color:var(--term-green)">+' + healed + '</span>');
+        addLine('  Vous vous sentez repos\u00e9.', 'line-success');
+        if (Math.random() > 0.7) { addLine('  \u26a0 Cauchemar \u00e0 propos de la Grande Guerre...', 'line-warn'); }
+        addBlank();
+      },
+
+      /* ═══════════════════════════════
+         SAVE GAME (JOKE)
+      ═══════════════════════════════ */
+      save: async function() {
+        addLine('Sauvegarde en cours...', 'line-info');
+        await showProgress('\u00c9criture sur holodisk', 2000);
+        addBlank();
+        if (Math.random() > 0.3) {
+          addLine('  \u2713 SAUVEGARDE R\u00c9USSIE', 'line-success');
+          addLine('  Slot : QUICKSAVE_' + new Date().toISOString().substring(0, 10), 'line-system');
+          addLine('  Niveau : 19  |  Lieu : Abri Hikari  |  Capsules : 1247', 'line-system');
+        } else {
+          addLine('  \u2717 ERREUR : Espace disque insuffisant.', 'line-error');
+        }
+        addBlank();
+        addLine('  (Rappel : Sauvegardez souvent dans le Wasteland.)', 'line-classified');
+        addBlank();
+      },
+
+      /* ═══════════════════════════════
+         LOAD GAME (JOKE)
+      ═══════════════════════════════ */
+      load: async function() {
+        addLine('Chargement de la sauvegarde...', 'line-info');
+        await showProgress('Lecture holodisk', 1500);
+        addBlank();
+        addLine('  \u2717 ERREUR 0xFF0077 : FICHIER CORROMPU', 'line-error');
+        addLine('  La sauvegarde a \u00e9t\u00e9 endommag\u00e9e par les radiations.', 'line-warn');
+        addBlank();
+        addHTML('    <span style="color:var(--term-red)">1. QUICKSAVE_2077-10-23  [CORROMPU]</span>');
+        addHTML('    <span style="color:var(--term-red)">2. AUTOSAVE_2077-10-22   [CORROMPU]</span>');
+        addHTML('    <span style="color:var(--term-amber)">3. MANUAL_2077-10-20     [ENDOMMAG\u00c9]</span>');
+        addBlank();
+        addLine('  "Vous ne pouvez pas revenir en arri\u00e8re dans le Wasteland."', 'line-classified');
+        addBlank();
+      },
+
+      /* ═══════════════════════════════
+         DEATHCLAW ENCOUNTER
+      ═══════════════════════════════ */
+      deathclaw: async function() {
+        addLine('  \u26a0 ALERTE : CR\u00c9ATURE HOSTILE D\u00c9TECT\u00c9E !', 'line-error');
+        await wait(400);
+        addBlank();
+        addHTML('  Cr\u00e9ature : <span style="color:var(--term-red)">DEATHCLAW ALPHA</span>');
+        addHTML('  Niveau   : <span style="color:var(--term-red)">52</span>');
+        addHTML('  PV       : <span style="color:var(--term-red)">\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588 1250</span>');
+        addHTML('  DT       : <span style="color:var(--term-amber)">25</span>');
+        addBlank();
+        addLine('  Options :', 'line-system');
+        addHTML('    <span style="color:var(--term-green)">1.</span> Combattre (V.A.T.S.)');
+        addHTML('    <span style="color:var(--term-amber)">2.</span> Fuir (AGI check)');
+        addHTML('    <span style="color:var(--term-red)">3.</span> Accepter son destin');
+        addBlank();
+        await wait(1000);
+        var outcome = Math.random();
+        if (outcome > 0.5) {
+          addLine('  Le Deathclaw charge !', 'line-error');
+          addLine('  Vous utilisez une Mine \u00e0 fragmentation...', 'line-warn');
+          await wait(800);
+          addLine('  BOOM ! Le Deathclaw est ralenti !', 'line-success');
+          addLine('  Vous fuyez. (+50 XP)', 'line-info');
+        } else {
+          addLine('  Vous restez immobile...', 'line-warn');
+          await wait(1000);
+          addLine('  Le Deathclaw ne vous a pas vu. (+100 XP)', 'line-success');
+        }
+        addBlank();
+      },
+
+      /* ═══════════════════════════════
+         REPAIR
+      ═══════════════════════════════ */
+      repair: async function(args) {
+        var item = args.join(' ') || 'Pistolet laser 10mm';
+        addLine('\u2501\u2501\u2501 ATELIER DE R\u00c9PARATION \u2501\u2501\u2501', 'line-header');
+        addBlank();
+        addHTML('  Objet : <span style="color:var(--term-cyan)">' + item + '</span>');
+        var curCond = Math.floor(Math.random() * 50 + 20);
+        var newCond = Math.min(100, curCond + Math.floor(Math.random() * 30 + 15));
+        addHTML('  \u00c9tat actuel : <span style="color:var(--term-red)">' + curCond + '%</span>');
+        addBlank();
+        addLine('  Mat\u00e9riaux : Ferraille x3, Adh\u00e9sif x1, Vis x2', 'line-system');
+        await showProgress('R\u00e9paration en cours', 2500);
+        addBlank();
+        addHTML('  \u00c9tat apr\u00e8s : <span style="color:var(--term-green)">' + newCond + '%</span>');
+        addLine('  (+10 XP R\u00e9paration)', 'line-info');
+        addBlank();
+      },
+
+      /* ═══════════════════════════════
+         JUNK BREAKDOWN
+      ═══════════════════════════════ */
+      junk: async function() {
+        addLine('\u2501\u2501\u2501 D\u00c9MONTAGE D\'OBJETS \u2501\u2501\u2501', 'line-header');
+        addBlank();
+        var junkItems = [
+          { name: 'R\u00e9veil cass\u00e9', yields: 'Ressorts x2, Engrenages x1' },
+          { name: 'Cam\u00e9ra', yields: 'Cristaux x2, Vis x1, Ressorts x1' },
+          { name: 'Ventilateur', yields: 'Acier x2, Vis x3, Engrenages x1' },
+          { name: 'T\u00e9l\u00e9phone', yields: 'Cuivre x2, Fibre optique x1' },
+          { name: 'Hot plate', yields: 'Acier x1, Vis x2, Cuivre x1' },
+          { name: 'Ours en peluche', yields: 'Tissu x3, Fibres x2' },
+          { name: 'Microscope', yields: 'Cristaux x2, Fibre optique x2, Vis x2' },
+        ];
+        junkItems.forEach(function(j) {
+          addHTML('  <span style="color:var(--term-cyan)">' + j.name.padEnd(20) + '</span> \u2192 <span style="color:var(--term-amber)">' + j.yields + '</span>');
+        });
+        addBlank();
+        addLine('  Total composants estim\u00e9 : Acier 5, Vis 12, Ressorts 5, Cuivre 5', 'line-system');
+        addBlank();
+      },
+
+      /* ═══════════════════════════════
+         WARP / FAST TRAVEL
+      ═══════════════════════════════ */
+      warp: async function(args) {
+        var dest = args.join(' ');
+        var locations = {
+          'diamond city': 'Diamond City \u2014 Grande ville verte',
+          'goodneighbor': 'Goodneighbor \u2014 Quartier des marginaux',
+          'sanctuary': 'Sanctuary Hills \u2014 Premier campement',
+          'the castle': 'The Castle \u2014 QG des Minutemen',
+          'abri hikari': 'Abri Hikari \u2014 Chez vous',
+          'megaton': 'Megaton \u2014 La ville autour de la bombe',
+          'new vegas': 'New Vegas \u2014 Cit\u00e9 des lumi\u00e8res',
+          'rivet city': 'Rivet City \u2014 Le porte-avions',
+          'mojave': 'Mojave Wasteland',
+          'concord': 'Concord \u2014 Premi\u00e8re bataille',
+        };
+        if (!dest) {
+          addLine('\u2501\u2501\u2501 VOYAGE RAPIDE \u2501\u2501\u2501', 'line-header');
+          addBlank();
+          Object.keys(locations).forEach(function(k) {
+            addHTML('  <span style="color:var(--term-cyan)">\u25b8</span> <span style="color:var(--term-green)">' + k.padEnd(16) + '</span> <span style="color:var(--term-green-dim)">' + locations[k] + '</span>');
+          });
+          addBlank();
+          addLine('  Usage : warp <destination>', 'line-system');
+          addBlank();
+          return;
+        }
+        var loc = locations[dest.toLowerCase()];
+        if (!loc) { addLine('  Destination inconnue : "' + dest + '"', 'line-error'); addLine('  Tapez "warp" pour la liste.', 'line-system'); addBlank(); return; }
+        addLine('  Destination : ' + loc, 'line-info');
+        await showProgress('Voyage en cours', 3000);
+        addBlank();
+        if (Math.random() > 0.75) {
+          addLine('  \u26a0 EMBUSCADE ! Des Raiders attaquent !', 'line-error');
+          addLine('  Vous les \u00e9liminez. (+25 XP)', 'line-success');
+          addBlank();
+        }
+        addLine('  \u2713 Arriv\u00e9 \u00e0 ' + dest, 'line-success');
+        addBlank();
+      },
+
+      /* ═══════════════════════════════
+         LORE ENTRIES
+      ═══════════════════════════════ */
+      lore: async function() {
+        var entries = [
+          { title: 'La Grande Guerre', text: 'Le 23 octobre 2077, le monde a \u00e9t\u00e9 consum\u00e9 par le feu nucl\u00e9aire en deux heures. Les survivants se sont r\u00e9fugi\u00e9s dans les Abris Vault-Tec.' },
+          { title: 'Vault-Tec Corporation', text: 'Vault-Tec a construit 122 Abris. La plupart \u00e9taient des exp\u00e9riences sociales secr\u00e8tes.' },
+          { title: 'Les Super Mutants', text: 'Cr\u00e9\u00e9s par le Virus \u00e0 \u00c9volution Forc\u00e9e (VEF), ce sont des humains transform\u00e9s en cr\u00e9atures massives.' },
+          { title: 'Le Nuka-Cola', text: 'Invent\u00e9 en 2044 par Bradberton. La variante Quantum contient un isotope radioactif qui la fait briller en bleu.' },
+          { title: 'La Confr\u00e9rie de l\'Acier', text: 'Organisation militaire vou\u00e9e \u00e0 la pr\u00e9servation de la technologie. Devise : Ad Victoriam.' },
+          { title: 'Les Goules', text: 'Humains irradi\u00e9s dont le corps s\'est d\u00e9compos\u00e9 mais qui ont surv\u00e9cu. Certains deviennent sauvages.' },
+          { title: 'RobCo Industries', text: 'Fond\u00e9e par Robert House. Cr\u00e9ateurs des terminaux, Pip-Boy et robots.' },
+          { title: 'L\'Abri Hikari', text: 'Abri unique en France, d\u00e9di\u00e9 \u00e0 la pr\u00e9servation culturelle. Superviseur : Hikari Umaishi.' },
+          { title: 'Les Deathclaws', text: 'Cr\u00e9\u00e9s avant la guerre par modification g\u00e9n\u00e9tique. Pr\u00e9dateurs les plus redout\u00e9s du Wasteland.' },
+          { title: 'Les Capsules', text: 'Les capsules de Nuka-Cola sont la monnaie universelle du Wasteland. Impossibles \u00e0 contrefaire.' },
+          { title: 'Le Commonwealth', text: 'Ce qui reste du Massachusetts. Territoire disput\u00e9 entre factions, habitants et mutants.' },
+          { title: 'La RNC', text: 'R\u00e9publique de Nouvelle Californie, tentant de restaurer la civilisation dans l\'Ouest am\u00e9ricain.' },
+        ];
+        var entry = entries[Math.floor(Math.random() * entries.length)];
+        addLine('\u2501\u2501\u2501 FRAGMENT DE LORE \u2501\u2501\u2501', 'line-header');
+        addBlank();
+        addHTML('  <span style="color:var(--term-cyan)">\u25b8 ' + entry.title + '</span>');
+        addBlank();
+        await typeText('  ' + entry.text, '', 8);
+        addBlank();
+        addLine('  [Tapez "lore" pour un autre fragment]', 'line-system');
+        addBlank();
+      },
+
+      /* ═══════════════════════════════
+         CAT (VIEW FILE)
+      ═══════════════════════════════ */
+      cat: async function(args) {
+        var filename = args[0];
+        if (!filename) { addLine('Usage : cat <fichier>', 'line-warn'); addLine('Fichiers : boot.log, residents.csv, readme.txt, secret.dat', 'line-system'); return; }
+        var files = {
+          'boot.log': 'BOOT LOG \u2014 ABRI-HIKARI\n[2077-10-23 06:12:01] BIOS POST... OK\n[2077-10-23 06:12:02] Memory 640K... PASS\n[2077-10-23 06:12:04] Loading RobCo UOS v4.2...\n[2077-10-23 06:12:06] Radio antenna... WARN\n[2077-10-23 09:03:41] *** SEISMIC EVENT ***\n[2077-10-23 09:03:42] *** VAULT DOOR SEALED ***\n[2077-10-23 09:03:43] *** AUTONOMOUS MODE ***',
+          'residents.csv': 'ID,NOM,R\u00d4LE,STATUT\n001,Hikari Umaishi,Superviseur,ACTIF\n002,Asc-03,Technicien,VERROUILL\u00c9\n003,Kanae M.,M\u00e9decin,ACTIF\n004,Deegle,Ing\u00e9nieur radio,ACTIF\n005,Yuuki,Chef s\u00e9curit\u00e9,ACTIF\n006,Seeds,Scientifique,ACTIF\n007,Legion,Garde,ACTIF\n...\n247,??????,??????,??????',
+          'readme.txt': 'BIENVENUE AU TERMINAL ABRI-HIKARI\n==================================\nCe terminal est la propri\u00e9t\u00e9 de VentiStudio.\nFond\u00e9 par Hikari Umaishi.\nD\u00e9di\u00e9 \u00e0 la musique, l\'art et la communaut\u00e9.\n\nTapez "help" pour commencer.\nWar never changes. But we can.',
+          'secret.dat': '01001000 01101001 01101011 01100001\n01110010 01101001 00100000 01010101\n01101101 01100001 01101001 01110011\n01101000 01101001\n\n[ACC\u00c8S RESTREINT \u2014 D\u00c9CHIFFREMENT REQUIS]',
+          'maintenance.log': 'JOURNAL MAINTENANCE \u2014 ABRI HIKARI\n[Jour 1] Syst\u00e8mes nominaux.\n[Jour 87] Panne g\u00e9n\u00e9rateur \u2014 r\u00e9par\u00e9.\n[Jour 365] Maintenance annuelle.\n[Jour 5000] R\u00e9serves pi\u00e8ces : CRITIQUE.\n[Jour 18263] Le syst\u00e8me tient par miracle.',
+        };
+        if (!files[filename]) { addLine('Fichier non trouv\u00e9: ' + filename, 'line-error'); return; }
+        addLine('\u2501\u2501\u2501 ' + filename.toUpperCase() + ' \u2501\u2501\u2501', 'line-header');
+        addBlank();
+        await typeText(files[filename], '', 5);
+        addBlank();
+      },
+
+      /* ═══════════════════════════════
+         LS (LIST FILES)
+      ═══════════════════════════════ */
+      ls: async function(args) {
+        var dir = args[0] || '/';
+        addLine('\u2501\u2501\u2501 R\u00c9PERTOIRE : ' + dir.toUpperCase() + ' \u2501\u2501\u2501', 'line-header');
+        addBlank();
+        var listing = [
+          { name: 'boot.log', size: '2.1K', type: 'LOG' },
+          { name: 'residents.csv', size: '0.4K', type: 'DAT' },
+          { name: 'readme.txt', size: '0.5K', type: 'TXT' },
+          { name: 'secret.dat', size: '0.2K', type: 'ENC' },
+          { name: 'maintenance.log', size: '0.8K', type: 'LOG' },
+          { name: 'holodisks/', size: '\u2014', type: 'DIR' },
+          { name: 'programs/', size: '\u2014', type: 'DIR' },
+          { name: 'radio/', size: '\u2014', type: 'DIR' },
+          { name: 'archives/', size: '\u2014', type: 'DIR' },
+        ];
+        listing.forEach(function(f) {
+          var typeColor = f.type === 'DIR' ? 'var(--term-cyan)' : f.type === 'EXE' ? 'var(--term-green)' : f.type === 'ERR' ? 'var(--term-red)' : 'var(--term-green-dim)';
+          addHTML('  <span style="color:' + typeColor + '">[' + f.type + ']</span> ' + f.name.padEnd(24) + ' <span style="color:var(--term-green-dim)">' + f.size + '</span>');
+        });
+        addBlank();
+        addLine('  ' + listing.length + ' \u00e9l\u00e9ment(s)', 'line-system');
+        addBlank();
+      },
+
+      /* ═══════════════════════════════
+         CLS (ALIAS FOR CLEAR)
+      ═══════════════════════════════ */
+      cls: async function() {
+        termBody.innerHTML = '';
+        addLine('Terminal pr\u00eat.', 'line-system');
       }
 
     };
@@ -2295,14 +3428,24 @@
       radioAudio.addEventListener('error', function(e) {
         // Ignore errors on tracks that were stopped/replaced
         if (radioAudio !== this) return;
-        addLine('  \u26a0 Impossible de lire : ' + track.title, 'line-error');
-        addLine('  Passage au morceau suivant...', 'line-system');
-        setTimeout(function() { onRadioTrackEnd(); }, 1500);
+        radioErrorCount++;
+        if (radioErrorCount >= radioStations[radioStation].tracks.length) {
+          addLine('  \u2716 Aucun morceau lisible sur cette station.', 'line-error');
+          addLine('  Radio arr\u00eat\u00e9e. Essayez une autre station avec "radio list".', 'line-system');
+          stopRadio();
+          radioErrorCount = 0;
+          return;
+        }
+        addLine('  \u26a0 Impossible de lire : ' + track.title + ' \u2014 passage au suivant...', 'line-warn');
+        radioTrackIdx = (radioTrackIdx + 1) % radioStations[radioStation].tracks.length;
+        setTimeout(function() { playRadioTrack(); }, 500);
       });
 
       var playPromise = radioAudio.play();
       if (playPromise !== undefined) {
-        playPromise.catch(function(err) {
+        playPromise.then(function() {
+          radioErrorCount = 0; // Reset error counter on successful play
+        }).catch(function(err) {
           // Autoplay blocked — show message only once and wait for user interaction
           if (!radioBlockedMsgShown) {
             radioBlockedMsgShown = true;

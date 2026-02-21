@@ -3,160 +3,682 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VentiStudio - Link Start</title>
+  <title>Link Start — NerveGear Full-Dive</title>
   <style>
-    :root {
-      --primary: #7B66FF;
-      --secondary: #2A2D3A;
-      --background: #1A1B26;
-      --text: #FFFFFF;
-      --sao-blue: #00B0FF;
-      --sao-green: #76FF03;
-    }
+    @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
+      background: #000;
+      color: #fff;
+      font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+      width: 100vw; height: 100vh;
+      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
-      background-color: var(--background);
-      font-family: 'Inter', sans-serif;
-      color: var(--text);
+    }
+
+    /* Full-screen canvas for the light tunnel */
+    canvas#tunnel {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+    }
+
+    /* ========== LINK START TEXT (Phase 1) ========== */
+    #linkStartText {
+      position: fixed;
+      z-index: 10;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(36px, 10vw, 90px);
+      font-weight: 700;
+      letter-spacing: 12px;
+      text-transform: uppercase;
+      color: #fff;
+      text-shadow:
+        0 0 40px rgba(100, 180, 255, 0.8),
+        0 0 80px rgba(100, 180, 255, 0.4),
+        0 0 120px rgba(100, 180, 255, 0.2);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
+    #linkStartText.visible { opacity: 1; }
+    #linkStartText.fade-out {
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+
+    /* ========== SENSES CHECK (Phase 3) ========== */
+    #sensesOverlay {
+      position: fixed;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(14px, 3vh, 28px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
+    #sensesOverlay.visible { opacity: 1; }
+    #sensesOverlay.fade-out { opacity: 0; transition: opacity 0.6s ease; }
+
+    .sense-item {
+      display: flex;
+      align-items: center;
+      gap: clamp(16px, 4vw, 40px);
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+    .sense-item.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .sense-name {
+      font-size: clamp(20px, 5vw, 42px);
+      font-weight: 600;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      min-width: clamp(100px, 25vw, 200px);
+      text-align: right;
+      transition: color 0.3s;
+    }
+    .sense-item.checked .sense-name {
+      color: #fff;
+    }
+
+    .sense-bar-bg {
+      width: clamp(80px, 18vw, 180px);
+      height: clamp(4px, 0.8vh, 6px);
+      background: rgba(255,255,255,0.1);
+      border-radius: 3px;
       overflow: hidden;
     }
-    .redirect-container {
-      text-align: center;
-      padding: 2rem;
-      position: relative;
-      z-index: 2;
+    .sense-bar {
+      width: 0%;
+      height: 100%;
+      border-radius: 3px;
+      transition: width 0.35s ease-out;
     }
-    .logo {
-      width: 150px;
-      margin-bottom: 2rem;
-      animation: pulse 2s ease-in-out infinite;
+    .sense-item.checked .sense-bar { width: 100%; }
+
+    /* Each sense gets its own color like the anime */
+    .sense-item[data-sense="touch"] .sense-bar    { background: #4488ff; }
+    .sense-item[data-sense="sight"] .sense-bar    { background: #44ddff; }
+    .sense-item[data-sense="hearing"] .sense-bar  { background: #44ff88; }
+    .sense-item[data-sense="taste"] .sense-bar    { background: #ffcc44; }
+    .sense-item[data-sense="smell"] .sense-bar    { background: #ff66aa; }
+
+    .sense-ok {
+      font-size: clamp(18px, 4.5vw, 36px);
+      font-weight: 700;
+      letter-spacing: 4px;
+      color: transparent;
+      min-width: 60px;
+      transition: color 0.2s;
     }
-    @keyframes pulse {
-      0% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.1); opacity: 0.8; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-    .redirect-text {
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      animation: glitch 1s linear infinite;
-      text-shadow: 0 0 10px var(--sao-blue);
-    }
-    .status-circles {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      margin: 20px 0;
-    }
-    .status-circle {
-      width: 15px; height: 15px;
-      border-radius: 50%;
-      background: var(--sao-blue);
-      animation: statusCheck 0.5s linear forwards;
-      opacity: 0;
-    }
-    @keyframes statusCheck {
-      from { transform: scale(0); opacity: 0; }
-      to { transform: scale(1); opacity: 1; background: var(--sao-green); }
-    }
-    .countdown {
-      font-size: 1.5rem;
-      color: var(--sao-blue);
-      text-shadow: 0 0 5px var(--sao-blue);
-      margin-top: 2rem;
-    }
-    .link-start {
+    .sense-item.checked .sense-ok { color: #88ff88; }
+
+    /* ========== LANGUAGE SELECT (Phase 4) ========== */
+    #langOverlay {
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: clamp(10px, 2vh, 20px);
+      opacity: 0;
       pointer-events: none;
-      z-index: 1;
+      transition: opacity 0.5s ease;
     }
-    .line {
-      position: absolute;
-      background: linear-gradient(to bottom, transparent, var(--sao-blue), transparent);
-      width: 2px; height: 100%;
-      animation: linkStart 2s linear infinite;
-      opacity: 0.5;
+    #langOverlay.visible { opacity: 1; }
+    #langOverlay.fade-out { opacity: 0; transition: opacity 0.5s ease; }
+
+    .lang-title {
+      font-size: clamp(14px, 3vw, 22px);
+      letter-spacing: 6px;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      margin-bottom: 8px;
     }
-    @keyframes linkStart {
-      0% { transform: translateY(-100%); }
-      100% { transform: translateY(100%); }
+
+    .lang-option {
+      font-size: clamp(18px, 4vw, 30px);
+      font-weight: 500;
+      letter-spacing: 4px;
+      color: rgba(255,255,255,0.35);
+      text-transform: uppercase;
+      padding: 4px 20px;
+      transition: all 0.3s;
     }
-    @keyframes glitch {
-      0% { transform: translate(0); }
-      20% { transform: translate(-2px, 2px); }
-      40% { transform: translate(-2px, -2px); }
-      60% { transform: translate(2px, 2px); }
-      80% { transform: translate(2px, -2px); }
-      100% { transform: translate(0); }
+    .lang-option.selected {
+      color: #fff;
+      text-shadow: 0 0 20px rgba(100,180,255,0.6);
+    }
+
+    /* ========== LOGIN SCREEN (Phase 5) ========== */
+    #loginOverlay {
+      position: fixed;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: clamp(16px, 3vh, 28px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
+    #loginOverlay.visible { opacity: 1; }
+    #loginOverlay.fade-out { opacity: 0; transition: opacity 0.5s ease; }
+
+    .login-title {
+      font-size: clamp(14px, 3vw, 20px);
+      letter-spacing: 6px;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+    }
+
+    .login-field {
+      display: flex;
+      align-items: center;
+      gap: clamp(12px, 3vw, 24px);
+    }
+    .login-label {
+      font-size: clamp(16px, 3.5vw, 26px);
+      font-weight: 500;
+      letter-spacing: 3px;
+      color: rgba(255,255,255,0.5);
+      min-width: clamp(80px, 18vw, 160px);
+      text-align: right;
+      text-transform: uppercase;
+    }
+    .login-input {
+      width: clamp(120px, 30vw, 260px);
+      height: clamp(28px, 4vh, 40px);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 3px;
+      position: relative;
+      overflow: hidden;
+    }
+    .login-input-fill {
+      position: absolute; top: 0; left: 0;
+      height: 100%;
+      background: rgba(100,180,255,0.15);
+      border-radius: 3px;
+      width: 0%;
+      transition: width 0.4s ease;
+    }
+    .login-input-fill.filled { width: 100%; }
+    .login-input-text {
+      position: absolute; top: 50%; left: 10px;
+      transform: translateY(-50%);
+      font-family: inherit;
+      font-size: clamp(12px, 2.5vw, 18px);
+      color: rgba(255,255,255,0.7);
+      letter-spacing: 1px;
+    }
+    .login-input-text.password { letter-spacing: 4px; }
+
+    /* ========== DESTINATION DISPLAY (Phase 6) ========== */
+    #destOverlay {
+      position: fixed;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
+    #destOverlay.visible { opacity: 1; }
+    #destOverlay.fade-out { opacity: 0; transition: opacity 0.5s ease; }
+
+    .dest-label {
+      font-size: clamp(12px, 2.5vw, 18px);
+      letter-spacing: 5px;
+      color: rgba(255,255,255,0.4);
+      text-transform: uppercase;
+    }
+    .dest-url {
+      font-size: clamp(14px, 3vw, 22px);
+      font-weight: 600;
+      color: rgba(100,200,255,0.9);
+      word-break: break-all;
+      text-align: center;
+      max-width: 80vw;
+      letter-spacing: 1px;
+    }
+
+    /* ========== WHITE FLASH (Final) ========== */
+    #whiteFlash {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: #fff;
+      z-index: 50;
+      opacity: 0;
+      pointer-events: none;
+    }
+    #whiteFlash.flash {
+      animation: flashIn 1.5s ease-out forwards;
+    }
+    @keyframes flashIn {
+      0%   { opacity: 0; }
+      30%  { opacity: 1; }
+      100% { opacity: 1; }
+    }
+
+    /* ========== ERROR STATE ========== */
+    #errorOverlay {
+      position: fixed;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
+    #errorOverlay.visible { opacity: 1; }
+
+    .error-title {
+      font-size: clamp(22px, 6vw, 50px);
+      font-weight: 700;
+      letter-spacing: 6px;
+      color: #ff4466;
+      text-shadow: 0 0 30px rgba(255,68,102,0.5);
+      text-transform: uppercase;
+    }
+    .error-msg {
+      font-size: clamp(14px, 3vw, 22px);
+      letter-spacing: 3px;
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 480px) {
+      .sense-item { gap: clamp(8px, 3vw, 16px); }
+      .sense-name { letter-spacing: 3px; }
+      .sense-ok { letter-spacing: 2px; min-width: 40px; }
+    }
+
+    @media (max-height: 400px) and (orientation: landscape) {
+      #sensesOverlay { gap: 8px; }
+      .sense-item { gap: 12px; }
+      .sense-name { font-size: clamp(14px, 3vw, 22px); min-width: 80px; }
+      .sense-bar-bg { width: 80px; }
+      .sense-ok { font-size: clamp(14px, 3vw, 22px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="link-start" id="linkStart"></div>
-  <div class="redirect-container">
-    <img src="/favicon.avif" alt="VentiStudio Logo" class="logo">
-    <div class="redirect-text">Link Start!</div>
-    <div class="status-circles">
-      <div class="status-circle"></div>
-      <div class="status-circle"></div>
-      <div class="status-circle"></div>
-      <div class="status-circle"></div>
-      <div class="status-circle"></div>
+
+  <!-- Light tunnel canvas -->
+  <canvas id="tunnel"></canvas>
+
+  <!-- Phase 1: LINK START text -->
+  <div id="linkStartText">Link Start</div>
+
+  <!-- Phase 3: Senses check -->
+  <div id="sensesOverlay">
+    <div class="sense-item" data-sense="touch">
+      <span class="sense-name">Touch</span>
+      <div class="sense-bar-bg"><div class="sense-bar"></div></div>
+      <span class="sense-ok">OK</span>
     </div>
-    <div class="countdown">Connexion dans <span id="timer">5</span> secondes</div>
+    <div class="sense-item" data-sense="sight">
+      <span class="sense-name">Sight</span>
+      <div class="sense-bar-bg"><div class="sense-bar"></div></div>
+      <span class="sense-ok">OK</span>
+    </div>
+    <div class="sense-item" data-sense="hearing">
+      <span class="sense-name">Hearing</span>
+      <div class="sense-bar-bg"><div class="sense-bar"></div></div>
+      <span class="sense-ok">OK</span>
+    </div>
+    <div class="sense-item" data-sense="taste">
+      <span class="sense-name">Taste</span>
+      <div class="sense-bar-bg"><div class="sense-bar"></div></div>
+      <span class="sense-ok">OK</span>
+    </div>
+    <div class="sense-item" data-sense="smell">
+      <span class="sense-name">Smell</span>
+      <div class="sense-bar-bg"><div class="sense-bar"></div></div>
+      <span class="sense-ok">OK</span>
+    </div>
   </div>
 
+  <!-- Phase 4: Language selection -->
+  <div id="langOverlay">
+    <div class="lang-title">Select Language</div>
+    <div class="lang-option" data-lang="ja">Japanese</div>
+    <div class="lang-option" data-lang="en">English</div>
+    <div class="lang-option" data-lang="fr">French</div>
+    <div class="lang-option" data-lang="de">Deutsch</div>
+    <div class="lang-option" data-lang="zh">中文</div>
+  </div>
+
+  <!-- Phase 5: Login -->
+  <div id="loginOverlay">
+    <div class="login-title">Player Login</div>
+    <div class="login-field">
+      <span class="login-label">Name</span>
+      <div class="login-input">
+        <div class="login-input-fill" id="nameFill"></div>
+        <span class="login-input-text" id="nameText"></span>
+      </div>
+    </div>
+    <div class="login-field">
+      <span class="login-label">Password</span>
+      <div class="login-input">
+        <div class="login-input-fill" id="passFill"></div>
+        <span class="login-input-text password" id="passText"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 6: Destination -->
+  <div id="destOverlay">
+    <div class="dest-label">Teleporting to</div>
+    <div class="dest-url" id="destUrl"></div>
+  </div>
+
+  <!-- Error state -->
+  <div id="errorOverlay">
+    <div class="error-title">System Error</div>
+    <div class="error-msg" id="errorMsg"></div>
+  </div>
+
+  <!-- White flash -->
+  <div id="whiteFlash"></div>
+
   <script>
-    const linkStart = document.getElementById('linkStart');
-    for (let i = 0; i < 20; i++) {
-      const line = document.createElement('div');
-      line.className = 'line';
-      line.style.left = `${Math.random() * 100}%`;
-      line.style.animationDelay = `${Math.random() * 2}s`;
-      linkStart.appendChild(line);
-    }
+    /* ====================================================
+       MULTICOLORED LIGHT TUNNEL (the iconic SAO effect)
+       Streaks of colored light rushing from center outward
+       ==================================================== */
+    (function() {
+      const c = document.getElementById('tunnel');
+      const ctx = c.getContext('2d');
+      let w, h, streaks = [], phase = 'idle';
+      let intensity = 0; // 0 to 1
 
-    const circles = document.querySelectorAll('.status-circle');
-    circles.forEach((circle, index) => {
-      setTimeout(() => {
-        circle.style.animation = 'statusCheck 0.5s linear forwards';
-      }, index * 300);
-    });
+      const colors = [
+        [68, 136, 255],   // blue
+        [68, 221, 255],   // cyan
+        [68, 255, 136],   // green
+        [255, 204, 68],   // yellow
+        [255, 136, 68],   // orange
+        [255, 102, 170],  // pink
+        [170, 100, 255],  // purple
+        [255, 255, 255],  // white
+      ];
 
-    function getRedirectUrl() {
-      const urlParams = new URLSearchParams(window.location.search);
-      return urlParams.get('redirect');
-    }
+      function resize() {
+        w = c.width = window.innerWidth;
+        h = c.height = window.innerHeight;
+      }
 
-    let timeLeft = 5;
-    const timerElement = document.getElementById('timer');
-    const redirectUrl = getRedirectUrl();
+      function createStreak() {
+        const angle = Math.random() * Math.PI * 2;
+        const col = colors[Math.floor(Math.random() * colors.length)];
+        return {
+          angle: angle,
+          dist: 0,
+          speed: 2 + Math.random() * 4,
+          length: 20 + Math.random() * 60,
+          width: 1 + Math.random() * 2.5,
+          color: col,
+          alpha: 0.4 + Math.random() * 0.6,
+          life: 0
+        };
+      }
 
-    if (redirectUrl) {
-      const countdown = setInterval(() => {
-        timeLeft--;
-        timerElement.textContent = timeLeft;
-        if (timeLeft <= 0) {
-          clearInterval(countdown);
-          window.location.href = redirectUrl;
+      function draw() {
+        // Fade the background
+        ctx.fillStyle = `rgba(0,0,0,${phase === 'idle' ? 1 : 0.12})`;
+        ctx.fillRect(0, 0, w, h);
+
+        if (phase === 'idle') {
+          requestAnimationFrame(draw);
+          return;
         }
-      }, 1000);
-    } else {
-      document.querySelector('.redirect-text').textContent = 'System Call Failed';
-      document.querySelector('.status-circles').style.display = 'none';
-      document.querySelector('.countdown').style.display = 'none';
+
+        const cx = w / 2, cy = h / 2;
+        const maxDist = Math.sqrt(cx * cx + cy * cy) * 1.3;
+
+        // Spawn streaks based on intensity
+        const spawnRate = Math.floor(intensity * (w < 600 ? 4 : 8));
+        for (let i = 0; i < spawnRate; i++) {
+          streaks.push(createStreak());
+        }
+
+        // Draw streaks
+        for (let i = streaks.length - 1; i >= 0; i--) {
+          const s = streaks[i];
+          s.dist += s.speed * (1 + s.dist * 0.02);
+          s.life++;
+
+          const x1 = cx + Math.cos(s.angle) * s.dist;
+          const y1 = cy + Math.sin(s.angle) * s.dist;
+          const x2 = cx + Math.cos(s.angle) * (s.dist - s.length);
+          const y2 = cy + Math.sin(s.angle) * (s.dist - s.length);
+
+          const alpha = s.alpha * Math.min(1, s.dist / 50) * intensity;
+
+          ctx.beginPath();
+          ctx.moveTo(x2, y2);
+          ctx.lineTo(x1, y1);
+          ctx.strokeStyle = `rgba(${s.color[0]},${s.color[1]},${s.color[2]},${alpha.toFixed(2)})`;
+          ctx.lineWidth = s.width;
+          ctx.lineCap = 'round';
+          ctx.stroke();
+
+          if (s.dist > maxDist) {
+            streaks.splice(i, 1);
+          }
+        }
+
+        // Center glow
+        if (intensity > 0.2) {
+          const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, 120 * intensity);
+          grad.addColorStop(0, `rgba(200,220,255,${(0.15 * intensity).toFixed(2)})`);
+          grad.addColorStop(1, 'rgba(200,220,255,0)');
+          ctx.fillStyle = grad;
+          ctx.fillRect(cx - 150, cy - 150, 300, 300);
+        }
+
+        requestAnimationFrame(draw);
+      }
+
+      window.addEventListener('resize', resize);
+      resize();
+      draw();
+
+      // Expose controls
+      window.tunnelStart = function() { phase = 'active'; };
+      window.tunnelStop = function() { phase = 'idle'; };
+      window.tunnelIntensity = function(v) { intensity = v; };
+    })();
+
+    /* ====================================================
+       SEQUENCE CONTROLLER
+       Reproduces the actual SAO Link Start sequence:
+       1. Black screen → "Link Start" text
+       2. Light tunnel starts (multicolored streaks)
+       3. Senses check (Touch, Sight, Hearing, Taste, Smell → OK)
+       4. Language selection
+       5. Login screen
+       6. White flash → redirect
+       ==================================================== */
+
+    const blacklisted = ['malicious.com', 'spam.com', 'unsafe.net'];
+    function isValidUrl(s) { try { new URL(s); return true; } catch { return false; } }
+    function isBlacklisted(url) { return blacklisted.some(b => url.includes(b)); }
+    function getRedirectUrl() { return new URLSearchParams(window.location.search).get('redirect'); }
+
+    function wait(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+    function showEl(el) { el.classList.add('visible'); }
+    function hideEl(el) {
+      return new Promise(r => {
+        el.classList.add('fade-out');
+        setTimeout(() => {
+          el.classList.remove('visible', 'fade-out');
+          r();
+        }, 600);
+      });
     }
+
+    async function showError(msg) {
+      const overlay = document.getElementById('errorOverlay');
+      document.getElementById('errorMsg').textContent = msg;
+      showEl(overlay);
+    }
+
+    async function runSequence() {
+      const redirectUrl = getRedirectUrl();
+      const linkText = document.getElementById('linkStartText');
+      const senses = document.getElementById('sensesOverlay');
+      const lang = document.getElementById('langOverlay');
+      const login = document.getElementById('loginOverlay');
+      const dest = document.getElementById('destOverlay');
+      const flash = document.getElementById('whiteFlash');
+
+      /* === Phase 1: "Link Start" text === */
+      await wait(400);
+      linkText.classList.add('visible');
+      await wait(300);
+
+      /* === Phase 2: Start tunnel === */
+      window.tunnelStart();
+      // Ramp up intensity
+      let t = 0;
+      const ramp = setInterval(() => {
+        t += 0.03;
+        window.tunnelIntensity(Math.min(t, 1));
+        if (t >= 1) clearInterval(ramp);
+      }, 30);
+
+      await wait(1200);
+      linkText.classList.add('fade-out');
+      await wait(800);
+      linkText.classList.remove('visible', 'fade-out');
+
+      /* === Phase 3: Senses check === */
+      showEl(senses);
+      const senseItems = senses.querySelectorAll('.sense-item');
+
+      for (const item of senseItems) {
+        await wait(200);
+        item.classList.add('show');
+        await wait(300);
+        item.classList.add('checked');
+        await wait(150);
+      }
+
+      await wait(600);
+      await hideEl(senses);
+
+      /* Check for errors before continuing */
+      if (!redirectUrl) {
+        window.tunnelIntensity(0.3);
+        await showError('No destination coordinates specified');
+        return;
+      }
+      if (!isValidUrl(redirectUrl)) {
+        window.tunnelIntensity(0.3);
+        await showError('Invalid destination coordinates');
+        return;
+      }
+      if (isBlacklisted(redirectUrl)) {
+        window.tunnelIntensity(0.3);
+        await showError('Restricted area — access denied');
+        return;
+      }
+
+      /* === Phase 4: Language select === */
+      showEl(lang);
+      await wait(400);
+
+      // Highlight French
+      const frOption = lang.querySelector('[data-lang="fr"]');
+      frOption.classList.add('selected');
+      await wait(800);
+      await hideEl(lang);
+
+      /* === Phase 5: Login === */
+      showEl(login);
+      await wait(400);
+
+      // Type username
+      const nameText = document.getElementById('nameText');
+      const nameFill = document.getElementById('nameFill');
+      const username = 'Player';
+      for (let i = 0; i <= username.length; i++) {
+        nameText.textContent = username.slice(0, i);
+        nameFill.style.width = ((i / username.length) * 100) + '%';
+        await wait(80);
+      }
+      nameFill.classList.add('filled');
+
+      await wait(300);
+
+      // Type password
+      const passText = document.getElementById('passText');
+      const passFill = document.getElementById('passFill');
+      const dots = '••••••••';
+      for (let i = 0; i <= dots.length; i++) {
+        passText.textContent = dots.slice(0, i);
+        passFill.style.width = ((i / dots.length) * 100) + '%';
+        await wait(60);
+      }
+      passFill.classList.add('filled');
+
+      await wait(600);
+      await hideEl(login);
+
+      /* === Phase 6: Show destination briefly === */
+      document.getElementById('destUrl').textContent = redirectUrl;
+      showEl(dest);
+      await wait(1000);
+
+      /* === Phase 7: Intensity max + white flash === */
+      // Ramp tunnel to full
+      let t2 = 1;
+      const ramp2 = setInterval(() => {
+        t2 += 0.05;
+        window.tunnelIntensity(Math.min(t2, 2));
+        if (t2 >= 2) clearInterval(ramp2);
+      }, 20);
+
+      await wait(600);
+      flash.classList.add('flash');
+      await wait(1200);
+
+      // Redirect
+      window.location.href = redirectUrl;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(runSequence, 200);
+    });
   </script>
 </body>
 </html>
-
-

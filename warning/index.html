@@ -41,67 +41,162 @@
 
   <main>
 
-
-
-    <div class="warning-container">
-      <div class="warning-header">
-        <div class="warning-icon">âš ï¸</div>
-        <h1>Avertissement important</h1>
-      </div>
-      
-      <div class="warning-content">
-        <div class="highlight-box">
-          <p>âš ï¸ L'ensemble des contenus rÃ©fÃ©rencÃ©s sur cette page ne sont ni crÃ©Ã©s, ni modifiÃ©s, ni dÃ©veloppÃ©s, ni soutenus de quelque maniÃ¨re que ce soit par VentiStudio ou ses crÃ©ateurs. VentiStudio dÃ©cline toute responsabilitÃ© concernant les sites proposÃ©s.</p>
-        </div>
-
-
-          <p>En accÃ©dant Ã  cette page, vous, l'utilisateur actuel de l'appareil :</p>
-          <ul>
-            <li>Reconnaissez Ãªtre seul responsable de vos actes</li>
-            <li>Confirmez Ãªtre en pleine possession de vos moyens</li>
-            <li>Attestez avoir lu et Approuvé l'ensemble des consignes prÃ©sentes</li>
-            <li>Comprenez que VentiStudio ne garantit ni l'accessibilitÃ© ni la sÃ©curitÃ© des sites rÃ©fÃ©rencÃ©s</li>
-          </ul>
-
-        <div class="highlight-box warning-important">
-          <p>Cette page est fournie uniquement Ã  titre informatif. Toute tentative de rÃ©clamation DMCA sera automatiquement rejetÃ©e, VentiStudio n'Ã©tant pas propriÃ©taire des contenus rÃ©fÃ©rencÃ©s.</p>
-        </div>
-      </div>
-
-      <div class="categories-container">
-        <div class="categories-grid">
-          <div class="category-card">
-            <h3 class="category-title">Streaming</h3>
-            <div class="category-buttons">
-              <a href="/social/darkzone/?darkzone=https://mymovix.org/" class="category-button">My Movix</a>
-              <a href="/social/darkzone/?darkzone=https://www.annuaire-telechargement.tools/" class="category-button">Annuaire telechargement</a>
-              <a href="/social/darkzone/?darkzone=https://www.extreme-down.tools/" class="category-button">Extreme Down</a>
-            </div>
-          </div>
-
-          <div class="category-card">
-            <h3 class="category-title">Logiciel</h3>
-            <div class="category-buttons">
-              <a href="/social/darkzone/?darkzone=https://stggege.org/" class="category-button">STG GEGE</a>
-              <a href="/social/darkzone/?darkzone=https://www.annuaire-telechargement.tools/" class="category-button">Annuaire telechargement</a>
-              <a href="/social/darkzone/?darkzone=https://www.extreme-down.tools/" class="category-button">Extreme Down</a>
-            </div>
-          </div>
-
-          <div class="category-card">
-            <h3 class="category-title">Jeux</h3>
-            <div class="category-buttons">
-              <a href="/social/darkzone/?darkzone=https://stggege.org/" class="category-button">STG GEGE</a>
-              <a href="/social/darkzone/?darkzone=https://steamunlocked.net/" class="category-button">STEAM UNLOCKED</a>
-              <a href="/social/darkzone/?darkzone=https://gogunlocked.com/" class="category-button">GOG UNLOCKED</a>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="page-title">
+      <h1>Avertissement important</h1>
     </div>
-  
-  
-  
+
+    <section class="warning-disclaimer">
+      <div class="warning-alert-box">
+        <div class="warning-alert-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 2L1 21h22L12 2z" fill="currentColor" opacity="0.1"/>
+            <path d="M12 2L1 21h22L12 2z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M12 9v4M12 17h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <p>L'ensemble des contenus référencés sur cette page ne sont ni créés, ni modifiés, ni développés, ni soutenus de quelque manière que ce soit par VentiStudio ou ses créateurs. VentiStudio décline toute responsabilité concernant les sites proposés.</p>
+      </div>
+
+      <div class="warning-terms-card">
+        <h2>Conditions d'accès</h2>
+        <p>En accédant à cette page, vous, l'utilisateur actuel de l'appareil :</p>
+        <ul class="warning-terms-list">
+          <li>
+            <label class="warning-checkbox">
+              <input type="checkbox" class="warning-check" required>
+              <span class="warning-checkmark"></span>
+              Reconnaissez être seul responsable de vos actes
+            </label>
+          </li>
+          <li>
+            <label class="warning-checkbox">
+              <input type="checkbox" class="warning-check" required>
+              <span class="warning-checkmark"></span>
+              Confirmez être en pleine possession de vos moyens
+            </label>
+          </li>
+          <li>
+            <label class="warning-checkbox">
+              <input type="checkbox" class="warning-check" required>
+              <span class="warning-checkmark"></span>
+              Attestez avoir lu et approuvé l'ensemble des consignes présentes
+            </label>
+          </li>
+          <li>
+            <label class="warning-checkbox">
+              <input type="checkbox" class="warning-check" required>
+              <span class="warning-checkmark"></span>
+              Comprenez que VentiStudio ne garantit ni l'accessibilité ni la sécurité des sites référencés
+            </label>
+          </li>
+        </ul>
+        <div class="warning-progress">
+          <div class="warning-progress-bar"></div>
+        </div>
+        <p class="warning-progress-text"><span id="warning-checked-count">0</span>/4 conditions acceptées</p>
+      </div>
+
+      <div class="warning-dmca-box">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="2" fill="currentColor" opacity="0.1"/>
+          <path d="M3 3h18v18H3V3z" stroke="currentColor" stroke-width="2" rx="2"/>
+          <path d="M12 8v4M12 16h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <p>Cette page est fournie uniquement à titre informatif. Toute tentative de réclamation DMCA sera automatiquement rejetée, VentiStudio n'étant pas propriétaire des contenus référencés.</p>
+      </div>
+    </section>
+
+    <section class="warning-categories" id="warning-categories">
+      <div class="warning-locked-overlay" id="warning-locked-overlay">
+        <div class="warning-locked-content">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <rect x="3" y="11" width="18" height="11" rx="2" fill="currentColor" opacity="0.1"/>
+            <rect x="3" y="11" width="18" height="11" rx="2" stroke="currentColor" stroke-width="2"/>
+            <path d="M7 11V7a5 5 0 0110 0v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="12" cy="16" r="1.5" fill="currentColor"/>
+          </svg>
+          <p>Veuillez accepter toutes les conditions ci-dessus pour accéder aux liens</p>
+        </div>
+      </div>
+      <h2>Catégories</h2>
+      <div class="cards">
+        <div class="card warning-category-card">
+          <div class="card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect x="2" y="5" width="20" height="14" rx="2" fill="currentColor" opacity="0.1"/>
+              <rect x="2" y="5" width="20" height="14" rx="2" stroke="currentColor" stroke-width="2"/>
+              <path d="M10 9l6 3-6 3V9z" fill="currentColor"/>
+            </svg>
+          </div>
+          <h3>Streaming</h3>
+          <div class="warning-links">
+            <a href="/social/darkzone/?darkzone=https://mymovix.org/" class="warning-link">
+              <span>My Movix</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7v10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="/social/darkzone/?darkzone=https://www.annuaire-telechargement.tools/" class="warning-link">
+              <span>Annuaire Téléchargement</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7v10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="/social/darkzone/?darkzone=https://www.extreme-down.tools/" class="warning-link">
+              <span>Extreme Down</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7v10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="card warning-category-card">
+          <div class="card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect x="4" y="4" width="16" height="16" rx="2" fill="currentColor" opacity="0.1"/>
+              <path d="M4 4h16v16H4V4z" stroke="currentColor" stroke-width="2" rx="2"/>
+              <path d="M9 8h6M9 12h6M9 16h3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Logiciel</h3>
+          <div class="warning-links">
+            <a href="/social/darkzone/?darkzone=https://stggege.org/" class="warning-link">
+              <span>STG GEGE</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7v10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="/social/darkzone/?darkzone=https://www.annuaire-telechargement.tools/" class="warning-link">
+              <span>Annuaire Téléchargement</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7v10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="/social/darkzone/?darkzone=https://www.extreme-down.tools/" class="warning-link">
+              <span>Extreme Down</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7v10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="card warning-category-card">
+          <div class="card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="10" fill="currentColor" opacity="0.1"/>
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+              <path d="M15 9l-6 3 6 3V9z" fill="currentColor"/>
+            </svg>
+          </div>
+          <h3>Jeux</h3>
+          <div class="warning-links">
+            <a href="/social/darkzone/?darkzone=https://stggege.org/" class="warning-link">
+              <span>STG GEGE</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7v10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="/social/darkzone/?darkzone=https://steamunlocked.net/" class="warning-link">
+              <span>STEAM UNLOCKED</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7v10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="/social/darkzone/?darkzone=https://gogunlocked.com/" class="warning-link">
+              <span>GOG UNLOCKED</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7v10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <footer>
@@ -142,13 +237,43 @@
     </div>
     <div class="footer-bottom">
       <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
-      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
+      <p class="copyright">Copyright  2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
     </div>
   
   </footer>
 
+  <script>
+    (function() {
+      const checkboxes = document.querySelectorAll('.warning-check');
+      const overlay = document.getElementById('warning-locked-overlay');
+      const section = document.getElementById('warning-categories');
+      const progressBar = document.querySelector('.warning-progress-bar');
+      const countEl = document.getElementById('warning-checked-count');
+      const total = checkboxes.length;
+
+      function updateState() {
+        const checked = document.querySelectorAll('.warning-check:checked').length;
+        const allChecked = checked === total;
+
+        countEl.textContent = checked;
+        progressBar.style.width = (checked / total * 100) + '%';
+
+        if (allChecked) {
+          overlay.classList.add('hidden');
+          section.classList.add('unlocked');
+        } else {
+          overlay.classList.remove('hidden');
+          section.classList.remove('unlocked');
+        }
+      }
+
+      checkboxes.forEach(function(cb) {
+        cb.addEventListener('change', updateState);
+      });
+
+      updateState();
+    })();
+  </script>
   <script src="/script.js" defer></script>
 </body>
 </html>
-
-

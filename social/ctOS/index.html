@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ctOS // Central Operating System</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&family=Roboto+Mono:wght@300;400;500&family=Saira+Semi+Condensed:wght@300;400;600;700&display=swap');
+
+    :root {
+      --bg: #0c0e12;
+      --panel: #12151b;
+      --panel-alt: #181c24;
+      --border: #1e2430;
+      --border-light: #2a3040;
+      --white: #f0f2f5;
+      --white-dim: #8a90a0;
+      --white-muted: #505868;
+      --accent: #4fc3f7;
+      --accent-dim: #2a7ea8;
+      --green: #66bb6a;
+      --orange: #ffa726;
+      --red: #ef5350;
+      --blue: #42a5f5;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: 'Roboto Condensed', 'Segoe UI', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    /* ===== BACKGROUND: city grid / node map ===== */
+    #bgCanvas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+    }
+
+    /* Subtle vignette */
+    .vignette {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.6) 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* ===== MAIN LAYOUT ===== */
+    .ctos-root {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 800px;
+      padding: 20px;
+    }
+
+    /* ── Top status bar ── */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      font-family: 'Roboto Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--white-muted);
+    }
+
+    .top-bar .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .top-bar .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 6px var(--green);
+      animation: dotPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes dotPulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .top-bar .status-text {
+      color: var(--green);
+    }
+
+    /* ── Main frame ── */
+    .main-frame {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      position: relative;
+    }
+
+    /* Thin accent line at top */
+    .main-frame::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 2px;
+      background: linear-gradient(90deg, transparent 0%, var(--accent) 20%, var(--accent) 80%, transparent 100%);
+      opacity: 0.6;
+    }
+
+    /* ── HEADER ── */
+    .ctos-header {
+      padding: 24px 28px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    /* Logo: the iconic ctOS circle/eye */
+    .ctos-logo-wrap {
+      width: 58px;
+      height: 58px;
+      flex-shrink: 0;
+    }
+
+    .ctos-logo-wrap svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .ctos-title {
+      font-family: 'Saira Semi Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 32px;
+      letter-spacing: 8px;
+      text-transform: none;
+      color: var(--white);
+      line-height: 1;
+    }
+
+    .ctos-title span.c { text-transform: lowercase; }
+
+    .ctos-subtitle {
+      font-family: 'Roboto Mono', monospace;
+      font-weight: 300;
+      font-size: 10px;
+      color: var(--white-muted);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    /* ── PROFILER SECTION ── */
+    .profiler {
+      padding: 18px 28px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      position: relative;
+    }
+
+    .profiler-badge {
+      width: 9px;
+      height: 9px;
+      background: var(--accent);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+      margin-top: 4px;
+    }
+
+    .profile-lines {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .profile-name {
+      font-family: 'Saira Semi Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 18px;
+      color: var(--white);
+      letter-spacing: 1px;
+    }
+
+    .profile-row {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 11px;
+      color: var(--white-dim);
+      line-height: 1.9;
+      letter-spacing: 0.5px;
+    }
+
+    .profile-row .val {
+      color: var(--white);
+    }
+
+    .profile-tag {
+      display: inline-block;
+      padding: 1px 8px;
+      font-family: 'Roboto Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border: 1px solid;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+
+    .profile-tag.clean {
+      color: var(--green);
+      border-color: rgba(102, 187, 106, 0.4);
+      background: rgba(102, 187, 106, 0.06);
+    }
+
+    .profile-tag.flagged {
+      color: var(--orange);
+      border-color: rgba(255, 167, 38, 0.4);
+      background: rgba(255, 167, 38, 0.06);
+    }
+
+    .profile-tag.danger {
+      color: var(--red);
+      border-color: rgba(239, 83, 80, 0.4);
+      background: rgba(239, 83, 80, 0.06);
+    }
+
+    .profile-factoid {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 10px;
+      color: var(--white-muted);
+      font-style: italic;
+      margin-top: 4px;
+    }
+
+    /* ── INFRASTRUCTURE GRID ── */
+    .infra-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .infra-item {
+      padding: 14px 12px;
+      text-align: center;
+      border-right: 1px solid var(--border);
+      position: relative;
+    }
+
+    .infra-item:last-child { border-right: none; }
+
+    .infra-icon {
+      font-size: 18px;
+      margin-bottom: 4px;
+      opacity: 0.7;
+    }
+
+    .infra-label {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 8px;
+      color: var(--white-muted);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 4px;
+    }
+
+    .infra-value {
+      font-family: 'Saira Semi Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--white);
+    }
+
+    .infra-value.ok { color: var(--green); }
+    .infra-value.warn { color: var(--orange); }
+
+    .infra-status-line {
+      width: 100%;
+      height: 2px;
+      background: var(--border);
+      margin-top: 6px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .infra-status-fill {
+      height: 100%;
+      background: var(--green);
+      transition: width 1s ease;
+    }
+
+    .infra-status-fill.mid { background: var(--orange); }
+    .infra-status-fill.low { background: var(--red); }
+
+    /* ── SCAN PROGRESS ── */
+    .scan-section {
+      padding: 14px 28px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .scan-label {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 9px;
+      color: var(--white-muted);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      white-space: nowrap;
+    }
+
+    .scan-track {
+      flex: 1;
+      height: 3px;
+      background: var(--border);
+      position: relative;
+    }
+
+    .scan-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--accent);
+      box-shadow: 0 0 8px rgba(79, 195, 247, 0.4);
+      transition: width 0.3s ease;
+    }
+
+    .scan-pct {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 11px;
+      color: var(--accent);
+      min-width: 34px;
+      text-align: right;
+    }
+
+    /* ── SYSTEM LOG ── */
+    .sys-log {
+      padding: 14px 28px;
+      border-bottom: 1px solid var(--border);
+      max-height: 135px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .sys-log::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%; height: 30px;
+      background: linear-gradient(transparent, var(--panel));
+      pointer-events: none;
+    }
+
+    .log-line {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 10px;
+      color: var(--white-muted);
+      line-height: 2;
+      opacity: 0;
+      animation: logIn 0.25s forwards;
+    }
+
+    .log-line .ts { color: var(--white-muted); opacity: 0.5; }
+    .log-line .ok { color: var(--green); }
+    .log-line .wrn { color: var(--orange); }
+    .log-line .err { color: var(--red); }
+    .log-line .info { color: var(--accent); }
+    .log-line .dim { color: var(--white-muted); }
+
+    @keyframes logIn {
+      from { opacity: 0; transform: translateX(-6px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    /* ── BOTTOM BAR ── */
+    .bottom-bar {
+      padding: 10px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .bottom-bar .blume-sig {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 9px;
+      color: var(--white-muted);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .bottom-bar .redirect-cd {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 10px;
+      color: var(--accent);
+      letter-spacing: 1px;
+    }
+
+    /* ── Footer tag ── */
+    .footer-tag {
+      margin-top: 8px;
+      text-align: center;
+      font-family: 'Roboto Mono', monospace;
+      font-size: 8px;
+      color: var(--white-muted);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      opacity: 0.4;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .ctos-header { padding: 16px 18px 14px; gap: 14px; }
+      .ctos-title { font-size: 24px; letter-spacing: 5px; }
+      .ctos-logo-wrap { width: 44px; height: 44px; }
+      .profiler, .scan-section, .sys-log, .bottom-bar { padding-left: 18px; padding-right: 18px; }
+      .infra-grid { grid-template-columns: repeat(2, 1fr); }
+      .infra-item:nth-child(2) { border-right: none; }
+      .infra-item:nth-child(3) { border-right: 1px solid var(--border); }
+      .infra-item:nth-child(1),
+      .infra-item:nth-child(2) { border-bottom: 1px solid var(--border); }
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="bgCanvas"></canvas>
+  <div class="vignette"></div>
+
+  <div class="ctos-root">
+
+    <!-- Top status bar -->
+    <div class="top-bar">
+      <span id="clock">--:--:--</span>
+      <span class="status-pill">
+        <span class="status-dot"></span>
+        <span class="status-text">ALL SYSTEMS FUNCTIONAL</span>
+      </span>
+      <span>v3.2.1</span>
+    </div>
+
+    <!-- Main frame -->
+    <div class="main-frame">
+
+      <!-- HEADER -->
+      <div class="ctos-header">
+        <div class="ctos-logo-wrap">
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Outer ring -->
+            <circle cx="50" cy="50" r="47" stroke="#4fc3f7" stroke-width="1" opacity="0.3"/>
+            <!-- Segmented arc (spinning) -->
+            <circle cx="50" cy="50" r="43" stroke="#4fc3f7" stroke-width="1.8" opacity="0.6"
+              stroke-dasharray="60 210" stroke-linecap="round">
+              <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="12s" repeatCount="indefinite"/>
+            </circle>
+            <!-- Secondary arc -->
+            <circle cx="50" cy="50" r="38" stroke="#f0f2f5" stroke-width="0.8" opacity="0.15"
+              stroke-dasharray="30 100" stroke-linecap="round">
+              <animateTransform attributeName="transform" type="rotate" from="360 50 50" to="0 50 50" dur="18s" repeatCount="indefinite"/>
+            </circle>
+            <!-- Inner ring -->
+            <circle cx="50" cy="50" r="28" stroke="#f0f2f5" stroke-width="0.8" opacity="0.2"/>
+            <!-- Eye / lens center -->
+            <circle cx="50" cy="50" r="14" fill="#4fc3f7" opacity="0.06"/>
+            <circle cx="50" cy="50" r="14" stroke="#4fc3f7" stroke-width="1.2" opacity="0.5"/>
+            <!-- Iris detail -->
+            <circle cx="50" cy="50" r="6" fill="#4fc3f7" opacity="0.25"/>
+            <circle cx="50" cy="50" r="3" fill="#f0f2f5" opacity="0.8"/>
+            <!-- Crosshair lines -->
+            <line x1="50" y1="6" x2="50" y2="22" stroke="#f0f2f5" stroke-width="0.6" opacity="0.2"/>
+            <line x1="50" y1="78" x2="50" y2="94" stroke="#f0f2f5" stroke-width="0.6" opacity="0.2"/>
+            <line x1="6" y1="50" x2="22" y2="50" stroke="#f0f2f5" stroke-width="0.6" opacity="0.2"/>
+            <line x1="78" y1="50" x2="94" y2="50" stroke="#f0f2f5" stroke-width="0.6" opacity="0.2"/>
+          </svg>
+        </div>
+        <div>
+          <div class="ctos-title"><span class="c">c</span>tOS</div>
+          <div class="ctos-subtitle">Central Operating System &mdash; Blume Corporation</div>
+        </div>
+      </div>
+
+      <!-- PROFILER -->
+      <div class="profiler">
+        <div class="profiler-badge"></div>
+        <div class="profile-lines">
+          <div class="profile-name" id="p-name">&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588; &#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;</div>
+          <div class="profile-row">
+            Occupation : <span class="val" id="p-job">&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;&#x2588;</span>
+          </div>
+          <div class="profile-row">
+            Revenu : <span class="val" id="p-income">&#x2588;&#x2588;&#x2588;&#x2588;</span> &nbsp;|&nbsp;
+            &Acirc;ge : <span class="val" id="p-age">&#x2588;&#x2588;</span>
+            <span class="profile-tag clean" id="p-tag">CLEAN</span>
+          </div>
+          <div class="profile-factoid" id="p-fact">&nbsp;</div>
+        </div>
+      </div>
+
+      <!-- INFRASTRUCTURE GRID -->
+      <div class="infra-grid">
+        <div class="infra-item">
+          <div class="infra-icon">&#x1F512;</div>
+          <div class="infra-label">Cam&eacute;ras</div>
+          <div class="infra-value ok" id="val-cam">---</div>
+          <div class="infra-status-line"><div class="infra-status-fill" id="bar-cam" style="width:0%"></div></div>
+        </div>
+        <div class="infra-item">
+          <div class="infra-icon">&#x1F6A6;</div>
+          <div class="infra-label">Trafic</div>
+          <div class="infra-value ok" id="val-traffic">---</div>
+          <div class="infra-status-line"><div class="infra-status-fill" id="bar-traffic" style="width:0%"></div></div>
+        </div>
+        <div class="infra-item">
+          <div class="infra-icon">&#x26A1;</div>
+          <div class="infra-label">R&eacute;seau &eacute;lec.</div>
+          <div class="infra-value" id="val-power">---</div>
+          <div class="infra-status-line"><div class="infra-status-fill" id="bar-power" style="width:0%"></div></div>
+        </div>
+        <div class="infra-item">
+          <div class="infra-icon">&#x1F4E1;</div>
+          <div class="infra-label">ctOS Towers</div>
+          <div class="infra-value ok" id="val-towers">---</div>
+          <div class="infra-status-line"><div class="infra-status-fill" id="bar-towers" style="width:0%"></div></div>
+        </div>
+      </div>
+
+      <!-- SCAN PROGRESS -->
+      <div class="scan-section">
+        <span class="scan-label">Connexion r&eacute;seau</span>
+        <div class="scan-track">
+          <div class="scan-fill" id="scan-fill"></div>
+        </div>
+        <span class="scan-pct" id="scan-pct">0%</span>
+      </div>
+
+      <!-- SYSTEM LOG -->
+      <div class="sys-log" id="sys-log"></div>
+
+      <!-- BOTTOM BAR -->
+      <div class="bottom-bar">
+        <span class="blume-sig">Blume Corp. &mdash; Smart City Program</span>
+        <span class="redirect-cd" id="cd">Redirection : 10s</span>
+      </div>
+
+    </div>
+
+    <div class="footer-tag">Security. Civility. Connectivity.</div>
+
+  </div>
+
+  <script>
+  (function () {
+    'use strict';
+
+    /* ── Params ── */
+    var params = new URLSearchParams(window.location.search);
+    var dest = params.get('ctos') || params.get('redirect') || '/';
+    var redirectUrl = decodeURIComponent(dest);
+    var REDIRECT = 10;
+    var countdown = REDIRECT;
+
+    /* ── Clock ── */
+    var clockEl = document.getElementById('clock');
+    function tick() {
+      var d = new Date();
+      clockEl.textContent = d.toTimeString().slice(0, 8);
+    }
+    tick();
+    setInterval(tick, 1000);
+
+    /* ── Profiler ── */
+    var names = [
+      '\u00c9mile Renault', 'Sofia Martinez', 'David Kowalski', 'Nadia Belkacem',
+      'Lucas Fontaine', 'In\u00e8s Moreau', 'Th\u00e9o Laurent', 'Chlo\u00e9 Petit',
+      'Carlos Mendez', 'Yuki Tanaka', 'Owen Bradley', 'L\u00e9a Dumont'
+    ];
+    var jobs = [
+      'Analyste de donn\u00e9es', 'Ing\u00e9nieur logiciel', 'M\u00e9decin g\u00e9n\u00e9raliste',
+      'Professeur de math\u00e9matiques', 'Architecte', 'Graphiste freelance',
+      'Comptable', 'Journaliste', 'Pharmacien', 'Chauffeur VTC'
+    ];
+    var facts = [
+      'Emprunte la ligne 4 chaque jour \u00e0 8h12',
+      'A consult\u00e9 WebMD 14 fois ce mois-ci',
+      'Poss\u00e8de 3 appareils connect\u00e9s au r\u00e9seau ctOS',
+      'A re\u00e7u une contravention le 14/06/2025',
+      'Abonn\u00e9 \u00e0 un service de VPN \u2014 surveillance renforc\u00e9e',
+      'Fr\u00e9quente le caf\u00e9 "Le Signal" \u2014 quartier sud',
+      'R\u00e9cemment recherch\u00e9 : "comment supprimer mes donn\u00e9es ctOS"',
+      'Membre actif d\'un forum de cybers\u00e9curit\u00e9',
+      'G\u00e9olocalisation d\u00e9sactiv\u00e9e manuellement 3 fois cette semaine',
+      'A partag\u00e9 un article critique sur Blume Corp.'
+    ];
+
+    var pName = names[Math.floor(Math.random() * names.length)];
+    var pJob = jobs[Math.floor(Math.random() * jobs.length)];
+    var pAge = Math.floor(Math.random() * 40) + 22;
+    var pIncome = (Math.floor(Math.random() * 75) + 18) + ',' + String(Math.floor(Math.random() * 999)).padStart(3, '0') + ' \u20ac';
+    var pFact = facts[Math.floor(Math.random() * facts.length)];
+    var threatRoll = Math.random();
+    var pThreat, tagClass;
+    if (threatRoll > 0.85) { pThreat = '\u00c0 SURVEILLER'; tagClass = 'danger'; }
+    else if (threatRoll > 0.6) { pThreat = 'SIGNAL\u00c9'; tagClass = 'flagged'; }
+    else { pThreat = 'CLEAN'; tagClass = 'clean'; }
+
+    setTimeout(function () {
+      document.getElementById('p-name').textContent = pName;
+    }, 800);
+    setTimeout(function () {
+      document.getElementById('p-job').textContent = pJob;
+      document.getElementById('p-income').textContent = pIncome;
+      document.getElementById('p-age').textContent = pAge;
+    }, 1500);
+    setTimeout(function () {
+      var tag = document.getElementById('p-tag');
+      tag.textContent = pThreat;
+      tag.className = 'profile-tag ' + tagClass;
+    }, 2200);
+    setTimeout(function () {
+      document.getElementById('p-fact').textContent = '\u00ab ' + pFact + ' \u00bb';
+    }, 3000);
+
+    /* ── Infrastructure values ── */
+    var camCount = Math.floor(Math.random() * 600) + 1400;
+    var camPct = Math.floor(Math.random() * 8) + 92;
+    var trafficPct = Math.floor(Math.random() * 15) + 80;
+    var powerPct = Math.floor(Math.random() * 10) + 88;
+    var towerCount = Math.floor(Math.random() * 4) + 12;
+    var towerPct = 100;
+
+    setTimeout(function () {
+      document.getElementById('val-cam').textContent = camCount.toLocaleString('fr-FR');
+      document.getElementById('bar-cam').style.width = camPct + '%';
+      document.getElementById('val-traffic').textContent = trafficPct + '%';
+      document.getElementById('bar-traffic').style.width = trafficPct + '%';
+      if (trafficPct < 85) {
+        document.getElementById('val-traffic').className = 'infra-value warn';
+        document.getElementById('bar-traffic').className = 'infra-status-fill mid';
+      }
+      document.getElementById('val-power').textContent = powerPct + '%';
+      document.getElementById('bar-power').style.width = powerPct + '%';
+      document.getElementById('val-towers').textContent = towerCount + '/16';
+      document.getElementById('bar-towers').style.width = towerPct + '%';
+    }, 600);
+
+    /* ── Scan progress ── */
+    var scanFill = document.getElementById('scan-fill');
+    var scanPct = document.getElementById('scan-pct');
+    var progress = 0;
+    var scanInt = setInterval(function () {
+      progress += Math.random() * 6 + 1.5;
+      if (progress >= 100) { progress = 100; clearInterval(scanInt); }
+      scanFill.style.width = progress + '%';
+      scanPct.textContent = Math.floor(progress) + '%';
+    }, 300);
+
+    /* ── System log ── */
+    var logEl = document.getElementById('sys-log');
+    var logMsgs = [
+      { t: 'Initialisation ctOS v3.2.1\u2026', c: 'info' },
+      { t: 'Connexion serveur Blume \u2014 n\u0153ud principal OK', c: 'ok' },
+      { t: 'Chargement donn\u00e9es citoyens \u2014 ' + camCount.toLocaleString('fr-FR') + ' profils index\u00e9s', c: 'dim' },
+      { t: 'R\u00e9seau de cam\u00e9ras : ' + camPct + '% op\u00e9rationnel', c: 'ok' },
+      { t: 'Contr\u00f4le trafic : ' + trafficPct + '% couverture', c: trafficPct < 85 ? 'wrn' : 'ok' },
+      { t: 'Scan de s\u00e9curit\u00e9 en cours \u2014 fr\u00e9quences radio\u2026', c: 'dim' },
+      { t: 'Profiler : acquisition de donn\u00e9es \u2014 ' + pName, c: 'info' },
+      { t: 'Alerte : activit\u00e9 DedSec d\u00e9tect\u00e9e \u2014 secteur nord-est', c: 'wrn' },
+      { t: 'Pare-feu ctOS renforc\u00e9 \u2014 connexion s\u00e9curis\u00e9e', c: 'ok' },
+      { t: 'Transfert vers le r\u00e9seau en cours\u2026', c: 'info' },
+    ];
+    var logIdx = 0;
+    var logInt = setInterval(function () {
+      if (logIdx >= logMsgs.length) { clearInterval(logInt); return; }
+      var m = logMsgs[logIdx];
+      var ts = new Date().toTimeString().slice(0, 8);
+      var el = document.createElement('div');
+      el.className = 'log-line';
+      el.innerHTML = '<span class="ts">[' + ts + ']</span> <span class="' + m.c + '">' + m.t + '</span>';
+      logEl.appendChild(el);
+      logEl.scrollTop = logEl.scrollHeight;
+      logIdx++;
+    }, 900);
+
+    /* ── Countdown ── */
+    var cdEl = document.getElementById('cd');
+    var cdInt = setInterval(function () {
+      countdown--;
+      if (countdown <= 0) {
+        cdEl.textContent = 'Connexion\u2026';
+        clearInterval(cdInt);
+        window.location.href = redirectUrl;
+      } else {
+        cdEl.textContent = 'Redirection : ' + countdown + 's';
+      }
+    }, 1000);
+
+    /* ===== BACKGROUND CANVAS — interconnected city node map ===== */
+    var canvas = document.getElementById('bgCanvas');
+    var ctx = canvas.getContext('2d');
+    var W, H, nodes = [];
+    var NODE_COUNT = 55;
+    var CONNECT_DIST = 150;
+
+    function resize() {
+      W = canvas.width = window.innerWidth;
+      H = canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    for (var i = 0; i < NODE_COUNT; i++) {
+      var cx = W / 2, cy = H / 2;
+      var spread = Math.min(W, H) * 0.45;
+      var angle = Math.random() * Math.PI * 2;
+      var dist = Math.random() * spread;
+      nodes.push({
+        x: cx + Math.cos(angle) * dist,
+        y: cy + Math.sin(angle) * dist,
+        vx: (Math.random() - 0.5) * 0.25,
+        vy: (Math.random() - 0.5) * 0.25,
+        r: Math.random() * 1.5 + 0.8,
+        pulse: Math.random() * Math.PI * 2
+      });
+    }
+
+    function frame() {
+      ctx.clearRect(0, 0, W, H);
+
+      // Lines
+      for (var i = 0; i < nodes.length; i++) {
+        for (var j = i + 1; j < nodes.length; j++) {
+          var dx = nodes[i].x - nodes[j].x;
+          var dy = nodes[i].y - nodes[j].y;
+          var d = Math.sqrt(dx * dx + dy * dy);
+          if (d < CONNECT_DIST) {
+            var alpha = (1 - d / CONNECT_DIST) * 0.12;
+            ctx.strokeStyle = 'rgba(79, 195, 247, ' + alpha + ')';
+            ctx.lineWidth = 0.5;
+            ctx.beginPath();
+            ctx.moveTo(nodes[i].x, nodes[i].y);
+            ctx.lineTo(nodes[j].x, nodes[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Nodes
+      var time = Date.now() * 0.002;
+      for (var k = 0; k < nodes.length; k++) {
+        var n = nodes[k];
+        var p = 0.5 + 0.5 * Math.sin(time + n.pulse);
+        ctx.fillStyle = 'rgba(79, 195, 247, ' + (0.15 + p * 0.3) + ')';
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, n.r + p, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = 'rgba(79, 195, 247, ' + (0.02 + p * 0.04) + ')';
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, n.r * 4, 0, Math.PI * 2);
+        ctx.fill();
+
+        n.x += n.vx;
+        n.y += n.vy;
+        if (n.x < 0 || n.x > W) n.vx *= -1;
+        if (n.y < 0 || n.y > H) n.vy *= -1;
+      }
+
+      requestAnimationFrame(frame);
+    }
+    frame();
+
+  })();
+  </script>
+</body>
+</html>
