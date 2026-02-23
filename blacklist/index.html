@@ -1,31 +1,333 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <meta name="description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
+  <meta name="description" content="VentiStudio Blacklist - Liste noire officielle.">
   <meta name="theme-color" content="#6366f1">
-  <title>VentiStudio v4</title>
-  <link rel="stylesheet" href="../style.css">
-</title>
+  <title>Blacklist — VentiStudio</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    /* === Blacklist-specific styles === */
+
+    .search-bar {
+      max-width: 700px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 0.9rem 1.2rem;
+      border: 1px solid var(--glass-border);
+      border-radius: 0.75rem;
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      color: var(--text-primary);
+      font-size: 1rem;
+      font-family: inherit;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .search-bar input::placeholder {
+      color: var(--text-secondary);
+    }
+
+    .search-bar input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: var(--neon-glow);
+    }
+
+    .bl-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      margin-bottom: 3rem;
+    }
+
+    .bl-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      padding: 1.5rem;
+      border-radius: 1.5rem;
+      box-shadow: var(--glass-shadow);
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      gap: 1.5rem;
+      align-items: start;
+      cursor: pointer;
+      user-select: none;
+      -webkit-user-select: none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .bl-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+      box-shadow: 0 12px 40px 0 rgba(99, 102, 241, 0.2);
+    }
+
+    .bl-card img {
+      width: 64px;
+      height: 64px;
+      border-radius: 0.75rem;
+      object-fit: cover;
+      pointer-events: none;
+    }
+
+    .bl-card h3 {
+      font-size: 1.15rem;
+      color: var(--text-primary);
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+    }
+
+    .bl-meta {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .bl-status {
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .bl-status.active {
+      color: #ef4444;
+    }
+
+    .bl-status.pending {
+      color: #f59e0b;
+    }
+
+    .bl-status.pardoned {
+      color: #22c55e;
+    }
+
+    /* Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .modal-overlay.open {
+      display: flex;
+    }
+
+    .modal-box {
+      background: var(--glass-bg);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+      border: 1px solid var(--glass-border);
+      border-radius: 1.5rem;
+      padding: 2rem;
+      max-width: 550px;
+      width: 90%;
+      position: relative;
+      box-shadow: var(--glass-shadow);
+      animation: modalIn 0.25s ease;
+    }
+
+    .modal-box h2 {
+      margin-bottom: 1.25rem;
+      font-size: 1.3rem;
+      padding-right: 2rem;
+      color: var(--text-primary);
+    }
+
+    .modal-field {
+      margin: 0.6rem 0;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    .modal-field strong {
+      color: var(--text-primary);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1.2rem;
+      font-size: 1.6rem;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: color 0.2s;
+      line-height: 1;
+      background: none;
+      border: none;
+    }
+
+    .modal-close:hover {
+      color: var(--accent);
+    }
+
+    @keyframes modalIn {
+      from { opacity: 0; transform: translateY(-15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Conditions */
+    .conditions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .condition-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      box-shadow: var(--glass-shadow);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .condition-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+    }
+
+    .condition-card h3 {
+      color: var(--text-primary);
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .condition-card h3 .icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+      border-radius: 0.5rem;
+      flex-shrink: 0;
+    }
+
+    .condition-card p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .procedure-steps {
+      margin-top: 2rem;
+    }
+
+    .procedure-steps ol {
+      list-style: none;
+      counter-reset: step;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .procedure-steps li {
+      counter-increment: step;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 1rem;
+      padding: 1rem 1.25rem;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      transition: border-color 0.3s;
+    }
+
+    .procedure-steps li:hover {
+      border-color: var(--accent);
+    }
+
+    .procedure-steps li::before {
+      content: counter(step);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      min-width: 32px;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+      color: white;
+      border-radius: 50%;
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+
+    .note-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--accent);
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      margin-top: 2rem;
+      box-shadow: var(--neon-glow);
+    }
+
+    .note-card h3 {
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .note-card p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 600px) {
+      .bl-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .bl-card img {
+        margin: 0 auto;
+      }
+    }
+  </style>
 </head>
 <body>
   <header>
-
     <div class="logo">
-      <img src="../favicon.ico" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
+      <img src="/favicon.avif" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
       <span>VentiStudio</span>
     </div>
     <nav aria-label="Navigation principale">
-      <a href="../" class="active">Accueil</a>
-      <a href="../approuvedcontent/">Contenu Approuvé</a>
-      <a href="../player">Lecteur</a>
-      <a href="../wiki">Wiki</a>
-      <a href="../staff">Équipe</a>
-      <a href="../news">News</a>
-      <a href="../pip">PIP</a>
-      <a href="../sitemap">Plan du site</a>
+      <a href="/">Accueil</a>
+      <a href="/evaluation">Contenu Approuvé</a>
+      <a href="/player">Lecteur</a>
+      <a href="/wiki">Wiki</a>
+      <a href="/staff">Équipe</a>
+      <a href="/news">News</a>
+      <a href="/pip">PIP</a>
+      <a href="/sitemap">Plan du site</a>
     </nav>
     <div class="controls" role="toolbar" aria-label="Contrôles">
       <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
@@ -37,400 +339,190 @@
       </button>
       <div id="user-button" role="region" aria-label="Authentification"></div>
     </div>
-  
   </header>
 
   <main>
 
-
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blacklist - VentiStudio</title>
-    <link rel="stylesheet" href="https://trust.ventistudio.eu/root/style.css">
-    <style>
-        .search-bar {
-            margin: 2rem auto;
-            max-width: 800px;
-            display: flex;
-            justify-content: center;
-            padding: 0 1rem;
-        }
-        
-        .search-bar input {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid var(--border-color);
-            border-radius: 8px;
-            background: var(--bg-secondary);
-            color: var(--text-primary);
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-    
-        .search-bar input:focus {
-            outline: none;
-            border-color: var(--accent-color);
-            box-shadow: 0 0 0 3px rgba(var(--accent-color-rgb), 0.2);
-        }
-    
-        .blacklist-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 2rem auto;
-            max-width: 1200px;
-            padding: 0 1rem;
-            gap: 1rem;
-        }
-    
-        .blacklist-item {
-            background: var(--bg-secondary);
-            border: 2px solid var(--border-color);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin: 0;
-            width: 100%;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: grid;
-            grid-template-columns: auto 1fr;
-            gap: 1.5rem;
-        }
-    
-        .blacklist-item img {
-            width: 64px;
-            height: 64px;
-            border-radius: 8px;
-            object-fit: cover;
-        }
-    
-        .blacklist-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            border-color: var(--accent-color);
-        }
-    
-        .blacklist-item h3 {
-            margin: 0 0 0.5rem 0;
-            color: var(--text-primary);
-            font-size: 1.25rem;
-        }
-    
-        .blacklist-item p {
-            margin: 0.25rem 0;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-    
-        @media (max-width: 768px) {
-            .blacklist-item {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-    
-            .blacklist-item img {
-                margin: 0 auto;
-            }
-        }
-
-        section {
-            background: var(--bg-secondary);
-            border: 2px solid var(--border-color);
-            border-radius: 12px;
-            padding: 2rem;
-            margin: 2rem auto;
-            max-width: 1200px;
-        }
-
-        section h2 {
-            color: var(--text-primary);
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-
-        section h2:first-child {
-            margin-top: 0;
-        }
-
-        section p {
-            color: var(--text-secondary);
-            margin: 0.75rem 0;
-            line-height: 1.6;
-        }
-
-        @media (max-width: 768px) {
-            section {
-                padding: 1.5rem;
-                margin: 1.5rem 1rem;
-            }
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            background: var(--bg-secondary);
-            border: 2px solid var(--border-color);
-            border-radius: 12px;
-            padding: 2rem;
-            max-width: 600px;
-            width: 90%;
-            position: relative;
-            animation: modalFadeIn 0.3s ease;
-        }
-
-        .modal-content h2 {
-            color: var(--text-primary);
-            margin-top: 0;
-            margin-bottom: 1rem;
-        }
-
-        .modal-content p {
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            font-size: 1.5rem;
-            color: var(--text-secondary);
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-
-        .modal-close:hover {
-            color: var(--text-primary);
-        }
-
-        @keyframes modalFadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .modal-content {
-                width: 95%;
-                padding: 1.5rem;
-                margin: 1rem;
-            }
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <div class="logo">
-          <img src="https://ventistudio.eu/favicon.avif" alt="VentiStudio Logo" class="site-logo">
-          <span>VentiStudio Blacklist</span>
-        </div>
-        <nav>
-          <a href="https://ventistudio.eu">Accueil</a>
-          <a href="https://ventistudio.eu/sitemap">Sitemap</a>
-        </nav>
-        <div class="controls">
-          <button id="theme-toggle" class="theme-toggle">
-            <svg width="24" height="24" viewBox="0 0 24 24">
-              <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
-              <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
-              <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
-            </svg>
-          </button>
-          <div id="user-button"></div>
-        </div>
-      </header>
-
-    <div class="search-bar">
-        <input type="text" id="searchInput" placeholder="Rechercher dans la liste noire...">
-    </div>
-
-    <div class="blacklist-container" id="blacklistContainer">
-        <div class="blacklist-item" onclick="openModal('sarlmarchais')">
-            <img src="https://www.muguet-marchais.com/wp-content/uploads/2021/11/logo_marchais-1.png" alt="sarlmarchais">
-            <h3>S.A.R.L. MARCHAIS</h3>
-            <p>ID: 389-170-499-00013</p>
-            <p>Raison: Violence Moral et Physique</p>
-            <p>Date d'ajout: 2025-04-25</p>
-            <p>Statut: Actif</p>
-        </div>
-        <!-- Add more blacklist items as needed
-
-        <div class="blacklist-item" onclick="openModal('exemple')">
-            <img src="http://exemple.com/" alt="exemple">
-            <h3>EXEMPLE</h3>
-            <p>ID: 0123456789</p>
-            <p>Raison: Exemple</p>
-            <p>Date d'ajout: AAAA-MM-JJ</p>
-            <p>Statut: Actif, En Attente, PardonÃ©</p>
-        </div>
-                -->
-    </div>
-
-    <div class="modal" id="modal">
-        <div class="modal-content" id="modalContent">
-            <span onclick="closeModal()" style="cursor:pointer; float:right;">&times;</span>
-            <h2 id="modalTitle"></h2>
-            <p id="modalReason"></p>
-        </div>
-    </div>
-    <section>
-        <h2>Conditions d'ajout Ã  la liste noire</h2>
-        <p>Comportement inappropriÃ© : Tout comportement qui est considÃ©rÃ© comme inappropriÃ©, tel que des insultes, des menaces, des propos haineux, des attaques personnelles, etc.</p>
-        <p>Non-respect des rÃ¨gles : Tout non-respect des rÃ¨gles du site web, tel que le spam, les publicitÃ©s non autorisÃ©es, les liens vers des sites web malveillants, etc.</p>
-        <p>Harcellement : Tout comportement qui est considÃ©rÃ© comme du harcÃ¨lement, tel que des messages rÃ©pÃ©titifs, des appels tÃ©lÃ©phoniques non sollicitÃ©s, des messages privÃ©s non sollicitÃ©s, etc.</p>
-        <p>Diffamation : Tout comportement qui est considÃ©rÃ© comme de la diffamation, tel que des accusations fausses, des rumeurs, des mensonges, etc.</p>
-        <p>Piratage : Tout comportement qui est considÃ©rÃ© comme du piratage, tel que des tentatives de piratage, des attaques par dÃ©ni de service, des injections de code malveillant, etc.</p>
-        <p>Non-respect des lois : Tout comportement qui est contraire aux lois et rÃ©glementations en vigueur, tel que la promotion de la violence, la discrimination, la fraude, etc.</p>
-        <h2>Conditions de retrait de la liste noire</h2>
-        <p>Excuses sincÃ¨res : Si l'individu ou le contenu a Ã©tÃ© ajoutÃ© Ã  la liste noire Ã  cause d'un malentendu ou d'une erreur, et que des excuses sincÃ¨res sont prÃ©sentÃ©es.</p>
-        <p>Changement de comportement : Si l'individu ou le contenu a changÃ© de comportement et a dÃ©montrÃ© une volontÃ© de respecter les rÃ¨gles et les autres utilisateurs.</p>
-        <p>RÃ©vision de la dÃ©cision : Si la dÃ©cision d'ajouter l'individu ou le contenu Ã  la liste noire est rÃ©visÃ©e et considÃ©rÃ©e comme injuste ou erronÃ©e.</p>
-        <p>Demande de retrait : Si l'individu ou le contenu demande Ã  Ãªtre retirÃ© de la liste noire et que la demande est considÃ©rÃ©e comme lÃ©gitime.</p>
-        <h2>ProcÃ©dure de retrait de la liste noire</h2>
-        <p>Demande de retrait : L'individu ou le contenu doit demander Ã  Ãªtre retirÃ© de la liste noire.</p>
-        <p>Examen de la demande : La demande est examinÃ©e par l'Ã©quipe de modÃ©ration pour dÃ©terminer si les conditions de retrait sont remplies.</p>
-        <p>DÃ©cision : La dÃ©cision de retirer ou non l'individu ou le contenu de la liste noire est prise par l'Ã©quipe de modÃ©ration.</p>
-        <p>Notification : L'individu ou le contenu est notifiÃ© de la dÃ©cision.</p>
-        <h2>Note</h2>
-        <p>Chaque ajout et retrait est validÃ© par Aina Umaishi grÃ¢ce au module Ingress 002.</p>
-        <p>Cela signifie que chaque dÃ©cision d'ajouter ou de retirer un individu ou un contenu de la liste noire est examinÃ©e et validÃ©e par mon module de justice interne, Ingress 002, pour garantir que les conditions et procÃ©dures sont respectÃ©es et que les dÃ©cisions sont Ã©quitables et justes.</p>
+    <section class="hero">
+      <h1>Blacklist</h1>
+      <p>Liste noire officielle de VentiStudio.</p>
     </section>
-    
-    <footer>
-        <div class="footer-content">
-          <div class="footer-section">
-            <h4>Outils</h4>
-            <ul>
-              <li><a href="https://ventistudio.eu/encrypt">Encrypt</a></li>
-              <li><a href="https://ventistudio.eu/sitemap">Sitemap</a></li>
-              <li><a href="https://status.ventistudio.eu/">Statut</a></li>
-              <li><a href="https://aina.ventistudio.eu/">Aina</a></li>
-            </ul>
-          </div>
-          <div class="footer-section">
-            <h4>Entreprise</h4>
-            <ul>
-              <li><a href="https://ventistudio.eu/about">Ã€ propos</a></li>
-              <li><a href="https://ventistudio.eu/jobs">Emplois</a></li>
-              <li><a href="https://ventistudio.eu/company">Marque</a></li>
-              <li><a href="https://ventistudio.eu/creator">CrÃ©ateur</a></li>
-            </ul>
-          </div>
-          <div class="footer-section">
-            <h4>Ressources</h4>
-            <ul>
-              <li><a href="https://ventistudio.eu/university">UniversitÃ©</a></li>
-              <li><a href="https://ventistudio.eu/school">Ã‰cole</a></li>
-              <li><a href="https://ventistudio.eu/help">Assistance</a></li>
-              <li><a href="https://ventistudio.eu/security">SÃ©curitÃ©</a></li>
-            </ul>
-          </div>
-          <div class="footer-section">
-            <h4>Chartes</h4>
-            <ul>
-              <li><a href="https://ventistudio.eu/terms">Conditions</a></li>
-              <li><a href="https://ventistudio.eu/privacy">ConfidentialitÃ©</a></li>
-              <li><a href="https://ventistudio.eu/cookies">Cookies</a></li>
-              <li><a href="https://ventistudio.eu/dmca">DMCA</a></li>
-            </ul>
-          </div>
+
+    <section class="about">
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Rechercher dans la liste noire…" aria-label="Rechercher dans la liste noire">
+      </div>
+      <div class="bl-grid" id="blacklistContainer"></div>
+    </section>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+      <div class="modal-box" id="modalBox">
+        <button class="modal-close" id="modalClose" aria-label="Fermer">&times;</button>
+        <h2 id="mTitle"></h2>
+        <p class="modal-field" id="mId"></p>
+        <p class="modal-field" id="mDate"></p>
+        <p class="modal-field" id="mStatus"></p>
+        <p class="modal-field" id="mReason"></p>
+      </div>
+    </div>
+
+    <section class="about">
+      <h2>Conditions d'ajout à la liste noire</h2>
+      <div class="conditions-grid">
+        <div class="condition-card">
+          <h3>
+            <span class="icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="white" stroke-width="2" stroke-linecap="round"/><path d="M13.73 21a2 2 0 01-3.46 0" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+            </span>
+            Comportement inapproprié
+          </h3>
+          <p>Insultes, menaces, propos haineux, attaques personnelles ou tout autre comportement considéré comme inapproprié.</p>
         </div>
-        <div class="footer-bottom">
-          <p class="status"><iframe src="https://status.ventistudio.eu/badge?theme=dark" width="250" height="30" frameborder="0" marginheight="0" marginwidth="0" scrolling="no"></iframe></p>
-          <p class="copyright">Copyright © P-Line 2023 - 2025. Tous droits réservés.</p>
+        <div class="condition-card">
+          <h3>
+            <span class="icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="white" stroke-width="2" stroke-linejoin="round"/></svg>
+            </span>
+            Non-respect des règles
+          </h3>
+          <p>Spam, publicités non autorisées, liens vers des sites malveillants ou tout non-respect des règles du site.</p>
         </div>
-      </footer>
-    <script src="https://trust.ventistudio.eu/root/script.js"></script>
-    <script>
-        function openModal(site) {
-            const modal = document.getElementById('modal');
-            const modalTitle = document.getElementById('modalTitle');
-            const modalReason = document.getElementById('modalReason');
+        <div class="condition-card">
+          <h3>
+            <span class="icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 4l16 16M12 2a10 10 0 100 20 10 10 0 000-20z" stroke="white" stroke-width="2"/></svg>
+            </span>
+            Harcèlement
+          </h3>
+          <p>Messages répétitifs, appels non sollicités, messages privés non sollicités ou tout comportement de harcèlement.</p>
+        </div>
+        <div class="condition-card">
+          <h3>
+            <span class="icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="white" stroke-width="2" stroke-linejoin="round"/></svg>
+            </span>
+            Diffamation
+          </h3>
+          <p>Accusations fausses, rumeurs, mensonges ou tout comportement considéré comme de la diffamation.</p>
+        </div>
+        <div class="condition-card">
+          <h3>
+            <span class="icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="white" stroke-width="2" stroke-linejoin="round"/></svg>
+            </span>
+            Piratage
+          </h3>
+          <p>Tentatives de piratage, attaques par déni de service, injections de code malveillant ou toute activité de piratage.</p>
+        </div>
+        <div class="condition-card">
+          <h3>
+            <span class="icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" stroke="white" stroke-width="2"/><path d="M12 8v4M12 16h.01" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+            </span>
+            Non-respect des lois
+          </h3>
+          <p>Promotion de la violence, discrimination, fraude ou tout comportement contraire aux lois en vigueur.</p>
+        </div>
+      </div>
+    </section>
 
-            if (site === 'sarlmarchais') {
-                modalTitle.innerText = 'S.A.R.L. MARCHAIS (https://muguet-marchais.com/)';
-                modalReason.innerText = 'Climat de travail toxique et Agression physique.';
-            } else if (site === 'site2') {
-                modalTitle.innerText = 'Site 2';
-                modalReason.innerText = 'DÃ©tails supplÃ©mentaires sur le site 2 et la raison de son ajout Ã  la liste noire.';
-            }
-            modal.style.display = 'flex';
-        }
+    <section class="about">
+      <h2>Conditions de retrait</h2>
+      <div class="conditions-grid">
+        <div class="condition-card">
+          <h3>
+            <span class="icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 000-7.78z" stroke="white" stroke-width="2"/></svg>
+            </span>
+            Excuses sincères
+          </h3>
+          <p>Si l'ajout résulte d'un malentendu ou d'une erreur, et que des excuses sincères sont présentées.</p>
+        </div>
+        <div class="condition-card">
+          <h3>
+            <span class="icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M23 6l-9.5 9.5-5-5L1 18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 6h6v6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            Changement de comportement
+          </h3>
+          <p>Démonstration d'une volonté de respecter les règles et les autres utilisateurs.</p>
+        </div>
+        <div class="condition-card">
+          <h3>
+            <span class="icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M1 4v6h6M23 20v-6h-6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M20.49 9A9 9 0 005.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 013.51 15" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            Révision de la décision
+          </h3>
+          <p>Si la décision d'ajout est révisée et considérée comme injuste ou erronée.</p>
+        </div>
+        <div class="condition-card">
+          <h3>
+            <span class="icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" stroke="white" stroke-width="2" stroke-linejoin="round"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+            </span>
+            Demande de retrait
+          </h3>
+          <p>Si une demande légitime de retrait est soumise et acceptée par l'équipe de modération.</p>
+        </div>
+      </div>
+    </section>
 
-        function closeModal() {
-            const modal = document.getElementById('modal');
-            modal.style.display = 'none';
-        }
+    <section class="about">
+      <h2>Procédure de retrait</h2>
+      <div class="procedure-steps">
+        <ol>
+          <li>L'individu ou le contenu doit soumettre une demande de retrait.</li>
+          <li>La demande est examinée par l'équipe de modération.</li>
+          <li>La décision de retirer ou non est prise par l'équipe de modération.</li>
+          <li>L'individu ou le contenu est notifié de la décision.</li>
+        </ol>
+      </div>
 
-        document.getElementById('searchInput').addEventListener('input', function() {
-            const filter = this.value.toLowerCase();
-            const items = document.querySelectorAll('.blacklist-item');
+      <div class="note-card">
+        <h3>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" stroke="currentColor" stroke-width="2"/><path d="M12 16v-4M12 8h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          Note importante
+        </h3>
+        <p>Chaque ajout et retrait est validé par Aina Umaishi grâce au module Ingress 002. Cela signifie que chaque décision est examinée et validée par le module de justice interne pour garantir que les conditions et procédures sont respectées et que les décisions sont équitables et justes.</p>
+      </div>
+    </section>
 
-            items.forEach(item => {
-                const text = item.innerText.toLowerCase();
-                item.style.display = text.includes(filter) ? '' : 'none';
-            });
-        });
-    </script>
-</body>
-</html>
-  
-  
   </main>
 
   <footer>
-
     <div class="footer-content">
       <div class="footer-section">
         <h4>Outils</h4>
         <ul>
           <li><a href="#">Encrypt</a></li>
-          <li><a href="#">Plan du site</a></li>
-          <li><a href="#">Statut</a></li>
+          <li><a href="/sitemap">Plan du site</a></li>
+          <li><a href="/stats">Statut</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Entreprise</h4>
         <ul>
-          <li><a href="#">À propos</a></li>
-          <li><a href="#">Emplois</a></li>
-          <li><a href="#">Marque</a></li>
+          <li><a href="/about">À propos</a></li>
+          <li><a href="/jobs">Emplois</a></li>
+          <li><a href="/logo">Marque</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Ressources</h4>
         <ul>
-          <li><a href="#">Université</a></li>
-          <li><a href="#">Assistance</a></li>
-          <li><a href="#">Sécurité</a></li>
+          <li><a href="/university">Université</a></li>
+          <li><a href="/lawful/support">Assistance</a></li>
+          <li><a href="/lawful/security">Sécurité</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Chartes</h4>
         <ul>
-          <li><a href="#">Conditions</a></li>
-          <li><a href="#">Confidentialité</a></li>
-          <li><a href="#">Information DMCA</a></li>
+          <li><a href="/lawful/tos">Conditions</a></li>
+          <li><a href="/lawful/cookies">Confidentialité</a></li>
+          <li><a href="/lawful/dmcainfo">Information DMCA</a></li>
         </ul>
       </div>
     </div>
@@ -438,11 +530,199 @@
       <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
       <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
     </div>
-  
   </footer>
 
-  <script src="../script.js" defer></script>
+  <script src="/script.js" defer></script>
+  <script>
+    /*! VentiStudio Blacklist Engine — Integrity Protected */
+    void function() {
+      // --- Multi-layer obfuscation primitives ---
+      var _k = [0x56,0x53,0x42,0x4C]; // XOR key bytes
+      var _xc = function(s, k) {
+        for (var o = '', j = 0; j < s.length; j++)
+          o += String.fromCharCode(s.charCodeAt(j) ^ k[j % k.length]);
+        return o;
+      };
+      var _b6d = function(e) {
+        try { return decodeURIComponent(escape(atob(e))); } catch(x) { return ''; }
+      };
+      var _p = function(v) {
+        var a = _b6d(v); if (!a) return null;
+        var b = _xc(a, _k);
+        return b.split('').reverse().join('');
+      };
+
+      // --- Entries: reason is XOR(key) + reverse + base64 ---
+      // Reasons stay in closure only, never in DOM
+      var _v = new Map();
+      var _q = [
+        {
+          n: 'S.A.R.L. MARCHAIS',
+          i: '389-170-499-00013',
+          img: 'https://www.muguet-marchais.com/wp-content/uploads/2021/11/logo_marchais-1.png',
+          _x: 'eDY3PT8gOyQmczYpdj8jPjk+Yik1PScgOToUbGttYmIzIjc0Pzw2bDo6Izo3ITZsMzdiODc+KyA1czYpdjYzOT8gOyQmcywjPyAxKSQ0Aw==',
+          d: '2025-04-25',
+          s: 'active',
+          u: 'https://muguet-marchais.com/'
+        }
+      ];
+
+      // --- DevTools detection (timing-based) ---
+      var _dt = false;
+      var _chk = function() {
+        var t0 = performance.now();
+        /* jshint ignore:start */ debugger; /* jshint ignore:end */
+        _dt = (performance.now() - t0) > 80;
+      };
+      try { setInterval(_chk, 2000); } catch(e) {}
+
+      // --- Canvas reason renderer (text → pixels, not in DOM) ---
+      var _cvs = document.createElement('canvas');
+      _cvs.width = 460; _cvs.height = 60;
+      _cvs.style.cssText = 'width:100%;max-width:460px;height:auto;display:block;margin-top:0.6rem;';
+      var _ctx = _cvs.getContext('2d');
+
+      var _drawReason = function(txt) {
+        var w = _cvs.width, h = _cvs.height;
+        _ctx.clearRect(0, 0, w, h);
+        if (_dt || !txt) {
+          _ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--text-secondary').trim() || '#a0a0a0';
+          _ctx.font = '13px Inter, system-ui, sans-serif';
+          _ctx.fillText('Raison : [protégée]', 0, 16);
+          return;
+        }
+        _ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--text-secondary').trim() || '#a0a0a0';
+        _ctx.font = 'bold 13px Inter, system-ui, sans-serif';
+        _ctx.fillText('Raison :', 0, 16);
+        _ctx.font = '13px Inter, system-ui, sans-serif';
+        // Word-wrap
+        var words = txt.split(' '), line = '', y = 16, maxW = w - 10;
+        var metricsBold = _ctx.measureText('Raison : ');
+        var x0 = metricsBold.width + 4;
+        var first = true;
+        for (var wi = 0; wi < words.length; wi++) {
+          var test = line + (line ? ' ' : '') + words[wi];
+          if (_ctx.measureText(test).width > (first ? maxW - x0 : maxW)) {
+            if (first) { _ctx.fillText(line, x0, y); first = false; }
+            else { y += 18; _ctx.fillText(line, 0, y); }
+            line = words[wi];
+          } else { line = test; }
+        }
+        if (line) {
+          if (first) _ctx.fillText(line, x0, y);
+          else { y += 18; _ctx.fillText(line, 0, y); }
+        }
+      };
+      var _wipeReason = function() { _ctx.clearRect(0, 0, _cvs.width, _cvs.height); };
+
+      // --- DOM refs ---
+      var container = document.getElementById('blacklistContainer');
+      var overlay = document.getElementById('modalOverlay');
+      var mTitle = document.getElementById('mTitle');
+      var mId = document.getElementById('mId');
+      var mDate = document.getElementById('mDate');
+      var mStatus = document.getElementById('mStatus');
+      var mReason = document.getElementById('mReason');
+      var mClose = document.getElementById('modalClose');
+
+      // Attach canvas to reason field
+      mReason.textContent = '';
+      mReason.appendChild(_cvs);
+
+      var statusLabels = {
+        active: 'Actif',
+        pending: 'En Attente',
+        pardoned: 'Pardonn\u00e9'
+      };
+
+      _q.forEach(function(entry, idx) {
+        // Store encoded reason in closure Map only – never in DOM
+        _v.set(idx, entry._x);
+
+        var card = document.createElement('div');
+        card.className = 'bl-card';
+        card.setAttribute('data-idx', idx);
+        card.setAttribute('data-name', entry.n);
+        card.setAttribute('data-id', entry.i);
+        card.setAttribute('data-date', entry.d);
+        card.setAttribute('data-status', entry.s);
+        card.setAttribute('data-url', entry.u || '');
+
+        var img = document.createElement('img');
+        img.src = entry.img;
+        img.alt = entry.n;
+        img.draggable = false;
+
+        var info = document.createElement('div');
+        info.innerHTML =
+          '<h3>' + entry.n + '</h3>' +
+          '<p class="bl-meta">ID : ' + entry.i + '</p>' +
+          '<p class="bl-meta">Date d\'ajout : ' + entry.d + '</p>' +
+          '<p class="bl-status ' + entry.s + '">Statut : ' + (statusLabels[entry.s] || entry.s) + '</p>';
+
+        card.appendChild(img);
+        card.appendChild(info);
+        container.appendChild(card);
+
+        card.addEventListener('click', function() {
+          var ci = parseInt(this.getAttribute('data-idx'), 10);
+          var nm = this.getAttribute('data-name');
+          var uid = this.getAttribute('data-id');
+          var dt = this.getAttribute('data-date');
+          var st = this.getAttribute('data-status');
+          var url = this.getAttribute('data-url');
+
+          mTitle.textContent = nm + (url ? ' (' + url + ')' : '');
+          mId.innerHTML = '<strong>ID :</strong> ' + uid;
+          mDate.innerHTML = '<strong>Date :</strong> ' + dt;
+          mStatus.innerHTML = '<strong>Statut :</strong> ' + (statusLabels[st] || st);
+
+          // Decode from closure, render to canvas, then discard string
+          var _raw = _v.has(ci) ? _p(_v.get(ci)) : null;
+          _drawReason(_raw);
+          _raw = null;
+
+          overlay.classList.add('open');
+        });
+      });
+
+      // Clear canvas on close
+      var _closeModal = function() {
+        overlay.classList.remove('open');
+        _wipeReason();
+      };
+      mClose.addEventListener('click', _closeModal);
+      overlay.addEventListener('click', function(e) {
+        if (e.target === overlay) _closeModal();
+      });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && overlay.classList.contains('open')) _closeModal();
+      });
+
+      // Search
+      document.getElementById('searchInput').addEventListener('input', function() {
+        var f = this.value.toLowerCase();
+        var cards = container.querySelectorAll('.bl-card');
+        cards.forEach(function(c) {
+          var txt = c.textContent.toLowerCase();
+          c.style.display = txt.includes(f) ? '' : 'none';
+        });
+      });
+
+      // Anti-inspection
+      container.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+      overlay.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+      overlay.addEventListener('copy', function(e) { e.preventDefault(); });
+      overlay.addEventListener('selectstart', function(e) { e.preventDefault(); });
+
+      // Prevent canvas toDataURL extraction
+      _cvs.toDataURL = function() { return ''; };
+      _cvs.toBlob = function() { return null; };
+
+      // Nullify _p from global leak via console
+      Object.defineProperty(window, '_p', { get: function() { return void 0; }, set: function() {}, configurable: false });
+      Object.defineProperty(window, '_v', { get: function() { return void 0; }, set: function() {}, configurable: false });
+    }();
+  </script>
 </body>
 </html>
-
-

@@ -1,19 +1,52 @@
-// Script du dashboard admin
-const ADMIN_PASSWORD = 'admin123';
-let adminSession = false;
-let allNewsData = [];
+// =============================================
+// VentiStudio Admin Dashboard — PHP/SQL Client
+// =============================================
 
-document.addEventListener('DOMContentLoaded', function() {
+const API = '/admin/api';
+let allNewsData = [];
+let editingNewsId = null; // ID de la news en cours d'édition
+
+// ─── Initialisation ──────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
   checkSession();
   setupEventListeners();
-  loadNewsData();
 });
 
-function checkSession() {
-  const sessionToken = sessionStorage.getItem('adminSession');
-  if (sessionToken === 'authorized') {
-    adminSession = true;
-    showAdminPage();
+// ─── Appels API (helper) ─────────────────────────────────
+async function api(endpoint, options = {}) {
+  const url = `${API}/${endpoint}`;
+  const defaults = {
+    credentials: 'same-origin',
+    headers: { 'Content-Type': 'application/json' },
+  };
+  const config = { ...defaults, ...options };
+
+  try {
+    const res = await fetch(url, config);
+    const data = await res.json();
+    if (!res.ok) {
+      throw new Error(data.error || `Erreur HTTP ${res.status}`);
+    }
+    return data;
+  } catch (err) {
+    console.error(`API ${endpoint}:`, err);
+    throw err;
+  }
+}
+
+// ═══════════════════════════════════════════════════════════
+// AUTHENTIFICATION
+// ═══════════════════════════════════════════════════════════
+
+async function checkSession() {
+  try {
+    const data = await api('auth.php?action=check');
+    if (data.authenticated) {
+      showAdminPage();
+      loadStats();
+    }
+  } catch {
+    // Pas connecté, on reste sur la page de login
   }
 }
 
@@ -21,32 +54,42 @@ function setupEventListeners() {
   document.getElementById('loginForm').addEventListener('submit', handleLogin);
   document.getElementById('logoutBtn').addEventListener('click', handleLogout);
   document.getElementById('adminNewsForm').addEventListener('submit', handlePublish);
-  document.getElementById('changePasswordBtn').addEventListener('click', changePassword);
+  document.getElementById('changePasswordForm').addEventListener('submit', handleChangePassword);
   document.getElementById('exportDataBtn').addEventListener('click', exportData);
   document.getElementById('importDataBtn').addEventListener('click', () => document.getElementById('importFile').click());
   document.getElementById('importFile').addEventListener('change', importData);
 }
 
-function handleLogin(e) {
+async function handleLogin(e) {
   e.preventDefault();
-  const password = document.getElementById('password').value;
+  const btn = e.target.querySelector('button[type="submit"]');
+  const originalText = btn.textContent;
+  btn.textContent = 'Connexion...';
+  btn.disabled = true;
 
-  if (password === ADMIN_PASSWORD) {
-    sessionStorage.setItem('adminSession', 'authorized');
-    adminSession = true;
+  try {
+    await api('auth.php?action=login', {
+      method: 'POST',
+      body: JSON.stringify({
+        password: document.getElementById('password').value,
+      }),
+    });
     showAdminPage();
     loadStats();
-  } else {
-    alert('❌ Mot de passe incorrect');
+  } catch (err) {
+    showToast('❌ ' + (err.message || 'Mot de passe incorrect'), 'error');
+  } finally {
+    btn.textContent = originalText;
+    btn.disabled = false;
   }
 }
 
-function handleLogout() {
-  if (confirm('Vous allez être déconnecté')) {
-    sessionStorage.removeItem('adminSession');
-    adminSession = false;
-    location.reload();
-  }
+async function handleLogout() {
+  if (!confirm('Vous allez être déconnecté')) return;
+  try {
+    await api('auth.php?action=logout', { method: 'POST' });
+  } catch { /* ignore */ }
+  location.reload();
 }
 
 function showAdminPage() {
@@ -54,406 +97,453 @@ function showAdminPage() {
   document.getElementById('adminPage').style.display = 'block';
 }
 
-function switchTab(tabName) {
-  // Masquer tous les tabs
-  document.querySelectorAll('.tab-content').forEach(tab => {
-    tab.classList.remove('active');
-  });
-  document.querySelectorAll('.tab-btn').forEach(btn => {
-    btn.classList.remove('active');
-  });
+// ═══════════════════════════════════════════════════════════
+// NAVIGATION TABS
+// ═══════════════════════════════════════════════════════════
 
-  // Afficher le tab sélectionné
+function switchTab(tabName) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+
   document.getElementById(tabName + 'Tab').classList.add('active');
   event.target.classList.add('active');
 
-  // Actions spéciales par tab
-  if (tabName === 'manage') {
-    loadManageNews();
-  } else if (tabName === 'stats') {
-    loadStats();
-  } else if (tabName === 'moderation') {
-    loadModerationComments();
-  }
+  if (tabName === 'manage') loadManageNews();
+  else if (tabName === 'stats') loadStats();
+  else if (tabName === 'moderation') loadModerationComments();
 }
 
-function loadNewsData() {
-  const script = document.createElement('script');
-  script.src = '/news/news-data.js';
-  script.onload = function() {
-    if (typeof newsData !== 'undefined') {
-      allNewsData = newsData;
+// ═══════════════════════════════════════════════════════════
+// STATISTIQUES (depuis la BDD)
+// ═══════════════════════════════════════════════════════════
+
+async function loadStats() {
+  try {
+    const data = await api('stats.php');
+
+    document.getElementById('totalNews').textContent = data.totalNews;
+    document.getElementById('newsThisMonth').textContent = data.newsThisMonth;
+    document.getElementById('totalViews').textContent = data.totalViews.toLocaleString('fr-FR');
+    document.getElementById('totalVotes').textContent = data.totalVotes.toLocaleString('fr-FR');
+    document.getElementById('pendingComments').textContent = data.pendingComments;
+
+    // Chart catégories
+    let chartHTML = '';
+    const total = data.categories.reduce((s, c) => s + c.count, 0) || 1;
+    for (const cat of data.categories) {
+      const label = getCategoryLabel(cat.category);
+      const width = (cat.count / total) * 100;
+      chartHTML += `
+        <div style="margin-bottom: 12px;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+            <span>${label}</span>
+            <span style="font-weight: 600;">${cat.count}</span>
+          </div>
+          <div style="background: rgba(255,255,255,0.1); border-radius: 4px; height: 24px; overflow: hidden;">
+            <div style="background: linear-gradient(135deg, #6366f1, #9333ea); height: 100%; width: ${width}%; transition: width 0.3s;"></div>
+          </div>
+        </div>
+      `;
     }
-  };
-  document.head.appendChild(script);
+    document.getElementById('categoryChart').innerHTML = chartHTML;
+
+  } catch (err) {
+    console.error('Erreur stats:', err);
+  }
 }
 
-function handlePublish(e) {
+// ═══════════════════════════════════════════════════════════
+// PUBLIER / ÉDITER UNE NEWS
+// ═══════════════════════════════════════════════════════════
+
+async function handlePublish(e) {
   e.preventDefault();
+  const btn = e.target.querySelector('button[type="submit"]');
+  const originalText = btn.textContent;
+  btn.textContent = 'Publication...';
+  btn.disabled = true;
 
-  const newNews = {
-    id: Date.now(),
-    title: document.getElementById('adminTitle').value,
-    author: document.getElementById('adminAuthor').value,
-    date: document.getElementById('adminDate').value,
+  const payload = {
+    title:    document.getElementById('adminTitle').value,
+    author:   document.getElementById('adminAuthor').value,
+    date:     document.getElementById('adminDate').value,
     category: document.getElementById('adminCategory').value,
-    excerpt: document.getElementById('adminExcerpt').value,
-    content: document.getElementById('adminContent').value
+    excerpt:  document.getElementById('adminExcerpt').value,
+    content:  document.getElementById('adminContent').value,
   };
 
-  // Générer le code à ajouter
-  const newsCode = `{
-    id: ${newNews.id},
-    title: '${newNews.title.replace(/'/g, "\\'")}',
-    author: '${newNews.author.replace(/'/g, "\\'")}',
-    date: '${newNews.date}',
-    category: '${newNews.category}',
-    excerpt: '${newNews.excerpt.replace(/'/g, "\\'")}',
-    content: \`${newNews.content.replace(/`/g, '\\`')}\`
-  },`;
-
-  // Afficher le code
-  const codeBlock = document.createElement('div');
-  codeBlock.style.cssText = `
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 8px;
-    padding: 16px;
-    margin-top: 20px;
-    max-height: 300px;
-    overflow-y: auto;
-  `;
-  codeBlock.innerHTML = `
-    <h4>Code à copier dans /news/news-data.js:</h4>
-    <pre style="margin: 0; color: #a0aec0;"><code>${escapeHtml(newsCode)}</code></pre>
-    <button onclick="copyToClipboardAdmin(this)" style="margin-top: 10px; padding: 8px 16px; background: #6366f1; color: white; border: none; border-radius: 6px; cursor: pointer;">Copier le code</button>
-  `;
-
-  document.getElementById('adminNewsForm').parentNode.appendChild(codeBlock);
-
-  // Réinitialiser le form
-  document.getElementById('adminNewsForm').reset();
-  document.getElementById('adminDate').valueAsDate = new Date();
-
-  alert('✅ News générée! Copie le code et ajoute-le à /news/news-data.js');
-}
-
-function copyToClipboardAdmin(btn) {
-  const code = btn.previousElementSibling.textContent;
-  navigator.clipboard.writeText(code).then(() => {
-    btn.textContent = 'Copié!';
-    setTimeout(() => {
-      btn.textContent = 'Copier le code';
-    }, 2000);
-  });
-}
-
-function loadStats() {
-  // Total des news
-  document.getElementById('totalNews').textContent = allNewsData.length;
-
-  // News ce mois
-  const now = new Date();
-  const currentMonth = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
-  const thisMonth = allNewsData.filter(n => n.date.startsWith(currentMonth)).length;
-  document.getElementById('newsThisMonth').textContent = thisMonth;
-
-  // Vues et votes (simulé avec localStorage)
-  const views = localStorage.getItem('newsViews') || '0';
-  const votes = localStorage.getItem('newsVotes') || '0';
-  document.getElementById('totalViews').textContent = views;
-  document.getElementById('totalVotes').textContent = votes;
-
-  // Chart catégories
-  const categories = {};
-  allNewsData.forEach(news => {
-    categories[news.category] = (categories[news.category] || 0) + 1;
-  });
-
-  let chartHTML = '';
-  for (const [cat, count] of Object.entries(categories)) {
-    const label = getCategoryLabelShort(cat);
-    const width = (count / allNewsData.length) * 100;
-    chartHTML += `
-      <div style="margin-bottom: 12px;">
-        <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
-          <span>${label}</span>
-          <span style="font-weight: 600;">${count}</span>
-        </div>
-        <div style="background: rgba(255,255,255,0.1); border-radius: 4px; height: 24px; overflow: hidden;">
-          <div style="background: linear-gradient(135deg, #6366f1, #9333ea); height: 100%; width: ${width}%; transition: width 0.3s;"></div>
-        </div>
-      </div>
-    `;
+  try {
+    if (editingNewsId) {
+      // Mode édition : PUT
+      await api(`news.php?id=${editingNewsId}`, {
+        method: 'PUT',
+        body: JSON.stringify(payload),
+      });
+      showToast('✅ Chronique modifiée avec succès');
+      editingNewsId = null;
+      btn.textContent = 'Publier la chronique';
+      cancelEditBtn(false);
+    } else {
+      // Mode création : POST
+      await api('news.php', {
+        method: 'POST',
+        body: JSON.stringify(payload),
+      });
+      showToast('✅ Chronique publiée avec succès');
+    }
+    document.getElementById('adminNewsForm').reset();
+    document.getElementById('adminDate').valueAsDate = new Date();
+  } catch (err) {
+    showToast('❌ ' + (err.message || 'Erreur lors de la publication'), 'error');
+  } finally {
+    btn.disabled = false;
+    if (!editingNewsId) btn.textContent = originalText;
   }
-  document.getElementById('categoryChart').innerHTML = chartHTML;
 }
 
-function loadManageNews() {
+// ═══════════════════════════════════════════════════════════
+// GÉRER LES NEWS (liste + CRUD)
+// ═══════════════════════════════════════════════════════════
+
+async function loadManageNews() {
   const list = document.getElementById('newsList');
-  list.innerHTML = '';
+  list.innerHTML = '<p style="text-align:center;color:#a0aec0;">Chargement...</p>';
 
-  allNewsData.sort((a, b) => new Date(b.date) - new Date(a.date)).forEach(news => {
-    const item = document.createElement('div');
-    item.className = 'manage-item';
-    item.innerHTML = `
-      <div class="manage-item-info">
-        <h4>${escapeHtml(news.title)}</h4>
-        <p>${news.date} • ${getCategoryLabelShort(news.category)} • ${news.author}</p>
-      </div>
-      <div class="manage-item-actions">
-        <button class="btn-edit" onclick="editNews(${news.id})">Éditer</button>
-        <button class="btn-delete" onclick="deleteNews(${news.id})">Supprimer</button>
-      </div>
+  try {
+    const data = await api('news.php?limit=100');
+    allNewsData = data.news || [];
+    list.innerHTML = '';
+
+    if (allNewsData.length === 0) {
+      list.innerHTML = '<p style="text-align:center;color:#a0aec0;">Aucune chronique publiée.</p>';
+      return;
+    }
+
+    allNewsData.forEach(news => {
+      const item = document.createElement('div');
+      item.className = 'manage-item';
+      item.innerHTML = `
+        <div class="manage-item-info">
+          <h4>${escapeHtml(news.title)}</h4>
+          <p>${news.date} • ${getCategoryLabel(news.category)} • ${escapeHtml(news.author)} • 👁 ${news.views || 0}</p>
+        </div>
+        <div class="manage-item-actions">
+          <button class="btn-edit" onclick="editNews(${news.id})">Éditer</button>
+          <button class="btn-delete" onclick="deleteNews(${news.id})">Supprimer</button>
+        </div>
+      `;
+      list.appendChild(item);
+    });
+  } catch (err) {
+    list.innerHTML = `<p style="text-align:center;color:#ef4444;">Erreur: ${err.message}</p>`;
+  }
+}
+
+async function editNews(id) {
+  try {
+    const news = await api(`news.php?id=${id}`);
+    editingNewsId = id;
+
+    document.getElementById('adminTitle').value = news.title;
+    document.getElementById('adminAuthor').value = news.author;
+    document.getElementById('adminDate').value = news.date;
+    document.getElementById('adminCategory').value = news.category;
+    document.getElementById('adminExcerpt').value = news.excerpt;
+    document.getElementById('adminContent').value = news.content;
+
+    // Changer le bouton
+    const btn = document.querySelector('#adminNewsForm button[type="submit"]');
+    btn.textContent = 'Modifier la chronique';
+    cancelEditBtn(true);
+
+    switchTab('news');
+    document.querySelector('.admin-form').scrollIntoView({ behavior: 'smooth' });
+  } catch (err) {
+    showToast('❌ Impossible de charger la news', 'error');
+  }
+}
+
+function cancelEditBtn(show) {
+  let btn = document.getElementById('cancelEditBtn');
+  if (show && !btn) {
+    btn = document.createElement('button');
+    btn.id = 'cancelEditBtn';
+    btn.type = 'button';
+    btn.className = 'btn-secondary';
+    btn.style.cssText = 'margin-top: 10px; width: 100%;';
+    btn.textContent = 'Annuler la modification';
+    btn.onclick = () => {
+      editingNewsId = null;
+      document.getElementById('adminNewsForm').reset();
+      document.getElementById('adminDate').valueAsDate = new Date();
+      document.querySelector('#adminNewsForm button[type="submit"]').textContent = 'Publier la chronique';
+      cancelEditBtn(false);
+    };
+    document.getElementById('adminNewsForm').appendChild(btn);
+  } else if (!show && btn) {
+    btn.remove();
+  }
+}
+
+async function deleteNews(id) {
+  if (!confirm('Voulez-vous vraiment supprimer cette chronique ? Cette action est irréversible.')) return;
+
+  try {
+    await api(`news.php?id=${id}`, { method: 'DELETE' });
+    showToast('✅ Chronique supprimée');
+    loadManageNews();
+  } catch (err) {
+    showToast('❌ ' + (err.message || 'Erreur lors de la suppression'), 'error');
+  }
+}
+
+// ═══════════════════════════════════════════════════════════
+// MODÉRATION DES COMMENTAIRES (depuis la BDD)
+// ═══════════════════════════════════════════════════════════
+
+async function loadModerationComments() {
+  const list = document.getElementById('moderationList');
+  list.innerHTML = '<p style="text-align:center;color:#a0aec0;">Chargement...</p>';
+
+  try {
+    const data = await api('comments.php?status=pending');
+    const comments = data.comments || [];
+    list.innerHTML = '';
+
+    if (comments.length === 0) {
+      list.innerHTML = '<p style="text-align: center; color: #a0aec0;">✅ Aucun commentaire en attente de modération !</p>';
+      return;
+    }
+
+    // Titre avec compteur
+    const title = document.createElement('div');
+    title.style.cssText = `
+      background: rgba(239, 68, 68, 0.2);
+      border: 2px solid #ef4444;
+      padding: 16px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      text-align: center;
     `;
-    list.appendChild(item);
-  });
-}
+    title.innerHTML = `
+      <h3 style="color: #ef4444; margin: 0;">
+        🔔 ${comments.length} commentaire${comments.length > 1 ? 's' : ''} en attente de modération
+      </h3>
+    `;
+    list.appendChild(title);
 
-function editNews(id) {
-  const news = allNewsData.find(n => n.id === id);
-  if (!news) return;
+    comments.forEach(comment => {
+      const item = document.createElement('div');
+      item.style.cssText = `
+        background: rgba(239, 68, 68, 0.1);
+        border-left: 4px solid #ef4444;
+        padding: 16px;
+        margin: 12px 0;
+        border-radius: 8px;
+      `;
+      item.innerHTML = `
+        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 12px;">
+          <div>
+            <h4 style="color: #e2e8f0; margin-bottom: 4px;"><strong>${escapeHtml(comment.author)}</strong></h4>
+            <p style="color: #a0aec0; font-size: 0.9em; margin: 4px 0;">
+              📧 ${escapeHtml(comment.email)} | ⭐ ${comment.rating || 5} étoiles
+              ${comment.news_title ? ` | 📰 ${escapeHtml(comment.news_title)}` : ''}
+            </p>
+            <p style="color: #cbd5e1; font-size: 0.9em;">${new Date(comment.created_at).toLocaleString('fr-FR')}</p>
+          </div>
+          <span style="background: #ef4444; color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.85em;">
+            🔴 En attente
+          </span>
+        </div>
+        <p style="color: #cbd5e1; margin: 16px 0; line-height: 1.6;">${escapeHtml(comment.content)}</p>
+        <div style="display: flex; gap: 8px;">
+          <button onclick="approveComment(${comment.id})" style="
+            padding: 8px 16px; background: #22c55e; color: white;
+            border: none; border-radius: 6px; cursor: pointer; font-weight: 600;
+          ">✅ Approuver</button>
+          <button onclick="rejectComment(${comment.id})" style="
+            padding: 8px 16px; background: #ef4444; color: white;
+            border: none; border-radius: 6px; cursor: pointer; font-weight: 600;
+          ">❌ Rejeter</button>
+        </div>
+      `;
+      list.appendChild(item);
+    });
 
-  // Pré-remplir le formulaire
-  document.getElementById('adminTitle').value = news.title;
-  document.getElementById('adminAuthor').value = news.author;
-  document.getElementById('adminDate').value = news.date;
-  document.getElementById('adminCategory').value = news.category;
-  document.getElementById('adminExcerpt').value = news.excerpt;
-  document.getElementById('adminContent').value = news.content;
-
-  // Scroller vers le formulaire
-  switchTab('news');
-  document.querySelector('.admin-form').scrollIntoView({ behavior: 'smooth' });
-}
-
-function deleteNews(id) {
-  if (confirm('Voulez-vous vraiment supprimer cette chronique?')) {
-    alert('Note: Pour vraiment supprimer une news, édite /news/news-data.js et retire les lignes correspondantes');
+  } catch (err) {
+    list.innerHTML = `<p style="text-align:center;color:#ef4444;">Erreur: ${err.message}</p>`;
   }
 }
 
-function changePassword() {
-  const newPassword = prompt('Nouveau mot de passe:');
-  if (newPassword && newPassword.length >= 6) {
-    alert('⚠️ Note: Pour changer le mot de passe définitivement, édite le fichier admin.js et change la variable ADMIN_PASSWORD');
-  } else {
-    alert('Le mot de passe doit faire au moins 6 caractères');
+async function approveComment(id) {
+  try {
+    await api(`comments.php?action=approve&id=${id}`, { method: 'POST' });
+    showToast('✅ Commentaire approuvé');
+    loadModerationComments();
+  } catch (err) {
+    showToast('❌ ' + err.message, 'error');
   }
 }
 
-function exportData() {
-  const data = {
-    newsCount: allNewsData.length,
-    news: allNewsData,
-    exportDate: new Date().toISOString()
-  };
-
-  const json = JSON.stringify(data, null, 2);
-  const blob = new Blob([json], { type: 'application/json' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = `ventistudio-backup-${new Date().toISOString().split('T')[0]}.json`;
-  a.click();
-  URL.revokeObjectURL(url);
-
-  alert('✅ Sauvegarde exportée!');
+async function rejectComment(id) {
+  if (!confirm('Êtes-vous sûr de vouloir rejeter ce commentaire ?')) return;
+  try {
+    await api(`comments.php?action=reject&id=${id}`, { method: 'POST' });
+    showToast('✅ Commentaire rejeté et supprimé');
+    loadModerationComments();
+  } catch (err) {
+    showToast('❌ ' + err.message, 'error');
+  }
 }
 
-function importData(e) {
+// ═══════════════════════════════════════════════════════════
+// PARAMÈTRES : CHANGER LE MOT DE PASSE
+// ═══════════════════════════════════════════════════════════
+
+async function handleChangePassword(e) {
+  e.preventDefault();
+  const currentPwd = document.getElementById('currentPassword').value;
+  const newPwd = document.getElementById('newPassword').value;
+  const confirmPwd = document.getElementById('confirmPassword').value;
+
+  if (newPwd !== confirmPwd) {
+    showToast('❌ Les mots de passe ne correspondent pas', 'error');
+    return;
+  }
+
+  try {
+    await api('auth.php?action=password', {
+      method: 'POST',
+      body: JSON.stringify({
+        current_password: currentPwd,
+        new_password: newPwd,
+      }),
+    });
+    showToast('✅ Mot de passe modifié avec succès');
+    document.getElementById('changePasswordForm').reset();
+  } catch (err) {
+    showToast('❌ ' + (err.message || 'Erreur'), 'error');
+  }
+}
+
+// ═══════════════════════════════════════════════════════════
+// EXPORT / IMPORT DE DONNÉES
+// ═══════════════════════════════════════════════════════════
+
+async function exportData() {
+  try {
+    const data = await api('news.php?limit=9999');
+    const exportPayload = {
+      newsCount: data.total,
+      news: data.news,
+      exportDate: new Date().toISOString(),
+    };
+
+    const json = JSON.stringify(exportPayload, null, 2);
+    const blob = new Blob([json], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `ventistudio-backup-${new Date().toISOString().split('T')[0]}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+
+    showToast('✅ Sauvegarde exportée !');
+  } catch (err) {
+    showToast('❌ Erreur lors de l\'export', 'error');
+  }
+}
+
+async function importData(e) {
   const file = e.target.files[0];
   if (!file) return;
 
   const reader = new FileReader();
-  reader.onload = function(event) {
+  reader.onload = async function(event) {
     try {
       const data = JSON.parse(event.target.result);
-      if (data.news && Array.isArray(data.news)) {
-        alert(`📥 Import réussi! ${data.news.length} chroniques trouvées.\n\nNote: Ajoute ces données manuellement dans /news/news-data.js`);
+      if (!data.news || !Array.isArray(data.news)) {
+        showToast('❌ Format de fichier invalide', 'error');
+        return;
       }
-    } catch (err) {
-      alert('❌ Erreur lors de l\'import du fichier');
+
+      if (!confirm(`Importer ${data.news.length} chroniques ? Les doublons seront ignorés.`)) return;
+
+      let imported = 0;
+      let errors = 0;
+
+      for (const news of data.news) {
+        try {
+          await api('news.php', {
+            method: 'POST',
+            body: JSON.stringify({
+              title:    news.title,
+              author:   news.author || 'Équipe VentiStudio',
+              date:     news.date,
+              category: news.category || 'other',
+              excerpt:  news.excerpt || '',
+              content:  news.content || '',
+            }),
+          });
+          imported++;
+        } catch {
+          errors++;
+        }
+      }
+
+      showToast(`📥 Import terminé : ${imported} ajoutées, ${errors} erreurs`);
+    } catch {
+      showToast('❌ Erreur lors de la lecture du fichier', 'error');
     }
   };
   reader.readAsText(file);
+  e.target.value = ''; // Reset pour permettre un nouvel import
 }
 
-function getCategoryLabelShort(cat) {
+// ═══════════════════════════════════════════════════════════
+// UTILITAIRES
+// ═══════════════════════════════════════════════════════════
+
+function getCategoryLabel(cat) {
   const labels = {
-    'update': '📦 Mise à jour',
+    'update':       '📦 Mise à jour',
     'announcement': '📢 Annonce',
-    'feature': '✨ Fonctionnalité',
-    'event': '🎪 Événement',
-    'other': '📝 Autre'
+    'feature':      '✨ Fonctionnalité',
+    'event':        '🎪 Événement',
+    'other':        '📝 Autre',
   };
   return labels[cat] || 'Info';
 }
 
-// ===== SYSTÈME DE MODÉRATION =====
-
-function loadModerationComments() {
-  const list = document.getElementById('moderationList') || createModerationPanel();
-  list.innerHTML = '';
-
-  try {
-    const pendingData = localStorage.getItem('ventistudio_pending_comments');
-    if (!pendingData) {
-      list.innerHTML = '<p style="text-align: center; color: #a0aec0;">✅ Aucun commentaire en attente!</p>';
-      return;
-    }
-
-    const pending = JSON.parse(pendingData);
-    let totalPending = 0;
-
-    for (const [newsId, comments] of Object.entries(pending)) {
-      if (comments && comments.length > 0) {
-        comments.forEach((comment, idx) => {
-          totalPending++;
-          const item = document.createElement('div');
-          item.style.cssText = `
-            background: rgba(239, 68, 68, 0.1);
-            border-left: 4px solid #ef4444;
-            padding: 16px;
-            margin: 12px 0;
-            border-radius: 8px;
-          `;
-          item.innerHTML = `
-            <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 12px;">
-              <div>
-                <h4 style="color: #e2e8f0; margin-bottom: 4px;"><strong>${escapeHtml(comment.author)}</strong></h4>
-                <p style="color: #a0aec0; font-size: 0.9em; margin: 4px 0;">
-                  📧 ${escapeHtml(comment.email)} | ⭐ ${comment.rating || 5} étoiles
-                </p>
-                <p style="color: #cbd5e1; font-size: 0.9em;">${new Date(comment.date).toLocaleString('fr-FR')}</p>
-              </div>
-              <span style="background: #ef4444; color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.85em;">
-                🔴 En attente
-              </span>
-            </div>
-            <p style="color: #cbd5e1; margin: 16px 0; line-height: 1.6;">${escapeHtml(comment.content)}</p>
-            <div style="display: flex; gap: 8px;">
-              <button onclick="approveModerationComment('${newsId}', ${comment.id})" style="
-                padding: 8px 16px;
-                background: #22c55e;
-                color: white;
-                border: none;
-                border-radius: 6px;
-                cursor: pointer;
-                font-weight: 600;
-              ">✅ Approuver</button>
-              <button onclick="rejectModerationComment('${newsId}', ${comment.id})" style="
-                padding: 8px 16px;
-                background: #ef4444;
-                color: white;
-                border: none;
-                border-radius: 6px;
-                cursor: pointer;
-                font-weight: 600;
-              ">❌ Rejeter</button>
-            </div>
-          `;
-          list.appendChild(item);
-        });
-      }
-    }
-
-    // Ajouter titre avec compteur
-    if (totalPending > 0) {
-      const title = document.createElement('div');
-      title.style.cssText = `
-        background: rgba(239, 68, 68, 0.2);
-        border: 2px solid #ef4444;
-        padding: 16px;
-        border-radius: 8px;
-        margin-bottom: 20px;
-        text-align: center;
-      `;
-      title.innerHTML = `
-        <h3 style="color: #ef4444; margin: 0;">
-          🔔 ${totalPending} commentaire${totalPending > 1 ? 's' : ''} en attente de modération
-        </h3>
-      `;
-      list.insertBefore(title, list.firstChild);
-    }
-
-  } catch (err) {
-    console.error('Erreur modération:', err);
-  }
-}
-
-function approveModerationComment(newsId, commentId) {
-  try {
-    const pendingData = localStorage.getItem('ventistudio_pending_comments');
-    const pending = JSON.parse(pendingData || '{}');
-    
-    if (!pending[newsId]) return;
-
-    const comment = pending[newsId].find(c => c.id === commentId);
-    if (!comment) return;
-
-    // Ajouter aux commentaires approuvés
-    const approvedData = localStorage.getItem('ventistudio_comments') || '{}';
-    const approved = JSON.parse(approvedData);
-    
-    if (!approved[newsId]) {
-      approved[newsId] = [];
-    }
-
-    comment.approved = true;
-    approved[newsId].push(comment);
-    localStorage.setItem('ventistudio_comments', JSON.stringify(approved));
-
-    // Retirer des en attente
-    pending[newsId] = pending[newsId].filter(c => c.id !== commentId);
-    localStorage.setItem('ventistudio_pending_comments', JSON.stringify(pending));
-
-    alert('✅ Commentaire approuvé!');
-    loadModerationComments();
-
-  } catch (err) {
-    console.error('Erreur:', err);
-  }
-}
-
-function rejectModerationComment(newsId, commentId) {
-  if (confirm('Êtes-vous sûr de vouloir rejeter ce commentaire?')) {
-    try {
-      const pendingData = localStorage.getItem('ventistudio_pending_comments');
-      const pending = JSON.parse(pendingData || '{}');
-
-      if (pending[newsId]) {
-        pending[newsId] = pending[newsId].filter(c => c.id !== commentId);
-        localStorage.setItem('ventistudio_pending_comments', JSON.stringify(pending));
-        alert('✅ Commentaire rejeté et supprimé!');
-        loadModerationComments();
-      }
-    } catch (err) {
-      console.error('Erreur:', err);
-    }
-  }
-}
-
-function createModerationPanel() {
-  const panel = document.createElement('div');
-  panel.id = 'moderationList';
-  panel.style.cssText = `
-    width: 100%;
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 12px;
-    padding: 20px;
-  `;
-  
-  // Injecter dans le tab de modération s'il existe
-  const moderationTab = document.getElementById('moderationTab');
-  if (moderationTab) {
-    moderationTab.appendChild(panel);
-  }
-  
-  return panel;
-}
-
 function escapeHtml(text) {
+  if (!text) return '';
   const div = document.createElement('div');
   div.textContent = text;
   return div.innerHTML;
+}
+
+/** Toast notification */
+function showToast(message, type = 'success') {
+  // Supprimer un toast existant
+  const existing = document.getElementById('adminToast');
+  if (existing) existing.remove();
+
+  const toast = document.createElement('div');
+  toast.id = 'adminToast';
+  const bg = type === 'error' ? '#ef4444' : '#22c55e';
+  toast.style.cssText = `
+    position: fixed; bottom: 30px; right: 30px; z-index: 10000;
+    background: ${bg}; color: white; padding: 14px 24px;
+    border-radius: 10px; font-weight: 600; font-size: 0.95rem;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    animation: toastIn 0.3s ease;
+  `;
+  toast.textContent = message;
+  document.body.appendChild(toast);
+
+  setTimeout(() => {
+    toast.style.opacity = '0';
+    toast.style.transition = 'opacity 0.3s';
+    setTimeout(() => toast.remove(), 300);
+  }, 3500);
 }

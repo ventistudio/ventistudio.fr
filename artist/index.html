@@ -1,31 +1,353 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <meta name="description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
+  <meta name="description" content="VentiStudio For Artist - L'espace dédié aux artistes : outils, soumissions, ressources et communauté créative.">
   <meta name="theme-color" content="#6366f1">
-  <title>VentiStudio v4</title>
-  <link rel="stylesheet" href="../style.css">
-  Artistes â€“ VentiStudio</title>
+  <title>VentiStudio For Artist</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    /* ── Artist-specific styles ── */
+
+    .artist-hero {
+      text-align: center;
+      padding: 5rem 0 3rem;
+      position: relative;
+    }
+
+    .artist-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(99,102,241,0.15) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .artist-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, rgba(99,102,241,0.15), rgba(139,92,246,0.15));
+      border: 1px solid rgba(99,102,241,0.3);
+      padding: 0.4rem 1.2rem;
+      border-radius: 2rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .artist-badge svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .artist-hero h1 {
+      font-size: 3rem;
+      line-height: 1.1;
+    }
+
+    .artist-hero p {
+      color: var(--text-secondary);
+      font-size: 1.15rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .artist-actions {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+      color: #fff;
+      border: none;
+      padding: 0.85rem 2rem;
+      border-radius: 1rem;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 20px rgba(99,102,241,0.3);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(99,102,241,0.5);
+    }
+
+    .btn-secondary {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      color: var(--text-primary);
+      border: 1px solid var(--glass-border);
+      padding: 0.85rem 2rem;
+      border-radius: 1rem;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    /* ── Section titles ── */
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-title h2 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title p {
+      color: var(--text-secondary);
+      max-width: 550px;
+      margin: 0 auto;
+    }
+
+    /* ── Features grid ── */
+    .features {
+      padding: 4rem 0;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .feature-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      padding: 2rem;
+      border-radius: 1.5rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: var(--glass-shadow);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--accent);
+      box-shadow: 0 12px 40px rgba(99,102,241,0.2);
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+      border-radius: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      margin-bottom: 1.25rem;
+    }
+
+    .feature-card h3 {
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      font-size: 1.15rem;
+    }
+
+    .feature-card p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* ── Process / Steps ── */
+    .process {
+      padding: 4rem 0;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      counter-reset: step;
+    }
+
+    .step {
+      text-align: center;
+      position: relative;
+    }
+
+    .step-number {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 800;
+      font-size: 1.3rem;
+      margin: 0 auto 1rem;
+      box-shadow: 0 4px 20px rgba(99,102,241,0.3);
+    }
+
+    .step h3 {
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .step p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    /* ── Resources ── */
+    .resources {
+      padding: 4rem 0;
+    }
+
+    .resource-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .resource-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      padding: 1.5rem;
+      border-radius: 1.25rem;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .resource-item:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    .resource-icon {
+      width: 42px;
+      height: 42px;
+      min-width: 42px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+      border-radius: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+    }
+
+    .resource-item h3 {
+      color: var(--text-primary);
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .resource-item p {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+    }
+
+    /* ── CTA Banner ── */
+    .cta-banner {
+      text-align: center;
+      padding: 4rem 2rem;
+      margin: 3rem 0 2rem;
+      background: linear-gradient(135deg, rgba(99,102,241,0.12), rgba(139,92,246,0.12));
+      border: 1px solid rgba(99,102,241,0.2);
+      border-radius: 2rem;
+    }
+
+    .cta-banner h2 {
+      color: var(--text-primary);
+      font-size: 1.8rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .cta-banner p {
+      color: var(--text-secondary);
+      max-width: 500px;
+      margin: 0 auto 1.5rem;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .artist-hero h1 {
+        font-size: 2rem;
+      }
+
+      .artist-hero p {
+        font-size: 1rem;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .steps {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .artist-actions {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
 </head>
 <body>
   <header>
-
     <div class="logo">
-      <img src="../favicon.ico" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
+      <img src="/favicon.avif" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
       <span>VentiStudio</span>
     </div>
     <nav aria-label="Navigation principale">
-      <a href="../" class="active">Accueil</a>
-      <a href="../approuvedcontent/">Contenu Approuvé</a>
-      <a href="../player">Lecteur</a>
-      <a href="../wiki">Wiki</a>
-      <a href="../staff">Équipe</a>
-      <a href="../news">News</a>
-      <a href="../pip">PIP</a>
-      <a href="../sitemap">Plan du site</a>
+      <a href="/">Accueil</a>
+      <a href="/artist" class="active">For Artist</a>
+      <a href="/evaluation">Contenu Approuvé</a>
+      <a href="/music">Musique</a>
+      <a href="/news">News</a>
+      <a href="/wiki">Wiki</a>
+      <a href="/sitemap">Plan du site</a>
     </nav>
     <div class="controls" role="toolbar" aria-label="Contrôles">
       <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
@@ -37,166 +359,273 @@
       </button>
       <div id="user-button" role="region" aria-label="Authentification"></div>
     </div>
-  
   </header>
 
   <main>
 
+    <!-- ── Hero ── -->
+    <section class="artist-hero">
+      <div class="artist-badge">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 2L9 9H2l6 4.5L5.5 21 12 16.5 18.5 21 16 13.5 22 9h-7L12 2z" fill="currentColor"/>
+        </svg>
+        For Artist
+      </div>
+      <h1>Votre espace créatif chez VentiStudio</h1>
+      <p>Soumettez vos œuvres, accédez à des outils exclusifs et rejoignez une communauté d'artistes passionnés.</p>
+      <div class="artist-actions">
+        <a href="/artist/submissions" class="btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+          Soumettre une œuvre
+        </a>
+        <a href="#ressources" class="btn-secondary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M4 19V5a2 2 0 012-2h8l6 6v10a2 2 0 01-2 2H6a2 2 0 01-2-2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M14 3v6h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Voir les ressources
+        </a>
+      </div>
+    </section>
 
+    <!-- ── Features ── -->
+    <section class="features">
+      <div class="section-title">
+        <h2>Ce que nous offrons aux artistes</h2>
+        <p>Une suite d'outils et de services conçus pour soutenir votre créativité à chaque étape.</p>
+      </div>
+      <div class="features-grid">
 
-    <h1 style="text-align:center; margin-top:2rem;">Nos Artistes</h1>
-    <div class="artist-grid">
-      <!-- Carte artiste -->
-      <div class="artist-card" onclick="openArtistModal('artist1')">
-        <img src="/a-files/image/ventiopastudien.avif" alt="Venti Opastudien">
-        <div class="artist-name">Venti Opastudien</div>
-      </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Soumissions</h3>
+          <p>Envoyez vos créations musicales, visuelles ou littéraires directement à notre équipe pour une évaluation et une mise en avant.</p>
+        </div>
 
-      <div class="artist-card" onclick="openArtistModal('artist2')">
-        <img src="/a-files/image/p0lterg3iist.avif" alt="P0LTERG3IIST">
-        <div class="artist-name">P0LTERG3IIST</div>
-      </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+              <path d="M8 12l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Évaluation & Feedback</h3>
+          <p>Recevez un retour constructif de notre équipe éditoriale sur chacune de vos soumissions.</p>
+        </div>
 
-      <div class="artist-card" onclick="openArtistModal('artist3')">
-        <img src="/a-files/image/lightwater.avif" alt="LIGHTWATER">
-        <div class="artist-name">LIGHTWATER</div>
-      </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+              <path d="M3 9h18M9 3v18" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </div>
+          <h3>Mise en avant</h3>
+          <p>Les meilleures créations sont mises en avant sur la plateforme VentiStudio et nos réseaux sociaux.</p>
+        </div>
 
-      <div class="artist-card" onclick="openArtistModal('artist4')">
-        <img src="/a-files/image/iletaitunefeemokafrego.avif" alt="Il Ã©tait une fÃ©e mokafrego">
-        <div class="artist-name">Il Ã©tait une fÃ©e mokafrego</div>
-      </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2"/>
+              <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Communauté</h3>
+          <p>Échangez avec d'autres artistes, collaborez sur des projets et développez votre réseau créatif.</p>
+        </div>
 
-      <div class="artist-card" onclick="openArtistModal('artist5')">
-        <img src="/a-files/image/justicepourhugo.avif" alt="Justice Pour Hugo">
-        <div class="artist-name">Justice Pour Hugo</div>
-      </div>
-    </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M9 18V5l12-2v13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="6" cy="18" r="3" stroke="currentColor" stroke-width="2"/>
+              <circle cx="18" cy="16" r="3" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </div>
+          <h3>Distribution musicale</h3>
+          <p>Publiez votre musique sur le lecteur VentiStudio et touchez un large public directement sur la plateforme.</p>
+        </div>
 
-    <!-- Overlay et modale -->
-    <div class="artist-overlay" id="artistOverlay" onclick="closeArtistModal()"></div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Protection des droits</h3>
+          <p>Vos œuvres sont protégées par notre politique DMCA. Nous veillons au respect de vos droits d'auteur.</p>
+        </div>
 
-    <div class="artist-modal" id="artist1">
-      <button class="close-modal" onclick="closeArtistModal()">âœ•</button>
-      <div style="text-align: center;">
-        <img src="/a-files/image/ventiopastudien.avif" alt="Hikari Umaishi">
-        <h3>Hikari Umaishi</h3>
       </div>
-      <div class="artist-info">
-        <p><strong>Nom d'artiste :</strong> Hikari Umaishi</p>
-        <p><strong>RÃ´le :</strong> Fondateur & Artiste</p>
-        <p><strong>Biographie :</strong> Fondateur de VentiStudio et artiste principal, Hikari combine crÃ©ativitÃ© et innovation pour donner vie Ã  des projets uniques.</p>
-      </div>
-      <div class="artist-buttons">
-        <a href="/social/Link-Start/?redirect=https://discord.gg/BupfZHSBbC" target="_blank">ðŸ’¬ Discord</a>
-        <a href="/social/Link-Start/?redirect=https://open.spotify.com/intl-fr/artist/77MxpoFvQT4XPVwtsZP403?nd=1&dlsi=bc618534e2214645" target="_blank">ðŸŽµ Spotify</a>
-        <a href="/social/Link-Start/?redirect=https://github.com/ventistudio" target="_blank">ðŸ’» GitHub</a>
-      </div>
-    </div>
+    </section>
 
-    <div class="artist-modal" id="artist2">
-      <button class="close-modal" onclick="closeArtistModal()">âœ•</button>
-      <div style="text-align: center;">
-        <img src="/a-files/image/p0lterg3iist.avif" alt="P0LTERG3IIST">
-        <h3>P0LTERG3IIST</h3>
+    <!-- ── Process ── -->
+    <section class="process">
+      <div class="section-title">
+        <h2>Comment ça marche ?</h2>
+        <p>De la soumission à la publication, un processus simple et transparent.</p>
       </div>
-      <div class="artist-info">
-        <p><strong>Nom d'artiste :</strong> P0LTERG3IIST</p>
-        <p><strong>RÃ´le :</strong> GÃ©rante & Artiste Musical</p>
-        <p><strong>Biographie :</strong> Artiste spÃ©cialisÃ© dans la musique pop, hyperpop.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Soumettez</h3>
+          <p>Remplissez le formulaire de soumission avec votre œuvre et les détails associés.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Évaluation</h3>
+          <p>Notre équipe examine votre création et vous fournit un retour détaillé.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Approbation</h3>
+          <p>Si votre œuvre est approuvée, elle est préparée pour la publication sur nos plateformes.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">4</div>
+          <h3>Publication</h3>
+          <p>Votre création est mise en ligne et promue auprès de notre communauté.</p>
+        </div>
       </div>
-      <div class="artist-buttons">
-        <a href="/social/Link-Start/?redirect=https://discord.gg/vwgtNPKRXw" target="_blank">ðŸ’¬ Discord</a>
-        <a href="/social/Link-Start/?redirect=https://soundcloud.com/moonlightvoc-437" target="_blank">ðŸŽµ SoundCloud</a>
-      </div>
-    </div>
+    </section>
 
-    <div class="artist-modal" id="artist3">
-      <button class="close-modal" onclick="closeArtistModal()">âœ•</button>
-      <div style="text-align: center;">
-        <img src="/a-files/image/lightwater.avif" alt="LIGHTWATER">
-        <h3>LIGHTWATER</h3>
+    <!-- ── Resources ── -->
+    <section class="resources" id="ressources">
+      <div class="section-title">
+        <h2>Ressources pour artistes</h2>
+        <p>Tout ce dont vous avez besoin pour créer, soumettre et réussir.</p>
       </div>
-      <div class="artist-info">
-        <p><strong>Nom d'artiste :</strong> LIGHTWATER</p>
-        <p><strong>RÃ´le :</strong> Artiste Musical</p>
-        <p><strong>Biographie :</strong> Artiste spÃ©cialisÃ© dans l'art numÃ©rique et la musique pop, hip-hop, drill et freestyle.</p>
-      </div>
-      <div class="artist-buttons">
-        <a href="/social/Link-Start/?redirect=https://discord.gg/xZZMdn7byF" target="_blank">ðŸ’¬ Discord</a>
-        <a href="/social/Link-Start/?redirect=https://www.youtube.com/@lightwater_prod" target="_blank">ðŸ“¹ YouTube</a>
-      </div>
-    </div>
+      <div class="resource-list">
 
-    <div class="artist-modal" id="artist4">
-      <button class="close-modal" onclick="closeArtistModal()">âœ•</button>
-      <div style="text-align: center;">
-        <img src="/a-files/image/iletaitunefeemokafrego.avif" alt="Il Ã©tait une fÃ©e mokafrego">
-        <h3>Il Ã©tait une fÃ©e mokafrego</h3>
-      </div>
-      <div class="artist-info">
-        <p><strong>Nom d'artiste :</strong> Il Ã©tait une fÃ©e mokafrego</p>
-        <p><strong>RÃ´le :</strong> CrÃ©atrice de Contenu</p>
-        <p><strong>Biographie :</strong> Notre bataille pour notre fils ! ðŸ’ª Mais aussi, amour, simplicitÃ©, fun ...</p>
-      </div>
-      <div class="artist-buttons">
-        <a href="/social/Link-Start/?redirect=https://www.tiktok.com/@iletaitunefeemokafrego" target="_blank">ðŸ“± TikTok</a>
-      </div>
-    </div>
+        <a href="/artist/submissions" class="resource-item">
+          <div class="resource-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M14 2v6h6M12 18v-6M9 15l3-3 3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <h3>Formulaire de soumission</h3>
+            <p>Envoyez votre œuvre pour évaluation par notre équipe.</p>
+          </div>
+        </a>
 
-    <div class="artist-modal" id="artist5">
-      <button class="close-modal" onclick="closeArtistModal()">âœ•</button>
-      <div style="text-align: center;">
-        <img src="/a-files/image/justicepourhugo.avif" alt="Justice Pour Hugo">
-        <h3>Justice Pour Hugo</h3>
+        <a href="/lawful/dmcainfo" class="resource-item">
+          <div class="resource-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <h3>Politique DMCA</h3>
+            <p>Informations sur la protection de vos droits d'auteur.</p>
+          </div>
+        </a>
+
+        <a href="/lawful/tos" class="resource-item">
+          <div class="resource-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <h3>Conditions d'utilisation</h3>
+            <p>Les règles et conditions pour publier sur VentiStudio.</p>
+          </div>
+        </a>
+
+        <a href="/discord" class="resource-item">
+          <div class="resource-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <h3>Discord communautaire</h3>
+            <p>Rejoignez notre serveur pour échanger avec d'autres artistes.</p>
+          </div>
+        </a>
+
+        <a href="/evaluation" class="resource-item">
+          <div class="resource-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 2L9 9H2l6 4.5L5.5 21 12 16.5 18.5 21 16 13.5 22 9h-7L12 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <h3>Contenu approuvé</h3>
+            <p>Consultez les œuvres déjà validées et mises en avant.</p>
+          </div>
+        </a>
+
+        <a href="/lawful/support" class="resource-item">
+          <div class="resource-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+              <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3M12 17h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <h3>Support & Assistance</h3>
+            <p>Besoin d'aide ? Contactez notre équipe de support.</p>
+          </div>
+        </a>
+
       </div>
-      <div class="artist-info">
-        <p><strong>Nom d'artiste :</strong> Justice Pour Hugo</p>
-        <p><strong>RÃ´le :</strong> CrÃ©atrice de Contenu</p>
-        <p><strong>Biographie :</strong> ðŸŽ®â™Ÿï¸ðŸŽ§ðŸŽ¬ðŸ¦ mon combat ne fait que commencer @Gogo& Lulu</p>
-      </div>
-      <div class="artist-buttons">
-        <a href="/social/Link-Start/?redirect=https://www.tiktok.com/@justice_pour_hugo" target="_blank">ðŸ“± TikTok</a>
-      </div>
-    </div>
-  
-  
-  
+    </section>
+
+    <!-- ── CTA Bottom ── -->
+    <section class="cta-banner">
+      <h2>Prêt à partager votre talent ?</h2>
+      <p>Rejoignez les artistes VentiStudio et faites découvrir vos créations au monde entier.</p>
+      <a href="/artist/submissions" class="btn-primary">
+        Commencer maintenant
+      </a>
+    </section>
+
   </main>
 
   <footer>
-
     <div class="footer-content">
       <div class="footer-section">
         <h4>Outils</h4>
         <ul>
           <li><a href="#">Encrypt</a></li>
-          <li><a href="#">Plan du site</a></li>
-          <li><a href="#">Statut</a></li>
+          <li><a href="/sitemap">Plan du site</a></li>
+          <li><a href="/stats">Statut</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Entreprise</h4>
         <ul>
-          <li><a href="#">À propos</a></li>
-          <li><a href="#">Emplois</a></li>
-          <li><a href="#">Marque</a></li>
+          <li><a href="/about">À propos</a></li>
+          <li><a href="/jobs">Emplois</a></li>
+          <li><a href="/logo">Marque</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Ressources</h4>
         <ul>
-          <li><a href="#">Université</a></li>
-          <li><a href="#">Assistance</a></li>
-          <li><a href="#">Sécurité</a></li>
+          <li><a href="/university">Université</a></li>
+          <li><a href="/lawful/support">Assistance</a></li>
+          <li><a href="/lawful/security">Sécurité</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Chartes</h4>
         <ul>
-          <li><a href="#">Conditions</a></li>
-          <li><a href="#">Confidentialité</a></li>
-          <li><a href="#">Information DMCA</a></li>
+          <li><a href="/lawful/tos">Conditions</a></li>
+          <li><a href="/lawful/cookies">Confidentialité</a></li>
+          <li><a href="/lawful/dmcainfo">Information DMCA</a></li>
         </ul>
       </div>
     </div>
@@ -204,11 +633,8 @@
       <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
       <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
     </div>
-  
   </footer>
 
-  <script src="../script.js" defer></script>
+  <script src="/script.js" defer></script>
 </body>
 </html>
-
-

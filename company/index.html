@@ -1,186 +1,366 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <meta name="description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
-  <meta name="theme-color" content="#6366f1">
-  <title>VentiStudio v4</title>
-  <link rel="stylesheet" href="../style.css">
-</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Notre Marque &ndash; VentiStudio</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #0e0e18;
+      color: #e0dced;
+      line-height: 1.7;
+    }
+
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #16162a; }
+    ::-webkit-scrollbar-thumb { background: #7b66ff; border-radius: 8px; }
+    ::-webkit-scrollbar-thumb:hover { background: #9b86ff; }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 80px 20px 60px;
+      background: linear-gradient(180deg, #16103a 0%, #0e0e18 100%);
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      background: linear-gradient(90deg, #7b66ff, #bb9af7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      color: #9a90b8;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    /* Container */
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Section */
+    .section {
+      padding: 60px 0;
+    }
+
+    .section + .section {
+      border-top: 1px solid rgba(123,102,255,.12);
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #bb9af7;
+      margin-bottom: 28px;
+    }
+
+    /* Cards grid */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      background: linear-gradient(135deg, #1a1a30, #14142a);
+      border: 1px solid rgba(123,102,255,.15);
+      border-radius: 16px;
+      padding: 32px 28px;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(123,102,255,.15);
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      color: #c8b8f8;
+      margin-bottom: 14px;
+    }
+
+    .card p, .card li {
+      color: #9a90b8;
+      font-size: .95rem;
+    }
+
+    .card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .card ul li {
+      padding: 5px 0;
+      padding-left: 18px;
+      position: relative;
+    }
+
+    .card ul li::before {
+      content: '\2726';
+      position: absolute;
+      left: 0;
+      color: #7b66ff;
+    }
+
+    /* Colors palette */
+    .palette {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .color-swatch {
+      width: 100px;
+      height: 100px;
+      border-radius: 14px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 8px;
+      font-size: .7rem;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 0 1px 4px rgba(0,0,0,.6);
+      box-shadow: 0 4px 16px rgba(0,0,0,.3);
+      transition: transform .2s ease;
+    }
+
+    .color-swatch:hover { transform: scale(1.08); }
+
+    /* Logo preview */
+    .logo-preview {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .logo-preview img {
+      width: 80px;
+      height: 80px;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(123,102,255,.25);
+    }
+
+    .logo-preview .logo-info {
+      color: #9a90b8;
+      font-size: .95rem;
+    }
+
+    .logo-preview .logo-info strong {
+      color: #c8b8f8;
+    }
+
+    /* Typography sample */
+    .type-sample {
+      margin-top: 16px;
+    }
+
+    .type-sample .sample-title {
+      font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #c8b8f8;
+      margin-bottom: 6px;
+    }
+
+    .type-sample .sample-body {
+      font-family: 'Inter', 'Segoe UI', sans-serif;
+      font-size: 1rem;
+      color: #9a90b8;
+    }
+
+    .type-list {
+      list-style: none;
+      margin-top: 12px;
+    }
+
+    .type-list li {
+      padding: 4px 0;
+      color: #9a90b8;
+      font-size: .95rem;
+    }
+
+    .type-list li strong {
+      color: #c8b8f8;
+    }
+
+    /* Download section */
+    .download-section {
+      text-align: center;
+      padding: 60px 0 80px;
+    }
+
+    .download-section .section-title {
+      margin-bottom: 10px;
+    }
+
+    .download-sub {
+      color: #9a90b8;
+      margin-bottom: 28px;
+      font-size: .95rem;
+    }
+
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: .95rem;
+      text-decoration: none;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #7b66ff, #bb9af7);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(123,102,255,.4);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: #bb9af7;
+      border: 2px solid rgba(123,102,255,.4);
+    }
+
+    .btn-secondary:hover {
+      border-color: #bb9af7;
+      transform: translateY(-2px);
+    }
+
+    .sig-note {
+      display: block;
+      font-size: .75rem;
+      font-weight: 400;
+      color: #7a70a0;
+      margin-top: 20px;
+    }
+
+    /* Footer */
+    .page-footer {
+      text-align: center;
+      padding: 30px 20px;
+      font-size: .8rem;
+      color: #4a4068;
+      border-top: 1px solid rgba(123,102,255,.08);
+    }
+
+    @media (max-width: 600px) {
+      .color-swatch { width: 80px; height: 80px; font-size: .6rem; }
+      .btn { width: 100%; text-align: center; }
+    }
+  </style>
 </head>
 <body>
-  <header>
 
-    <div class="logo">
-      <img src="../favicon.ico" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
-      <span>VentiStudio</span>
-    </div>
-    <nav aria-label="Navigation principale">
-      <a href="../" class="active">Accueil</a>
-      <a href="../approuvedcontent/">Contenu Approuvé</a>
-      <a href="../player">Lecteur</a>
-      <a href="../wiki">Wiki</a>
-      <a href="../staff">Équipe</a>
-      <a href="../news">News</a>
-      <a href="../pip">PIP</a>
-      <a href="../sitemap">Plan du site</a>
-    </nav>
-    <div class="controls" role="toolbar" aria-label="Contrôles">
-      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
-        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
-          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
-          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
-          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
-        </svg>
-      </button>
-      <div id="user-button" role="region" aria-label="Authentification"></div>
-    </div>
-  
-  </header>
+  <!-- Hero -->
+  <section class="hero">
+    <h1>Notre Marque</h1>
+    <p>D&eacute;couvrez l&rsquo;identit&eacute; visuelle et les valeurs qui font VentiStudio.</p>
+  </section>
 
-  <main>
+  <div class="container">
 
-
-
-    <section class="brand-hero">
-      <h1>Notre Marque</h1>
-      <p>DÃ©couvrez l'identitÃ© visuelle et les valeurs qui font VentiStudio</p>
-    </section>
-
-    <div class="brand-grid">
-      <div class="brand-card">
-        <h2>Notre Mission</h2>
-        <p>VentiStudio s'engage Ã  crÃ©er un espace numÃ©rique innovant oÃ¹ la crÃ©ativitÃ© et la communautÃ© se rencontrent. Notre plateforme est conÃ§ue pour inspirer, connecter et permettre Ã  chacun d'exprimer sa crÃ©ativitÃ©.</p>
-      </div>
-
-      <div class="brand-card">
-        <h2>Nos Valeurs</h2>
-        <ul>
-          <li>Innovation continue</li>
-          <li>CrÃ©ativitÃ© sans limites</li>
-          <li>CommunautÃ© inclusive</li>
-          <li>Excellence technique</li>
-          <li>SÃ©curitÃ© et confiance</li>
-        </ul>
-      </div>
-
-      <div class="brand-card">
-        <h2>Notre Vision</h2>
-        <p>Devenir la rÃ©fÃ©rence mondiale en matiÃ¨re de plateforme crÃ©ative, en offrant des outils innovants et un espace d'expression unique pour notre communautÃ©.</p>
-      </div>
-    </div>
-
+    <!-- Mission / Valeurs / Vision -->
     <section class="section">
-      <h2 class="section-title">Notre IdentitÃ© Visuelle</h2>
-      
-      <div class="brand-guidelines">
-        <h3>Palette de Couleurs</h3>
-        <div class="color-palette">
-          <div class="color-item" style="background: var(--bg-primary)">
-            Primary<br>#7B66FF
-          </div>
-          <div class="color-item" style="background: var(--bg-secondary)">
-            Secondary<br>#2A2D3A
-          </div>
-          <div class="color-item" style="background: var(--text-primary)">
-            Text Primary<br>#1A1B26
-          </div>
-          <div class="color-item" style="background: var(--text-secondary)">
-            Text Secondary<br>#9F86FF
-          </div>
-          <div class="color-item" style="background: var(--neon-glow)">
-            Neon Glow<br>#BB9AF7
-          </div>
-          <div class="color-item" style="background: var(--accent)">
-            Accent<br>#BB9AF7
-          </div>
-          <div class="color-item" style="background: var(--accent-rgb)">
-            Accent RGB<br>#BB9AF7
-          </div>
+      <h2 class="section-title">Qui sommes-nous</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Notre Mission</h3>
+          <p>VentiStudio s&rsquo;engage &agrave; cr&eacute;er un espace num&eacute;rique innovant o&ugrave; la cr&eacute;ativit&eacute; et la communaut&eacute; se rencontrent. Notre plateforme est con&ccedil;ue pour inspirer, connecter et permettre &agrave; chacun d&rsquo;exprimer sa cr&eacute;ativit&eacute;.</p>
         </div>
-
-        <h3>Notre Logo</h3>
-        <div class="brand-assets">
-          <div class="asset-preview">
-            <img src="https://ventistudio.eu/favicon.avif" alt="VentiStudio Logo">
-            <p>Logo Principal</p>
-          </div>
+        <div class="card">
+          <h3>Nos Valeurs</h3>
+          <ul>
+            <li>Innovation continue</li>
+            <li>Cr&eacute;ativit&eacute; sans limites</li>
+            <li>Communaut&eacute; inclusive</li>
+            <li>Excellence technique</li>
+            <li>S&eacute;curit&eacute; et confiance</li>
+          </ul>
         </div>
-
-        <h3>Typographie</h3>
-        <p>Nous utilisons principalement deux polices :</p>
-        <ul>
-          <li>Space Grotesk pour les titres</li>
-          <li>Inter pour le texte courant</li>
-        </ul>
-        <h3>Utilisation des Polices</h3>
-        <p>Les polices doivent Ãªtre utilisÃ©es de maniÃ¨re cohÃ©rente Ã  travers tous les supports.</p>
+        <div class="card">
+          <h3>Notre Vision</h3>
+          <p>Devenir la r&eacute;f&eacute;rence mondiale en mati&egrave;re de plateforme cr&eacute;ative, en offrant des outils innovants et un espace d&rsquo;expression unique pour notre communaut&eacute;.</p>
+        </div>
       </div>
     </section>
 
-    <section class="download-section">
+    <!-- Identit&eacute; visuelle -->
+    <section class="section">
+      <h2 class="section-title">Identit&eacute; Visuelle</h2>
+
+      <h3 style="color:#c8b8f8;margin-bottom:12px;">Palette de Couleurs</h3>
+      <div class="palette">
+        <div class="color-swatch" style="background:#7b66ff;">Primary<br>#7B66FF</div>
+        <div class="color-swatch" style="background:#2a2d3a;">Secondary<br>#2A2D3A</div>
+        <div class="color-swatch" style="background:#1a1b26;">Dark<br>#1A1B26</div>
+        <div class="color-swatch" style="background:#bb9af7;">Accent<br>#BB9AF7</div>
+        <div class="color-swatch" style="background:#9f86ff;">Glow<br>#9F86FF</div>
+      </div>
+
+      <h3 style="color:#c8b8f8;margin-top:40px;margin-bottom:12px;">Notre Logo</h3>
+      <div class="logo-preview">
+        <img src="https://ventistudio.eu/favicon.avif" alt="Logo VentiStudio">
+        <div class="logo-info">
+          <strong>VentiStudio</strong><br>
+          Le logo doit toujours &ecirc;tre utilis&eacute; sur un fond sombre avec un espace de respiration suffisant autour.
+        </div>
+      </div>
+
+      <h3 style="color:#c8b8f8;margin-top:40px;margin-bottom:12px;">Typographie</h3>
+      <div class="type-sample">
+        <div class="sample-title">Space Grotesk Titres</div>
+        <div class="sample-body">Inter Texte courant. Les polices doivent &ecirc;tre utilis&eacute;es de mani&egrave;re coh&eacute;rente &agrave; travers tous les supports.</div>
+      </div>
+      <ul class="type-list">
+        <li><strong>Space Grotesk</strong> titres, en-t&ecirc;tes, &eacute;l&eacute;ments de navigation</li>
+        <li><strong>Inter</strong> paragraphes, descriptions, texte g&eacute;n&eacute;ral</li>
+      </ul>
+    </section>
+
+    <!-- Kit de marque -->
+    <section class="section download-section">
       <h2 class="section-title">Kit de Marque</h2>
-      <p class="section-subtitle">TÃ©lÃ©chargez nos ressources de marque pour une utilisation Approuvée</p>
-      <div class="download-buttons">
-        <a href="/company/presskit.zip" class="cta-button">TÃ©lÃ©charger le Kit</a>
-        <a href="/company/presskit.zip.gpg" class="cta-button signature">
-          TÃ©lÃ©charger la version signÃ©e*
-          <span class="sig-info">Peut demander l'utilisation d'un logiciel tiers comme Kleopatra</span>
-        </a>
+      <p class="download-sub">T&eacute;l&eacute;chargez nos ressources de marque pour une utilisation approuv&eacute;e.</p>
+      <div class="btn-group">
+        <a href="/company/presskit.zip" class="btn btn-primary">T&eacute;l&eacute;charger le Kit</a>
+        <a href="/company/presskit.zip.gpg" class="btn btn-secondary">Version sign&eacute;e (GPG)</a>
       </div>
+      <span class="sig-note">La version sign&eacute;e peut n&eacute;cessiter un logiciel tiers comme Kleopatra.</span>
     </section>
-  
-  
-  
-  </main>
 
-  <footer>
+  </div>
 
-    <div class="footer-content">
-      <div class="footer-section">
-        <h4>Outils</h4>
-        <ul>
-          <li><a href="#">Encrypt</a></li>
-          <li><a href="#">Plan du site</a></li>
-          <li><a href="#">Statut</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h4>Entreprise</h4>
-        <ul>
-          <li><a href="#">À propos</a></li>
-          <li><a href="#">Emplois</a></li>
-          <li><a href="#">Marque</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h4>Ressources</h4>
-        <ul>
-          <li><a href="#">Université</a></li>
-          <li><a href="#">Assistance</a></li>
-          <li><a href="#">Sécurité</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h4>Chartes</h4>
-        <ul>
-          <li><a href="#">Conditions</a></li>
-          <li><a href="#">Confidentialité</a></li>
-          <li><a href="#">Information DMCA</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
-      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
-    </div>
-  
-  </footer>
+  <div class="page-footer">
+    &copy; <script>document.write(new Date().getFullYear())</script> VentiStudio FiTsZ Company. Tous droits r&eacute;serv&eacute;s.
+  </div>
 
-  <script src="../script.js" defer></script>
 </body>
 </html>
-
-

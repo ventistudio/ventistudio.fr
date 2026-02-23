@@ -1,175 +1,306 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <meta name="description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
+  <meta name="description" content="VentiStudio - Découvrez les secrets cachés et easter eggs de la plateforme.">
   <meta name="theme-color" content="#6366f1">
-  <title>VentiStudio v4</title>
-  <link rel="stylesheet" href="style.css">
-</title>
-
-  <title>VentiStudio - Easter Eggs</title>
+  <title>Easter Eggs | VentiStudio</title>
+  <link rel="stylesheet" href="/style.css">
   <style>
-
-
-
-    .easter-egg-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 20px;
-      padding: 20px;
+    .ee-hero {
+      text-align: center;
+      padding: 4rem 2rem 2rem;
+    }
+    .ee-hero h1 {
+      font-size: 2.2rem;
+      margin-bottom: .5rem;
+      background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .ee-hero .subtitle {
+      font-size: 1.05rem;
+      opacity: .7;
+      max-width: 550px;
+      margin: 0 auto;
     }
 
-    .easter-egg-card {
-      background-color: var(--background-secondary);
-      border-radius: 15px;
-      padding: 25px;
+    .ee-stats {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 2rem auto 0;
+      flex-wrap: wrap;
+    }
+    .ee-stat {
+      text-align: center;
+    }
+    .ee-stat-value {
+      font-size: 1.6rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .ee-stat-label {
+      font-size: .8rem;
+      opacity: .5;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+
+    .ee-section {
+      max-width: 900px;
+      margin: 0 auto 3rem;
+      padding: 0 1.5rem;
+    }
+    .ee-section h2 {
+      font-size: 1.4rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .ee-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .ee-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 1.8rem 1.2rem;
       text-align: center;
       cursor: pointer;
-      transition: all 0.3s ease;
-      border: 2px solid transparent;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(12px);
+      transition: all .3s cubic-bezier(.4, 0, .2, 1);
+      position: relative;
+      overflow: hidden;
     }
-
-    .easter-egg-card:hover {
-      transform: translateY(-8px);
-      border-color: var(--accent-color);
-      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    .ee-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(99,102,241,.08), rgba(139,92,246,.04));
+      opacity: 0;
+      transition: opacity .3s;
     }
-
-    .easter-egg-emoji {
-      font-size: 4em;
-      margin-bottom: 10px;
-      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+    .ee-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--accent);
+      box-shadow: 0 12px 32px var(--glass-shadow), 0 0 20px rgba(99,102,241,.15);
     }
+    .ee-card:hover::before { opacity: 1; }
+    .ee-card:active { transform: scale(.97); }
 
-    .easter-egg-card h3 {
-      color: var(--text-primary);
-      font-size: 1.2em;
-      margin-top: 10px;
+    .ee-card.discovered {
+      border-color: rgba(34,197,94,.4);
+    }
+    .ee-card.discovered .ee-badge { opacity: 1; }
+
+    .ee-emoji {
+      font-size: 3.2rem;
+      display: block;
+      margin-bottom: .6rem;
+      position: relative;
+      z-index: 1;
+      transition: transform .3s;
+    }
+    .ee-card:hover .ee-emoji { transform: scale(1.15) rotate(5deg); }
+
+    .ee-card-title {
       font-weight: 600;
+      font-size: .95rem;
+      position: relative;
+      z-index: 1;
     }
 
-    .easter-egg-card:active {
-      transform: scale(0.98);
+    .ee-badge {
+      position: absolute;
+      top: .6rem;
+      right: .6rem;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: rgba(34,197,94,.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity .3s;
     }
+    .ee-badge svg { width: 12px; height: 12px; color: #22c55e; }
 
-    .easter-modal {
+    .ee-difficulty {
+      display: inline-block;
+      font-size: .7rem;
+      padding: .15rem .5rem;
+      border-radius: 6px;
+      margin-top: .5rem;
+      font-weight: 600;
+      position: relative;
+      z-index: 1;
+    }
+    .ee-difficulty.easy { background: rgba(34,197,94,.15); color: #22c55e; }
+    .ee-difficulty.medium { background: rgba(245,158,11,.15); color: #f59e0b; }
+    .ee-difficulty.hard { background: rgba(239,68,68,.15); color: #ef4444; }
+    .ee-difficulty.legendary { background: rgba(139,92,246,.15); color: #8b5cf6; }
+
+    /* Modal */
+    .ee-modal-overlay {
       display: none;
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.8);
-      backdrop-filter: blur(5px);
+      inset: 0;
+      background: rgba(0,0,0,.7);
+      backdrop-filter: blur(8px);
       z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
     }
+    .ee-modal-overlay.active { display: flex; }
 
-    .modal-content {
+    .ee-modal {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      backdrop-filter: blur(20px);
+      padding: 2.5rem;
+      max-width: 480px;
+      width: 100%;
       position: relative;
-      background-color: var(--background-primary);
-      margin: 15% auto;
-      padding: 30px;
-      width: 70%;
-      max-width: 500px;
-      border-radius: 15px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-      animation: modalFadeIn 0.3s ease;
+      animation: eeModalIn .35s cubic-bezier(.4, 0, .2, 1);
+    }
+    @keyframes eeModalIn {
+      from { opacity: 0; transform: translateY(20px) scale(.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
-    @keyframes modalFadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .close-modal {
+    .ee-modal-close {
       position: absolute;
-      right: 15px;
-      top: 15px;
-      font-size: 28px;
-      cursor: pointer;
-      background: none;
-      border: none;
-      color: var(--text-primary);
-      transition: transform 0.2s ease;
-      padding: 5px 10px;
+      top: 1rem;
+      right: 1rem;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
+      border: 1px solid var(--glass-border);
+      background: var(--glass-bg);
+      color: inherit;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all .2s;
     }
-
-    .close-modal:hover {
+    .ee-modal-close:hover {
+      border-color: var(--accent);
       transform: rotate(90deg);
-      background-color: var(--background-secondary);
     }
 
-    .modal-emoji {
-        font-size: 5em;
-        text-align: center;
-        margin-bottom: 20px;
-        animation: bounceIn 0.5s ease;
+    .ee-modal-emoji {
+      font-size: 4rem;
+      text-align: center;
+      display: block;
+      margin-bottom: 1rem;
+      animation: eeBounce .5s ease;
+    }
+    @keyframes eeBounce {
+      0% { transform: scale(.3); opacity: 0; }
+      50% { transform: scale(1.1); }
+      70% { transform: scale(.95); }
+      100% { transform: scale(1); opacity: 1; }
     }
 
-    .modal-title {
-        color: var(--text-primary);
-        font-size: 1.8em;
-        margin-bottom: 15px;
-        text-align: center;
+    .ee-modal-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: .5rem;
+    }
+    .ee-modal-desc {
+      opacity: .7;
+      line-height: 1.7;
+      text-align: center;
+      font-size: .95rem;
+    }
+    .ee-modal-hint {
+      margin-top: 1.2rem;
+      padding: 1rem;
+      background: rgba(245,158,11,.08);
+      border: 1px solid rgba(245,158,11,.2);
+      border-radius: 10px;
+      font-size: .85rem;
+      text-align: center;
+    }
+    .ee-modal-hint strong { color: #f59e0b; }
+
+    /* Progress bar */
+    .ee-progress-wrap {
+      max-width: 400px;
+      margin: 1.5rem auto 0;
+    }
+    .ee-progress-bar {
+      height: 6px;
+      background: var(--glass-bg);
+      border-radius: 3px;
+      overflow: hidden;
+      border: 1px solid var(--glass-border);
+    }
+    .ee-progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+      border-radius: 3px;
+      transition: width .5s cubic-bezier(.4, 0, .2, 1);
+    }
+    .ee-progress-text {
+      font-size: .75rem;
+      opacity: .5;
+      text-align: center;
+      margin-top: .4rem;
     }
 
-    .modal-description {
-        color: var(--text-secondary);
-        line-height: 1.6;
-        font-size: 1.1em;
-        text-align: justify;
+    /* Back link */
+    .ee-back {
+      text-align: center;
+      margin-bottom: 3rem;
     }
+    .ee-back a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      transition: opacity .2s;
+    }
+    .ee-back a:hover { opacity: .7; }
 
-    @keyframes bounceIn {
-        0% {
-            transform: scale(0.3);
-            opacity: 0;
-        }
-        50% {
-            transform: scale(1.1);
-        }
-        70% {
-            transform: scale(0.9);
-        }
-        100% {
-            transform: scale(1);
-            opacity: 1;
-        }
+    @media (max-width: 600px) {
+      .ee-hero h1 { font-size: 1.6rem; }
+      .ee-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: .8rem; }
+      .ee-card { padding: 1.4rem 1rem; }
+      .ee-emoji { font-size: 2.5rem; }
+      .ee-modal { padding: 2rem 1.5rem; }
+      .ee-stats { gap: 1.2rem; }
     }
-  
-  
-  
   </style>
 </head>
 <body>
   <header>
-
-
     <div class="logo">
-      <img src="favicon.ico" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
+      <img src="/favicon.avif" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
       <span>VentiStudio</span>
     </div>
     <nav aria-label="Navigation principale">
-      <a href="" class="active">Accueil</a>
-      <a href="approuvedcontent/">Contenu Approuvé</a>
-      <a href="player">Lecteur</a>
-      <a href="wiki">Wiki</a>
-      <a href="staff">Équipe</a>
-      <a href="artist">Artiste</a>
-      <a href="pip">PIP</a>
-      <a href="sitemap">Plan du site</a>
+      <a href="/">Accueil</a>
+      <a href="/evaluation">Contenu Approuvé</a>
+      <a href="/player">Lecteur</a>
+      <a href="/wiki">Wiki</a>
+      <a href="/staff">Équipe</a>
+      <a href="/news">News</a>
+      <a href="/pip">PIP</a>
+      <a href="/sitemap">Plan du site</a>
     </nav>
     <div class="controls" role="toolbar" aria-label="Contrôles">
       <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
@@ -181,94 +312,170 @@
       </button>
       <div id="user-button" role="region" aria-label="Authentification"></div>
     </div>
-  
-  
   </header>
 
   <main>
-
-
-
-    <section class="hero-section">
-      <h1>Easter Eggs VentiStudio</h1>
-      <p>DÃ©couvrez les secrets cachÃ©s derriÃ¨re chaque emoji</p>
-    </section>
-
-    <section class="section">
-      <div class="easter-egg-grid">
-        <!-- Each emoji card will be generated by JavaScript -->
+    <!-- Hero -->
+    <section class="ee-hero">
+      <h1>Easter Eggs</h1>
+      <p class="subtitle">Découvrez les secrets cachés de VentiStudio. Cliquez sur chaque carte pour révéler son mystère.</p>
+      <div class="ee-stats">
+        <div class="ee-stat">
+          <div class="ee-stat-value" id="discovered-count">0</div>
+          <div class="ee-stat-label">Découverts</div>
+        </div>
+        <div class="ee-stat">
+          <div class="ee-stat-value" id="total-count">0</div>
+          <div class="ee-stat-label">Total</div>
+        </div>
+      </div>
+      <div class="ee-progress-wrap">
+        <div class="ee-progress-bar"><div class="ee-progress-fill" id="ee-progress"></div></div>
+        <div class="ee-progress-text" id="ee-progress-text">0% découvert</div>
       </div>
     </section>
 
-    <div class="easter-modal" id="easterModal">
-      <div class="modal-content">
-        <button class="close-modal" onclick="closeModal()">&times;</button>
-        <div class="modal-emoji" id="modalEmoji"></div>
-        <h2 class="modal-title" id="modalTitle"></h2>
-        <p class="modal-description" id="modalDescription"></p>
+    <!-- Easter Eggs Grid -->
+    <section class="ee-section">
+      <div class="ee-grid" id="ee-grid"></div>
+    </section>
+
+    <!-- Modal -->
+    <div class="ee-modal-overlay" id="ee-overlay">
+      <div class="ee-modal">
+        <button class="ee-modal-close" id="ee-close" aria-label="Fermer">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+        <span class="ee-modal-emoji" id="modal-emoji"></span>
+        <h2 class="ee-modal-title" id="modal-title"></h2>
+        <p class="ee-modal-desc" id="modal-desc"></p>
+        <div class="ee-modal-hint" id="modal-hint"></div>
       </div>
     </div>
-  
-  
-  
+
+    <!-- Back -->
+    <div class="ee-back">
+      <a href="/">&larr; Retour à l'accueil</a>
+    </div>
   </main>
 
   <footer>
-
-
     <div class="footer-content">
       <div class="footer-section">
         <h4>Outils</h4>
         <ul>
           <li><a href="#">Encrypt</a></li>
-          <li><a href="#">Plan du site</a></li>
-          <li><a href="#">Statut</a></li>
+          <li><a href="/sitemap">Plan du site</a></li>
+          <li><a href="/stats">Statut</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Entreprise</h4>
         <ul>
-          <li><a href="#">À propos</a></li>
-          <li><a href="#">Emplois</a></li>
-          <li><a href="#">Marque</a></li>
+          <li><a href="/about">À propos</a></li>
+          <li><a href="/jobs">Emplois</a></li>
+          <li><a href="/logo">Marque</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Ressources</h4>
         <ul>
-          <li><a href="#">Université</a></li>
-          <li><a href="#">Assistance</a></li>
-          <li><a href="#">Sécurité</a></li>
+          <li><a href="/university">Université</a></li>
+          <li><a href="/lawful/support">Assistance</a></li>
+          <li><a href="/lawful/security">Sécurité</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Chartes</h4>
         <ul>
-          <li><a href="#">Conditions</a></li>
-          <li><a href="#">Confidentialité</a></li>
-          <li><a href="#">Information DMCA</a></li>
+          <li><a href="/lawful/tos">Conditions</a></li>
+          <li><a href="/lawful/cookies">Confidentialité</a></li>
+          <li><a href="/lawful/dmcainfo">Information DMCA</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
       <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
-      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
+      <p class="copyright">Copyright  2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
     </div>
-  
-  
   </footer>
 
-  <script src="../script.js" defer></script>
+  <script src="/script.js" defer></script>
   <script>
+    (function() {
+      const eggs = [
+        { emoji: '', title: 'Mélodie cachée', desc: 'Certaines pages du site jouent une mélodie secrète si vous restez assez longtemps. Tendez l\'oreille sur la page du lecteur musical après 3 minutes d\'inactivité.', hint: 'Indice : Patience est mère de toutes les vertus.', difficulty: 'medium' },
+        { emoji: '', title: 'Konami Code', desc: 'Le célèbre code Konami fonctionne sur VentiStudio ! Entrez la séquence magique sur la page d\'accueil pour débloquer une surprise visuelle.', hint: 'Indice :         B A', difficulty: 'easy' },
+        { emoji: '', title: 'Mode Nuit Profonde', desc: 'Entre minuit et 3h du matin, le thème sombre révèle des étoiles animées en arrière-plan. Un spectacle réservé aux noctambules.', hint: 'Indice : Revenez quand la lune est haute.', difficulty: 'medium' },
+        { emoji: '', title: 'Anniversaire', desc: 'Le 24 septembre, date d\'anniversaire de VentiStudio, le site entier se pare de feux d\'artifice et d\'animations festives. Des confettis tombent sur chaque page !', hint: 'Indice : Marquez le 24/09 dans votre calendrier.', difficulty: 'easy' },
+        { emoji: '', title: 'La Prophétie', desc: 'Une page cachée contient une prophétie mystérieuse sur l\'avenir de l\'Aoki Univers. Seuls les plus curieux sauront la trouver dans les méandres du wiki.', hint: 'Indice : Explorez les profondeurs du wiki Aoki.', difficulty: 'hard' },
+        { emoji: '', title: 'Clé du Fondateur', desc: 'Ajoutez "?founder=true" à l\'URL de la page À propos pour révéler un message personnel du créateur de VentiStudio, avec une photo et une lettre de remerciement.', hint: 'Indice : La clé est dans l\'URL.', difficulty: 'medium' },
+        { emoji: '', title: 'Space Invader', desc: 'Sur la page d\'erreur 404, un mini-jeu Space Invaders se cache. Cliquez 5 fois rapidement sur le texte d\'erreur pour le lancer.', hint: 'Indice : La page que personne ne veut voir cache un trésor.', difficulty: 'hard' },
+        { emoji: '', title: 'Venti le Renard', desc: 'La mascotte secrète de VentiStudio est un petit renard nommé Venti. Il apparaît furtivement dans le coin de l\'écran sur 3 pages différentes du site.', hint: 'Indice : Gardez les yeux ouverts sur les bords de l\'écran.', difficulty: 'legendary' },
+        { emoji: '', title: 'Floraison Sakura', desc: 'Le 20 mars, pour l\'équinoxe de printemps, des pétales de cerisier tombent délicatement sur la page Marque. Un hommage aux inspirations japonaises du projet.', hint: 'Indice : Le printemps apporte ses trésors.', difficulty: 'easy' },
+        { emoji: '', title: 'Diamant Caché', desc: 'Un pixel doré est caché quelque part sur la page d\'accueil. Trouvez-le et cliquez dessus pour débloquer un badge spécial sur votre profil Discord.', hint: 'Indice : Cherchez dans les ombres du hero.', difficulty: 'legendary' },
+        { emoji: '', title: 'Double Face', desc: 'Basculez le thème clair/sombre exactement 10 fois en 5 secondes pour déclencher un mode arc-en-ciel temporaire sur la page.', hint: 'Indice : La rapidité est votre alliée.', difficulty: 'hard' },
+        { emoji: '', title: 'Radio Fantôme', desc: 'Sur la page eConcert, un lecteur audio caché diffuse une fréquence radio mystérieuse. Survolez le coin inférieur gauche pendant 2 secondes.', hint: 'Indice : Écoutez les murmures de l\'éther.', difficulty: 'medium' },
+        { emoji: '', title: 'Le Cirque', desc: 'Tapez "circus" au clavier sur n\'importe quelle page pour que tous les éléments commencent à tourner et rebondir pendant 10 secondes.', hint: 'Indice : Cinq lettres pour le chaos.', difficulty: 'easy' },
+        { emoji: '', title: 'Portail Dimensionnel', desc: 'La page Space cache un portail vers une dimension alternative du site avec un design rétro des années 90. Cliquez sur la 3ème étoile en partant de la gauche.', hint: 'Indice : L\'espace est plein de surprises.', difficulty: 'legendary' },
+        { emoji: '', title: 'Score Parfait', desc: 'Complétez le quiz d\'évaluation avec un score de 100% pour débloquer un message de félicitations secret avec un code de réduction.', hint: 'Indice : La perfection paie toujours.', difficulty: 'hard' },
+        { emoji: '', title: 'Pause Café', desc: 'Restez inactif pendant exactement 4 minutes et 18 secondes (la durée d\'une pause café idéale) pour voir apparaître un chat qui boit du café en pixel art.', hint: 'Indice : 4:18  ni plus, ni moins.', difficulty: 'medium' }
+      ];
 
+      const grid = document.getElementById('ee-grid');
+      const overlay = document.getElementById('ee-overlay');
+      const totalEl = document.getElementById('total-count');
+      const discoveredEl = document.getElementById('discovered-count');
+      const progressEl = document.getElementById('ee-progress');
+      const progressText = document.getElementById('ee-progress-text');
 
+      const discovered = JSON.parse(localStorage.getItem('vs-ee-discovered') || '[]');
+      totalEl.textContent = eggs.length;
 
+      function updateProgress() {
+        const count = discovered.length;
+        discoveredEl.textContent = count;
+        const pct = Math.round((count / eggs.length) * 100);
+        progressEl.style.width = pct + '%';
+        progressText.textContent = pct + '% découvert';
+      }
 
-  
+      const diffLabels = { easy: 'Facile', medium: 'Moyen', hard: 'Difficile', legendary: 'Légendaire' };
 
+      eggs.forEach((egg, i) => {
+        const card = document.createElement('div');
+        card.className = 'ee-card' + (discovered.includes(i) ? ' discovered' : '');
+        card.innerHTML =
+          '<span class="ee-badge"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>' +
+          '<span class="ee-emoji">' + egg.emoji + '</span>' +
+          '<div class="ee-card-title">' + egg.title + '</div>' +
+          '<span class="ee-difficulty ' + egg.difficulty + '">' + diffLabels[egg.difficulty] + '</span>';
+        card.addEventListener('click', () => openModal(i));
+        grid.appendChild(card);
+      });
 
+      function openModal(i) {
+        const egg = eggs[i];
+        document.getElementById('modal-emoji').textContent = egg.emoji;
+        document.getElementById('modal-title').textContent = egg.title;
+        document.getElementById('modal-desc').textContent = egg.desc;
+        document.getElementById('modal-hint').innerHTML = '<strong> ' + egg.hint.split(':')[0] + ' :</strong> ' + egg.hint.split(':').slice(1).join(':');
+        overlay.classList.add('active');
+
+        if (!discovered.includes(i)) {
+          discovered.push(i);
+          localStorage.setItem('vs-ee-discovered', JSON.stringify(discovered));
+          grid.children[i].classList.add('discovered');
+          updateProgress();
+        }
+      }
+
+      document.getElementById('ee-close').addEventListener('click', () => overlay.classList.remove('active'));
+      overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.classList.remove('active'); });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') overlay.classList.remove('active'); });
+
+      updateProgress();
+    })();
   </script>
 </body>
 </html>
-
-

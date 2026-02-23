@@ -1,31 +1,519 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <meta name="description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
+  <meta name="description" content="Présentation du serveur Discord VentiStudio - Rejoignez une communauté créative unique.">
   <meta name="theme-color" content="#6366f1">
-  <title>VentiStudio v4</title>
-  <link rel="stylesheet" href="../style.css">
-  PrÃ©sentation Discord - VentiStudio</title>
+  <title>Discord | VentiStudio</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    /* ========== ANIMATED BACKGROUND ========== */
+    .dc-bg-orbs {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .dc-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: .12;
+      animation: dc-float 20s ease-in-out infinite;
+    }
+    .dc-orb:nth-child(1) {
+      width: 500px; height: 500px;
+      background: #5865F2;
+      top: -10%; left: -10%;
+      animation-duration: 22s;
+    }
+    .dc-orb:nth-child(2) {
+      width: 400px; height: 400px;
+      background: var(--accent-secondary);
+      bottom: -15%; right: -5%;
+      animation-duration: 18s;
+      animation-delay: -5s;
+    }
+    .dc-orb:nth-child(3) {
+      width: 300px; height: 300px;
+      background: var(--accent);
+      top: 40%; left: 50%;
+      animation-duration: 25s;
+      animation-delay: -10s;
+    }
+    @keyframes dc-float {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      25% { transform: translate(30px, -40px) scale(1.05); }
+      50% { transform: translate(-20px, 20px) scale(.95); }
+      75% { transform: translate(15px, 30px) scale(1.02); }
+    }
+
+    /* ========== SCROLL REVEAL ========== */
+    .dc-reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all .7s cubic-bezier(.4, 0, .2, 1);
+    }
+    .dc-reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .dc-reveal-delay-1 { transition-delay: .1s; }
+    .dc-reveal-delay-2 { transition-delay: .2s; }
+    .dc-reveal-delay-3 { transition-delay: .3s; }
+    .dc-reveal-delay-4 { transition-delay: .4s; }
+
+    /* ========== HERO ========== */
+    .dc-hero {
+      text-align: center;
+      padding: 5rem 2rem 3rem;
+      position: relative;
+    }
+    .dc-hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      padding: .35rem 1rem;
+      background: rgba(88,101,242,.12);
+      border: 1px solid rgba(88,101,242,.25);
+      border-radius: 20px;
+      font-size: .78rem;
+      font-weight: 600;
+      color: #5865F2;
+      margin-bottom: 1.2rem;
+      letter-spacing: .02em;
+    }
+    .dc-hero-badge .dot {
+      width: 6px; height: 6px;
+      background: #57F287;
+      border-radius: 50%;
+      animation: dc-pulse 2s ease-in-out infinite;
+    }
+    @keyframes dc-pulse { 0%, 100% { opacity: 1; } 50% { opacity: .4; } }
+
+    .dc-hero h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: .6rem;
+      letter-spacing: -.03em;
+      line-height: 1.1;
+    }
+    .dc-hero h1 .gradient {
+      background: linear-gradient(135deg, #5865F2 0%, var(--accent-secondary) 50%, #EB459E 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .dc-hero .jp-title {
+      font-size: .8rem;
+      opacity: .3;
+      letter-spacing: .15em;
+      margin-bottom: .8rem;
+    }
+    .dc-hero .subtitle {
+      font-size: 1.1rem;
+      opacity: .6;
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* Stats strip */
+    .dc-stats {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin-top: 2.5rem;
+      flex-wrap: wrap;
+    }
+    .dc-stat {
+      text-align: center;
+    }
+    .dc-stat-value {
+      font-size: 2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #5865F2, var(--accent-secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+    }
+    .dc-stat-label {
+      font-size: .7rem;
+      opacity: .4;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-top: .2rem;
+    }
+
+    /* ========== SECTIONS ========== */
+    .dc-section {
+      max-width: 900px;
+      margin: 0 auto 3rem;
+      padding: 0 1.5rem;
+    }
+    .dc-section-header {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      margin-bottom: 1.5rem;
+    }
+    .dc-section-header .icon-wrap {
+      width: 32px; height: 32px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .dc-section-header h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+    }
+
+    /* ========== INTRO CARD ========== */
+    .dc-intro {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 2.5rem;
+      backdrop-filter: blur(16px);
+      position: relative;
+      overflow: hidden;
+    }
+    .dc-intro::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #5865F2, var(--accent-secondary), #EB459E);
+    }
+    .dc-intro::after {
+      content: '';
+      position: absolute;
+      top: -60%; right: -20%;
+      width: 350px; height: 350px;
+      background: radial-gradient(circle, rgba(88,101,242,.06), transparent 70%);
+      pointer-events: none;
+    }
+    .dc-intro-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .dc-intro-avatar {
+      width: 60px; height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #5865F2, var(--accent-secondary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: #fff;
+      flex-shrink: 0;
+      box-shadow: 0 0 20px rgba(88,101,242,.25);
+      position: relative;
+    }
+    .dc-intro-avatar::after {
+      content: '';
+      position: absolute;
+      bottom: 2px; right: 2px;
+      width: 14px; height: 14px;
+      background: #57F287;
+      border-radius: 50%;
+      border: 3px solid var(--bg-primary);
+    }
+    .dc-intro-name { font-size: 1.2rem; font-weight: 700; }
+    .dc-intro-name span {
+      font-size: .82rem; opacity: .45; font-weight: 400; display: block;
+    }
+    .dc-intro-roles {
+      display: flex; gap: .4rem; margin-top: .3rem; flex-wrap: wrap;
+    }
+    .dc-role {
+      display: inline-flex; align-items: center; gap: .3rem;
+      font-size: .65rem; font-weight: 600;
+      padding: .15rem .5rem;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: .03em;
+    }
+    .dc-role.founder { background: rgba(88,101,242,.15); color: #5865F2; }
+    .dc-role.artist { background: rgba(235,69,158,.15); color: #EB459E; }
+    .dc-role.dev { background: rgba(87,242,135,.15); color: #57F287; }
+    .dc-intro p {
+      opacity: .75; line-height: 1.8; font-size: .95rem; position: relative;
+    }
+    .dc-intro p + p { margin-top: .6rem; }
+
+    /* ========== REASONS GRID ========== */
+    .dc-reasons {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.2rem;
+    }
+    .dc-reason {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 1.8rem;
+      backdrop-filter: blur(12px);
+      transition: all .4s cubic-bezier(.4, 0, .2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    .dc-reason::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity .4s;
+      border-radius: 16px;
+    }
+    .dc-reason:hover { transform: translateY(-5px); border-color: transparent; }
+    .dc-reason:hover::before { opacity: 1; }
+    .dc-reason:nth-child(1)::before { background: linear-gradient(135deg, rgba(88,101,242,.08), rgba(88,101,242,.02)); }
+    .dc-reason:nth-child(1):hover { border-color: rgba(88,101,242,.3); box-shadow: 0 8px 30px rgba(88,101,242,.12); }
+    .dc-reason:nth-child(2)::before { background: linear-gradient(135deg, rgba(235,69,158,.08), rgba(235,69,158,.02)); }
+    .dc-reason:nth-child(2):hover { border-color: rgba(235,69,158,.3); box-shadow: 0 8px 30px rgba(235,69,158,.12); }
+    .dc-reason:nth-child(3)::before { background: linear-gradient(135deg, rgba(254,215,170,.08), rgba(245,158,11,.02)); }
+    .dc-reason:nth-child(3):hover { border-color: rgba(245,158,11,.3); box-shadow: 0 8px 30px rgba(245,158,11,.12); }
+    .dc-reason:nth-child(4)::before { background: linear-gradient(135deg, rgba(87,242,135,.08), rgba(87,242,135,.02)); }
+    .dc-reason:nth-child(4):hover { border-color: rgba(87,242,135,.3); box-shadow: 0 8px 30px rgba(87,242,135,.12); }
+
+    .dc-reason-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: .8rem;
+      font-size: 1.3rem;
+      position: relative;
+      z-index: 1;
+    }
+    .dc-reason-icon.gamer { background: rgba(88,101,242,.15); }
+    .dc-reason-icon.artist { background: rgba(235,69,158,.15); }
+    .dc-reason-icon.franco-jp { background: rgba(245,158,11,.15); }
+    .dc-reason-icon.creative { background: rgba(87,242,135,.15); }
+    .dc-reason h3 { font-size: 1rem; font-weight: 700; margin-bottom: .4rem; position: relative; z-index: 1; }
+    .dc-reason p { font-size: .85rem; opacity: .65; line-height: 1.6; margin: 0; position: relative; z-index: 1; }
+
+    /* ========== CHANNELS PREVIEW ========== */
+    .dc-channels {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      backdrop-filter: blur(12px);
+      overflow: hidden;
+    }
+    .dc-channels-header {
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--glass-border);
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      font-size: .75rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      font-weight: 700;
+      opacity: .5;
+    }
+    .dc-channel {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      padding: .6rem 1.5rem;
+      transition: all .2s;
+      cursor: default;
+      font-size: .9rem;
+    }
+    .dc-channel:hover { background: rgba(255,255,255,.03); }
+    .dc-channel svg { opacity: .4; flex-shrink: 0; }
+    .dc-channel .name { opacity: .7; font-weight: 500; }
+    .dc-channel .badge {
+      margin-left: auto;
+      padding: .1rem .45rem;
+      border-radius: 8px;
+      font-size: .65rem;
+      font-weight: 700;
+      background: #5865F2;
+      color: #fff;
+      min-width: 18px;
+      text-align: center;
+    }
+    .dc-channel-cat {
+      padding: .8rem 1.5rem .3rem;
+      font-size: .65rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      font-weight: 700;
+      opacity: .35;
+    }
+
+    /* ========== VISION ========== */
+    .dc-vision {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 3rem 2.5rem;
+      backdrop-filter: blur(16px);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .dc-vision::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(88,101,242,.04), transparent 70%);
+      pointer-events: none;
+    }
+    .dc-vision-icon {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(88,101,242,.1), rgba(139,92,246,.1));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 1.8rem;
+    }
+    .dc-vision p {
+      opacity: .75; line-height: 1.8; font-size: .95rem;
+      position: relative; max-width: 600px; margin: 0 auto .8rem;
+    }
+    .dc-vision .dc-quote {
+      font-size: 1.2rem; font-weight: 800; opacity: 1;
+      background: linear-gradient(135deg, #5865F2, var(--accent-secondary), #EB459E);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-top: 1.5rem;
+      padding: 0 1rem;
+      line-height: 1.4;
+    }
+
+    /* ========== CTA ========== */
+    .dc-cta {
+      text-align: center;
+      padding: 2rem 0 1rem;
+    }
+    .dc-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .7rem;
+      padding: 1rem 2.5rem;
+      background: linear-gradient(135deg, #5865F2, #4752C4);
+      border: none;
+      border-radius: 14px;
+      color: #fff;
+      font-size: 1.05rem;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all .4s cubic-bezier(.4, 0, .2, 1);
+      box-shadow: 0 4px 25px rgba(88,101,242,.35);
+      position: relative;
+      overflow: hidden;
+    }
+    .dc-cta-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #4752C4, #5865F2);
+      opacity: 0;
+      transition: opacity .4s;
+    }
+    .dc-cta-btn:hover::before { opacity: 1; }
+    .dc-cta-btn:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 8px 40px rgba(88,101,242,.45);
+    }
+    .dc-cta-btn:active { transform: scale(.98); }
+    .dc-cta-btn svg, .dc-cta-btn span { position: relative; z-index: 1; }
+
+    .dc-cta-sub {
+      font-size: .8rem;
+      opacity: .4;
+      margin-top: .8rem;
+    }
+
+    /* ========== LEGAL ========== */
+    .dc-legal {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 14px;
+      padding: 1.5rem;
+      backdrop-filter: blur(10px);
+    }
+    .dc-legal h3 { font-size: .9rem; font-weight: 700; margin-bottom: .5rem; opacity: .6; }
+    .dc-legal p { font-size: .78rem; opacity: .4; line-height: 1.6; margin: 0 0 .3rem; }
+
+    .dc-source {
+      text-align: center;
+      padding: 1.2rem 0;
+      margin-top: 1rem;
+    }
+    .dc-source p { font-size: .7rem; opacity: .25; line-height: 1.6; margin: .15rem 0; }
+
+    .dc-back {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .dc-back a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      transition: opacity .2s;
+      font-size: .9rem;
+    }
+    .dc-back a:hover { opacity: .7; }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 768px) {
+      .dc-hero h1 { font-size: 2.2rem; }
+      .dc-stats { gap: 1.5rem; }
+      .dc-reasons { grid-template-columns: 1fr; }
+      .dc-intro, .dc-vision { padding: 1.8rem; }
+      .dc-intro-header { flex-direction: column; text-align: center; }
+      .dc-intro-roles { justify-content: center; }
+    }
+    @media (max-width: 480px) {
+      .dc-hero { padding: 3rem 1.2rem 2rem; }
+      .dc-hero h1 { font-size: 1.8rem; }
+      .dc-stat-value { font-size: 1.5rem; }
+      .dc-vision { padding: 1.5rem; }
+    }
+  </style>
 </head>
 <body>
-  <header>
+  <!-- Animated orbs -->
+  <div class="dc-bg-orbs" aria-hidden="true">
+    <div class="dc-orb"></div>
+    <div class="dc-orb"></div>
+    <div class="dc-orb"></div>
+  </div>
 
+  <header>
     <div class="logo">
-      <img src="../favicon.ico" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
+      <img src="/favicon.avif" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
       <span>VentiStudio</span>
     </div>
     <nav aria-label="Navigation principale">
-      <a href="../" class="active">Accueil</a>
-      <a href="../approuvedcontent/">Contenu Approuvé</a>
-      <a href="../player">Lecteur</a>
-      <a href="../wiki">Wiki</a>
-      <a href="../staff">Équipe</a>
-      <a href="../news">News</a>
-      <a href="../pip">PIP</a>
-      <a href="../sitemap">Plan du site</a>
+      <a href="/">Accueil</a>
+      <a href="/evaluation">Contenu Approuvé</a>
+      <a href="/player">Lecteur</a>
+      <a href="/wiki">Wiki</a>
+      <a href="/staff">Équipe</a>
+      <a href="/news">News</a>
+      <a href="/pip">PIP</a>
+      <a href="/sitemap">Plan du site</a>
     </nav>
     <div class="controls" role="toolbar" aria-label="Contrôles">
       <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
@@ -37,100 +525,265 @@
       </button>
       <div id="user-button" role="region" aria-label="Authentification"></div>
     </div>
-  
   </header>
 
   <main>
 
-
-
-    <section class="section">
-      <h2>Ã€ propos de VentiStudio</h2>
-      <p>Hey, je suis <strong>Hikari Umaishi</strong> (å…‰é¦¬çŸ³), mais appelez-moi <strong>Hiuma</strong> (Ã¢’ã‚¦Ã¢ž).  
-      Laissez-moi vous prÃ©senter ma communautÃ©, un espace oÃ¹ l'art et la crÃ©ativitÃ© se rencontrent.</p>
-      <p>En tant que crÃ©ateur multi-contenu, mangaka et compositeur, mon domaine s'Ã©tend Ã  diverses formes d'art, mais elles convergent toutes vers une expression artistique unique.</p>
+    <!-- ===== HERO ===== -->
+    <section class="dc-hero dc-reveal">
+      <div class="dc-hero-badge">
+        <span class="dot"></span>
+        Communauté active
+      </div>
+      <p class="jp-title">ヴェンティスタジオ</p>
+      <h1>Rejoignez<br><span class="gradient">VentiStudio</span></h1>
+      <p class="subtitle">Un espace où l'art, la créativité et la passion se rencontrent. Devenez membre d'une communauté unique.</p>
+      <div class="dc-stats">
+        <div class="dc-stat">
+          <div class="dc-stat-value" data-count="150">0</div>
+          <div class="dc-stat-label">Membres</div>
+        </div>
+        <div class="dc-stat">
+          <div class="dc-stat-value" data-count="40">0</div>
+          <div class="dc-stat-label">Salons</div>
+        </div>
+        <div class="dc-stat">
+          <div class="dc-stat-value" data-count="24">0</div>
+          <div class="dc-stat-label">Rôles</div>
+        </div>
+        <div class="dc-stat">
+          <div class="dc-stat-value" data-count="3">0</div>
+          <div class="dc-stat-label">Ans d'existence</div>
+        </div>
+      </div>
     </section>
 
-    <section class="section">
-      <h2>Pourquoi nous rejoindre ?</h2>
-      <ul style="list-style: none; padding: 0;">
-        <li><strong>Gamer :</strong> Retrouvez des personnes prÃªtes Ã  jouer avec vous et Ã  explorer des univers fascinants.</li>
-        <li><strong>Artiste :</strong> Exprimez votre crÃ©ativitÃ©, partagez vos Å“uvres et collaborez avec des passionnÃ©s.</li>
-        <li><strong>Franco-Japonais :</strong> Plongez dans un espace oÃ¹ les cultures franÃ§aise et japonaise fusionnent.</li>
-        <li><strong>CrÃ©ation sans limites :</strong> Donnez vie Ã  vos idÃ©es sans restriction.</li>
-      </ul>
+    <!-- ===== INTRO ===== -->
+    <section class="dc-section">
+      <div class="dc-intro dc-reveal">
+        <div class="dc-intro-header">
+          <div class="dc-intro-avatar">光</div>
+          <div>
+            <div class="dc-intro-name">
+              Hikari Umaishi
+              <span>光馬石  Hiuma (ヒウマ)</span>
+            </div>
+            <div class="dc-intro-roles">
+              <span class="dc-role founder">Fondateur</span>
+              <span class="dc-role artist">Mangaka</span>
+              <span class="dc-role dev">Compositeur</span>
+            </div>
+          </div>
+        </div>
+        <p>Hey, je suis <strong>Hikari Umaishi</strong> (光馬石), mais je préfère que l'on m'appelle <strong>Hiuma</strong> (ヒウマ). Laissez-moi vous présenter ma communauté, un espace où l'art et la créativité se rencontrent.</p>
+        <p>En tant que créateur multi-contenu, mangaka et compositeur, mon domaine s'étend à diverses formes d'art, mais elles convergent toutes vers une expression artistique unique.</p>
+      </div>
     </section>
 
-    <section class="section">
-      <h2>Notre Vision</h2>
-      <p>Chez VentiStudio, chaque membre est un acteur clÃ© de l'univers que nous crÃ©ons ensemble. Vos crÃ©ations sont comme des planÃ¨tes dans un systÃ¨me solaire, nourries par votre crÃ©ativitÃ© et vos efforts.</p>
-      <p><strong>Voyageurs et voyageuses, l'avenir est notre prÃ©sent. Bienvenue dans notre univers.</strong></p>
+    <!-- ===== WHY JOIN ===== -->
+    <section class="dc-section">
+      <div class="dc-section-header dc-reveal">
+        <div class="icon-wrap">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+        </div>
+        <h2>Pourquoi nous rejoindre ?</h2>
+      </div>
+      <div class="dc-reasons">
+        <div class="dc-reason dc-reveal dc-reveal-delay-1">
+          <div class="dc-reason-icon gamer"></div>
+          <h3>Gamer</h3>
+          <p>Retrouvez des personnes prêtes à jouer avec vous, pour passer des moments de folie et de compétition, tout en découvrant des univers fascinants ensemble.</p>
+        </div>
+        <div class="dc-reason dc-reveal dc-reveal-delay-2">
+          <div class="dc-reason-icon artist"></div>
+          <h3>Artiste</h3>
+          <p>Exprimez votre créativité à travers l'illustration, la musique, l'écriture et bien plus. Partagez vos œuvres et perfectionnez votre art avec des passionnés.</p>
+        </div>
+        <div class="dc-reason dc-reveal dc-reveal-delay-3">
+          <div class="dc-reason-icon franco-jp"></div>
+          <h3>Franco-Japonais</h3>
+          <p>Plongez dans un espace où les cultures française et japonaise fusionnent, entre mangas, jeux vidéo, musique et traditions.</p>
+        </div>
+        <div class="dc-reason dc-reveal dc-reveal-delay-4">
+          <div class="dc-reason-icon creative"></div>
+          <h3>Création sans limites</h3>
+          <p>Un endroit où vos idées peuvent prendre forme, peu importe leur nature, et où vous êtes libre d'explorer tous les aspects de la création.</p>
+        </div>
+      </div>
     </section>
 
-    <section class="section">
-      <h2>Rejoignez-nous</h2>
-      <p><a href="https://discord.gg/BupfZHSBbC" class="btn">Rejoindre le Discord</a></p>
+    <!-- ===== CHANNELS PREVIEW ===== -->
+    <section class="dc-section">
+      <div class="dc-section-header dc-reveal">
+        <div class="icon-wrap">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 4h16v12H5.17L4 17.17V4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+        </div>
+        <h2>Aperçu du serveur</h2>
+      </div>
+      <div class="dc-channels dc-reveal">
+        <div class="dc-channels-header">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/></svg>
+          VENTISTUDIO
+        </div>
+        <div class="dc-channel-cat">Informations</div>
+        <div class="dc-channel">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M10 3L8 21M16 3l-2 18M3 8h18M3 16h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <span class="name">règlement</span>
+        </div>
+        <div class="dc-channel">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M10 3L8 21M16 3l-2 18M3 8h18M3 16h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <span class="name">annonces</span>
+          <span class="badge">3</span>
+        </div>
+        <div class="dc-channel">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M10 3L8 21M16 3l-2 18M3 8h18M3 16h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <span class="name">rôles</span>
+        </div>
+        <div class="dc-channel-cat">Communauté</div>
+        <div class="dc-channel">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M10 3L8 21M16 3l-2 18M3 8h18M3 16h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <span class="name">général</span>
+          <span class="badge">12</span>
+        </div>
+        <div class="dc-channel">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M10 3L8 21M16 3l-2 18M3 8h18M3 16h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <span class="name">créations</span>
+          <span class="badge">5</span>
+        </div>
+        <div class="dc-channel">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M10 3L8 21M16 3l-2 18M3 8h18M3 16h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <span class="name">gaming</span>
+        </div>
+        <div class="dc-channel">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M10 3L8 21M16 3l-2 18M3 8h18M3 16h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <span class="name">musique</span>
+        </div>
+        <div class="dc-channel-cat">Vocal</div>
+        <div class="dc-channel">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z" stroke="currentColor" stroke-width="2"/><path d="M19 10v2a7 7 0 01-14 0v-2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <span class="name">Salon Vocal</span>
+        </div>
+        <div class="dc-channel">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z" stroke="currentColor" stroke-width="2"/><path d="M19 10v2a7 7 0 01-14 0v-2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <span class="name">Karaoké</span>
+        </div>
+      </div>
     </section>
 
-    <section class="section">
-      <h2>Source</h2>
-      <p>ã‚¢ã‚¤Ã¢ŠÃ¢»ã‚¦Ã¢žã‚¤ã‚·ï¼ˆAina Umaishiï¼‰äººå·¥çŸ¥èƒ½ã®æ–°æ™‚ä»£</p>  
-      <p>Ã¢´ã‚§Ã¢³Ã¢†ã‚£ã‚¹ã‚¿ã‚¸ã‚ªã¯å…‰é¦¬çŸ³ï¼ˆHikari Umaishiï¼‰ã«ã‚ˆã£ã¦æ‰€æœ‰Ã¢»å‰µé€ ã•ã‚Œã€ã‚¢Ã¢¼Ã¢†ã‚£ã‚¹Ã¢ˆåã€ŒÃ¢´ã‚§Ã¢³Ã¢†ã‚£Ã¢»ã‚ªÃ¢‘ã‚¹Ã¢†ã‚£ã‚¦Ã¢‡ã‚£ã‚¨Ã¢³ï¼ˆVenti Opastudienï¼‰ã€ã¨ã—ã¦ã‚‚çŸ¥ã‚‰ã‚Œã€æœ¬åã¯Ã¢«ã‚«Ã¢»ã‚®Ã¢¨Ã¢³Ã¢´ã‚¡Ã¢«ã‚·Ã¢¥ï¼ˆLÃ¹ka Guyonvarchï¼‰ã§ã™ã€‚Ã¢´ã‚§Ã¢³Ã¢†ã‚£ã‚¹ã‚¿ã‚¸ã‚ªã®ã‚³Ã¢³Ã¢†Ã¢³Ã¢„ã‚„ãã®ä»–é–¢é€£ã™ã‚‹å‰µä½œç‰©ã®ç„¡æ–­ã‚³Ã¢”Ã¢¼ã¯ã€æ³•çš„æŽªç½®ã‚’å¼•ãèµ·ã“ã™å¯èƒ½æ€§ãŒã‚ã‚Šã¾ã™ã®ã§ã”æ³¨æ„ãã ã•ã„ã€‚</p>
-      <p>Ã¢´ã‚§Ã¢³Ã¢†ã‚£ã‚¹ã‚¿ã‚¸ã‚ª</p>
-      <p>æœªæ¥ã¯ä»Šã€ç§ãŸã¡ã®ç¾åœ¨ã§ã™ã€‚</p>
-      <h2>Mentions LÃ©gales</h2>
-      <p>VentiStudio est la propriÃ©tÃ© de <strong>Hikari Umaishi</strong> (å…‰é¦¬çŸ³), Ã©galement connu sous le nom d'artiste <strong>Venti Opastudien</strong>. Toute copie non autorisÃ©e des contenus de VentiStudio peut entraÃ®ner des poursuites judiciaires.</p>
+    <!-- ===== VISION ===== -->
+    <section class="dc-section">
+      <div class="dc-section-header dc-reveal">
+        <div class="icon-wrap">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" stroke="currentColor" stroke-width="2"/></svg>
+        </div>
+        <h2>Notre Vision</h2>
+      </div>
+      <div class="dc-vision dc-reveal">
+        <div class="dc-vision-icon"></div>
+        <p>Chez nous, chaque membre est un acteur clé de l'univers que nous créons ensemble, un lieu où l'inspiration et l'innovation ne connaissent pas de frontières.</p>
+        <p><strong>VentiStudio</strong> agit comme un univers pour vos créations  tout comme un système solaire où chaque œuvre que vous créez devient une planète distincte, nourrie par votre créativité et vos efforts.</p>
+        <p>Vous êtes le système, et chacune de vos performances, créations et réalisations est une planète que vous alimentez et faites grandir.</p>
+        <p class="dc-quote"> Voyageurs et voyageuses, l'avenir est notre présent. Bienvenue dans notre univers. </p>
+      </div>
     </section>
-  
-  
-  
+
+    <!-- ===== CTA ===== -->
+    <div class="dc-cta dc-reveal">
+      <a href="https://discord.gg/BupfZHSBbC" class="dc-cta-btn" target="_blank" rel="noopener">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.127c.126-.094.252-.192.372-.292a.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.106c.36.698.772 1.362 1.225 1.994a.076.076 0 00.084.028 19.834 19.834 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+        <span>Rejoindre le Discord</span>
+      </a>
+      <p class="dc-cta-sub">Gratuit  Ouvert à tous  Rejoignez-nous en un clic</p>
+    </div>
+
+    <!-- ===== LEGAL ===== -->
+    <section class="dc-section">
+      <div class="dc-legal dc-reveal">
+        <h3>Mentions Légales</h3>
+        <p>VentiStudio est la propriété de <strong>Hikari Umaishi</strong> (光馬石), également connu sous le nom d'artiste <strong>Venti Opastudien</strong>, de son vrai nom <strong>Lùka Guyonvarch</strong>. Toute copie non autorisée des contenus de VentiStudio ou de ses créations associées peut entraîner des poursuites judiciaires.</p>
+      </div>
+      <div class="dc-source">
+        <p>アイナウマイシ（Aina Umaishi）人工知能の新時代</p>
+        <p>ヴェンティスタジオ  未来は今、私たちの現在です。</p>
+      </div>
+    </section>
+
+    <div class="dc-back">
+      <a href="/"> Retour à l'accueil</a>
+    </div>
+
   </main>
 
   <footer>
-
     <div class="footer-content">
       <div class="footer-section">
         <h4>Outils</h4>
         <ul>
           <li><a href="#">Encrypt</a></li>
-          <li><a href="#">Plan du site</a></li>
-          <li><a href="#">Statut</a></li>
+          <li><a href="/sitemap">Plan du site</a></li>
+          <li><a href="/stats">Statut</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Entreprise</h4>
         <ul>
-          <li><a href="#">À propos</a></li>
-          <li><a href="#">Emplois</a></li>
-          <li><a href="#">Marque</a></li>
+          <li><a href="/about">À propos</a></li>
+          <li><a href="/jobs">Emplois</a></li>
+          <li><a href="/logo">Marque</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Ressources</h4>
         <ul>
-          <li><a href="#">Université</a></li>
-          <li><a href="#">Assistance</a></li>
-          <li><a href="#">Sécurité</a></li>
+          <li><a href="/university">Université</a></li>
+          <li><a href="/lawful/support">Assistance</a></li>
+          <li><a href="/lawful/security">Sécurité</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Chartes</h4>
         <ul>
-          <li><a href="#">Conditions</a></li>
-          <li><a href="#">Confidentialité</a></li>
-          <li><a href="#">Information DMCA</a></li>
+          <li><a href="/lawful/tos">Conditions</a></li>
+          <li><a href="/lawful/cookies">Confidentialité</a></li>
+          <li><a href="/lawful/dmcainfo">Information DMCA</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
       <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
-      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
+      <p class="copyright">Copyright  2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
     </div>
-  
   </footer>
 
-  <script src="../script.js" defer></script>
+  <script src="/script.js" defer></script>
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.dc-reveal');
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
+    }, { threshold: .15 });
+    reveals.forEach(el => revealObs.observe(el));
+
+    // Counter animation
+    const counters = document.querySelectorAll('[data-count]');
+    const counterObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const el = e.target;
+        const target = parseInt(el.dataset.count);
+        const duration = 1500;
+        const start = performance.now();
+        function tick(now) {
+          const p = Math.min((now - start) / duration, 1);
+          const ease = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.round(target * ease) + (target > 10 ? '+' : '');
+          if (p < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+        counterObs.unobserve(el);
+      });
+    }, { threshold: .5 });
+    counters.forEach(el => counterObs.observe(el));
+  </script>
 </body>
 </html>
-
-

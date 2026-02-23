@@ -4,15 +4,15 @@
 ---
 
 PROJECT OWNER
-Name: Aina Umaishi
+Name: Hikari Umaishi
 Title: Creator & Visionary
 Website: https://ventistudio.eu/
-Email: support@ventistudio.eu
+Email: contact@ventistudio.eu
 
 ---
 
 CREATIVE DIRECTION
-Lead Designer: Aina Umaishi
+Lead Designer: Hikari Umaishi
 Web Development: VentiStudio Team
 Brand Identity: AINA UMAISHI - Artificial Intelligence New Age
 
@@ -36,7 +36,7 @@ SPECIAL THANKS TO
 
 CONTACT
 Email: support@ventistudio.eu
-Discord: https://discord.gg/ventistudio (if available)
+Discord: https://discord.gg/ventistudio (not available for moments)
 Social Media: Check our main website for links
 
 ---

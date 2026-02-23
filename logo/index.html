@@ -1,31 +1,260 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <meta name="description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
+  <meta name="description" content="VentiStudio - Logo officiel et identité de marque.">
   <meta name="theme-color" content="#6366f1">
-  <title>VentiStudio v4</title>
-  <link rel="stylesheet" href="../style.css">
-</title>
+  <title>Marque - VentiStudio</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    .brand-hero {
+      text-align: center;
+      padding: 4rem 2rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .brand-hero h1 {
+      font-size: 2.2rem;
+      margin-bottom: .5rem;
+    }
+    .brand-hero .subtitle {
+      font-size: 1.05rem;
+      opacity: .7;
+      max-width: 550px;
+      margin: 0 auto;
+    }
+
+    .logo-showcase {
+      max-width: 500px;
+      margin: 2.5rem auto;
+      padding: 3rem 2rem;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      backdrop-filter: blur(12px);
+      text-align: center;
+      position: relative;
+    }
+    .logo-showcase .brand-logo {
+      width: 160px;
+      height: 160px;
+      border-radius: 24px;
+      object-fit: contain;
+      transition: transform .3s;
+    }
+    .logo-showcase .brand-logo:hover {
+      transform: scale(1.05) rotate(2deg);
+    }
+    .logo-showcase .brand-name {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-top: 1rem;
+      background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .logo-showcase .brand-tagline {
+      font-size: .95rem;
+      opacity: .6;
+      margin-top: .3rem;
+    }
+
+    .brand-section {
+      max-width: 800px;
+      margin: 0 auto 3rem;
+      padding: 0 1.5rem;
+    }
+    .brand-section h2 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .color-palette {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem;
+    }
+    .color-swatch {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+      transition: transform .2s;
+    }
+    .color-swatch:hover { transform: translateY(-3px); }
+    .color-swatch .swatch-preview {
+      height: 80px;
+      width: 100%;
+    }
+    .color-swatch .swatch-info {
+      padding: .8rem;
+      text-align: center;
+    }
+    .color-swatch .swatch-name {
+      font-weight: 600;
+      font-size: .85rem;
+      display: block;
+    }
+    .color-swatch .swatch-hex {
+      font-size: .75rem;
+      opacity: .6;
+      font-family: monospace;
+    }
+
+    .usage-guidelines {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.2rem;
+    }
+    .guideline-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      backdrop-filter: blur(10px);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .guideline-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px var(--glass-shadow);
+    }
+    .guideline-card .card-icon {
+      font-size: 1.8rem;
+      display: block;
+      margin-bottom: .5rem;
+    }
+    .guideline-card h3 { font-size: 1rem; margin-bottom: .3rem; }
+    .guideline-card p { font-size: .85rem; opacity: .7; margin: 0; line-height: 1.5; }
+
+    .download-section {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .download-section .dl-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+    .download-section a {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .7rem 1.5rem;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 10px;
+      color: inherit;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: .9rem;
+      backdrop-filter: blur(10px);
+      transition: border-color .2s, transform .2s;
+    }
+    .download-section a:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .brand-back {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .brand-back a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      transition: opacity .2s;
+    }
+    .brand-back a:hover { opacity: .7; }
+
+    /* Seasonal effects container */
+    #seasonal-effects {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      overflow: hidden;
+    }
+    .seasonal-particle {
+      position: absolute;
+      animation-timing-function: linear;
+      animation-iteration-count: 1;
+      animation-fill-mode: forwards;
+    }
+
+    /* Snowflakes (December) */
+    @keyframes snowfall {
+      0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: .3; }
+    }
+    .snowflake { color: #fff; font-size: 1.2rem; animation-name: snowfall; }
+
+    /* Cherry blossoms (March 20-21) */
+    @keyframes blossom-fall {
+      0% { transform: translateY(-10px) rotate(0deg) translateX(0); opacity: 1; }
+      50% { transform: translateY(50vh) rotate(180deg) translateX(30px); }
+      100% { transform: translateY(100vh) rotate(360deg) translateX(-20px); opacity: .2; }
+    }
+    .blossom { font-size: 1.1rem; animation-name: blossom-fall; }
+
+    /* Autumn leaves (September 9) */
+    @keyframes leaf-fall {
+      0% { transform: translateY(-10px) rotate(0deg) translateX(0); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(720deg) translateX(40px); opacity: .2; }
+    }
+    .leaf { font-size: 1.3rem; animation-name: leaf-fall; }
+
+    /* Ghosts (Halloween Oct 25-31) */
+    @keyframes ghost-float {
+      0% { transform: translateY(100vh) scale(.8); opacity: 0; }
+      20% { opacity: .8; }
+      80% { opacity: .6; }
+      100% { transform: translateY(-50px) scale(1.1); opacity: 0; }
+    }
+    .ghost { font-size: 1.5rem; animation-name: ghost-float; }
+
+    /* Fireworks (July 14 & Sep 24) */
+    @keyframes firework-burst {
+      0% { transform: scale(0); opacity: 1; }
+      50% { transform: scale(1.5); opacity: .8; }
+      100% { transform: scale(2); opacity: 0; }
+    }
+    .firework { font-size: 2rem; animation-name: firework-burst; }
+
+    /* Confetti (New Year Jan 1) */
+    @keyframes confetti-drop {
+      0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(1080deg); opacity: 0; }
+    }
+    .confetti { font-size: 1rem; animation-name: confetti-drop; }
+
+    @media (max-width: 600px) {
+      .brand-hero h1 { font-size: 1.6rem; }
+      .logo-showcase { margin: 2rem 1rem; padding: 2rem 1.5rem; }
+      .logo-showcase .brand-logo { width: 120px; height: 120px; }
+    }
+  </style>
 </head>
 <body>
   <header>
-
     <div class="logo">
-      <img src="../favicon.ico" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
+      <img src="/favicon.avif" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
       <span>VentiStudio</span>
     </div>
     <nav aria-label="Navigation principale">
-      <a href="../" class="active">Accueil</a>
-      <a href="../approuvedcontent/">Contenu Approuvé</a>
-      <a href="../player">Lecteur</a>
-      <a href="../wiki">Wiki</a>
-      <a href="../staff">Équipe</a>
-      <a href="../news">News</a>
-      <a href="../pip">PIP</a>
-      <a href="../sitemap">Plan du site</a>
+      <a href="/">Accueil</a>
+      <a href="/evaluation">Contenu Approuvé</a>
+      <a href="/player">Lecteur</a>
+      <a href="/wiki">Wiki</a>
+      <a href="/staff">Équipe</a>
+      <a href="/news">News</a>
+      <a href="/pip">PIP</a>
+      <a href="/sitemap">Plan du site</a>
     </nav>
     <div class="controls" role="toolbar" aria-label="Contrôles">
       <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
@@ -37,753 +266,139 @@
       </button>
       <div id="user-button" role="region" aria-label="Authentification"></div>
     </div>
-  
   </header>
 
   <main>
-
-
-<!DOCTYPE html>
-<html><head><base href="https://ventistudio.eu/logo">
-  <meta charset="utf-8">
-  <meta name="viewport">
-  <html lang="fr"></html>
-  <link rel="icon" type="image/png" href="favicon.ico">
-  <meta property="og:title" content="Bienvenu sur VentiStudio">
-  <meta property="og:site_name" content="VentiStudio Komiyuniti">
-  <meta property="og:url" content="https://ventistudio.eu">
-  <meta property="og:description" content="Hey, je suis Hikari Umaishi (å…‰é¦¬çŸ³), mais je prÃ©fÃ¨re que l'on m'appelle Hiuma (Ã¢’ã‚¦Ã¢ž).
-Laissez-moi vous prÃ©senter ma communautÃ©, un espace oÃ¹ l'art et la crÃ©ativitÃ© se rencontrent.">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="https://ventistudio.eu/favicon.gif">
-  <title>VentiStudio - Logo</title>
-<style>
-/* Keeping all existing styles from before... */
-:root {
-  --primary: #7B66FF;
-  --secondary: #2A2D3A;
-  --background: #1A1B26;
-  --text: #FFFFFF;
-  --hover: #9F86FF;
-  --accent1: #414868;
-  --accent2: #565f89;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--background);
-  font-family: 'Inter', sans-serif;
-  overflow: hidden;
-}
-
-.logo-container {
-  text-align: center;
-  padding: 2rem;
-  position: relative;
-}
-
-.logo {
-  width: 300px;
-  height: auto;
-  animation: logoFloat 3s ease-in-out infinite;
-}
-
-.logo.glitch {
-  animation: logoFloat 3s ease-in-out infinite, glitch 0.5s infinite;
-}
-
-.logo.dance {
-  animation: logoDance 1s ease-in-out infinite;
-}
-
-.logo-title {
-  color: var(--text);
-  font-size: 2rem;
-  margin-top: 2rem;
-  font-family: 'Space Grotesk', sans-serif;
-  opacity: 0;
-  animation: fadeIn 1s ease-out forwards;
-}
-
-/* Countdown styles */
-.countdown-container {
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: var(--secondary);
-  padding: 1rem 2rem;
-  border-radius: 10px;
-  color: var(--text);
-  font-size: 1.5rem;
-  text-align: center;
-  z-index: 4;
-  display: none;
-}
-
-/* New Year message styles */
-.new-year-message {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: var(--text);
-  font-size: 3rem;
-  text-align: center;
-  z-index: 4;
-  display: none;
-  text-shadow: 0 0 10px rgba(123, 102, 255, 0.8);
-}
-
-/* Snow Effect */
-.snow {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
-  display: none;
-}
-
-.snowflake {
-  position: absolute;
-  color: white;
-  font-size: 1em;
-  animation: snowfall linear infinite;
-}
-
-/* Christmas Lights */
-.christmas-lights {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 20px;
-  display: none;
-  z-index: 2;
-}
-
-.light {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  position: absolute;
-  animation: twinkle 1.5s infinite alternate;
-}
-
-/* Fireworks */
-.firework {
-  position: absolute;
-  pointer-events: none;
-  z-index: 3;
-}
-
-.particle {
-  position: absolute;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  animation: explode 1s forwards;
-}
-
-/* Confetti */
-.confetti {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
-  display: none;
-}
-
-.confetti-piece {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  background-color: #f00;
-  animation: confettiFall linear infinite;
-}
-
-/* Ghost styles */
-.ghost {
-  position: absolute;
-  font-size: 40px;
-  color: rgba(255, 255, 255, 0.8);
-  pointer-events: none;
-  animation: floatGhost 10s linear infinite;
-  z-index: 2;
-  opacity: 0.7;
-  display: none;
-}
-
-@keyframes glitch {
-  0% {
-    transform: translate(0);
-    filter: hue-rotate(0deg);
-  }
-  25% {
-    transform: translate(-5px, 5px);
-    filter: hue-rotate(90deg);
-  }
-  50% {
-    transform: translate(5px, -5px);
-    filter: hue-rotate(180deg);
-  }
-  75% {
-    transform: translate(-5px, 5px);
-    filter: hue-rotate(270deg);
-  }
-  100% {
-    transform: translate(0);
-    filter: hue-rotate(360deg);
-  }
-}
-
-@keyframes explode {
-  0% {
-    transform: translateX(0) translateY(0);
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(var(--x)) translateY(var(--y));
-    opacity: 0;
-  }
-}
-
-@keyframes logoFloat {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
-}
-
-@keyframes logoDance {
-  0%, 100% { transform: rotate(-5deg) translateY(0); }
-  25% { transform: rotate(5deg) translateY(-10px); }
-  50% { transform: rotate(-5deg) translateY(0); }
-  75% { transform: rotate(5deg) translateY(-10px); }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes snowfall {
-  0% {
-    transform: translateY(-10vh) translateX(0);
-  }
-  100% {
-    transform: translateY(100vh) translateX(100px);
-  }
-}
-
-@keyframes twinkle {
-  0% { opacity: 0.3; }
-  100% { opacity: 1; }
-}
-
-@keyframes confettiFall {
-  0% {
-    transform: translateY(-10vh) rotate(0deg);
-  }
-  100% {
-    transform: translateY(100vh) rotate(360deg);
-  }
-}
-
-@keyframes floatGhost {
-  0% {
-    transform: translate(-100px, 0) translateY(0px);
-    opacity: 0;
-  }
-  10% {
-    opacity: 0.7;
-  }
-  90% {
-    opacity: 0.7;
-  }
-  100% {
-    transform: translate(calc(100vw + 100px), 0) translateY(-50px);
-    opacity: 0;
-  }
-}
-
-.back-button {
-  position: fixed;
-  top: 2rem;
-  left: 2rem;
-  padding: 0.8rem 1.5rem;
-  background-color: var(--primary);
-  color: var(--text);
-  text-decoration: none;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  z-index: 3;
-}
-
-.back-button:hover {
-  background-color: var(--hover);
-  transform: translateY(-2px);
-}
-
-@keyframes frenchFlag {
-  0%, 100% {
-    background: linear-gradient(
-      90deg,
-      rgba(0, 35, 149, 0.2),
-      rgba(26, 27, 38, 0.2),
-      rgba(237, 41, 57, 0.2)
-    );
-  }
-  50% {
-    background: linear-gradient(
-      90deg,
-      rgba(0, 35, 149, 0.3),
-      rgba(255, 255, 255, 0.3),
-      rgba(237, 41, 57, 0.3)
-    );
-  }
-}
-
-.french-national-day {
-  animation: frenchFlag 4s ease-in-out infinite;
-}
-
-/* New styles for falling leaves and cherry blossoms */
-.falling-leaves,
-.cherry-blossoms {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
-  display: none;
-}
-
-.leaf,
-.petal {
-  position: absolute;
-  pointer-events: none;
-  animation: falling linear infinite;
-}
-
-.leaf {
-  font-size: 20px;
-}
-
-.petal {
-  font-size: 15px;
-  animation: fallingPetal linear infinite;
-}
-
-@keyframes falling {
-  0% {
-    transform: translate(0, -10vh) rotate(0deg);
-  }
-  100% {
-    transform: translate(100px, 100vh) rotate(720deg);
-  }
-}
-
-@keyframes fallingPetal {
-  0% {
-    transform: translate(0, -10vh) rotate(0deg) scale(1);
-  }
-  50% {
-    transform: translate(50px, 45vh) rotate(360deg) scale(0.8);
-  }
-  100% {
-    transform: translate(100px, 100vh) rotate(720deg) scale(1);
-  }
-}
-
-@media (max-width: 768px) {
-  .logo { width: 200px; }
-  .logo-title { font-size: 1.5rem; }
-  .back-button {
-    top: 1rem;
-    left: 1rem;
-  }
-}
-</style>
-</head>
-<body>
-  <div class="christmas-lights" id="christmasLights"></div>
-  <div class="snow" id="snow"></div>
-  <div class="confetti" id="confetti"></div>
-  <div class="falling-leaves" id="fallingLeaves"></div>
-  <div class="cherry-blossoms" id="cherryBlossoms"></div>
-  
-  <a href="/" class="back-button">â† Retour</a>
-  
-  <div class="logo-container">
-    <img src="/favicon.avif" alt="VentiStudio Logo" class="logo" id="logo">
-    <h1 class="logo-title">VentiStudio</h1>
-  </div>
-
-<script>
-// Date checking and effects
-function checkDate() {
-  const date = new Date();
-  const day = date.getDate();
-  const month = date.getMonth() + 1;
-
-  // Add New Year check
-  checkNewYear();
-
-  // Keep existing date checks...
-  if (month === 12 && day <= 25) {
-    createSnow();
-    createChristmasLights();
-    
-    if (day === 15) {
-      setInterval(createFirework, 2000);
-    }
-  }
-  
-  if (month === 9 && day === 14) {
-    createConfetti();
-    setInterval(createFirework, 2000);
-  }
-
-  if (month === 10 && day >= 25 && day <= 31) {
-    createGhosts();
-    startGlitchEffect();
-  }
-
-  if (month === 7 && day === 14) {
-    document.body.classList.add('french-national-day');
-    setInterval(() => createFrenchFirework(), 2000);
-  }
-  
-  // Add Autumn Day check (September 9)
-  if (month === 9 && day === 9) {
-    createAutumnLeaves();
-  }
-  
-  // Add Spring Day check (March 20-21)
-  if (month === 3 && (day === 20 || day === 21)) {
-    createCherryBlossoms();
-  }
-}
-
-// New Year check
-function checkNewYear() {
-  const now = new Date();
-  const nextYear = new Date(now.getFullYear() + 1, 0, 1);
-  const timeUntilNewYear = nextYear - now;
-
-  if (now.getMonth() === 12 && now.getDate() === 31) {
-    // Show countdown on December 31st
-    showCountdown();
-  } else if (now.getMonth() === 1 && now.getDate() >= 1 && now.getDate() <= 3) {
-    // Show celebration from Jan 1-3
-    startNewYearCelebration(now);
-  }
-}
-
-function showCountdown() {
-  if (!document.querySelector('.countdown-container')) {
-    const countdownContainer = document.createElement('div');
-    countdownContainer.className = 'countdown-container';
-    document.body.appendChild(countdownContainer);
-  }
-
-  function updateCountdown() {
-    const now = new Date();
-    const nextYear = new Date(now.getFullYear() + 1, 0, 1);
-    const timeUntilNewYear = nextYear - now;
-
-    const hours = Math.floor((timeUntilNewYear / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((timeUntilNewYear / (1000 * 60)) % 60);
-    const seconds = Math.floor((timeUntilNewYear / 1000) % 60);
-
-    document.querySelector('.countdown-container').innerHTML = 
-      `Nouvelle annÃ©e dans: ${hours}h ${minutes}m ${seconds}s`;
-  }
-
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
-}
-
-function startNewYearCelebration(now) {
-  const logo = document.getElementById('logo');
-  logo.classList.add('dance');
-
-  // Create celebration message
-  const message = document.createElement('div');
-  message.className = 'new-year-message';
-  message.innerHTML = `Bonne AnnÃ©e ${now.getFullYear()}!${now.getDate() === 1 ? '<br>Joyeux anniversaire mami!' : ''}`;
-  document.body.appendChild(message);
-  message.style.display = 'block';
-
-  // Start frequent fireworks
-  setInterval(createNewYearFirework, 1000);
-}
-
-function createNewYearFirework() {
-  const firework = document.createElement('div');
-  firework.className = 'firework';
-  firework.style.left = Math.random() * window.innerWidth + 'px';
-  firework.style.top = Math.random() * window.innerHeight + 'px';
-  document.body.appendChild(firework);
-
-  const colors = ['#FFD700', '#FF0000', '#00FF00', '#0000FF', '#FF00FF', '#FFFFFF'];
-  
-  for (let i = 0; i < 50; i++) {
-    const particle = document.createElement('div');
-    particle.className = 'particle';
-    particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-    
-    const angle = (i / 50) * Math.PI * 2;
-    const velocity = 150 + Math.random() * 100;
-    particle.style.setProperty('--x', Math.cos(angle) * velocity + 'px');
-    particle.style.setProperty('--y', Math.sin(angle) * velocity + 'px');
-    
-    firework.appendChild(particle);
-  }
-
-  setTimeout(() => {
-    document.body.removeChild(firework);
-  }, 1000);
-}
-
-// Confetti effect
-function createConfetti() {
-  const confettiContainer = document.getElementById('confetti');
-  confettiContainer.style.display = 'block';
-  
-  const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
-  
-  for (let i = 0; i < 100; i++) {
-    const confetti = document.createElement('div');
-    confetti.className = 'confetti-piece';
-    confetti.style.left = Math.random() * 100 + 'vw';
-    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-    confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
-    confetti.style.animationDelay = (Math.random() * 2) + 's';
-    confettiContainer.appendChild(confetti);
-  }
-}
-
-// Snow effect
-function createSnow() {
-  const snowContainer = document.getElementById('snow');
-  snowContainer.style.display = 'block';
-  
-  for (let i = 0; i < 50; i++) {
-    const snowflake = document.createElement('div');
-    snowflake.className = 'snowflake';
-    snowflake.innerHTML = 'â„';
-    snowflake.style.left = Math.random() * 100 + 'vw';
-    snowflake.style.animationDuration = (Math.random() * 3 + 2) + 's';
-    snowflake.style.opacity = Math.random();
-    snowflake.style.fontSize = (Math.random() * 10 + 10) + 'px';
-    snowContainer.appendChild(snowflake);
-  }
-}
-
-// Christmas lights
-function createChristmasLights() {
-  const lightsContainer = document.getElementById('christmasLights');
-  lightsContainer.style.display = 'block';
-  
-  for (let i = 0; i < 20; i++) {
-    const light = document.createElement('div');
-    light.className = 'light';
-    light.style.left = (i * 5) + '%';
-    light.style.backgroundColor = `rgb(255, 240, 200)`;
-    light.style.animationDelay = (i * 0.1) + 's';
-    lightsContainer.appendChild(light);
-  }
-}
-
-// Fireworks
-function createFirework() {
-  const firework = document.createElement('div');
-  firework.className = 'firework';
-  firework.style.left = Math.random() * window.innerWidth + 'px';
-  firework.style.top = Math.random() * window.innerHeight + 'px';
-  document.body.appendChild(firework);
-
-  const colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF'];
-  
-  for (let i = 0; i < 30; i++) {
-    const particle = document.createElement('div');
-    particle.className = 'particle';
-    particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-    
-    const angle = (i / 30) * Math.PI * 2;
-    const velocity = 100 + Math.random() * 50;
-    particle.style.setProperty('--x', Math.cos(angle) * velocity + 'px');
-    particle.style.setProperty('--y', Math.sin(angle) * velocity + 'px');
-    
-    firework.appendChild(particle);
-  }
-
-  setTimeout(() => {
-    document.body.removeChild(firework);
-  }, 1000);
-}
-
-// French colored fireworks
-function createFrenchFirework() {
-  const firework = document.createElement('div');
-  firework.className = 'firework';
-  firework.style.left = Math.random() * window.innerWidth + 'px';
-  firework.style.top = Math.random() * window.innerHeight + 'px';
-  document.body.appendChild(firework);
-
-  const colors = ['#002395', '#FFFFFF', '#ED2939']; // French flag colors
-  
-  for (let i = 0; i < 30; i++) {
-    const particle = document.createElement('div');
-    particle.className = 'particle';
-    particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-    
-    const angle = (i / 30) * Math.PI * 2;
-    const velocity = 100 + Math.random() * 50;
-    particle.style.setProperty('--x', Math.cos(angle) * velocity + 'px');
-    particle.style.setProperty('--y', Math.sin(angle) * velocity + 'px');
-    
-    firework.appendChild(particle);
-  }
-
-  setTimeout(() => {
-    document.body.removeChild(firework);
-  }, 1000);
-}
-
-// Ghost creation
-function createGhosts() {
-  setInterval(() => {
-    const ghost = document.createElement('div');
-    ghost.className = 'ghost';
-    ghost.innerHTML = 'ðŸ‘»';
-    ghost.style.top = Math.random() * window.innerHeight + 'px';
-    ghost.style.display = 'block';
-    document.body.appendChild(ghost);
-
-    setTimeout(() => {
-      document.body.removeChild(ghost);
-    }, 10000);
-  }, 3000);
-}
-
-// Logo glitch effect
-function startGlitchEffect() {
-  const logo = document.getElementById('logo');
-  logo.classList.add('glitch');
-}
-
-// Create Autumn Leaves
-function createAutumnLeaves() {
-  const leavesContainer = document.getElementById('fallingLeaves');
-  leavesContainer.style.display = 'block';
-  
-  const leaves = ['ðŸ', 'ðŸ‚', 'ðŸƒ'];
-  
-  for (let i = 0; i < 30; i++) {
-    const leaf = document.createElement('div');
-    leaf.className = 'leaf';
-    leaf.innerHTML = leaves[Math.floor(Math.random() * leaves.length)];
-    leaf.style.left = Math.random() * 100 + 'vw';
-    leaf.style.animationDuration = (Math.random() * 5 + 5) + 's';
-    leaf.style.opacity = Math.random() * 0.5 + 0.5;
-    leavesContainer.appendChild(leaf);
-    
-    // Remove and recreate leaves to prevent buildup
-    setTimeout(() => {
-      leavesContainer.removeChild(leaf);
-    }, 10000);
-  }
-  
-  // Continue creating leaves
-  setTimeout(createAutumnLeaves, 10000);
-}
-
-// Create Cherry Blossoms
-function createCherryBlossoms() {
-  const blossomsContainer = document.getElementById('cherryBlossoms');
-  blossomsContainer.style.display = 'block';
-  
-  for (let i = 0; i < 30; i++) {
-    const petal = document.createElement('div');
-    petal.className = 'petal';
-    petal.innerHTML = 'ðŸŒ¸';
-    petal.style.left = Math.random() * 100 + 'vw';
-    petal.style.animationDuration = (Math.random() * 6 + 4) + 's';
-    petal.style.opacity = Math.random() * 0.5 + 0.5;
-    blossomsContainer.appendChild(petal);
-    
-    // Remove and recreate petals to prevent buildup
-    setTimeout(() => {
-      blossomsContainer.removeChild(petal);
-    }, 10000);
-  }
-  
-  // Continue creating petals
-  setTimeout(createCherryBlossoms, 10000);
-}
-
-// Initialize
-document.addEventListener('DOMContentLoaded', checkDate);
-</script>
-</body>
-</html>
-  
-  
+    <div id="seasonal-effects" aria-hidden="true"></div>
+
+    <!-- Hero -->
+    <section class="brand-hero">
+      <h1>Identité de Marque</h1>
+      <p class="subtitle">Logo officiel, palette de couleurs et directives d'utilisation de la marque VentiStudio.</p>
+    </section>
+
+    <!-- Logo Showcase -->
+    <div class="logo-showcase">
+      <img src="/favicon.avif" alt="Logo VentiStudio" class="brand-logo">
+      <div class="brand-name">VentiStudio</div>
+      <div class="brand-tagline">Créativité · Innovation · Communauté</div>
+    </div>
+
+    <!-- Palette de couleurs -->
+    <section class="brand-section">
+      <h2>🎨 Palette de couleurs</h2>
+      <div class="color-palette">
+        <div class="color-swatch">
+          <div class="swatch-preview" style="background: #6366f1;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">Accent</span>
+            <span class="swatch-hex">#6366f1</span>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-preview" style="background: #8b5cf6;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">Accent Secondaire</span>
+            <span class="swatch-hex">#8b5cf6</span>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-preview" style="background: #0f172a;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">Dark BG</span>
+            <span class="swatch-hex">#0f172a</span>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-preview" style="background: #f8fafc;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">Light BG</span>
+            <span class="swatch-hex">#f8fafc</span>
+          </div>
+        </div>
+        <div class="color-swatch">
+          <div class="swatch-preview" style="background: #f59e0b;"></div>
+          <div class="swatch-info">
+            <span class="swatch-name">Gold</span>
+            <span class="swatch-hex">#f59e0b</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Directives -->
+    <section class="brand-section">
+      <h2>📐 Directives d'utilisation</h2>
+      <div class="usage-guidelines">
+        <div class="guideline-card">
+          <span class="card-icon" aria-hidden="true">✅</span>
+          <h3>Utilisation autorisée</h3>
+          <p>Référencer VentiStudio dans des articles, vidéos ou projets éducatifs avec attribution correcte.</p>
+        </div>
+        <div class="guideline-card">
+          <span class="card-icon" aria-hidden="true">❌</span>
+          <h3>Utilisation interdite</h3>
+          <p>Modifier le logo, l'utiliser comme votre propre marque ou l'intégrer dans un produit commercial sans autorisation.</p>
+        </div>
+        <div class="guideline-card">
+          <span class="card-icon" aria-hidden="true">📏</span>
+          <h3>Espace minimum</h3>
+          <p>Maintenir un espace vide autour du logo égal à la hauteur du symbole pour assurer la lisibilité.</p>
+        </div>
+        <div class="guideline-card">
+          <span class="card-icon" aria-hidden="true">🎯</span>
+          <h3>Fond recommandé</h3>
+          <p>Utiliser le logo sur un fond sombre (#0f172a) ou clair (#f8fafc) pour un contraste optimal.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Téléchargement -->
+    <section class="download-section">
+      <h2>Télécharger le logo</h2>
+      <div class="dl-buttons">
+        <a href="/favicon.avif" download="ventistudio-logo.avif">📥 AVIF</a>
+      </div>
+    </section>
+
+    <!-- Retour -->
+    <div class="brand-back">
+      <a href="/">← Retour à l'accueil</a>
+    </div>
   </main>
 
   <footer>
-
     <div class="footer-content">
       <div class="footer-section">
         <h4>Outils</h4>
         <ul>
           <li><a href="#">Encrypt</a></li>
-          <li><a href="#">Plan du site</a></li>
-          <li><a href="#">Statut</a></li>
+          <li><a href="/sitemap">Plan du site</a></li>
+          <li><a href="/stats">Statut</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Entreprise</h4>
         <ul>
-          <li><a href="#">À propos</a></li>
-          <li><a href="#">Emplois</a></li>
-          <li><a href="#">Marque</a></li>
+          <li><a href="/about">À propos</a></li>
+          <li><a href="/jobs">Emplois</a></li>
+          <li><a href="/logo">Marque</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Ressources</h4>
         <ul>
-          <li><a href="#">Université</a></li>
-          <li><a href="#">Assistance</a></li>
-          <li><a href="#">Sécurité</a></li>
+          <li><a href="/university">Université</a></li>
+          <li><a href="/lawful/support">Assistance</a></li>
+          <li><a href="/lawful/security">Sécurité</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Chartes</h4>
         <ul>
-          <li><a href="#">Conditions</a></li>
-          <li><a href="#">Confidentialité</a></li>
-          <li><a href="#">Information DMCA</a></li>
+          <li><a href="/lawful/tos">Conditions</a></li>
+          <li><a href="/lawful/cookies">Confidentialité</a></li>
+          <li><a href="/lawful/dmcainfo">Information DMCA</a></li>
         </ul>
       </div>
     </div>
@@ -791,11 +406,83 @@ document.addEventListener('DOMContentLoaded', checkDate);
       <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
       <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
     </div>
-  
   </footer>
 
-  <script src="../script.js" defer></script>
+  <script src="/script.js" defer></script>
+  <script>
+    (function() {
+      const container = document.getElementById('seasonal-effects');
+      if (!container) return;
+
+      const now = new Date();
+      const month = now.getMonth() + 1; // 1-12
+      const day = now.getDate();
+
+      const seasons = [];
+
+      // December: Snow
+      if (month === 12) {
+        seasons.push({ emoji: ['❄', '❅', '❆', '✦'], cls: 'snowflake', count: 40, duration: [6, 14] });
+      }
+
+      // March 20-21: Cherry blossoms (spring equinox)
+      if (month === 3 && (day === 20 || day === 21)) {
+        seasons.push({ emoji: ['🌸'], cls: 'blossom', count: 30, duration: [7, 13] });
+      }
+
+      // September 9: Autumn leaves
+      if (month === 9 && day === 9) {
+        seasons.push({ emoji: ['🍁', '🍂', '🍃'], cls: 'leaf', count: 25, duration: [6, 12] });
+      }
+
+      // October 25-31: Halloween ghosts
+      if (month === 10 && day >= 25) {
+        seasons.push({ emoji: ['👻', '🎃', '🦇'], cls: 'ghost', count: 15, duration: [8, 16] });
+      }
+
+      // July 14: Fête Nationale fireworks
+      if (month === 7 && day === 14) {
+        seasons.push({ emoji: ['🎆', '🎇', '✨'], cls: 'firework', count: 20, duration: [2, 4] });
+      }
+
+      // September 24: VentiStudio anniversary fireworks
+      if (month === 9 && day === 24) {
+        seasons.push({ emoji: ['🎆', '🎇', '🎉', '✨'], cls: 'firework', count: 25, duration: [2, 4] });
+      }
+
+      // January 1: New Year confetti
+      if (month === 1 && day === 1) {
+        seasons.push({ emoji: ['🎊', '🎉', '✨', '⭐'], cls: 'confetti', count: 40, duration: [4, 10] });
+      }
+
+      // February 14: Valentine hearts
+      if (month === 2 && day === 14) {
+        seasons.push({ emoji: ['❤️', '💖', '💕', '💗'], cls: 'blossom', count: 25, duration: [7, 13] });
+      }
+
+      if (seasons.length === 0) return;
+
+      function spawnParticle(season) {
+        const el = document.createElement('span');
+        el.className = 'seasonal-particle ' + season.cls;
+        el.textContent = season.emoji[Math.floor(Math.random() * season.emoji.length)];
+        el.style.left = Math.random() * 100 + '%';
+        const dur = season.duration[0] + Math.random() * (season.duration[1] - season.duration[0]);
+        el.style.animationDuration = dur + 's';
+        el.style.animationDelay = Math.random() * 2 + 's';
+        container.appendChild(el);
+        setTimeout(() => el.remove(), (dur + 3) * 1000);
+      }
+
+      seasons.forEach(season => {
+        // Initial burst
+        for (let i = 0; i < season.count; i++) {
+          setTimeout(() => spawnParticle(season), Math.random() * 3000);
+        }
+        // Continuous spawning
+        setInterval(() => spawnParticle(season), 800 + Math.random() * 1200);
+      });
+    })();
+  </script>
 </body>
 </html>
-
-

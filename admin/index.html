@@ -6,7 +6,7 @@
   <meta name="description" content="Tableau de bord admin VentiStudio">
   <meta name="theme-color" content="#6366f1">
   <title>Admin Dashboard - VentiStudio</title>
-  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
   <div id="loginPage" class="login-container" style="display: flex; justify-content: center; align-items: center; min-height: 100vh; background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);">
@@ -56,11 +56,15 @@
           </div>
           <div class="stat-card">
             <div class="stat-value" id="totalViews">-</div>
-            <div class="stat-label">Vues (localStorage)</div>
+            <div class="stat-label">Vues totales</div>
           </div>
           <div class="stat-card">
             <div class="stat-value" id="totalVotes">-</div>
-            <div class="stat-label">Votes (localStorage)</div>
+            <div class="stat-label">Votes</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="pendingComments">-</div>
+            <div class="stat-label">Commentaires en attente</div>
           </div>
         </div>
 
@@ -131,13 +135,28 @@
       <section id="settingsTab" class="tab-content">
         <h2>Paramètres Admin</h2>
         <div class="settings-section">
-          <h3>Sécurité</h3>
-          <p>Mot de passe actuel: <code>admin123</code></p>
-          <button id="changePasswordBtn" class="btn-secondary">Changer le mot de passe</button>
-          
-          <h3 style="margin-top: 30px;">Sauvegarde</h3>
-          <button id="exportDataBtn" class="btn-secondary">Exporter les données</button>
-          <button id="importDataBtn" class="btn-secondary" style="margin-left: 10px;">Importer les données</button>
+          <h3>🔒 Changer le mot de passe</h3>
+          <form id="changePasswordForm" class="admin-form" style="margin-bottom: 30px;">
+            <div class="form-group">
+              <label for="currentPassword">Mot de passe actuel</label>
+              <input type="password" id="currentPassword" required autocomplete="current-password">
+            </div>
+            <div class="form-group">
+              <label for="newPassword">Nouveau mot de passe (min. 8 caractères)</label>
+              <input type="password" id="newPassword" required minlength="8" autocomplete="new-password">
+            </div>
+            <div class="form-group">
+              <label for="confirmPassword">Confirmer le nouveau mot de passe</label>
+              <input type="password" id="confirmPassword" required minlength="8" autocomplete="new-password">
+            </div>
+            <button type="submit" class="btn-secondary" style="width: 100%;">Modifier le mot de passe</button>
+          </form>
+
+          <h3>💾 Sauvegarde des données</h3>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <button id="exportDataBtn" class="btn-secondary">Exporter les données</button>
+            <button id="importDataBtn" class="btn-secondary">Importer les données</button>
+          </div>
           <input type="file" id="importFile" style="display: none;" accept=".json">
         </div>
       </section>
@@ -392,6 +411,11 @@
         .tab-btn {
           width: 100%;
         }
+      }
+
+      @keyframes toastIn {
+        from { transform: translateY(20px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
       }
     </style>
   </div>

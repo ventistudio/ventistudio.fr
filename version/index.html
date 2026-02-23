@@ -1,31 +1,28 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <meta name="description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
+  <meta name="description" content="VentiStudio - Historique des versions et mises à jour de la plateforme.">
   <meta name="theme-color" content="#6366f1">
-  <title>VentiStudio v4</title>
-  <link rel="stylesheet" href="../style.css">
-</title>
+  <title>Version | VentiStudio</title>
+  <link rel="stylesheet" href="/style.css">
 </head>
 <body>
   <header>
-
     <div class="logo">
-      <img src="../favicon.ico" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
+      <img src="/favicon.avif" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
       <span>VentiStudio</span>
     </div>
     <nav aria-label="Navigation principale">
-      <a href="../" class="active">Accueil</a>
-      <a href="../approuvedcontent/">Contenu Approuvé</a>
-      <a href="../player">Lecteur</a>
-      <a href="../wiki">Wiki</a>
-      <a href="../staff">Équipe</a>
-      <a href="../news">News</a>
-      <a href="../pip">PIP</a>
-      <a href="../sitemap">Plan du site</a>
+      <a href="/">Accueil</a>
+      <a href="/evaluation">Contenu Approuvé</a>
+      <a href="/player">Lecteur</a>
+      <a href="/wiki">Wiki</a>
+      <a href="/staff">Équipe</a>
+      <a href="/news">News</a>
+      <a href="/pip">PIP</a>
+      <a href="/sitemap">Plan du site</a>
     </nav>
     <div class="controls" role="toolbar" aria-label="Contrôles">
       <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
@@ -37,111 +34,193 @@
       </button>
       <div id="user-button" role="region" aria-label="Authentification"></div>
     </div>
-  
   </header>
 
   <main>
 
+    <div class="page-title">
+      <h1>Version de la plateforme</h1>
+      <p class="version-subtitle">Découvrez les dernières mises à jour et l'historique des modifications.</p>
+    </div>
 
-
-    <section class="hero">
-      <h1>Version actuelle de VentiStudio</h1>
-      <p>DÃ©couvrez les derniÃ¨res mises Ã  jour et modifications de notre plateforme.</p>
-    </section>
-
-    <section class="version-info">
-      <div class="version-card">
-        <h3>Version : <span class="badge version">vX-version.xx.x</span></h3>
-        <p><strong>Signification :</strong></p>
-        <ul>
-          <li><strong>vX</strong> : Version majeure actuelle</li>
-          <li><strong>version</strong> : Niveau de stabilitÃ©</li>
-          <li><strong>xx.x</strong> : Nombre total de modifications</li>
-        </ul>
+    <!-- Current Version -->
+    <section class="version-current">
+      <div class="version-current-card">
+        <div class="version-current-header">
+          <div class="version-current-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="10" fill="currentColor" opacity="0.1"/>
+              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+              <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div>
+            <p class="version-label">Version actuelle</p>
+            <p class="version-number">v4-stable.26.2</p>
+          </div>
+        </div>
+        <div class="version-status">
+          <span class="version-badge stable">Stable</span>
+          <span class="version-date">Février 2026</span>
+        </div>
       </div>
     </section>
 
-    <section class="latest-commits">
-      <h2>DerniÃ¨res modifications</h2>
-      <ul class="commit-list">
-        <li>
-          <p><strong>Message :</strong> Correction du bug d'affichage sur mobile</p>
-          <p><strong>Date :</strong> 1er mai 2025</p>
-          <a href="https://github.com/ventistudio/ventistudio.eu/commit/abc123" target="_blank">Voir le commit</a>
-        </li>
-        <li>
-          <p><strong>Message :</strong> Ajout de la section "Ã€ propos"</p>
-          <p><strong>Date :</strong> 30 avril 2025</p>
-          <a href="https://github.com/ventistudio/ventistudio.eu/commit/def456" target="_blank">Voir le commit</a>
-        </li>
-        <li>
-          <p><strong>Message :</strong> Mise Ã  jour des styles CSS</p>
-          <p><strong>Date :</strong> 28 avril 2025</p>
-          <a href="https://github.com/ventistudio/ventistudio.eu/commit/ghi789" target="_blank">Voir le commit</a>
-        </li>
-        <!-- Ajoutez d'autres commits ici -->
-      </ul>
+    <!-- Version Format Legend -->
+    <section class="version-legend">
+      <h2>Format de version</h2>
+      <p class="version-format-display">v<span class="vf-major">X</span>.<span class="vf-stability">version</span>-<span class="vf-patch">xx.x</span></p>
+      <div class="cards">
+        <div class="card">
+          <div class="card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="3" fill="currentColor" opacity="0.1"/>
+              <path d="M3 3h18v18H3V3z" stroke="currentColor" stroke-width="2" rx="3"/>
+              <path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>vX  Majeure</h3>
+          <p>Numéro de version majeure. Incrémenté lors de changements fondamentaux de la plateforme.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="3" fill="currentColor" opacity="0.1"/>
+              <path d="M3 3h18v18H3V3z" stroke="currentColor" stroke-width="2" rx="3"/>
+              <path d="M9 12h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>version  Stabilité</h3>
+          <p>Niveau de stabilité de la version : alpha, beta, preview ou stable.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="3" fill="currentColor" opacity="0.1"/>
+              <path d="M3 3h18v18H3V3z" stroke="currentColor" stroke-width="2" rx="3"/>
+              <circle cx="9" cy="12" r="1.5" fill="currentColor"/>
+              <circle cx="15" cy="12" r="1.5" fill="currentColor"/>
+            </svg>
+          </div>
+          <h3>xx.x  Modifications</h3>
+          <p>Nombre total de commits et pull requests depuis la dernière version majeure.</p>
+        </div>
+      </div>
     </section>
 
-    <section class="legend">
-      <h3>LÃ©gende du format de version</h3>
-      <p><strong>vX.version-xx.x</strong></p>
-      <ul>
-        <li><strong>X</strong> : Version majeure</li>
-        <li><strong>version</strong> : Niveau de stabilitÃ© (alpha, beta, preview, stable)</li>
-        <li><strong>xx.x</strong> : Total de commits et pull requests</li>
-      </ul>
+    <!-- Timeline -->
+    <section class="version-timeline">
+      <h2>Historique des modifications</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot current"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <span class="version-badge stable">Stable</span>
+              <span class="timeline-date">21 février 2026</span>
+            </div>
+            <h3>v4-stable.26.2</h3>
+            <p>Refonte graphique de la page d'avertissement et de la page version. Nouveau système de checkboxes interactives.</p>
+            <a href="https://github.com/ventistudio/ventistudio.eu" target="_blank" rel="noopener" class="timeline-link">
+              <span>Voir sur GitHub</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7v10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <span class="version-badge stable">Stable</span>
+              <span class="timeline-date">1er mai 2025</span>
+            </div>
+            <h3>v4-stable.25.1</h3>
+            <p>Correction du bug d'affichage sur mobile. Amélioration des performances du lecteur multimédia.</p>
+            <a href="https://github.com/ventistudio/ventistudio.eu" target="_blank" rel="noopener" class="timeline-link">
+              <span>Voir sur GitHub</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7v10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <span class="version-badge stable">Stable</span>
+              <span class="timeline-date">30 avril 2025</span>
+            </div>
+            <h3>v4-stable.24.8</h3>
+            <p>Ajout de la section  À propos . Mise à jour des styles CSS globaux.</p>
+            <a href="https://github.com/ventistudio/ventistudio.eu" target="_blank" rel="noopener" class="timeline-link">
+              <span>Voir sur GitHub</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7v10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <span class="version-badge preview">Preview</span>
+              <span class="timeline-date">15 mars 2025</span>
+            </div>
+            <h3>v4-preview.20.0</h3>
+            <p>Lancement de la v4 en preview. Nouvelle interface glassmorphism, thème clair/sombre, refonte complète.</p>
+            <a href="https://github.com/ventistudio/ventistudio.eu" target="_blank" rel="noopener" class="timeline-link">
+              <span>Voir sur GitHub</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7v10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
     </section>
-  
-  
-  
+
   </main>
 
   <footer>
-
     <div class="footer-content">
       <div class="footer-section">
         <h4>Outils</h4>
         <ul>
           <li><a href="#">Encrypt</a></li>
-          <li><a href="#">Plan du site</a></li>
-          <li><a href="#">Statut</a></li>
+          <li><a href="/sitemap">Plan du site</a></li>
+          <li><a href="/stats">Statut</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Entreprise</h4>
         <ul>
-          <li><a href="#">À propos</a></li>
-          <li><a href="#">Emplois</a></li>
-          <li><a href="#">Marque</a></li>
+          <li><a href="/about">À propos</a></li>
+          <li><a href="/jobs">Emplois</a></li>
+          <li><a href="/logo">Marque</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Ressources</h4>
         <ul>
-          <li><a href="#">Université</a></li>
-          <li><a href="#">Assistance</a></li>
-          <li><a href="#">Sécurité</a></li>
+          <li><a href="/university">Université</a></li>
+          <li><a href="/lawful/support">Assistance</a></li>
+          <li><a href="/lawful/security">Sécurité</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Chartes</h4>
         <ul>
-          <li><a href="#">Conditions</a></li>
-          <li><a href="#">Confidentialité</a></li>
-          <li><a href="#">Information DMCA</a></li>
+          <li><a href="/lawful/tos">Conditions</a></li>
+          <li><a href="/lawful/cookies">Confidentialité</a></li>
+          <li><a href="/lawful/dmcainfo">Information DMCA</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
       <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
-      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
+      <p class="copyright">Copyright  2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
     </div>
-  
   </footer>
 
-  <script src="../script.js" defer></script>
+  <script src="/script.js" defer></script>
 </body>
 </html>
-
-

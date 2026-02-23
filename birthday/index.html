@@ -1,107 +1,254 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <meta name="description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
-  <meta name="theme-color" content="#6366f1">
-  <title>VentiStudio v4</title>
-  <link rel="stylesheet" href="../style.css">
-</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anniversaire &ndash; VentiStudio</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      text-align: center;
+      margin-bottom: 8px;
+      background: linear-gradient(90deg, #ffd36b, #ff8e3c);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 1.1rem;
+      color: #c0b8e0;
+      margin-bottom: 40px;
+    }
+
+    /* ===== CANDLES ===== */
+    .candles {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .candle {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .flame-wrapper {
+      position: relative;
+      width: 14px;
+      height: 22px;
+      margin-bottom: 2px;
+    }
+
+    .flame {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 10px;
+      height: 18px;
+      background: radial-gradient(ellipse at center bottom, #fff 0%, #ffe066 30%, #ff9500 60%, transparent 100%);
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      animation: flicker 0.4s ease-in-out infinite alternate;
+    }
+
+    .flame::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 6px;
+      height: 6px;
+      background: #4dc8ff;
+      border-radius: 50%;
+      opacity: .6;
+    }
+
+    .stick {
+      width: 6px;
+      height: 36px;
+      border-radius: 3px;
+    }
+
+    .stick-pink { background: linear-gradient(180deg, #f8a0c0, #e87baf); }
+    .stick-yellow { background: linear-gradient(180deg, #ffe680, #f8c06a); }
+    .stick-blue { background: linear-gradient(180deg, #a0d8f0, #5ab8e0); }
+
+    @keyframes flicker {
+      0% { transform: translateX(-50%) scale(1) rotate(-2deg); opacity: 1; }
+      100% { transform: translateX(-50%) scale(1.1) rotate(2deg); opacity: .85; }
+    }
+
+    /* ===== YEARS DISPLAY ===== */
+    .years-display {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .years-number {
+      font-size: clamp(5rem, 15vw, 10rem);
+      font-weight: 900;
+      background: linear-gradient(180deg, #ffd36b, #ff8e3c);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      text-shadow: none;
+      filter: drop-shadow(0 4px 20px rgba(255,142,60,.4));
+    }
+
+    .years-label {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #c0b8e0;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    /* Info text */
+    .info {
+      margin-top: 36px;
+      text-align: center;
+      color: #a898c8;
+      font-size: .95rem;
+    }
+
+    .info strong {
+      color: #ffd36b;
+    }
+
+    /* ===== CONFETTI ===== */
+    .confetti-container {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .confetti {
+      position: absolute;
+      top: -20px;
+      width: 10px;
+      height: 10px;
+      opacity: .8;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(105vh) rotate(720deg); opacity: 0; }
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    /* Footer */
+    .page-footer {
+      margin-top: 50px;
+      text-align: center;
+      font-size: .8rem;
+      color: #6a6088;
+    }
+  </style>
 </head>
 <body>
-  <header>
 
-    <div class="logo">
-      <img src="../favicon.ico" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
-      <span>VentiStudio</span>
+  <div class="confetti-container" id="confetti"></div>
+
+  <div class="content">
+    <h1 id="title">Joyeux anniversaire VentiStudio&nbsp;!</h1>
+    <p class="subtitle" id="subtitle"></p>
+
+    <div class="candles" id="candles"></div>
+
+    <div class="years-display">
+      <div class="years-number" id="years-number"></div>
+      <div class="years-label">ans</div>
     </div>
-    <nav aria-label="Navigation principale">
-      <a href="../" class="active">Accueil</a>
-      <a href="../approuvedcontent/">Contenu Approuvé</a>
-      <a href="../player">Lecteur</a>
-      <a href="../wiki">Wiki</a>
-      <a href="../staff">Équipe</a>
-      <a href="../news">News</a>
-      <a href="../pip">PIP</a>
-      <a href="../sitemap">Plan du site</a>
-    </nav>
-    <div class="controls" role="toolbar" aria-label="Contrôles">
-      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
-        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
-          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
-          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
-          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
-        </svg>
-      </button>
-      <div id="user-button" role="region" aria-label="Authentification"></div>
+
+    <p class="info">
+      Fond&eacute; en <strong>2016</strong>
+      <span id="years-text"></span> d&rsquo;aventure, de cr&eacute;ation et de passion.
+    </p>
+
+    <div class="page-footer">
+      &copy; <span id="copy-year"></span> Venti Opastudien &bull; VentiStudio FiTsZ
     </div>
-  
-  </header>
+  </div>
 
-  <main>
+  <script>
+    (function () {
+      const FOUNDING_YEAR = 2016;
+      const now = new Date();
+      const currentYear = now.getFullYear();
+      const years = currentYear - FOUNDING_YEAR;
 
+      // Years display
+      document.getElementById('years-number').textContent = years;
+      document.getElementById('years-text').textContent = years + ' ans';
+      document.getElementById('subtitle').textContent =
+        'VentiStudio illumine vos exp\u00e9riences depuis ' + FOUNDING_YEAR;
+      document.getElementById('copy-year').textContent = currentYear;
 
+      // Candles
+      const candlesEl = document.getElementById('candles');
+      const displayCount = Math.min(years, 12);
+      const stickClasses = ['stick-pink', 'stick-yellow', 'stick-blue'];
+      for (let i = 0; i < displayCount; i++) {
+        const candle = document.createElement('div');
+        candle.className = 'candle';
+        candle.innerHTML =
+          '<div class="flame-wrapper"><div class="flame"></div></div>' +
+          '<div class="stick ' + stickClasses[i % 3] + '"></div>';
+        candle.querySelector('.flame').style.animationDelay = (Math.random() * 0.4) + 's';
+        candlesEl.appendChild(candle);
+      }
 
-    <section class="hero">
-      <h1>Nos annÃ©es de service</h1>
-      <p>VentiStudio illumine vos expÃ©riences depuis 2016</p>
-    </section>
-    <section id="anniversary-section">
-      <div class="candles-container"></div>
-      <div id="decorations" class="seasonal-decorations"></div>
-    </section>
-  
-  
-  
-  </main>
-
-  <footer>
-
-    <div class="footer-content">
-      <div class="footer-section">
-        <h4>Outils</h4>
-        <ul>
-          <li><a href="#">Encrypt</a></li>
-          <li><a href="#">Plan du site</a></li>
-          <li><a href="#">Statut</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h4>Entreprise</h4>
-        <ul>
-          <li><a href="#">À propos</a></li>
-          <li><a href="#">Emplois</a></li>
-          <li><a href="#">Marque</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h4>Ressources</h4>
-        <ul>
-          <li><a href="#">Université</a></li>
-          <li><a href="#">Assistance</a></li>
-          <li><a href="#">Sécurité</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h4>Chartes</h4>
-        <ul>
-          <li><a href="#">Conditions</a></li>
-          <li><a href="#">Confidentialité</a></li>
-          <li><a href="#">Information DMCA</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
-      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
-    </div>
-  
-  </footer>
-
-  <script src="../script.js" defer></script>
+      // Confetti
+      const container = document.getElementById('confetti');
+      const colors = ['#ffd36b','#ff8e3c','#e87baf','#5ab8e0','#89d4f5','#a0f0a0','#fff'];
+      const shapes = ['circle','square'];
+      for (let i = 0; i < 60; i++) {
+        const el = document.createElement('div');
+        el.className = 'confetti';
+        const size = 6 + Math.random() * 10;
+        el.style.width = size + 'px';
+        el.style.height = size + 'px';
+        el.style.left = Math.random() * 100 + '%';
+        el.style.background = colors[Math.floor(Math.random() * colors.length)];
+        el.style.borderRadius = shapes[Math.floor(Math.random() * 2)] === 'circle' ? '50%' : '2px';
+        el.style.animationDuration = (4 + Math.random() * 6) + 's';
+        el.style.animationDelay = (Math.random() * 8) + 's';
+        container.appendChild(el);
+      }
+    })();
+  </script>
 </body>
 </html>
-
-

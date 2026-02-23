@@ -1,31 +1,29 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <meta name="description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
+  <meta name="description" content="VentiStudio - Centre de Sécurité">
   <meta name="theme-color" content="#6366f1">
-  <title>VentiStudio v4</title>
-  <link rel="stylesheet" href="../../style.css">
-  VentiStudio - SÃ©curitÃ©</title>
+  <title>VentiStudio - Sécurité</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="../lawful.css">
 </head>
 <body>
   <header>
-
     <div class="logo">
-      <img src="../../favicon.ico" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
+      <img src="/favicon.avif" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
       <span>VentiStudio</span>
     </div>
     <nav aria-label="Navigation principale">
-      <a href="../../" class="active">Accueil</a>
-      <a href="../../approuvedcontent/">Contenu Approuvé</a>
-      <a href="../../player">Lecteur</a>
-      <a href="../../wiki">Wiki</a>
-      <a href="../../staff">Équipe</a>
-      <a href="../../news">News</a>
-      <a href="../../pip">PIP</a>
-      <a href="../../sitemap">Plan du site</a>
+      <a href="/">Accueil</a>
+      <a href="../../evaluation/">Contenu Approuvé</a>
+      <a href="/player">Lecteur</a>
+      <a href="/wiki">Wiki</a>
+      <a href="/staff">Équipe</a>
+      <a href="/news">News</a>
+      <a href="/pip">PIP</a>
+      <a href="/sitemap">Plan du site</a>
     </nav>
     <div class="controls" role="toolbar" aria-label="Contrôles">
       <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
@@ -37,30 +35,26 @@
       </button>
       <div id="user-button" role="region" aria-label="Authentification"></div>
     </div>
-  
   </header>
 
   <main>
-
-
-
     <section class="hero-section">
-      <h1>Centre de SÃ©curitÃ© VentiStudio</h1>
-      <p>Aidez-nous Ã  maintenir VentiStudio sÃ»r et sÃ©curisÃ© pour tous</p>
+      <h1>Centre de Sécurité VentiStudio</h1>
+      <p>Aidez-nous à maintenir VentiStudio sûr et sécurisé pour tous</p>
     </section>
 
     <section class="security-section">
       <div class="security-card">
-        <h3>Signalement de ProblÃ¨mes</h3>
-        <p>Nous prenons la sÃ©curitÃ© trÃ¨s au sÃ©rieux. Si vous dÃ©couvrez une vulnÃ©rabilitÃ© ou un comportement inappropriÃ©, veuillez nous en faire part immÃ©diatement.</p>
+        <h3>Signalement de Problèmes</h3>
+        <p>Nous prenons la sécurité très au sérieux. Si vous découvrez une vulnérabilité ou un comportement inapproprié, veuillez nous en faire part immédiatement.</p>
       </div>
 
       <div class="security-card">
         <h3>Types de Signalements</h3>
         <ul>
-          <li>VulnÃ©rabilitÃ©s de sÃ©curitÃ©</li>
+          <li>Vulnérabilités de sécurité</li>
           <li>Bugs techniques</li>
-          <li>Comportements inappropriÃ©s</li>
+          <li>Comportements inappropriés</li>
           <li>Contenu suspect</li>
         </ul>
       </div>
@@ -71,33 +65,33 @@
         <div class="form-group">
           <label for="type">Type de Signalement</label>
           <select id="type" required>
-            <option value="">SÃ©lectionner un type</option>
-            <option value="security">VulnÃ©rabilitÃ© de SÃ©curitÃ©</option>
+            <option value="">Sélectionner un type</option>
+            <option value="security">Vulnérabilité de Sécurité</option>
             <option value="bug">Bug Technique</option>
-            <option value="behavior">Comportement InappropriÃ©</option>
+            <option value="behavior">Comportement Inapproprié</option>
             <option value="content">Contenu Suspect</option>
           </select>
         </div>
 
         <div class="form-group">
-          <label for="severity">Niveau de GravitÃ©</label>
+          <label for="severity">Niveau de Gravité</label>
           <select id="severity" required>
-            <option value="">SÃ©lectionner un niveau</option>
+            <option value="">Sélectionner un niveau</option>
             <option value="low">Faible</option>
             <option value="medium">Moyen</option>
-            <option value="high">Ã‰levÃ©</option>
+            <option value="high">Élevé</option>
             <option value="critical">Critique</option>
           </select>
         </div>
 
         <div class="form-group">
-          <label for="description">Description DÃ©taillÃ©e</label>
-          <textarea id="description" required placeholder="DÃ©crivez le problÃ¨me en dÃ©tail..."></textarea>
+          <label for="description">Description Détaillée</label>
+          <textarea id="description" required placeholder="Décrivez le problème en détail..."></textarea>
         </div>
 
         <div class="form-group">
-          <label for="steps">Ã‰tapes pour Reproduire</label>
-          <textarea id="steps" placeholder="Ã‰tapes pour reproduire le problÃ¨me..."></textarea>
+          <label for="steps">Étapes pour Reproduire</label>
+          <textarea id="steps" placeholder="Étapes pour reproduire le problème..."></textarea>
         </div>
 
         <div class="form-group">
@@ -109,13 +103,9 @@
         <div class="error-message" id="errorMessage"></div>
       </form>
     </section>
-  
-  
-  
   </main>
 
   <footer>
-
     <div class="footer-content">
       <div class="footer-section">
         <h4>Outils</h4>
@@ -154,10 +144,45 @@
       <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
       <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
     </div>
-  
   </footer>
 
-  <script src="../../script.js" defer></script>
+  <script src="/script.js" defer></script>
+  <script>
+    function handleSubmit(event) {
+      event.preventDefault();
+      
+      const type = document.getElementById('type').value;
+      const typeLabels = {
+        'security': 'Vulnérabilité de Sécurité',
+        'bug': 'Bug Technique',
+        'behavior': 'Comportement Inapproprié',
+        'content': 'Contenu Suspect'
+      };
+      
+      const severity = document.getElementById('severity').value;
+      const severityLabels = {
+        'low': 'Faible',
+        'medium': 'Moyen',
+        'high': 'Élevé',
+        'critical': 'Critique'
+      };
+      
+      const description = document.getElementById('description').value;
+      const steps = document.getElementById('steps').value;
+      const contact = document.getElementById('contact').value;
+      
+      const subject = `Signalement de Sécurité - ${typeLabels[type]}`;
+      const body = `Type de signalement: ${typeLabels[type]}\n` +
+                   `Niveau de gravité: ${severityLabels[severity]}\n` +
+                   `Email de contact: ${contact}\n\n` +
+                   `Description détaillée:\n${description}\n\n` +
+                   `Étapes pour reproduire:\n${steps || 'Non spécifié'}`;
+      
+      const mailtoLink = `mailto:security@ventistudio.eu?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = mailtoLink;
+      return false;
+    }
+  </script>
 </body>
 </html>
 

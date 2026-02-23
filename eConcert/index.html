@@ -1,31 +1,158 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <meta name="description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
+  <meta name="description" content="VentiStudio eConcert - Découvrez les prochains concerts et événements musicaux.">
   <meta name="theme-color" content="#6366f1">
-  <title>VentiStudio v4</title>
-  <link rel="stylesheet" href="../style.css">
-</title>
+  <title>eConcert | VentiStudio</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    .ec-hero {
+      text-align: center;
+      padding: 4rem 2rem 2rem;
+    }
+    .ec-hero h1 {
+      font-size: 2.2rem;
+      margin-bottom: .5rem;
+      background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .ec-hero .subtitle {
+      font-size: 1.05rem;
+      opacity: .7;
+      max-width: 550px;
+      margin: 0 auto;
+    }
+
+    .ec-section {
+      max-width: 900px;
+      margin: 0 auto 3rem;
+      padding: 0 1.5rem;
+    }
+
+    .ec-info-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.2rem;
+      margin-bottom: 2.5rem;
+    }
+    .ec-info-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      backdrop-filter: blur(12px);
+      transition: all .3s cubic-bezier(.4, 0, .2, 1);
+    }
+    .ec-info-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px var(--glass-shadow);
+    }
+    .ec-info-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: .8rem;
+      color: #fff;
+    }
+    .ec-info-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: .3rem;
+    }
+    .ec-info-card p {
+      font-size: .85rem;
+      opacity: .7;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .ec-widget-wrap {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 2rem;
+      backdrop-filter: blur(12px);
+      margin-bottom: 2rem;
+    }
+    .ec-widget-header {
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--glass-border);
+    }
+    .ec-widget-header svg { color: var(--accent); flex-shrink: 0; }
+    .ec-widget-header h2 { font-size: 1.2rem; font-weight: 700; }
+    .ec-widget-header span {
+      font-size: .75rem;
+      padding: .2rem .6rem;
+      border-radius: 6px;
+      background: rgba(34,197,94,.15);
+      color: #22c55e;
+      font-weight: 600;
+    }
+
+    .ec-notice {
+      background: rgba(245,158,11,.06);
+      border: 1px solid rgba(245,158,11,.2);
+      border-radius: 12px;
+      padding: 1.2rem;
+      display: flex;
+      align-items: flex-start;
+      gap: .8rem;
+      margin-bottom: 2rem;
+    }
+    .ec-notice svg { color: #f59e0b; flex-shrink: 0; margin-top: .1rem; }
+    .ec-notice p {
+      font-size: .85rem;
+      opacity: .8;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .ec-back {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .ec-back a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      transition: opacity .2s;
+    }
+    .ec-back a:hover { opacity: .7; }
+
+    @media (max-width: 600px) {
+      .ec-hero h1 { font-size: 1.6rem; }
+      .ec-widget-wrap { padding: 1.2rem; }
+      .ec-info-cards { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
   <header>
-
     <div class="logo">
-      <img src="../favicon.ico" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
+      <img src="/favicon.avif" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
       <span>VentiStudio</span>
     </div>
     <nav aria-label="Navigation principale">
-      <a href="../" class="active">Accueil</a>
-      <a href="../approuvedcontent/">Contenu Approuvé</a>
-      <a href="../player">Lecteur</a>
-      <a href="../wiki">Wiki</a>
-      <a href="../staff">Équipe</a>
-      <a href="../news">News</a>
-      <a href="../pip">PIP</a>
-      <a href="../sitemap">Plan du site</a>
+      <a href="/">Accueil</a>
+      <a href="/evaluation">Contenu Approuvé</a>
+      <a href="/player">Lecteur</a>
+      <a href="/wiki">Wiki</a>
+      <a href="/staff">Équipe</a>
+      <a href="/news">News</a>
+      <a href="/pip">PIP</a>
+      <a href="/sitemap">Plan du site</a>
     </nav>
     <div class="controls" role="toolbar" aria-label="Contrôles">
       <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
@@ -37,169 +164,183 @@
       </button>
       <div id="user-button" role="region" aria-label="Authentification"></div>
     </div>
-  
   </header>
 
   <main>
+    <!-- Hero -->
+    <section class="ec-hero">
+      <h1>eConcert</h1>
+      <p class="subtitle">Découvrez les prochains concerts et événements musicaux de VentiStudio.</p>
+    </section>
 
+    <!-- Info Cards -->
+    <section class="ec-section">
+      <div class="ec-info-cards">
+        <div class="ec-info-card">
+          <div class="ec-info-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18V5l12-2v13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6" cy="18" r="3" stroke="currentColor" stroke-width="2"/><circle cx="18" cy="16" r="3" stroke="currentColor" stroke-width="2"/></svg>
+          </div>
+          <h3>Concerts en direct</h3>
+          <p>Assistez à des performances musicales en direct diffusées depuis notre plateforme.</p>
+        </div>
+        <div class="ec-info-card">
+          <div class="ec-info-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/><path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <h3>Événements réguliers</h3>
+          <p>Des événements musicaux organisés tout au long de l'année pour la communauté.</p>
+        </div>
+        <div class="ec-info-card">
+          <div class="ec-info-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Billetterie intégrée</h3>
+          <p>Réservez vos places directement via le widget Bandsintown ci-dessous.</p>
+        </div>
+      </div>
 
+      <!-- Notice -->
+      <div class="ec-notice">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><path d="M12 8v4M12 16h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <p>Les dates et disponibilités sont gérées via Bandsintown. Les notifications de nouveaux événements sont envoyées sur notre serveur Discord.</p>
+      </div>
 
-        <section class="hero">
-            <h1>VentiStudio eConcert</h1>
-            <p>DÃ©couvrez les prochains concerts et Ã©vÃ©nements</p>
-        </section>
+      <!-- Bandsintown Widget -->
+      <div class="ec-widget-wrap">
+        <div class="ec-widget-header">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <h2>Programmation</h2>
+          <span>En direct</span>
+        </div>
+        <script charset="utf-8" src="https://widgetv3.bandsintown.com/main.min.js"></script>
+        <a class="bit-widget-initializer"
+          data-artist-name="id_15580410"
+          data-events-to-display=""
+          data-background-color="rgba(26,27,38,1)"
+          data-separator-color="rgba(187,154,247,1)"
+          data-text-color="rgba(169,177,214,1)"
+          data-font="Arial"
+          data-auto-style="true"
+          data-button-label-capitalization="uppercase"
+          data-header-capitalization="uppercase"
+          data-location-capitalization="uppercase"
+          data-venue-capitalization="uppercase"
+          data-display-local-dates="true"
+          data-local-dates-position="tab"
+          data-display-past-dates="true"
+          data-display-details="true"
+          data-display-lineup="false"
+          data-display-start-time="true"
+          data-social-share-icon="true"
+          data-display-limit="all"
+          data-date-format="dddd, MMMM Do, YYYY"
+          data-date-orientation="horizontal"
+          data-date-border-color="#4A4A4A"
+          data-date-border-width="1px"
+          data-date-capitalization="capitalize"
+          data-date-border-radius="10px"
+          data-event-ticket-cta-size="medium"
+          data-event-custom-ticket-text=""
+          data-event-ticket-text="TICKETS"
+          data-event-ticket-icon="true"
+          data-event-ticket-cta-text-color="rgba(255,255,255,1)"
+          data-event-ticket-cta-bg-color="rgba(36,40,59,1)"
+          data-event-ticket-cta-border-color="rgba(74,74,74,1)"
+          data-event-ticket-cta-border-width="0px"
+          data-event-ticket-cta-border-radius="2px"
+          data-sold-out-button-text-color="rgba(255,255,255,1)"
+          data-sold-out-button-background-color="rgba(74,74,74,1)"
+          data-sold-out-button-border-color="rgba(74,74,74,1)"
+          data-sold-out-button-clickable="true"
+          data-event-rsvp-position="left"
+          data-event-rsvp-cta-size="medium"
+          data-event-rsvp-only-show-icon="false"
+          data-event-rsvp-text="Être notifié"
+          data-event-rsvp-icon="false"
+          data-event-rsvp-cta-text-color="rgba(74,74,74,1)"
+          data-event-rsvp-cta-bg-color="rgba(255,255,255,1)"
+          data-event-rsvp-cta-border-color="rgba(74,74,74,1)"
+          data-event-rsvp-cta-border-width="1px"
+          data-event-rsvp-cta-border-radius="2px"
+          data-follow-section-position="top"
+          data-follow-section-alignment="center"
+          data-follow-section-header-text="VentiStudio eConcert"
+          data-follow-section-cta-size="medium"
+          data-follow-section-cta-text="Suivre"
+          data-follow-section-cta-icon="false"
+          data-follow-section-cta-text-color="rgba(255,255,255,1)"
+          data-follow-section-cta-bg-color="rgba(36,40,59,1)"
+          data-follow-section-cta-border-color="rgba(74,74,74,1)"
+          data-follow-section-cta-border-width="0px"
+          data-follow-section-cta-border-radius="2px"
+          data-play-my-city-position="bottom"
+          data-play-my-city-alignment="center"
+          data-play-my-city-header-text="Il n'y a pas de spectacle près de chez vous ?"
+          data-play-my-city-cta-size="medium"
+          data-play-my-city-cta-text="DEMANDER UN SPECTACLE"
+          data-play-my-city-cta-icon="false"
+          data-play-my-city-cta-text-color="rgba(255,255,255,1)"
+          data-play-my-city-cta-bg-color="rgba(36,40,59,1)"
+          data-play-my-city-cta-border-color="rgba(74,74,74,1)"
+          data-play-my-city-cta-border-width="0px"
+          data-play-my-city-cta-border-radius="2px"
+          data-language="fr"
+          data-layout-breakpoint="900"
+          data-app-id=""
+          data-affil-code=""
+          data-bit-logo-position="bottomRight"
+          data-bit-logo-color="rgba(169,177,214,1)"
+        ></a>
+      </div>
+    </section>
 
-        <section class="concert-widget">
-<script charset="utf-8" src="https://widgetv3.bandsintown.com/main.min.js"></script>
-<a class="bit-widget-initializer"
-  
-  data-artist-name="id_15580410"
-  
-  data-events-to-display=""
-  data-background-color="rgba(26,27,38,1)"
-  data-separator-color="rgba(187,154,247,1)"
-  data-text-color="rgba(169,177,214,1)"
-  data-font="Arial"
-  data-auto-style="true"
-  
-  data-button-label-capitalization="uppercase"
-  data-header-capitalization="uppercase"
-  data-location-capitalization="uppercase"
-  data-venue-capitalization="uppercase"
-  data-display-local-dates="true"
-  data-local-dates-position="tab"
-  data-display-past-dates="true"
-  data-display-details="true"
-  data-display-lineup="false"
-  data-display-start-time="true"
-  data-social-share-icon="true"
-  data-display-limit="all"
-  
-  data-date-format="dddd, MMMM Do, YYYY"
-  data-date-orientation="horizontal"
-  data-date-border-color="#4A4A4A"
-  data-date-border-width="1px"
-  data-date-capitalization="capitalize"
-  data-date-border-radius="10px"
-  
-  data-event-ticket-cta-size="medium"
-  data-event-custom-ticket-text=""
-  data-event-ticket-text="TICKETS"
-  data-event-ticket-icon="true"
-  data-event-ticket-cta-text-color="rgba(255,255,255,1)"
-  data-event-ticket-cta-bg-color="rgba(36,40,59,1)"
-  data-event-ticket-cta-border-color="rgba(74,74,74,1)"
-  data-event-ticket-cta-border-width="0px"
-  data-event-ticket-cta-border-radius="2px"
-  
-  data-sold-out-button-text-color="rgba(255,255,255,1)"
-  data-sold-out-button-background-color="rgba(74,74,74,1)"
-  data-sold-out-button-border-color="rgba(74,74,74,1)"
-  data-sold-out-button-clickable="true"
-  
-  data-event-rsvp-position="left"
-  data-event-rsvp-cta-size="medium"
-  data-event-rsvp-only-show-icon="false"
-  data-event-rsvp-text="Etre notifiÃ©"
-  data-event-rsvp-icon="false"
-  data-event-rsvp-cta-text-color="rgba(74,74,74,1)"
-  data-event-rsvp-cta-bg-color="rgba(255,255,255,1)"
-  data-event-rsvp-cta-border-color="rgba(74,74,74,1)"
-  data-event-rsvp-cta-border-width="1px"
-  data-event-rsvp-cta-border-radius="2px"
-  
-  data-follow-section-position="top"
-  data-follow-section-alignment="center"
-  data-follow-section-header-text="VentiStudio eConcert"
-  data-follow-section-cta-size="medium"
-  data-follow-section-cta-text="Suivre"
-  data-follow-section-cta-icon="false"
-  data-follow-section-cta-text-color="rgba(255,255,255,1)"
-  data-follow-section-cta-bg-color="rgba(36,40,59,1)"
-  data-follow-section-cta-border-color="rgba(74,74,74,1)"
-  data-follow-section-cta-border-width="0px"
-  data-follow-section-cta-border-radius="2px"
-  
-  data-play-my-city-position="bottom"
-  data-play-my-city-alignment="center"
-  data-play-my-city-header-text="Il n'y a pas de spectacle prÃ¨s de chez vous ?"
-  data-play-my-city-cta-size="medium"
-  data-play-my-city-cta-text="DEMANDER UN SPECTACLE"
-  data-play-my-city-cta-icon="false"
-  data-play-my-city-cta-text-color="rgba(255,255,255,1)"
-  data-play-my-city-cta-bg-color="rgba(36,40,59,1)"
-  data-play-my-city-cta-border-color="rgba(74,74,74,1)"
-  data-play-my-city-cta-border-width="0px"
-  data-play-my-city-cta-border-radius="2px"
-  
-  data-optin-font=""
-  data-optin-text-color=""
-  data-optin-bg-color=""
-  data-optin-cta-text-color=""
-  data-optin-cta-bg-color=""
-  data-optin-cta-border-width=""
-  data-optin-cta-border-radius=""
-  data-optin-cta-border-color=""
-  
-  data-language="fr"
-  data-layout-breakpoint="900"
-  data-app-id=""
-  data-affil-code=""
-  data-bit-logo-position="bottomRight"
-  data-bit-logo-color="rgba(169,177,214,1)"
-  
-  ></a>
-</section>
-
-  
-  
+    <!-- Back -->
+    <div class="ec-back">
+      <a href="/">&larr; Retour à l'accueil</a>
+    </div>
   </main>
 
   <footer>
-
     <div class="footer-content">
       <div class="footer-section">
         <h4>Outils</h4>
         <ul>
           <li><a href="#">Encrypt</a></li>
-          <li><a href="#">Plan du site</a></li>
-          <li><a href="#">Statut</a></li>
+          <li><a href="/sitemap">Plan du site</a></li>
+          <li><a href="/stats">Statut</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Entreprise</h4>
         <ul>
-          <li><a href="#">À propos</a></li>
-          <li><a href="#">Emplois</a></li>
-          <li><a href="#">Marque</a></li>
+          <li><a href="/about">À propos</a></li>
+          <li><a href="/jobs">Emplois</a></li>
+          <li><a href="/logo">Marque</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Ressources</h4>
         <ul>
-          <li><a href="#">Université</a></li>
-          <li><a href="#">Assistance</a></li>
-          <li><a href="#">Sécurité</a></li>
+          <li><a href="/university">Université</a></li>
+          <li><a href="/lawful/support">Assistance</a></li>
+          <li><a href="/lawful/security">Sécurité</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Chartes</h4>
         <ul>
-          <li><a href="#">Conditions</a></li>
-          <li><a href="#">Confidentialité</a></li>
-          <li><a href="#">Information DMCA</a></li>
+          <li><a href="/lawful/tos">Conditions</a></li>
+          <li><a href="/lawful/cookies">Confidentialité</a></li>
+          <li><a href="/lawful/dmcainfo">Information DMCA</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
       <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
-      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
+      <p class="copyright">Copyright  2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
     </div>
-  
   </footer>
 
-  <script src="../script.js" defer></script>
+  <script src="/script.js" defer></script>
 </body>
 </html>
-
-

@@ -1,31 +1,291 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <meta name="description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
+  <meta name="description" content="VentiStudio Cooldown - Compte à rebours vers les prochains événements VentiStudio.">
   <meta name="theme-color" content="#6366f1">
-  <title>VentiStudio v4</title>
-  <link rel="stylesheet" href="../style.css">
-</title>
+  <title>Cooldown - VentiStudio</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    /* ── Cooldown hero ── */
+    .cooldown-hero {
+      text-align: center;
+      padding: 4rem 0 2rem;
+    }
+
+    .cooldown-hero h1 {
+      font-size: 2.8rem;
+    }
+
+    .cooldown-hero p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      max-width: 550px;
+      margin: 0 auto;
+    }
+
+    /* ── Main countdown ── */
+    .countdown-main {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 2rem;
+      padding: 3rem 2rem;
+      text-align: center;
+      margin: 2rem 0 3rem;
+      box-shadow: var(--glass-shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .countdown-main::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(99,102,241,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .countdown-event-name {
+      font-size: 1.1rem;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.03em;
+    }
+
+    .countdown-event-icon {
+      font-size: 2.5rem;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    .countdown-timer {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+      flex-wrap: wrap;
+    }
+
+    .timer-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 90px;
+    }
+
+    .timer-value {
+      font-size: 3.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.1;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .timer-label {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+      margin-top: 0.25rem;
+    }
+
+    .timer-separator {
+      font-size: 2.5rem;
+      color: var(--accent);
+      font-weight: 300;
+      align-self: flex-start;
+      margin-top: 0.3rem;
+      opacity: 0.5;
+    }
+
+    .countdown-date {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-top: 0.5rem;
+    }
+
+    /* ── Event list ── */
+    .events-section {
+      padding: 2rem 0 3rem;
+    }
+
+    .events-section h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .event-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .event-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 1.25rem;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      transition: all 0.3s ease;
+      box-shadow: var(--glass-shadow);
+    }
+
+    .event-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    .event-card.is-next {
+      border-color: var(--accent);
+      box-shadow: 0 0 25px rgba(99,102,241,0.15);
+    }
+
+    .event-card.is-past {
+      opacity: 0.5;
+    }
+
+    .event-icon {
+      font-size: 1.8rem;
+      min-width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, rgba(99,102,241,0.1), rgba(139,92,246,0.1));
+      border-radius: 1rem;
+    }
+
+    .event-info {
+      flex: 1;
+    }
+
+    .event-name {
+      color: var(--text-primary);
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+
+    .event-date-text {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      margin-top: 0.15rem;
+    }
+
+    .event-countdown-small {
+      text-align: right;
+      min-width: 100px;
+    }
+
+    .event-days-left {
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .event-status {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    .event-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.2rem 0.6rem;
+      border-radius: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .cooldown-hero h1 {
+        font-size: 2rem;
+      }
+
+      .timer-value {
+        font-size: 2.5rem;
+      }
+
+      .timer-unit {
+        min-width: 70px;
+      }
+
+      .countdown-timer {
+        gap: 1rem;
+      }
+
+      .timer-separator {
+        font-size: 2rem;
+      }
+
+      .event-countdown-small {
+        min-width: auto;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .timer-separator {
+        display: none;
+      }
+
+      .countdown-timer {
+        gap: 0.75rem;
+      }
+
+      .timer-unit {
+        min-width: 60px;
+      }
+
+      .timer-value {
+        font-size: 2rem;
+      }
+
+      .event-card {
+        flex-wrap: wrap;
+      }
+
+      .event-countdown-small {
+        width: 100%;
+        text-align: left;
+        margin-top: 0.5rem;
+      }
+    }
+  </style>
 </head>
 <body>
   <header>
-
     <div class="logo">
-      <img src="../favicon.ico" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
+      <img src="/favicon.avif" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
       <span>VentiStudio</span>
     </div>
     <nav aria-label="Navigation principale">
-      <a href="../" class="active">Accueil</a>
-      <a href="../approuvedcontent/">Contenu Approuvé</a>
-      <a href="../player">Lecteur</a>
-      <a href="../wiki">Wiki</a>
-      <a href="../staff">Équipe</a>
-      <a href="../news">News</a>
-      <a href="../pip">PIP</a>
-      <a href="../sitemap">Plan du site</a>
+      <a href="/">Accueil</a>
+      <a href="/evaluation">Contenu Approuvé</a>
+      <a href="/player">Lecteur</a>
+      <a href="/wiki">Wiki</a>
+      <a href="/staff">Équipe</a>
+      <a href="/news">News</a>
+      <a href="/pip">PIP</a>
+      <a href="/sitemap">Plan du site</a>
     </nav>
     <div class="controls" role="toolbar" aria-label="Contrôles">
       <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
@@ -37,305 +297,84 @@
       </button>
       <div id="user-button" role="region" aria-label="Authentification"></div>
     </div>
-  
   </header>
 
   <main>
 
+    <!-- Hero -->
+    <section class="cooldown-hero">
+      <h1>Cooldown</h1>
+      <p>Les prochains événements VentiStudio. Préparez-vous !</p>
+    </section>
 
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/ico" href="https://ventistudio.eu/favicon.ico">
-    <title>VentiStudio - Cooldown</title>
-    <style>
-        :root {
-            --primary: #7B66FF;
-            --secondary: #2A2D3A; 
-            --background: #1A1B26;
-            --text: #FFFFFF;
-            --hover: #9F86FF;
-            --accent1: #414868;
-            --accent2: #565f89;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Inter', sans-serif;
-            background: var(--background);
-            color: var(--text);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        .countdown-wrapper {
-            background: var(--secondary);
-            border-radius: 10px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .countdown-title {
-            text-align: center;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--primary);
-        }
-
-        .countdown {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-        }
-
-        .countdown-item {
-            text-align: center;
-            min-width: 80px;
-        }
-
-        .countdown-number {
-            font-size: 2rem;
-            font-weight: bold;
-            color: var(--hover);
-        }
-
-        .countdown-label {
-            font-size: 0.9rem;
-            color: var(--text);
-            opacity: 0.8;
-        }
-
-        .event-list {
-            display: grid;
-            gap: 1rem;
-        }
-
-        .event-item {
-            background: var(--accent1);
-            padding: 1rem;
-            border-radius: 8px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .event-name {
-            font-weight: bold;
-        }
-
-        .event-date {
-            opacity: 0.8;
-        }
-
-        .past-event {
-            opacity: 0.5;
-            background: var(--accent2);
-        }
-
-        @media (max-width: 600px) {
-            .countdown {
-                flex-wrap: wrap;
-            }
-
-            .countdown-item {
-                min-width: 60px;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="countdown-wrapper">
-            <h1 class="countdown-title">Prochain Ã©vÃ©nement</h1>
-            <div class="countdown" id="countdown">
-                <div class="countdown-item">
-                    <div class="countdown-number" id="days">--</div>
-                    <div class="countdown-label">Jours</div>
-                </div>
-                <div class="countdown-item">
-                    <div class="countdown-number" id="hours">--</div>
-                    <div class="countdown-label">Heures</div>
-                </div>
-                <div class="countdown-item">
-                    <div class="countdown-number" id="minutes">--</div>
-                    <div class="countdown-label">Minutes</div>
-                </div>
-                <div class="countdown-item">
-                    <div class="countdown-number" id="seconds">--</div>
-                    <div class="countdown-label">Secondes</div>
-                </div>
-            </div>
+    <!-- Main countdown -->
+    <section class="countdown-main" id="countdownMain">
+      <span class="countdown-event-icon" id="countdownIcon">⏳</span>
+      <div class="countdown-event-name" id="countdownName">Chargement...</div>
+      <div class="countdown-timer">
+        <div class="timer-unit">
+          <span class="timer-value" id="days">--</span>
+          <span class="timer-label">Jours</span>
         </div>
+        <span class="timer-separator">:</span>
+        <div class="timer-unit">
+          <span class="timer-value" id="hours">--</span>
+          <span class="timer-label">Heures</span>
+        </div>
+        <span class="timer-separator">:</span>
+        <div class="timer-unit">
+          <span class="timer-value" id="minutes">--</span>
+          <span class="timer-label">Minutes</span>
+        </div>
+        <span class="timer-separator">:</span>
+        <div class="timer-unit">
+          <span class="timer-value" id="seconds">--</span>
+          <span class="timer-label">Secondes</span>
+        </div>
+      </div>
+      <div class="countdown-date" id="countdownDate"></div>
+    </section>
 
-        <div class="event-list" id="eventList"></div>
-    </div>
+    <!-- Event list -->
+    <section class="events-section">
+      <h2>Tous les événements</h2>
+      <div class="event-list" id="eventList"></div>
+    </section>
 
-    <script>
-        const events = [
-            { 
-                name: "NoÃ«l", 
-                date: "2024-12-25", 
-                startTime: "00:00",  // Ajout de l'heure de dÃ©but
-                icon: "ðŸŽ„" 
-            },
-            { 
-                name: "Anniversaire d'Hikari", 
-                date: "2024-12-15", 
-                startTime: "00:00",
-                icon: "ðŸŽ‚" 
-            },
-            { 
-                name: "Anniversaire VentiStudio", 
-                date: "2024-09-24", 
-                startTime: "00:00",
-                icon: "ðŸŽ‰" 
-            },
-            { 
-                name: "Halloween", 
-                date: "2024-10-31", 
-                startTime: "20:00", // L'Ã©vÃ©nement commence Ã  20h00
-                icon: "ðŸŽƒ" 
-            },
-            { 
-                name: "FÃªte Nationale", 
-                date: "2024-07-14", 
-                startTime: "00:00",
-                icon: "ðŸ‡«ðŸ‡·" 
-            }
-        ];
-
-        function updateCountdown() {
-            const now = new Date().getTime();
-            
-            // Trouver le prochain Ã©vÃ©nement
-            const nextEvent = events
-                .map(event => {
-                    const [year, month, day] = event.date.split('-');
-                    const [hours, minutes] = event.startTime.split(':');
-                    const timestamp = new Date(year, month - 1, day, hours, minutes).getTime();
-                    return { ...event, timestamp };
-                })
-                .filter(event => event.timestamp > now)
-                .sort((a, b) => a.timestamp - b.timestamp)[0];
-
-            if (nextEvent) {
-                const timeLeft = nextEvent.timestamp - now;
-                
-                // Mettre Ã  jour le titre avec le nom de l'Ã©vÃ©nement et l'heure de dÃ©but
-                const eventDate = new Date(nextEvent.timestamp);
-                const formattedTime = eventDate.toLocaleTimeString('fr-FR', { 
-                    hour: '2-digit', 
-                    minute: '2-digit' 
-                });
-                document.querySelector('.countdown-title').textContent = 
-                    `${nextEvent.icon} ${nextEvent.name} (dÃ©bute Ã  ${formattedTime})`;
-                
-                if (timeLeft < 0) {
-                    document.getElementById('days').textContent = "0";
-                    document.getElementById('hours').textContent = "0";
-                    document.getElementById('minutes').textContent = "0";
-                    document.getElementById('seconds').textContent = "0";
-                    return;
-                }
-
-                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
-                document.getElementById('days').textContent = String(days).padStart(2, '0');
-                document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-                document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-                document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
-            } else {
-                document.querySelector('.countdown-title').textContent = "Aucun Ã©vÃ©nement Ã  venir";
-            }
-        }
-
-        function displayEventList() {
-            const eventList = document.getElementById('eventList');
-            eventList.innerHTML = ''; // Nettoyer la liste avant de l'actualiser
-            const now = new Date();
-
-            events
-                .sort((a, b) => new Date(a.date) - new Date(b.date))
-                .forEach(event => {
-                    const eventDate = new Date(event.date);
-                    const eventElement = document.createElement('div');
-                    eventElement.className = 'event-item';
-                    
-                    // Ajouter une classe si l'Ã©vÃ©nement est passÃ©
-                    if (eventDate < now) {
-                        eventElement.classList.add('past-event');
-                    }
-                    
-                    eventElement.innerHTML = `
-                        <span class="event-name">${event.icon} ${event.name}</span>
-                        <span class="event-date">${eventDate.toLocaleDateString('fr-FR')}</span>
-                    `;
-                    eventList.appendChild(eventElement);
-                });
-        }
-
-        // Mettre Ã  jour le compte Ã  rebours chaque seconde
-        setInterval(updateCountdown, 1000);
-        
-        // Afficher la liste des Ã©vÃ©nements
-        displayEventList();
-        
-        // Initial update
-        updateCountdown();
-    </script>
-</body>
-</html>
-  
-  
   </main>
 
   <footer>
-
     <div class="footer-content">
       <div class="footer-section">
         <h4>Outils</h4>
         <ul>
           <li><a href="#">Encrypt</a></li>
-          <li><a href="#">Plan du site</a></li>
-          <li><a href="#">Statut</a></li>
+          <li><a href="/sitemap">Plan du site</a></li>
+          <li><a href="/stats">Statut</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Entreprise</h4>
         <ul>
-          <li><a href="#">À propos</a></li>
-          <li><a href="#">Emplois</a></li>
-          <li><a href="#">Marque</a></li>
+          <li><a href="/about">À propos</a></li>
+          <li><a href="/jobs">Emplois</a></li>
+          <li><a href="/logo">Marque</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Ressources</h4>
         <ul>
-          <li><a href="#">Université</a></li>
-          <li><a href="#">Assistance</a></li>
-          <li><a href="#">Sécurité</a></li>
+          <li><a href="/university">Université</a></li>
+          <li><a href="/lawful/support">Assistance</a></li>
+          <li><a href="/lawful/security">Sécurité</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Chartes</h4>
         <ul>
-          <li><a href="#">Conditions</a></li>
-          <li><a href="#">Confidentialité</a></li>
-          <li><a href="#">Information DMCA</a></li>
+          <li><a href="/lawful/tos">Conditions</a></li>
+          <li><a href="/lawful/cookies">Confidentialité</a></li>
+          <li><a href="/lawful/dmcainfo">Information DMCA</a></li>
         </ul>
       </div>
     </div>
@@ -343,11 +382,184 @@
       <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
       <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
     </div>
-  
   </footer>
 
-  <script src="../script.js" defer></script>
+  <script>
+    // ── Events data ──
+    // Les événements récurrents utilisent l'année courante ou suivante automatiquement
+    const now = new Date();
+    const currentYear = now.getFullYear();
+
+    function nextOccurrence(month, day, hour = 0, minute = 0) {
+      let date = new Date(currentYear, month - 1, day, hour, minute);
+      if (date.getTime() < now.getTime()) {
+        date = new Date(currentYear + 1, month - 1, day, hour, minute);
+      }
+      return date;
+    }
+
+    const events = [
+      {
+        name: "Fête Nationale",
+        date: nextOccurrence(7, 14),
+        icon: "🇫🇷"
+      },
+      {
+        name: "Anniversaire VentiStudio",
+        date: nextOccurrence(9, 24),
+        icon: "🎉"
+      },
+      {
+        name: "Halloween",
+        date: nextOccurrence(10, 31, 20, 0),
+        icon: "🎃"
+      },
+      {
+        name: "Anniversaire d'Hikari",
+        date: nextOccurrence(12, 15),
+        icon: "🎂"
+      },
+      {
+        name: "Noël",
+        date: nextOccurrence(12, 25),
+        icon: "🎄"
+      },
+      {
+        name: "Nouvel An",
+        date: nextOccurrence(1, 1),
+        icon: "🎆"
+      },
+      {
+        name: "Saint-Valentin",
+        date: nextOccurrence(2, 14),
+        icon: "💕"
+      }
+    ];
+
+    // ── Helpers ──
+    function formatDate(date) {
+      return date.toLocaleDateString('fr-FR', {
+        weekday: 'long',
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+      });
+    }
+
+    function getTimeLeft(target) {
+      const diff = target.getTime() - Date.now();
+      if (diff <= 0) return null;
+      return {
+        total: diff,
+        days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+        minutes: Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)),
+        seconds: Math.floor((diff % (1000 * 60)) / 1000)
+      };
+    }
+
+    function pad(n) {
+      return String(n).padStart(2, '0');
+    }
+
+    // ── Sort events by date ──
+    events.sort((a, b) => a.date.getTime() - b.date.getTime());
+
+    // ── Find next upcoming event ──
+    function getNextEvent() {
+      return events.find(e => e.date.getTime() > Date.now()) || null;
+    }
+
+    // ── Update main countdown ──
+    function updateMainCountdown() {
+      const next = getNextEvent();
+      const iconEl = document.getElementById('countdownIcon');
+      const nameEl = document.getElementById('countdownName');
+      const dateEl = document.getElementById('countdownDate');
+      const daysEl = document.getElementById('days');
+      const hoursEl = document.getElementById('hours');
+      const minutesEl = document.getElementById('minutes');
+      const secondsEl = document.getElementById('seconds');
+
+      if (!next) {
+        iconEl.textContent = '🎉';
+        nameEl.textContent = 'Aucun événement à venir';
+        dateEl.textContent = '';
+        daysEl.textContent = '00';
+        hoursEl.textContent = '00';
+        minutesEl.textContent = '00';
+        secondsEl.textContent = '00';
+        return;
+      }
+
+      iconEl.textContent = next.icon;
+      nameEl.textContent = next.name;
+      dateEl.textContent = formatDate(next.date);
+
+      const tl = getTimeLeft(next.date);
+      if (tl) {
+        daysEl.textContent = pad(tl.days);
+        hoursEl.textContent = pad(tl.hours);
+        minutesEl.textContent = pad(tl.minutes);
+        secondsEl.textContent = pad(tl.seconds);
+      } else {
+        daysEl.textContent = '00';
+        hoursEl.textContent = '00';
+        minutesEl.textContent = '00';
+        secondsEl.textContent = '00';
+      }
+    }
+
+    // ── Render event list ──
+    function renderEventList() {
+      const list = document.getElementById('eventList');
+      const next = getNextEvent();
+      list.innerHTML = '';
+
+      events.forEach(event => {
+        const isPast = event.date.getTime() <= Date.now();
+        const isNext = next && event === next;
+        const tl = getTimeLeft(event.date);
+
+        const card = document.createElement('div');
+        card.className = 'event-card' + (isNext ? ' is-next' : '') + (isPast ? ' is-past' : '');
+
+        let countdownHtml = '';
+        if (isPast) {
+          countdownHtml = '<span class="event-status">Terminé</span>';
+        } else if (tl) {
+          if (tl.days > 0) {
+            countdownHtml = `<span class="event-days-left">${tl.days}j ${tl.hours}h</span>`;
+          } else {
+            countdownHtml = `<span class="event-days-left">${tl.hours}h ${tl.minutes}m</span>`;
+          }
+          if (isNext) {
+            countdownHtml += '<br><span class="event-badge">Prochain</span>';
+          }
+        }
+
+        card.innerHTML = `
+          <div class="event-icon">${event.icon}</div>
+          <div class="event-info">
+            <div class="event-name">${event.name}</div>
+            <div class="event-date-text">${formatDate(event.date)}</div>
+          </div>
+          <div class="event-countdown-small">${countdownHtml}</div>
+        `;
+
+        list.appendChild(card);
+      });
+    }
+
+    // ── Init & interval ──
+    updateMainCountdown();
+    renderEventList();
+    setInterval(() => {
+      updateMainCountdown();
+      renderEventList();
+    }, 1000);
+  </script>
+
+  <script src="/script.js" defer></script>
 </body>
 </html>
-
-
