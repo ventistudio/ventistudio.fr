@@ -2,6 +2,7 @@
 *.mp3
 *.mp4
 /a-files/
+/admin/
 /.vs
 /auth/
 /company/presskit.zip.gpg
