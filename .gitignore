@@ -3,6 +3,7 @@
 *.mp4
 /a-files/
 /admin/
+/weblate/
 /.vs
 /auth/
 /company/presskit.zip.gpg
