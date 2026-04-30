@@ -9,17 +9,17 @@ document.addEventListener('DOMContentLoaded', () => {
         name: "Hikari Umaishi",
         role: "Directeur Général",
         bio: "Visionnaire passionné par l'innovation numérique et la création de communautés en ligne.",
-        joinDate: "2023-01",
-        projects: 15,
+        joinDate: "2016-09",
+        projects: 3718,
         badge: "Fondateur",
         social: { twitter: "#", github: "#", linkedin: "#" }
       },
       {
-        name: "Marie Laurent",
-        role: "Directrice Créative",
-        bio: "Artiste numérique et stratège créative avec 10 ans d'expérience dans le design interactif.",
-        joinDate: "2023-02",
-        projects: 12,
+        name: "Pierre Cailloux",
+        role: "Directeur Juridique",
+        bio: ".",
+        joinDate: "2025-12",
+        projects: 0,
         badge: "Direction",
         social: { twitter: "#", artstation: "#" }
       }

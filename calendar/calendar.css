@@ -1,0 +1,409 @@
+/* ═══ Calendrier des Événements — Styles ═══ */
+
+.calendar-header {
+  text-align: center;
+  padding: 3rem 2rem 1.5rem;
+}
+
+.calendar-header h1 {
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.calendar-header .section-sub {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+}
+
+/* ── Filtres ── */
+.calendar-controls {
+  max-width: 900px;
+  margin: 0 auto 1.5rem;
+  padding: 0 1.5rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.cal-filter-chip {
+  padding: 0.4rem 0.85rem;
+  border-radius: 2rem;
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg);
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.cal-filter-chip:hover,
+.cal-filter-chip.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+/* ── Navigation Mois ── */
+.calendar-nav {
+  max-width: 900px;
+  margin: 0 auto 1rem;
+  padding: 0 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cal-nav-btn {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--text-primary);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+
+.cal-nav-btn:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+.cal-month-label {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+/* ── Grille Calendrier ── */
+.calendar-grid-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  margin-bottom: 2px;
+}
+
+.calendar-weekday {
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+  padding: 0.5rem;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+.calendar-day {
+  min-height: 80px;
+  padding: 0.4rem;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.calendar-day:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="light"] .calendar-day:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.calendar-day.other-month {
+  opacity: 0.3;
+}
+
+.calendar-day.today {
+  border-color: var(--accent);
+  box-shadow: 0 0 12px rgba(99, 102, 241, 0.2);
+}
+
+.calendar-day-number {
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.calendar-day.today .calendar-day-number {
+  background: var(--accent);
+  color: #fff;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.calendar-day-events {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cal-event-dot {
+  font-size: 0.6rem;
+  padding: 0.1rem 0.3rem;
+  border-radius: 0.2rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.3;
+}
+
+.cal-event-dot.concert { background: rgba(99, 102, 241, 0.3); color: #818cf8; }
+.cal-event-dot.community { background: rgba(34, 197, 94, 0.3); color: #4ade80; }
+.cal-event-dot.release { background: rgba(245, 158, 11, 0.3); color: #fbbf24; }
+.cal-event-dot.birthday { background: rgba(236, 72, 153, 0.3); color: #f472b6; }
+.cal-event-dot.special { background: rgba(139, 92, 246, 0.3); color: #a78bfa; }
+
+[data-theme="light"] .cal-event-dot.concert { background: rgba(99, 102, 241, 0.15); color: #4f46e5; }
+[data-theme="light"] .cal-event-dot.community { background: rgba(34, 197, 94, 0.15); color: #16a34a; }
+[data-theme="light"] .cal-event-dot.release { background: rgba(245, 158, 11, 0.15); color: #d97706; }
+[data-theme="light"] .cal-event-dot.birthday { background: rgba(236, 72, 153, 0.15); color: #db2777; }
+[data-theme="light"] .cal-event-dot.special { background: rgba(139, 92, 246, 0.15); color: #7c3aed; }
+
+.cal-event-more {
+  font-size: 0.6rem;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+/* ── Légende ── */
+.calendar-legend {
+  max-width: 900px;
+  margin: 1rem auto 0;
+  padding: 0 1.5rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.legend-dot.concert { background: #6366f1; }
+.legend-dot.community { background: #22c55e; }
+.legend-dot.release { background: #f59e0b; }
+.legend-dot.birthday { background: #ec4899; }
+.legend-dot.special { background: #8b5cf6; }
+
+/* ── Modal événement ── */
+.cal-modal {
+  background: var(--bg-primary);
+  border: 1px solid var(--glass-border);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  max-width: 500px;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+[data-theme="light"] .cal-modal {
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.cal-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.cal-modal-date {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.cal-modal-close {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 1.5rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+}
+
+.cal-modal-close:hover { color: var(--text-primary); }
+
+.cal-modal-events {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.cal-modal-event {
+  padding: 0.85rem;
+  border-radius: 0.5rem;
+  border-left: 3px solid;
+}
+
+.cal-modal-event.concert { border-left-color: #6366f1; background: rgba(99, 102, 241, 0.05); }
+.cal-modal-event.community { border-left-color: #22c55e; background: rgba(34, 197, 94, 0.05); }
+.cal-modal-event.release { border-left-color: #f59e0b; background: rgba(245, 158, 11, 0.05); }
+.cal-modal-event.birthday { border-left-color: #ec4899; background: rgba(236, 72, 153, 0.05); }
+.cal-modal-event.special { border-left-color: #8b5cf6; background: rgba(139, 92, 246, 0.05); }
+
+.cal-modal-event-title {
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+}
+
+.cal-modal-event-meta {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.35rem;
+}
+
+.cal-modal-event-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.cal-modal-event-link {
+  display: inline-block;
+  margin-top: 0.4rem;
+  font-size: 0.8rem;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.cal-modal-event-link:hover { text-decoration: underline; }
+
+/* ── Upcoming Events ── */
+.calendar-upcoming {
+  max-width: 900px;
+  margin: 2.5rem auto 0;
+  padding: 0 1.5rem 3rem;
+}
+
+.calendar-upcoming h2 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+.upcoming-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.upcoming-event {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 0.75rem;
+  border-left: 3px solid;
+  transition: all 0.2s;
+}
+
+.upcoming-event:hover {
+  transform: translateX(4px);
+}
+
+.upcoming-event.concert { border-left-color: #6366f1; }
+.upcoming-event.community { border-left-color: #22c55e; }
+.upcoming-event.release { border-left-color: #f59e0b; }
+.upcoming-event.birthday { border-left-color: #ec4899; }
+.upcoming-event.special { border-left-color: #8b5cf6; }
+
+.upcoming-date {
+  min-width: 50px;
+  text-align: center;
+}
+
+.upcoming-date-day {
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.upcoming-date-month {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.upcoming-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.upcoming-title {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.upcoming-meta {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.upcoming-empty {
+  text-align: center;
+  padding: 2rem;
+  color: var(--text-secondary);
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .calendar-day {
+    min-height: 50px;
+    padding: 0.2rem;
+  }
+
+  .calendar-day-number {
+    font-size: 0.7rem;
+  }
+
+  .cal-event-dot {
+    font-size: 0.5rem;
+  }
+
+  .calendar-weekday {
+    font-size: 0.6rem;
+  }
+
+  .calendar-controls {
+    justify-content: center;
+  }
+
+  .calendar-legend {
+    justify-content: center;
+  }
+}

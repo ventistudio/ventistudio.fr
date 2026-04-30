@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
   <meta name="description" content="VentiStudio Blacklist - Liste noire officielle.">
   <meta name="theme-color" content="#6366f1">
-  <title>Blacklist — VentiStudio</title>
+  <title>Blacklist | VentiStudio</title>
   <link rel="stylesheet" href="/style.css">
   <style>
     /* === Blacklist-specific styles === */
@@ -59,8 +59,6 @@
       gap: 1.5rem;
       align-items: start;
       cursor: pointer;
-      user-select: none;
-      -webkit-user-select: none;
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
@@ -176,6 +174,91 @@
     @keyframes modalIn {
       from { opacity: 0; transform: translateY(-15px); }
       to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Hold-to-Reveal Button */
+    .reveal-container {
+      margin-top: 1rem;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .reveal-btn {
+      position: relative;
+      width: 100%;
+      padding: 0.85rem 1.2rem;
+      border: 1px solid var(--glass-border);
+      border-radius: 0.75rem;
+      background: var(--glass-bg);
+      color: var(--text-secondary);
+      font-family: inherit;
+      font-size: 0.9rem;
+      cursor: pointer;
+      overflow: hidden;
+      transition: border-color 0.3s, opacity 0.3s;
+      touch-action: manipulation;
+      -webkit-touch-callout: none;
+    }
+
+    .reveal-btn:hover:not(:disabled) {
+      border-color: var(--accent);
+    }
+
+    .reveal-btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .reveal-progress {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, rgba(99,102,241,0.15), rgba(139,92,246,0.25));
+      border-radius: 0.75rem;
+      transition: none;
+      pointer-events: none;
+    }
+
+    .reveal-btn-text {
+      position: relative;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .reveal-canvas-wrap {
+      position: relative;
+      margin-top: 0.6rem;
+      display: none;
+    }
+
+    .reveal-canvas-wrap canvas {
+      width: 100%;
+      max-width: 460px;
+      height: auto;
+      display: block;
+      pointer-events: none;
+    }
+
+    .reveal-timer {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.2rem 0.55rem;
+      border-radius: 0 0 0 0.5rem;
+      pointer-events: none;
+    }
+
+    .cooldown-text {
+      color: var(--text-secondary);
+      font-size: 0.8rem;
+      margin-top: 0.4rem;
+      text-align: center;
     }
 
     /* Conditions */
@@ -312,6 +395,23 @@
       }
     }
   </style>
+
+  <script async crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
+  <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
+
+  <meta property="og:title" content="Blacklist | VentiStudio">
+  <meta property="og:description" content="VentiStudio Blacklist - Liste noire officielle.">
+  <meta property="og:url" content="https://ventistudio.eu/blacklist/">
+  <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://ventistudio.eu/blacklist/">
+
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
 </head>
 <body>
   <header>
@@ -319,15 +419,133 @@
       <img src="/favicon.avif" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
       <span>VentiStudio</span>
     </div>
-    <nav aria-label="Navigation principale">
-      <a href="/">Accueil</a>
-      <a href="/evaluation">Contenu Approuvé</a>
-      <a href="/player">Lecteur</a>
-      <a href="/wiki">Wiki</a>
-      <a href="/staff">Équipe</a>
-      <a href="/news">News</a>
-      <a href="/pip">PIP</a>
-      <a href="/sitemap">Plan du site</a>
+    <button class="nav-burger" id="nav-burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="main-nav" class="main-nav" aria-label="Navigation principale">
+      <a href="/" class="nav-link">Accueil</a>
+
+      <details class="nav-group">
+        <summary class="nav-link">Découvrir
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel" role="menu">
+          <a href="/evaluation">Évaluation</a>
+          <a href="/wiki">Wiki</a>
+          <a href="/glossary">Glossaire</a>
+          <a href="/news">News</a>
+          <a href="/blog">Blog</a>
+          <a href="/calendar">Calendrier</a>
+          <a href="/cookbook">Cookbook</a>
+          <a href="/gallery">Galerie</a>
+          <a href="/atlas">Atlas</a>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Univers
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel" role="menu">
+          <a href="/aokiunivers">AOKI Universe</a>
+          <a href="/allofaokiunivers">All AOKI</a>
+          <a href="/university">Université</a>
+          <a href="/history">Histoire</a>
+          <a href="/memorial">Mémorial</a>
+          <a href="/ester-eggs">Easter eggs</a>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Outils
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Applications</h4>
+            <a href="/player">Lecteur</a>
+            <a href="/music">Musique</a>
+            <a href="/pip">PIP</a>
+            <a href="/whiteboard">Whiteboard</a>
+            <a href="/portfolio">Portfolio</a>
+            <a href="/gmod">GMod</a>
+          </div>
+          <div class="nav-col">
+            <h4>Domaines</h4>
+            <a href="/domain/aina">AINA</a>
+            <a href="/domain/archive">Archive</a>
+            <a href="/domain/maps">Maps</a>
+            <a href="/domain/movie">Movie</a>
+            <a href="/domain/peer">Peer</a>
+            <a href="/domain/pro">Pro</a>
+            <a href="/domain/search">Search</a>
+            <a href="/domain/suite">Suite</a>
+          </div>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Communauté
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Équipe</h4>
+            <a href="/personnel/">Équipe</a>
+            <a href="/hierarchie-staff">Hiérarchie</a>
+            <a href="/hypesquad">Hypesquad</a>
+            <a href="/jobs">Emplois</a>
+            <a href="/birthday">Anniversaires</a>
+          </div>
+          <div class="nav-col">
+            <h4>Réseaux</h4>
+            <a href="/discord">Discord</a>
+            <a href="/teamspeak">TeamSpeak</a>
+            <a href="/steam">Steam</a>
+            <a href="/social">Réseaux sociaux</a>
+          </div>
+          <div class="nav-col">
+            <h4>Activités</h4>
+            <a href="/artist">Artistes</a>
+            <a href="/quests">Quêtes</a>
+            <a href="/suboawards">Suboawards</a>
+            <a href="/eConcert">eConcert</a>
+          </div>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Plus
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Aide</h4>
+            <a href="/contact">Contact</a>
+            <a href="/faq">FAQ</a>
+            <a href="/status">Statut</a>
+            <a href="/sitemap">Plan du site</a>
+          </div>
+          <div class="nav-col">
+            <h4>Soutien</h4>
+            <a href="/donate">Faire un don</a>
+            <a href="/gold">Gold</a>
+            <a href="/customization">Personnalisation</a>
+            <a href="/mes-donnees">Mes Données</a>
+            <a href="/newsletter">Newsletter</a>
+          </div>
+          <div class="nav-col">
+            <h4>À propos</h4>
+            <a href="/company">Entreprise</a>
+            <a href="/acknowledgements">Remerciements</a>
+            <a href="/logo">Logo</a>
+            <a href="/tags">Tags</a>
+            <a href="/memory">Mémoire</a>
+            <a href="/why-not-use-roblox">Pourquoi pas Roblox</a>
+            <a href="/lawful">Mentions légales</a>
+          </div>
+        </div>
+      </details>
     </nav>
     <div class="controls" role="toolbar" aria-label="Contrôles">
       <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
@@ -337,7 +555,7 @@
           <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
         </svg>
       </button>
-      <div id="user-button" role="region" aria-label="Authentification"></div>
+      <div id="user-button" role="region" aria-label="Authentification"><button class="cta" id="auth-fallback-btn" onclick="window.location.href='https://accounts.ventistudio.eu/sign-in?redirect_url='+encodeURIComponent(window.location.href)" style="padding:0.5rem 1.25rem;font-size:0.9rem;margin:0"><span>Se connecter</span></button></div>
     </div>
   </header>
 
@@ -363,7 +581,14 @@
         <p class="modal-field" id="mId"></p>
         <p class="modal-field" id="mDate"></p>
         <p class="modal-field" id="mStatus"></p>
-        <p class="modal-field" id="mReason"></p>
+        <div class="reveal-container" id="revealContainer">
+          <button class="reveal-btn" id="revealBtn">
+            <span class="reveal-progress" id="revealProgress"></span>
+            <span class="reveal-btn-text" id="revealBtnText">Maintenir pour révéler la raison</span>
+          </button>
+          <div class="reveal-canvas-wrap" id="revealCanvasWrap"></div>
+          <p class="cooldown-text" id="cooldownText" style="display:none"></p>
+        </div>
       </div>
     </div>
 
@@ -496,9 +721,9 @@
       <div class="footer-section">
         <h4>Outils</h4>
         <ul>
-          <li><a href="#">Encrypt</a></li>
+          <li><a href="/pip">PIP</a></li>
           <li><a href="/sitemap">Plan du site</a></li>
-          <li><a href="/stats">Statut</a></li>
+          <li><a href="https://status.ventistudio.eu/">Statut</a></li>
         </ul>
       </div>
       <div class="footer-section">
@@ -520,123 +745,354 @@
       <div class="footer-section">
         <h4>Chartes</h4>
         <ul>
-          <li><a href="/lawful/tos">Conditions</a></li>
+          <li><a href="/lawful/tos">Conditions d'utilisation</a></li>
           <li><a href="/lawful/cookies">Confidentialité</a></li>
           <li><a href="/lawful/dmcainfo">Information DMCA</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
+      <iframe src="https://status.ventistudio.eu/badge?theme=dark" width="500" height="30" frameborder="0" scrolling="no" style="color-scheme: normal"></iframe>
       <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
     </div>
   </footer>
 
-  <script src="/script.js" defer></script>
+  <script src="/main.js" defer></script>
   <script>
-    /*! VentiStudio Blacklist Engine — Integrity Protected */
+    /*! VentiStudio Blacklist Engine v2 – Integrity Protected */
     void function() {
-      // --- Multi-layer obfuscation primitives ---
-      var _k = [0x56,0x53,0x42,0x4C]; // XOR key bytes
-      var _xc = function(s, k) {
-        for (var o = '', j = 0; j < s.length; j++)
-          o += String.fromCharCode(s.charCodeAt(j) ^ k[j % k.length]);
-        return o;
-      };
-      var _b6d = function(e) {
-        try { return decodeURIComponent(escape(atob(e))); } catch(x) { return ''; }
-      };
-      var _p = function(v) {
-        var a = _b6d(v); if (!a) return null;
-        var b = _xc(a, _k);
-        return b.split('').reverse().join('');
+      'use strict';
+
+      // ============================================================
+      //  PHASE 4 — Anti-inspection
+      // ============================================================
+      var _dt = false;
+
+      // 4.2 — Global canvas extraction prevention
+      try {
+        var _noop = function() { return ''; };
+        var _noopBlob = function(cb) { if (cb) cb(null); };
+        Object.defineProperty(HTMLCanvasElement.prototype, 'toDataURL', {
+          value: _noop, writable: false, configurable: false
+        });
+        Object.defineProperty(HTMLCanvasElement.prototype, 'toBlob', {
+          value: _noopBlob, writable: false, configurable: false
+        });
+      } catch(_) {}
+
+      // ============================================================
+      //  PHASE 1 — AES-GCM decryption via Web Crypto + PBKDF2
+      // ============================================================
+
+      // Key fragments (scattered, reassembled at runtime)
+      var _f1 = 'Vnt', _f2 = 'St0', _f3 = 'BLk', _f4 = '9x2';
+      var _sl = [118,115,45,98,108,45,105,110,116,101,103,114,105,116,121,45,118,50]; // salt bytes
+
+      var _deriveKey = async function() {
+        var pp = _f1 + _f3 + _f2 + _f4;
+        var enc = new TextEncoder();
+        var km = await crypto.subtle.importKey(
+          'raw', enc.encode(pp), 'PBKDF2', false, ['deriveKey']
+        );
+        return crypto.subtle.deriveKey(
+          { name: 'PBKDF2', salt: new Uint8Array(_sl), iterations: 100000, hash: 'SHA-256' },
+          km,
+          { name: 'AES-GCM', length: 256 },
+          false,
+          ['decrypt']
+        );
       };
 
-      // --- Entries: reason is XOR(key) + reverse + base64 ---
-      // Reasons stay in closure only, never in DOM
+      var _decrypt = async function(b64) {
+        if (_dt) return null;
+        try {
+          var raw = Uint8Array.from(atob(b64), function(c) { return c.charCodeAt(0); });
+          var iv = raw.slice(0, 12);
+          var tag = raw.slice(12, 28);
+          var ct = raw.slice(28);
+          // AES-GCM expects tag appended to ciphertext
+          var combined = new Uint8Array(ct.length + tag.length);
+          combined.set(ct); combined.set(tag, ct.length);
+          var key = await _deriveKey();
+          var pt = await crypto.subtle.decrypt(
+            { name: 'AES-GCM', iv: iv, tagLength: 128 },
+            key,
+            combined
+          );
+          return new TextDecoder().decode(pt);
+        } catch(_) { return null; }
+      };
+
+      // Freeze the decrypt pipeline
+      Object.freeze(_deriveKey);
+      Object.freeze(_decrypt);
+
+      // ============================================================
+      //  Data — AES-GCM encrypted entries (IV+Tag+CT in base64)
+      // ============================================================
       var _v = new Map();
       var _q = [
         {
           n: 'S.A.R.L. MARCHAIS',
           i: '389-170-499-00013',
           img: 'https://www.muguet-marchais.com/wp-content/uploads/2021/11/logo_marchais-1.png',
-          _x: 'eDY3PT8gOyQmczYpdj8jPjk+Yik1PScgOToUbGttYmIzIjc0Pzw2bDo6Izo3ITZsMzdiODc+KyA1czYpdjYzOT8gOyQmcywjPyAxKSQ0Aw==',
+          _x: 'sQXNtqbVtggP2g8y4D+D0SsX9TkzLeVSi2NVKqtWh19TZAT6YSq6UBUdpfa8XF9B4eU6fpTgTuAAnOL+2dYDZHNCTrtPT+SynVa4QBMFkDtKA2SSlsMr+dO0+qvHfEd/vtAORPUoOJuHdIk=',
           d: '2025-04-25',
           s: 'active',
           u: 'https://muguet-marchais.com/'
         }
       ];
 
-      // --- DevTools detection (timing-based) ---
-      var _dt = false;
-      var _chk = function() {
-        var t0 = performance.now();
-        /* jshint ignore:start */ debugger; /* jshint ignore:end */
-        _dt = (performance.now() - t0) > 80;
-      };
-      try { setInterval(_chk, 2000); } catch(e) {}
-
-      // --- Canvas reason renderer (text → pixels, not in DOM) ---
+      // ============================================================
+      //  Canvas renderer (text → pixels only, never in DOM text)
+      // ============================================================
       var _cvs = document.createElement('canvas');
-      _cvs.width = 460; _cvs.height = 60;
-      _cvs.style.cssText = 'width:100%;max-width:460px;height:auto;display:block;margin-top:0.6rem;';
+      _cvs.width = 460; _cvs.height = 80;
       var _ctx = _cvs.getContext('2d');
+      var _rafId = 0;
+      var _jitterActive = false;
 
-      var _drawReason = function(txt) {
+      var _getColor = function() {
+        return getComputedStyle(document.documentElement)
+          .getPropertyValue('--text-secondary').trim() || '#a0a0a0';
+      };
+
+      var _drawReason = function(txt, jitter) {
         var w = _cvs.width, h = _cvs.height;
         _ctx.clearRect(0, 0, w, h);
         if (_dt || !txt) {
-          _ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--text-secondary').trim() || '#a0a0a0';
+          _ctx.fillStyle = _getColor();
           _ctx.font = '13px Inter, system-ui, sans-serif';
-          _ctx.fillText('Raison : [protégée]', 0, 16);
+          _ctx.fillText('Raison : [prot\u00e9g\u00e9e]', 0, 16);
           return;
         }
-        _ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--text-secondary').trim() || '#a0a0a0';
+        var jx = jitter ? (Math.random() * 2 - 1) : 0;
+        var jy = jitter ? (Math.random() * 2 - 1) : 0;
+        _ctx.fillStyle = _getColor();
         _ctx.font = 'bold 13px Inter, system-ui, sans-serif';
-        _ctx.fillText('Raison :', 0, 16);
+        _ctx.fillText('Raison :', jx, 16 + jy);
         _ctx.font = '13px Inter, system-ui, sans-serif';
-        // Word-wrap
         var words = txt.split(' '), line = '', y = 16, maxW = w - 10;
-        var metricsBold = _ctx.measureText('Raison : ');
-        var x0 = metricsBold.width + 4;
+        var x0 = _ctx.measureText('Raison : ').width + 4;
         var first = true;
         for (var wi = 0; wi < words.length; wi++) {
           var test = line + (line ? ' ' : '') + words[wi];
           if (_ctx.measureText(test).width > (first ? maxW - x0 : maxW)) {
-            if (first) { _ctx.fillText(line, x0, y); first = false; }
-            else { y += 18; _ctx.fillText(line, 0, y); }
+            if (first) { _ctx.fillText(line, x0 + jx, y + jy); first = false; }
+            else { y += 18; _ctx.fillText(line, jx, y + jy); }
             line = words[wi];
           } else { line = test; }
         }
         if (line) {
-          if (first) _ctx.fillText(line, x0, y);
-          else { y += 18; _ctx.fillText(line, 0, y); }
+          if (first) _ctx.fillText(line, x0 + jx, y + jy);
+          else { y += 18; _ctx.fillText(line, jx, y + jy); }
         }
       };
-      var _wipeReason = function() { _ctx.clearRect(0, 0, _cvs.width, _cvs.height); };
 
-      // --- DOM refs ---
-      var container = document.getElementById('blacklistContainer');
-      var overlay = document.getElementById('modalOverlay');
-      var mTitle = document.getElementById('mTitle');
-      var mId = document.getElementById('mId');
-      var mDate = document.getElementById('mDate');
-      var mStatus = document.getElementById('mStatus');
-      var mReason = document.getElementById('mReason');
-      var mClose = document.getElementById('modalClose');
-
-      // Attach canvas to reason field
-      mReason.textContent = '';
-      mReason.appendChild(_cvs);
-
-      var statusLabels = {
-        active: 'Actif',
-        pending: 'En Attente',
-        pardoned: 'Pardonn\u00e9'
+      var _wipeCanvas = function() {
+        _jitterActive = false;
+        if (_rafId) { cancelAnimationFrame(_rafId); _rafId = 0; }
+        _ctx.clearRect(0, 0, _cvs.width, _cvs.height);
       };
 
+      // Stable re-render (keeps canvas alive)
+      var _startJitter = function(txt) {
+        _jitterActive = true;
+        _drawReason(txt, false);
+      };
+
+      // ============================================================
+      //  DOM references
+      // ============================================================
+      var container     = document.getElementById('blacklistContainer');
+      var overlay       = document.getElementById('modalOverlay');
+      var mTitle        = document.getElementById('mTitle');
+      var mId           = document.getElementById('mId');
+      var mDate         = document.getElementById('mDate');
+      var mStatus       = document.getElementById('mStatus');
+      var mClose        = document.getElementById('modalClose');
+      var revealBtn     = document.getElementById('revealBtn');
+      var revealProg    = document.getElementById('revealProgress');
+      var revealText    = document.getElementById('revealBtnText');
+      var canvasWrap    = document.getElementById('revealCanvasWrap');
+      var cooldownEl    = document.getElementById('cooldownText');
+      var revealContainer = document.getElementById('revealContainer');
+
+      // Attach canvas
+      canvasWrap.appendChild(_cvs);
+
+      // 4.3 — MutationObserver on modal to detect DOM injections
+      try {
+        var _mo = new MutationObserver(function(muts) {
+          for (var i = 0; i < muts.length; i++) {
+            if (muts[i].addedNodes.length > 0) { _wipeCanvas(); _dt = true; }
+          }
+        });
+        _mo.observe(document.getElementById('modalBox'), { childList: true, subtree: true });
+      } catch(_) {}
+
+      var statusLabels = { active: 'Actif', pending: 'En Attente', pardoned: 'Pardonn\u00e9' };
+
+      // ============================================================
+      //  PHASE 2 — Hold-to-Reveal (5s press) + PHASE 3 — Ephemeral
+      // ============================================================
+      var HOLD_MS       = 3000;
+      var DISPLAY_MS    = 20000;
+      var COOLDOWN_MS   = 10000;
+      var _activeIdx    = -1;
+      var _holdTimer    = null;
+      var _holdStart    = 0;
+      var _holdRAF      = 0;
+      var _displayTimer = null;
+      var _cooldownEnd  = 0;
+      var _cooldownIv   = null;
+      var _timerEl      = null;
+
+      var _resetRevealUI = function() {
+        revealBtn.disabled = false;
+        revealText.textContent = 'Maintenir pour r\u00e9v\u00e9ler la raison';
+        revealProg.style.width = '0%';
+        canvasWrap.style.display = 'none';
+        cooldownEl.style.display = 'none';
+        _wipeCanvas();
+        if (_timerEl && _timerEl.parentNode) _timerEl.parentNode.removeChild(_timerEl);
+        _timerEl = null;
+        if (_holdTimer) { clearTimeout(_holdTimer); _holdTimer = null; }
+        if (_holdRAF) { cancelAnimationFrame(_holdRAF); _holdRAF = 0; }
+        if (_displayTimer) { clearTimeout(_displayTimer); _displayTimer = null; }
+      };
+
+      var _animateProgress = function() {
+        var elapsed = performance.now() - _holdStart;
+        var pct = Math.min(elapsed / HOLD_MS * 100, 100);
+        revealProg.style.width = pct + '%';
+        if (pct < 100) _holdRAF = requestAnimationFrame(_animateProgress);
+      };
+
+      var _startCooldown = function() {
+        _cooldownEnd = Date.now() + COOLDOWN_MS;
+        revealBtn.disabled = true;
+        cooldownEl.style.display = 'block';
+        var tick = function() {
+          var rem = Math.max(0, Math.ceil((_cooldownEnd - Date.now()) / 1000));
+          if (rem <= 0) {
+            clearInterval(_cooldownIv); _cooldownIv = null;
+            cooldownEl.style.display = 'none';
+            revealBtn.disabled = false;
+            revealText.textContent = 'Maintenir pour r\u00e9v\u00e9ler la raison';
+            return;
+          }
+          cooldownEl.textContent = 'R\u00e9essayer dans ' + rem + 's';
+          revealText.textContent = 'Indisponible (' + rem + 's)';
+        };
+        tick();
+        _cooldownIv = setInterval(tick, 500);
+      };
+
+      var _onHoldComplete = async function() {
+        if (_dt) {
+          _drawReason(null);
+          canvasWrap.style.display = 'block';
+          _startCooldown();
+          return;
+        }
+        revealProg.style.width = '100%';
+        revealBtn.disabled = true;
+        revealText.textContent = 'D\u00e9chiffrement\u2026';
+
+        var encoded = _v.get(_activeIdx);
+        if (!encoded) return;
+        var txt = await _decrypt(encoded);
+        if (!txt || _dt) {
+          _drawReason(null);
+          canvasWrap.style.display = 'block';
+          _startCooldown();
+          return;
+        }
+
+        // Show canvas with reason
+        _drawReason(txt, false);
+        canvasWrap.style.display = 'block';
+        revealBtn.style.display = 'none';
+
+        // Ephemeral timer indicator
+        _timerEl = document.createElement('span');
+        _timerEl.className = 'reveal-timer';
+        _timerEl.textContent = '20s';
+        canvasWrap.appendChild(_timerEl);
+
+        // Start stable render
+        _startJitter(txt);
+
+        // Countdown display
+        var secLeft = 20;
+        var cdIv = setInterval(function() {
+          secLeft--;
+          if (_timerEl) _timerEl.textContent = secLeft + 's';
+          if (secLeft <= 0) clearInterval(cdIv);
+        }, 1000);
+
+        // Auto-wipe after DISPLAY_MS
+        _displayTimer = setTimeout(function() {
+          _wipeCanvas();
+          canvasWrap.style.display = 'none';
+          revealBtn.style.display = '';
+          revealProg.style.width = '0%';
+          _startCooldown();
+          if (_timerEl && _timerEl.parentNode) _timerEl.parentNode.removeChild(_timerEl);
+          _timerEl = null;
+          txt = null;
+        }, DISPLAY_MS);
+
+        txt = null; // discard plaintext reference
+      };
+
+      // Hold start
+      var _onPointerDown = function(e) {
+        e.preventDefault();
+        if (revealBtn.disabled) return;
+        if (Date.now() < _cooldownEnd) return;
+        _holdStart = performance.now();
+        _holdTimer = setTimeout(_onHoldComplete, HOLD_MS);
+        _holdRAF = requestAnimationFrame(_animateProgress);
+        revealText.textContent = 'Maintenez\u2026';
+      };
+
+      // Hold cancel
+      var _onPointerUp = function() {
+        if (_holdTimer) { clearTimeout(_holdTimer); _holdTimer = null; }
+        if (_holdRAF) { cancelAnimationFrame(_holdRAF); _holdRAF = 0; }
+        revealProg.style.width = '0%';
+        if (!revealBtn.disabled) revealText.textContent = 'Maintenir pour r\u00e9v\u00e9ler la raison';
+      };
+
+      revealBtn.addEventListener('mousedown', _onPointerDown);
+      revealBtn.addEventListener('touchstart', _onPointerDown, { passive: false });
+      revealBtn.addEventListener('mouseup', _onPointerUp);
+      revealBtn.addEventListener('mouseleave', _onPointerUp);
+      revealBtn.addEventListener('touchend', _onPointerUp);
+      revealBtn.addEventListener('touchcancel', _onPointerUp);
+      // Prevent drag
+      revealBtn.addEventListener('dragstart', function(e) { e.preventDefault(); });
+
+      // ============================================================
+      //  PHASE 3b — Visibility change → instant wipe
+      // ============================================================
+      document.addEventListener('visibilitychange', function() {
+        if (document.hidden && _jitterActive) {
+          _wipeCanvas();
+          canvasWrap.style.display = 'none';
+          revealBtn.style.display = '';
+          revealProg.style.width = '0%';
+          if (_displayTimer) { clearTimeout(_displayTimer); _displayTimer = null; }
+          _startCooldown();
+        }
+      });
+
+      // ============================================================
+      //  Card rendering & modal open
+      // ============================================================
       _q.forEach(function(entry, idx) {
-        // Store encoded reason in closure Map only – never in DOM
         _v.set(idx, entry._x);
 
         var card = document.createElement('div');
@@ -665,31 +1121,48 @@
         container.appendChild(card);
 
         card.addEventListener('click', function() {
-          var ci = parseInt(this.getAttribute('data-idx'), 10);
-          var nm = this.getAttribute('data-name');
+          _activeIdx = parseInt(this.getAttribute('data-idx'), 10);
+          var nm  = this.getAttribute('data-name');
           var uid = this.getAttribute('data-id');
-          var dt = this.getAttribute('data-date');
-          var st = this.getAttribute('data-status');
+          var dt  = this.getAttribute('data-date');
+          var st  = this.getAttribute('data-status');
           var url = this.getAttribute('data-url');
 
           mTitle.textContent = nm + (url ? ' (' + url + ')' : '');
-          mId.innerHTML = '<strong>ID :</strong> ' + uid;
-          mDate.innerHTML = '<strong>Date :</strong> ' + dt;
+          mId.innerHTML    = '<strong>ID :</strong> ' + uid;
+          mDate.innerHTML  = '<strong>Date :</strong> ' + dt;
           mStatus.innerHTML = '<strong>Statut :</strong> ' + (statusLabels[st] || st);
 
-          // Decode from closure, render to canvas, then discard string
-          var _raw = _v.has(ci) ? _p(_v.get(ci)) : null;
-          _drawReason(_raw);
-          _raw = null;
+          // Reset reveal UI for this entry
+          _resetRevealUI();
+          revealBtn.style.display = '';
+          // Respect active cooldown
+          if (Date.now() < _cooldownEnd) {
+            revealBtn.disabled = true;
+            var rem = Math.ceil((_cooldownEnd - Date.now()) / 1000);
+            revealText.textContent = 'Indisponible (' + rem + 's)';
+            cooldownEl.style.display = 'block';
+            cooldownEl.textContent = 'R\u00e9essayer dans ' + rem + 's';
+          }
 
           overlay.classList.add('open');
         });
       });
 
-      // Clear canvas on close
+      // ============================================================
+      //  Modal close
+      // ============================================================
       var _closeModal = function() {
         overlay.classList.remove('open');
-        _wipeReason();
+        _wipeCanvas();
+        canvasWrap.style.display = 'none';
+        if (_displayTimer) { clearTimeout(_displayTimer); _displayTimer = null; }
+        if (_holdTimer) { clearTimeout(_holdTimer); _holdTimer = null; }
+        if (_holdRAF) { cancelAnimationFrame(_holdRAF); _holdRAF = 0; }
+        revealBtn.style.display = '';
+        revealProg.style.width = '0%';
+        if (_timerEl && _timerEl.parentNode) _timerEl.parentNode.removeChild(_timerEl);
+        _timerEl = null;
       };
       mClose.addEventListener('click', _closeModal);
       overlay.addEventListener('click', function(e) {
@@ -699,30 +1172,103 @@
         if (e.key === 'Escape' && overlay.classList.contains('open')) _closeModal();
       });
 
-      // Search
+      // ============================================================
+      //  Search
+      // ============================================================
       document.getElementById('searchInput').addEventListener('input', function() {
         var f = this.value.toLowerCase();
         var cards = container.querySelectorAll('.bl-card');
         cards.forEach(function(c) {
-          var txt = c.textContent.toLowerCase();
-          c.style.display = txt.includes(f) ? '' : 'none';
+          c.style.display = c.textContent.toLowerCase().includes(f) ? '' : 'none';
         });
       });
 
-      // Anti-inspection
-      container.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+      // ============================================================
+      //  PHASE 4 (cont.) — Anti-inspection finishers
+      // ============================================================
+
+      // 4.3b — Block context menu, copy on modal overlay
       overlay.addEventListener('contextmenu', function(e) { e.preventDefault(); });
       overlay.addEventListener('copy', function(e) { e.preventDefault(); });
-      overlay.addEventListener('selectstart', function(e) { e.preventDefault(); });
 
-      // Prevent canvas toDataURL extraction
-      _cvs.toDataURL = function() { return ''; };
-      _cvs.toBlob = function() { return null; };
-
-      // Nullify _p from global leak via console
+      // 4.4 — Seal key closures from global access
       Object.defineProperty(window, '_p', { get: function() { return void 0; }, set: function() {}, configurable: false });
       Object.defineProperty(window, '_v', { get: function() { return void 0; }, set: function() {}, configurable: false });
+      Object.defineProperty(window, '_decrypt', { get: function() { return void 0; }, set: function() {}, configurable: false });
+      Object.defineProperty(window, '_deriveKey', { get: function() { return void 0; }, set: function() {}, configurable: false });
     }();
+  </script>
+  <script>
+    (function () {
+      var nav = document.getElementById('main-nav');
+      var burger = document.getElementById('nav-burger');
+      if (!nav || !burger) return;
+
+      // Marque le lien actif d'apres l'URL courante
+      try {
+        var path = window.location.pathname.replace(/\/index\.html?$/, '/').replace(/\/$/, '') || '/';
+        var best = null, bestLen = -1;
+        nav.querySelectorAll('a[href]').forEach(function (a) {
+          var href = a.getAttribute('href').replace(/\/$/, '') || '/';
+          if (href === path || (href !== '/' && path.indexOf(href + '/') === 0) || (href !== '/' && path === href)) {
+            if (href.length > bestLen) { best = a; bestLen = href.length; }
+          }
+        });
+        if (path === '/' || path === '') {
+          best = nav.querySelector('a[href="/"]');
+        }
+        if (best) {
+          best.classList.add('active');
+          var grp = best.closest('details.nav-group');
+          if (grp) {
+            var s = grp.querySelector('summary.nav-link');
+            if (s) s.classList.add('active');
+          }
+        }
+      } catch (e) {}
+
+      function closeAllGroups(except) {
+        nav.querySelectorAll('details.nav-group[open]').forEach(function (d) {
+          if (d !== except) d.removeAttribute('open');
+        });
+      }
+
+      burger.addEventListener('click', function () {
+        var open = nav.classList.toggle('is-open');
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        burger.classList.toggle('is-active', open);
+        if (!open) closeAllGroups();
+      });
+
+      nav.querySelectorAll('details.nav-group').forEach(function (d) {
+        d.addEventListener('toggle', function () {
+          if (d.open) closeAllGroups(d);
+        });
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!nav.contains(e.target) && !burger.contains(e.target)) {
+          closeAllGroups();
+          if (nav.classList.contains('is-open')) {
+            nav.classList.remove('is-open');
+            burger.classList.remove('is-active');
+            burger.setAttribute('aria-expanded', 'false');
+          }
+        }
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          closeAllGroups();
+          if (nav.classList.contains('is-open')) {
+            nav.classList.remove('is-open');
+            burger.classList.remove('is-active');
+            burger.setAttribute('aria-expanded', 'false');
+            burger.focus();
+          }
+        }
+      });
+    })();
   </script>
 </body>
 </html>

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="VentiStudio Maps : Cartographie open source, respectueuse de la vie privée. Recherche, itinéraires, favoris et exploration sans tracking.">
+  <meta name="theme-color" content="#6366f1">
+  <title>Maps | VentiStudio</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <link rel="stylesheet" href="/domain/maps/maps.css">
+
+  <script async crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
+  <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
+
+  <meta property="og:title" content="Maps | VentiStudio">
+  <meta property="og:description" content="VentiStudio Maps : Cartographie open source, respectueuse de la vie privée.">
+  <meta property="og:url" content="https://ventistudio.eu/domain/maps/">
+  <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://ventistudio.eu/domain/maps/">
+
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+</head>
+<body>
+  <main class="maps-main">
+    <!-- Panneau latéral -->
+    <aside id="sidebar" class="maps-sidebar">
+      <div class="sidebar-header">
+        <div class="maps-brand">
+         <img src="/favicon.avif" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
+         <h1>VentiStudio Maps</h1>
+        </div>
+        <button id="sidebar-toggle" class="sidebar-close" aria-label="Fermer le panneau" title="Réduire">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+      </div>
+
+      <!-- Recherche -->
+      <div class="search-container">
+        <div class="search-box">
+          <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="search" id="search-input" placeholder="Rechercher un lieu…" autocomplete="off" aria-label="Rechercher un lieu">
+          <button id="search-clear" class="search-clear hidden" aria-label="Effacer la recherche" title="Effacer">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+        <div id="search-results" class="search-results hidden" role="listbox" aria-label="Résultats de recherche"></div>
+      </div>
+
+      <!-- Section contenu sidebar -->
+      <div class="sidebar-content">
+
+        <!-- Accueil (affiché par défaut) -->
+        <div id="sidebar-home" class="sidebar-section">
+          <div class="quick-actions">
+            <button id="quick-locate" class="quick-action-btn">
+              <div class="quick-action-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4m0 12v4M2 12h4m12 0h4"/></svg>
+              </div>
+              <span>Ma position</span>
+            </button>
+            <button id="quick-route" class="quick-action-btn">
+              <div class="quick-action-icon icon-blue">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>
+              </div>
+              <span>Itinéraire</span>
+            </button>
+            <button id="quick-measure" class="quick-action-btn">
+              <div class="quick-action-icon icon-amber">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h5m10 0h5"/><path d="M7 8v8"/><path d="M17 8v8"/></svg>
+              </div>
+              <span>Mesurer</span>
+            </button>
+            <button id="quick-favorites" class="quick-action-btn">
+              <div class="quick-action-icon icon-rose">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </div>
+              <span>Favoris</span>
+            </button>
+            <button id="quick-track" class="quick-action-btn">
+              <div class="quick-action-icon" style="background:linear-gradient(135deg,#10b981,#059669)">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+              </div>
+              <span>Trajet</span>
+            </button>
+            <button id="quick-pin" class="quick-action-btn">
+              <div class="quick-action-icon" style="background:linear-gradient(135deg,#8b5cf6,#6d28d9)">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <span>Pin</span>
+            </button>
+          </div>
+
+          <!-- Historique récent -->
+          <div id="history-section" class="history-section hidden">
+            <div class="section-header">
+              <h3>Récents</h3>
+              <button id="history-clear" class="section-action" title="Effacer l'historique">Effacer</button>
+            </div>
+            <div id="history-list" class="history-list"></div>
+          </div>
+
+          <!-- Favoris -->
+          <div id="favorites-section" class="favorites-section hidden">
+            <div class="section-header">
+              <h3>Favoris</h3>
+            </div>
+            <div id="favorites-list" class="favorites-list"></div>
+          </div>
+
+          <!-- Tips -->
+          <div class="tips-section">
+            <div class="tip-card">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><circle cx="12" cy="17" r="0.5"/></svg>
+              <span>Clic droit sur la carte pour obtenir les infos d'un point. Utilisez <kbd>Ctrl</kbd>+<kbd>F</kbd> pour chercher.</span>
+            </div>
+          </div>
+
+          <!-- Trajets enregistrés -->
+          <div id="tracks-section" class="track-section hidden">
+            <div class="section-header">
+              <h3>Mes trajets</h3>
+            </div>
+            <div id="tracks-list" class="track-saved-list"></div>
+          </div>
+        </div>
+
+        <!-- Itinéraire -->
+        <div id="route-panel" class="sidebar-section hidden">
+          <div class="section-header">
+            <h2>Itinéraire</h2>
+            <button id="route-close" class="section-close" aria-label="Fermer" title="Fermer">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </div>
+          <div class="route-inputs">
+            <div class="route-field">
+              <span class="route-dot route-dot-start" aria-hidden="true"></span>
+              <input type="text" id="route-start" placeholder="Départ (ou clic droit sur la carte)" autocomplete="off" aria-label="Point de départ">
+              <button class="route-field-locate" data-target="start" aria-label="Utiliser ma position" title="Ma position">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4m0 12v4M2 12h4m12 0h4"/></svg>
+              </button>
+            </div>
+            <button id="route-swap" class="route-swap" aria-label="Inverser départ et arrivée" title="Inverser">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 1 21 5 17 9"/><polyline points="7 15 3 19 7 23"/><line x1="21" y1="5" x2="9" y2="5"/><line x1="3" y1="19" x2="15" y2="19"/></svg>
+            </button>
+            <div class="route-field">
+              <span class="route-dot route-dot-end" aria-hidden="true"></span>
+              <input type="text" id="route-end" placeholder="Arrivée (ou clic droit sur la carte)" autocomplete="off" aria-label="Point d'arrivée">
+            </div>
+          </div>
+          <div class="route-modes">
+            <button class="route-mode active" data-mode="driving" aria-label="Voiture" title="Voiture">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17h10M7 17a2 2 0 01-2-2V9.5a1 1 0 01.1-.45l2-4A1 1 0 018 4.5h8a1 1 0 01.9.55l2 4a1 1 0 01.1.45V15a2 2 0 01-2 2M7 17v1.5M17 17v1.5"/><circle cx="8" cy="13" r="1"/><circle cx="16" cy="13" r="1"/></svg>
+              <span>Voiture</span>
+            </button>
+            <button class="route-mode" data-mode="cycling" aria-label="Vélo" title="Vélo">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M15 6a1 1 0 100-2 1 1 0 000 2zm-3 11.5V14l-3-3 4-3 2 3h3"/></svg>
+              <span>Vélo</span>
+            </button>
+            <button class="route-mode" data-mode="foot" aria-label="À pied" title="À pied">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="13" cy="4" r="1.5"/><path d="M7 21l3-4V13l-2-3 3-3 2 3 3 1v5l2 4"/></svg>
+              <span>À pied</span>
+            </button>
+          </div>
+          <div id="route-info" class="route-info hidden"></div>
+          <div id="route-steps" class="route-steps hidden"></div>
+        </div>
+
+        <!-- Mesure -->
+        <div id="measure-panel" class="sidebar-section hidden">
+          <div class="section-header">
+            <h2>Mesurer une distance</h2>
+            <button id="measure-close" class="section-close" aria-label="Fermer" title="Fermer">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </div>
+          <p class="measure-help">Cliquez sur la carte pour placer des points. Double-cliquez pour terminer.</p>
+          <div id="measure-result" class="measure-result hidden">
+            <div class="measure-value">
+              <span class="measure-label">Distance totale</span>
+              <span id="measure-distance" class="measure-number">0 m</span>
+            </div>
+          </div>
+          <button id="measure-reset" class="cta cta-outline cta-sm measure-reset-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>
+            Réinitialiser
+          </button>
+        </div>
+
+        <!-- Enregistrement trajet -->
+        <div id="track-panel" class="sidebar-section hidden">
+          <div class="section-header">
+            <h2>Enregistrer un trajet</h2>
+            <button id="track-close" class="section-close" aria-label="Fermer" title="Fermer">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </div>
+          <p class="pin-info">Enregistrez votre trajet GPS en temps réel. Les données restent sur votre appareil.</p>
+          <div class="track-controls">
+            <button id="track-start-btn" class="track-btn">
+              <span class="track-record-dot"></span>
+              <span>Enregistrer</span>
+            </button>
+            <button id="track-pause-btn" class="track-btn" disabled>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+              <span>Pause</span>
+            </button>
+            <button id="track-stop-btn" class="track-btn" disabled>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="6" width="12" height="12" rx="1"/></svg>
+              <span>Arrêter</span>
+            </button>
+          </div>
+          <div id="track-stats" class="track-stats hidden">
+            <div class="track-stat">
+              <div id="track-distance" class="track-stat-value">0 m</div>
+              <div class="track-stat-label">Distance</div>
+            </div>
+            <div class="track-stat">
+              <div id="track-duration" class="track-stat-value">00:00</div>
+              <div class="track-stat-label">Durée</div>
+            </div>
+            <div class="track-stat">
+              <div id="track-speed" class="track-stat-value">0 km/h</div>
+              <div class="track-stat-label">Vitesse moy.</div>
+            </div>
+            <div class="track-stat">
+              <div id="track-points" class="track-stat-value">0</div>
+              <div class="track-stat-label">Points</div>
+            </div>
+          </div>
+          <div class="track-controls" style="margin-top:0.5rem">
+            <button id="track-export-gpx" class="track-btn" disabled>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span>GPX</span>
+            </button>
+            <button id="track-export-geojson" class="track-btn" disabled>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span>GeoJSON</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Drop Pin -->
+        <div id="pin-panel" class="sidebar-section hidden">
+          <div class="section-header">
+            <h2>Placer un repère</h2>
+            <button id="pin-close" class="section-close" aria-label="Fermer" title="Fermer">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </div>
+          <p class="pin-info">Cliquez sur la carte pour poser un repère. Les repères sont sauvegardés localement.</p>
+          <div id="pins-list" class="track-saved-list"></div>
+          <button id="pins-clear" class="cta cta-outline cta-sm measure-reset-btn" style="margin-top:0.5rem">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
+            Tout supprimer
+          </button>
+        </div>
+
+        <!-- Infos lieu -->
+        <div id="place-info" class="sidebar-section hidden">
+          <div class="section-header">
+            <h2 id="place-name"></h2>
+            <div class="place-header-actions">
+              <button id="place-fav-btn" class="icon-btn" aria-label="Ajouter aux favoris" title="Ajouter aux favoris">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </button>
+              <button id="place-close" class="section-close" aria-label="Fermer" title="Fermer">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              </button>
+            </div>
+          </div>
+          <p id="place-address" class="place-address"></p>
+          <div class="place-meta">
+            <div id="place-coords" class="place-coords"></div>
+            <div id="place-type" class="place-type"></div>
+          </div>
+          <div class="place-actions">
+            <button id="place-route-btn" class="cta cta-sm">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>
+              Itinéraire
+            </button>
+            <button id="place-share-btn" class="cta cta-outline cta-sm">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+              Partager
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Privacy notice -->
+      <div class="privacy-notice">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <div>
+          <strong>Vie privée protégée</strong>
+          <p>Aucune donnée collectée. OpenStreetMap, Nominatim & OSRM. Zéro cookie de tracking. Tout reste sur votre appareil.</p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Bouton sidebar mobile -->
+    <button id="sidebar-open" class="sidebar-open-btn hidden" aria-label="Ouvrir le panneau" title="Ouvrir le panneau">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+
+    <!-- Conteneur carte -->
+    <div id="map" class="maps-container" role="application" aria-label="Carte interactive"></div>
+
+    <!-- Barre de coordonnées -->
+    <div id="coord-bar" class="coord-bar">
+      <span id="coord-lat" class="coord-item">Lat: :</span>
+      <span class="coord-sep">|</span>
+      <span id="coord-lng" class="coord-item">Lng: :</span>
+      <span class="coord-sep">|</span>
+      <span id="coord-zoom" class="coord-item">Zoom: 6</span>
+    </div>
+
+    <!-- Contrôles carte -->
+    <div class="map-controls">
+      <button id="locate-btn" class="map-control-btn" aria-label="Ma position" title="Ma position">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4m0 12v4M2 12h4m12 0h4"/><circle cx="12" cy="12" r="10" stroke-dasharray="2 2"/></svg>
+      </button>
+      <button id="layers-btn" class="map-control-btn" aria-label="Couches de carte" title="Couches de carte">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+      </button>
+      <button id="route-toggle-btn" class="map-control-btn" aria-label="Itinéraire" title="Itinéraire">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>
+      </button>
+      <button id="measure-toggle-btn" class="map-control-btn" aria-label="Mesurer" title="Mesurer une distance">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h5m10 0h5"/><path d="M7 8v8"/><path d="M17 8v8"/></svg>
+      </button>
+      <button id="track-toggle-btn" class="map-control-btn" aria-label="Enregistrer" title="Enregistrer un trajet">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+      </button>
+      <button id="fullscreen-btn" class="map-control-btn" aria-label="Plein écran" title="Plein écran">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+      </button>
+    </div>
+
+    <!-- Sélection couches -->
+    <div id="layers-panel" class="layers-panel hidden">
+      <h3>Couches</h3>
+      <div class="layers-grid">
+        <label class="layer-option">
+          <input type="radio" name="map-layer" value="standard" checked>
+          <span class="layer-preview layer-standard"></span>
+          <span>Standard</span>
+        </label>
+        <label class="layer-option">
+          <input type="radio" name="map-layer" value="satellite">
+          <span class="layer-preview layer-satellite"></span>
+          <span>Satellite</span>
+        </label>
+        <label class="layer-option">
+          <input type="radio" name="map-layer" value="topo">
+          <span class="layer-preview layer-topo"></span>
+          <span>Topo</span>
+        </label>
+        <label class="layer-option">
+          <input type="radio" name="map-layer" value="transport">
+          <span class="layer-preview layer-transport"></span>
+          <span>Transport</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="/domain/maps/maps.js"></script>
+  <script src="/main.js" defer></script>
+</body>
+</html>

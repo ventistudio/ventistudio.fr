@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="Générateur de mots de passe sécurisés — Créez des mots de passe forts avec contrôle de longueur, entropie et options. 100% client-side.">
+  <meta name="theme-color" content="#0ea5e9">
+  <title>Générateur de Mots de Passe | VentiStudio Pro</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/domain/pro/pro.css">
+  <style>
+    .pass-layout { margin-top: 2rem; }
+
+    .panel {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      box-shadow: var(--glass-shadow);
+      margin-bottom: 1.5rem;
+    }
+
+    .panel h3 {
+      margin: 0 0 1rem;
+      font-size: 1rem;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .pass-output {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .pass-display {
+      flex: 1;
+      padding: 1rem;
+      border: 1px solid var(--glass-border);
+      border-radius: 0.75rem;
+      background: var(--glass-bg);
+      font-family: 'Courier New', monospace;
+      font-size: 1.15rem;
+      color: var(--text-primary);
+      word-break: break-all;
+      min-height: 52px;
+      display: flex;
+      align-items: center;
+      user-select: all;
+    }
+
+    .btn-icon {
+      width: 48px;
+      height: 48px;
+      border: 1px solid var(--glass-border);
+      border-radius: 0.75rem;
+      background: var(--glass-bg);
+      color: var(--text-primary);
+      font-size: 1.25rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+
+    .btn-icon:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* Strength meter */
+    .strength-bar {
+      height: 8px;
+      border-radius: 4px;
+      background: var(--glass-border);
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+    }
+
+    .strength-bar .fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.4s, background 0.4s;
+    }
+
+    .strength-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+    }
+
+    .strength-label { font-weight: 700; }
+    .strength-entropy { color: var(--text-secondary); }
+
+    /* Options */
+    .option-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .option-row:last-child { border-bottom: none; }
+
+    .option-row label {
+      font-size: 0.9rem;
+      color: var(--text-primary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .toggle {
+      position: relative;
+      width: 44px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+
+    .toggle input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .toggle .slider {
+      position: absolute;
+      inset: 0;
+      background: var(--glass-border);
+      border-radius: 24px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .toggle .slider::before {
+      content: '';
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      left: 3px;
+      bottom: 3px;
+      background: white;
+      border-radius: 50%;
+      transition: transform 0.3s;
+    }
+
+    .toggle input:checked + .slider { background: var(--accent); }
+    .toggle input:checked + .slider::before { transform: translateX(20px); }
+
+    .slider-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .slider-row input[type="range"] { flex: 1; accent-color: var(--accent); }
+    .slider-val { min-width: 30px; text-align: right; font-weight: 700; font-size: 0.9rem; color: var(--text-primary); }
+
+    /* History */
+    .history-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+
+    .history-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 0.75rem;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--glass-border);
+      border-radius: 0.5rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.8rem;
+      color: var(--text-primary);
+      word-break: break-all;
+    }
+
+    .history-item .copy-btn {
+      margin-left: auto;
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+      transition: color 0.2s;
+    }
+
+    .history-item .copy-btn:hover { color: var(--accent); }
+
+    .btn-generate {
+      width: 100%;
+      padding: 0.85rem;
+      background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+      color: white;
+      border: none;
+      border-radius: 0.75rem;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: all 0.3s;
+      box-shadow: 0 4px 20px rgba(14, 165, 233, 0.3);
+      margin-top: 0.5rem;
+    }
+
+    .btn-generate:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(14, 165, 233, 0.5);
+    }
+  </style>
+
+  <script async crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
+  <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
+
+  <meta property="og:title" content="Générateur de Mots de Passe | VentiStudio Pro">
+  <meta property="og:description" content="Générateur de mots de passe sécurisés — Créez des mots de passe forts avec contrôle de longueur, entropie et options. 100% client-side.">
+  <meta property="og:url" content="https://ventistudio.eu/domain/pro/password/">
+  <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://ventistudio.eu/domain/pro/password/">
+
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="/favicon.avif" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
+      <span>VentiStudio</span>
+    </div>
+    <button class="nav-burger" id="nav-burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="main-nav" class="main-nav" aria-label="Navigation principale">
+      <a href="/" class="nav-link">Accueil</a>
+
+      <details class="nav-group">
+        <summary class="nav-link">Découvrir
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel" role="menu">
+          <a href="/evaluation">Évaluation</a>
+          <a href="/wiki">Wiki</a>
+          <a href="/glossary">Glossaire</a>
+          <a href="/news">News</a>
+          <a href="/blog">Blog</a>
+          <a href="/calendar">Calendrier</a>
+          <a href="/cookbook">Cookbook</a>
+          <a href="/gallery">Galerie</a>
+          <a href="/atlas">Atlas</a>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Univers
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel" role="menu">
+          <a href="/aokiunivers">AOKI Universe</a>
+          <a href="/allofaokiunivers">All AOKI</a>
+          <a href="/university">Université</a>
+          <a href="/history">Histoire</a>
+          <a href="/memorial">Mémorial</a>
+          <a href="/ester-eggs">Easter eggs</a>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Outils
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Applications</h4>
+            <a href="/player">Lecteur</a>
+            <a href="/music">Musique</a>
+            <a href="/pip">PIP</a>
+            <a href="/whiteboard">Whiteboard</a>
+            <a href="/portfolio">Portfolio</a>
+            <a href="/gmod">GMod</a>
+          </div>
+          <div class="nav-col">
+            <h4>Domaines</h4>
+            <a href="/domain/aina">AINA</a>
+            <a href="/domain/archive">Archive</a>
+            <a href="/domain/maps">Maps</a>
+            <a href="/domain/movie">Movie</a>
+            <a href="/domain/peer">Peer</a>
+            <a href="/domain/pro">Pro</a>
+            <a href="/domain/search">Search</a>
+            <a href="/domain/suite">Suite</a>
+          </div>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Communauté
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Équipe</h4>
+            <a href="/personnel/">Équipe</a>
+            <a href="/hierarchie-staff">Hiérarchie</a>
+            <a href="/hypesquad">Hypesquad</a>
+            <a href="/jobs">Emplois</a>
+            <a href="/birthday">Anniversaires</a>
+          </div>
+          <div class="nav-col">
+            <h4>Réseaux</h4>
+            <a href="/discord">Discord</a>
+            <a href="/teamspeak">TeamSpeak</a>
+            <a href="/steam">Steam</a>
+            <a href="/social">Réseaux sociaux</a>
+          </div>
+          <div class="nav-col">
+            <h4>Activités</h4>
+            <a href="/artist">Artistes</a>
+            <a href="/quests">Quêtes</a>
+            <a href="/suboawards">Suboawards</a>
+            <a href="/eConcert">eConcert</a>
+          </div>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Plus
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Aide</h4>
+            <a href="/contact">Contact</a>
+            <a href="/faq">FAQ</a>
+            <a href="/status">Statut</a>
+            <a href="/sitemap">Plan du site</a>
+          </div>
+          <div class="nav-col">
+            <h4>Soutien</h4>
+            <a href="/donate">Faire un don</a>
+            <a href="/gold">Gold</a>
+            <a href="/customization">Personnalisation</a>
+            <a href="/mes-donnees">Mes Données</a>
+            <a href="/newsletter">Newsletter</a>
+          </div>
+          <div class="nav-col">
+            <h4>À propos</h4>
+            <a href="/company">Entreprise</a>
+            <a href="/acknowledgements">Remerciements</a>
+            <a href="/logo">Logo</a>
+            <a href="/tags">Tags</a>
+            <a href="/memory">Mémoire</a>
+            <a href="/why-not-use-roblox">Pourquoi pas Roblox</a>
+            <a href="/lawful">Mentions légales</a>
+          </div>
+        </div>
+      </details>
+    </nav>
+    <div class="controls" role="toolbar" aria-label="Contrôles">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
+          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
+          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
+        </svg>
+      </button>
+      <div id="user-button" role="region" aria-label="Authentification"><button class="cta" id="auth-fallback-btn" onclick="window.location.href='https://accounts.ventistudio.eu/sign-in?redirect_url='+encodeURIComponent(window.location.href)" style="padding:0.5rem 1.25rem;font-size:0.9rem;margin:0"><span>Se connecter</span></button></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" style="padding: 3rem 0 1rem;">
+      <h1 style="font-size: 2.5rem;">Générateur de Mots de Passe</h1>
+      <p style="color: var(--text-secondary);">Créez des mots de passe sécurisés — 100% dans votre navigateur</p>
+    </section>
+
+    <div class="pass-layout">
+      <div class="panel">
+        <h3>🔐 Mot de passe</h3>
+        <div class="pass-output">
+          <div class="pass-display" id="passDisplay">—</div>
+          <button class="btn-icon" id="btnCopy" title="Copier">📋</button>
+          <button class="btn-icon" id="btnRefresh" title="Régénérer">🔄</button>
+        </div>
+        <div class="strength-bar"><div class="fill" id="strengthFill"></div></div>
+        <div class="strength-info">
+          <span class="strength-label" id="strengthLabel">—</span>
+          <span class="strength-entropy" id="strengthEntropy">—</span>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>⚙️ Options</h3>
+        <div style="margin-bottom: 1rem;">
+          <label style="font-size: 0.85rem; font-weight: 600; color: var(--text-primary);">Longueur</label>
+          <div class="slider-row">
+            <input type="range" id="passLength" min="4" max="128" value="20">
+            <span class="slider-val" id="passLengthVal">20</span>
+          </div>
+        </div>
+
+        <div class="option-row">
+          <label for="optUpper">🔠 Majuscules (A–Z)</label>
+          <div class="toggle"><input type="checkbox" id="optUpper" checked><span class="slider"></span></div>
+        </div>
+        <div class="option-row">
+          <label for="optLower">🔡 Minuscules (a–z)</label>
+          <div class="toggle"><input type="checkbox" id="optLower" checked><span class="slider"></span></div>
+        </div>
+        <div class="option-row">
+          <label for="optDigits">🔢 Chiffres (0–9)</label>
+          <div class="toggle"><input type="checkbox" id="optDigits" checked><span class="slider"></span></div>
+        </div>
+        <div class="option-row">
+          <label for="optSymbols">🔣 Symboles (!@#$…)</label>
+          <div class="toggle"><input type="checkbox" id="optSymbols" checked><span class="slider"></span></div>
+        </div>
+        <div class="option-row">
+          <label for="optAmbiguous">🚫 Exclure les ambigus (0Ol1I)</label>
+          <div class="toggle"><input type="checkbox" id="optAmbiguous"><span class="slider"></span></div>
+        </div>
+
+        <button class="btn-generate" id="btnGenerate">🎲 Générer un mot de passe</button>
+      </div>
+
+      <div class="panel">
+        <h3>📜 Historique (session)</h3>
+        <div class="history-list" id="historyList">
+          <p style="color:var(--text-secondary); font-size:0.85rem;">Aucun mot de passe généré.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="/main.js"></script>
+  <script>
+  (() => {
+    'use strict';
+    const $ = (s) => document.getElementById(s);
+
+    const UPPER = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const LOWER = 'abcdefghijklmnopqrstuvwxyz';
+    const DIGITS = '0123456789';
+    const SYMBOLS = '!@#$%^&*()_+-=[]{}|;:,.<>?/~';
+    const AMBIGUOUS = '0OoIl1';
+
+    const history = [];
+
+    function getCharset() {
+      let charset = '';
+      if ($('optUpper').checked) charset += UPPER;
+      if ($('optLower').checked) charset += LOWER;
+      if ($('optDigits').checked) charset += DIGITS;
+      if ($('optSymbols').checked) charset += SYMBOLS;
+      if ($('optAmbiguous').checked) {
+        charset = charset.split('').filter(c => !AMBIGUOUS.includes(c)).join('');
+      }
+      return charset;
+    }
+
+    function generate() {
+      const charset = getCharset();
+      if (!charset) {
+        $('passDisplay').textContent = '⚠️ Sélectionnez au moins une option';
+        return;
+      }
+
+      const len = parseInt($('passLength').value);
+      const arr = new Uint32Array(len);
+      crypto.getRandomValues(arr);
+      let pass = '';
+      for (let i = 0; i < len; i++) {
+        pass += charset[arr[i] % charset.length];
+      }
+
+      $('passDisplay').textContent = pass;
+      updateStrength(pass, charset.length);
+
+      history.unshift(pass);
+      if (history.length > 20) history.pop();
+      renderHistory();
+    }
+
+    function updateStrength(pass, poolSize) {
+      const entropy = Math.log2(poolSize) * pass.length;
+      let level, color, pct;
+
+      if (entropy < 30) { level = 'Très faible'; color = '#ef4444'; pct = 15; }
+      else if (entropy < 50) { level = 'Faible'; color = '#f59e0b'; pct = 30; }
+      else if (entropy < 70) { level = 'Moyen'; color = '#eab308'; pct = 50; }
+      else if (entropy < 100) { level = 'Fort'; color = '#10b981'; pct = 75; }
+      else { level = 'Très fort'; color = '#059669'; pct = 100; }
+
+      const fill = $('strengthFill');
+      fill.style.width = pct + '%';
+      fill.style.background = color;
+      $('strengthLabel').textContent = level;
+      $('strengthLabel').style.color = color;
+      $('strengthEntropy').textContent = `${Math.round(entropy)} bits d'entropie`;
+    }
+
+    function renderHistory() {
+      if (history.length === 0) {
+        $('historyList').innerHTML = '<p style="color:var(--text-secondary); font-size:0.85rem;">Aucun mot de passe généré.</p>';
+        return;
+      }
+      $('historyList').innerHTML = history.map(p => `
+        <div class="history-item">
+          <span>${p}</span>
+          <button class="copy-btn" data-val="${p.replace(/"/g, '&quot;')}" title="Copier">📋</button>
+        </div>`).join('');
+
+      $('historyList').querySelectorAll('.copy-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          navigator.clipboard.writeText(btn.dataset.val);
+          btn.textContent = '✅';
+          setTimeout(() => btn.textContent = '📋', 1200);
+        });
+      });
+    }
+
+    $('btnGenerate').addEventListener('click', generate);
+    $('btnRefresh').addEventListener('click', generate);
+    $('btnCopy').addEventListener('click', () => {
+      const text = $('passDisplay').textContent;
+      if (text && text !== '—') {
+        navigator.clipboard.writeText(text);
+        $('btnCopy').textContent = '✅';
+        setTimeout(() => $('btnCopy').textContent = '📋', 1200);
+      }
+    });
+
+    $('passLength').addEventListener('input', (e) => {
+      $('passLengthVal').textContent = e.target.value;
+    });
+
+    // Auto-generate on option change
+    ['optUpper', 'optLower', 'optDigits', 'optSymbols', 'optAmbiguous', 'passLength'].forEach(id => {
+      $(id).addEventListener('change', generate);
+    });
+
+    generate();
+  })();
+  </script>
+  <script>
+    (function () {
+      var nav = document.getElementById('main-nav');
+      var burger = document.getElementById('nav-burger');
+      if (!nav || !burger) return;
+
+      // Marque le lien actif d'apres l'URL courante
+      try {
+        var path = window.location.pathname.replace(/\/index\.html?$/, '/').replace(/\/$/, '') || '/';
+        var best = null, bestLen = -1;
+        nav.querySelectorAll('a[href]').forEach(function (a) {
+          var href = a.getAttribute('href').replace(/\/$/, '') || '/';
+          if (href === path || (href !== '/' && path.indexOf(href + '/') === 0) || (href !== '/' && path === href)) {
+            if (href.length > bestLen) { best = a; bestLen = href.length; }
+          }
+        });
+        if (path === '/' || path === '') {
+          best = nav.querySelector('a[href="/"]');
+        }
+        if (best) {
+          best.classList.add('active');
+          var grp = best.closest('details.nav-group');
+          if (grp) {
+            var s = grp.querySelector('summary.nav-link');
+            if (s) s.classList.add('active');
+          }
+        }
+      } catch (e) {}
+
+      function closeAllGroups(except) {
+        nav.querySelectorAll('details.nav-group[open]').forEach(function (d) {
+          if (d !== except) d.removeAttribute('open');
+        });
+      }
+
+      burger.addEventListener('click', function () {
+        var open = nav.classList.toggle('is-open');
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        burger.classList.toggle('is-active', open);
+        if (!open) closeAllGroups();
+      });
+
+      nav.querySelectorAll('details.nav-group').forEach(function (d) {
+        d.addEventListener('toggle', function () {
+          if (d.open) closeAllGroups(d);
+        });
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!nav.contains(e.target) && !burger.contains(e.target)) {
+          closeAllGroups();
+          if (nav.classList.contains('is-open')) {
+            nav.classList.remove('is-open');
+            burger.classList.remove('is-active');
+            burger.setAttribute('aria-expanded', 'false');
+          }
+        }
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          closeAllGroups();
+          if (nav.classList.contains('is-open')) {
+            nav.classList.remove('is-open');
+            burger.classList.remove('is-active');
+            burger.setAttribute('aria-expanded', 'false');
+            burger.focus();
+          }
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

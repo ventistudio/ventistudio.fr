@@ -1,30 +1,164 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="dark">
 <head>
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
   <meta name="description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
   <meta name="theme-color" content="#6366f1">
-  <title>VentiStudio v4</title>
+  <title>Avertissement | VentiStudio</title>
   <link rel="stylesheet" href="/style.css">
+
+  <script async crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
+  <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
+
+  <meta property="og:title" content="Avertissement | VentiStudio">
+  <meta property="og:description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
+  <meta property="og:url" content="https://ventistudio.eu/warning/">
+  <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://ventistudio.eu/warning/">
+
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
 </head>
 <body>
   <header>
-
     <div class="logo">
       <img src="/favicon.avif" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
       <span>VentiStudio</span>
     </div>
-    <nav aria-label="Navigation principale">
-      <a href="/">Accueil</a>
-      <a href="/evaluation">Contenu Approuvé</a>
-      <a href="/player">Lecteur</a>
-      <a href="/wiki">Wiki</a>
-      <a href="/staff">Équipe</a>
-      <a href="/news">News</a>
-      <a href="/pip">PIP</a>
-      <a href="/sitemap">Plan du site</a>
+    <button class="nav-burger" id="nav-burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="main-nav" class="main-nav" aria-label="Navigation principale">
+      <a href="/" class="nav-link">Accueil</a>
+
+      <details class="nav-group">
+        <summary class="nav-link">Découvrir
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel" role="menu">
+          <a href="/evaluation">Évaluation</a>
+          <a href="/wiki">Wiki</a>
+          <a href="/glossary">Glossaire</a>
+          <a href="/news">News</a>
+          <a href="/blog">Blog</a>
+          <a href="/calendar">Calendrier</a>
+          <a href="/cookbook">Cookbook</a>
+          <a href="/gallery">Galerie</a>
+          <a href="/atlas">Atlas</a>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Univers
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel" role="menu">
+          <a href="/aokiunivers">AOKI Universe</a>
+          <a href="/allofaokiunivers">All AOKI</a>
+          <a href="/university">Université</a>
+          <a href="/history">Histoire</a>
+          <a href="/memorial">Mémorial</a>
+          <a href="/ester-eggs">Easter eggs</a>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Outils
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Applications</h4>
+            <a href="/player">Lecteur</a>
+            <a href="/music">Musique</a>
+            <a href="/pip">PIP</a>
+            <a href="/whiteboard">Whiteboard</a>
+            <a href="/portfolio">Portfolio</a>
+            <a href="/gmod">GMod</a>
+          </div>
+          <div class="nav-col">
+            <h4>Domaines</h4>
+            <a href="/domain/aina">AINA</a>
+            <a href="/domain/archive">Archive</a>
+            <a href="/domain/maps">Maps</a>
+            <a href="/domain/movie">Movie</a>
+            <a href="/domain/peer">Peer</a>
+            <a href="/domain/pro">Pro</a>
+            <a href="/domain/search">Search</a>
+            <a href="/domain/suite">Suite</a>
+          </div>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Communauté
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Équipe</h4>
+            <a href="/personnel/">Équipe</a>
+            <a href="/hierarchie-staff">Hiérarchie</a>
+            <a href="/hypesquad">Hypesquad</a>
+            <a href="/jobs">Emplois</a>
+            <a href="/birthday">Anniversaires</a>
+          </div>
+          <div class="nav-col">
+            <h4>Réseaux</h4>
+            <a href="/discord">Discord</a>
+            <a href="/teamspeak">TeamSpeak</a>
+            <a href="/steam">Steam</a>
+            <a href="/social">Réseaux sociaux</a>
+          </div>
+          <div class="nav-col">
+            <h4>Activités</h4>
+            <a href="/artist">Artistes</a>
+            <a href="/quests">Quêtes</a>
+            <a href="/suboawards">Suboawards</a>
+            <a href="/eConcert">eConcert</a>
+          </div>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Plus
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Aide</h4>
+            <a href="/contact">Contact</a>
+            <a href="/faq">FAQ</a>
+            <a href="/status">Statut</a>
+            <a href="/sitemap">Plan du site</a>
+          </div>
+          <div class="nav-col">
+            <h4>Soutien</h4>
+            <a href="/donate">Faire un don</a>
+            <a href="/gold">Gold</a>
+            <a href="/customization">Personnalisation</a>
+            <a href="/mes-donnees">Mes Données</a>
+            <a href="/newsletter">Newsletter</a>
+          </div>
+          <div class="nav-col">
+            <h4>À propos</h4>
+            <a href="/company">Entreprise</a>
+            <a href="/acknowledgements">Remerciements</a>
+            <a href="/logo">Logo</a>
+            <a href="/tags">Tags</a>
+            <a href="/memory">Mémoire</a>
+            <a href="/why-not-use-roblox">Pourquoi pas Roblox</a>
+            <a href="/lawful">Mentions légales</a>
+          </div>
+        </div>
+      </details>
     </nav>
     <div class="controls" role="toolbar" aria-label="Contrôles">
       <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
@@ -34,9 +168,8 @@
           <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
         </svg>
       </button>
-      <div id="user-button" role="region" aria-label="Authentification"></div>
+      <div id="user-button" role="region" aria-label="Authentification"><button class="cta" id="auth-fallback-btn" onclick="window.location.href='https://accounts.ventistudio.eu/sign-in?redirect_url='+encodeURIComponent(window.location.href)" style="padding:0.5rem 1.25rem;font-size:0.9rem;margin:0"><span>Se connecter</span></button></div>
     </div>
-  
   </header>
 
   <main>
@@ -59,41 +192,78 @@
 
       <div class="warning-terms-card">
         <h2>Conditions d'accès</h2>
+
+        <div id="warning-timer-box" style="text-align:center;padding:1.5rem;margin-bottom:1.5rem;background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.25);border-radius:12px">
+          <p style="margin-bottom:0.75rem;font-weight:600">⏳ Veuillez lire attentivement les conditions ci-dessous</p>
+          <p>Les cases seront disponibles dans <strong id="warning-timer-count" style="color:var(--accent);font-size:1.3rem">10</strong> secondes</p>
+          <div style="margin-top:1rem;height:4px;background:rgba(255,255,255,0.1);border-radius:4px;overflow:hidden">
+            <div id="warning-timer-bar" style="height:100%;width:0%;background:var(--accent);transition:width 1s linear;border-radius:4px"></div>
+          </div>
+        </div>
+
         <p>En accédant à cette page, vous, l'utilisateur actuel de l'appareil :</p>
         <ul class="warning-terms-list">
           <li>
             <label class="warning-checkbox">
-              <input type="checkbox" class="warning-check" required>
+              <input type="checkbox" class="warning-check" required disabled>
               <span class="warning-checkmark"></span>
-              Reconnaissez être seul responsable de vos actes
+              Certifiez être âgé(e) de 18 ans ou plus
             </label>
           </li>
           <li>
             <label class="warning-checkbox">
-              <input type="checkbox" class="warning-check" required>
+              <input type="checkbox" class="warning-check" required disabled>
+              <span class="warning-checkmark"></span>
+              Reconnaissez être seul responsable de vos actes et de l'utilisation que vous faites des liens présents
+            </label>
+          </li>
+          <li>
+            <label class="warning-checkbox">
+              <input type="checkbox" class="warning-check" required disabled>
               <span class="warning-checkmark"></span>
               Confirmez être en pleine possession de vos moyens
             </label>
           </li>
           <li>
             <label class="warning-checkbox">
-              <input type="checkbox" class="warning-check" required>
+              <input type="checkbox" class="warning-check" required disabled>
               <span class="warning-checkmark"></span>
-              Attestez avoir lu et approuvé l'ensemble des consignes présentes
+              Comprenez que les contenus référencés peuvent être illégaux dans votre pays de résidence
             </label>
           </li>
           <li>
             <label class="warning-checkbox">
-              <input type="checkbox" class="warning-check" required>
+              <input type="checkbox" class="warning-check" required disabled>
               <span class="warning-checkmark"></span>
-              Comprenez que VentiStudio ne garantit ni l'accessibilité ni la sécurité des sites référencés
+              Acceptez que l'utilisation de ces liens est entièrement à vos risques et périls
+            </label>
+          </li>
+          <li>
+            <label class="warning-checkbox">
+              <input type="checkbox" class="warning-check" required disabled>
+              <span class="warning-checkmark"></span>
+              Comprenez que VentiStudio ne garantit ni l'accessibilité, ni la sécurité, ni la légalité des sites référencés
+            </label>
+          </li>
+          <li>
+            <label class="warning-checkbox">
+              <input type="checkbox" class="warning-check" required disabled>
+              <span class="warning-checkmark"></span>
+              Acceptez que VentiStudio se réserve le droit de supprimer cette page et ses contenus à tout moment
+            </label>
+          </li>
+          <li>
+            <label class="warning-checkbox">
+              <input type="checkbox" class="warning-check" required disabled>
+              <span class="warning-checkmark"></span>
+              Attestez avoir lu et approuvé l'ensemble des consignes présentes sur cette page
             </label>
           </li>
         </ul>
         <div class="warning-progress">
           <div class="warning-progress-bar"></div>
         </div>
-        <p class="warning-progress-text"><span id="warning-checked-count">0</span>/4 conditions acceptées</p>
+        <p class="warning-progress-text"><span id="warning-checked-count">0</span>/8 conditions acceptées</p>
       </div>
 
       <div class="warning-dmca-box">
@@ -115,7 +285,13 @@
             <path d="M7 11V7a5 5 0 0110 0v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
             <circle cx="12" cy="16" r="1.5" fill="currentColor"/>
           </svg>
-          <p>Veuillez accepter toutes les conditions ci-dessus pour accéder aux liens</p>
+          <p id="warning-overlay-text">Veuillez accepter toutes les conditions ci-dessus pour accéder aux liens</p>
+          <div id="warning-unlock-timer" style="display:none;margin-top:1.5rem;width:100%;max-width:320px">
+            <p style="font-weight:600;margin-bottom:0.75rem">⏳ Déverrouillage dans <strong id="warning-unlock-count" style="color:var(--accent);font-size:1.3rem">10</strong> secondes</p>
+            <div style="height:4px;background:rgba(255,255,255,0.1);border-radius:4px;overflow:hidden">
+              <div id="warning-unlock-bar" style="height:100%;width:0%;background:var(--accent);transition:width 1s linear;border-radius:4px"></div>
+            </div>
+          </div>
         </div>
       </div>
       <h2>Catégories</h2>
@@ -200,14 +376,13 @@
   </main>
 
   <footer>
-
     <div class="footer-content">
       <div class="footer-section">
         <h4>Outils</h4>
         <ul>
-          <li><a href="#">Encrypt</a></li>
+          <li><a href="/pip">PIP</a></li>
           <li><a href="/sitemap">Plan du site</a></li>
-          <li><a href="/stats">Statut</a></li>
+          <li><a href="https://status.ventistudio.eu/">Statut</a></li>
         </ul>
       </div>
       <div class="footer-section">
@@ -229,17 +404,16 @@
       <div class="footer-section">
         <h4>Chartes</h4>
         <ul>
-          <li><a href="/lawful/tos">Conditions</a></li>
+          <li><a href="/lawful/tos">Conditions d'utilisation</a></li>
           <li><a href="/lawful/cookies">Confidentialité</a></li>
           <li><a href="/lawful/dmcainfo">Information DMCA</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
-      <p class="copyright">Copyright  2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
+      <iframe src="https://status.ventistudio.eu/badge?theme=dark" width="500" height="30" frameborder="0" scrolling="no" style="color-scheme: normal"></iframe>
+      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
     </div>
-  
   </footer>
 
   <script>
@@ -249,7 +423,71 @@
       const section = document.getElementById('warning-categories');
       const progressBar = document.querySelector('.warning-progress-bar');
       const countEl = document.getElementById('warning-checked-count');
+      const timerCount = document.getElementById('warning-timer-count');
+      const timerBar = document.getElementById('warning-timer-bar');
+      const timerBox = document.getElementById('warning-timer-box');
       const total = checkboxes.length;
+      const TIMER_SECONDS = 10;
+      let remaining = TIMER_SECONDS;
+
+      // Timer obligatoire
+      const timerInterval = setInterval(function() {
+        remaining--;
+        timerCount.textContent = remaining;
+        timerBar.style.width = ((TIMER_SECONDS - remaining) / TIMER_SECONDS * 100) + '%';
+
+        if (remaining <= 0) {
+          clearInterval(timerInterval);
+          timerBox.style.background = 'rgba(99,102,241,0.08)';
+          timerBox.style.borderColor = 'rgba(99,102,241,0.25)';
+          timerBox.innerHTML = '<p style="font-weight:600;color:var(--accent)">✅ Vous pouvez maintenant cocher les conditions ci-dessous</p>';
+          checkboxes.forEach(function(cb) { cb.disabled = false; });
+        }
+      }, 1000);
+
+      const UNLOCK_SECONDS = 10;
+      let unlockTimer = null;
+      let unlockRemaining = UNLOCK_SECONDS;
+
+      function startUnlockTimer() {
+        const unlockTimerBox = document.getElementById('warning-unlock-timer');
+        const unlockCount = document.getElementById('warning-unlock-count');
+        const unlockBar = document.getElementById('warning-unlock-bar');
+        const overlayText = document.getElementById('warning-overlay-text');
+
+        overlayText.textContent = 'Toutes les conditions sont acceptées.';
+        unlockTimerBox.style.display = 'block';
+        unlockRemaining = UNLOCK_SECONDS;
+        unlockCount.textContent = unlockRemaining;
+        unlockBar.style.width = '0%';
+
+        unlockTimer = setInterval(function() {
+          unlockRemaining--;
+          unlockCount.textContent = unlockRemaining;
+          unlockBar.style.width = ((UNLOCK_SECONDS - unlockRemaining) / UNLOCK_SECONDS * 100) + '%';
+
+          if (unlockRemaining <= 0) {
+            clearInterval(unlockTimer);
+            unlockTimer = null;
+            overlay.classList.add('hidden');
+            section.classList.add('unlocked');
+            // Masquer la section conditions et afficher les liens à la place
+            document.querySelector('.warning-disclaimer').style.display = 'none';
+            section.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 1000);
+      }
+
+      function cancelUnlockTimer() {
+        if (unlockTimer) {
+          clearInterval(unlockTimer);
+          unlockTimer = null;
+        }
+        var unlockTimerBox = document.getElementById('warning-unlock-timer');
+        var overlayText = document.getElementById('warning-overlay-text');
+        if (unlockTimerBox) unlockTimerBox.style.display = 'none';
+        if (overlayText) overlayText.textContent = 'Veuillez accepter toutes les conditions ci-dessus pour accéder aux liens';
+      }
 
       function updateState() {
         const checked = document.querySelectorAll('.warning-check:checked').length;
@@ -259,9 +497,9 @@
         progressBar.style.width = (checked / total * 100) + '%';
 
         if (allChecked) {
-          overlay.classList.add('hidden');
-          section.classList.add('unlocked');
+          startUnlockTimer();
         } else {
+          cancelUnlockTimer();
           overlay.classList.remove('hidden');
           section.classList.remove('unlocked');
         }
@@ -274,6 +512,78 @@
       updateState();
     })();
   </script>
-  <script src="/script.js" defer></script>
+  <script src="/main.js" defer></script>
+  <script>
+    (function () {
+      var nav = document.getElementById('main-nav');
+      var burger = document.getElementById('nav-burger');
+      if (!nav || !burger) return;
+
+      // Marque le lien actif d'apres l'URL courante
+      try {
+        var path = window.location.pathname.replace(/\/index\.html?$/, '/').replace(/\/$/, '') || '/';
+        var best = null, bestLen = -1;
+        nav.querySelectorAll('a[href]').forEach(function (a) {
+          var href = a.getAttribute('href').replace(/\/$/, '') || '/';
+          if (href === path || (href !== '/' && path.indexOf(href + '/') === 0) || (href !== '/' && path === href)) {
+            if (href.length > bestLen) { best = a; bestLen = href.length; }
+          }
+        });
+        if (path === '/' || path === '') {
+          best = nav.querySelector('a[href="/"]');
+        }
+        if (best) {
+          best.classList.add('active');
+          var grp = best.closest('details.nav-group');
+          if (grp) {
+            var s = grp.querySelector('summary.nav-link');
+            if (s) s.classList.add('active');
+          }
+        }
+      } catch (e) {}
+
+      function closeAllGroups(except) {
+        nav.querySelectorAll('details.nav-group[open]').forEach(function (d) {
+          if (d !== except) d.removeAttribute('open');
+        });
+      }
+
+      burger.addEventListener('click', function () {
+        var open = nav.classList.toggle('is-open');
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        burger.classList.toggle('is-active', open);
+        if (!open) closeAllGroups();
+      });
+
+      nav.querySelectorAll('details.nav-group').forEach(function (d) {
+        d.addEventListener('toggle', function () {
+          if (d.open) closeAllGroups(d);
+        });
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!nav.contains(e.target) && !burger.contains(e.target)) {
+          closeAllGroups();
+          if (nav.classList.contains('is-open')) {
+            nav.classList.remove('is-open');
+            burger.classList.remove('is-active');
+            burger.setAttribute('aria-expanded', 'false');
+          }
+        }
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          closeAllGroups();
+          if (nav.classList.contains('is-open')) {
+            nav.classList.remove('is-open');
+            burger.classList.remove('is-active');
+            burger.setAttribute('aria-expanded', 'false');
+            burger.focus();
+          }
+        }
+      });
+    })();
+  </script>
 </body>
 </html>

@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="Convertisseur d'unités — Longueur, poids, température, vitesse, données, temps. 100% client-side.">
+  <meta name="theme-color" content="#0ea5e9">
+  <title>Convertisseur d'Unités | VentiStudio Pro</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/domain/pro/pro.css">
+  <style>
+    .unit-layout { margin-top: 2rem; }
+
+    .panel {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      box-shadow: var(--glass-shadow);
+      margin-bottom: 1.5rem;
+    }
+
+    .panel h3 {
+      margin: 0 0 1rem;
+      font-size: 1rem;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* Category tabs */
+    .cat-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .cat-tab {
+      padding: 0.55rem 1.2rem;
+      border-radius: 0.65rem;
+      border: 1px solid var(--glass-border);
+      background: var(--glass-bg);
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: all 0.25s;
+    }
+
+    .cat-tab:hover { border-color: var(--accent); color: var(--text-primary); }
+
+    .cat-tab.active {
+      background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+      color: #fff;
+      border-color: transparent;
+    }
+
+    /* Converter row */
+    .conv-row {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 1rem;
+      align-items: end;
+    }
+
+    .conv-field label {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.35rem;
+    }
+
+    .conv-field input, .conv-field select {
+      width: 100%;
+      padding: 0.65rem 0.85rem;
+      border: 1px solid var(--glass-border);
+      border-radius: 0.75rem;
+      background: var(--glass-bg);
+      color: var(--text-primary);
+      font-size: 0.95rem;
+      transition: border-color 0.25s;
+    }
+
+    .conv-field input:focus, .conv-field select:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15);
+    }
+
+    .swap-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid var(--glass-border);
+      background: var(--glass-bg);
+      color: var(--accent);
+      cursor: pointer;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.25s;
+      margin-bottom: 2px;
+    }
+
+    .swap-btn:hover {
+      background: var(--accent);
+      color: #fff;
+      transform: rotate(180deg);
+    }
+
+    /* Results grid */
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+    }
+
+    .result-card {
+      background: rgba(14, 165, 233, 0.06);
+      border: 1px solid var(--glass-border);
+      border-radius: 0.85rem;
+      padding: 0.85rem;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+
+    .result-card:hover {
+      border-color: var(--accent);
+      background: rgba(14, 165, 233, 0.12);
+    }
+
+    .result-card .unit-name {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.25rem;
+    }
+
+    .result-card .unit-value {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      word-break: break-all;
+    }
+
+    .copied-toast {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+      color: #fff;
+      padding: 0.65rem 1.5rem;
+      border-radius: 0.75rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      opacity: 0;
+      transition: all 0.35s;
+      pointer-events: none;
+      z-index: 99;
+    }
+
+    .copied-toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    @media (max-width: 640px) {
+      .conv-row { grid-template-columns: 1fr; }
+      .swap-btn { margin: 0 auto; transform: rotate(90deg); }
+      .swap-btn:hover { transform: rotate(270deg); }
+    }
+  </style>
+
+  <script async crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
+  <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
+
+  <meta property="og:title" content="Convertisseur d'Unités | VentiStudio Pro">
+  <meta property="og:description" content="Convertisseur d'unités — Longueur, poids, température, vitesse, données, temps. 100% client-side.">
+  <meta property="og:url" content="https://ventistudio.eu/domain/pro/units/">
+  <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://ventistudio.eu/domain/pro/units/">
+
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="/favicon.avif" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
+      <span>VentiStudio</span>
+    </div>
+    <button class="nav-burger" id="nav-burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="main-nav" class="main-nav" aria-label="Navigation principale">
+      <a href="/" class="nav-link">Accueil</a>
+
+      <details class="nav-group">
+        <summary class="nav-link">Découvrir
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel" role="menu">
+          <a href="/evaluation">Évaluation</a>
+          <a href="/wiki">Wiki</a>
+          <a href="/glossary">Glossaire</a>
+          <a href="/news">News</a>
+          <a href="/blog">Blog</a>
+          <a href="/calendar">Calendrier</a>
+          <a href="/cookbook">Cookbook</a>
+          <a href="/gallery">Galerie</a>
+          <a href="/atlas">Atlas</a>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Univers
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel" role="menu">
+          <a href="/aokiunivers">AOKI Universe</a>
+          <a href="/allofaokiunivers">All AOKI</a>
+          <a href="/university">Université</a>
+          <a href="/history">Histoire</a>
+          <a href="/memorial">Mémorial</a>
+          <a href="/ester-eggs">Easter eggs</a>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Outils
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Applications</h4>
+            <a href="/player">Lecteur</a>
+            <a href="/music">Musique</a>
+            <a href="/pip">PIP</a>
+            <a href="/whiteboard">Whiteboard</a>
+            <a href="/portfolio">Portfolio</a>
+            <a href="/gmod">GMod</a>
+          </div>
+          <div class="nav-col">
+            <h4>Domaines</h4>
+            <a href="/domain/aina">AINA</a>
+            <a href="/domain/archive">Archive</a>
+            <a href="/domain/maps">Maps</a>
+            <a href="/domain/movie">Movie</a>
+            <a href="/domain/peer">Peer</a>
+            <a href="/domain/pro">Pro</a>
+            <a href="/domain/search">Search</a>
+            <a href="/domain/suite">Suite</a>
+          </div>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Communauté
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Équipe</h4>
+            <a href="/personnel/">Équipe</a>
+            <a href="/hierarchie-staff">Hiérarchie</a>
+            <a href="/hypesquad">Hypesquad</a>
+            <a href="/jobs">Emplois</a>
+            <a href="/birthday">Anniversaires</a>
+          </div>
+          <div class="nav-col">
+            <h4>Réseaux</h4>
+            <a href="/discord">Discord</a>
+            <a href="/teamspeak">TeamSpeak</a>
+            <a href="/steam">Steam</a>
+            <a href="/social">Réseaux sociaux</a>
+          </div>
+          <div class="nav-col">
+            <h4>Activités</h4>
+            <a href="/artist">Artistes</a>
+            <a href="/quests">Quêtes</a>
+            <a href="/suboawards">Suboawards</a>
+            <a href="/eConcert">eConcert</a>
+          </div>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Plus
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Aide</h4>
+            <a href="/contact">Contact</a>
+            <a href="/faq">FAQ</a>
+            <a href="/status">Statut</a>
+            <a href="/sitemap">Plan du site</a>
+          </div>
+          <div class="nav-col">
+            <h4>Soutien</h4>
+            <a href="/donate">Faire un don</a>
+            <a href="/gold">Gold</a>
+            <a href="/customization">Personnalisation</a>
+            <a href="/mes-donnees">Mes Données</a>
+            <a href="/newsletter">Newsletter</a>
+          </div>
+          <div class="nav-col">
+            <h4>À propos</h4>
+            <a href="/company">Entreprise</a>
+            <a href="/acknowledgements">Remerciements</a>
+            <a href="/logo">Logo</a>
+            <a href="/tags">Tags</a>
+            <a href="/memory">Mémoire</a>
+            <a href="/why-not-use-roblox">Pourquoi pas Roblox</a>
+            <a href="/lawful">Mentions légales</a>
+          </div>
+        </div>
+      </details>
+    </nav>
+    <div class="controls" role="toolbar" aria-label="Contrôles">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
+          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
+          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
+        </svg>
+      </button>
+      <div id="user-button" role="region" aria-label="Authentification"><button class="cta" id="auth-fallback-btn" onclick="window.location.href='https://accounts.ventistudio.eu/sign-in?redirect_url='+encodeURIComponent(window.location.href)" style="padding:0.5rem 1.25rem;font-size:0.9rem;margin:0"><span>Se connecter</span></button></div>
+    </div>
+  </header>
+
+  <main>
+    <h1 style="margin-bottom:0.25rem">📐 Convertisseur d'Unités</h1>
+    <p style="color:var(--text-secondary);margin-bottom:1.5rem">Conversion instantanée entre unités — 100 % client-side</p>
+
+    <div class="cat-tabs" id="catTabs"></div>
+
+    <div class="panel">
+      <h3>⚡ Conversion</h3>
+      <div class="conv-row">
+        <div class="conv-field">
+          <label for="valInput">Valeur</label>
+          <input type="number" id="valInput" value="1" step="any">
+          <select id="fromUnit" style="margin-top:0.5rem"></select>
+        </div>
+        <button class="swap-btn" id="swapBtn" title="Inverser">⇄</button>
+        <div class="conv-field">
+          <label for="resultInput">Résultat</label>
+          <input type="text" id="resultInput" readonly>
+          <select id="toUnit" style="margin-top:0.5rem"></select>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>📊 Toutes les conversions</h3>
+      <div class="results-grid" id="allResults"></div>
+    </div>
+
+    <div class="copied-toast" id="toast">Copié !</div>
+  </main>
+
+  <script src="/main.js"></script>
+  <script>
+  (() => {
+    const CATS = {
+      'Longueur': {
+        base: 'm',
+        units: {
+          km: { name: 'Kilomètre', factor: 1000 },
+          m:  { name: 'Mètre', factor: 1 },
+          cm: { name: 'Centimètre', factor: 0.01 },
+          mm: { name: 'Millimètre', factor: 0.001 },
+          µm: { name: 'Micromètre', factor: 1e-6 },
+          nm: { name: 'Nanomètre', factor: 1e-9 },
+          mi: { name: 'Mile', factor: 1609.344 },
+          yd: { name: 'Yard', factor: 0.9144 },
+          ft: { name: 'Pied', factor: 0.3048 },
+          in: { name: 'Pouce', factor: 0.0254 },
+          nmi:{ name: 'Mille nautique', factor: 1852 },
+        }
+      },
+      'Poids': {
+        base: 'kg',
+        units: {
+          t:  { name: 'Tonne', factor: 1000 },
+          kg: { name: 'Kilogramme', factor: 1 },
+          g:  { name: 'Gramme', factor: 0.001 },
+          mg: { name: 'Milligramme', factor: 1e-6 },
+          lb: { name: 'Livre', factor: 0.45359237 },
+          oz: { name: 'Once', factor: 0.028349523 },
+          st: { name: 'Stone', factor: 6.35029318 },
+        }
+      },
+      'Température': { base: null, units: {
+        '°C': { name: 'Celsius' },
+        '°F': { name: 'Fahrenheit' },
+        'K':  { name: 'Kelvin' },
+      }},
+      'Vitesse': {
+        base: 'm/s',
+        units: {
+          'm/s':  { name: 'Mètre/seconde', factor: 1 },
+          'km/h': { name: 'Kilomètre/heure', factor: 1/3.6 },
+          'mph':  { name: 'Mile/heure', factor: 0.44704 },
+          'kn':   { name: 'Nœud', factor: 0.514444 },
+          'ft/s': { name: 'Pied/seconde', factor: 0.3048 },
+          'mach': { name: 'Mach (air, 20 °C)', factor: 343 },
+        }
+      },
+      'Données': {
+        base: 'B',
+        units: {
+          'b':  { name: 'Bit', factor: 0.125 },
+          'B':  { name: 'Octet', factor: 1 },
+          'KB': { name: 'Kilooctet', factor: 1024 },
+          'MB': { name: 'Mégaoctet', factor: 1048576 },
+          'GB': { name: 'Gigaoctet', factor: 1073741824 },
+          'TB': { name: 'Téraoctet', factor: 1099511627776 },
+          'PB': { name: 'Pétaoctet', factor: 1125899906842624 },
+          'Kb': { name: 'Kilobit', factor: 128 },
+          'Mb': { name: 'Mégabit', factor: 131072 },
+          'Gb': { name: 'Gigabit', factor: 134217728 },
+        }
+      },
+      'Temps': {
+        base: 's',
+        units: {
+          'ns': { name: 'Nanoseconde', factor: 1e-9 },
+          'µs': { name: 'Microseconde', factor: 1e-6 },
+          'ms': { name: 'Milliseconde', factor: 0.001 },
+          's':  { name: 'Seconde', factor: 1 },
+          'min':{ name: 'Minute', factor: 60 },
+          'h':  { name: 'Heure', factor: 3600 },
+          'j':  { name: 'Jour', factor: 86400 },
+          'sem':{ name: 'Semaine', factor: 604800 },
+          'an': { name: 'Année (365,25 j)', factor: 31557600 },
+        }
+      },
+      'Surface': {
+        base: 'm²',
+        units: {
+          'km²': { name: 'Kilomètre²', factor: 1e6 },
+          'm²':  { name: 'Mètre²', factor: 1 },
+          'cm²': { name: 'Centimètre²', factor: 1e-4 },
+          'ha':  { name: 'Hectare', factor: 1e4 },
+          'ac':  { name: 'Acre', factor: 4046.8564224 },
+          'ft²': { name: 'Pied²', factor: 0.09290304 },
+          'in²': { name: 'Pouce²', factor: 6.4516e-4 },
+        }
+      },
+    };
+
+    /* Temperature special conversion */
+    function tempConvert(val, from, to) {
+      let c;
+      if (from === '°C') c = val;
+      else if (from === '°F') c = (val - 32) * 5 / 9;
+      else c = val - 273.15;
+      if (to === '°C') return c;
+      if (to === '°F') return c * 9 / 5 + 32;
+      return c + 273.15;
+    }
+
+    function convert(cat, val, from, to) {
+      if (cat === 'Température') return tempConvert(val, from, to);
+      const u = CATS[cat].units;
+      return val * u[from].factor / u[to].factor;
+    }
+
+    function fmt(n) {
+      if (n === 0) return '0';
+      const abs = Math.abs(n);
+      if (abs >= 1e15 || (abs < 1e-12 && abs !== 0)) return n.toExponential(6);
+      if (abs < 0.0001) return n.toExponential(6);
+      if (Number.isInteger(n)) return n.toLocaleString('fr-FR');
+      const s = n.toPrecision(10);
+      return parseFloat(s).toLocaleString('fr-FR', { maximumSignificantDigits: 10 });
+    }
+
+    let activeCat = Object.keys(CATS)[0];
+    const $tabs = document.getElementById('catTabs');
+    const $val  = document.getElementById('valInput');
+    const $from = document.getElementById('fromUnit');
+    const $to   = document.getElementById('toUnit');
+    const $res  = document.getElementById('resultInput');
+    const $all  = document.getElementById('allResults');
+    const $swap = document.getElementById('swapBtn');
+    const $toast= document.getElementById('toast');
+
+    function buildTabs() {
+      $tabs.innerHTML = '';
+      for (const cat of Object.keys(CATS)) {
+        const btn = document.createElement('button');
+        btn.className = 'cat-tab' + (cat === activeCat ? ' active' : '');
+        btn.textContent = cat;
+        btn.addEventListener('click', () => { activeCat = cat; buildTabs(); buildSelects(); doConvert(); });
+        $tabs.appendChild(btn);
+      }
+    }
+
+    function buildSelects() {
+      const units = CATS[activeCat].units;
+      const keys = Object.keys(units);
+      [$from, $to].forEach((sel, i) => {
+        const prev = sel.value;
+        sel.innerHTML = '';
+        for (const k of keys) {
+          const opt = document.createElement('option');
+          opt.value = k;
+          opt.textContent = `${units[k].name} (${k})`;
+          sel.appendChild(opt);
+        }
+        if (prev && keys.includes(prev)) sel.value = prev;
+        else sel.selectedIndex = i === 0 ? 0 : Math.min(1, keys.length - 1);
+      });
+    }
+
+    function doConvert() {
+      const val = parseFloat($val.value) || 0;
+      $res.value = fmt(convert(activeCat, val, $from.value, $to.value));
+      buildAll(val);
+    }
+
+    function buildAll(val) {
+      const units = CATS[activeCat].units;
+      $all.innerHTML = '';
+      for (const k of Object.keys(units)) {
+        const r = convert(activeCat, val, $from.value, k);
+        const card = document.createElement('div');
+        card.className = 'result-card';
+        card.innerHTML = `<div class="unit-name">${units[k].name} (${k})</div><div class="unit-value">${fmt(r)}</div>`;
+        card.title = 'Cliquer pour copier';
+        card.addEventListener('click', () => {
+          navigator.clipboard.writeText(String(r)).then(() => {
+            $toast.classList.add('show');
+            setTimeout(() => $toast.classList.remove('show'), 1200);
+          });
+        });
+        $all.appendChild(card);
+      }
+    }
+
+    $val.addEventListener('input', doConvert);
+    $from.addEventListener('change', doConvert);
+    $to.addEventListener('change', doConvert);
+    $swap.addEventListener('click', () => {
+      const tmp = $from.value;
+      $from.value = $to.value;
+      $to.value = tmp;
+      doConvert();
+    });
+
+    buildTabs();
+    buildSelects();
+    doConvert();
+  })();
+  </script>
+  <script>
+    (function () {
+      var nav = document.getElementById('main-nav');
+      var burger = document.getElementById('nav-burger');
+      if (!nav || !burger) return;
+
+      // Marque le lien actif d'apres l'URL courante
+      try {
+        var path = window.location.pathname.replace(/\/index\.html?$/, '/').replace(/\/$/, '') || '/';
+        var best = null, bestLen = -1;
+        nav.querySelectorAll('a[href]').forEach(function (a) {
+          var href = a.getAttribute('href').replace(/\/$/, '') || '/';
+          if (href === path || (href !== '/' && path.indexOf(href + '/') === 0) || (href !== '/' && path === href)) {
+            if (href.length > bestLen) { best = a; bestLen = href.length; }
+          }
+        });
+        if (path === '/' || path === '') {
+          best = nav.querySelector('a[href="/"]');
+        }
+        if (best) {
+          best.classList.add('active');
+          var grp = best.closest('details.nav-group');
+          if (grp) {
+            var s = grp.querySelector('summary.nav-link');
+            if (s) s.classList.add('active');
+          }
+        }
+      } catch (e) {}
+
+      function closeAllGroups(except) {
+        nav.querySelectorAll('details.nav-group[open]').forEach(function (d) {
+          if (d !== except) d.removeAttribute('open');
+        });
+      }
+
+      burger.addEventListener('click', function () {
+        var open = nav.classList.toggle('is-open');
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        burger.classList.toggle('is-active', open);
+        if (!open) closeAllGroups();
+      });
+
+      nav.querySelectorAll('details.nav-group').forEach(function (d) {
+        d.addEventListener('toggle', function () {
+          if (d.open) closeAllGroups(d);
+        });
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!nav.contains(e.target) && !burger.contains(e.target)) {
+          closeAllGroups();
+          if (nav.classList.contains('is-open')) {
+            nav.classList.remove('is-open');
+            burger.classList.remove('is-active');
+            burger.setAttribute('aria-expanded', 'false');
+          }
+        }
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          closeAllGroups();
+          if (nav.classList.contains('is-open')) {
+            nav.classList.remove('is-open');
+            burger.classList.remove('is-active');
+            burger.setAttribute('aria-expanded', 'false');
+            burger.focus();
+          }
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

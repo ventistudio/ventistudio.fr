@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +12,7 @@
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
   <link rel="icon" type="image/avif" href="../favicon.avif">
-  <title>VentiStudio — RobCo Terminal v4.2</title>
+  <title>Signal | VentiStudio</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
 
@@ -783,6 +783,11 @@
       opacity: 0.4;
     }
   </style>
+
+  <script async crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
+  <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
+
+  <link rel="canonical" href="https://ventistudio.eu/signal/">
 </head>
 <body>
 
@@ -1199,6 +1204,26 @@
         strength: "\u2588\u2591\u2591\u2591\u2591\u2591 8%",
         content: "[BALISE AUTOMATIQUE \u2014 ABRI-12]\n\n... SOS ... SOS ... SOS ...\nSyst\u00e8mes vitaux d\u00e9faillants.\nPopulation restante : INCONNUE\nNiveau de radiation interne : CRITIQUE\n\n... si quelqu'un re\u00e7oit ce message ...\n... les portes sont bloqu\u00e9es ...\n... nous ne pouvons pas sortir ...\n\n[R\u00c9P\u00c9TITION AUTOMATIQUE \u2014 JOUR 18,263]"
       },
+      "142.88": {
+        name: "Relay Militaire",
+        strength: "\u2588\u2588\u2593\u2591\u2591\u2591 28%",
+        content: "[RELAY MILITAIRE \u2014 BANDE RESTREINTE]\n\nIci Poste Avanc\u00e9 Delta-7.\nLes cr\u00e9atures se rapprochent du p\u00e9rim\u00e8tre.\nDemandons renforts imm\u00e9diats.\n\nJour 1 : Pas de r\u00e9ponse du QG.\nJour 7 : Munitions \u00e0 30%.\nJour 14 : Nous avons perdu le caporal Reeves.\nJour 30 : Plus personne ne r\u00e9pond.\nJour 18,263 : [TRANSMISSION AUTOMATIQUE EN BOUCLE]\n\n... pas de r\u00e9ponse depuis 18,263 jours ...\n\n[FIN DE TRANSMISSION]"
+      },
+      "523.41": {
+        name: "Radio \u00c9ducation",
+        strength: "\u2588\u2588\u2588\u2591\u2591\u2591 45%",
+        content: "\u2501\u2501\u2501 RADIO \u00c9DUCATION \u2014 ABRI HIKARI \u2501\u2501\u2501\n\nLe\u00e7on du jour : Les Bases de la Survie\n\n1. Toujours v\u00e9rifier son compteur Geiger\n2. Ne jamais boire d'eau non purifi\u00e9e\n3. Les champignons lumineux sont TOXIQUES\n4. Un Deathclaw ne n\u00e9gocie pas\n5. Les capsules sont votre meilleur ami\n6. Ne laissez jamais un Feral Ghoul vous mordre\n7. Vault-Tec ment. Toujours.\n\nProchaine le\u00e7on : Comment reprogrammer un Protectron\n\n[FIN DE L'\u00c9MISSION]"
+      },
+      "789.99": {
+        name: "Signal de l'Enclave",
+        strength: "\u2588\u2588\u2588\u2588\u2591\u2591 72%",
+        content: "\u2501\u2501\u2501 ENCLAVE RADIO \u2501\u2501\u2501\n\n\u00ab Ici le Pr\u00e9sident des \u00c9tats-Unis d'Am\u00e9rique.\nL'Am\u00e9rique pr\u00e9vaudra. L'Am\u00e9rique survivra.\nQuand nous reconstruirons, nous serons plus forts.\n\nRejoignez-nous. Servez votre pays.\nDieu b\u00e9nisse l'Am\u00e9rique. Dieu b\u00e9nisse l'Enclave. \u00bb\n\n[MESSAGE PR\u00c9ENREGISTR\u00c9 \u2014 BOUCLE INFINIE]\n[AVERTISSEMENT : SOURCE NON FIABLE]"
+      },
+      "050.50": {
+        name: "Voix des Profondeurs",
+        strength: "\u2588\u2591\u2591\u2591\u2591\u2591 5%",
+        content: "[SIGNAL ULTRA-BASSE FR\u00c9QUENCE]\n\n... \u00e7a vient de sous terre ...\n... plus profond que l'Abri ...\n... quelque chose bouge ...\n\n[CAPTEUR SISMIQUE : activit\u00e9 d\u00e9tect\u00e9e \u00e0 -800m]\n[FR\u00c9QUENCE CARDIAQUE D\u00c9TECT\u00c9E : ??? bpm]\n[TAILLE ESTIM\u00c9E : IMPOSSIBLE]\n\n... les murs vibrent ...\n... elle se r\u00e9veille ...\n\n[PERTE DE SIGNAL]"
+      },
       "666.00": {
         name: "??? \u2014 NE PAS \u00c9COUTER",
         strength: "\u2588\u2588\u2588\u2588\u2588\u2588 100%",
@@ -1215,7 +1240,11 @@
       "3": { label: "ILLISIBLE", status: "corrompu", content: "Ce disque est corrompu et illisible.\n\n\u2591\u2592\u2593\u2588 SECTEURS ENDOMMAG\u00c9S \u2588\u2593\u2592\u2591\nTentatives de r\u00e9cup\u00e9ration : 47/47 \u00e9chou\u00e9es.\nRecommandation : remplacement du support physique." },
       "4": { label: "CLASSIFI\u00c9", status: "verrouill\u00e9", content: "...V\u00e9rification de l'autorisation..........\n...AUTORISATION ACCORD\u00c9E.................\n\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502  DOCUMENT CLASSIFI\u00c9 \u2014 MENTION RB-2851   \u2502\n\u2502  LECTURE R\u00c9SERV\u00c9E AU PERSONNEL AUTORIS\u00c9  \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n\nToute lecture \u00ab accidentelle \u00bb de ce document ne saurait\n\u00eatre tol\u00e9r\u00e9e. Une telle infraction se solderait par un\nrenvoi imm\u00e9diat, assorti d'un interrogatoire pouss\u00e9 men\u00e9\npar nos amis d'en bas.\n\n\u2501\u2501\u2501 CONTENU \u2501\u2501\u2501\n\nAoki Univers est le plus gros projet de VentiStudio,\ncr\u00e9\u00e9 par Hikari Umaishi. Cette histoire fait l'objet\nd'un travail tr\u00e8s intense, ce qui impacte fortement les\nautres projets. Mais tout semble rouler comme sur des\nroulettes.\n\n[FIN DU DOCUMENT CLASSIFI\u00c9]" },
       "5": { label: "LOG SYST\u00c8ME", status: "fonctionnel", content: "Les terminaux ont \u00e9t\u00e9 coup\u00e9s.\n\nVeuillez v\u00e9rifier que tout le mat\u00e9riel et les logiciels\nn\u00e9cessaires ont \u00e9t\u00e9 correctement install\u00e9s.\n\nSi le probl\u00e8me persiste, contactez votre centre\nd'assistance RobCo le plus proche.\n\nNote : le r\u00e9seau inter-abris est hors service depuis\nle 23 octobre 2077. Ne comptez pas sur une assistance\next\u00e9rieure." },
-      "6": { label: "JOURNAL SUPERVISEUR", status: "fonctionnel", content: "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n    JOURNAL DU SUPERVISEUR\n        HIKARI UMAISHI\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\n\u25b8 Jour 1 \u2014 Une nouvelle \u00e8re\n\n\u00ab Je suis le Superviseur. Ces mots r\u00e9sonnent dans ma\nt\u00eate comme un \u00e9cho d'un pass\u00e9 que je m'efforce d\u00e9j\u00e0 de\ncomprendre. Je n'ai jamais demand\u00e9 \u00e0 porter cette\nresponsabilit\u00e9, mais le monde tel que nous le connaissions\nn'existe plus. Et avec lui, les choix faciles. \u00bb\n\n\u25b8 Jour 14 \u2014 Les fondations de l'Abri\n\nJ'ai \u00e9t\u00e9 recrut\u00e9 par un programme de survie. Mon r\u00f4le :\ngarantir que l'humanit\u00e9 conserve sa m\u00e9moire, ses r\u00e9cits,\nses espoirs. Ainsi naquit l'id\u00e9e de l'Abri Hikari, un\nrefuge pour les corps ET pour les esprits.\n\nVentiStudio fut la pierre angulaire de cet abri.\n\n\u25b8 Jour 87 \u2014 Le poids du titre\n\n\u00ab \u00catre superviseur, c'est jongler avec des choix\nimpossibles. Qui survit ? Qui est sacrifi\u00e9 ? Tout cela\np\u00e8se lourd, mais l'histoire en marche ne s'arr\u00eate pas\npour une seule \u00e2me. \u00bb\n\n\u25b8 Jour 365 \u2014 Un an apr\u00e8s la chute\n\nL'abri tient bon. Nous avons transform\u00e9 nos archives\nen biblioth\u00e8que vivante. Ce matin, j'ai pris une\nd\u00e9cision : nous devons r\u00e9\u00e9merger. Nous ne pouvons pas\nseulement survivre ; nous devons vivre.\n\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n   QUI EST HIKARI UMAISHI ?\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\nHikari Umaishi n'est pas seulement un superviseur.\nIl est un r\u00eaveur, un b\u00e2tisseur, un gardien des r\u00e9cits.\nLa lumi\u00e8re qu'il porte en lui brille encore dans les\ncorridors sombres de l'abri, et peut-\u00eatre, un jour,\ndans le ciel ravag\u00e9 d'un monde reconstruit.\n\n[FIN DU JOURNAL]" }
+      "6": { label: "JOURNAL SUPERVISEUR", status: "fonctionnel", content: "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n    JOURNAL DU SUPERVISEUR\n        HIKARI UMAISHI\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\n\u25b8 Jour 1 \u2014 Une nouvelle \u00e8re\n\n\u00ab Je suis le Superviseur. Ces mots r\u00e9sonnent dans ma\nt\u00eate comme un \u00e9cho d'un pass\u00e9 que je m'efforce d\u00e9j\u00e0 de\ncomprendre. Je n'ai jamais demand\u00e9 \u00e0 porter cette\nresponsabilit\u00e9, mais le monde tel que nous le connaissions\nn'existe plus. Et avec lui, les choix faciles. \u00bb\n\n\u25b8 Jour 14 \u2014 Les fondations de l'Abri\n\nJ'ai \u00e9t\u00e9 recrut\u00e9 par un programme de survie. Mon r\u00f4le :\ngarantir que l'humanit\u00e9 conserve sa m\u00e9moire, ses r\u00e9cits,\nses espoirs. Ainsi naquit l'id\u00e9e de l'Abri Hikari, un\nrefuge pour les corps ET pour les esprits.\n\nVentiStudio fut la pierre angulaire de cet abri.\n\n\u25b8 Jour 87 \u2014 Le poids du titre\n\n\u00ab \u00catre superviseur, c'est jongler avec des choix\nimpossibles. Qui survit ? Qui est sacrifi\u00e9 ? Tout cela\np\u00e8se lourd, mais l'histoire en marche ne s'arr\u00eate pas\npour une seule \u00e2me. \u00bb\n\n\u25b8 Jour 365 \u2014 Un an apr\u00e8s la chute\n\nL'abri tient bon. Nous avons transform\u00e9 nos archives\nen biblioth\u00e8que vivante. Ce matin, j'ai pris une\nd\u00e9cision : nous devons r\u00e9\u00e9merger. Nous ne pouvons pas\nseulement survivre ; nous devons vivre.\n\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n   QUI EST HIKARI UMAISHI ?\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\nHikari Umaishi n'est pas seulement un superviseur.\nIl est un r\u00eaveur, un b\u00e2tisseur, un gardien des r\u00e9cits.\nLa lumi\u00e8re qu'il porte en lui brille encore dans les\ncorridors sombres de l'abri, et peut-\u00eatre, un jour,\ndans le ciel ravag\u00e9 d'un monde reconstruit.\n\n[FIN DU JOURNAL]" },
+      "7": { label: "RAPPORT M\u00c9DICAL", status: "fonctionnel", content: "RAPPORT M\u00c9DICAL \u2014 ABRI HIKARI\nM\u00e9decin en chef : Kanae M.\n\n\u25b8 Patient 001 \u2014 Hikari U.\n  \u00c9tat : Bon. L\u00e9ger surmenage.\n  Prescription : Repos cr\u00e9atif.\n\n\u25b8 Patient 034 \u2014 Anonyme\n  \u00c9tat : Exposition aux radiations (l\u00e9g\u00e8re).\n  Prescription : RadAway x2, surveillance 48h.\n\n\u25b8 Patient 112 \u2014 Anonyme\n  \u00c9tat : Troubles du sommeil.\n  Prescription : 8 heures de sommeil obligatoires.\n  Note : Le patient affirme entendre \u00ab des murmures\n  venant des murs \u00bb. Surveillance psychiatrique.\n\n\u25b8 STATISTIQUES G\u00c9N\u00c9RALES\n  Population : 247 r\u00e9sidents\n  Cas actifs : 12\n  D\u00e9c\u00e8s (ce mois) : 0\n  Moral g\u00e9n\u00e9ral : SATISFAISANT\n\n[FIN DU RAPPORT]" },
+      "8": { label: "CHANSON D'ABRI", status: "fonctionnel", content: "\u266b CHANSON OFFICIELLE DE L'ABRI HIKARI \u266b\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\n\n  Sous la terre nous vivons,\n  Loin du feu, loin du canon.\n  Nos \u00e9crans brillent la nuit,\n  VentiStudio est notre abri.\n\n  Les murs sont froids mais nos coeurs\n  Battent au rythme des lueurs.\n  Hikari guide notre voie,\n  Dans l'ombre il reste notre foi.\n\n  Et quand le compteur dira z\u00e9ro,\n  Nous sortirons, fiers et beaux.\n  Le monde sera notre sc\u00e8ne,\n  VentiStudio \u2014 notre domaine.\n\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\nCompos\u00e9e par les r\u00e9sidents, Jour 100.\n[FIN]" },
+      "9": { label: "MESSAGE CHIFFR\u00c9", status: "verrouill\u00e9", content: "... D\u00e9chiffrement automatique ...\n... Protocole \u00c9chelle-9 ...\n\nCOMMUNICATION INTER-ABRIS SECR\u00c8TE\nCLASSIFICATION : ULTRA-SECRET\n\nDestinataire : Superviseur, Abri Hikari\nExp\u00e9diteur : [EFFAC\u00c9]\n\n\u00ab Le projet avance. Les archives sont\npresque compl\u00e8tes. La musique survit.\nL'art survit. L'humanit\u00e9 survit.\n\nNe laissez personne \u00e9teindre la lumi\u00e8re.\nVous \u00eates le dernier gardien.\n\nRendez-vous \u00e0 la fr\u00e9quence 000.01\n\u00e0 la date pr\u00e9vue. Vous saurez. \u00bb\n\n[MESSAGE ARCHIV\u00c9 PAR LE SYST\u00c8ME]" },
+      "10": { label: "PROPAGANDE VAULT-TEC", status: "fonctionnel", content: "\u2501\u2501\u2501 VAULT-TEC \u2014 VOTRE AVENIR COMMENCE ICI \u2501\u2501\u2501\n\n\u2605 BIENVENUE DANS VOTRE NOUVEL ABRI ! \u2605\n\nF\u00e9licitations ! Vous faites partie des\nheureux \u00e9lus s\u00e9lectionn\u00e9s par Vault-Tec\npour profiter du meilleur de la technologie\nde survie souterraine.\n\nN'OUBLIEZ PAS :\n- Ob\u00e9issez au Superviseur\n- Participez aux exercices\n- Gardez le sourire !\n- Ne posez pas de questions\n\n\u00ab Vault-Tec : Pr\u00e9parer l'Avenir ! \u00bb\n\n[FIN DE LA PROPAGANDE]" }
     };
 
     /* ═══════════════════════════════
@@ -1228,7 +1257,12 @@
       "github.exe":      { url: "https://github.com/ventistudio/ventistudio.eu", desc: "D\u00e9p\u00f4t GitHub" },
       "aoki.exe":        { url: "https://ventistudio.eu/aokiunivers", desc: "Lore Aoki Univers" },
       "news.exe":        { url: "https://ventistudio.eu/news", desc: "Gazette d'Opastudien" },
-      "wiki.exe":        { url: "https://ventistudio.eu/wiki", desc: "Wiki VentiStudio" }
+      "wiki.exe":        { url: "https://ventistudio.eu/wiki", desc: "Wiki VentiStudio" },
+      "music.exe":       { url: "https://ventistudio.eu/music", desc: "VentiStudio Music Player" },
+      "social.exe":      { url: "https://ventistudio.eu/social", desc: "Réseaux sociaux VentiStudio" },
+      "pip.exe":         { url: "https://ventistudio.eu/pip", desc: "Personnel Information Processor" },
+      "donate.exe":      { url: "https://ventistudio.eu/donate", desc: "Soutenir VentiStudio" },
+      "signal.exe":      { url: "https://ventistudio.eu/signal", desc: "Terminal Signal (vous êtes ici)" }
     };
 
     /* ═══════════════════════════════
@@ -1357,7 +1391,51 @@
           ['fallout',            'Site officiel Fallout'],
         ];
 
-        var pages = [allCmdsList, allCmdsList2, allCmdsList3, allCmdsList4];
+        var allCmdsList5 = [
+          ['\u2501 SYST\u00c8ME AVANC\u00c9 \u2501', ''],
+          ['sudo <cmd>',         'Ex\u00e9cuter en tant que root'],
+          ['about',              '\u00c0 propos du terminal'],
+          ['version',            'Version du syst\u00e8me'],
+          ['diagnostic',         'Diagnostic syst\u00e8me approfondi'],
+          ['top',                'Processus actifs'],
+          ['ifconfig',           'Configuration r\u00e9seau'],
+          ['traceroute [h\u00f4te]',  'Tracer une route r\u00e9seau'],
+          ['ssh <h\u00f4te>',         'Connexion SSH (fun)'],
+          ['telnet <h\u00f4te>',      'Connexion telnet (fun)'],
+          ['pwd',                'R\u00e9pertoire courant'],
+          ['man <cmd>',          'Pages de manuel'],
+          ['rm <fichier>',       'Supprimer (refus\u00e9)'],
+          ['restart',            'Alias pour reboot'],
+          ['', ''],
+          ['\u2501 COMMUNICATION \u2501', ''],
+          ['mail',               'Bo\u00eete de r\u00e9ception'],
+          ['who',                'Utilisateurs connect\u00e9s'],
+          ['motd',               'Message du jour'],
+          ['alert',              'Alerte d\'urgence al\u00e9atoire'],
+          ['banner',             'Afficher la banni\u00e8re ASCII'],
+          ['report',             'Rapport quotidien de l\'Abri'],
+        ];
+
+        var allCmdsList6 = [
+          ['\u2501 DIVERTISSEMENT \u2501', ''],
+          ['riddle',             '\u00c9nigme du Wasteland'],
+          ['poem',               'Po\u00e9sie post-apocalyptique'],
+          ['joke',               'Humour du Wasteland'],
+          ['flip',               'Pile ou face (capsule)'],
+          ['ascii <sujet>',      'Art ASCII (pipboy/nuke/vault/skull)'],
+          ['emote <action>',     'Exprimer une action'],
+          ['calc <expr>',        'Calculatrice'],
+          ['konami',             'Code Konami...'],
+          ['xyzzy',              'Rien ne se passe.'],
+          ['', ''],
+          ['\u2501 EXPLORATION \u2501', ''],
+          ['stash',              'Chercher des caches secr\u00e8tes'],
+          ['time',               'Heure du Wasteland'],
+          ['password',           'Changer le mot de passe'],
+          ['music',              'Aller sur VentiStudio Music'],
+        ];
+
+        var pages = [allCmdsList, allCmdsList2, allCmdsList3, allCmdsList4, allCmdsList5, allCmdsList6];
         var totalPages = pages.length;
         if (page < 1 || page > totalPages) page = 1;
         var list = pages[page - 1];
@@ -3336,6 +3414,562 @@
       cls: async function() {
         termBody.innerHTML = '';
         addLine('Terminal pr\u00eat.', 'line-system');
+      },
+
+      sudo: async function(args) {
+        var subcmd = args.join(' ');
+        if (!subcmd) {
+          addLine('Usage : sudo <commande>', 'line-warn');
+          addLine('(Spoiler : vous \u00eates d\u00e9j\u00e0 root)', 'line-system');
+          return;
+        }
+        addLine('V\u00e9rification des privil\u00e8ges...', 'line-info');
+        await wait(800);
+        addLine('Utilisateur : root (Superviseur)', 'line-success');
+        addLine('Vous disposez d\u00e9j\u00e0 des acc\u00e8s maximum.', 'line-system');
+        addLine('Conseil : \u00ab With great power comes great responsibility. \u00bb', 'line-classified');
+        addBlank();
+      },
+
+      about: async function() {
+        addLine('\u2501\u2501\u2501 \u00c0 PROPOS DE CE TERMINAL \u2501\u2501\u2501', 'line-header');
+        addBlank();
+        addHTML('  Nom           : <span style="color:var(--term-cyan)">VentiStudio Signal Terminal</span>');
+        addHTML('  Version       : <span style="color:var(--term-cyan)">v4.2 [BUILD 2077.10.23]</span>');
+        addHTML('  Fabricant     : <span style="color:var(--term-cyan)">RobCo Industries (TM)</span>');
+        addHTML('  Installation  : <span style="color:var(--term-cyan)">Abri Hikari \u2014 France</span>');
+        addBlank();
+        addLine('  Ce terminal est un projet cr\u00e9atif de VentiStudio,', 'line-system');
+        addLine('  inspir\u00e9 de l\'univers de Fallout (Bethesda Softworks).', 'line-system');
+        addBlank();
+        addHTML('  Cr\u00e9ateur      : <span style="color:var(--term-cyan)">Hikari Umaishi (\u5149\u99ac\u77f3)</span>');
+        addHTML('  Organisation  : <span style="color:var(--term-cyan)">Umaishi Corp / VentiStudio FiTsZ</span>');
+        addHTML('  Site web      : <span style="color:var(--term-cyan)">ventistudio.eu</span>');
+        addBlank();
+      },
+
+      ssh: async function(args) {
+        var host = args[0] || '';
+        if (!host) {
+          addLine('Usage : ssh <h\u00f4te>', 'line-warn');
+          addLine('Exemple : ssh vault-tec.net, ssh enclave.gov', 'line-system');
+          return;
+        }
+        addLine('Connexion SSH vers ' + host + '...', 'line-info');
+        await wait(600);
+        addLine('R\u00e9solution DNS... ' + host + ' \u2192 ' + Math.floor(Math.random()*255) + '.' + Math.floor(Math.random()*255) + '.' + Math.floor(Math.random()*255) + '.' + Math.floor(Math.random()*255), 'line-system');
+        await wait(800);
+        for (var i = 0; i < 3; i++) {
+          addLine('  Tentative ' + (i+1) + '/3...', 'line-system');
+          await wait(1000);
+        }
+        addBlank();
+        addLine('ERREUR : Connection timed out', 'line-error');
+        addLine('Le r\u00e9seau inter-abris est hors service depuis le 23/10/2077.', 'line-warn');
+        addLine('Conseil : Essayez un pigeon voyageur mutant.', 'line-system');
+        addBlank();
+      },
+
+      mail: async function() {
+        addLine('\u2501\u2501\u2501 BO\u00ceTE DE R\u00c9CEPTION \u2014 TERMINAL ABRI-HIKARI \u2501\u2501\u2501', 'line-header');
+        addBlank();
+        var messages = [
+          { from: 'VAULT-TEC', date: '22/10/2077', subject: 'Bienvenue dans votre Abri !', read: true },
+          { from: 'SYST\u00c8ME', date: '23/10/2077', subject: '\u26a0 ALERTE NUCL\u00c9AIRE', read: true },
+          { from: 'Hikari U.', date: '24/10/2077', subject: 'Message \u00e0 tous les r\u00e9sidents', read: true },
+          { from: 'Kanae M.', date: '15/01/2078', subject: 'Rappel vaccinations', read: true },
+          { from: 'INCONNU', date: '??/??/????', subject: 'I\u0336l\u0337s\u0334 \u0338a\u0337r\u0335r\u0336i\u0337v\u0334e\u0338n\u0337t\u0336', read: false },
+          { from: 'Radio Hikari', date: new Date().toLocaleDateString('fr-FR'), subject: '\u266b Nouvelle playlist !', read: false },
+        ];
+        var unread = messages.filter(function(m) { return !m.read; }).length;
+        addLine('  ' + messages.length + ' messages (' + unread + ' non lu' + (unread > 1 ? 's' : '') + ')', 'line-info');
+        addBlank();
+        messages.forEach(function(m) {
+          var readIcon = m.read ? ' ' : '\u25cf';
+          var readColor = m.read ? 'var(--term-green-dim)' : 'var(--term-cyan)';
+          addHTML('  <span style="color:' + readColor + '">' + readIcon + '</span> <span style="color:var(--term-green-dim)">[' + m.date + ']</span> <span style="color:var(--term-cyan)">' + m.from.padEnd(14) + '</span> ' + m.subject);
+        });
+        addBlank();
+      },
+
+      who: async function() {
+        addLine('\u2501\u2501\u2501 UTILISATEURS CONNECT\u00c9S \u2501\u2501\u2501', 'line-header');
+        addBlank();
+        var users = [
+          { name: 'root', terminal: 'tty0', since: new Date().toLocaleTimeString('fr-FR').substring(0,5), status: 'ACTIF' },
+          { name: 'hikari_u', terminal: 'tty1', since: '06:12', status: 'IDLE 18263j' },
+          { name: 'SYSTEME', terminal: 'tty2', since: '09:03', status: 'AUTO' },
+          { name: '????????', terminal: 'tty7', since: '??:??', status: '???' },
+        ];
+        users.forEach(function(u) {
+          var color = u.name === '????????' ? 'var(--term-red)' : u.name === 'SYSTEME' ? 'var(--term-amber)' : 'var(--term-green)';
+          addHTML('  <span style="color:' + color + '">' + u.name.padEnd(14) + '</span> ' + u.terminal.padEnd(8) + ' ' + u.since.padEnd(10) + ' [' + u.status + ']');
+        });
+        addBlank();
+        if (Math.random() > 0.5) {
+          addLine('  \u26a0 Session inconnue d\u00e9tect\u00e9e sur tty7.', 'line-warn');
+          addLine('  Origine : IND\u00c9TERMIN\u00c9E', 'line-error');
+        }
+        addBlank();
+      },
+
+      diagnostic: async function() {
+        addLine('\u2501\u2501\u2501 DIAGNOSTIC SYST\u00c8ME APPROFONDI \u2501\u2501\u2501', 'line-header');
+        addBlank();
+        addLine('Lancement de la batterie de tests...', 'line-info');
+        addBlank();
+        var tests = [
+          { name: 'CPU RobCo X-01', result: 'OK', color: 'green', detail: '4.77 MHz' },
+          { name: 'M\u00e9moire RAM', result: 'OK', color: 'green', detail: '640K' },
+          { name: 'Disque primaire', result: 'OK', color: 'green', detail: '10MB HDD \u2014 23%' },
+          { name: 'Lecteur holodisk', result: 'OK', color: 'green', detail: '10 disques' },
+          { name: 'Carte r\u00e9seau', result: 'D\u00c9GRAD\u00c9', color: 'amber', detail: '12% bande passante' },
+          { name: 'Antenne radio', result: 'D\u00c9GRAD\u00c9', color: 'amber', detail: 'Interf\u00e9rences' },
+          { name: 'Capteur radiation', result: 'OK', color: 'green', detail: 'Calibr\u00e9' },
+          { name: 'Ventilation', result: 'ATTENTION', color: 'amber', detail: 'Filtre \u00e0 remplacer' },
+          { name: 'G\u00e9n\u00e9rateur', result: 'OK', color: 'green', detail: 'Noyau fusion 87%' },
+          { name: 'Cam\u00e9ras', result: 'PARTIEL', color: 'amber', detail: '14/20 op\u00e9rationnelles' },
+          { name: 'Int\u00e9grit\u00e9 struct.', result: 'OK', color: 'green', detail: '98.2%' },
+          { name: 'Protocole sas', result: 'VERROUILL\u00c9', color: 'red', detail: 'Code override requis' },
+          { name: 'Connexion inter-abris', result: 'HORS SERVICE', color: 'red', detail: 'Aucun noeud' },
+        ];
+        for (var i = 0; i < tests.length; i++) {
+          var t = tests[i];
+          await wait(150);
+          var col = t.color === 'green' ? 'var(--term-green)' : t.color === 'amber' ? 'var(--term-amber)' : 'var(--term-red)';
+          addHTML('  ' + t.name.padEnd(24) + ' <span style="color:' + col + '">[' + t.result + ']</span> <span style="color:var(--term-green-dim)">' + t.detail + '</span>');
+        }
+        addBlank();
+        var ok = tests.filter(function(t) { return t.result === 'OK'; }).length;
+        addLine('  R\u00e9sultat : ' + ok + '/' + tests.length + ' syst\u00e8mes nominaux', ok > 8 ? 'line-success' : 'line-warn');
+        addBlank();
+      },
+
+      alert: async function() {
+        var alerts = [
+          { type: 'INTRUSION', msg: 'Mouvement d\u00e9tect\u00e9 dans le couloir C-7.\nCam\u00e9ra 14 : HORS SERVICE.\nEnvoi d\'une \u00e9quipe de s\u00e9curit\u00e9...', cls: 'line-error' },
+          { type: 'RADIATION', msg: 'Pic de radiation d\u00e9tect\u00e9 secteur Nord.\nNiveau : 127 mSv/h (+200%).\nPortes \u00e9tanches activ\u00e9es.', cls: 'line-warn' },
+          { type: 'PANNE', msg: 'Micro-coupure sur le r\u00e9seau \u00e9lectrique.\nSecteur 4B sans courant 2.3 sec.\nG\u00e9n\u00e9rateur de secours activ\u00e9.', cls: 'line-warn' },
+          { type: 'SISMIQUE', msg: 'Activit\u00e9 sismique d\u00e9tect\u00e9e.\nMagnitude : 2.1\nOrigine : effondrement de surface.', cls: 'line-warn' },
+          { type: 'R\u00c9SEAU', msg: 'Signal externe non identifi\u00e9.\nFr\u00e9quence variable (balayage).\nSource inconnue > 50 km.', cls: 'line-info' },
+        ];
+        var a = alerts[Math.floor(Math.random() * alerts.length)];
+        addLine('  \u2593\u2593\u2593 ALERTE \u2014 ' + a.type + ' \u2593\u2593\u2593', 'line-error');
+        addBlank();
+        await typeText(a.msg, a.cls, 15);
+        addBlank();
+        addLine('  [Rapport enregistr\u00e9 dans le journal du Superviseur]', 'line-system');
+        addBlank();
+      },
+
+      riddle: async function() {
+        var riddles = [
+          { q: 'Je suis vide mais je peux acheter le monde. Que suis-je ?', a: 'Une capsule de Nuka-Cola.' },
+          { q: 'Je brille dans le noir mais vous ne voulez pas me toucher.', a: 'Un baril de d\u00e9chets radioactifs.' },
+          { q: 'J\'ai deux t\u00eates mais un seul coeur. Que suis-je ?', a: 'Un Brahmin.' },
+          { q: 'Je prot\u00e8ge de tout sauf de moi-m\u00eame. Que suis-je ?', a: 'Un Abri Vault-Tec.' },
+          { q: 'On me cherche partout mais on me trouve nulle part.', a: 'Le bouton \u00ab Ouvrir \u00bb du sas.' },
+          { q: 'Plus le temps passe, moins il me reste. Mais je ne meurs jamais.', a: 'L\'espoir dans le Wasteland.' },
+        ];
+        var r = riddles[Math.floor(Math.random() * riddles.length)];
+        addLine('\u2501\u2501\u2501 \u00c9NIGME DU WASTELAND \u2501\u2501\u2501', 'line-header');
+        addBlank();
+        await typeText('  \u00ab ' + r.q + ' \u00bb', 'line-classified', 20);
+        addBlank();
+        addLine('  ...', 'line-system');
+        await wait(3000);
+        addLine('  R\u00e9ponse : ' + r.a, 'line-info');
+        addBlank();
+      },
+
+      poem: async function() {
+        var poems = [
+          { title: 'Cr\u00e9puscule Atomique', lines: ['Les cendres dansent dans le vent du soir,', 'O\u00f9 jadis les oiseaux venaient s\'asseoir.', 'Le soleil se couche, irradi\u00e9 d\'or,', 'Sur un monde qui refuse la mort.'] },
+          { title: 'Comptine de l\'Abri', lines: ['Sous la terre, sous la peur,', 'Bat un coeur, bat un coeur.', 'Dans l\'acier, dans le noir,', 'Vit l\'espoir, vit l\'espoir.'] },
+          { title: 'Ode au Nuka-Cola', lines: ['\u00d4 breuvage sacr\u00e9 des terres d\u00e9sol\u00e9es,', 'Tes capsules sonnent comme des pi\u00e8ces dor\u00e9es.', 'Quantum bleue, Cherry rouge sang,', 'Tu r\u00e9chauffes nos corps tremblants.'] },
+          { title: 'Haiku du Wasteland', lines: ['Soleil radioactif', 'Le Brahmin broute en silence', 'Paix avant la nuit'] },
+          { title: 'Murmures de l\'Abri', lines: ['Les murs parlent la nuit,', 'De ceux qui sont partis.', 'L\'\u00e9cho de leurs voix reste,', 'Comme un chant, comme un geste.'] },
+        ];
+        var p = poems[Math.floor(Math.random() * poems.length)];
+        addLine('\u2501\u2501\u2501 ' + p.title.toUpperCase() + ' \u2501\u2501\u2501', 'line-header');
+        addBlank();
+        for (var i = 0; i < p.lines.length; i++) {
+          await typeText('    ' + p.lines[i], 'line-classified', 30);
+          await wait(400);
+        }
+        addBlank();
+        addLine('  [Tapez "poem" pour un autre po\u00e8me]', 'line-system');
+        addBlank();
+      },
+
+      password: async function() {
+        addLine('Changement de mot de passe...', 'line-info');
+        await wait(600);
+        addLine('Mot de passe actuel : ************', 'line-system');
+        await wait(400);
+        addLine('Nouveau mot de passe requis...', 'line-system');
+        await wait(800);
+        addBlank();
+        addLine('ERREUR : Impossible de modifier le mot de passe.', 'line-error');
+        addLine('Raison : d\u00e9fini par le Superviseur le 23/10/2077.', 'line-warn');
+        addBlank();
+        addLine('Astuce : Le mot de passe est probablement "OVERRIDE".', 'line-system');
+        addLine('(Ne le dites \u00e0 personne.)', 'line-system');
+        addBlank();
+      },
+
+      motd: async function() {
+        addLine('\u2501\u2501\u2501 MESSAGE DU JOUR \u2501\u2501\u2501', 'line-header');
+        addBlank();
+        var motds = [
+          'Rappel : L\'eau du secteur 3 est temporairement non potable.',
+          'La biblioth\u00e8que virtuelle a \u00e9t\u00e9 mise \u00e0 jour. 247 nouveaux fichiers.',
+          'Exercice d\'\u00e9vacuation pr\u00e9vu demain \u00e0 14h00.',
+          'Le Superviseur rappelle : le terminal est un privil\u00e8ge.',
+          'Nouvelle recette au r\u00e9fectoire : Rago\u00fbt de Mirelurk.',
+          'Le club musique se r\u00e9unit ce soir. Apportez vos holotapes !',
+          'N\'oubliez pas : la connaissance est notre meilleure arme.',
+        ];
+        var m = motds[Math.floor(Math.random() * motds.length)];
+        await typeText(m, '', 15);
+        addBlank();
+        addLine('  \u2014 Le Superviseur', 'line-system');
+        addBlank();
+      },
+
+      banner: async function() {
+        var b = [];
+        b.push(' \u2588\u2588\u2588\u2588\u2588\u2588\u2557  \u2588\u2588\u2588\u2588\u2588\u2588\u2557 \u2588\u2588\u2588\u2588\u2588\u2588\u2557  \u2588\u2588\u2588\u2588\u2588\u2588\u2557 \u2588\u2588\u2588\u2588\u2588\u2588\u2557 ');
+        b.push(' \u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557\u2588\u2588\u2554\u2550\u2550\u2550\u2588\u2588\u2557\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557\u2588\u2588\u2554\u2550\u2550\u2550\u2550\u255d\u2588\u2588\u2554\u2550\u2550\u2550\u2588\u2588\u2557');
+        b.push(' \u2588\u2588\u2588\u2588\u2588\u2588\u2554\u255d\u2588\u2588\u2551   \u2588\u2588\u2551\u2588\u2588\u2588\u2588\u2588\u2588\u2554\u255d\u2588\u2588\u2551     \u2588\u2588\u2551   \u2588\u2588\u2551');
+        b.push(' \u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557\u2588\u2588\u2551   \u2588\u2588\u2551\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557\u2588\u2588\u2551     \u2588\u2588\u2551   \u2588\u2588\u2551');
+        b.push(' \u2588\u2588\u2551  \u2588\u2588\u2551\u255a\u2588\u2588\u2588\u2588\u2588\u2588\u2554\u255d\u2588\u2588\u2588\u2588\u2588\u2588\u2554\u255d\u255a\u2588\u2588\u2588\u2588\u2588\u2588\u2557\u255a\u2588\u2588\u2588\u2588\u2588\u2588\u2554\u255d');
+        b.push(' \u255a\u2550\u255d  \u255a\u2550\u255d \u255a\u2550\u2550\u2550\u2550\u2550\u255d \u255a\u2550\u2550\u2550\u2550\u2550\u255d  \u255a\u2550\u2550\u2550\u2550\u2550\u255d \u255a\u2550\u2550\u2550\u2550\u2550\u255d');
+        b.push('    INDUSTRIES (TM) UNIFIED OPERATING SYSTEM');
+        b.forEach(function(l) { addLine(l, 'ascii-art'); });
+        addBlank();
+        addLine('COPYRIGHT 2075-2077 ROBCO INDUSTRIES', 'line-system');
+        addLine('ABRI HIKARI \u2014 TERMINAL VENTISTUDIO v4.2', 'line-system');
+        addBlank();
+      },
+
+      top: async function() {
+        addLine('\u2501\u2501\u2501 PROCESSUS ACTIFS \u2501\u2501\u2501', 'line-header');
+        addBlank();
+        var processes = [
+          { pid: '001', name: 'UOS_KERNEL.exe', cpu: '2.1%', mem: '128K', status: 'RUNNING' },
+          { pid: '002', name: 'VAULT_NET.exe', cpu: '0.4%', mem: '32K', status: 'RUNNING' },
+          { pid: '003', name: 'TERMLINK.exe', cpu: '5.7%', mem: '64K', status: 'RUNNING' },
+          { pid: '004', name: 'RADIO_SVC.exe', cpu: radioPlaying ? '8.2%' : '0.0%', mem: '96K', status: radioPlaying ? 'RUNNING' : 'STOPPED' },
+          { pid: '005', name: 'SECURITY.exe', cpu: '1.3%', mem: '48K', status: 'RUNNING' },
+          { pid: '006', name: 'LIFE_SUPPORT.exe', cpu: '3.8%', mem: '256K', status: 'RUNNING' },
+          { pid: '007', name: 'REACTOR_MON.exe', cpu: '1.1%', mem: '32K', status: 'RUNNING' },
+          { pid: '008', name: 'ARCHIVE_DB.exe', cpu: '0.9%', mem: '128K', status: 'RUNNING' },
+          { pid: '009', name: 'CLOCK_SYNC.exe', cpu: '0.1%', mem: '8K', status: 'RUNNING' },
+          { pid: '666', name: '???.exe', cpu: '???', mem: '???', status: '???' },
+        ];
+        addHTML('  <span style="color:var(--term-cyan)">PID   PROCESSUS            CPU     MEM     STATUT</span>');
+        addLine('  ' + '\u2500'.repeat(55), 'line-system');
+        processes.forEach(function(p) {
+          var color = p.pid === '666' ? 'var(--term-red)' : p.status === 'STOPPED' ? 'var(--term-green-dim)' : 'var(--term-green)';
+          addHTML('  <span style="color:' + color + '">' + p.pid.padEnd(6) + p.name.padEnd(21) + p.cpu.padEnd(8) + p.mem.padEnd(8) + p.status + '</span>');
+        });
+        addBlank();
+        addLine('  CPU Total : 23.6% | M\u00e9moire : 792K / 640K (?!)', 'line-system');
+        if (Math.random() > 0.6) {
+          addLine('  \u26a0 Processus inconnu PID 666 d\u00e9tect\u00e9.', 'line-warn');
+        }
+        addBlank();
+      },
+
+      ifconfig: async function() {
+        addLine('\u2501\u2501\u2501 CONFIGURATION R\u00c9SEAU \u2501\u2501\u2501', 'line-header');
+        addBlank();
+        addHTML('  <span style="color:var(--term-cyan)">vault0</span> \u2014 Interface Vault-NET');
+        addHTML('    Adresse  : <span style="color:var(--term-green)">10.77.10.6</span>');
+        addHTML('    Masque   : <span style="color:var(--term-green-dim)">255.255.255.0</span>');
+        addHTML('    Gateway  : <span style="color:var(--term-green-dim)">10.77.10.1 (Serveur central)</span>');
+        addHTML('    Statut   : <span style="color:var(--term-amber)">D\u00c9GRAD\u00c9 \u2014 12% bande passante</span>');
+        addBlank();
+        addHTML('  <span style="color:var(--term-cyan)">radio0</span> \u2014 Interface Radio (HF)');
+        addHTML('    Fr\u00e9quence: <span style="color:var(--term-green)">100-900 MHz</span>');
+        addHTML('    Antenne  : <span style="color:var(--term-amber)">Partiellement endommag\u00e9e</span>');
+        addBlank();
+        addHTML('  <span style="color:var(--term-cyan)">ext0</span> \u2014 Interface Inter-Abris');
+        addHTML('    Statut   : <span style="color:var(--term-red)">HORS SERVICE</span>');
+        addLine('    Derni\u00e8re activit\u00e9 : 23/10/2077 09:03:41', '');
+        addBlank();
+      },
+
+      traceroute: async function(args) {
+        var dest = args[0] || 'vault-tec.net';
+        addLine('Traceroute vers ' + dest + '...', 'line-info');
+        addBlank();
+        var hops = [
+          { name: 'abri-hikari.local', ip: '10.77.10.1', time: Math.floor(Math.random() * 3 + 1) },
+          { name: 'vault-switch.local', ip: '10.77.0.1', time: Math.floor(Math.random() * 10 + 3) },
+          { name: 'relay-nord.vault-net', ip: '10.77.100.42', time: Math.floor(Math.random() * 50 + 20) },
+          { name: '* * *', ip: '', time: -1 },
+          { name: '* * *', ip: '', time: -1 },
+          { name: '* * *', ip: '', time: -1 },
+        ];
+        for (var i = 0; i < hops.length; i++) {
+          await wait(800);
+          var h = hops[i];
+          if (h.time < 0) {
+            addLine('  ' + (i+1) + '.  * * *  (D\u00e9lai d\u00e9pass\u00e9)', 'line-error');
+          } else {
+            addHTML('  ' + (i+1) + '.  <span style="color:var(--term-cyan)">' + h.name + '</span> (' + h.ip + ')  <span style="color:var(--term-green)">' + h.time + ' ms</span>');
+          }
+        }
+        addBlank();
+        addLine('Trace interrompue \u2014 r\u00e9seau inter-abris hors service.', 'line-warn');
+        addBlank();
+      },
+
+      stash: async function() {
+        addLine('Recherche de caches secr\u00e8tes...', 'line-info');
+        await showProgress('Scan du p\u00e9rim\u00e8tre', 2500);
+        addBlank();
+        var found = Math.random() > 0.4;
+        if (found) {
+          var stashes = [
+            { loc: 'Sous le terminal (panneau amovible)', items: '24 capsules, 1x Nuka-Cola Quantum' },
+            { loc: 'Derri\u00e8re le ventilateur, Secteur 3', items: '1x Pistolet furtif, 15 munitions .38' },
+            { loc: 'Double fond du casier 77', items: '3x Stimpak, 1x Mentats, 42 capsules' },
+            { loc: 'Conduit d\'a\u00e9ration B-12', items: '1x Holodisk non r\u00e9pertori\u00e9' },
+            { loc: 'Plancher disjoint, R\u00e9fectoire', items: '1x Recette secr\u00e8te du chef, 67 capsules' },
+          ];
+          var s = stashes[Math.floor(Math.random() * stashes.length)];
+          addLine('  \u2713 CACHE TROUV\u00c9E !', 'line-success');
+          addHTML('  Emplacement : <span style="color:var(--term-cyan)">' + s.loc + '</span>');
+          addHTML('  Contenu     : <span style="color:var(--term-amber)">' + s.items + '</span>');
+          addLine('  (+25 XP)', 'line-info');
+        } else {
+          addLine('  Rien trouv\u00e9 dans cette zone.', 'line-warn');
+          addLine('  Essayez de nouveau plus tard.', 'line-system');
+        }
+        addBlank();
+      },
+
+      time: async function() {
+        var now = new Date();
+        var wastelandYear = now.getFullYear() + 51;
+        addHTML('  ' + now.toLocaleTimeString('fr-FR') + ' \u2014 ' + now.toLocaleDateString('fr-FR') + ' (\u00c8re du Wasteland : ' + wastelandYear + ')');
+        addBlank();
+      },
+
+      joke: async function() {
+        var jokes = [
+          { q: 'Pourquoi le Super Mutant est-il all\u00e9 \u00e0 l\'\u00e9cole ?', a: 'Pour am\u00e9liorer son SPECIAL... en Intelligence.' },
+          { q: 'Combien de r\u00e9sidents pour changer une ampoule ?', a: 'Aucun. Le Superviseur a dit que l\'obscurit\u00e9 est une feature.' },
+          { q: 'Pourquoi le Ghoul ne va jamais chez le coiffeur ?', a: 'Il n\'a plus de quoi se peigner.' },
+          { q: 'Boisson pr\u00e9f\u00e9r\u00e9e d\'un programmeur du Wasteland ?', a: 'Java... irradi\u00e9.' },
+          { q: 'Pourquoi les Raiders n\'utilisent pas de terminal ?', a: 'Parce qu\'ils pr\u00e9f\u00e8rent le brute force.' },
+        ];
+        var j = jokes[Math.floor(Math.random() * jokes.length)];
+        addLine('\u2501\u2501\u2501 HUMOUR DU WASTELAND \u2501\u2501\u2501', 'line-header');
+        addBlank();
+        await typeText('  ' + j.q, '', 20);
+        addBlank();
+        await wait(2000);
+        await typeText('  ' + j.a, 'line-info', 20);
+        addBlank();
+      },
+
+      flip: async function() {
+        addLine('Lancer de pi\u00e8ce (capsule)...', 'line-info');
+        await wait(800);
+        var result = Math.random() > 0.5 ? 'PILE (Nuka-Cola)' : 'FACE (Vault-Tec)';
+        addHTML('  R\u00e9sultat : <span style="color:var(--term-cyan)">' + result + '</span>');
+        addBlank();
+      },
+
+      report: async function() {
+        addLine('\u2501\u2501\u2501 RAPPORT QUOTIDIEN \u2014 ABRI HIKARI \u2501\u2501\u2501', 'line-header');
+        addBlank();
+        var now = new Date();
+        addHTML('  Date : <span style="color:var(--term-cyan)">' + now.toLocaleDateString('fr-FR') + '</span>');
+        addBlank();
+        addLine('  \u25b8 POPULATION', 'line-header');
+        addHTML('    R\u00e9sidents actifs  : <span style="color:var(--term-green)">247</span>');
+        addHTML('    Naissances (mois) : <span style="color:var(--term-green)">2</span>');
+        addHTML('    D\u00e9c\u00e8s (mois)      : <span style="color:var(--term-green)">0</span>');
+        addHTML('    Moral g\u00e9n\u00e9ral     : <span style="color:var(--term-amber)">78%</span>');
+        addBlank();
+        addLine('  \u25b8 RESSOURCES', 'line-header');
+        addHTML('    Eau purifi\u00e9e      : <span style="color:var(--term-green)">2,340 L</span>');
+        addHTML('    Nourriture        : <span style="color:var(--term-amber)">73 jours de r\u00e9serve</span>');
+        addHTML('    \u00c9nergie           : <span style="color:var(--term-green)">Noyau \u00e0 87%</span>');
+        addHTML('    Pi\u00e8ces d\u00e9tach\u00e9es  : <span style="color:var(--term-red)">CRITIQUE</span>');
+        addBlank();
+        addLine('  \u25b8 S\u00c9CURIT\u00c9', 'line-header');
+        addHTML('    Incidents (24h)   : <span style="color:var(--term-green)">0</span>');
+        addHTML('    Alertes           : <span style="color:var(--term-amber)">1 (capteur sismique)</span>');
+        addBlank();
+        addLine('  [Rapport archiv\u00e9 \u2014 Copies transmises au Superviseur]', 'line-system');
+        addBlank();
+      },
+
+      panic: async function() {
+        addLine('  \u26a0\u26a0\u26a0 PROTOCOLE D\'URGENCE ACTIV\u00c9 \u26a0\u26a0\u26a0', 'line-error');
+        await wait(300);
+        addBlank();
+        for (var i = 5; i > 0; i--) {
+          addLine('  MISE EN S\u00c9CURIT\u00c9 DANS... ' + i, 'line-error');
+          await wait(600);
+        }
+        addBlank();
+        addLine('  ... Protocole annul\u00e9.', 'line-warn');
+        addLine('  Motif : Aucune menace d\u00e9tect\u00e9e.', 'line-system');
+        addLine('  Ne faites pas \u00e7a sans raison.', 'line-classified');
+        addBlank();
+      },
+
+      calc: async function(args) {
+        var expr = args.join(' ');
+        if (!expr) { addLine('Usage : calc <expression>', 'line-warn'); return; }
+        if (!/^[\d\s+\-*/().%]+$/.test(expr)) {
+          addLine('Expression invalide.', 'line-error');
+          return;
+        }
+        try {
+          var result = new Function('return (' + expr + ')')();
+          if (typeof result !== 'number' || !isFinite(result)) throw new Error('NaN');
+          addHTML('  ' + expr + ' = <span style="color:var(--term-cyan)">' + result + '</span>');
+        } catch(e) {
+          addLine('Erreur de calcul.', 'line-error');
+        }
+        addBlank();
+      },
+
+      ascii: async function(args) {
+        var subject = args[0] ? args[0].toLowerCase() : '';
+        var arts = {
+          'pipboy': '   \u2554\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2557\n   \u2551 PIP-BOY  \u2551\n   \u2551  3000    \u2551\n   \u2560\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2563\n   \u2551 \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2510 \u2551\n   \u2551 \u2502 ^__^ \u2502 \u2551\n   \u2551 \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2518 \u2551\n   \u255a\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u255d',
+          'nuke': '        ____\n       /    \\\\\n      | \u2622  \u2622 |\n       \\\\____/\n        |||||\n      __|||||__\n     |         |\n     |  NUKE   |\n     |_________|',
+          'vault': '     [VAULT-TEC]\n    /            \\\\\n   |    ______    |\n   |   | ABRI |   |\n   |   |HIKARI|   |\n   |    ------    |\n    \\\\____________/',
+          'skull': '      ___\n     /   \\\\\n    | x x |\n    |  V  |\n     \\\\___/\n    /|||||\\\\'
+        };
+        if (!subject || !arts[subject]) {
+          addLine('Usage : ascii <sujet>', 'line-warn');
+          addLine('Sujets : ' + Object.keys(arts).join(', '), 'line-system');
+          return;
+        }
+        addLine(arts[subject], 'ascii-art');
+        addBlank();
+      },
+
+      music: async function() {
+        addLine('Lancement de VentiStudio Music...', 'line-info');
+        await showProgress('Chargement', 1200);
+        addLine('Redirection vers le lecteur musical...', 'line-success');
+        await wait(800);
+        window.location.href = '/music';
+      },
+
+      xyzzy: async function() {
+        addLine('Rien ne se passe.', 'line-system');
+        await wait(500);
+        addLine('... ou peut-\u00eatre que si ?', 'line-warn');
+        await wait(1000);
+        addLine('Non, vraiment rien. C\'est le Wasteland, pas Colossal Cave.', 'line-system');
+        addBlank();
+      },
+
+      konami: async function() {
+        addLine('  \u2191 \u2191 \u2193 \u2193 \u2190 \u2192 \u2190 \u2192 B A START', 'line-info');
+        await wait(500);
+        addLine('  CODE KONAMI ACTIV\u00c9 !', 'line-success');
+        addLine('  Bonus : +30 vies | Mode Dieu activ\u00e9 (dans vos r\u00eaves)', 'line-warn');
+        addLine('  En r\u00e9alit\u00e9 : rien ne se passe. C\'est le Wasteland.', 'line-system');
+        addBlank();
+      },
+
+      version: async function() {
+        addLine('RobCo Industries (TM) TERMLINK', 'line-info');
+        addLine('Unified Operating System v4.2', 'line-info');
+        addLine('Build 2077.10.23-vault-hikari', 'line-system');
+        addLine('VentiStudio Terminal Extension v1.0', 'line-system');
+        addBlank();
+      },
+
+      restart: async function() {
+        await commands.reboot([]);
+      },
+
+      man: async function(args) {
+        var cmd = args[0] ? args[0].toLowerCase() : '';
+        if (!cmd) { addLine('Usage : man <commande>', 'line-warn'); return; }
+        var manPages = {
+          'scan': 'SCAN(1)\n\nNOM\n  scan - Scanner les fr\u00e9quences radio\n\nDESCRIPTION\n  Balayage complet des fr\u00e9quences entre 100 et 900 MHz.\n\nVOIR AUSSI\n  decrypt, radio, morse',
+          'decrypt': 'DECRYPT(1)\n\nNOM\n  decrypt <freq> - D\u00e9crypter un signal\n\nEXEMPLE\n  decrypt 415.67\n\nVOIR AUSSI\n  scan, radio',
+          'radio': 'RADIO(1)\n\nNOM\n  radio - Lecteur musical int\u00e9gr\u00e9\n\nSOUS-COMMANDES\n  radio          D\u00e9marrer / statut\n  radio off      Arr\u00eater\n  radio next     Morceau suivant\n  radio prev     Pr\u00e9c\u00e9dent\n  radio list     Stations\n  radio vol N    Volume (0-100)',
+          'hack': 'HACK(1)\n\nNOM\n  hack - Mini-jeu de hacking RobCo\n\nDESCRIPTION\n  Devinez le bon mot parmi 8 candidats.\n  4 tentatives maximum.\n\nVOIR AUSSI\n  lockpick, holotape',
+          'help': 'HELP(1)\n\nNOM\n  help [page] - Afficher l\'aide\n\nDESCRIPTION\n  L\'aide est r\u00e9partie sur 6 pages.',
+        };
+        if (!manPages[cmd]) {
+          addLine('Aucune page de manuel pour "' + cmd + '".', 'line-warn');
+          addLine('Pages : ' + Object.keys(manPages).join(', '), 'line-system');
+          return;
+        }
+        addLine('\u2501\u2501\u2501 MANUEL \u2501\u2501\u2501', 'line-header');
+        addBlank();
+        await typeText(manPages[cmd], '', 5);
+        addBlank();
+      },
+
+      pwd: async function() {
+        addLine('/vault/hikari/terminal/', 'line-info');
+        addBlank();
+      },
+
+      telnet: async function(args) {
+        var host = args[0] || '';
+        if (!host) { addLine('Usage : telnet <h\u00f4te>', 'line-warn'); return; }
+        addLine('telnet ' + host + '...', 'line-info');
+        await wait(1500);
+        addLine('ERREUR : Protocole telnet d\u00e9sactiv\u00e9 pour raisons de s\u00e9curit\u00e9.', 'line-error');
+        addLine('Utilisez ssh \u00e0 la place.', 'line-system');
+        addBlank();
+      },
+
+      ipconfig: async function() {
+        await commands.ifconfig([]);
+      },
+
+      rm: async function(args) {
+        var target = args.join(' ');
+        if (target.indexOf('-rf') !== -1 || target.indexOf('*') !== -1) {
+          addLine('  ERREUR : Op\u00e9ration interdite.', 'line-error');
+          addLine('  Le Superviseur n\'autorise pas la destruction de fichiers.', 'line-warn');
+          addLine('  Incident report\u00e9 \u00e0 la s\u00e9curit\u00e9.', 'line-warn');
+        } else {
+          addLine('  Permission refus\u00e9e. Terminal en lecture seule.', 'line-error');
+        }
+        addBlank();
+      },
+
+      emote: async function(args) {
+        var action = args.join(' ').toLowerCase();
+        var emotes = {
+          'salut': '* Le Superviseur fait un salut militaire. *',
+          'dance': '* Le r\u00e9sident danse maladroitement. Les voisins applaudissent. *',
+          'sit': '* Vous vous asseyez devant le terminal. Confortable... plus ou moins. *',
+          'think': '* Vous r\u00e9fl\u00e9chissez profond\u00e9ment. Le Wasteland attend. *',
+          'wave': '* Vous faites un signe au vide. Personne ne r\u00e9pond. *',
+          'flex': '* Vous montrez vos muscles. STR +0. C\'est l\'intention qui compte. *',
+          'pray': '* Vous priez. Les dieux nucl\u00e9aires \u00e9coutent-ils ? *',
+          'cry': '* Des larmes coulent sur votre combinaison d\'Abri. *',
+          'laugh': '* Un rire r\u00e9sonne dans les couloirs. *',
+        };
+        if (!action || !emotes[action]) {
+          addLine('Usage : emote <action>', 'line-warn');
+          addLine('Actions : ' + Object.keys(emotes).join(', '), 'line-system');
+          return;
+        }
+        addLine(emotes[action], 'line-classified');
+        addBlank();
       }
 
     };
@@ -3446,7 +4080,7 @@
         playPromise.then(function() {
           radioErrorCount = 0; // Reset error counter on successful play
         }).catch(function(err) {
-          // Autoplay blocked — show message only once and wait for user interaction
+          // Autoplay blocked show message only once and wait for user interaction
           if (!radioBlockedMsgShown) {
             radioBlockedMsgShown = true;
             addLine('  \u26a0 Lecture bloqu\u00e9e par le navigateur.', 'line-warn');

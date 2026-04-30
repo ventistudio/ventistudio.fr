@@ -1,14 +1,31 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
   <meta name="description" content="Lecteur PIP VentiStudio - Gérez vos vidéos et musiques avec import local et protection avancée.">
   <meta name="theme-color" content="#6366f1">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; media-src 'self' blob:">
-  <title>Lecteur PIP - VentiStudio</title>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://clerk.ventistudio.eu; style-src 'self' 'unsafe-inline'; connect-src 'self' https://clerk.ventistudio.eu; media-src 'self' blob:; img-src 'self' data: blob:; frame-src 'self' https://accounts.ventistudio.eu https://clerk.ventistudio.eu https://status.ventistudio.eu">
+  <title>Lecteur PIP | VentiStudio</title>
   <link rel="stylesheet" href="/style.css">
   <link rel="stylesheet" href="style.css">
+
+  <script async crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
+  <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
+
+  <meta property="og:title" content="Lecteur PIP | VentiStudio">
+  <meta property="og:description" content="Lecteur PIP VentiStudio - Gérez vos vidéos et musiques avec import local et protection avancée.">
+  <meta property="og:url" content="https://ventistudio.eu/pip/">
+  <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://ventistudio.eu/pip/">
+
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
 </head>
 <body>
   <header>
@@ -16,15 +33,133 @@
       <img src="/favicon.avif" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
       <span>VentiStudio</span>
     </div>
-    <nav aria-label="Navigation principale">
-      <a href="/">Accueil</a>
-      <a href="/evaluation">Contenu Approuvé</a>
-      <a href="/player">Lecteur</a>
-      <a href="/wiki">Wiki</a>
-      <a href="/staff">Équipe</a>
-      <a href="/news">News</a>
-      <a href="/pip">PIP</a>
-      <a href="/sitemap">Plan du site</a>
+    <button class="nav-burger" id="nav-burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="main-nav" class="main-nav" aria-label="Navigation principale">
+      <a href="/" class="nav-link">Accueil</a>
+
+      <details class="nav-group">
+        <summary class="nav-link">Découvrir
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel" role="menu">
+          <a href="/evaluation">Évaluation</a>
+          <a href="/wiki">Wiki</a>
+          <a href="/glossary">Glossaire</a>
+          <a href="/news">News</a>
+          <a href="/blog">Blog</a>
+          <a href="/calendar">Calendrier</a>
+          <a href="/cookbook">Cookbook</a>
+          <a href="/gallery">Galerie</a>
+          <a href="/atlas">Atlas</a>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Univers
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel" role="menu">
+          <a href="/aokiunivers">AOKI Universe</a>
+          <a href="/allofaokiunivers">All AOKI</a>
+          <a href="/university">Université</a>
+          <a href="/history">Histoire</a>
+          <a href="/memorial">Mémorial</a>
+          <a href="/ester-eggs">Easter eggs</a>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Outils
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Applications</h4>
+            <a href="/player">Lecteur</a>
+            <a href="/music">Musique</a>
+            <a href="/pip">PIP</a>
+            <a href="/whiteboard">Whiteboard</a>
+            <a href="/portfolio">Portfolio</a>
+            <a href="/gmod">GMod</a>
+          </div>
+          <div class="nav-col">
+            <h4>Domaines</h4>
+            <a href="/domain/aina">AINA</a>
+            <a href="/domain/archive">Archive</a>
+            <a href="/domain/maps">Maps</a>
+            <a href="/domain/movie">Movie</a>
+            <a href="/domain/peer">Peer</a>
+            <a href="/domain/pro">Pro</a>
+            <a href="/domain/search">Search</a>
+            <a href="/domain/suite">Suite</a>
+          </div>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Communauté
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Équipe</h4>
+            <a href="/personnel/">Équipe</a>
+            <a href="/hierarchie-staff">Hiérarchie</a>
+            <a href="/hypesquad">Hypesquad</a>
+            <a href="/jobs">Emplois</a>
+            <a href="/birthday">Anniversaires</a>
+          </div>
+          <div class="nav-col">
+            <h4>Réseaux</h4>
+            <a href="/discord">Discord</a>
+            <a href="/teamspeak">TeamSpeak</a>
+            <a href="/steam">Steam</a>
+            <a href="/social">Réseaux sociaux</a>
+          </div>
+          <div class="nav-col">
+            <h4>Activités</h4>
+            <a href="/artist">Artistes</a>
+            <a href="/quests">Quêtes</a>
+            <a href="/suboawards">Suboawards</a>
+            <a href="/eConcert">eConcert</a>
+          </div>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Plus
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Aide</h4>
+            <a href="/contact">Contact</a>
+            <a href="/faq">FAQ</a>
+            <a href="/status">Statut</a>
+            <a href="/sitemap">Plan du site</a>
+          </div>
+          <div class="nav-col">
+            <h4>Soutien</h4>
+            <a href="/donate">Faire un don</a>
+            <a href="/gold">Gold</a>
+            <a href="/customization">Personnalisation</a>
+            <a href="/mes-donnees">Mes Données</a>
+            <a href="/newsletter">Newsletter</a>
+          </div>
+          <div class="nav-col">
+            <h4>À propos</h4>
+            <a href="/company">Entreprise</a>
+            <a href="/acknowledgements">Remerciements</a>
+            <a href="/logo">Logo</a>
+            <a href="/tags">Tags</a>
+            <a href="/memory">Mémoire</a>
+            <a href="/why-not-use-roblox">Pourquoi pas Roblox</a>
+            <a href="/lawful">Mentions légales</a>
+          </div>
+        </div>
+      </details>
     </nav>
     <div class="controls" role="toolbar" aria-label="Contrôles">
       <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
@@ -34,7 +169,7 @@
           <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
         </svg>
       </button>
-      <div id="user-button" role="region" aria-label="Authentification"></div>
+      <div id="user-button" role="region" aria-label="Authentification"><button class="cta" id="auth-fallback-btn" onclick="window.location.href='https://accounts.ventistudio.eu/sign-in?redirect_url='+encodeURIComponent(window.location.href)" style="padding:0.5rem 1.25rem;font-size:0.9rem;margin:0"><span>Se connecter</span></button></div>
     </div>
   </header>
 
@@ -61,6 +196,66 @@
           </div>
         </div>
 
+        <!-- Protection QR Code Panel -->
+        <div id="protection-panel" class="protection-panel hidden">
+          <div class="enhance-header">
+            <h3>🔒 Protection : QR Code invisible</h3>
+          </div>
+
+          <div class="enhance-group">
+            <label>Mode de génération</label>
+            <div class="protection-mode-controls">
+              <button id="protection-auto-btn" class="loop-btn active" title="Générer automatiquement à chaque changement de média">Auto</button>
+              <button id="protection-manual-btn" class="loop-btn" title="Générer manuellement">Manuel</button>
+            </div>
+          </div>
+
+          <div id="protection-manual-group" class="enhance-group hidden">
+            <label>Génération manuelle</label>
+            <div class="protection-manual-form">
+              <input type="text" id="protection-custom-title" placeholder="Titre personnalisé (facultatif)" class="protection-input">
+              <button id="protection-generate-btn" class="control-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="1 4 1 10 7 10"/>
+                  <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>
+                </svg><span>Générer un code</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="enhance-group">
+            <label>Code actif</label>
+            <div class="protection-code-display">
+              <div class="protection-code-row">
+                <span class="protection-label">ID unique</span>
+                <code id="protection-code-id">:</code>
+              </div>
+              <div class="protection-code-row">
+                <span class="protection-label">Lien</span>
+                <a id="protection-code-url" href="#" target="_blank" rel="noopener" class="protection-link">:</a>
+              </div>
+              <div class="protection-code-row">
+                <span class="protection-label">Métadonnées</span>
+                <span id="protection-code-meta" class="protection-meta">Protection inactive</span>
+              </div>
+            </div>
+            <div class="protection-actions">
+              <button id="protection-copy-btn" class="control-btn" title="Copier le lien">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                </svg><span>Copier</span>
+              </button>
+              <button id="protection-regen-btn" class="control-btn" title="Régénérer un nouveau code">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="1 4 1 10 7 10"/>
+                  <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>
+                </svg><span>Régénérer</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
         <div class="player-controls">
           <button id="pip-toggle" class="control-btn" disabled title="Mode Picture-in-Picture">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -79,6 +274,188 @@
               <path d="M8 3H5c-1.1 0-2 .9-2 2v3m18 0V5c0-1.1-.9-2-2-2h-3m0 18h3c1.1 0 2-.9 2-2v-3M3 16v3c0 1.1.9 2 2 2h3"/>
             </svg><span>Plein écran</span>
           </button>
+          <button id="protection-toggle" class="control-btn" title="Protection anti-capture d'écran">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+              <path d="M7 11V7a5 5 0 0110 0v4"/>
+            </svg><span>Protection</span>
+          </button>
+          <button id="nvidia-enhance" class="control-btn nvidia-btn" disabled title="Améliorations NVIDIA RTX">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+              <path d="M2 17l10 5 10-5"/>
+              <path d="M2 12l10 5 10-5"/>
+            </svg><span>NVIDIA</span>
+          </button>
+          <button id="enhance-toggle" class="control-btn" title="Outils d'amélioration">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+            </svg><span>Outils</span>
+          </button>
+          <div class="volume-control">
+            <button id="volume-toggle" class="control-btn" title="Couper/rétablir le son">
+              <svg id="volume-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                <path class="volume-wave-1" d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+                <path class="volume-wave-2" d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+              </svg>
+            </button>
+            <input type="range" id="volume-slider" class="volume-slider" min="0" max="100" value="100" title="Volume">
+            <span id="volume-value" class="volume-value">100%</span>
+          </div>
+        </div>
+
+        <!-- Enhancement Tools Panel -->
+        <div id="enhance-panel" class="enhance-panel hidden">
+          <div class="enhance-header">
+            <h3>Outils d'amélioration</h3>
+            <button id="enhance-reset" class="enhance-reset-btn" title="Réinitialiser">↺ Reset</button>
+          </div>
+
+          <div class="enhance-group">
+            <label>Vitesse de lecture</label>
+            <div class="speed-controls">
+              <button class="speed-btn" data-speed="0.25">0.25×</button>
+              <button class="speed-btn" data-speed="0.5">0.5×</button>
+              <button class="speed-btn" data-speed="0.75">0.75×</button>
+              <button class="speed-btn active" data-speed="1">1×</button>
+              <button class="speed-btn" data-speed="1.25">1.25×</button>
+              <button class="speed-btn" data-speed="1.5">1.5×</button>
+              <button class="speed-btn" data-speed="2">2×</button>
+              <button class="speed-btn" data-speed="3">3×</button>
+            </div>
+          </div>
+
+          <div class="enhance-group">
+            <label>Filtres vidéo</label>
+            <div class="filter-sliders">
+              <div class="slider-row">
+                <span>Luminosité</span>
+                <input type="range" id="filter-brightness" min="50" max="200" value="100" class="enhance-slider">
+                <span id="val-brightness" class="slider-val">100%</span>
+              </div>
+              <div class="slider-row">
+                <span>Contraste</span>
+                <input type="range" id="filter-contrast" min="50" max="200" value="100" class="enhance-slider">
+                <span id="val-contrast" class="slider-val">100%</span>
+              </div>
+              <div class="slider-row">
+                <span>Saturation</span>
+                <input type="range" id="filter-saturate" min="0" max="300" value="100" class="enhance-slider">
+                <span id="val-saturate" class="slider-val">100%</span>
+              </div>
+              <div class="slider-row">
+                <span>Teinte</span>
+                <input type="range" id="filter-hue" min="0" max="360" value="0" class="enhance-slider">
+                <span id="val-hue" class="slider-val">0°</span>
+              </div>
+              <div class="slider-row">
+                <span>Netteté (flou)</span>
+                <input type="range" id="filter-blur" min="0" max="10" value="0" step="0.1" class="enhance-slider">
+                <span id="val-blur" class="slider-val">0px</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="enhance-group">
+            <label>Boucle</label>
+            <div class="loop-controls">
+              <button class="loop-btn active" data-loop="none">Désactivée</button>
+              <button class="loop-btn" data-loop="single">Boucle unique</button>
+              <button class="loop-btn" data-loop="ab">Boucle A-B</button>
+            </div>
+            <div id="ab-loop-info" class="ab-loop-info hidden">
+              <span id="ab-loop-status">Cliquez pour définir le point A</span>
+              <button id="ab-loop-clear" class="enhance-reset-btn">Effacer A-B</button>
+            </div>
+          </div>
+
+          <div class="enhance-group enhance-actions">
+            <button id="screenshot-btn" class="control-btn" disabled title="Capturer l'image actuelle (vidéo uniquement)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                <circle cx="12" cy="13" r="4"/>
+              </svg><span>Capture</span>
+            </button>
+            <button id="rotate-btn" class="control-btn" disabled title="Rotation 90°">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="1 4 1 10 7 10"/>
+                <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>
+              </svg><span>Rotation</span>
+            </button>
+            <button id="flip-h-btn" class="control-btn" disabled title="Miroir horizontal">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M16 3h5v5M8 3H3v5M21 3l-7 7M3 3l7 7M16 21h5v-5M8 21H3v-5M21 21l-7-7M3 21l7-7"/>
+              </svg><span>Miroir</span>
+            </button>
+          </div>
+
+          <div class="enhance-group">
+            <label>Égaliseur audio</label>
+            <div class="filter-sliders">
+              <div class="slider-row">
+                <span>Basses</span>
+                <input type="range" id="eq-bass" min="-12" max="12" value="0" class="enhance-slider">
+                <span id="val-eq-bass" class="slider-val">0 dB</span>
+              </div>
+              <div class="slider-row">
+                <span>Médiums</span>
+                <input type="range" id="eq-mid" min="-12" max="12" value="0" class="enhance-slider">
+                <span id="val-eq-mid" class="slider-val">0 dB</span>
+              </div>
+              <div class="slider-row">
+                <span>Aigus</span>
+                <input type="range" id="eq-treble" min="-12" max="12" value="0" class="enhance-slider">
+                <span id="val-eq-treble" class="slider-val">0 dB</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="enhance-group">
+            <label>Timer de sommeil</label>
+            <div class="sleep-timer-controls">
+              <button class="sleep-btn" data-minutes="0">Désactivé</button>
+              <button class="sleep-btn" data-minutes="5">5 min</button>
+              <button class="sleep-btn" data-minutes="15">15 min</button>
+              <button class="sleep-btn" data-minutes="30">30 min</button>
+              <button class="sleep-btn" data-minutes="60">1 h</button>
+              <button class="sleep-btn" data-minutes="90">1h30</button>
+            </div>
+            <div id="sleep-timer-status" class="sleep-timer-status hidden">
+              <span id="sleep-timer-remaining">:</span>
+            </div>
+          </div>
+
+          <div class="enhance-group">
+            <label>Playlist</label>
+            <div class="playlist-mode-controls">
+              <button id="auto-next-btn" class="loop-btn" title="Lecture automatique du suivant">▶▶ Auto-next</button>
+              <button id="shuffle-btn" class="loop-btn" title="Lecture aléatoire">🔀 Aléatoire</button>
+            </div>
+          </div>
+
+          <div class="enhance-group">
+            <label>Raccourcis clavier</label>
+            <div class="shortcuts-grid">
+              <kbd>Espace</kbd><span>Lecture / Pause</span>
+              <kbd>←</kbd><span>Reculer 5s</span>
+              <kbd>→</kbd><span>Avancer 5s</span>
+              <kbd>↑</kbd><span>Volume +5%</span>
+              <kbd>↓</kbd><span>Volume -5%</span>
+              <kbd>M</kbd><span>Couper le son</span>
+              <kbd>F</kbd><span>Plein écran</span>
+              <kbd>&lt;</kbd><span>Vitesse -</span>
+              <kbd>&gt;</kbd><span>Vitesse +</span>
+            </div>
+          </div>
+
+          <div class="enhance-group">
+            <label>Informations média</label>
+            <div id="media-details" class="media-details">
+              <p class="media-detail-empty">Aucun média chargé</p>
+            </div>
+          </div>
         </div>
 
         <div id="media-info" class="media-info hidden">
@@ -168,13 +545,63 @@
         </div>
         <div class="feature-card">
           <div class="feature-icon">🔒</div>
-          <h3>Protection Écran</h3>
-          <p>Anti-capture (Konami)</p>
+          <h3>Protection QR</h3>
+          <p>Watermark QR invisible avec traçabilité</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon">📺</div>
           <h3>Picture-in-Picture</h3>
           <p>Fenêtre flottante</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🟢</div>
+          <h3>NVIDIA Enhanced</h3>
+          <p>RTX VSR, HDR & Super Resolution</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>Vitesse variable</h3>
+          <p>0.25× à 3× en un clic</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎨</div>
+          <h3>Filtres vidéo</h3>
+          <p>Luminosité, contraste, saturation, teinte</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📸</div>
+          <h3>Capture & Rotation</h3>
+          <p>Screenshot, rotation, miroir</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔁</div>
+          <h3>Boucle A-B</h3>
+          <p>Répétition précise d'un segment</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎛️</div>
+          <h3>Égaliseur Audio</h3>
+          <p>Basses, médiums, aigus ajustables</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⏰</div>
+          <h3>Timer Sommeil</h3>
+          <p>Arrêt automatique programmé</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⌨️</div>
+          <h3>Raccourcis Clavier</h3>
+          <p>Contrôle complet au clavier</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔀</div>
+          <h3>Auto-next & Aléatoire</h3>
+          <p>Enchaînement intelligent de la playlist</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">ℹ️</div>
+          <h3>Infos Média</h3>
+          <p>Résolution, durée, état en temps réel</p>
         </div>
       </div>
     </section>
@@ -185,44 +612,116 @@
       <div class="footer-section">
         <h4>Outils</h4>
         <ul>
-          <li><a href="#">Encrypt</a></li>
-          <li><a href="#">Plan du site</a></li>
-          <li><a href="#">Statut</a></li>
+          <li><a href="/pip">PIP</a></li>
+          <li><a href="/sitemap">Plan du site</a></li>
+          <li><a href="https://status.ventistudio.eu/">Statut</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Entreprise</h4>
         <ul>
-          <li><a href="#">À propos</a></li>
-          <li><a href="#">Emplois</a></li>
-          <li><a href="#">Marque</a></li>
+          <li><a href="/about">À propos</a></li>
+          <li><a href="/jobs">Emplois</a></li>
+          <li><a href="/logo">Marque</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Ressources</h4>
         <ul>
-          <li><a href="#">Université</a></li>
-          <li><a href="#">Assistance</a></li>
-          <li><a href="#">Sécurité</a></li>
+          <li><a href="/university">Université</a></li>
+          <li><a href="/lawful/support">Assistance</a></li>
+          <li><a href="/lawful/security">Sécurité</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Chartes</h4>
         <ul>
-          <li><a href="#">Conditions</a></li>
-          <li><a href="#">Confidentialité</a></li>
-          <li><a href="#">Information DMCA</a></li>
+          <li><a href="/lawful/tos">Conditions d'utilisation</a></li>
+          <li><a href="/lawful/cookies">Confidentialité</a></li>
+          <li><a href="/lawful/dmcainfo">Information DMCA</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services en ligne</p>
+      <iframe src="https://status.ventistudio.eu/badge?theme=dark" width="500" height="30" frameborder="0" scrolling="no" style="color-scheme: normal"></iframe>
       <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
     </div>
   </footer>
 
-  <script src="/script.js" defer></script>
+  <script src="/main.js" defer></script>
   <script src="script.js" defer></script>
+  <script>
+    (function () {
+      var nav = document.getElementById('main-nav');
+      var burger = document.getElementById('nav-burger');
+      if (!nav || !burger) return;
+
+      // Marque le lien actif d'apres l'URL courante
+      try {
+        var path = window.location.pathname.replace(/\/index\.html?$/, '/').replace(/\/$/, '') || '/';
+        var best = null, bestLen = -1;
+        nav.querySelectorAll('a[href]').forEach(function (a) {
+          var href = a.getAttribute('href').replace(/\/$/, '') || '/';
+          if (href === path || (href !== '/' && path.indexOf(href + '/') === 0) || (href !== '/' && path === href)) {
+            if (href.length > bestLen) { best = a; bestLen = href.length; }
+          }
+        });
+        if (path === '/' || path === '') {
+          best = nav.querySelector('a[href="/"]');
+        }
+        if (best) {
+          best.classList.add('active');
+          var grp = best.closest('details.nav-group');
+          if (grp) {
+            var s = grp.querySelector('summary.nav-link');
+            if (s) s.classList.add('active');
+          }
+        }
+      } catch (e) {}
+
+      function closeAllGroups(except) {
+        nav.querySelectorAll('details.nav-group[open]').forEach(function (d) {
+          if (d !== except) d.removeAttribute('open');
+        });
+      }
+
+      burger.addEventListener('click', function () {
+        var open = nav.classList.toggle('is-open');
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        burger.classList.toggle('is-active', open);
+        if (!open) closeAllGroups();
+      });
+
+      nav.querySelectorAll('details.nav-group').forEach(function (d) {
+        d.addEventListener('toggle', function () {
+          if (d.open) closeAllGroups(d);
+        });
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!nav.contains(e.target) && !burger.contains(e.target)) {
+          closeAllGroups();
+          if (nav.classList.contains('is-open')) {
+            nav.classList.remove('is-open');
+            burger.classList.remove('is-active');
+            burger.setAttribute('aria-expanded', 'false');
+          }
+        }
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          closeAllGroups();
+          if (nav.classList.contains('is-open')) {
+            nav.classList.remove('is-open');
+            burger.classList.remove('is-active');
+            burger.setAttribute('aria-expanded', 'false');
+            burger.focus();
+          }
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
 

@@ -1,0 +1,272 @@
+// ═══ Atlas Mondial — Données géopolitiques VentiStudio ═══
+// Scores de 1 (critique) à 5 (excellent)
+// freedom: liberté d'expression, presse, réunion
+// hostility: niveau d'hostilité (1 = très hostile, 5 = très pacifique)
+// security: sécurité intérieure des citoyens
+// rights: droits humains fondamentaux
+// stability: stabilité politique et institutionnelle
+
+var atlasData = [
+  // ── Europe ──
+  { name: "France", code: "FR", continent: "europe", freedom: 4, hostility: 4, security: 4, rights: 4, stability: 4 },
+  { name: "Allemagne", code: "DE", continent: "europe", freedom: 5, hostility: 5, security: 4, rights: 5, stability: 5 },
+  { name: "Royaume-Uni", code: "GB", continent: "europe", freedom: 4, hostility: 4, security: 4, rights: 4, stability: 4 },
+  { name: "Espagne", code: "ES", continent: "europe", freedom: 4, hostility: 4, security: 4, rights: 4, stability: 4 },
+  { name: "Italie", code: "IT", continent: "europe", freedom: 4, hostility: 4, security: 4, rights: 4, stability: 3 },
+  { name: "Pays-Bas", code: "NL", continent: "europe", freedom: 5, hostility: 5, security: 5, rights: 5, stability: 5 },
+  { name: "Belgique", code: "BE", continent: "europe", freedom: 5, hostility: 4, security: 4, rights: 5, stability: 4 },
+  { name: "Suisse", code: "CH", continent: "europe", freedom: 5, hostility: 5, security: 5, rights: 5, stability: 5 },
+  { name: "Autriche", code: "AT", continent: "europe", freedom: 5, hostility: 5, security: 5, rights: 5, stability: 5 },
+  { name: "Suède", code: "SE", continent: "europe", freedom: 5, hostility: 5, security: 4, rights: 5, stability: 5 },
+  { name: "Norvège", code: "NO", continent: "europe", freedom: 5, hostility: 5, security: 5, rights: 5, stability: 5 },
+  { name: "Danemark", code: "DK", continent: "europe", freedom: 5, hostility: 5, security: 5, rights: 5, stability: 5 },
+  { name: "Finlande", code: "FI", continent: "europe", freedom: 5, hostility: 5, security: 5, rights: 5, stability: 5 },
+  { name: "Islande", code: "IS", continent: "europe", freedom: 5, hostility: 5, security: 5, rights: 5, stability: 5 },
+  { name: "Portugal", code: "PT", continent: "europe", freedom: 5, hostility: 5, security: 5, rights: 4, stability: 4 },
+  { name: "Irlande", code: "IE", continent: "europe", freedom: 5, hostility: 5, security: 5, rights: 5, stability: 5 },
+  { name: "Luxembourg", code: "LU", continent: "europe", freedom: 5, hostility: 5, security: 5, rights: 5, stability: 5 },
+  { name: "Pologne", code: "PL", continent: "europe", freedom: 3, hostility: 4, security: 4, rights: 3, stability: 3 },
+  { name: "République tchèque", code: "CZ", continent: "europe", freedom: 4, hostility: 5, security: 5, rights: 4, stability: 4 },
+  { name: "Grèce", code: "GR", continent: "europe", freedom: 3, hostility: 4, security: 4, rights: 4, stability: 3 },
+  { name: "Roumanie", code: "RO", continent: "europe", freedom: 3, hostility: 4, security: 4, rights: 3, stability: 3 },
+  { name: "Hongrie", code: "HU", continent: "europe", freedom: 2, hostility: 3, security: 4, rights: 3, stability: 3 },
+  { name: "Croatie", code: "HR", continent: "europe", freedom: 4, hostility: 4, security: 4, rights: 4, stability: 4 },
+  { name: "Slovénie", code: "SI", continent: "europe", freedom: 4, hostility: 5, security: 5, rights: 4, stability: 4 },
+  { name: "Slovaquie", code: "SK", continent: "europe", freedom: 3, hostility: 4, security: 4, rights: 3, stability: 3 },
+  { name: "Bulgarie", code: "BG", continent: "europe", freedom: 3, hostility: 4, security: 3, rights: 3, stability: 3 },
+  { name: "Estonie", code: "EE", continent: "europe", freedom: 5, hostility: 5, security: 4, rights: 5, stability: 4 },
+  { name: "Lettonie", code: "LV", continent: "europe", freedom: 4, hostility: 4, security: 4, rights: 4, stability: 4 },
+  { name: "Lituanie", code: "LT", continent: "europe", freedom: 4, hostility: 4, security: 4, rights: 4, stability: 4 },
+  { name: "Serbie", code: "RS", continent: "europe", freedom: 2, hostility: 3, security: 3, rights: 3, stability: 2 },
+  { name: "Ukraine", code: "UA", continent: "europe", freedom: 3, hostility: 1, security: 1, rights: 3, stability: 1 },
+  { name: "Moldavie", code: "MD", continent: "europe", freedom: 3, hostility: 3, security: 3, rights: 3, stability: 2 },
+  { name: "Géorgie", code: "GE", continent: "europe", freedom: 3, hostility: 3, security: 3, rights: 3, stability: 2 },
+  { name: "Biélorussie", code: "BY", continent: "europe", freedom: 1, hostility: 2, security: 3, rights: 1, stability: 2 },
+  { name: "Russie", code: "RU", continent: "europe", freedom: 1, hostility: 1, security: 2, rights: 1, stability: 2 },
+  { name: "Turquie", code: "TR", continent: "europe", freedom: 2, hostility: 2, security: 3, rights: 2, stability: 2 },
+  { name: "Albanie", code: "AL", continent: "europe", freedom: 3, hostility: 4, security: 3, rights: 3, stability: 3 },
+  { name: "Macédoine du Nord", code: "MK", continent: "europe", freedom: 3, hostility: 4, security: 4, rights: 3, stability: 3 },
+  { name: "Monténégro", code: "ME", continent: "europe", freedom: 3, hostility: 4, security: 4, rights: 3, stability: 3 },
+  { name: "Bosnie-Herzégovine", code: "BA", continent: "europe", freedom: 3, hostility: 3, security: 3, rights: 3, stability: 2 },
+  { name: "Kosovo", code: "XK", continent: "europe", freedom: 3, hostility: 3, security: 3, rights: 3, stability: 2 },
+  { name: "Chypre", code: "CY", continent: "europe", freedom: 4, hostility: 4, security: 4, rights: 4, stability: 4 },
+  { name: "Malte", code: "MT", continent: "europe", freedom: 4, hostility: 5, security: 5, rights: 4, stability: 4 },
+
+  // ── Asie ──
+  { name: "Japon", code: "JP", continent: "asia", freedom: 4, hostility: 5, security: 5, rights: 4, stability: 5 },
+  { name: "Corée du Sud", code: "KR", continent: "asia", freedom: 4, hostility: 4, security: 4, rights: 4, stability: 4 },
+  { name: "Corée du Nord", code: "KP", continent: "asia", freedom: 1, hostility: 1, security: 2, rights: 1, stability: 2 },
+  { name: "Chine", code: "CN", continent: "asia", freedom: 1, hostility: 2, security: 3, rights: 1, stability: 3 },
+  { name: "Taïwan", code: "TW", continent: "asia", freedom: 5, hostility: 4, security: 4, rights: 5, stability: 4 },
+  { name: "Inde", code: "IN", continent: "asia", freedom: 3, hostility: 3, security: 3, rights: 3, stability: 3 },
+  { name: "Pakistan", code: "PK", continent: "asia", freedom: 2, hostility: 2, security: 2, rights: 2, stability: 2 },
+  { name: "Bangladesh", code: "BD", continent: "asia", freedom: 2, hostility: 3, security: 3, rights: 2, stability: 2 },
+  { name: "Indonésie", code: "ID", continent: "asia", freedom: 3, hostility: 4, security: 3, rights: 3, stability: 3 },
+  { name: "Thaïlande", code: "TH", continent: "asia", freedom: 2, hostility: 3, security: 3, rights: 2, stability: 3 },
+  { name: "Viêt Nam", code: "VN", continent: "asia", freedom: 1, hostility: 4, security: 4, rights: 2, stability: 3 },
+  { name: "Philippines", code: "PH", continent: "asia", freedom: 3, hostility: 3, security: 3, rights: 2, stability: 3 },
+  { name: "Malaisie", code: "MY", continent: "asia", freedom: 3, hostility: 4, security: 4, rights: 3, stability: 4 },
+  { name: "Singapour", code: "SG", continent: "asia", freedom: 3, hostility: 5, security: 5, rights: 3, stability: 5 },
+  { name: "Myanmar", code: "MM", continent: "asia", freedom: 1, hostility: 1, security: 1, rights: 1, stability: 1 },
+  { name: "Cambodge", code: "KH", continent: "asia", freedom: 1, hostility: 3, security: 3, rights: 1, stability: 2 },
+  { name: "Laos", code: "LA", continent: "asia", freedom: 1, hostility: 4, security: 4, rights: 1, stability: 3 },
+  { name: "Népal", code: "NP", continent: "asia", freedom: 3, hostility: 4, security: 3, rights: 3, stability: 2 },
+  { name: "Sri Lanka", code: "LK", continent: "asia", freedom: 3, hostility: 3, security: 3, rights: 3, stability: 2 },
+  { name: "Afghanistan", code: "AF", continent: "asia", freedom: 1, hostility: 1, security: 1, rights: 1, stability: 1 },
+  { name: "Irak", code: "IQ", continent: "asia", freedom: 2, hostility: 1, security: 1, rights: 2, stability: 1 },
+  { name: "Iran", code: "IR", continent: "asia", freedom: 1, hostility: 1, security: 2, rights: 1, stability: 2 },
+  { name: "Syrie", code: "SY", continent: "asia", freedom: 1, hostility: 1, security: 1, rights: 1, stability: 1 },
+  { name: "Yémen", code: "YE", continent: "asia", freedom: 1, hostility: 1, security: 1, rights: 1, stability: 1 },
+  { name: "Arabie saoudite", code: "SA", continent: "asia", freedom: 1, hostility: 2, security: 3, rights: 1, stability: 3 },
+  { name: "Émirats arabes unis", code: "AE", continent: "asia", freedom: 2, hostility: 4, security: 5, rights: 2, stability: 5 },
+  { name: "Qatar", code: "QA", continent: "asia", freedom: 2, hostility: 4, security: 5, rights: 2, stability: 4 },
+  { name: "Koweït", code: "KW", continent: "asia", freedom: 3, hostility: 4, security: 4, rights: 3, stability: 4 },
+  { name: "Jordanie", code: "JO", continent: "asia", freedom: 2, hostility: 3, security: 3, rights: 2, stability: 3 },
+  { name: "Liban", code: "LB", continent: "asia", freedom: 3, hostility: 2, security: 2, rights: 3, stability: 1 },
+  { name: "Israël", code: "IL", continent: "asia", freedom: 3, hostility: 1, security: 2, rights: 3, stability: 3 },
+  { name: "Palestine", code: "PS", continent: "asia", freedom: 2, hostility: 1, security: 1, rights: 2, stability: 1 },
+  { name: "Kazakhstan", code: "KZ", continent: "asia", freedom: 2, hostility: 4, security: 3, rights: 2, stability: 3 },
+  { name: "Ouzbékistan", code: "UZ", continent: "asia", freedom: 1, hostility: 4, security: 3, rights: 1, stability: 3 },
+  { name: "Turkménistan", code: "TM", continent: "asia", freedom: 1, hostility: 4, security: 3, rights: 1, stability: 3 },
+  { name: "Mongolie", code: "MN", continent: "asia", freedom: 4, hostility: 5, security: 4, rights: 4, stability: 3 },
+
+  // ── Afrique ──
+  { name: "Afrique du Sud", code: "ZA", continent: "africa", freedom: 4, hostility: 3, security: 2, rights: 4, stability: 3 },
+  { name: "Nigeria", code: "NG", continent: "africa", freedom: 3, hostility: 2, security: 2, rights: 2, stability: 2 },
+  { name: "Éthiopie", code: "ET", continent: "africa", freedom: 2, hostility: 1, security: 1, rights: 2, stability: 1 },
+  { name: "Kenya", code: "KE", continent: "africa", freedom: 3, hostility: 3, security: 3, rights: 3, stability: 3 },
+  { name: "Égypte", code: "EG", continent: "africa", freedom: 1, hostility: 3, security: 3, rights: 1, stability: 3 },
+  { name: "Maroc", code: "MA", continent: "africa", freedom: 3, hostility: 4, security: 4, rights: 3, stability: 4 },
+  { name: "Tunisie", code: "TN", continent: "africa", freedom: 2, hostility: 4, security: 3, rights: 3, stability: 2 },
+  { name: "Algérie", code: "DZ", continent: "africa", freedom: 2, hostility: 3, security: 3, rights: 2, stability: 3 },
+  { name: "Ghana", code: "GH", continent: "africa", freedom: 4, hostility: 4, security: 4, rights: 4, stability: 4 },
+  { name: "Sénégal", code: "SN", continent: "africa", freedom: 3, hostility: 4, security: 4, rights: 3, stability: 3 },
+  { name: "Côte d'Ivoire", code: "CI", continent: "africa", freedom: 3, hostility: 3, security: 3, rights: 3, stability: 3 },
+  { name: "Tanzanie", code: "TZ", continent: "africa", freedom: 3, hostility: 4, security: 4, rights: 3, stability: 3 },
+  { name: "Rwanda", code: "RW", continent: "africa", freedom: 1, hostility: 4, security: 4, rights: 2, stability: 4 },
+  { name: "Ouganda", code: "UG", continent: "africa", freedom: 2, hostility: 3, security: 3, rights: 2, stability: 2 },
+  { name: "RD Congo", code: "CD", continent: "africa", freedom: 2, hostility: 1, security: 1, rights: 1, stability: 1 },
+  { name: "Cameroun", code: "CM", continent: "africa", freedom: 2, hostility: 2, security: 2, rights: 2, stability: 2 },
+  { name: "Mali", code: "ML", continent: "africa", freedom: 2, hostility: 1, security: 1, rights: 2, stability: 1 },
+  { name: "Burkina Faso", code: "BF", continent: "africa", freedom: 2, hostility: 1, security: 1, rights: 2, stability: 1 },
+  { name: "Niger", code: "NE", continent: "africa", freedom: 2, hostility: 2, security: 2, rights: 2, stability: 1 },
+  { name: "Soudan", code: "SD", continent: "africa", freedom: 1, hostility: 1, security: 1, rights: 1, stability: 1 },
+  { name: "Soudan du Sud", code: "SS", continent: "africa", freedom: 1, hostility: 1, security: 1, rights: 1, stability: 1 },
+  { name: "Libye", code: "LY", continent: "africa", freedom: 1, hostility: 1, security: 1, rights: 1, stability: 1 },
+  { name: "Somalie", code: "SO", continent: "africa", freedom: 1, hostility: 1, security: 1, rights: 1, stability: 1 },
+  { name: "Érythrée", code: "ER", continent: "africa", freedom: 1, hostility: 2, security: 3, rights: 1, stability: 2 },
+  { name: "Madagascar", code: "MG", continent: "africa", freedom: 3, hostility: 4, security: 3, rights: 3, stability: 2 },
+  { name: "Namibie", code: "NA", continent: "africa", freedom: 4, hostility: 5, security: 4, rights: 4, stability: 4 },
+  { name: "Botswana", code: "BW", continent: "africa", freedom: 4, hostility: 5, security: 4, rights: 4, stability: 4 },
+  { name: "Maurice", code: "MU", continent: "africa", freedom: 4, hostility: 5, security: 5, rights: 4, stability: 4 },
+  { name: "Cap-Vert", code: "CV", continent: "africa", freedom: 5, hostility: 5, security: 5, rights: 4, stability: 4 },
+  { name: "Mozambique", code: "MZ", continent: "africa", freedom: 2, hostility: 2, security: 2, rights: 2, stability: 2 },
+  { name: "Zimbabwe", code: "ZW", continent: "africa", freedom: 2, hostility: 3, security: 3, rights: 2, stability: 2 },
+  { name: "Angola", code: "AO", continent: "africa", freedom: 2, hostility: 3, security: 3, rights: 2, stability: 3 },
+
+  // ── Amérique du Nord ──
+  { name: "États-Unis", code: "US", continent: "north-america", freedom: 4, hostility: 3, security: 3, rights: 4, stability: 3 },
+  { name: "Canada", code: "CA", continent: "north-america", freedom: 5, hostility: 5, security: 5, rights: 5, stability: 5 },
+  { name: "Mexique", code: "MX", continent: "north-america", freedom: 3, hostility: 2, security: 2, rights: 3, stability: 2 },
+  { name: "Cuba", code: "CU", continent: "north-america", freedom: 1, hostility: 3, security: 4, rights: 1, stability: 3 },
+  { name: "Haïti", code: "HT", continent: "north-america", freedom: 2, hostility: 1, security: 1, rights: 2, stability: 1 },
+  { name: "République dominicaine", code: "DO", continent: "north-america", freedom: 3, hostility: 4, security: 3, rights: 3, stability: 3 },
+  { name: "Jamaïque", code: "JM", continent: "north-america", freedom: 4, hostility: 3, security: 3, rights: 4, stability: 4 },
+  { name: "Costa Rica", code: "CR", continent: "north-america", freedom: 5, hostility: 5, security: 4, rights: 5, stability: 5 },
+  { name: "Panama", code: "PA", continent: "north-america", freedom: 4, hostility: 4, security: 3, rights: 3, stability: 3 },
+  { name: "Guatemala", code: "GT", continent: "north-america", freedom: 3, hostility: 2, security: 2, rights: 2, stability: 2 },
+  { name: "Honduras", code: "HN", continent: "north-america", freedom: 2, hostility: 2, security: 2, rights: 2, stability: 2 },
+  { name: "El Salvador", code: "SV", continent: "north-america", freedom: 2, hostility: 3, security: 3, rights: 2, stability: 3 },
+  { name: "Nicaragua", code: "NI", continent: "north-america", freedom: 1, hostility: 3, security: 3, rights: 1, stability: 2 },
+  { name: "Trinité-et-Tobago", code: "TT", continent: "north-america", freedom: 4, hostility: 4, security: 3, rights: 4, stability: 4 },
+
+  // ── Amérique du Sud ──
+  { name: "Brésil", code: "BR", continent: "south-america", freedom: 4, hostility: 3, security: 2, rights: 3, stability: 3 },
+  { name: "Argentine", code: "AR", continent: "south-america", freedom: 4, hostility: 4, security: 3, rights: 4, stability: 3 },
+  { name: "Chili", code: "CL", continent: "south-america", freedom: 5, hostility: 4, security: 4, rights: 4, stability: 4 },
+  { name: "Colombie", code: "CO", continent: "south-america", freedom: 3, hostility: 2, security: 2, rights: 3, stability: 2 },
+  { name: "Pérou", code: "PE", continent: "south-america", freedom: 3, hostility: 3, security: 3, rights: 3, stability: 2 },
+  { name: "Venezuela", code: "VE", continent: "south-america", freedom: 1, hostility: 2, security: 1, rights: 1, stability: 1 },
+  { name: "Équateur", code: "EC", continent: "south-america", freedom: 3, hostility: 3, security: 2, rights: 3, stability: 2 },
+  { name: "Bolivie", code: "BO", continent: "south-america", freedom: 3, hostility: 3, security: 3, rights: 3, stability: 2 },
+  { name: "Paraguay", code: "PY", continent: "south-america", freedom: 3, hostility: 4, security: 3, rights: 3, stability: 3 },
+  { name: "Uruguay", code: "UY", continent: "south-america", freedom: 5, hostility: 5, security: 4, rights: 5, stability: 5 },
+  { name: "Guyane", code: "GY", continent: "south-america", freedom: 3, hostility: 4, security: 3, rights: 3, stability: 3 },
+  { name: "Suriname", code: "SR", continent: "south-america", freedom: 3, hostility: 4, security: 3, rights: 3, stability: 3 },
+
+  // ── Océanie ──
+  { name: "Australie", code: "AU", continent: "oceania", freedom: 5, hostility: 5, security: 5, rights: 5, stability: 5 },
+  { name: "Nouvelle-Zélande", code: "NZ", continent: "oceania", freedom: 5, hostility: 5, security: 5, rights: 5, stability: 5 },
+  { name: "Fidji", code: "FJ", continent: "oceania", freedom: 3, hostility: 4, security: 4, rights: 3, stability: 3 },
+  { name: "Papouasie-Nouvelle-Guinée", code: "PG", continent: "oceania", freedom: 3, hostility: 3, security: 2, rights: 3, stability: 2 },
+  { name: "Samoa", code: "WS", continent: "oceania", freedom: 4, hostility: 5, security: 4, rights: 3, stability: 4 },
+  { name: "Tonga", code: "TO", continent: "oceania", freedom: 4, hostility: 5, security: 5, rights: 3, stability: 4 },
+  { name: "Vanuatu", code: "VU", continent: "oceania", freedom: 4, hostility: 5, security: 4, rights: 3, stability: 3 }
+];
+
+// ═══ Justifications génériques par critère et niveau (1 à 5) ═══
+// Utilisées par défaut quand aucune justification spécifique n'est définie.
+var atlasCriteriaReasons = {
+  freedom: {
+    5: "Presse libre et pluraliste, liberté d'expression et de réunion solidement protégées par la loi et la pratique.",
+    4: "Liberté d'expression globalement respectée, malgré quelques tensions ponctuelles (concentration des médias, lois sur la diffamation, etc.).",
+    3: "Liberté partielle : certains médias indépendants existent, mais l'autocensure, des poursuites ou des pressions politiques sont régulières.",
+    2: "Restrictions importantes sur la presse et la société civile, journalistes harcelés, manifestations souvent dispersées.",
+    1: "Régime autoritaire : censure systématique, médias sous contrôle de l'État, opposants emprisonnés ou exilés."
+  },
+  hostility: {
+    5: "Pays pacifique, sans conflit armé, faibles tensions diplomatiques avec ses voisins, dépenses militaires modérées.",
+    4: "Climat globalement pacifique, quelques tensions diplomatiques ou opérations extérieures limitées.",
+    3: "Tensions régionales, criminalité organisée ou implication indirecte dans des conflits voisins.",
+    2: "Conflits internes, terrorisme ou militarisation élevée affectant la stabilité régionale.",
+    1: "Pays en guerre, conflit armé actif ou occupation militaire ; victimes civiles régulières."
+  },
+  security: {
+    5: "Très faible criminalité, institutions policières fiables, sentiment de sécurité élevé pour les habitants comme pour les visiteurs.",
+    4: "Sécurité globalement bonne, criminalité mesurée, rares incidents graves.",
+    3: "Niveau de criminalité moyen, certaines zones urbaines ou frontalières plus risquées.",
+    2: "Criminalité importante (violences, gangs, enlèvements) ou forces de l'ordre peu fiables.",
+    1: "Insécurité généralisée, violences armées, contrôle territorial partiel par des groupes non étatiques."
+  },
+  rights: {
+    5: "Droits humains fondamentaux pleinement protégés : égalité, justice indépendante, protection des minorités.",
+    4: "Bon niveau de protection, mais discriminations résiduelles (minorités, LGBTQ+, migrants).",
+    3: "Cadre légal correct mais application inégale ; discriminations persistantes contre certaines populations.",
+    2: "Atteintes documentées : peine de mort, discriminations légales, traitements inhumains, justice instrumentalisée.",
+    1: "Violations massives : torture, détentions arbitraires, exécutions extrajudiciaires, persécutions ethniques ou religieuses."
+  },
+  stability: {
+    5: "Institutions solides, alternances démocratiques pacifiques, économie et politique prévisibles sur le long terme.",
+    4: "Stabilité institutionnelle bonne, malgré des crises politiques ou économiques ponctuelles.",
+    3: "Volatilité politique : changements de gouvernement fréquents, tensions sociales ou économiques.",
+    2: "Instabilité chronique : coups d'État, crises constitutionnelles, économie fragile.",
+    1: "Effondrement institutionnel ou guerre civile ; pas de gouvernement central effectif."
+  }
+};
+
+// ═══ Justifications spécifiques par pays (cas notables) ═══
+// Format : code ISO → { summary, freedom?, hostility?, security?, rights?, stability? }
+// Si une clé est absente, la justification générique ci-dessus est utilisée.
+var atlasReasons = {
+  // ── Europe ──
+  "FR": { summary: "Démocratie stable de l'UE, État de droit solide, mais tensions sociales récurrentes et critiques sur le maintien de l'ordre." },
+  "DE": { summary: "Démocratie modèle au cœur de l'UE, presse libre, justice indépendante et économie résiliente." },
+  "GB": { summary: "Démocratie ancienne, mais Brexit, surveillance et restrictions du droit de manifester ont pesé ces dernières années." },
+  "CH": { summary: "Neutralité historique, démocratie directe, sécurité et institutions parmi les plus solides au monde." },
+  "NO": { summary: "Référence mondiale en matière de droits, libertés et bien-être social." },
+  "IS": { summary: "Pays le plus pacifique au monde selon le Global Peace Index, libertés et égalité au sommet." },
+  "HU": { freedom: "Régime illibéral d'Orbán : médias publics et privés alignés, ONG harcelées, justice sous pression.", rights: "Lois anti-LGBTQ+, restrictions sur l'asile, indépendance de la justice contestée par l'UE.", summary: "Démocratie en recul : Bruxelles a gelé des fonds européens pour atteintes à l'État de droit." },
+  "PL": { summary: "Réformes judiciaires controversées, mais alternance démocratique récente. Front avec l'Ukraine." },
+  "RU": { freedom: "Opposition réprimée, médias indépendants interdits ou exilés, lois sur les « agents de l'étranger ».", hostility: "Guerre d'agression contre l'Ukraine depuis 2022, multiples ingérences à l'étranger.", rights: "Persécution des opposants (Navalny), des LGBTQ+ et des minorités, mobilisation forcée.", summary: "Régime autoritaire en guerre, isolement diplomatique massif, économie sous sanctions." },
+  "BY": { summary: "Régime de Loukachenko, allié logistique de la Russie, opposants emprisonnés ou exilés depuis 2020." },
+  "UA": { freedom: "Démocratie pluraliste mais loi martiale en raison de l'invasion russe.", hostility: "Pays envahi par la Russie depuis 2022, conflit armé majeur en cours.", security: "Bombardements quotidiens, infrastructures civiles ciblées, millions de déplacés.", stability: "Économie de guerre, larges parts du territoire occupées ou détruites.", summary: "Démocratie en guerre défensive, soutenue par l'Occident, faisant face à une agression de grande ampleur." },
+  "TR": { summary: "Présidentialisation autoritaire sous Erdoğan, presse muselée, justice politisée, tensions kurdes." },
+  "RS": { summary: "Démocratie fragile, médias sous influence, tensions avec le Kosovo, rapprochement ambigu avec la Russie." },
+
+  // ── Asie ──
+  "JP": { summary: "Démocratie stable, sécurité exemplaire, mais société conservatrice et droits LGBTQ+ encore limités." },
+  "KR": { summary: "Démocratie dynamique, économie avancée, sous tension permanente avec la Corée du Nord." },
+  "KP": { freedom: "Aucune liberté d'expression : un seul parti, médias entièrement contrôlés, accès Internet quasi nul.", rights: "Camps de travail (kwanliso), exécutions publiques, famines orchestrées, culte de la personnalité.", summary: "Régime totalitaire dynastique de la famille Kim, l'un des pires bilans humains au monde." },
+  "CN": { freedom: "Censure massive (Great Firewall), Parti unique, dissidents emprisonnés, surveillance de masse.", rights: "Répression des Ouïghours au Xinjiang qualifiée de génocide par plusieurs parlements ; mise au pas de Hong Kong.", summary: "Superpuissance autoritaire, État-parti, surveillance numérique généralisée, tensions avec Taïwan." },
+  "TW": { summary: "Démocratie pluraliste vibrante d'Asie, sous menace militaire constante de la Chine." },
+  "IN": { summary: "Plus grande démocratie au monde, mais recul des libertés sous Modi, tensions communautaires montantes." },
+  "MM": { summary: "Junte militaire depuis le coup d'État de 2021, guerre civile, génocide rohingya documenté." },
+  "AF": { freedom: "Talibans au pouvoir : médias sous contrôle, journalistes battus ou exilés.", rights: "Femmes interdites d'éducation secondaire, de la plupart des emplois et de l'espace public.", summary: "Régime taliban, l'un des pires pays au monde pour les droits des femmes et des minorités." },
+  "SY": { summary: "Guerre civile depuis 2011, régime accusé de crimes contre l'humanité, millions de réfugiés." },
+  "YE": { summary: "Pire crise humanitaire au monde selon l'ONU, guerre par procuration, famine généralisée." },
+  "IR": { freedom: "Théocratie : opposition réprimée, presse muselée, Internet filtré.", rights: "Code vestimentaire imposé aux femmes, exécutions massives (manifestants, mineurs, LGBTQ+).", summary: "République islamique répressive, sanctions internationales, soutien à des milices régionales." },
+  "SA": { summary: "Monarchie absolue, réformes économiques mais répression politique (assassinat Khashoggi), peine de mort fréquente." },
+  "AE": { summary: "Sécurité et stabilité économiques exceptionnelles, mais aucune démocratie et droits limités (travailleurs migrants, opposants)." },
+  "IL": { hostility: "Conflit armé récurrent à Gaza et au Liban, tensions régionales fortes.", security: "Roquettes, attentats et opérations militaires affectant la vie quotidienne.", summary: "Démocratie pluraliste à l'intérieur, mais conflit israélo-palestinien et controverses sur le droit international humanitaire." },
+  "PS": { summary: "Territoires occupés et bombardés, gouvernance fragmentée entre Cisjordanie et Gaza, crise humanitaire majeure." },
+  "SG": { summary: "Sécurité et prospérité hors normes, mais peine de mort, restrictions sur la presse et les libertés publiques." },
+
+  // ── Afrique ──
+  "ZA": { summary: "Démocratie post-apartheid, libertés respectées, mais criminalité urbaine et inégalités extrêmes." },
+  "EG": { summary: "Régime militaire d'al-Sissi, opposition étouffée, dizaines de milliers de prisonniers politiques." },
+  "ET": { summary: "Sortie d'une guerre civile dévastatrice au Tigré, tensions ethniques persistantes." },
+  "SO": { summary: "État défaillant, présence d'al-Shabaab, autorité centrale très limitée." },
+  "SD": { summary: "Guerre civile entre l'armée et les RSF depuis 2023, déplacements massifs, famine en cours." },
+  "LY": { summary: "Pays divisé entre deux gouvernements rivaux depuis la chute de Kadhafi, milices armées omniprésentes." },
+  "CD": { summary: "Conflits chroniques à l'est, groupes armés multiples, ressources pillées, institutions faibles." },
+  "RW": { summary: "Stabilité et sécurité fortes sous Kagame, mais opposition muselée et libertés très restreintes." },
+  "MA": { summary: "Monarchie réformatrice, stabilité régionale, mais limites sur la presse et la question du Sahara occidental." },
+
+  // ── Amériques ──
+  "US": { summary: "Démocratie ancienne, libertés fortes, mais polarisation politique extrême, violence par armes à feu et inégalités." },
+  "CA": { summary: "Démocratie modèle, sécurité élevée, droits sociaux et minorités globalement protégés." },
+  "MX": { summary: "Démocratie active mais cartels, journalistes assassinés, corruption endémique." },
+  "HT": { summary: "Effondrement institutionnel, gangs contrôlant Port-au-Prince, crise humanitaire et politique aiguë." },
+  "VE": { freedom: "Médias indépendants quasi inexistants, opposants emprisonnés ou exilés.", security: "Une des pires criminalités au monde, exode massif (plus de 7 millions de Vénézuéliens partis).", summary: "Régime de Maduro, économie effondrée, crise humanitaire et démocratique majeure." },
+  "CU": { summary: "Régime à parti unique, dissidents emprisonnés, mais sécurité et services de base relativement préservés." },
+  "NI": { summary: "Régime autoritaire d'Ortega, opposants exilés ou déchus de la nationalité." },
+  "BR": { summary: "Plus grande démocratie d'Amérique latine, mais violences urbaines fortes et déforestation préoccupante." },
+  "CL": { summary: "Démocratie solide, économie ouverte, mais crise constitutionnelle récente et inégalités." },
+  "UY": { summary: "Démocratie la plus stable d'Amérique du Sud, libertés et droits sociaux avancés." },
+  "CR": { summary: "Pays sans armée depuis 1948, démocratie stable et écologie politique forte." },
+
+  // ── Océanie ──
+  "AU": { summary: "Démocratie solide, sécurité élevée, mais politiques migratoires (centres offshore) controversées." },
+  "NZ": { summary: "Démocratie modèle, droits autochtones reconnus, sécurité et libertés au sommet mondial." }
+};
+

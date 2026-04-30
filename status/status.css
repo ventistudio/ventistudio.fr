@@ -1,0 +1,278 @@
+/* ═══ Page de Statut — Styles ═══ */
+
+.status-page-header {
+  text-align: center;
+  padding: 3rem 2rem 2rem;
+}
+
+.status-page-header h1 {
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.status-page-header .section-sub {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+}
+
+/* ── Badge Global ── */
+.status-global {
+  max-width: 800px;
+  margin: 0 auto 2.5rem;
+  padding: 1.5rem 2rem;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+}
+
+.status-global-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: status-pulse 2s ease-in-out infinite;
+}
+
+.status-global-dot.operational { background: #22c55e; box-shadow: 0 0 12px rgba(34, 197, 94, 0.5); }
+.status-global-dot.degraded { background: #f59e0b; box-shadow: 0 0 12px rgba(245, 158, 11, 0.5); }
+.status-global-dot.major { background: #ef4444; box-shadow: 0 0 12px rgba(239, 68, 68, 0.5); }
+.status-global-dot.unknown { background: #6b7280; box-shadow: 0 0 12px rgba(107, 114, 128, 0.3); }
+
+@keyframes status-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.7; }
+}
+
+.status-global-text {
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.status-global-time {
+  margin-left: auto;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+/* ── Catégories ── */
+.status-categories {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.status-category h2 {
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.status-services {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.status-service {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.85rem 1.25rem;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.status-service:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateX(4px);
+}
+
+[data-theme="light"] .status-service:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.service-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.service-dot.online { background: #22c55e; box-shadow: 0 0 8px rgba(34, 197, 94, 0.4); }
+.service-dot.degraded { background: #f59e0b; box-shadow: 0 0 8px rgba(245, 158, 11, 0.4); }
+.service-dot.offline { background: #ef4444; box-shadow: 0 0 8px rgba(239, 68, 68, 0.4); }
+.service-dot.checking { background: #6b7280; animation: dot-blink 1s ease-in-out infinite; }
+.service-dot.external { background: #8b5cf6; box-shadow: 0 0 8px rgba(139, 92, 246, 0.4); }
+
+@keyframes dot-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.service-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.service-name {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.service-desc {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-top: 0.15rem;
+}
+
+.service-status {
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0.25rem 0.75rem;
+  border-radius: 2rem;
+  white-space: nowrap;
+}
+
+.service-status.online { color: #22c55e; background: rgba(34, 197, 94, 0.1); }
+.service-status.degraded { color: #f59e0b; background: rgba(245, 158, 11, 0.1); }
+.service-status.offline { color: #ef4444; background: rgba(239, 68, 68, 0.1); }
+.service-status.checking { color: #6b7280; background: rgba(107, 114, 128, 0.1); }
+.service-status.external { color: #8b5cf6; background: rgba(139, 92, 246, 0.1); }
+
+.service-latency {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  min-width: 60px;
+  text-align: right;
+}
+
+/* ── Incidents ── */
+.status-incidents {
+  max-width: 900px;
+  margin: 3rem auto 0;
+  padding: 0 1.5rem 3rem;
+}
+
+.status-incidents h2 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+.incident-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.incident-card {
+  padding: 1rem 1.25rem;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 0.75rem;
+  border-left: 3px solid;
+}
+
+.incident-card.maintenance { border-left-color: #3b82f6; }
+.incident-card.minor { border-left-color: #f59e0b; }
+.incident-card.major { border-left-color: #ef4444; }
+
+.incident-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.35rem;
+}
+
+.incident-title {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.incident-date {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.incident-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.incident-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.15rem 0.5rem;
+  border-radius: 1rem;
+  margin-left: 0.5rem;
+  text-transform: uppercase;
+}
+
+.incident-badge.resolved { color: #22c55e; background: rgba(34, 197, 94, 0.1); }
+.incident-badge.ongoing { color: #ef4444; background: rgba(239, 68, 68, 0.1); }
+
+/* ── Auto-refresh ── */
+.status-refresh-bar {
+  max-width: 900px;
+  margin: 1.5rem auto 0;
+  padding: 0 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.refresh-info {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.refresh-btn {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--text-primary);
+  padding: 0.4rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: all 0.2s;
+}
+
+.refresh-btn:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .status-global {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
+
+  .status-global-time {
+    margin-left: 0;
+  }
+
+  .status-service {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .service-latency {
+    min-width: auto;
+    text-align: left;
+  }
+}

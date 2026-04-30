@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="Mes Données | VentiStudio. Consultez et gérez l'ensemble des données stockées localement par VentiStudio dans votre navigateur.">
+  <meta name="theme-color" content="#6366f1">
+  <title>Mes Données | VentiStudio</title>
+  <link rel="stylesheet" href="/style.css">
+
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+
+  <script async crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
+  <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
+
+  <meta property="og:title" content="Mes Données | VentiStudio">
+  <meta property="og:description" content="Consultez l'ensemble des données stockées localement par VentiStudio dans votre navigateur.">
+  <meta property="og:url" content="https://ventistudio.eu/mes-donnees/">
+  <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://ventistudio.eu/mes-donnees/">
+
+  <style>
+    /* === Page Mes Données === */
+    .data-page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1rem, 3vw, 2rem) 4rem;
+    }
+
+    .data-hero {
+      text-align: center;
+      padding: clamp(2.5rem, 6vw, 4rem) 1.5rem;
+      border-radius: 1.5rem;
+      background:
+        radial-gradient(ellipse at 25% 25%, rgba(99,102,241,0.18) 0%, transparent 55%),
+        radial-gradient(ellipse at 75% 75%, rgba(139,92,246,0.16) 0%, transparent 55%);
+      margin-bottom: 2rem;
+    }
+    .data-hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--accent);
+      background: rgba(99,102,241,0.10);
+      border: 1px solid rgba(99,102,241,0.28);
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      margin-bottom: 1.25rem;
+    }
+    .data-hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin: 0 0 0.75rem;
+    }
+    .data-hero h1 .grad {
+      background: linear-gradient(135deg, var(--accent), #8b5cf6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .data-hero p {
+      max-width: 680px;
+      margin: 0 auto;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    /* Notice locale */
+    .data-notice {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      padding: 1.1rem 1.25rem;
+      background: var(--glass-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--glass-border);
+      border-left: 3px solid var(--accent);
+      border-radius: 0.9rem;
+      margin-bottom: 2rem;
+    }
+    .data-notice-icon { font-size: 1.5rem; line-height: 1; flex-shrink: 0; }
+    .data-notice strong { color: var(--text-primary); }
+    .data-notice p { margin: 0; color: var(--text-secondary); line-height: 1.6; font-size: 0.92rem; }
+
+    /* Stats */
+    .data-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .data-stat {
+      text-align: center;
+      padding: 1.1rem 0.9rem;
+      background: var(--glass-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--glass-border);
+      border-radius: 0.9rem;
+    }
+    .data-stat-value {
+      font-size: clamp(1.4rem, 3vw, 1.85rem);
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--accent), #8b5cf6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .data-stat-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-secondary);
+      margin-top: 0.25rem;
+    }
+
+    /* Toolbar */
+    .data-toolbar {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.25rem;
+    }
+    .data-search {
+      flex: 1 1 220px;
+      min-width: 200px;
+      padding: 0.55rem 0.9rem;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 0.6rem;
+      color: var(--text-primary);
+      font: inherit;
+    }
+    .data-search:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .data-btn {
+      cursor: pointer;
+      font: inherit;
+      padding: 0.55rem 1rem;
+      border-radius: 0.6rem;
+      border: 1px solid var(--glass-border);
+      background: var(--glass-bg);
+      color: var(--text-primary);
+      transition: filter .2s, transform .15s, border-color .2s;
+    }
+    .data-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
+    .data-btn.primary {
+      background: linear-gradient(135deg, var(--accent), #8b5cf6);
+      color: #fff;
+      border-color: transparent;
+      font-weight: 600;
+    }
+    .data-btn.danger { color: #ff6b6b; border-color: rgba(255,107,107,0.4); }
+    .data-btn.danger:hover { background: rgba(255,107,107,0.12); }
+
+    /* Section */
+    .data-section { margin-bottom: 2.5rem; }
+    .data-section-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .data-section-head h2 {
+      font-size: 1.25rem;
+      margin: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .data-section-head .data-count {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+    }
+    .data-section-desc {
+      color: var(--text-secondary);
+      margin: 0 0 1rem;
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    /* Liste cartes */
+    .data-list {
+      display: grid;
+      gap: 0.75rem;
+    }
+    .data-item {
+      background: var(--glass-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--glass-border);
+      border-radius: 0.9rem;
+      padding: 1rem 1.1rem;
+      transition: border-color .2s, transform .15s;
+    }
+    .data-item:hover { border-color: rgba(99,102,241,0.4); }
+    .data-item-head {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.4rem;
+    }
+    .data-item-key {
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-weight: 700;
+      color: var(--text-primary);
+      word-break: break-all;
+    }
+    .data-item-tag {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.18rem 0.55rem;
+      border-radius: 999px;
+      background: rgba(99,102,241,0.14);
+      color: var(--accent);
+      border: 1px solid rgba(99,102,241,0.28);
+    }
+    .data-item-tag.session { background: rgba(244,185,66,0.14); color: #f4b942; border-color: rgba(244,185,66,0.3); }
+    .data-item-tag.cookie  { background: rgba(214,59,59,0.14); color: #d63b3b; border-color: rgba(214,59,59,0.3); }
+    .data-item-tag.idb     { background: rgba(107,159,94,0.14); color: #6b9f5e; border-color: rgba(107,159,94,0.3); }
+    .data-item-tag.size {
+      background: transparent;
+      color: var(--text-secondary);
+      border-color: var(--glass-border);
+      text-transform: none;
+      letter-spacing: normal;
+      font-weight: 500;
+    }
+    .data-item-desc {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin: 0 0 0.5rem;
+      line-height: 1.5;
+    }
+    .data-item-value {
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 0.82rem;
+      background: rgba(0,0,0,0.18);
+      border: 1px dashed var(--glass-border);
+      border-radius: 0.5rem;
+      padding: 0.55rem 0.7rem;
+      color: var(--text-primary);
+      word-break: break-all;
+      white-space: pre-wrap;
+      max-height: 6.5rem;
+      overflow: auto;
+      margin-bottom: 0.6rem;
+    }
+    [data-theme="light"] .data-item-value { background: rgba(0,0,0,0.04); }
+    .data-item-actions {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .data-item-actions .data-btn {
+      padding: 0.35rem 0.7rem;
+      font-size: 0.82rem;
+    }
+
+    .data-empty {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: var(--text-secondary);
+      background: var(--glass-bg);
+      border: 1px dashed var(--glass-border);
+      border-radius: 0.9rem;
+      font-style: italic;
+    }
+
+    /* Toast */
+    .data-toast {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: rgba(20,22,32,0.94);
+      color: #fff;
+      padding: 0.7rem 1.2rem;
+      border-radius: 0.7rem;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.35);
+      border: 1px solid rgba(255,255,255,0.12);
+      font-size: 0.9rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .25s, transform .25s;
+      z-index: 99999;
+    }
+    .data-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    .data-toast.success { border-color: rgba(76,175,80,0.5); }
+    .data-toast.error   { border-color: rgba(255,107,107,0.5); color: #ffb4b4; }
+
+    @media (max-width: 640px) {
+      .data-section-head { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="/favicon.avif" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
+      <span>VentiStudio</span>
+    </div>
+    <button class="nav-burger" id="nav-burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="main-nav" class="main-nav" aria-label="Navigation principale">
+      <a href="/" class="nav-link">Accueil</a>
+
+      <details class="nav-group">
+        <summary class="nav-link">Découvrir
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel" role="menu">
+          <a href="/evaluation">Évaluation</a>
+          <a href="/wiki">Wiki</a>
+          <a href="/glossary">Glossaire</a>
+          <a href="/news">News</a>
+          <a href="/blog">Blog</a>
+          <a href="/calendar">Calendrier</a>
+          <a href="/cookbook">Cookbook</a>
+          <a href="/gallery">Galerie</a>
+          <a href="/atlas">Atlas</a>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Univers
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel" role="menu">
+          <a href="/aokiunivers">AOKI Universe</a>
+          <a href="/allofaokiunivers">All AOKI</a>
+          <a href="/university">Université</a>
+          <a href="/history">Histoire</a>
+          <a href="/memorial">Mémorial</a>
+          <a href="/ester-eggs">Easter eggs</a>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Outils
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Applications</h4>
+            <a href="/player">Lecteur</a>
+            <a href="/music">Musique</a>
+            <a href="/pip">PIP</a>
+            <a href="/whiteboard">Whiteboard</a>
+            <a href="/portfolio">Portfolio</a>
+            <a href="/gmod">GMod</a>
+          </div>
+          <div class="nav-col">
+            <h4>Domaines</h4>
+            <a href="/domain/aina">AINA</a>
+            <a href="/domain/archive">Archive</a>
+            <a href="/domain/maps">Maps</a>
+            <a href="/domain/movie">Movie</a>
+            <a href="/domain/peer">Peer</a>
+            <a href="/domain/pro">Pro</a>
+            <a href="/domain/search">Search</a>
+            <a href="/domain/suite">Suite</a>
+          </div>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Communauté
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Équipe</h4>
+            <a href="/personnel/">Équipe</a>
+            <a href="/hierarchie-staff">Hiérarchie</a>
+            <a href="/hypesquad">Hypesquad</a>
+            <a href="/jobs">Emplois</a>
+            <a href="/birthday">Anniversaires</a>
+          </div>
+          <div class="nav-col">
+            <h4>Réseaux</h4>
+            <a href="/discord">Discord</a>
+            <a href="/teamspeak">TeamSpeak</a>
+            <a href="/steam">Steam</a>
+            <a href="/social">Réseaux sociaux</a>
+          </div>
+          <div class="nav-col">
+            <h4>Activités</h4>
+            <a href="/artist">Artistes</a>
+            <a href="/quests">Quêtes</a>
+            <a href="/suboawards">Suboawards</a>
+            <a href="/eConcert">eConcert</a>
+          </div>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Plus
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Aide</h4>
+            <a href="/contact">Contact</a>
+            <a href="/faq">FAQ</a>
+            <a href="/status">Statut</a>
+            <a href="/sitemap">Plan du site</a>
+          </div>
+          <div class="nav-col">
+            <h4>Soutien</h4>
+            <a href="/donate">Faire un don</a>
+            <a href="/gold">Gold</a>
+            <a href="/customization">Personnalisation</a>
+            <a href="/mes-donnees">Mes Données</a>
+            <a href="/newsletter">Newsletter</a>
+          </div>
+          <div class="nav-col">
+            <h4>À propos</h4>
+            <a href="/company">Entreprise</a>
+            <a href="/acknowledgements">Remerciements</a>
+            <a href="/logo">Logo</a>
+            <a href="/tags">Tags</a>
+            <a href="/memory">Mémoire</a>
+            <a href="/why-not-use-roblox">Pourquoi pas Roblox</a>
+            <a href="/lawful">Mentions légales</a>
+          </div>
+        </div>
+      </details>
+    </nav>
+    <div class="controls" role="toolbar" aria-label="Contrôles">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
+          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
+          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
+        </svg>
+      </button>
+      <div id="user-button" role="region" aria-label="Authentification"><button class="cta" id="auth-fallback-btn" onclick="window.location.href='https://accounts.ventistudio.eu/sign-in?redirect_url='+encodeURIComponent(window.location.href)" style="padding:0.5rem 1.25rem;font-size:0.9rem;margin:0"><span>Se connecter</span></button></div>
+    </div>
+  </header>
+
+  <main>
+    <div class="data-page">
+      <!-- Hero -->
+      <section class="data-hero">
+        <div class="data-hero-badge">
+          <span aria-hidden="true">🔒</span>
+          100 % local — rien ne quitte votre navigateur
+        </div>
+        <h1>Mes <span class="grad">Données</span></h1>
+        <p>Tout ce que VentiStudio conserve sur cet appareil, classé par emplacement. Vous pouvez consulter, copier, exporter ou effacer chaque entrée à tout moment.</p>
+      </section>
+
+      <!-- Notice -->
+      <div class="data-notice" role="note">
+        <span class="data-notice-icon" aria-hidden="true">ℹ️</span>
+        <p>
+          <strong>Toutes les données listées ci-dessous sont stockées localement</strong> dans votre navigateur (sur cet appareil uniquement). VentiStudio n'y accède pas à distance.<br>
+          <small>Les autres données — compte Clerk (authentification), envois e-mail, paiements, journaux serveur — sont gérées par leurs prestataires respectifs et ne sont donc pas visibles ici. Pour ces dernières, voir <a href="/lawful/cookies">Confidentialité</a> et <a href="/contact">Contact</a> pour exercer vos droits.</small>
+        </p>
+      </div>
+
+      <!-- Stats -->
+      <section class="data-stats" aria-label="Statistiques globales">
+        <div class="data-stat">
+          <div class="data-stat-value" id="stat-total">—</div>
+          <div class="data-stat-label">Entrées totales</div>
+        </div>
+        <div class="data-stat">
+          <div class="data-stat-value" id="stat-size">—</div>
+          <div class="data-stat-label">Espace utilisé</div>
+        </div>
+        <div class="data-stat">
+          <div class="data-stat-value" id="stat-local">—</div>
+          <div class="data-stat-label">localStorage</div>
+        </div>
+        <div class="data-stat">
+          <div class="data-stat-value" id="stat-session">—</div>
+          <div class="data-stat-label">sessionStorage</div>
+        </div>
+      </section>
+
+      <!-- Toolbar -->
+      <div class="data-toolbar">
+        <input type="search" id="data-search" class="data-search" placeholder="Rechercher une clé ou une valeur…" aria-label="Filtrer les données">
+        <button type="button" class="data-btn" id="btn-refresh">↻ Rafraîchir</button>
+        <button type="button" class="data-btn primary" id="btn-export">⬇ Exporter (JSON)</button>
+        <button type="button" class="data-btn danger" id="btn-clear-all">🗑 Tout effacer</button>
+      </div>
+
+      <!-- localStorage -->
+      <section class="data-section" id="section-local">
+        <div class="data-section-head">
+          <h2>📦 localStorage <span class="data-count" id="count-local">0</span></h2>
+        </div>
+        <p class="data-section-desc">Données persistantes — conservées entre les visites jusqu'à effacement manuel ou réinitialisation du navigateur.</p>
+        <div class="data-list" id="list-local"></div>
+      </section>
+
+      <!-- sessionStorage -->
+      <section class="data-section" id="section-session">
+        <div class="data-section-head">
+          <h2>⏱️ sessionStorage <span class="data-count" id="count-session">0</span></h2>
+        </div>
+        <p class="data-section-desc">Données temporaires — effacées automatiquement à la fermeture de l'onglet.</p>
+        <div class="data-list" id="list-session"></div>
+      </section>
+
+      <!-- Cookies (premier-partie) -->
+      <section class="data-section" id="section-cookies">
+        <div class="data-section-head">
+          <h2>🍪 Cookies <span class="data-count" id="count-cookies">0</span></h2>
+        </div>
+        <p class="data-section-desc">Cookies de ce domaine accessibles depuis le navigateur. Les cookies marqués <code>HttpOnly</code> (sécurité, authentification) ne sont pas visibles ici, c'est volontaire.</p>
+        <div class="data-list" id="list-cookies"></div>
+      </section>
+
+      <!-- IndexedDB -->
+      <section class="data-section" id="section-idb">
+        <div class="data-section-head">
+          <h2>🗄️ IndexedDB <span class="data-count" id="count-idb">0</span></h2>
+        </div>
+        <p class="data-section-desc">Bases de données locales utilisées par certaines applications du site (lecteur, cache).</p>
+        <div class="data-list" id="list-idb"></div>
+      </section>
+
+      <!-- Cache Storage -->
+      <section class="data-section" id="section-cache">
+        <div class="data-section-head">
+          <h2>⚡ Cache Storage <span class="data-count" id="count-cache">0</span></h2>
+        </div>
+        <p class="data-section-desc">Caches utilisés par le Service Worker (mode hors-ligne, pages mises en cache).</p>
+        <div class="data-list" id="list-cache"></div>
+      </section>
+    </div>
+  </main>
+
+  <div class="data-toast" id="data-toast" role="status" aria-live="polite"></div>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Outils</h4>
+        <ul>
+          <li><a href="/pip">PIP</a></li>
+          <li><a href="/sitemap">Plan du site</a></li>
+          <li><a href="https://status.ventistudio.eu/">Statut</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Confidentialité</h4>
+        <ul>
+          <li><a href="/lawful/cookies">Politique cookies</a></li>
+          <li><a href="/lawful/tos">Conditions d'utilisation</a></li>
+          <li><a href="/customization">Personnalisation</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Aide</h4>
+        <ul>
+          <li><a href="/contact">Contact</a></li>
+          <li><a href="/faq">FAQ</a></li>
+          <li><a href="/lawful/support">Assistance</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <a href="https://status.ventistudio.eu/" class="status" target="_blank" rel="noopener noreferrer">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span>Statut des services</span>
+      </a>
+      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <script src="/main.js" defer></script>
+  <script>
+  (function() {
+    'use strict';
+
+    // ── Catalogue des clés connues (description humaine) ──
+    var KEY_CATALOG = [
+      { match: 'theme',                              label: 'Thème (clair / sombre)' },
+      { match: 'afk-disabled',                       label: 'Notification d\'inactivité désactivée' },
+      { match: 'vs-ee-unlocked',                     label: 'Easter eggs débloqués' },
+      { match: 'vs-ee-pages',                        label: 'Pages visitées (easter eggs)' },
+      { match: 'vs-hypesquad-house',                 label: 'Maison Hypesquad choisie' },
+      { match: 'vs-search-settings',                 label: 'Préférences de recherche' },
+      { match: 'vs-search-history',                  label: 'Historique de recherche' },
+      { match: 'pip-protection-history',             label: 'Historique de protection PIP' },
+      { match: 'gold-access',                        label: 'Accès Gold' },
+      { match: 'detectedCountry',                    label: 'Pays détecté' },
+      { match: 'detectedCountryCode',                label: 'Code pays détecté' },
+      { match: 'ventistudio_newsletter_subscribers', label: 'Abonnés newsletter (cache local)' },
+      { match: 'ventistudio_email_log',              label: 'Journal e-mails (cache local)' },
+      { match: 'ventistudio_newsletter_actions',     label: 'Actions newsletter' },
+      { prefix: 'vs_suite_',                         label: 'Données VentiStudio Suite' },
+      { prefix: 'vs-',                               label: 'Donnée VentiStudio' },
+      { prefix: 'ventistudio_',                      label: 'Donnée VentiStudio' },
+      { prefix: 'cookbook-',                         label: 'Donnée Cookbook' },
+      { prefix: 'quests-',                           label: 'Donnée Quêtes' }
+    ];
+
+    function describe(key) {
+      for (var i = 0; i < KEY_CATALOG.length; i++) {
+        var c = KEY_CATALOG[i];
+        if (c.match && c.match === key) return c.label;
+        if (c.prefix && key.indexOf(c.prefix) === 0) return c.label;
+      }
+      return 'Donnée locale';
+    }
+
+    function isVentiKey(key) {
+      // On affiche tout sauf clés tierces évidentes
+      var thirdParty = ['__clerk', 'clerk-', '_grecaptcha', '_ga', '_gid', '_fbp'];
+      for (var i = 0; i < thirdParty.length; i++) {
+        if (key.indexOf(thirdParty[i]) === 0) return false;
+      }
+      return true;
+    }
+
+    function bytes(n) {
+      if (n < 1024) return n + ' o';
+      if (n < 1024 * 1024) return (n / 1024).toFixed(1) + ' Ko';
+      return (n / (1024 * 1024)).toFixed(2) + ' Mo';
+    }
+    function byteLength(s) { return new Blob([s || '']).size; }
+
+    function escHtml(s) {
+      return String(s == null ? '' : s)
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    }
+
+    function gather(scope) {
+      var store = (scope === 'local') ? localStorage : sessionStorage;
+      var out = [];
+      for (var i = 0; i < store.length; i++) {
+        var k = store.key(i);
+        if (!isVentiKey(k)) continue;
+        var v = store.getItem(k) || '';
+        out.push({ key: k, value: v, scope: scope, size: byteLength(k) + byteLength(v), label: describe(k) });
+      }
+      out.sort(function(a, b) { return a.key.localeCompare(b.key); });
+      return out;
+    }
+
+    function gatherCookies() {
+      if (!document.cookie) return [];
+      return document.cookie.split(';').map(function(c) {
+        var idx = c.indexOf('=');
+        var k = (idx > -1 ? c.substring(0, idx) : c).trim();
+        var v = idx > -1 ? c.substring(idx + 1) : '';
+        return { key: k, value: decodeURIComponent(v || ''), scope: 'cookie', size: byteLength(k) + byteLength(v), label: 'Cookie ' + (k.indexOf('clerk') === 0 || k.indexOf('__') === 0 ? 'tiers (auth)' : 'navigation') };
+      }).filter(function(c) { return c.key; });
+    }
+
+    async function gatherIDB() {
+      if (!('databases' in indexedDB)) return [];
+      try {
+        var dbs = await indexedDB.databases();
+        return dbs.filter(function(d) { return d.name; }).map(function(d) {
+          return { key: d.name, value: 'Version ' + (d.version || 1), scope: 'idb', size: 0, label: 'Base IndexedDB' };
+        });
+      } catch (_) { return []; }
+    }
+
+    async function gatherCaches() {
+      if (!('caches' in window)) return [];
+      try {
+        var names = await caches.keys();
+        var result = [];
+        for (var i = 0; i < names.length; i++) {
+          try {
+            var c = await caches.open(names[i]);
+            var keys = await c.keys();
+            result.push({ key: names[i], value: keys.length + ' ressource(s) en cache', scope: 'cache', size: 0, label: 'Cache Service Worker' });
+          } catch (_) {}
+        }
+        return result;
+      } catch (_) { return []; }
+    }
+
+    var STATE = { local: [], session: [], cookies: [], idb: [], cache: [], filter: '' };
+
+    function matchesFilter(item) {
+      if (!STATE.filter) return true;
+      var f = STATE.filter.toLowerCase();
+      return item.key.toLowerCase().indexOf(f) > -1
+        || (item.value || '').toLowerCase().indexOf(f) > -1
+        || (item.label || '').toLowerCase().indexOf(f) > -1;
+    }
+
+    function renderItem(item) {
+      var tagClass = item.scope === 'session' ? 'session'
+                   : item.scope === 'cookie'  ? 'cookie'
+                   : item.scope === 'idb'     ? 'idb'
+                   : item.scope === 'cache'   ? 'idb'
+                   : '';
+      var canDelete = item.scope === 'local' || item.scope === 'session' || item.scope === 'cookie';
+      return '' +
+        '<article class="data-item">' +
+          '<div class="data-item-head">' +
+            '<span class="data-item-key">' + escHtml(item.key) + '</span>' +
+            '<span class="data-item-tag ' + tagClass + '">' + escHtml(item.scope) + '</span>' +
+            (item.size ? '<span class="data-item-tag size">' + bytes(item.size) + '</span>' : '') +
+          '</div>' +
+          '<p class="data-item-desc">' + escHtml(item.label) + '</p>' +
+          '<pre class="data-item-value">' + escHtml(item.value || '(vide)') + '</pre>' +
+          '<div class="data-item-actions">' +
+            '<button type="button" class="data-btn" data-act="copy" data-key="' + escHtml(item.key) + '" data-scope="' + item.scope + '">📋 Copier</button>' +
+            (canDelete ? '<button type="button" class="data-btn danger" data-act="delete" data-key="' + escHtml(item.key) + '" data-scope="' + item.scope + '">Supprimer</button>' : '') +
+          '</div>' +
+        '</article>';
+    }
+
+    function renderList(target, items, emptyMsg) {
+      var filtered = items.filter(matchesFilter);
+      var el = document.getElementById(target);
+      if (!filtered.length) {
+        el.innerHTML = '<div class="data-empty">' + escHtml(emptyMsg || 'Aucune donnée pour le moment.') + '</div>';
+        return;
+      }
+      el.innerHTML = filtered.map(renderItem).join('');
+    }
+
+    function refreshStats() {
+      var totalBytes = 0;
+      var n = STATE.local.length + STATE.session.length + STATE.cookies.length + STATE.idb.length + STATE.cache.length;
+      [STATE.local, STATE.session, STATE.cookies].forEach(function(arr) {
+        arr.forEach(function(i) { totalBytes += i.size || 0; });
+      });
+      document.getElementById('stat-total').textContent   = n;
+      document.getElementById('stat-size').textContent    = bytes(totalBytes);
+      document.getElementById('stat-local').textContent   = STATE.local.length;
+      document.getElementById('stat-session').textContent = STATE.session.length;
+
+      document.getElementById('count-local').textContent   = STATE.local.length;
+      document.getElementById('count-session').textContent = STATE.session.length;
+      document.getElementById('count-cookies').textContent = STATE.cookies.length;
+      document.getElementById('count-idb').textContent     = STATE.idb.length;
+      document.getElementById('count-cache').textContent   = STATE.cache.length;
+    }
+
+    async function loadAll() {
+      STATE.local   = gather('local');
+      STATE.session = gather('session');
+      STATE.cookies = gatherCookies();
+      STATE.idb     = await gatherIDB();
+      STATE.cache   = await gatherCaches();
+      renderAll();
+    }
+
+    function renderAll() {
+      renderList('list-local',   STATE.local,   'Aucune donnée persistante.');
+      renderList('list-session', STATE.session, 'Aucune donnée de session.');
+      renderList('list-cookies', STATE.cookies, 'Aucun cookie accessible.');
+      renderList('list-idb',     STATE.idb,     'Aucune base IndexedDB.');
+      renderList('list-cache',   STATE.cache,   'Aucun cache Service Worker.');
+      refreshStats();
+    }
+
+    function toast(msg, type) {
+      var t = document.getElementById('data-toast');
+      t.textContent = msg;
+      t.className = 'data-toast show ' + (type || '');
+      setTimeout(function() { t.classList.remove('show'); }, 2400);
+    }
+
+    // ── Actions ──
+    document.addEventListener('click', async function(e) {
+      var btn = e.target.closest('[data-act]');
+      if (!btn) return;
+      var act = btn.getAttribute('data-act');
+      var key = btn.getAttribute('data-key');
+      var scope = btn.getAttribute('data-scope');
+
+      if (act === 'copy') {
+        var item;
+        if (scope === 'local')        item = STATE.local.find(function(i) { return i.key === key; });
+        else if (scope === 'session') item = STATE.session.find(function(i) { return i.key === key; });
+        else if (scope === 'cookie')  item = STATE.cookies.find(function(i) { return i.key === key; });
+        try {
+          await navigator.clipboard.writeText((item && item.value) || '');
+          toast('Valeur copiée', 'success');
+        } catch (_) {
+          toast('Copie impossible', 'error');
+        }
+      }
+
+      if (act === 'delete') {
+        if (!confirm('Supprimer définitivement « ' + key + ' » ?')) return;
+        if (scope === 'local')   localStorage.removeItem(key);
+        if (scope === 'session') sessionStorage.removeItem(key);
+        if (scope === 'cookie') {
+          // Supprimer le cookie : path racine, expire dans le passé
+          document.cookie = key + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+          document.cookie = key + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; domain=' + location.hostname;
+        }
+        toast('« ' + key + ' » supprimé', 'success');
+        await loadAll();
+      }
+    });
+
+    document.getElementById('btn-refresh').addEventListener('click', loadAll);
+
+    document.getElementById('btn-export').addEventListener('click', function() {
+      var payload = {
+        exportedAt: new Date().toISOString(),
+        origin: location.origin,
+        localStorage: STATE.local,
+        sessionStorage: STATE.session,
+        cookies: STATE.cookies,
+        indexedDB: STATE.idb,
+        caches: STATE.cache
+      };
+      var blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = 'ventistudio-mes-donnees-' + new Date().toISOString().slice(0, 10) + '.json';
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(function() { URL.revokeObjectURL(url); }, 1000);
+      toast('Export téléchargé', 'success');
+    });
+
+    document.getElementById('btn-clear-all').addEventListener('click', async function() {
+      if (!confirm('Effacer TOUTES les données VentiStudio sur cet appareil ?\n\nCela inclut : préférences, easter eggs, paramètres, caches…\nVotre compte (Clerk) ne sera PAS affecté.')) return;
+      // localStorage
+      STATE.local.forEach(function(i) { localStorage.removeItem(i.key); });
+      // sessionStorage
+      STATE.session.forEach(function(i) { sessionStorage.removeItem(i.key); });
+      // cookies
+      STATE.cookies.forEach(function(i) {
+        document.cookie = i.key + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+        document.cookie = i.key + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; domain=' + location.hostname;
+      });
+      // IndexedDB
+      for (var j = 0; j < STATE.idb.length; j++) {
+        try { indexedDB.deleteDatabase(STATE.idb[j].key); } catch (_) {}
+      }
+      // Caches
+      if ('caches' in window) {
+        for (var k = 0; k < STATE.cache.length; k++) {
+          try { await caches.delete(STATE.cache[k].key); } catch (_) {}
+        }
+      }
+      toast('Données VentiStudio effacées', 'success');
+      await loadAll();
+    });
+
+    var searchEl = document.getElementById('data-search');
+    searchEl.addEventListener('input', function() {
+      STATE.filter = this.value.trim();
+      renderAll();
+    });
+
+    // ── Navbar mobile + active link (pattern partagé) ──
+    (function navInit() {
+      var burger = document.getElementById('nav-burger');
+      var nav = document.getElementById('main-nav');
+      if (burger && nav) {
+        burger.addEventListener('click', function() {
+          var open = nav.classList.toggle('is-open');
+          burger.setAttribute('aria-expanded', open);
+        });
+        document.addEventListener('click', function(e) {
+          if (!nav.contains(e.target) && !burger.contains(e.target)) {
+            nav.classList.remove('is-open');
+            burger.setAttribute('aria-expanded', 'false');
+            document.querySelectorAll('.nav-group[open]').forEach(function(g) { g.removeAttribute('open'); });
+          }
+        });
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape') {
+            nav.classList.remove('is-open');
+            burger.setAttribute('aria-expanded', 'false');
+            document.querySelectorAll('.nav-group[open]').forEach(function(g) { g.removeAttribute('open'); });
+          }
+        });
+        document.querySelectorAll('.nav-group').forEach(function(g) {
+          g.addEventListener('toggle', function() {
+            if (g.open) {
+              document.querySelectorAll('.nav-group[open]').forEach(function(o) { if (o !== g) o.removeAttribute('open'); });
+            }
+          });
+        });
+      }
+      // Active link
+      var path = location.pathname.replace(/\/$/, '') || '/';
+      document.querySelectorAll('#main-nav a').forEach(function(a) {
+        var href = (a.getAttribute('href') || '').replace(/\/$/, '') || '/';
+        if (href === path) a.setAttribute('aria-current', 'page');
+      });
+    })();
+
+    // ── Boot ──
+    document.addEventListener('DOMContentLoaded', loadAll);
+  })();
+  </script>
+</body>
+</html>

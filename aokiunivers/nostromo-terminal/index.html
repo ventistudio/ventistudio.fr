@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="APOLLO CORE — Terminal Sevastopol — Aoki Univers / VentiStudio">
+  <meta name="theme-color" content="#e8a400">
+  <meta property="og:title" content="APOLLO CORE — Terminal Sevastopol">
+  <meta property="og:site_name" content="VentiStudio">
+  <meta property="og:url" content="https://ventistudio.eu/aokiunivers/nostromo-terminal/">
+  <meta property="og:description" content="Accédez au terminal APOLLO CORE — Station Sevastopol / JAHAAKA — Weyland-Yutani Corporation.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
+  <link rel="icon" type="image/avif" href="../../favicon.avif">
+  <title>APOLLO CORE | Terminal Sevastopol</title>
+  <link rel="canonical" href="https://ventistudio.eu/aokiunivers/nostromo-terminal/">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+    :root{--c:#e8a400;--cdim:#a06d00;--cdk:#2a1e00;--cwarn:#ff7800;--cerr:#e83000;--cinfo:#f5cc60;--cbg:#020100;--cglow:0 0 8px rgba(232,164,0,0.45),0 0 30px rgba(232,164,0,0.1)}
+    *{margin:0;padding:0;box-sizing:border-box}
+    html,body{width:100%;height:100%;overflow:hidden;background:#000;font-family:'Share Tech Mono','Courier New',monospace}
+    .outer{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse at center,#0a0600 0%,#000 75%)}
+    .bezel{position:relative;width:min(98vw,1240px);height:min(94vh,860px);background:#111008;border:2px solid #1e1600;box-shadow:0 0 0 1px #000,inset 0 0 40px rgba(0,0,0,0.9),0 0 80px rgba(232,164,0,0.05),0 30px 80px rgba(0,0,0,0.9);display:flex;flex-direction:column}
+    .bezel-top{flex-shrink:0;height:10px;background:repeating-linear-gradient(-45deg,#e8a400 0px,#e8a400 6px,#000 6px,#000 12px);opacity:0.6}
+    .bezel-label{flex-shrink:0;display:flex;justify-content:space-between;align-items:center;padding:4px 16px;background:#0a0800;border-bottom:1px solid #1e1600;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#4a3500}
+    .bezel-label .wycorp{color:var(--cdim)}
+    .screen-wrap{flex:1;position:relative;overflow:hidden;background:var(--cbg);border:1px solid #1a1200}
+    .bezel-bot{flex-shrink:0;height:10px;background:repeating-linear-gradient(-45deg,#e8a400 0px,#e8a400 6px,#000 6px,#000 12px);opacity:0.4}
+    .screw{position:absolute;width:8px;height:8px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#2a1e00,#0d0900);box-shadow:inset 0 1px 2px rgba(232,164,0,0.08);z-index:200}
+    .screw::after{content:'';position:absolute;top:50%;left:15%;right:15%;height:1px;background:#050300;transform:rotate(45deg)}
+    .screw.tl{top:22px;left:6px}.screw.tr{top:22px;right:6px}.screw.bl{bottom:22px;left:6px}.screw.br{bottom:22px;right:6px}
+    .power-led{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);width:6px;height:6px;border-radius:50%;background:var(--c);box-shadow:0 0 8px var(--c),0 0 16px var(--c);animation:led 3s ease-in-out infinite}
+    @keyframes led{0%,100%{opacity:1}50%{opacity:0.45;box-shadow:0 0 4px var(--c)}}
+    .scanlines{position:absolute;inset:0;pointer-events:none;z-index:50;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.22) 2px,rgba(0,0,0,0.22) 4px)}
+    .flicker{position:absolute;inset:0;pointer-events:none;z-index:51;animation:flick 0.12s infinite;opacity:0}
+    @keyframes flick{0%{opacity:0.01}8%{opacity:0.05}16%{opacity:0.01}22%{opacity:0.07}30%{opacity:0.01}60%{opacity:0.02}100%{opacity:0.01}}
+    .vignette{position:absolute;inset:0;pointer-events:none;z-index:49;background:radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,0.75) 100%)}
+    .crt-curve{position:absolute;inset:0;pointer-events:none;z-index:48;box-shadow:inset 0 0 80px rgba(0,0,0,0.5)}
+    .scan-moving{position:absolute;left:0;width:100%;height:3px;background:linear-gradient(transparent,rgba(232,164,0,0.07),transparent);pointer-events:none;z-index:53;animation:scan 12s linear infinite}
+    @keyframes scan{0%{top:-3px}100%{top:100%}}
+    .rgb-glitch{position:absolute;inset:0;pointer-events:none;z-index:52;opacity:0;animation:glitch 14s ease-in-out infinite}
+    @keyframes glitch{0%,94%{opacity:0}95%{opacity:1;box-shadow:-2px 0 rgba(255,80,0,0.1),2px 0 rgba(200,60,0,0.1)}96%{opacity:0}98%{opacity:1;box-shadow:1px 0 rgba(255,100,0,0.08),-1px 0 rgba(200,60,0,0.08)}99%{opacity:0}}
+    .screen{position:relative;z-index:10;width:100%;height:100%;display:flex;flex-direction:column}
+    .header{flex-shrink:0;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:10px 18px 8px;border-bottom:1px solid var(--cdk);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--cdim);text-shadow:var(--cglow);background:rgba(232,164,0,0.02)}
+    .header-left{display:flex;flex-direction:column;gap:1px}
+    .header-mid{text-align:center}
+    .header-right{display:flex;flex-direction:column;align-items:flex-end;gap:1px}
+    .apollo-name{color:var(--c);font-size:14px;letter-spacing:3px;font-weight:bold}
+    .wey-sub{font-size:9px;color:var(--cdim);opacity:0.7}
+    .status-row{display:flex;gap:12px;align-items:center;font-size:10px}
+    .sdot{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--c);box-shadow:0 0 5px var(--c);animation:led 2.5s ease-in-out infinite}
+    .sdot.w{background:var(--cwarn);box-shadow:0 0 5px var(--cwarn)}
+    .sdot.e{background:var(--cerr);box-shadow:0 0 5px var(--cerr)}
+    .sievert-bar{flex-shrink:0;display:flex;align-items:center;gap:10px;padding:4px 18px;background:rgba(232,164,0,0.015);border-bottom:1px solid var(--cdk);font-size:9px;letter-spacing:1px;color:var(--cdim)}
+    .sievert-scale{display:flex;gap:2px}
+    .sievert-seg{width:18px;height:6px;background:var(--cdk);transition:background 0.3s}
+    .sievert-seg.a{background:var(--c);box-shadow:0 0 4px var(--c)}
+    .sievert-seg.w{background:var(--cwarn);box-shadow:0 0 4px var(--cwarn)}
+    .sievert-seg.e{background:var(--cerr);box-shadow:0 0 4px var(--cerr);animation:led 0.4s ease-in-out infinite}
+    .motion-tracker{margin-left:auto;display:flex;align-items:center;gap:6px;font-size:9px;color:var(--cdim)}
+    .mdot{width:5px;height:5px;border-radius:50%;background:var(--cdk);animation:mblink 2.3s step-end infinite}
+    @keyframes mblink{0%,80%{background:var(--cdk)}85%,95%{background:var(--c);box-shadow:0 0 4px var(--c)}100%{background:var(--cdk)}}
+    .term-body{flex:1;overflow-y:auto;padding:14px 18px;color:var(--c);font-size:13.5px;line-height:1.65;text-shadow:0 0 7px rgba(232,164,0,0.22);scroll-behavior:smooth}
+    .term-body::-webkit-scrollbar{width:5px}
+    .term-body::-webkit-scrollbar-track{background:transparent}
+    .term-body::-webkit-scrollbar-thumb{background:var(--cdk)}
+    .term-body::-webkit-scrollbar-thumb:hover{background:var(--cdim)}
+    .line{margin-bottom:1px;white-space:pre-wrap;word-wrap:break-word}
+    .cmd{color:var(--c);opacity:0.65}
+    .err{color:var(--cerr);text-shadow:0 0 8px rgba(232,48,0,0.4)}
+    .warn{color:var(--cwarn);text-shadow:0 0 7px rgba(255,120,0,0.3)}
+    .ok{color:var(--c)}
+    .info{color:var(--cinfo);text-shadow:0 0 7px rgba(245,204,96,0.3)}
+    .sys{color:var(--cdim);font-size:11px;opacity:0.55}
+    .hdr{color:var(--c);font-size:11px;border-bottom:1px solid var(--cdk);padding-bottom:3px;margin:6px 0 3px;text-transform:uppercase;letter-spacing:3px}
+    .classified{color:var(--cwarn);background:rgba(255,120,0,0.05);border-left:3px solid var(--cwarn);padding:6px 12px;margin:5px 0}
+    .ascii-art{color:var(--c);font-size:9.5px;line-height:1.15;text-shadow:0 0 4px rgba(232,164,0,0.35);margin:3px 0}
+    .pbar-wrap{display:inline-block;width:180px;height:10px;border:1px solid var(--cdim);position:relative;vertical-align:middle;margin:3px 8px}
+    .pbar-fill{height:100%;background:var(--c);box-shadow:0 0 6px rgba(232,164,0,0.35);transition:width 0.08s linear}
+    #boot-matrix{position:absolute;inset:0;z-index:40;background:var(--cbg)}
+    #boot-matrix canvas{width:100%;height:100%}
+    .input-row{flex-shrink:0;display:flex;align-items:center;gap:8px;padding:9px 18px 12px;border-top:1px solid var(--cdk);background:rgba(232,164,0,0.015)}
+    .prompt{color:var(--c);font-size:13px;white-space:nowrap;text-shadow:var(--cglow)}
+    #cmd-input{flex:1;background:transparent;border:none;color:var(--c);font-family:'Share Tech Mono','Courier New',monospace;font-size:13.5px;outline:none;caret-color:var(--c);text-shadow:0 0 7px rgba(232,164,0,0.22)}
+    #cmd-input::placeholder{color:var(--cdk);opacity:0.5}
+    .footer{flex-shrink:0;display:flex;justify-content:space-between;padding:3px 18px 6px;font-size:9px;letter-spacing:1px;color:var(--cdk)}
+    .glitch-overlay{position:absolute;inset:0;z-index:100;pointer-events:none;opacity:0}
+    .glitch-overlay.flash{animation:poweron 1.8s ease-out forwards}
+    @keyframes poweron{0%{opacity:1;background:#fff}4%{opacity:0.7;background:var(--c)}8%{opacity:0}11%{opacity:0.4;background:#fff}14%{opacity:0}18%{opacity:0.15;background:var(--c)}22%{opacity:0}}
+    .hw{cursor:pointer;padding:1px 3px;transition:background 0.12s}
+    .hw:hover{background:rgba(232,164,0,0.18);text-decoration:underline}
+    .hw.correct{color:var(--c);background:rgba(232,164,0,0.14)}
+    .hw.wrong{color:var(--cerr);text-decoration:line-through;opacity:0.45}
+    .radio-panel{border:1px solid var(--cdk);padding:10px 14px;margin:6px 0;background:rgba(232,164,0,0.015)}
+    .radio-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px}
+    .radio-sname{color:var(--cinfo);font-size:13px}
+    .radio-stat{font-size:9px;padding:2px 7px;border:1px solid;letter-spacing:1px}
+    .radio-stat.on{color:var(--c);border-color:var(--c)}
+    .radio-stat.off{color:var(--cerr);border-color:var(--cerr)}
+    .rtitle{color:var(--cwarn);font-size:13px}
+    .rartist{color:var(--cdim);font-size:11px}
+    .rctrl{display:flex;gap:12px;font-size:11px;margin-top:6px;color:var(--cdim)}
+    .rctrl span{cursor:pointer;transition:color 0.2s}
+    .rctrl span:hover{color:var(--c);text-shadow:var(--cglow)}
+    .rstation{padding:2px 0;cursor:pointer;transition:color 0.2s}
+    .rstation:hover{color:var(--c)}
+    .rstation.active{color:var(--cinfo)}
+    .np-bar{display:none;overflow:hidden;white-space:nowrap;max-width:240px}
+    .np-bar.on{display:inline-block}
+    .np-text{display:inline-block;animation:np 14s linear infinite;color:var(--cwarn)}
+    @keyframes np{0%{transform:translateX(100%)}100%{transform:translateX(-100%)}}
+    .t-green{--c:#00ff41;--cdim:#00cc33;--cdk:#003b00;--cwarn:#88ff00;--cglow:0 0 8px rgba(0,255,65,0.4)}
+    .t-red{--c:#ff4040;--cdim:#cc2222;--cdk:#3b0000;--cwarn:#ff7722;--cglow:0 0 8px rgba(255,64,64,0.4)}
+    .t-blue{--c:#00bfff;--cdim:#0088bb;--cdk:#002233;--cwarn:#66ddff;--cglow:0 0 8px rgba(0,191,255,0.4)}
+    .t-white{--c:#d0d0d0;--cdim:#909090;--cdk:#303030;--cwarn:#eecc88;--cglow:0 0 5px rgba(208,208,208,0.3)}
+    .power-off{animation:poff 0.5s ease-in forwards}
+    @keyframes poff{0%{transform:scale(1);filter:brightness(1)}50%{transform:scaleY(0.004);filter:brightness(3)}100%{transform:scaleY(0) scaleX(0);opacity:0}}
+    @media(max-width:768px){.bezel{width:100vw;height:100vh}.term-body{font-size:12px;padding:10px 12px}.header{font-size:8px;padding:7px 10px 5px}.apollo-name{font-size:11px}.ascii-art{font-size:7px}}
+  </style>
+</head>
+<body>
+<div class="outer">
+  <div class="bezel">
+    <div class="bezel-top"></div>
+    <div class="bezel-label">
+      <span class="wycorp">WEYLAND-YUTANI CORPORATION — SPECIAL PROJECTS DIVISION</span>
+      <span style="color:#3a2800">SN: AU-7749-SVSTP-002</span>
+    </div>
+    <div class="screw tl"></div><div class="screw tr"></div>
+    <div class="screw bl"></div><div class="screw br"></div>
+    <div class="power-led"></div>
+    <div class="screen-wrap" id="screenWrap">
+      <div class="scanlines"></div><div class="flicker"></div>
+      <div class="vignette"></div><div class="crt-curve"></div>
+      <div class="scan-moving"></div><div class="rgb-glitch"></div>
+      <div class="glitch-overlay" id="glitchOverlay"></div>
+      <div id="boot-matrix"><canvas id="matrixCvs"></canvas></div>
+      <div class="screen" id="screenContent" style="display:none">
+        <div class="header">
+          <div class="header-left">
+            <span class="apollo-name">APOLLO CORE</span>
+            <span class="wey-sub">SCIENCE ARTIFICIAL INTELLIGENCE</span>
+          </div>
+          <div class="header-mid" style="color:var(--cdim);font-size:9px;letter-spacing:2px">STATION SEVASTOPOL / JAHAAKA</div>
+          <div class="header-right">
+            <div class="status-row">
+              <span><span class="sdot"></span> SYS</span>
+              <span><span class="sdot w"></span> HULL</span>
+              <span><span class="sdot e"></span> EQUIP</span>
+              <span id="clock">00:00:00</span>
+            </div>
+          </div>
+        </div>
+        <div class="sievert-bar">
+          <span style="text-transform:uppercase;white-space:nowrap">SIEVERT</span>
+          <div class="sievert-scale">
+            <div class="sievert-seg a"></div><div class="sievert-seg a"></div><div class="sievert-seg a"></div>
+            <div class="sievert-seg w"></div><div class="sievert-seg w"></div><div class="sievert-seg e"></div>
+            <div class="sievert-seg" style="opacity:.2"></div><div class="sievert-seg" style="opacity:.2"></div>
+            <div class="sievert-seg" style="opacity:.2"></div><div class="sievert-seg" style="opacity:.2"></div>
+          </div>
+          <span style="margin-left:6px;color:var(--cwarn)">3.4 uSv/h  WARNING</span>
+          <div class="motion-tracker">
+            <div class="mdot"></div><div class="mdot" style="animation-delay:.4s"></div><div class="mdot" style="animation-delay:.9s"></div>
+            <span>MOTION TRACKER: <span id="motionStatus" style="color:var(--cwarn)">SIGNAL FAIBLE</span></span>
+          </div>
+        </div>
+        <div class="term-body" id="termBody"></div>
+        <div class="input-row" id="inputRow">
+          <span class="prompt">apollo@sevastopol:~$</span>
+          <input type="text" id="cmd-input" autocomplete="off" spellcheck="false" placeholder="Commande...">
+        </div>
+        <div class="footer">
+          <span>SEEGSON COMM. SYS. v4.2 | SEVASTOPOL-JAHAAKA LINK</span>
+          <span id="npBar" class="np-bar">  <span class="np-text" id="npText"></span></span>
+          <span>APOLLO v3.0 | WEYLAND-YUTANI</span>
+        </div>
+      </div>
+    </div>
+    <div class="bezel-bot"></div>
+  </div>
+</div><script>
+(()=>{
+'use strict';
+const $=id=>document.getElementById(id);
+const termBody=$('termBody'),cmdInput=$('cmd-input'),screenWrap=$('screenWrap'),clockEl=$('clock');
+let history=[],histIdx=-1,booted=false,inputLocked=false,bootTime=Date.now();
+let hackInProgress=false,hackAnswer='',hackAttempts=0;
+let radioAudio=null,radioPlaying=false,radioStation='sevastopol',radioTrackIdx=0,radioVolume=0.5;
+
+const stations={
+  sevastopol:{name:'Canal Sevastopol',desc:'Transmissions station JAHAAKA',tracks:[
+    {title:'Arcade Stage',artist:'Venti Opastudien',src:'/a-files/music/ventiopastudien/Neolya Of Aoki Univers 4/Arcade Stage (from Aoki Univers).mp3'},
+    {title:'Jahaaka Combat',artist:'Venti Opastudien',src:'/a-files/music/ventiopastudien/Neolya Of Aoki Univers Deluxe/Jahaaka Combat (from Aoki Univers).mp3'},
+    {title:'Jahaaka Space Unit',artist:'Venti Opastudien',src:'/a-files/music/ventiopastudien/Neolya Of Aoki Univers Deluxe/Jahaaka Space Unit (from Aoki Univers).mp3'},
+    {title:'Legion - Prepare for Battle',artist:'Venti Opastudien',src:'/a-files/music/ventiopastudien/aokiunivers/Legion - Prepare for Battle.mp3'},
+    {title:'Jutsu - Emergency Reverse Propulsion',artist:'Venti Opastudien',src:'/a-files/music/ventiopastudien/aokiunivers/Jutsu - Emergency Reverse Propulsion.mp3'},
+    {title:'Jutsu - Warhead Protocol',artist:'Venti Opastudien',src:'/a-files/music/ventiopastudien/aokiunivers/Jutsu - Warhead Protocol.mp3'},
+    {title:'Seeds - Quantum Research of 7',artist:'Venti Opastudien',src:'/a-files/music/ventiopastudien/aokiunivers/Seeds - Quantum Research of 7.mp3'},
+    {title:'Jutsu - Please Evacuate',artist:'Venti Opastudien',src:'/a-files/music/ventiopastudien/aokiunivers/Jutsu - Please Evacuate.mp3'}
+  ]},
+  aoki:{name:'Memoire Aoki',desc:'Archives univers Aoki',tracks:[
+    {title:'Enfant de la lune',artist:'Venti Opastudien',src:'/a-files/music/ventiopastudien/aokiunivers/Aoki - Enfant de la lune.mp3'},
+    {title:'Kanae - Soothing Medical Breath',artist:'Venti Opastudien',src:'/a-files/music/ventiopastudien/aokiunivers/Kanae - Soothing Medical Breath.mp3'},
+    {title:'Deegle - Le rappel',artist:'Venti Opastudien',src:'/a-files/music/ventiopastudien/aokiunivers/Deegle - Le rappel.mp3'},
+    {title:'Chant du Neant',artist:'Venti Opastudien',src:'/a-files/music/ventiopastudien/neolyaofaokiunivers3/Chant du Neant (from Aoki Univers).mp3'},
+    {title:'Dernier Rite',artist:'Venti Opastudien',src:'/a-files/music/ventiopastudien/neolyaofaokiunivers3/Dernier Rite (from Aoki Univers).mp3'},
+    {title:'Ombre des Etoiles',artist:'Venti Opastudien',src:'/a-files/music/ventiopastudien/neolyaofaokiunivers3/Ombre des Etoiles (from Aoki Univers).mp3'}
+  ]},
+  epic:{name:'Orchestre Cosmique',desc:'Musique epique',tracks:[
+    {title:'Astral Symphony (Epic)',artist:'Venti Opastudien',src:"/a-files/music/ventiopastudien/Time Of Aoki/Teyvat's - Astral Symphony (Epic Orchestral).mp3"},
+    {title:'Enfant de la lune (Epic)',artist:'Venti Opastudien',src:"/a-files/music/ventiopastudien/Time Of Aoki/Aoki - Enfant de la lune (Epic Orchestral).mp3"},
+    {title:"Gardien de l'univers",artist:'Venti Opastudien',src:"/a-files/music/ventiopastudien/Gardien de l'univers/Gardien de l'univers - Epic.mp3"},
+    {title:"Lune d'Hiro",artist:'Venti Opastudien',src:"/a-files/music/ventiopastudien/Neolya Of Aoki Univers 4/Lune d'Hiro (from Aoki Univers).mp3"},
+    {title:'Instant de gloire',artist:'Venti Opastudien',src:"/a-files/music/ventiopastudien/Neolya Of Aoki Univers Deluxe/Instant de gloire (from Aoki Univers).mp3"}
+  ]},
+  ghost:{name:'Signal Fantome',desc:'Transmissions du vide',tracks:[
+    {title:"Signal de l'ame",artist:'Venti Opastudien',src:"/a-files/music/ventiopastudien/Neolya Of Aoki Univers Deluxe/Signal de l'ame (from Aoki Univers).mp3"},
+    {title:'Eclat du silence',artist:'Venti Opastudien',src:"/a-files/music/ventiopastudien/Neolya Of Aoki Univers Deluxe/Eclat du silence (from Aoki Univers).mp3"},
+    {title:'Peercom - Link Start',artist:'Venti Opastudien',src:'/a-files/music/ventiopastudien/aokiunivers8/Peercom - Link Start.mp3'},
+    {title:'Kage no Yume',artist:'Venti Opastudien',src:'/a-files/music/ventiopastudien/neolyaofaokiunivers3/Kage no Yume (from Aoki Univers).mp3'},
+    {title:"L'abysse de l'Ordre",artist:'Venti Opastudien',src:"/a-files/music/ventiopastudien/neolyaofaokiunivers2/L'abysse de l'Ordre (from Aoki Univers).mp3"}
+  ]}
+};
+
+const sectors={
+  S01:{name:'Pont de Commandement',sig:'████████ 100%',content:'RAPPORT S01 — PONT DE COMMANDEMENT\n\nStation Sevastopol/JAHAAKA — orbite systeme KG-348.\n\nStatut equipage    : REDUIT\nWorking Joes actifs: 87\nAPOLLO CORE        : OPERATIONNEL\n\nIncident non resolu:\nDisparition equipe Lingard — Secteur Cargo.\nCameras hors ligne depuis -72h.\n\n[FIN DU RAPPORT]'},
+  S02:{name:'Laboratoire Scientifique',sig:'██████.. 74%',content:'RAPPORT S02 — SCIENCE LAB\n\nStation JAHAAKA — Observation longue portee\n\n  GEO   (Terre)   : SIGNAL STABLE\n  CRYO  (Lune)    : SIGNAL STABLE\n  HYDRO (Neptune) : PERTURBE\n  PYRO  (Mars)    : SIGNAL FORT\n  ELECTRO(Venus)  : SIGNAL STABLE\n  DENDRO(Saturne) : SILENCE RADIO\n  ANEMO (Jupiter) : ANOMALIE\n\nProjet LIFESTAR — Phase 4 : EN COURS\nProtocole INGRESS 002 : ACTIF\n\n[FIN RAPPORT SCIENTIFIQUE]'},
+  S03:{name:'Zone Transit — Cargo',sig:'████.... 47%',content:'RAPPORT S03 — ZONE CARGO\n\nCargaison manifeste : 3400 modules biomedicaux\nModules LIFESTAR    : SCELLES\n\nANOMALIE NON RESOLUE\n  Emplacement : Cargo C3-Delta\n  Cameras     : HORS LIGNE\n  Temperature : +58C non justifiee\n\n[ACCES RESTREINT — Niveau Weyland-Yutani requis]'},
+  S04:{name:'Archives JAHAAKA',sig:'███..... 29%',content:'ARCHIVES — PROJET LIFESTAR\n\nCLASSIFICATION : ULTRA-SECRET\nINITIATEUR : Makina Ryou (AtlanCorp)\n\nProgramme Enfants de la Lune :\n  8 humains + 8 AO (Alternatives Organiques)\n  Supervise par M. Ryou — Stn. JAHAAKA\n\nSujets identifies :\n  HIKARI UMAISHI  — Fondateur UmaishiCorp\n  VENTI AOKI      — Fusion en cours w/Vayden\n  VAYDEN          — STATUT : INCONNU\n\n[DONNEES PARTIELLEMENT CORROMPUES]'},
+  S05:{name:'Salle des Machines',sig:'███..... 34%',content:'RAPPORT SYSTEMES — INGENIERIE\n\nReacteur principal : INSTABLE\nPropulsion         : OK\nGenerateurs stase  : OK\nSystemes de vie    : DEGRADE\n\nTemperature anormale : Secteur S05-B +847C\n  Bouclier IA Quantique (IAQ) : ACTIF\n\n[FIN DU RAPPORT TECHNIQUE]'},
+  S06:{name:'Signal Anomalie',sig:'█....... 7%',content:'SIGNAL INTERCEPTE — SECTEUR S06\n\n... source non identifiee ...\n... frequence hors spectre standard ...\n\nNE PAS REPONDRE A CE SIGNAL.\n\n... c est un AVERTISSEMENT ...\n\n[PERTE DE SIGNAL — DECONNEXION FORCEE]'}
+};
+
+const tapes={
+  '1':{label:'JOURNAL SEVASTOPOL',status:'lisible',content:'JOURNAL DE BORD — STATION SEVASTOPOL\nCOMMANDANTE WAITS\n\nJour 01 — Anomalie cargo\n"Equipe Lingard ne repond plus. Working Joes\nenvoy..es en reconnaissance. Toujours rien."\n\nJour 03\n"Cameras zone C3-Delta hors ligne.\nAPOLLO recommande de ne pas s en approcher.\nPour une fois, je l ecoute."\n\nJour 06\n"[ENREGISTREMENT CORROMPU]"\n\n[FIN DES ENTREES]'},
+  '2':{label:'DIRECTIVE SPECIALE 937',status:'classifie',content:'DIRECTIVE SPECIALE 937\nCLASSIFICATION : EYES ONLY\n\nPriorite absolue :\nRamener le specimen intact. L\'equipage est DISPENSABLE.\n\nCette directive remplace TOUTES les autres.\nAPOLLO doit maintenir le personnel dans l\'ignorance.\n\nSigne : Weyland-Yutani Corporation — Section 8\n\n[ULTRA-CLASSIFIE]'},
+  '3':{label:'RAPPORT LIFESTAR',status:'lisible',content:'PROJET LIFESTAR — RAPPORT CONFIDENTIEL\n\nDate : 2020 | Initie par : Makina Ryou / AtlanCorp\n\nAnticipation d une surpopulation mondiale avant 2040.\nReponse strategique des Nations Unies (NU6).\n\nAlliances :\n  AtlanCorp   — Science & coordination\n  Onite       — Energie et IA\n  AstrosLift  — Technologies spatiales\n  ONIQLO      — Tech. corporelle\n\n7 stations orbitales en construction.\nModule central : B.I.S.S. JAHAAKA.\n\n[FIN DU RAPPORT]'},
+  '4':{label:'PROFILS AO',status:'lisible',content:'ALTERNATIVES ORGANIQUES — PROFILS\n\nAO-VENTI / AOKI UMAISHI\n  Element : ANEMO (Jupiter)\n  Statut  : Fusion en cours avec Vayden\n\nAO-HIKARI / HIKARI UMAISHI\n  Role    : Fondateur UmaishiCorp — Createur VentiStudio\n  Statut  : ACTIF\n\nAO-VAYDEN\n  Type    : Double AO de Venti\n  Statut  : NON LOCALISE\n\nMAKINA RYOU\n  Role    : Directrice projet LifeStar / AtlanCorp\n  Statut  : FIGURE MATERNELLE confirmee\n\n[FIN DES PROFILS]'},
+  '5':{label:'INGRESS 002',status:'lisible',content:'SYSTEME INGRESS 002 — JAHAAKA\n\nInstalle lors de l Age de l Eveil (2025).\n\n  BLEU  = DESTRUCTION  [##....]\n  ROUGE = CAPTURE      [####..]\n  VERT  = DEVIATION    [######]\n\nActif : ROUGE (D9) — BLEU (F0)\nBouclier IAQ : OPERATIONNEL\n\n[FIN RAPPORT INGRESS]'},
+  '6':{label:'ACCORD ETHER',status:'lisible',content:"ACCORD D ETHER — 2046-2076\n\nPacte entre humains, AO et IA :\n\nSignataires :\n  Conseil des 7 Lunes (humains)\n  Collectif AO (Station Aoki)\n  IA gouvernementales pacifistes\n\nClause secrete :\n'Le 8e element decouvert dans l asteroi.de lointain\nne doit jamais etre active sans consentement unanime.'\n\n[FIN DU DOCUMENT]"},
+  '7':{label:'MESSAGE CHIFFRE',status:'verrouille',content:'... Dechiffrement protocole OMEGA ...\n\n"Le projet avance. Les AO sont prets.\nLes archives Aoki sont presque completes.\nLa musique de VentiStudio survit.\nL art survit. L humanite survit.\n\nNe laissez personne eteindre la lumiere.\nHikari est le dernier gardien.\n\nRendez-vous frequence OMEGA-7."\n\n[ARCHIVE PAR APOLLO CORE]'}
+};
+
+const programs={
+  'ventistudio.exe':{url:'https://ventistudio.eu',desc:'Acceder au site VentiStudio'},
+  'discord.exe':{url:'https://discord.gg/BupfZHSBbC',desc:'Rejoindre le serveur Discord'},
+  'aoki.exe':{url:'/aokiunivers',desc:'Retour section Aoki Univers'},
+  'nostromo.exe':{url:'/aokiunivers/nostromo/',desc:'Sequence autodestruction Nostromo'},
+  'signal.exe':{url:'/signal',desc:'Terminal Signal'},
+  'wiki.exe':{url:'/wiki',desc:'Wiki VentiStudio'},
+  'music.exe':{url:'/music',desc:'VentiStudio Music Player'},
+  'news.exe':{url:'/news',desc:'Gazette d Opastudien'},
+  'donate.exe':{url:'/donate',desc:'Soutenir VentiStudio'}
+};
+
+function initMatrix(){
+  const cvs=$('matrixCvs'),ctx=cvs.getContext('2d');
+  const W=cvs.width=cvs.parentElement.clientWidth,H=cvs.height=cvs.parentElement.clientHeight;
+  const cols=Math.floor(W/13),drops=Array.from({length:cols},()=>Math.random()*-60);
+  const chars='0123456789ABCDEF><[]{}|\\/!?@#$%WYLNDTN';
+  function draw(){
+    ctx.fillStyle='rgba(2,1,0,0.07)';ctx.fillRect(0,0,W,H);
+    ctx.font='12px Share Tech Mono,monospace';
+    for(let i=0;i<cols;i++){
+      const ch=chars[Math.floor(Math.random()*chars.length)];
+      const x=i*13,y=drops[i]*13;
+      const bright=Math.random()>0.94;
+      ctx.fillStyle=bright?'#f5cc60':'#e8a400';
+      ctx.globalAlpha=Math.random()*0.45+0.4;
+      ctx.fillText(ch,x,y);ctx.globalAlpha=1;
+      if(y>H&&Math.random()>0.975)drops[i]=0;
+      drops[i]++;
+    }
+  }
+  const iv=setInterval(draw,42);return()=>clearInterval(iv);
+}
+
+function addLine(text,cls=''){
+  const el=document.createElement('div');el.className='line '+cls;
+  el.textContent=text;termBody.appendChild(el);
+  termBody.scrollTop=termBody.scrollHeight;return el;
+}
+function addHTML(html,cls=''){
+  const el=document.createElement('div');el.className='line '+cls;
+  el.innerHTML=html;termBody.appendChild(el);
+  termBody.scrollTop=termBody.scrollHeight;return el;
+}
+function blank(){addLine('');}
+function wait(ms){return new Promise(r=>setTimeout(r,ms));}
+function typeText(text,cls='',speed=18){
+  return new Promise(resolve=>{
+    const el=document.createElement('div');el.className='line '+cls;
+    termBody.appendChild(el);let i=0;
+    const iv=setInterval(()=>{
+      if(i<text.length){el.textContent+=text[i++];termBody.scrollTop=termBody.scrollHeight;}
+      else{clearInterval(iv);resolve(el);}
+    },speed);
+  });
+}
+function showProgress(label,dur=2000){
+  return new Promise(resolve=>{
+    const wrap=document.createElement('div');wrap.className='line';
+    wrap.innerHTML=label+' <span class="pbar-wrap"><span class="pbar-fill" style="width:0%"></span></span> <span class="pct">0%</span>';
+    termBody.appendChild(wrap);
+    const fill=wrap.querySelector('.pbar-fill'),pct=wrap.querySelector('.pct');
+    let p=0;
+    const iv=setInterval(()=>{
+      p=Math.min(100,p+(100/(dur/28))*(0.5+Math.random()));
+      fill.style.width=p+'%';pct.textContent=Math.floor(p)+'%';
+      termBody.scrollTop=termBody.scrollHeight;
+      if(p>=100){clearInterval(iv);pct.textContent='100% OK';pct.style.color='var(--c)';resolve();}
+    },28);
+  });
+}
+function initNoise(){
+  const cvs=document.createElement('canvas');cvs.width=256;cvs.height=256;
+  cvs.style.cssText='position:absolute;inset:0;width:100%;height:100%;z-index:47;opacity:0.022;pointer-events:none';
+  $('screenWrap').appendChild(cvs);const ctx=cvs.getContext('2d');
+  function draw(){
+    const img=ctx.createImageData(256,256);
+    for(let i=0;i<img.data.length;i+=4){
+      const v=Math.random()*255;img.data[i]=img.data[i+1]=img.data[i+2]=v;img.data[i+3]=8;
+    }
+    ctx.putImageData(img,0,0);requestAnimationFrame(draw);
+  }
+  draw();
+}
+function radioPlay(stKey,idx){
+  if(radioAudio){radioAudio.pause();radioAudio=null;radioPlaying=false;}
+  const st=stations[stKey];if(!st)return;
+  radioStation=stKey;radioTrackIdx=idx||0;
+  const t=st.tracks[radioTrackIdx];
+  radioAudio=new Audio(t.src);radioAudio.volume=radioVolume;
+  radioAudio.play().then(()=>{
+    radioPlaying=true;$('npBar').classList.add('on');
+    $('npText').textContent=t.title+' - '+t.artist+'   ';
+  }).catch(()=>{addLine('Erreur audio.','err');});
+  radioAudio.onended=()=>{
+    const s=stations[radioStation];
+    radioTrackIdx=(radioTrackIdx+1)%s.tracks.length;
+    radioPlay(radioStation,radioTrackIdx);
+  };
+}
+function radioStop(){
+  if(radioAudio){radioAudio.pause();radioAudio=null;radioPlaying=false;}
+  $('npBar').classList.remove('on');
+}
+function showRadioPanel(stKey){
+  const st=stations[stKey||radioStation];if(!st)return;
+  const t=st.tracks[radioTrackIdx]||st.tracks[0];
+  addHTML('<div class="radio-panel">'+
+    '<div class="radio-hdr"><span class="radio-sname">'+st.name+'</span>'+
+    '<span class="radio-stat '+(radioPlaying?'on':'off')+'">'+(radioPlaying?'DIFFUSION':'ARRET')+'</span></div>'+
+    '<div class="rtitle">'+t.title+'</div><div class="rartist">'+t.artist+'</div>'+
+    '<div class="rctrl">'+
+    '<span onclick="window._rc(\'play\')">PLAY</span>'+
+    '<span onclick="window._rc(\'stop\')">STOP</span>'+
+    '<span onclick="window._rc(\'next\')">SUIVANT</span>'+
+    '</div>'+
+    '<div style="margin-top:7px;font-size:10px;color:var(--cdim)">'+
+    Object.keys(stations).map(k=>'<span class="rstation'+(k===radioStation?' active':'')+'" onclick="window._rc(\'st\',\''+k+'\')">'+stations[k].name+'</span>').join(' | ')+
+    '</div></div>');
+}
+window._rc=function(a,arg){
+  if(a==='play'){radioPlay(radioStation,radioTrackIdx);addLine('Lecture...','ok');}
+  if(a==='stop'){radioStop();addLine('Arrete.','warn');}
+  if(a==='next'){const s=stations[radioStation];radioTrackIdx=(radioTrackIdx+1)%s.tracks.length;radioPlay(radioStation,radioTrackIdx);addLine('>> '+s.tracks[radioTrackIdx].title,'ok');}
+  if(a==='st'&&arg&&stations[arg]){radioStation=arg;radioTrackIdx=0;radioPlay(radioStation,0);addLine('Station : '+stations[arg].name,'info');}
+};
+function startHack(){
+  if(hackInProgress){addLine('Hack deja en cours.','warn');return;}
+  const words=['APOLLO','ANDROID','LIFESTAR','SEVASTOPOL','ORBITAL','REACTOR','CAPSULE','XENOMORPH','PROTOCOL','DATACORE','WEYLAND','MANIFEST','SPECIMEN','CIRCUIT','DIRECTIVE'];
+  hackAnswer=words[Math.floor(Math.random()*words.length)];
+  hackAttempts=4;hackInProgress=true;
+  blank();addLine('ROBCO INDUSTRIES — TERMINAL HACK v2.0','hdr');
+  addLine('ACCES SYSTEME — '+hackAttempts+' TENTATIVES DISPONIBLES','warn');blank();
+  const decoys=[...words].filter(w=>w!==hackAnswer).sort(()=>0.5-Math.random()).slice(0,9);
+  const all=[...decoys,hackAnswer].sort(()=>0.5-Math.random());
+  const half=Math.ceil(all.length/2);
+  [all.slice(0,half),all.slice(half)].forEach(group=>{
+    const row=document.createElement('div');row.className='line';
+    group.forEach(w=>{
+      const s=document.createElement('span');s.className='hw';s.textContent=w.padEnd(14);s.dataset.w=w;
+      s.addEventListener('click',onHack);row.appendChild(s);
+    });
+    termBody.appendChild(row);
+  });
+  termBody.scrollTop=termBody.scrollHeight;blank();
+}
+function onHack(e){
+  if(!hackInProgress)return;
+  const w=e.target.dataset.w;
+  if(w===hackAnswer){
+    e.target.classList.add('correct');addLine('> '+w,'cmd');
+    addLine('Acces accorde. Systeme APOLLO deverrouille.','ok');
+    addLine('Donnees declassifiees — consultez "scan" ou "tape".','info');
+    hackInProgress=false;
+  }else{
+    e.target.classList.add('wrong');hackAttempts--;
+    const common=[...hackAnswer].filter((c,i)=>c===w[i]).length;
+    addLine('> '+w,'cmd');addLine('Incorrect. Pos. communs : '+common+' | Essais restants : '+hackAttempts,'err');
+    if(hackAttempts<=0){
+      addLine('TERMINAL VERROUILLE — 30s de penalite.','err');
+      hackInProgress=false;inputLocked=true;
+      setTimeout(()=>{inputLocked=false;addLine('Terminal deverrouille.','ok');},30000);
+    }
+  }
+  termBody.scrollTop=termBody.scrollHeight;
+}
+
+async function boot(){
+  const stopMatrix=initMatrix();await wait(2800);stopMatrix();
+  $('boot-matrix').style.display='none';
+  $('glitchOverlay').classList.add('flash');
+  $('screenContent').style.display='flex';await wait(380);
+  const ascii='\n  ####  #########  #######  ####      ####   #######\n  ###   ###   ###  ###  ###  ###       ###  ###   ###\n  ###   ###   ###  #######   ###       ###  ###   ###\n  ###   ###   ###  ###       ###     # ###  ###   ###\n  ###    #######   ###       ######### #########  #######\n                                                        \n  CORE — SCIENCE ARTIFICIAL INTELLIGENCE — SEVASTOPOL v3.0';
+  addLine(ascii,'ascii-art');blank();
+  await typeText('SEEGSON COMMUNICATIONS SYSTEM v4.2','sys',20);
+  await typeText('WEYLAND-YUTANI CORPORATION — SPECIAL PROJECTS DIVISION','sys',20);blank();
+  await typeText('  Station  : SEVASTOPOL / JAHAAKA','info',16);
+  await typeText('  Orbit    : Systeme KG-348','info',16);
+  await typeText('  Personnel: 1247 residents (reduction en cours)','info',16);
+  await typeText('  Working Joes actifs : 87','info',16);blank();
+  await typeText('Initialisation APOLLO CORE...','',28);await wait(280);
+  await showProgress('  [PROCESSEUR]  Demarrage noeud central APOLLO',900);
+  await showProgress('  [MEMOIRE]     Allocation 512 TB donnees archivees',750);
+  await showProgress('  [SENSEURS]    Calibration reseau capteurs SEEGSON',1100);
+  await showProgress('  [LIAISON]     Connexion JAHAAKA — B.I.S.S.',1300);
+  await showProgress('  [SECURITE]    Verification directive speciale 937',600);
+  await showProgress('  [MOTION]      Activation trackers de mouvement',500);
+  await showProgress('  [WORKING J.]  Verification status androides Type-3',700);blank();
+  await typeText('Tous les systemes sont nominaux.','ok',22);blank();
+  addLine('-'.repeat(58),'sys');
+  await typeText('  INCIDENT NON RESOLU : Secteur Cargo C3-Delta.','warn',18);
+  await typeText('  Personnel non autorise a entrer sans escorte Working Joe.','warn',18);
+  await typeText('  Directive 937 : ACTIVE — Priorite absolue maintenue.','warn',18);
+  addLine('-'.repeat(58),'sys');blank();
+  await typeText('Tapez "help" pour afficher les commandes disponibles.','',22);blank();
+  booted=true;bootTime=Date.now();cmdInput.focus();startClock();randomMotion();
+}
+function startClock(){
+  setInterval(()=>{
+    const d=new Date();
+    clockEl.textContent=d.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  },1000);
+}
+function randomMotion(){
+  const msgs=['CONTACT','SIGNAL FAIBLE','EN COURS','PERDU','...','DETECTE'];
+  setInterval(()=>{$('motionStatus').textContent=msgs[Math.floor(Math.random()*msgs.length)];},4000+Math.random()*6000);
+}
+
+const cmd={
+  help:async function(args){
+    const page=parseInt(args[0])||1;
+    addLine('-'.repeat(56),'sys');addLine('COMMANDES APOLLO CORE — SEVASTOPOL','hdr');addLine('-'.repeat(56),'sys');blank();
+    const pages=[[
+      ['NAVIGATION & SYSTEME'],
+      ['help [page]','Affiche ce message (2 pages)'],['clear','Effacer le terminal'],
+      ['exit','Retour VentiStudio'],['reboot','Redemarrer le terminal'],
+      ['color <theme>','Changer couleur (amber/green/blue/red/white)'],
+      ['neofetch','Infos systeme station'],['whoami','Identite utilisateur'],
+      ['date','Date et heure'],['uptime','Temps depuis demarrage'],[''],
+      ['STATION & SYSTEMES'],
+      ['status','Etat des systemes Sevastopol'],['crew','Personnel et Working Joes'],
+      ['manifest','Manifeste cargo'],['reactor','Etat du reacteur'],
+      ['oxygen','Niveaux O2'],['temperature','Temperature station'],
+      ['airlock','Controle des sas'],['wj','Statut Working Joes'],
+      ['directive937','Directive speciale 937 (classe)'],['sievert','Niveaux radiation']
+    ],[
+      ['DONNEES & ARCHIVES'],
+      ['scan','Scanner les secteurs'],['decrypt <sect>','Decrypter ex: decrypt S01'],
+      ['tape','Lister les bandes'],['read <n>','Lire une bande ex: read 1'],
+      ['program','Programmes disponibles'],['run <prog>','Executer un programme'],[''],
+      ['AOKI UNIVERS'],
+      ['aoki','Donnees Aoki Univers'],['jahaaka','Station JAHAAKA'],
+      ['lifestar','Projet LifeStar'],['ingress','Systeme INGRESS 002'],[''],
+      ['DIVERTISSEMENT'],
+      ['radio','Lecteur musical (4 stations)'],['radio list','Voir stations'],
+      ['hack','Mini-jeu hacking APOLLO'],['morse <texte>','Encoder en morse'],
+      ['dice [n]','Lancer des des'],['8ball <q>','Boule magique'],
+      ['echo <texte>','Repeter un message'],['destruct','Sequence autodestruction'],
+      ['alert','Alerte urgence'],['credits','Credits VentiStudio'],
+      ['ping <syst>','Ping systeme'],['log','Journal acces APOLLO']
+    ]];
+    const p=Math.max(1,Math.min(page,pages.length));
+    pages[p-1].forEach(c=>{
+      if(!c[0]&&!c[1]){blank();return;}
+      if(!c[1]&&c.length===1){addLine('  '+c[0],'hdr');return;}
+      addHTML('  <span style="color:var(--cinfo);display:inline-block;min-width:200px">'+c[0].padEnd(20)+'</span> '+c[1]);
+    });
+    blank();addLine('  Page '+p+'/'+pages.length+' — "help 2" pour la suite','sys');
+    addLine('  Fleches: historique | Tab: auto-completion | Ctrl+L: clear','sys');
+    addLine('-'.repeat(56),'sys');
+  },
+  clear:function(){termBody.innerHTML='';},cls:function(){termBody.innerHTML='';},
+  exit:function(){
+    addLine('Deconnexion APOLLO CORE...','warn');
+    setTimeout(()=>{screenWrap.classList.add('power-off');setTimeout(()=>window.location.href='/aokiunivers/',600);},800);
+  },
+  reboot:async function(){
+    addLine('Redemarrage en cours...','warn');await wait(800);
+    screenWrap.classList.add('power-off');setTimeout(()=>window.location.reload(),600);
+  },
+  color:function(args){
+    const themes={amber:'',green:'t-green',blue:'t-blue',red:'t-red',white:'t-white'};
+    const t=(args[0]||'').toLowerCase();
+    if(!themes.hasOwnProperty(t)){addLine('Themes : amber | green | blue | red | white','warn');return;}
+    Object.values(themes).forEach(c=>{if(c)screenWrap.classList.remove(c);});
+    if(themes[t])screenWrap.classList.add(themes[t]);
+    addLine('Theme : '+t.toUpperCase(),'ok');
+  },
+  status:async function(){
+    addLine('ETAT DES SYSTEMES — SEVASTOPOL','hdr');blank();
+    const sys=[
+      ['APOLLO CORE','████████','OPERATIONNEL','ok'],['Reacteur','████....','INSTABLE','err'],
+      ['Propulsion','████████','OK','ok'],['Systemes vie','██████..','DEGRADE','warn'],
+      ['Navigation','██████..','DEGRADE','warn'],['Bouclier coque','██......','CRITIQUE','err'],
+      ['Liaison JAHAAKA','████....','PERTURBEE','warn'],['SEEGSON Comms','████████','OK','ok'],
+      ['Directive 937','████████','ACTIVE','err'],['Motion Trackers','██████..','PARTIELS','warn'],
+      ['Working Joes','████████','OPERATIONNELS','ok']
+    ];
+    for(const[n,bar,stat,cls]of sys){
+      addHTML('  '+n.padEnd(22)+' '+bar+'  <span class="'+cls+'">'+stat+'</span>');await wait(75);
+    }
+    blank();addLine('Sievert ambiant : 3.4 uSv/h WARNING | ETA Weyland: INCONNU','sys');
+  },
+  crew:async function(){
+    addLine('PERSONNEL — SEVASTOPOL','hdr');blank();
+    addLine('Personnel total residant : 1247','info');addLine('Working Joes (Type-3) : 87 actifs','info');blank();
+    addLine('Personnel cle :','hdr');
+    const crew=[['Cdt. Waits','Commandante Station','ACTIVE'],['Ingenieure Samuels','Liaison W-Y','ACTIVE — Androide'],['Dr. Lingard','Medecin en chef','DISPARU — Cargo'],['Equipe Cargo','Maintenance','ABSENCE NON JUSTIFIEE']];
+    for(const[n,r,s]of crew){
+      const cls=s.includes('DISPARU')||s.includes('ABSENCE')?'err':s.includes('Androide')?'warn':'';
+      addHTML('  <span style="color:var(--cinfo);display:inline-block;min-width:160px">'+n+'</span><span style="display:inline-block;min-width:200px">'+r+'</span><span class="'+cls+'">'+s+'</span>');
+      await wait(90);
+    }
+  },
+  wj:async function(){
+    addLine('WORKING JOES — STATUT TYPE-3','hdr');blank();
+    const zones=[['Zone Medicale',12,'OK'],['Zone Ingenierie',23,'OK'],['Zone Commerce',18,'OK'],['Zone Cargo C3',8,'CONTACT PERDU'],['Pont commandement',6,'OK'],['Zone Residentielle',20,'OK']];
+    for(const[z,n,s]of zones){
+      const cls=s==='CONTACT PERDU'?'err':'ok';
+      addHTML('  '+z.padEnd(30)+' '+String(n).padStart(2)+' unites  <span class="'+cls+'">'+s+'</span>');await wait(100);
+    }
+    blank();addLine('8 Working Joes Cargo — CONTACT PERDU depuis 72h.','err');
+  },
+  manifest:function(){
+    addLine('MANIFESTE CARGO — SEVASTOPOL','hdr');blank();
+    addLine('  Modules biomedic. LifeStar : 3400 unites','');
+    addLine('  Equipements SEEGSON        : 890 caisses','');
+    addLine('  Materiel medical W-Y       : 440 unites','');blank();
+    addLine('  OBJET NON MANIFESTE — Secteur C3-Delta','warn');
+    addLine('    Localisation : INCONNUE','err');
+    addLine('    Directive 937 : ACCES ULTRA-CLASSIFIE','classified');
+  },
+  directive937:async function(){
+    addLine('DIRECTIVE SPECIALE 937','hdr');await wait(400);
+    await typeText('Verification autorisations...','warn',28);
+    await showProgress('Decryptage OMEGA',1600);blank();
+    addLine('DIRECTIVE SPECIALE 937','classified');
+    addLine('WEYLAND-YUTANI — CLASSIFICATION : EYES ONLY','classified');blank();
+    addLine('Priorite absolue : Ramener le specimen INTACT.','warn');blank();
+    addLine("L'equipage est DISPENSABLE.",'err');blank();
+    addLine("Cette directive remplace TOUTES les autres consignes.",'warn');
+    addLine("APOLLO doit maintenir le personnel dans l'ignorance.",'warn');blank();
+    addLine('Signe : Weyland-Yutani Corporation — Operations Speciales','sys');
+  },
+  sievert:function(){
+    addLine('NIVEAUX DE RADIATION','hdr');blank();
+    addLine('Zone residentielle  : 0.1 uSv/h  OK  (normal)','ok');
+    addLine('Zone medicale       : 0.3 uSv/h  OK  (normal)','ok');
+    addLine('Zone ingenierie     : 2.1 uSv/h  W   (eleve)','warn');
+    addLine('Zone cargo C3       : 3.4 uSv/h  W   (eleve)','warn');
+    addLine('Secteur C3-Delta    : ???         ERR (hors echelle)','err');blank();
+    addLine('Limite reglement.   : 1.0 uSv/h  (depassee Zones 3+4)','warn');
+    addLine('Combinaisons W-Y Type-A recommandees.','sys');
+  },
+  scan:async function(){
+    addLine('Initialisation scan secteurs...','info');await wait(350);
+    await showProgress('Balayage reseau SEEGSON',2800);blank();
+    addLine('SECTEURS DETECTES','hdr');blank();
+    for(const[code,data]of Object.entries(sectors)){
+      await wait(140);
+      const col=data.sig.includes('7%')||data.sig.includes('29%')||data.sig.includes('47%')?'var(--cwarn)':'var(--c)';
+      addHTML('  <span style="color:var(--cinfo);display:inline-block;min-width:45px">'+code+'</span>  |  '+data.sig+'  |  <span style="color:'+col+'">'+data.name+'</span>');
+    }
+    blank();addLine('6 secteurs. Utilisez "decrypt <code>" pour acceder.','sys');
+  },
+  decrypt:async function(args){
+    const code=(args[0]||'').toUpperCase();
+    if(!code){addLine('Usage : decrypt <code>  ex: decrypt S01','warn');return;}
+    if(!sectors[code]){addLine('Secteur "'+code+'" introuvable. Essayez "scan".','err');return;}
+    const sec=sectors[code];
+    addLine('Acces secteur '+code+' — '+sec.name+'...','info');
+    await showProgress('Decryptage donnees',2100);blank();
+    addLine(code+' : '+sec.name.toUpperCase(),'hdr');
+    sec.content.split('\n').forEach(l=>addLine(l,l.includes('CLASSIF')||l.includes('RESTREINT')?'warn':''));blank();
+  },
+  tape:function(){
+    addLine('BANDES DE DONNEES','hdr');blank();
+    Object.entries(tapes).forEach(([n,d])=>{
+      const cls=d.status==='verrouille'?'warn':d.status==='classifie'?'err':'';
+      addHTML('  [<span style="color:var(--cinfo)">'+n+'</span>]  '+d.label.padEnd(24)+'  <span class="'+cls+'">'+d.status.toUpperCase()+'</span>');
+    });
+    blank();addLine('Utilisez "read <n>" pour lire une bande.','sys');
+  },
+  read:async function(args){
+    const n=args[0];if(!n){addLine('Usage : read <n>  ex: read 1','warn');return;}
+    if(!tapes[n]){addLine('Bande '+n+' introuvable. Utilisez "tape".','err');return;}
+    const d=tapes[n];addLine('Lecture bande ['+n+'] — '+d.label+'...','info');
+    await showProgress('Lecture magnetique',1600);blank();
+    addLine(d.label.toUpperCase(),'hdr');
+    d.content.split('\n').forEach(l=>{
+      const cls=l.includes('CLASSIFIE')||l.includes('ULTRA-SECRET')?'classified':l.includes('DISPENSABLE')||l.includes('CLASSIF')?'warn':'';
+      addLine(l,cls);
+    });blank();
+  },
+  program:function(){
+    addLine('PROGRAMMES DISPONIBLES','hdr');blank();
+    Object.entries(programs).forEach(([k,v])=>addHTML('  <span style="color:var(--cinfo);display:inline-block;min-width:180px">'+k+'</span> '+v.desc));
+    blank();addLine('Utilisez "run <nom>" pour lancer.','sys');
+  },
+  run:function(args){
+    const key=(args[0]||'').toLowerCase();
+    const p=programs[key]||programs[key+'.exe'];
+    if(!p){addLine('Programme "'+args[0]+'" introuvable. Tapez "program".','err');return;}
+    addLine('Lancement : '+p.desc+'...','info');setTimeout(()=>window.open(p.url,'_blank'),800);
+  },
+  aoki:async function(){
+    addLine('AOKI UNIVERS — BASE DE DONNEES','hdr');blank();
+    await typeText('Chargement archives JAHAAKA...','info',18);
+    await showProgress('Acces donnees LifeStar',1000);blank();
+    addLine('Divergence 1945    — Fusion nucleaire maitrisee (Onite)','');
+    addLine('Age Energie        — 1950-2000, Nations Unies -> Gouv. mondial','');
+    addLine('Age des IA         — 2005-2020, IA hybrides + debat AO','');
+    addLine('Projet LifeStar    — 2020, Makina Ryou / AtlanCorp','warn');
+    addLine('Stations orbitales — 2024, 7 stations GEO/CRYO/HYDRO...','');
+    addLine("Age de l'Eveil     — 2025, INGRESS 002, Enfants de la Lune",'');
+    addLine('Ere Coexistence    — 2026-2045, AO-7, Neuma, Conseil 7 Lunes','');
+    addLine('Ere des Fractures  — 2046-2076, 8e element, Accord Ether','warn');blank();
+    addLine('Tapez "read 3" rapport LifeStar | "read 4" profils AO','sys');
+  },
+  jahaaka:function(){
+    addLine('STATION BISS JAHAAKA','hdr');blank();
+    addLine('Station de transit et recherche — acces restreint.','');
+    addLine('Coordinatrice : Makina Ryou (AtlanCorp)','');
+    addLine('Equipage estime : ~50 membres actifs','');blank();
+    addLine('Modules principaux :','hdr');
+    addLine('  MedOne  — Unite medicale avancee','');
+    addLine('  DI&ST   — Recherche & Science','');
+    addLine('  INGRESS — Protocole 002 actif','warn');
+    addLine('  IAQ     — IA Quantique (bouclier)','');blank();
+    addLine('Reacteur fusion : INSTABLE','err');
+  },
+  lifestar:async function(){await cmd.read(['3']);},
+  ingress:async function(){await cmd.read(['5']);},
+  reactor:function(){
+    addLine('REACTEUR — RAPPORT','hdr');blank();
+    addLine('Combustible  : 34%','warn');addLine('Temperature  : +14872C','err');
+    addLine('Pression     : 2847 kPa','warn');addLine('Rendement    : 61%','warn');
+    addLine('Containment  : INSTABLE','err');blank();
+    addLine('Risque criticite dans 96h sans intervention.','err');
+  },
+  oxygen:function(){
+    addLine('SYSTEMES DE VIE — O2','hdr');blank();
+    addLine('Pont principal   : 19.8%  OK','ok');addLine('Zone cargo       : 16.2%  W','warn');
+    addLine('Zone medicale    : 21.0%  OK','ok');addLine('CO2 ambiant      : 0.04%  OK','ok');blank();
+    addLine('Recycleurs actifs : 4/6  (2 en maintenance)','warn');
+  },
+  temperature:function(){
+    addLine('TEMPERATURE STATION','hdr');blank();
+    addLine('Pont commandement  : +22C  OK','ok');addLine('Zone ingenierie    : +847C W','err');
+    addLine('Zone cargo         : +58C  W  (anormale)','warn');
+    addLine('Zone medicale      : +20C  OK','ok');addLine('Coque externe      : -270C (espace profond)','');blank();
+    addLine('Surchauffe Ingenierie — reacteur instable.','err');
+  },
+  airlock:function(){
+    addLine('CONTROLE DES SAS','hdr');blank();
+    addLine('Sas 1 (cargo ext.)   : VERROUILLE','ok');
+    addLine('Sas 2 (sortie EVA)   : VERROUILLE','ok');
+    addLine('Sas 3 (residentiel)  : VERROUILLE','ok');
+    addLine('Sas 4 (cargo C3-D)   : VERROUILLE','err');blank();
+    addLine('Pression anormale sas 4 (Cargo C3-Delta) — NE PAS OUVRIR.','err');
+  },
+  radio:async function(args){
+    if(args[0]==='list'){
+      addLine('STATIONS RADIO','hdr');blank();
+      Object.entries(stations).forEach(([k,v])=>addHTML('  <span style="color:var(--cinfo)">'+k.padEnd(14)+'</span> '+v.name+' — '+v.desc));
+      blank();addLine('Utilisez "radio <nom>" ex: radio aoki','sys');return;
+    }
+    const stKey=args[0]&&stations[args[0]]?args[0]:radioStation;
+    showRadioPanel(stKey);if(!radioPlaying)radioPlay(stKey,radioTrackIdx);
+  },
+  hack:function(){startHack();},
+  morse:function(args){
+    const t=args.join(' ');if(!t){addLine('Usage : morse <texte>','warn');return;}
+    const map={A:'.-',B:'-...',C:'-.-.',D:'-..',E:'.',F:'..-.',G:'--.',H:'....',I:'..',J:'.---',K:'-.-',L:'.-..',M:'--',N:'-.',O:'---',P:'.--.',Q:'--.-',R:'.-.',S:'...',T:'-',U:'..-',V:'...-',W:'.--',X:'-..-',Y:'-.--',Z:'--..',0:'-----',1:'.----',2:'..---',3:'...--',4:'....-',5:'.....',6:'-....',7:'--...',8:'---..',9:'----.',' ':'/'};
+    addLine('MORSE : '+t.toUpperCase().split('').map(c=>map[c]||'?').join(' '),'info');
+  },
+  dice:function(args){
+    const n=Math.max(1,Math.min(10,parseInt(args[0])||1));
+    const r=Array.from({length:n},()=>Math.floor(Math.random()*6)+1);
+    addLine('Des '+n+'d6 : ['+r.join(', ')+'] = '+r.reduce((a,b)=>a+b,0),'ok');
+  },
+  '8ball':function(args){
+    const q=args.join(' ');
+    const a=['Les etoiles repondent : OUI.','APOLLO indique : TRES PROBABLE.','Signal perturbe — INCERTAIN.','Demandez a Makina Ryou.','REPONSE CLASSIFIEE — NIVEAU OMEGA.','Working Joe suggere de fuir.','Vayden ne repond pas.','L accord d Ether vous l interdit.','Hikari confirme : OUI.','Non. Et de toute facon vous etiez dispensable.'];
+    if(!q){addLine('Usage : 8ball <question>','warn');return;}
+    addLine('Question : '+q,'cmd');addLine('Reponse  : '+a[Math.floor(Math.random()*a.length)],'info');
+  },
+  echo:function(args){addLine(args.join(' '));},
+  destruct:async function(){
+    addLine('SEQUENCE AUTODESTRUCTION','err');await wait(400);
+    addLine('Redirection vers terminal Nostromo...','warn');await wait(1000);
+    window.location.href='/aokiunivers/nostromo/';
+  },
+  neofetch:function(){
+    const s=Math.floor((Date.now()-bootTime)/1000);
+    addHTML('<div style="display:grid;grid-template-columns:auto 1fr;gap:0 20px">'+
+      '<div style="grid-row:1/10;color:var(--cwarn);font-size:10px;line-height:1.35">'+
+      ' ####### \n ###     \n ###     \n ###     \n ####### '+
+      '</div><div style="line-height:2.1">'+
+      '<span style="color:var(--cinfo)">HOST</span>      Station Sevastopol / JAHAAKA<br>'+
+      '<span style="color:var(--cinfo)">OS</span>        APOLLO CORE v3.0 — Seegson Comms<br>'+
+      '<span style="color:var(--cinfo)">CORP</span>      Weyland-Yutani Corporation<br>'+
+      '<span style="color:var(--cinfo)">ORBIT</span>     Systeme KG-348<br>'+
+      '<span style="color:var(--cinfo)">RESIDENTS</span> 1247 (reduction en cours)<br>'+
+      '<span style="color:var(--cinfo)">WORKING J.</span>87 Type-3 actifs<br>'+
+      '<span style="color:var(--cinfo)">SIEVERT</span>   3.4 uSv/h WARNING<br>'+
+      '<span style="color:var(--cinfo)">UPTIME</span>    '+Math.floor(s/3600)+'h '+Math.floor((s%3600)/60)+'m '+(s%60)+'s<br>'+
+      '</div></div>');
+  },
+  whoami:function(){
+    addLine('Utilisateur : SCIENCE OFFICER','info');
+    addLine('Statut      : ANDROIDE TYPE-A2 — Weyland-Yutani','warn');
+    addLine('Clearance   : OMEGA (Directive 937 incluse)','warn');
+    addLine('Directive   : Ramener le specimen intact.','err');
+  },
+  date:function(){addLine('Date Station : '+new Date().toUTCString(),'info');},
+  uptime:function(){
+    const s=Math.floor((Date.now()-bootTime)/1000);
+    addLine('Uptime APOLLO : '+Math.floor(s/3600)+'h '+Math.floor((s%3600)/60)+'m '+(s%60)+'s','info');
+  },
+  log:async function(){
+    addLine('JOURNAL ACCES — APOLLO CORE','hdr');blank();
+    const logs=[['BOOT','Demarrage APOLLO — Systemes nominaux'],['SCAN','Anomalie cargo C3-Delta detectee'],['WARN','Reacteur : temperature anormale'],['INFO','Working Joes deployes en Zone Cargo'],['CRIT','8 WJ Cargo — contact perdu'],['WARN','Radiation Z. Cargo : 3.4 uSv/h'],['INFO','Directive 937 : en cours execution'],['WARN','Liaison JAHAAKA perturbee']];
+    for(const[lvl,msg]of logs){await wait(80);const cls=lvl==='CRIT'?'err':lvl==='WARN'?'warn':'sys';addHTML('  [<span style="color:var(--cinfo)">'+lvl+'</span>] '+msg);}
+  },
+  alert:function(){
+    const a=['ALERTE : Mouvement detecte en Zone Cargo — Source non identifiee.','ALERTE : Pression anormale Sas 4. NE PAS OUVRIR.','ALERTE : Coupure de courant imminente — Secteur Ingenierie.','ALERTE : Temperature critique — Reacteur principal.','ALERTE : 8 Working Joes Cargo — CONTACT PERDU depuis 72h.'];
+    addLine(a[Math.floor(Math.random()*a.length)],'err');
+  },
+  credits:function(){
+    addLine('VENTISTUDIO — CREDITS','hdr');blank();
+    addLine('Createur        : Hikari Umaishi','info');
+    addLine('Plateforme      : VentiStudio.eu','info');
+    addLine('Univers Aoki    : Science-fiction de l Aoki Univers','info');
+    addLine('Style terminal  : Alien: Isolation (2014) — Creative Assembly','sys');
+    addLine('Musique         : Venti Opastudien — VentiStudio Music','info');blank();
+    addLine('"In space, no one can hear you scream."','classified');blank();
+    addLine('ventistudio.eu — Tous droits reserves','sys');
+  },
+  ping:async function(args){
+    const host=(args[0]||'jahaaka').toLowerCase();addLine('PING '+host.toUpperCase()+'...','info');await wait(400);
+    const hosts={jahaaka:{ip:'192.168.7.1',ms:[44,42,45,43]},earth:{ip:'10.0.0.1',ms:[1240,1238,null,1244]},atlan:{ip:'192.168.7.12',ms:[88,91,87,92]},anomaly:{ip:'???',ms:[null,null,null,null]}};
+    const h=hosts[host]||{ip:'0.0.0.0',ms:[null,null,null,null]};
+    for(let i=0;i<4;i++){await wait(300);if(h.ms[i]===null)addLine('Requete expiree.','err');else addLine('Reponse de '+h.ip+' : '+h.ms[i]+' ms','ok');}
+  },
+  sudo:function(){addLine('"Je suis desole. Je ne peux pas vous laisser faire ca." — APOLLO','err');},
+  rm:function(){addLine('Suppression refusee. APOLLO maintient l integrite des donnees.','err');},
+  about:function(){addLine('APOLLO CORE v3.0 — Terminal Sevastopol/JAHAAKA — VentiStudio.eu','info');}
+};
+cmd['restart']=cmd.reboot;
+
+cmdInput.addEventListener('keydown',async e=>{
+  if(inputLocked){e.preventDefault();return;}
+  if(e.key==='Enter'){
+    const raw=cmdInput.value.trim();cmdInput.value='';histIdx=-1;
+    if(!raw)return;history.unshift(raw);
+    addLine('apollo@sevastopol:~$ '+raw,'cmd');
+    const parts=raw.split(/\s+/),c=parts[0].toLowerCase(),args=parts.slice(1);
+    if(cmd[c]){inputLocked=true;try{await cmd[c](args);}catch(err){addLine('Erreur : '+err.message,'err');}inputLocked=false;}
+    else{addLine('"'+c+'" : commande inconnue. Tapez "help".','err');}
+    blank();termBody.scrollTop=termBody.scrollHeight;
+  }
+  if(e.key==='ArrowUp'){e.preventDefault();if(history.length){histIdx=Math.min(histIdx+1,history.length-1);cmdInput.value=history[histIdx];}}
+  if(e.key==='ArrowDown'){e.preventDefault();histIdx=Math.max(histIdx-1,-1);cmdInput.value=histIdx>=0?history[histIdx]:'';}
+  if(e.ctrlKey&&e.key.toLowerCase()==='l'){e.preventDefault();termBody.innerHTML='';}
+  if(e.key==='Tab'){e.preventDefault();const p=cmdInput.value.toLowerCase();const m=Object.keys(cmd).filter(k=>k.startsWith(p));if(m.length===1)cmdInput.value=m[0];else if(m.length>1)addLine('> '+m.join('  '),'sys');}
+});
+$('screenWrap').addEventListener('click',()=>{if(booted)cmdInput.focus();});
+initNoise();boot();
+})();
+</script>
+</body>
+</html>

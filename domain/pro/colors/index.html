@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="Palette de couleurs — Explorez, convertissez et générez des palettes harmonieuses. 100% client-side.">
+  <meta name="theme-color" content="#0ea5e9">
+  <title>Palette de Couleurs | VentiStudio Pro</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/domain/pro/pro.css">
+  <style>
+    .color-layout { margin-top: 2rem; }
+
+    .panel {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      box-shadow: var(--glass-shadow);
+      margin-bottom: 1.5rem;
+    }
+
+    .panel h3 {
+      margin: 0 0 1rem;
+      font-size: 1rem;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* Picker row */
+    .picker-row {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .picker-row input[type="color"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 64px;
+      height: 48px;
+      border: 1px solid var(--glass-border);
+      border-radius: 0.75rem;
+      cursor: pointer;
+      background: var(--glass-bg);
+      padding: 3px;
+      transition: border-color 0.2s;
+    }
+
+    .picker-row input[type="color"]::-webkit-color-swatch-wrapper { padding: 2px; }
+    .picker-row input[type="color"]::-webkit-color-swatch { border: none; border-radius: 0.5rem; }
+    .picker-row input[type="color"]::-moz-color-swatch { border: none; border-radius: 0.5rem; }
+    .picker-row input[type="color"]:hover { border-color: var(--accent); }
+
+    .picker-row input[type="text"] {
+      flex: 1;
+      min-width: 180px;
+      padding: 0.6rem 0.75rem;
+      border: 1px solid var(--glass-border);
+      border-radius: 0.5rem;
+      background: var(--glass-bg);
+      color: var(--text-primary);
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+    }
+
+    .picker-row input[type="text"]:focus { outline: none; border-color: var(--accent); }
+
+    /* Conversions */
+    .conv-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .conv-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--glass-border);
+      border-radius: 0.5rem;
+      padding: 0.5rem 0.75rem;
+    }
+
+    .conv-item label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--accent);
+      min-width: 40px;
+    }
+
+    .conv-item span {
+      font-family: 'Courier New', monospace;
+      font-size: 0.85rem;
+      color: var(--text-primary);
+      cursor: pointer;
+      user-select: all;
+    }
+
+    .conv-item .copy-btn {
+      margin-left: auto;
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-size: 0.9rem;
+      padding: 0.2rem;
+      transition: color 0.2s;
+    }
+
+    .conv-item .copy-btn:hover { color: var(--accent); }
+
+    /* Preview swatch */
+    .preview-swatch {
+      width: 100%;
+      height: 100px;
+      border-radius: 1rem;
+      border: 1px solid var(--glass-border);
+      margin-bottom: 1rem;
+      transition: background 0.3s;
+    }
+
+    /* Palette */
+    .palette-bar {
+      display: flex;
+      border-radius: 1rem;
+      overflow: hidden;
+      height: 80px;
+      border: 1px solid var(--glass-border);
+      margin-bottom: 1rem;
+    }
+
+    .palette-bar .swatch {
+      flex: 1;
+      cursor: pointer;
+      position: relative;
+      transition: flex 0.3s;
+    }
+
+    .palette-bar .swatch:hover { flex: 1.5; }
+
+    .palette-bar .swatch .hex-label {
+      position: absolute;
+      bottom: 4px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.65rem;
+      font-family: 'Courier New', monospace;
+      color: white;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    .harmony-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .harmony-btn {
+      padding: 0.45rem 1rem;
+      background: var(--glass-bg);
+      border: 2px solid var(--glass-border);
+      border-radius: 0.5rem;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      transition: all 0.2s;
+    }
+
+    .harmony-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .harmony-btn.active { background: var(--accent); color: white; border-color: var(--accent); }
+
+    /* Contrast checker */
+    .contrast-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .contrast-preview {
+      border-radius: 0.75rem;
+      padding: 1.25rem;
+      text-align: center;
+      border: 1px solid var(--glass-border);
+    }
+
+    .contrast-preview .big { font-size: 1.5rem; font-weight: 700; }
+    .contrast-preview .small { font-size: 0.85rem; margin-top: 0.5rem; }
+
+    .contrast-result {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .contrast-ratio {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    .wcag-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .wcag-pass { background: #10b981; color: white; }
+    .wcag-fail { background: #ef4444; color: white; }
+
+    @media (max-width: 768px) {
+      .contrast-grid { grid-template-columns: 1fr; }
+      .conv-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+
+  <script async crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
+  <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
+
+  <meta property="og:title" content="Palette de Couleurs | VentiStudio Pro">
+  <meta property="og:description" content="Palette de couleurs — Explorez, convertissez et générez des palettes harmonieuses. 100% client-side.">
+  <meta property="og:url" content="https://ventistudio.eu/domain/pro/colors/">
+  <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://ventistudio.eu/domain/pro/colors/">
+
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="/favicon.avif" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
+      <span>VentiStudio</span>
+    </div>
+    <button class="nav-burger" id="nav-burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="main-nav" class="main-nav" aria-label="Navigation principale">
+      <a href="/" class="nav-link">Accueil</a>
+
+      <details class="nav-group">
+        <summary class="nav-link">Découvrir
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel" role="menu">
+          <a href="/evaluation">Évaluation</a>
+          <a href="/wiki">Wiki</a>
+          <a href="/glossary">Glossaire</a>
+          <a href="/news">News</a>
+          <a href="/blog">Blog</a>
+          <a href="/calendar">Calendrier</a>
+          <a href="/cookbook">Cookbook</a>
+          <a href="/gallery">Galerie</a>
+          <a href="/atlas">Atlas</a>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Univers
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel" role="menu">
+          <a href="/aokiunivers">AOKI Universe</a>
+          <a href="/allofaokiunivers">All AOKI</a>
+          <a href="/university">Université</a>
+          <a href="/history">Histoire</a>
+          <a href="/memorial">Mémorial</a>
+          <a href="/ester-eggs">Easter eggs</a>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Outils
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Applications</h4>
+            <a href="/player">Lecteur</a>
+            <a href="/music">Musique</a>
+            <a href="/pip">PIP</a>
+            <a href="/whiteboard">Whiteboard</a>
+            <a href="/portfolio">Portfolio</a>
+            <a href="/gmod">GMod</a>
+          </div>
+          <div class="nav-col">
+            <h4>Domaines</h4>
+            <a href="/domain/aina">AINA</a>
+            <a href="/domain/archive">Archive</a>
+            <a href="/domain/maps">Maps</a>
+            <a href="/domain/movie">Movie</a>
+            <a href="/domain/peer">Peer</a>
+            <a href="/domain/pro">Pro</a>
+            <a href="/domain/search">Search</a>
+            <a href="/domain/suite">Suite</a>
+          </div>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Communauté
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Équipe</h4>
+            <a href="/personnel/">Équipe</a>
+            <a href="/hierarchie-staff">Hiérarchie</a>
+            <a href="/hypesquad">Hypesquad</a>
+            <a href="/jobs">Emplois</a>
+            <a href="/birthday">Anniversaires</a>
+          </div>
+          <div class="nav-col">
+            <h4>Réseaux</h4>
+            <a href="/discord">Discord</a>
+            <a href="/teamspeak">TeamSpeak</a>
+            <a href="/steam">Steam</a>
+            <a href="/social">Réseaux sociaux</a>
+          </div>
+          <div class="nav-col">
+            <h4>Activités</h4>
+            <a href="/artist">Artistes</a>
+            <a href="/quests">Quêtes</a>
+            <a href="/suboawards">Suboawards</a>
+            <a href="/eConcert">eConcert</a>
+          </div>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Plus
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Aide</h4>
+            <a href="/contact">Contact</a>
+            <a href="/faq">FAQ</a>
+            <a href="/status">Statut</a>
+            <a href="/sitemap">Plan du site</a>
+          </div>
+          <div class="nav-col">
+            <h4>Soutien</h4>
+            <a href="/donate">Faire un don</a>
+            <a href="/gold">Gold</a>
+            <a href="/customization">Personnalisation</a>
+            <a href="/mes-donnees">Mes Données</a>
+            <a href="/newsletter">Newsletter</a>
+          </div>
+          <div class="nav-col">
+            <h4>À propos</h4>
+            <a href="/company">Entreprise</a>
+            <a href="/acknowledgements">Remerciements</a>
+            <a href="/logo">Logo</a>
+            <a href="/tags">Tags</a>
+            <a href="/memory">Mémoire</a>
+            <a href="/why-not-use-roblox">Pourquoi pas Roblox</a>
+            <a href="/lawful">Mentions légales</a>
+          </div>
+        </div>
+      </details>
+    </nav>
+    <div class="controls" role="toolbar" aria-label="Contrôles">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
+          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
+          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
+        </svg>
+      </button>
+      <div id="user-button" role="region" aria-label="Authentification"><button class="cta" id="auth-fallback-btn" onclick="window.location.href='https://accounts.ventistudio.eu/sign-in?redirect_url='+encodeURIComponent(window.location.href)" style="padding:0.5rem 1.25rem;font-size:0.9rem;margin:0"><span>Se connecter</span></button></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" style="padding: 3rem 0 1rem;">
+      <h1 style="font-size: 2.5rem;">Palette de Couleurs</h1>
+      <p style="color: var(--text-secondary);">Convertissez, explorez et générez des palettes harmonieuses</p>
+    </section>
+
+    <div class="color-layout">
+      <!-- Picker -->
+      <div class="panel">
+        <h3>🎨 Sélecteur</h3>
+        <div class="picker-row">
+          <input type="color" id="mainPicker" value="#6366f1">
+          <input type="text" id="mainInput" value="#6366f1" placeholder="#hex, rgb(), hsl()…">
+        </div>
+        <div class="preview-swatch" id="previewSwatch" style="margin-top:1rem; background: #6366f1;"></div>
+        <div class="conv-grid" id="convGrid"></div>
+      </div>
+
+      <!-- Palette harmonies -->
+      <div class="panel">
+        <h3>🌈 Harmonies</h3>
+        <div class="harmony-btns" id="harmonyBtns">
+          <button class="harmony-btn active" data-mode="complementary">Complémentaire</button>
+          <button class="harmony-btn" data-mode="analogous">Analogique</button>
+          <button class="harmony-btn" data-mode="triadic">Triadique</button>
+          <button class="harmony-btn" data-mode="tetradic">Tétradique</button>
+          <button class="harmony-btn" data-mode="split">Split-Complémentaire</button>
+          <button class="harmony-btn" data-mode="monochromatic">Monochromatique</button>
+        </div>
+        <div class="palette-bar" id="paletteBar"></div>
+      </div>
+
+      <!-- Contrast checker -->
+      <div class="panel">
+        <h3>🔍 Vérificateur de Contraste (WCAG)</h3>
+        <div class="picker-row" style="margin-bottom: 1rem;">
+          <label style="font-size: 0.85rem; font-weight: 600; color: var(--text-primary);">Texte :</label>
+          <input type="color" id="contrastFg" value="#ffffff" style="width:44px; height:36px;">
+          <label style="font-size: 0.85rem; font-weight: 600; color: var(--text-primary);">Fond :</label>
+          <input type="color" id="contrastBg" value="#6366f1" style="width:44px; height:36px;">
+        </div>
+        <div class="contrast-grid">
+          <div class="contrast-preview" id="contrastPreview">
+            <div class="big">Grand texte</div>
+            <div class="small">Petit texte d'exemple pour vérifier la lisibilité.</div>
+          </div>
+          <div class="contrast-result">
+            <div>Ratio : <span class="contrast-ratio" id="contrastRatio">—</span></div>
+            <div>AA Normal : <span class="wcag-badge" id="wcagAANormal">—</span></div>
+            <div>AA Large : <span class="wcag-badge" id="wcagAALarge">—</span></div>
+            <div>AAA Normal : <span class="wcag-badge" id="wcagAAANormal">—</span></div>
+            <div>AAA Large : <span class="wcag-badge" id="wcagAAALarge">—</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="/main.js"></script>
+  <script>
+  (() => {
+    'use strict';
+    const $ = (s) => document.getElementById(s);
+
+    /* ---- Color conversion helpers ---- */
+    function hexToRgb(hex) {
+      hex = hex.replace('#', '');
+      if (hex.length === 3) hex = hex[0]+hex[0]+hex[1]+hex[1]+hex[2]+hex[2];
+      const n = parseInt(hex, 16);
+      return { r: (n >> 16) & 255, g: (n >> 8) & 255, b: n & 255 };
+    }
+
+    function rgbToHex(r, g, b) {
+      return '#' + [r, g, b].map(x => x.toString(16).padStart(2, '0')).join('');
+    }
+
+    function rgbToHsl(r, g, b) {
+      r /= 255; g /= 255; b /= 255;
+      const max = Math.max(r, g, b), min = Math.min(r, g, b);
+      let h, s, l = (max + min) / 2;
+      if (max === min) { h = s = 0; }
+      else {
+        const d = max - min;
+        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+        switch (max) {
+          case r: h = ((g - b) / d + (g < b ? 6 : 0)) / 6; break;
+          case g: h = ((b - r) / d + 2) / 6; break;
+          case b: h = ((r - g) / d + 4) / 6; break;
+        }
+      }
+      return { h: Math.round(h * 360), s: Math.round(s * 100), l: Math.round(l * 100) };
+    }
+
+    function hslToRgb(h, s, l) {
+      h /= 360; s /= 100; l /= 100;
+      let r, g, b;
+      if (s === 0) { r = g = b = l; }
+      else {
+        const hue2rgb = (p, q, t) => {
+          if (t < 0) t += 1; if (t > 1) t -= 1;
+          if (t < 1/6) return p + (q - p) * 6 * t;
+          if (t < 1/2) return q;
+          if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+          return p;
+        };
+        const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+        const p = 2 * l - q;
+        r = hue2rgb(p, q, h + 1/3);
+        g = hue2rgb(p, q, h);
+        b = hue2rgb(p, q, h - 1/3);
+      }
+      return { r: Math.round(r * 255), g: Math.round(g * 255), b: Math.round(b * 255) };
+    }
+
+    function rgbToHsv(r, g, b) {
+      r /= 255; g /= 255; b /= 255;
+      const max = Math.max(r, g, b), min = Math.min(r, g, b), d = max - min;
+      let h, s = max === 0 ? 0 : d / max, v = max;
+      if (max === min) h = 0;
+      else {
+        switch (max) {
+          case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+          case g: h = (b - r) / d + 2; break;
+          case b: h = (r - g) / d + 4; break;
+        }
+        h /= 6;
+      }
+      return { h: Math.round(h * 360), s: Math.round(s * 100), v: Math.round(v * 100) };
+    }
+
+    function rgbToCmyk(r, g, b) {
+      r /= 255; g /= 255; b /= 255;
+      const k = 1 - Math.max(r, g, b);
+      if (k === 1) return { c: 0, m: 0, y: 0, k: 100 };
+      return {
+        c: Math.round((1 - r - k) / (1 - k) * 100),
+        m: Math.round((1 - g - k) / (1 - k) * 100),
+        y: Math.round((1 - b - k) / (1 - k) * 100),
+        k: Math.round(k * 100)
+      };
+    }
+
+    function parseColor(str) {
+      const ctx = document.createElement('canvas').getContext('2d');
+      ctx.fillStyle = '#000'; ctx.fillStyle = str;
+      const parsed = ctx.fillStyle;
+      if (parsed === '#000000' && !/^#?0{3,6}$/i.test(str.trim()) && str.trim().toLowerCase() !== 'black') return null;
+      return parsed;
+    }
+
+    /* ---- State ---- */
+    let currentHex = '#6366f1';
+
+    function setColor(hex) {
+      currentHex = hex;
+      $('mainPicker').value = hex;
+      $('mainInput').value = hex;
+      $('previewSwatch').style.background = hex;
+      updateConversions(hex);
+      updatePalette();
+    }
+
+    $('mainPicker').addEventListener('input', (e) => setColor(e.target.value));
+    $('mainInput').addEventListener('input', (e) => {
+      const parsed = parseColor(e.target.value);
+      if (parsed) setColor(parsed);
+    });
+
+    /* ---- Conversions ---- */
+    function updateConversions(hex) {
+      const rgb = hexToRgb(hex);
+      const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
+      const hsv = rgbToHsv(rgb.r, rgb.g, rgb.b);
+      const cmyk = rgbToCmyk(rgb.r, rgb.g, rgb.b);
+
+      const items = [
+        { label: 'HEX', value: hex.toUpperCase() },
+        { label: 'RGB', value: `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})` },
+        { label: 'HSL', value: `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)` },
+        { label: 'HSV', value: `hsv(${hsv.h}, ${hsv.s}%, ${hsv.v}%)` },
+        { label: 'CMYK', value: `cmyk(${cmyk.c}%, ${cmyk.m}%, ${cmyk.y}%, ${cmyk.k}%)` },
+      ];
+
+      $('convGrid').innerHTML = items.map(i => `
+        <div class="conv-item">
+          <label>${i.label}</label>
+          <span>${i.value}</span>
+          <button class="copy-btn" data-val="${i.value}" title="Copier">📋</button>
+        </div>`).join('');
+
+      $('convGrid').querySelectorAll('.copy-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          navigator.clipboard.writeText(btn.dataset.val);
+          btn.textContent = '✅';
+          setTimeout(() => btn.textContent = '📋', 1200);
+        });
+      });
+    }
+
+    /* ---- Harmonies ---- */
+    let harmonyMode = 'complementary';
+
+    function genHarmony(hex, mode) {
+      const rgb = hexToRgb(hex);
+      const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
+      const h = hsl.h, s = hsl.s, l = hsl.l;
+      const mk = (hh) => { const c = hslToRgb(((hh % 360) + 360) % 360, s, l); return rgbToHex(c.r, c.g, c.b); };
+
+      switch (mode) {
+        case 'complementary': return [hex, mk(h + 180)];
+        case 'analogous': return [mk(h - 30), hex, mk(h + 30)];
+        case 'triadic': return [hex, mk(h + 120), mk(h + 240)];
+        case 'tetradic': return [hex, mk(h + 90), mk(h + 180), mk(h + 270)];
+        case 'split': return [hex, mk(h + 150), mk(h + 210)];
+        case 'monochromatic': {
+          const out = [];
+          for (let i = -2; i <= 2; i++) {
+            const nl = Math.min(100, Math.max(0, l + i * 12));
+            const c = hslToRgb(h, s, nl);
+            out.push(rgbToHex(c.r, c.g, c.b));
+          }
+          return out;
+        }
+        default: return [hex];
+      }
+    }
+
+    function updatePalette() {
+      const colors = genHarmony(currentHex, harmonyMode);
+      $('paletteBar').innerHTML = colors.map(c =>
+        `<div class="swatch" style="background:${c}" data-hex="${c}">
+          <span class="hex-label">${c}</span>
+        </div>`
+      ).join('');
+
+      $('paletteBar').querySelectorAll('.swatch').forEach(sw => {
+        sw.addEventListener('click', () => {
+          navigator.clipboard.writeText(sw.dataset.hex);
+        });
+      });
+    }
+
+    $('harmonyBtns').querySelectorAll('.harmony-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        $('harmonyBtns').querySelectorAll('.harmony-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        harmonyMode = btn.dataset.mode;
+        updatePalette();
+      });
+    });
+
+    /* ---- Contrast checker ---- */
+    function luminance(r, g, b) {
+      const a = [r, g, b].map(v => { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); });
+      return 0.2126 * a[0] + 0.7152 * a[1] + 0.0722 * a[2];
+    }
+
+    function contrastRatio(hex1, hex2) {
+      const c1 = hexToRgb(hex1), c2 = hexToRgb(hex2);
+      const l1 = luminance(c1.r, c1.g, c1.b);
+      const l2 = luminance(c2.r, c2.g, c2.b);
+      const lighter = Math.max(l1, l2), darker = Math.min(l1, l2);
+      return (lighter + 0.05) / (darker + 0.05);
+    }
+
+    function updateContrast() {
+      const fg = $('contrastFg').value;
+      const bg = $('contrastBg').value;
+      const ratio = contrastRatio(fg, bg);
+
+      $('contrastPreview').style.background = bg;
+      $('contrastPreview').style.color = fg;
+      $('contrastRatio').textContent = ratio.toFixed(2) + ':1';
+
+      const badge = (pass) => pass ? '<span class="wcag-badge wcag-pass">✓ Pass</span>' : '<span class="wcag-badge wcag-fail">✗ Fail</span>';
+      $('wcagAANormal').outerHTML = badge(ratio >= 4.5).replace('wcag-badge', 'wcag-badge" id="wcagAANormal');
+      $('wcagAALarge').outerHTML = badge(ratio >= 3).replace('wcag-badge', 'wcag-badge" id="wcagAALarge');
+      $('wcagAAANormal').outerHTML = badge(ratio >= 7).replace('wcag-badge', 'wcag-badge" id="wcagAAANormal');
+      $('wcagAAALarge').outerHTML = badge(ratio >= 4.5).replace('wcag-badge', 'wcag-badge" id="wcagAAALarge');
+    }
+
+    $('contrastFg').addEventListener('input', updateContrast);
+    $('contrastBg').addEventListener('input', updateContrast);
+
+    /* ---- Init ---- */
+    setColor('#6366f1');
+    updateContrast();
+  })();
+  </script>
+  <script>
+    (function () {
+      var nav = document.getElementById('main-nav');
+      var burger = document.getElementById('nav-burger');
+      if (!nav || !burger) return;
+
+      // Marque le lien actif d'apres l'URL courante
+      try {
+        var path = window.location.pathname.replace(/\/index\.html?$/, '/').replace(/\/$/, '') || '/';
+        var best = null, bestLen = -1;
+        nav.querySelectorAll('a[href]').forEach(function (a) {
+          var href = a.getAttribute('href').replace(/\/$/, '') || '/';
+          if (href === path || (href !== '/' && path.indexOf(href + '/') === 0) || (href !== '/' && path === href)) {
+            if (href.length > bestLen) { best = a; bestLen = href.length; }
+          }
+        });
+        if (path === '/' || path === '') {
+          best = nav.querySelector('a[href="/"]');
+        }
+        if (best) {
+          best.classList.add('active');
+          var grp = best.closest('details.nav-group');
+          if (grp) {
+            var s = grp.querySelector('summary.nav-link');
+            if (s) s.classList.add('active');
+          }
+        }
+      } catch (e) {}
+
+      function closeAllGroups(except) {
+        nav.querySelectorAll('details.nav-group[open]').forEach(function (d) {
+          if (d !== except) d.removeAttribute('open');
+        });
+      }
+
+      burger.addEventListener('click', function () {
+        var open = nav.classList.toggle('is-open');
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        burger.classList.toggle('is-active', open);
+        if (!open) closeAllGroups();
+      });
+
+      nav.querySelectorAll('details.nav-group').forEach(function (d) {
+        d.addEventListener('toggle', function () {
+          if (d.open) closeAllGroups(d);
+        });
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!nav.contains(e.target) && !burger.contains(e.target)) {
+          closeAllGroups();
+          if (nav.classList.contains('is-open')) {
+            nav.classList.remove('is-open');
+            burger.classList.remove('is-active');
+            burger.setAttribute('aria-expanded', 'false');
+          }
+        }
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          closeAllGroups();
+          if (nav.classList.contains('is-open')) {
+            nav.classList.remove('is-open');
+            burger.classList.remove('is-active');
+            burger.setAttribute('aria-expanded', 'false');
+            burger.focus();
+          }
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

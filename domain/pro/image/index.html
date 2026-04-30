@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="Redimensionneur d'images — Redimensionnez, compressez et recadrez vos images. 100% client-side.">
+  <meta name="theme-color" content="#0ea5e9">
+  <title>Redimensionneur d'Images | VentiStudio Pro</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/domain/pro/pro.css">
+  <style>
+    .img-layout { margin-top: 2rem; }
+
+    .panel {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      box-shadow: var(--glass-shadow);
+      margin-bottom: 1.5rem;
+    }
+
+    .panel h3 {
+      margin: 0 0 1rem;
+      font-size: 1rem;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* Drop zone */
+    .drop-zone {
+      border: 2px dashed var(--glass-border);
+      border-radius: 1rem;
+      padding: 3rem 1.5rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      color: var(--text-secondary);
+    }
+
+    .drop-zone:hover, .drop-zone.drag-over {
+      border-color: var(--accent);
+      background: rgba(14, 165, 233, 0.06);
+      color: var(--text-primary);
+    }
+
+    .drop-zone svg {
+      width: 48px;
+      height: 48px;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .drop-zone p { font-size: 0.95rem; margin-bottom: 0.35rem; }
+    .drop-zone small { font-size: 0.8rem; color: var(--text-secondary); }
+
+    /* Settings */
+    .settings-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .setting-field label {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.35rem;
+    }
+
+    .setting-field input, .setting-field select {
+      width: 100%;
+      padding: 0.6rem 0.75rem;
+      border: 1px solid var(--glass-border);
+      border-radius: 0.75rem;
+      background: var(--glass-bg);
+      color: var(--text-primary);
+      font-size: 0.9rem;
+      transition: border-color 0.25s;
+    }
+
+    .setting-field input:focus, .setting-field select:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15);
+    }
+
+    .lock-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--glass-border);
+      border-radius: 0.5rem;
+      background: var(--glass-bg);
+      color: var(--accent);
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.2s;
+      margin-top: 1.5rem;
+    }
+
+    .lock-btn.locked { background: rgba(14, 165, 233, 0.15); border-color: var(--accent); }
+
+    /* Quality slider */
+    .quality-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .quality-row input[type="range"] {
+      flex: 1;
+      -webkit-appearance: none;
+      appearance: none;
+      height: 6px;
+      background: var(--glass-border);
+      border-radius: 3px;
+      outline: none;
+    }
+
+    .quality-row input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .quality-row input[type="range"]::-moz-range-thumb {
+      width: 18px;
+      height: 18px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+      border-radius: 50%;
+      cursor: pointer;
+      border: none;
+    }
+
+    .quality-val {
+      font-weight: 600;
+      color: var(--accent);
+      min-width: 3em;
+      text-align: center;
+    }
+
+    /* Preview */
+    .preview-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .preview-box {
+      text-align: center;
+    }
+
+    .preview-box .preview-label {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+    }
+
+    .preview-box canvas, .preview-box img {
+      max-width: 100%;
+      max-height: 350px;
+      border: 1px solid var(--glass-border);
+      border-radius: 0.75rem;
+      background: repeating-conic-gradient(rgba(128,128,128,0.1) 0% 25%, transparent 0% 50%) 50% / 16px 16px;
+    }
+
+    .preview-box .info {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-top: 0.5rem;
+    }
+
+    /* Action buttons */
+    .action-row {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .action-btn {
+      padding: 0.65rem 1.4rem;
+      border: none;
+      border-radius: 0.75rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+
+    .action-btn.primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(14, 165, 233, 0.3);
+    }
+
+    .action-btn.primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(14, 165, 233, 0.5); }
+
+    .action-btn.secondary {
+      background: var(--glass-bg);
+      color: var(--text-primary);
+      border: 1px solid var(--glass-border);
+    }
+
+    .action-btn.secondary:hover { border-color: var(--accent); }
+
+    .action-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    /* Batch list */
+    .batch-list { margin-top: 1rem; }
+
+    .batch-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.65rem 0.85rem;
+      border: 1px solid var(--glass-border);
+      border-radius: 0.75rem;
+      margin-bottom: 0.5rem;
+      background: rgba(14, 165, 233, 0.04);
+    }
+
+    .batch-item .thumb {
+      width: 48px;
+      height: 48px;
+      object-fit: cover;
+      border-radius: 0.5rem;
+      border: 1px solid var(--glass-border);
+    }
+
+    .batch-item .batch-info {
+      flex: 1;
+      font-size: 0.85rem;
+      color: var(--text-primary);
+    }
+
+    .batch-item .batch-info small {
+      color: var(--text-secondary);
+      display: block;
+    }
+
+    .batch-item .batch-status {
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    .batch-item .batch-status.done { color: #10b981; }
+    .batch-item .batch-status.pending { color: var(--text-secondary); }
+
+    .batch-item .batch-dl {
+      padding: 0.35rem 0.75rem;
+      border: none;
+      border-radius: 0.5rem;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.8rem;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .hidden { display: none; }
+
+    @media (max-width: 640px) {
+      .preview-grid { grid-template-columns: 1fr; }
+      .settings-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+
+  <script async crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
+  <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
+
+  <meta property="og:title" content="Redimensionneur d'Images | VentiStudio Pro">
+  <meta property="og:description" content="Redimensionneur d'images — Redimensionnez, compressez et recadrez vos images. 100% client-side.">
+  <meta property="og:url" content="https://ventistudio.eu/domain/pro/image/">
+  <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://ventistudio.eu/domain/pro/image/">
+
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="/favicon.avif" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
+      <span>VentiStudio</span>
+    </div>
+    <button class="nav-burger" id="nav-burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="main-nav" class="main-nav" aria-label="Navigation principale">
+      <a href="/" class="nav-link">Accueil</a>
+
+      <details class="nav-group">
+        <summary class="nav-link">Découvrir
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel" role="menu">
+          <a href="/evaluation">Évaluation</a>
+          <a href="/wiki">Wiki</a>
+          <a href="/glossary">Glossaire</a>
+          <a href="/news">News</a>
+          <a href="/blog">Blog</a>
+          <a href="/calendar">Calendrier</a>
+          <a href="/cookbook">Cookbook</a>
+          <a href="/gallery">Galerie</a>
+          <a href="/atlas">Atlas</a>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Univers
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel" role="menu">
+          <a href="/aokiunivers">AOKI Universe</a>
+          <a href="/allofaokiunivers">All AOKI</a>
+          <a href="/university">Université</a>
+          <a href="/history">Histoire</a>
+          <a href="/memorial">Mémorial</a>
+          <a href="/ester-eggs">Easter eggs</a>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Outils
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Applications</h4>
+            <a href="/player">Lecteur</a>
+            <a href="/music">Musique</a>
+            <a href="/pip">PIP</a>
+            <a href="/whiteboard">Whiteboard</a>
+            <a href="/portfolio">Portfolio</a>
+            <a href="/gmod">GMod</a>
+          </div>
+          <div class="nav-col">
+            <h4>Domaines</h4>
+            <a href="/domain/aina">AINA</a>
+            <a href="/domain/archive">Archive</a>
+            <a href="/domain/maps">Maps</a>
+            <a href="/domain/movie">Movie</a>
+            <a href="/domain/peer">Peer</a>
+            <a href="/domain/pro">Pro</a>
+            <a href="/domain/search">Search</a>
+            <a href="/domain/suite">Suite</a>
+          </div>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Communauté
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Équipe</h4>
+            <a href="/personnel/">Équipe</a>
+            <a href="/hierarchie-staff">Hiérarchie</a>
+            <a href="/hypesquad">Hypesquad</a>
+            <a href="/jobs">Emplois</a>
+            <a href="/birthday">Anniversaires</a>
+          </div>
+          <div class="nav-col">
+            <h4>Réseaux</h4>
+            <a href="/discord">Discord</a>
+            <a href="/teamspeak">TeamSpeak</a>
+            <a href="/steam">Steam</a>
+            <a href="/social">Réseaux sociaux</a>
+          </div>
+          <div class="nav-col">
+            <h4>Activités</h4>
+            <a href="/artist">Artistes</a>
+            <a href="/quests">Quêtes</a>
+            <a href="/suboawards">Suboawards</a>
+            <a href="/eConcert">eConcert</a>
+          </div>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Plus
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Aide</h4>
+            <a href="/contact">Contact</a>
+            <a href="/faq">FAQ</a>
+            <a href="/status">Statut</a>
+            <a href="/sitemap">Plan du site</a>
+          </div>
+          <div class="nav-col">
+            <h4>Soutien</h4>
+            <a href="/donate">Faire un don</a>
+            <a href="/gold">Gold</a>
+            <a href="/customization">Personnalisation</a>
+            <a href="/mes-donnees">Mes Données</a>
+            <a href="/newsletter">Newsletter</a>
+          </div>
+          <div class="nav-col">
+            <h4>À propos</h4>
+            <a href="/company">Entreprise</a>
+            <a href="/acknowledgements">Remerciements</a>
+            <a href="/logo">Logo</a>
+            <a href="/tags">Tags</a>
+            <a href="/memory">Mémoire</a>
+            <a href="/why-not-use-roblox">Pourquoi pas Roblox</a>
+            <a href="/lawful">Mentions légales</a>
+          </div>
+        </div>
+      </details>
+    </nav>
+    <div class="controls" role="toolbar" aria-label="Contrôles">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
+          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
+          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
+        </svg>
+      </button>
+      <div id="user-button" role="region" aria-label="Authentification"><button class="cta" id="auth-fallback-btn" onclick="window.location.href='https://accounts.ventistudio.eu/sign-in?redirect_url='+encodeURIComponent(window.location.href)" style="padding:0.5rem 1.25rem;font-size:0.9rem;margin:0"><span>Se connecter</span></button></div>
+    </div>
+  </header>
+
+  <main>
+    <h1 style="margin-bottom:0.25rem">🖼️ Redimensionneur d'Images</h1>
+    <p style="color:var(--text-secondary);margin-bottom:1.5rem">Redimensionnez, compressez et exportez vos images — 100 % client-side</p>
+
+    <div class="panel">
+      <h3>📁 Importer</h3>
+      <div class="drop-zone" id="dropZone">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        <p>Glissez-déposez vos images ici</p>
+        <small>ou cliquez pour sélectionner — PNG, JPEG, WebP, AVIF, GIF, BMP</small>
+        <input type="file" id="fileInput" accept="image/*" multiple hidden>
+      </div>
+    </div>
+
+    <div class="panel hidden" id="settingsPanel">
+      <h3>⚙️ Paramètres</h3>
+      <div class="settings-grid">
+        <div class="setting-field">
+          <label for="widthInput">Largeur (px)</label>
+          <input type="number" id="widthInput" min="1" max="16384">
+        </div>
+        <div style="display:flex;align-items:flex-start">
+          <button class="lock-btn locked" id="lockBtn" title="Ratio verrouillé">🔗</button>
+        </div>
+        <div class="setting-field">
+          <label for="heightInput">Hauteur (px)</label>
+          <input type="number" id="heightInput" min="1" max="16384">
+        </div>
+        <div class="setting-field">
+          <label for="formatSelect">Format de sortie</label>
+          <select id="formatSelect">
+            <option value="image/png">PNG</option>
+            <option value="image/jpeg" selected>JPEG</option>
+            <option value="image/webp">WebP</option>
+            <option value="image/avif">AVIF</option>
+          </select>
+        </div>
+      </div>
+      <div style="margin-top:1rem">
+        <label style="font-size:0.8rem;color:var(--text-secondary);display:block;margin-bottom:0.35rem">Qualité</label>
+        <div class="quality-row">
+          <input type="range" id="qualitySlider" min="1" max="100" value="85">
+          <span class="quality-val" id="qualityVal">85 %</span>
+        </div>
+      </div>
+      <div class="action-row">
+        <button class="action-btn primary" id="processBtn">Redimensionner</button>
+        <button class="action-btn secondary" id="downloadBtn" disabled>Télécharger</button>
+        <button class="action-btn secondary" id="downloadAllBtn" disabled>Tout télécharger</button>
+      </div>
+    </div>
+
+    <div class="panel hidden" id="previewPanel">
+      <h3>👁️ Aperçu</h3>
+      <div class="preview-grid">
+        <div class="preview-box">
+          <div class="preview-label">Original</div>
+          <img id="origPreview" alt="Original">
+          <div class="info" id="origInfo"></div>
+        </div>
+        <div class="preview-box">
+          <div class="preview-label">Résultat</div>
+          <canvas id="resultCanvas"></canvas>
+          <div class="info" id="resultInfo"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel hidden" id="batchPanel">
+      <h3>📋 Fichiers</h3>
+      <div class="batch-list" id="batchList"></div>
+    </div>
+  </main>
+
+  <script src="/main.js"></script>
+  <script>
+  (() => {
+    const $drop      = document.getElementById('dropZone');
+    const $fileInput  = document.getElementById('fileInput');
+    const $settings   = document.getElementById('settingsPanel');
+    const $preview    = document.getElementById('previewPanel');
+    const $batchPanel = document.getElementById('batchPanel');
+    const $batchList  = document.getElementById('batchList');
+    const $width      = document.getElementById('widthInput');
+    const $height     = document.getElementById('heightInput');
+    const $lock       = document.getElementById('lockBtn');
+    const $format     = document.getElementById('formatSelect');
+    const $quality    = document.getElementById('qualitySlider');
+    const $qualVal    = document.getElementById('qualityVal');
+    const $origPrev   = document.getElementById('origPreview');
+    const $origInfo   = document.getElementById('origInfo');
+    const $resultCvs  = document.getElementById('resultCanvas');
+    const $resultInfo = document.getElementById('resultInfo');
+    const $processBtn = document.getElementById('processBtn');
+    const $dlBtn      = document.getElementById('downloadBtn');
+    const $dlAllBtn   = document.getElementById('downloadAllBtn');
+
+    let files = [];
+    let results = [];
+    let activeIdx = 0;
+    let locked = true;
+    let origW = 0, origH = 0;
+
+    /* Drop zone */
+    $drop.addEventListener('click', () => $fileInput.click());
+    $drop.addEventListener('dragover', e => { e.preventDefault(); $drop.classList.add('drag-over'); });
+    $drop.addEventListener('dragleave', () => $drop.classList.remove('drag-over'));
+    $drop.addEventListener('drop', e => {
+      e.preventDefault();
+      $drop.classList.remove('drag-over');
+      handleFiles(e.dataTransfer.files);
+    });
+    $fileInput.addEventListener('change', () => handleFiles($fileInput.files));
+
+    function handleFiles(fl) {
+      const imgs = Array.from(fl).filter(f => f.type.startsWith('image/'));
+      if (imgs.length === 0) return;
+      files = imgs;
+      results = new Array(imgs.length).fill(null);
+      activeIdx = 0;
+      loadImage(0);
+      $settings.classList.remove('hidden');
+      $batchPanel.classList.toggle('hidden', imgs.length <= 1);
+      renderBatch();
+    }
+
+    function loadImage(idx, keepResult) {
+      activeIdx = idx;
+      const reader = new FileReader();
+      reader.onload = e => {
+        const img = new Image();
+        img.onload = () => {
+          origW = img.naturalWidth;
+          origH = img.naturalHeight;
+          $width.value = origW;
+          $height.value = origH;
+          $origPrev.src = e.target.result;
+          $origInfo.textContent = `${origW} × ${origH} — ${sizeStr(files[idx].size)}`;
+          $preview.classList.remove('hidden');
+          if (!keepResult) {
+            $resultCvs.width = 0;
+            $resultCvs.height = 0;
+            $resultInfo.textContent = '';
+            $dlBtn.disabled = true;
+          }
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(files[idx]);
+    }
+
+    /* Aspect lock */
+    $lock.addEventListener('click', () => {
+      locked = !locked;
+      $lock.classList.toggle('locked', locked);
+      $lock.textContent = locked ? '🔗' : '🔓';
+    });
+
+    $width.addEventListener('input', () => {
+      if (locked && origW > 0) {
+        $height.value = Math.round(($width.value / origW) * origH);
+      }
+    });
+
+    $height.addEventListener('input', () => {
+      if (locked && origH > 0) {
+        $width.value = Math.round(($height.value / origH) * origW);
+      }
+    });
+
+    $quality.addEventListener('input', () => {
+      $qualVal.textContent = $quality.value + ' %';
+    });
+
+    /* Process */
+    $processBtn.addEventListener('click', () => processAll());
+
+    async function processAll() {
+      $processBtn.disabled = true;
+      $processBtn.textContent = 'Traitement…';
+      for (let i = 0; i < files.length; i++) {
+        await processOne(i);
+        renderBatch();
+      }
+      $processBtn.disabled = false;
+      $processBtn.textContent = 'Redimensionner';
+      $dlAllBtn.disabled = files.length <= 1;
+      showResult(activeIdx);
+    }
+
+    function processOne(idx) {
+      return new Promise(resolve => {
+        const reader = new FileReader();
+        reader.onload = e => {
+          const img = new Image();
+          img.onload = () => {
+            const w = parseInt($width.value) || img.naturalWidth;
+            const h = parseInt($height.value) || img.naturalHeight;
+            const cvs = document.createElement('canvas');
+            cvs.width = w;
+            cvs.height = h;
+            const ctx = cvs.getContext('2d');
+            ctx.imageSmoothingEnabled = true;
+            ctx.imageSmoothingQuality = 'high';
+            ctx.drawImage(img, 0, 0, w, h);
+
+            const fmt = $format.value;
+            const q = parseInt($quality.value) / 100;
+            cvs.toBlob(blob => {
+              results[idx] = { blob, w, h, cvs };
+              resolve();
+            }, fmt, q);
+          };
+          img.src = e.target.result;
+        };
+        reader.readAsDataURL(files[idx]);
+      });
+    }
+
+    function showResult(idx) {
+      const r = results[idx];
+      if (!r) return;
+      $resultCvs.width = r.cvs.width;
+      $resultCvs.height = r.cvs.height;
+      $resultCvs.getContext('2d').drawImage(r.cvs, 0, 0);
+      $resultInfo.textContent = `${r.w} × ${r.h} — ${sizeStr(r.blob.size)}`;
+      $dlBtn.disabled = false;
+      loadImage(idx, true);
+    }
+
+    /* Download */
+    $dlBtn.addEventListener('click', () => downloadOne(activeIdx));
+    $dlAllBtn.addEventListener('click', () => {
+      for (let i = 0; i < results.length; i++) {
+        if (results[i]) downloadOne(i);
+      }
+    });
+
+    function downloadOne(idx) {
+      const r = results[idx];
+      if (!r) return;
+      const ext = { 'image/png': 'png', 'image/jpeg': 'jpg', 'image/webp': 'webp', 'image/avif': 'avif' }[$format.value] || 'png';
+      const name = files[idx].name.replace(/\.[^.]+$/, '') + '_resized.' + ext;
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(r.blob);
+      a.download = name;
+      a.click();
+      URL.revokeObjectURL(a.href);
+    }
+
+    function sizeStr(b) {
+      if (b < 1024) return b + ' o';
+      if (b < 1048576) return (b / 1024).toFixed(1) + ' Ko';
+      return (b / 1048576).toFixed(2) + ' Mo';
+    }
+
+    /* Batch list */
+    function renderBatch() {
+      $batchList.innerHTML = '';
+      files.forEach((f, i) => {
+        const div = document.createElement('div');
+        div.className = 'batch-item';
+        const thumb = document.createElement('img');
+        thumb.className = 'thumb';
+        thumb.alt = f.name;
+        const thumbReader = new FileReader();
+        thumbReader.onload = e => { thumb.src = e.target.result; };
+        thumbReader.readAsDataURL(f);
+
+        const info = document.createElement('div');
+        info.className = 'batch-info';
+        info.innerHTML = `${esc(f.name)}<small>${sizeStr(f.size)}</small>`;
+
+        const status = document.createElement('span');
+        status.className = 'batch-status ' + (results[i] ? 'done' : 'pending');
+        status.textContent = results[i] ? '✓ Fait' : 'En attente';
+
+        div.appendChild(thumb);
+        div.appendChild(info);
+        div.appendChild(status);
+
+        if (results[i]) {
+          const dl = document.createElement('a');
+          dl.className = 'batch-dl';
+          dl.textContent = '↓';
+          dl.href = '#';
+          dl.addEventListener('click', e => { e.preventDefault(); downloadOne(i); });
+          div.appendChild(dl);
+        }
+
+        div.style.cursor = 'pointer';
+        div.addEventListener('click', () => {
+          activeIdx = i;
+          if (results[i]) showResult(i);
+          else loadImage(i);
+        });
+
+        $batchList.appendChild(div);
+      });
+    }
+
+    function esc(s) {
+      return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+  })();
+  </script>
+  <script>
+    (function () {
+      var nav = document.getElementById('main-nav');
+      var burger = document.getElementById('nav-burger');
+      if (!nav || !burger) return;
+
+      // Marque le lien actif d'apres l'URL courante
+      try {
+        var path = window.location.pathname.replace(/\/index\.html?$/, '/').replace(/\/$/, '') || '/';
+        var best = null, bestLen = -1;
+        nav.querySelectorAll('a[href]').forEach(function (a) {
+          var href = a.getAttribute('href').replace(/\/$/, '') || '/';
+          if (href === path || (href !== '/' && path.indexOf(href + '/') === 0) || (href !== '/' && path === href)) {
+            if (href.length > bestLen) { best = a; bestLen = href.length; }
+          }
+        });
+        if (path === '/' || path === '') {
+          best = nav.querySelector('a[href="/"]');
+        }
+        if (best) {
+          best.classList.add('active');
+          var grp = best.closest('details.nav-group');
+          if (grp) {
+            var s = grp.querySelector('summary.nav-link');
+            if (s) s.classList.add('active');
+          }
+        }
+      } catch (e) {}
+
+      function closeAllGroups(except) {
+        nav.querySelectorAll('details.nav-group[open]').forEach(function (d) {
+          if (d !== except) d.removeAttribute('open');
+        });
+      }
+
+      burger.addEventListener('click', function () {
+        var open = nav.classList.toggle('is-open');
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        burger.classList.toggle('is-active', open);
+        if (!open) closeAllGroups();
+      });
+
+      nav.querySelectorAll('details.nav-group').forEach(function (d) {
+        d.addEventListener('toggle', function () {
+          if (d.open) closeAllGroups(d);
+        });
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!nav.contains(e.target) && !burger.contains(e.target)) {
+          closeAllGroups();
+          if (nav.classList.contains('is-open')) {
+            nav.classList.remove('is-open');
+            burger.classList.remove('is-active');
+            burger.setAttribute('aria-expanded', 'false');
+          }
+        }
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          closeAllGroups();
+          if (nav.classList.contains('is-open')) {
+            nav.classList.remove('is-open');
+            burger.classList.remove('is-active');
+            burger.setAttribute('aria-expanded', 'false');
+            burger.focus();
+          }
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
