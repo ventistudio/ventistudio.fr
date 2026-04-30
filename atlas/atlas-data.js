@@ -1,13 +1,5 @@
-// ═══ Atlas Mondial — Données géopolitiques VentiStudio ═══
-// Scores de 1 (critique) à 5 (excellent)
-// freedom: liberté d'expression, presse, réunion
-// hostility: niveau d'hostilité (1 = très hostile, 5 = très pacifique)
-// security: sécurité intérieure des citoyens
-// rights: droits humains fondamentaux
-// stability: stabilité politique et institutionnelle
-
 var atlasData = [
-  // ── Europe ──
+
   { name: "France", code: "FR", continent: "europe", freedom: 4, hostility: 4, security: 4, rights: 4, stability: 4 },
   { name: "Allemagne", code: "DE", continent: "europe", freedom: 5, hostility: 5, security: 4, rights: 5, stability: 5 },
   { name: "Royaume-Uni", code: "GB", continent: "europe", freedom: 4, hostility: 4, security: 4, rights: 4, stability: 4 },
@@ -52,7 +44,7 @@ var atlasData = [
   { name: "Chypre", code: "CY", continent: "europe", freedom: 4, hostility: 4, security: 4, rights: 4, stability: 4 },
   { name: "Malte", code: "MT", continent: "europe", freedom: 4, hostility: 5, security: 5, rights: 4, stability: 4 },
 
-  // ── Asie ──
+
   { name: "Japon", code: "JP", continent: "asia", freedom: 4, hostility: 5, security: 5, rights: 4, stability: 5 },
   { name: "Corée du Sud", code: "KR", continent: "asia", freedom: 4, hostility: 4, security: 4, rights: 4, stability: 4 },
   { name: "Corée du Nord", code: "KP", continent: "asia", freedom: 1, hostility: 1, security: 2, rights: 1, stability: 2 },
@@ -90,7 +82,7 @@ var atlasData = [
   { name: "Turkménistan", code: "TM", continent: "asia", freedom: 1, hostility: 4, security: 3, rights: 1, stability: 3 },
   { name: "Mongolie", code: "MN", continent: "asia", freedom: 4, hostility: 5, security: 4, rights: 4, stability: 3 },
 
-  // ── Afrique ──
+
   { name: "Afrique du Sud", code: "ZA", continent: "africa", freedom: 4, hostility: 3, security: 2, rights: 4, stability: 3 },
   { name: "Nigeria", code: "NG", continent: "africa", freedom: 3, hostility: 2, security: 2, rights: 2, stability: 2 },
   { name: "Éthiopie", code: "ET", continent: "africa", freedom: 2, hostility: 1, security: 1, rights: 2, stability: 1 },
@@ -124,7 +116,7 @@ var atlasData = [
   { name: "Zimbabwe", code: "ZW", continent: "africa", freedom: 2, hostility: 3, security: 3, rights: 2, stability: 2 },
   { name: "Angola", code: "AO", continent: "africa", freedom: 2, hostility: 3, security: 3, rights: 2, stability: 3 },
 
-  // ── Amérique du Nord ──
+
   { name: "États-Unis", code: "US", continent: "north-america", freedom: 4, hostility: 3, security: 3, rights: 4, stability: 3 },
   { name: "Canada", code: "CA", continent: "north-america", freedom: 5, hostility: 5, security: 5, rights: 5, stability: 5 },
   { name: "Mexique", code: "MX", continent: "north-america", freedom: 3, hostility: 2, security: 2, rights: 3, stability: 2 },
@@ -140,7 +132,7 @@ var atlasData = [
   { name: "Nicaragua", code: "NI", continent: "north-america", freedom: 1, hostility: 3, security: 3, rights: 1, stability: 2 },
   { name: "Trinité-et-Tobago", code: "TT", continent: "north-america", freedom: 4, hostility: 4, security: 3, rights: 4, stability: 4 },
 
-  // ── Amérique du Sud ──
+
   { name: "Brésil", code: "BR", continent: "south-america", freedom: 4, hostility: 3, security: 2, rights: 3, stability: 3 },
   { name: "Argentine", code: "AR", continent: "south-america", freedom: 4, hostility: 4, security: 3, rights: 4, stability: 3 },
   { name: "Chili", code: "CL", continent: "south-america", freedom: 5, hostility: 4, security: 4, rights: 4, stability: 4 },
@@ -154,7 +146,7 @@ var atlasData = [
   { name: "Guyane", code: "GY", continent: "south-america", freedom: 3, hostility: 4, security: 3, rights: 3, stability: 3 },
   { name: "Suriname", code: "SR", continent: "south-america", freedom: 3, hostility: 4, security: 3, rights: 3, stability: 3 },
 
-  // ── Océanie ──
+
   { name: "Australie", code: "AU", continent: "oceania", freedom: 5, hostility: 5, security: 5, rights: 5, stability: 5 },
   { name: "Nouvelle-Zélande", code: "NZ", continent: "oceania", freedom: 5, hostility: 5, security: 5, rights: 5, stability: 5 },
   { name: "Fidji", code: "FJ", continent: "oceania", freedom: 3, hostility: 4, security: 4, rights: 3, stability: 3 },
@@ -164,8 +156,6 @@ var atlasData = [
   { name: "Vanuatu", code: "VU", continent: "oceania", freedom: 4, hostility: 5, security: 4, rights: 3, stability: 3 }
 ];
 
-// ═══ Justifications génériques par critère et niveau (1 à 5) ═══
-// Utilisées par défaut quand aucune justification spécifique n'est définie.
 var atlasCriteriaReasons = {
   freedom: {
     5: "Presse libre et pluraliste, liberté d'expression et de réunion solidement protégées par la loi et la pratique.",
@@ -204,11 +194,8 @@ var atlasCriteriaReasons = {
   }
 };
 
-// ═══ Justifications spécifiques par pays (cas notables) ═══
-// Format : code ISO → { summary, freedom?, hostility?, security?, rights?, stability? }
-// Si une clé est absente, la justification générique ci-dessus est utilisée.
 var atlasReasons = {
-  // ── Europe ──
+
   "FR": { summary: "Démocratie stable de l'UE, État de droit solide, mais tensions sociales récurrentes et critiques sur le maintien de l'ordre." },
   "DE": { summary: "Démocratie modèle au cœur de l'UE, presse libre, justice indépendante et économie résiliente." },
   "GB": { summary: "Démocratie ancienne, mais Brexit, surveillance et restrictions du droit de manifester ont pesé ces dernières années." },
@@ -223,7 +210,7 @@ var atlasReasons = {
   "TR": { summary: "Présidentialisation autoritaire sous Erdoğan, presse muselée, justice politisée, tensions kurdes." },
   "RS": { summary: "Démocratie fragile, médias sous influence, tensions avec le Kosovo, rapprochement ambigu avec la Russie." },
 
-  // ── Asie ──
+
   "JP": { summary: "Démocratie stable, sécurité exemplaire, mais société conservatrice et droits LGBTQ+ encore limités." },
   "KR": { summary: "Démocratie dynamique, économie avancée, sous tension permanente avec la Corée du Nord." },
   "KP": { freedom: "Aucune liberté d'expression : un seul parti, médias entièrement contrôlés, accès Internet quasi nul.", rights: "Camps de travail (kwanliso), exécutions publiques, famines orchestrées, culte de la personnalité.", summary: "Régime totalitaire dynastique de la famille Kim, l'un des pires bilans humains au monde." },
@@ -241,7 +228,7 @@ var atlasReasons = {
   "PS": { summary: "Territoires occupés et bombardés, gouvernance fragmentée entre Cisjordanie et Gaza, crise humanitaire majeure." },
   "SG": { summary: "Sécurité et prospérité hors normes, mais peine de mort, restrictions sur la presse et les libertés publiques." },
 
-  // ── Afrique ──
+
   "ZA": { summary: "Démocratie post-apartheid, libertés respectées, mais criminalité urbaine et inégalités extrêmes." },
   "EG": { summary: "Régime militaire d'al-Sissi, opposition étouffée, dizaines de milliers de prisonniers politiques." },
   "ET": { summary: "Sortie d'une guerre civile dévastatrice au Tigré, tensions ethniques persistantes." },
@@ -252,7 +239,7 @@ var atlasReasons = {
   "RW": { summary: "Stabilité et sécurité fortes sous Kagame, mais opposition muselée et libertés très restreintes." },
   "MA": { summary: "Monarchie réformatrice, stabilité régionale, mais limites sur la presse et la question du Sahara occidental." },
 
-  // ── Amériques ──
+
   "US": { summary: "Démocratie ancienne, libertés fortes, mais polarisation politique extrême, violence par armes à feu et inégalités." },
   "CA": { summary: "Démocratie modèle, sécurité élevée, droits sociaux et minorités globalement protégés." },
   "MX": { summary: "Démocratie active mais cartels, journalistes assassinés, corruption endémique." },
@@ -265,7 +252,7 @@ var atlasReasons = {
   "UY": { summary: "Démocratie la plus stable d'Amérique du Sud, libertés et droits sociaux avancés." },
   "CR": { summary: "Pays sans armée depuis 1948, démocratie stable et écologie politique forte." },
 
-  // ── Océanie ──
+
   "AU": { summary: "Démocratie solide, sécurité élevée, mais politiques migratoires (centres offshore) controversées." },
   "NZ": { summary: "Démocratie modèle, droits autochtones reconnus, sécurité et libertés au sommet mondial." }
 };

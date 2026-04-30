@@ -1,4 +1,3 @@
-// Script pour le filtrage et l'archive des news
 let allNews = [];
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -7,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function loadNews() {
-  // Charger le fichier de données
+
   const script = document.createElement('script');
   script.src = '/news/news-data.js';
   script.onload = function() {
@@ -35,17 +34,17 @@ function applyFilters() {
   const search = document.getElementById('searchText').value.toLowerCase();
 
   let filtered = allNews.filter(news => {
-    // Filtre catégorie
+
     if (category && news.category !== category) return false;
 
-    // Filtre année et mois
+
     if (year || month) {
       const newsDate = news.date.split('-');
       if (year && newsDate[0] !== year) return false;
       if (month && newsDate[1] !== month) return false;
     }
 
-    // Filtre recherche
+
     if (search && !news.title.toLowerCase().includes(search) && !news.excerpt.toLowerCase().includes(search)) {
       return false;
     }
@@ -53,7 +52,7 @@ function applyFilters() {
     return true;
   });
 
-  // Trier par date (plus récentes en premier)
+
   filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
 
   displayArchive(filtered);
@@ -65,7 +64,7 @@ function resetFilters() {
   document.getElementById('filterYear').value = '';
   document.getElementById('filterMonth').value = '';
   document.getElementById('searchText').value = '';
-  
+
   displayArchive(allNews);
   updateStats(allNews);
 }
@@ -84,9 +83,9 @@ function displayArchive(newsToDisplay) {
   emptyArchive.style.display = 'none';
   archiveList.innerHTML = '';
 
-  // Grouper par mois pour affichage
+
   const grouped = {};
-  
+
   newsToDisplay.forEach(news => {
     const [year, month, day] = news.date.split('-');
     const key = `${year}-${month}`;
@@ -96,12 +95,12 @@ function displayArchive(newsToDisplay) {
     grouped[key].push(news);
   });
 
-  // Afficher les items groupés
+
   Object.keys(grouped).sort().reverse().forEach(key => {
     const [year, month] = key.split('-');
     const monthNames = ['', 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
                         'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
-    
+
     const monthHeader = document.createElement('div');
     monthHeader.style.cssText = 'grid-column: 1/-1; margin-top: 30px; margin-bottom: 15px;';
     monthHeader.innerHTML = `<h3 style="margin: 0; color: #6366f1; font-size: 1.1rem;">${monthNames[parseInt(month)]} ${year}</h3>`;
@@ -113,7 +112,7 @@ function displayArchive(newsToDisplay) {
     });
   });
 
-  // Convertir le layout en grid pour les groupements
+
   archiveList.style.display = 'grid';
   archiveList.style.gridTemplateColumns = '1fr';
 }
@@ -121,7 +120,7 @@ function displayArchive(newsToDisplay) {
 function createArchiveItem(news) {
   const article = document.createElement('article');
   article.className = 'archive-item';
-  
+
   const categoryLabel = getCategoryLabel(news.category);
   const formattedDate = formatDate(news.date);
 
@@ -144,7 +143,7 @@ function createArchiveItem(news) {
 function expandArchive(button, newsId) {
   const content = document.getElementById(`archive-${newsId}`);
   const isVisible = content.style.display !== 'none';
-  
+
   if (isVisible) {
     content.style.display = 'none';
     button.textContent = 'Lire la suite';
@@ -174,14 +173,14 @@ function updateStats(newsToShow) {
   const stats = document.getElementById('archiveStats');
   const totalNews = allNews.length;
   const shown = newsToShow.length;
-  
+
   let statsHTML = `<strong>${shown}</strong> chronique${shown !== 1 ? 's' : ''} trouvée${shown !== 1 ? 's' : ''}`;
-  
+
   if (shown !== totalNews) {
     statsHTML += ` (sur ${totalNews} au total)`;
   }
-  
-  // Compter par catégorie
+
+
   const categoryCounts = {};
   newsToShow.forEach(news => {
     categoryCounts[news.category] = (categoryCounts[news.category] || 0) + 1;
@@ -205,7 +204,6 @@ function escapeHtml(text) {
   return div.innerHTML;
 }
 
-// Ajouter les styles du contenu complet
 const archiveStyles = document.createElement('style');
 archiveStyles.textContent = `
   .archive-full-content {

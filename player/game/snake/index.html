@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr" data-theme="dark">
 <head>
 
@@ -25,6 +25,7 @@
       document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
+  <script src="/i18n.js" defer></script>
 </head>
 <body>
   <main>
@@ -166,6 +167,7 @@
       document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
+  <script src="/i18n.js" defer></script>
 </head>
 <body>
 <div id="game-container">
@@ -185,8 +187,8 @@
 <div class="options">
   <button class="btn speed-btn" data-speed="slow">Lent (x1)</button>
   <button class="btn speed-btn active" data-speed="normal">Normal (x2)</button>
-  <button class="btn speed-btn" data-speed="fast">Rapide (x3)</button>  
-  <button class="btn speed-btn" data-speed="fast">Pro (x5)</button>  
+  <button class="btn speed-btn" data-speed="fast">Rapide (x3)</button>
+  <button class="btn speed-btn" data-speed="fast">Pro (x5)</button>
   <button class="btn" id="myrtilleBtn">Mode Myrtille</button>
 </div>
 
@@ -328,7 +330,7 @@
     if (foodIndex !== -1) {
       const food = foods[foodIndex];
       foods.splice(foodIndex, 1);
-      
+
       switch(food.type) {
         case 'speed':
           activateSpeedBoost();
@@ -342,7 +344,7 @@
         default:
           score += speeds[currentSpeed].points;
       }
-      
+
       document.getElementById('score').textContent = score;
       createFood();
     } else {

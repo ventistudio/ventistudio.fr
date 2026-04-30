@@ -1,4 +1,3 @@
-// ═══ Theme Toggle ═══
 (function initTheme() {
   var saved = localStorage.getItem('theme');
   if (saved) {
@@ -21,7 +20,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // ═══ Easter Egg Gold ═══
+
   (function initGoldEasterEgg() {
     const statusDot = document.querySelector('.status-dot');
     if (!statusDot) return;
@@ -40,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
       clicks.push(now);
       clicks = clicks.filter(t => now - t < CLICK_WINDOW);
 
-      // Feedback visuel subtil
+
       statusDot.style.boxShadow = '0 0 8px #f59e0b';
       statusDot.style.background = '#f59e0b';
       setTimeout(() => {
@@ -74,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
       document.body.appendChild(overlay);
 
-      // Animer l'apparition
+
       requestAnimationFrame(() => overlay.classList.add('visible'));
 
       const keyInput = document.getElementById('gold-secret-key');
@@ -117,30 +116,30 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   })();
 
-  // Mobile menu toggle (if nav gets too long)
+
   const nav = document.querySelector('nav');
   const header = document.querySelector('header');
-  
-  // Ensure proper responsive behavior
+
+
   window.addEventListener('resize', () => {
     if (window.innerWidth > 768 && nav) {
       nav.style.display = 'flex';
     }
   });
 
-  // Card hover effects
+
   const cards = document.querySelectorAll('.card');
   cards.forEach(card => {
     card.addEventListener('mouseenter', () => {
       card.style.boxShadow = 'var(--neon-glow)';
     });
-    
+
     card.addEventListener('mouseleave', () => {
       card.style.boxShadow = 'none';
     });
   });
 
-  // CTA button animation
+
   document.querySelectorAll('.cta').forEach(cta => {
     cta.addEventListener('click', () => {
       cta.style.transform = 'scale(0.95)';
@@ -150,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // ═══ Recommandations dynamiques depuis les données d'évaluation ═══
+
   const recoContainer = document.getElementById('recommendations-container');
   if (recoContainer && typeof evaluationData !== 'undefined') {
     const typeLabels = {
@@ -164,7 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'applications': '💻 Applications',
     };
 
-    // Grouper les items featured par type
+
     const featured = evaluationData.filter(item => item.featured);
     const grouped = {};
     featured.forEach(item => {
@@ -172,13 +171,13 @@ document.addEventListener('DOMContentLoaded', () => {
       grouped[item.type].push(item);
     });
 
-    // Trier par note décroissante dans chaque groupe, garder les 3 meilleurs
+
     Object.keys(grouped).forEach(type => {
       grouped[type].sort((a, b) => b.rating - a.rating);
       grouped[type] = grouped[type].slice(0, 3);
     });
 
-    // Ne garder que les catégories avec au moins 1 item
+
     const types = Object.keys(grouped).filter(t => grouped[t].length > 0);
 
     if (types.length > 0) {
@@ -224,7 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
         recoContainer.appendChild(section);
       });
 
-      // Lien "Voir tout"
+
       const seeAll = document.createElement('div');
       seeAll.style.cssText = 'grid-column: 1 / -1; text-align: center; margin-top: 1rem;';
       seeAll.innerHTML = '<a href="/evaluation" class="cta" style="display:inline-block;padding:0.6rem 1.5rem;font-size:0.9rem;">Voir tout le catalogue évalué</a>';
@@ -232,7 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // ═══ Dernières nouvelles dynamiques ═══
+
   const newsContainer = document.getElementById('latest-news-container');
   if (newsContainer && typeof newsData !== 'undefined' && newsData.length > 0) {
     const latest = [...newsData].sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 3);
@@ -251,12 +250,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ═══════════════════════════════════════════════════════
-  //  EASTER EGGS ENGINE — Succès débloquables sur le site
-  // ═══════════════════════════════════════════════════════
+
+
+
   (function initEasterEggEngine() {
     var EE_KEY = 'vs-ee-unlocked';
-    var TOTAL_EGGS = 19; // hors "completionist"
+    var TOTAL_EGGS = 19;
 
     var eggNames = {
       'konami': '🎮 Konami Code',
@@ -297,7 +296,7 @@ document.addEventListener('DOMContentLoaded', () => {
       localStorage.setItem(EE_KEY, JSON.stringify(unlocked));
       showToast(id);
       window.dispatchEvent(new CustomEvent('vs-ee-unlock', { detail: { id: id } }));
-      // Check completionist (all 11 others unlocked)
+
       if (id !== 'completionist') {
         var count = unlocked.filter(function(x) { return x !== 'completionist'; }).length;
         if (count >= TOTAL_EGGS) {
@@ -310,7 +309,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.vsUnlockEgg = unlockEgg;
     window.vsIsEggUnlocked = isUnlocked;
 
-    // ── Toast Notification ──
+
     function showToast(id) {
       var toast = document.createElement('div');
       toast.setAttribute('role', 'status');
@@ -331,7 +330,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 3500);
     }
 
-    // ── Trigger: Konami Code (toutes pages) ──
+
     (function() {
       var sequence = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
       var pos = 0;
@@ -342,7 +341,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (pos >= sequence.length) {
             pos = 0;
             unlockEgg('konami');
-            // Rainbow flash
+
             var s = document.createElement('style');
             s.textContent = '@keyframes vsEeRainbow{0%{opacity:0}20%{opacity:.3}100%{opacity:0}}';
             document.head.appendChild(s);
@@ -357,7 +356,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     })();
 
-    // ── Trigger: Word detection (circus, flip, matrix) ──
+
     (function() {
       var typed = '';
       document.addEventListener('keydown', function(e) {
@@ -365,7 +364,7 @@ document.addEventListener('DOMContentLoaded', () => {
         typed += e.key.toLowerCase();
         if (typed.length > 30) typed = typed.slice(-30);
 
-        // Circus
+
         if (typed.endsWith('circus')) {
           typed = '';
           unlockEgg('circus');
@@ -376,7 +375,7 @@ document.addEventListener('DOMContentLoaded', () => {
           setTimeout(function() { document.body.style.animation = ''; s.remove(); }, 5000);
         }
 
-        // Flip
+
         if (typed.endsWith('flip')) {
           typed = '';
           unlockEgg('flip');
@@ -388,7 +387,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }, 3000);
         }
 
-        // Disco
+
         if (typed.endsWith('disco')) {
           typed = '';
           unlockEgg('disco');
@@ -404,7 +403,7 @@ document.addEventListener('DOMContentLoaded', () => {
           setTimeout(function() { ball.remove(); light.remove(); sDisco.remove(); }, 6000);
         }
 
-        // Neko (cat walk)
+
         if (typed.endsWith('neko') || typed.endsWith('cat')) {
           typed = '';
           unlockEgg('neko');
@@ -421,7 +420,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }, 20);
         }
 
-        // Gravity
+
         if (typed.endsWith('gravity')) {
           typed = '';
           unlockEgg('gravity');
@@ -439,7 +438,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }, 8000);
         }
 
-        // Retro
+
         if (typed.endsWith('retro')) {
           typed = '';
           unlockEgg('retro');
@@ -458,7 +457,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }, 7000);
         }
 
-        // Ghost
+
         if (typed.endsWith('ghost')) {
           typed = '';
           unlockEgg('ghost');
@@ -475,7 +474,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }, 4000);
         }
 
-        // Pirate
+
         if (typed.endsWith('pirate')) {
           typed = '';
           unlockEgg('pirate');
@@ -494,7 +493,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }, 7000);
         }
 
-        // Matrix
+
         if (typed.endsWith('matrix')) {
           typed = '';
           unlockEgg('matrix');
@@ -532,7 +531,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     })();
 
-    // ── Trigger: Double Face (10 theme toggles in 5s) ──
+
     (function() {
       var toggle = document.getElementById('theme-toggle');
       if (!toggle) return;
@@ -552,7 +551,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     })();
 
-    // ── Trigger: Night Owl (visit between midnight and 3am) ──
+
     (function() {
       var hour = new Date().getHours();
       if (hour >= 0 && hour < 3) {
@@ -560,7 +559,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     })();
 
-    // ── Trigger: Anniversary (September 24) ──
+
     (function() {
       var now = new Date();
       if (now.getMonth() === 8 && now.getDate() === 24) {
@@ -568,14 +567,14 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     })();
 
-    // ── Trigger: Perfect Hour (minute === 42) ──
+
     (function() {
       if (new Date().getMinutes() === 42) {
         unlockEgg('perfect-hour');
       }
     })();
 
-    // ── Trigger: Explorer (visit 8+ different pages) ──
+
     (function() {
       var PAGES_KEY = 'vs-ee-pages';
       var pages;
@@ -591,7 +590,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     })();
 
-    // ── Trigger: Hidden Pixel (homepage only) ──
+
     (function() {
       var path = location.pathname.replace(/\/+$/, '') || '/';
       if (path !== '/' && path !== '/index.html') return;
@@ -612,13 +611,13 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     })();
 
-    // ── Trigger: Logo Maniaque (click logo 5 times in 3s) ──
+
     (function() {
       var logoEl = document.querySelector('.logo');
       if (!logoEl) return;
       var logoClicks = [];
       logoEl.addEventListener('click', function(e) {
-        if (e.target.closest('a[href]')) return; // ne pas bloquer les liens
+        if (e.target.closest('a[href]')) return;
         logoClicks.push(Date.now());
         logoClicks = logoClicks.filter(function(t) { return Date.now() - t < 3000; });
         if (logoClicks.length >= 5) {
@@ -637,7 +636,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     })();
 
-    // ── Trigger: Scroll King (scroll 15000px total on one page) ──
+
     (function() {
       var totalScroll = 0;
       var lastY = window.scrollY;
@@ -651,14 +650,9 @@ document.addEventListener('DOMContentLoaded', () => {
     })();
 
   })();
-  // ═══ Fin Easter Eggs Engine ═══
+
 });
 
-// ═══════════════════════════════════════════════════════════
-// CLERK AUTHENTICATION
-// ═══════════════════════════════════════════════════════════
-
-// Clé publique Clerk
 const CLERK_PUBLISHABLE_KEY = 'pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk';
 
 const userButtonContainer = document.getElementById('user-button');
@@ -666,9 +660,9 @@ const userButtonContainer = document.getElementById('user-button');
 (async function initClerk() {
   if (!userButtonContainer) return;
 
-  // Attendre que le SDK Clerk soit chargé
+
   if (typeof window.Clerk === 'undefined') {
-    // Fallback si le script CDN n'est pas encore chargé
+
     await new Promise((resolve, reject) => {
       const maxWait = setTimeout(() => reject(new Error('Clerk SDK timeout')), 10000);
       const check = setInterval(() => {
@@ -701,7 +695,7 @@ const userButtonContainer = document.getElementById('user-button');
       },
     });
 
-    // Écouter les changements d'état d'authentification
+
     renderAuthUI(clerk);
     clerk.addListener(() => renderAuthUI(clerk));
   } catch (err) {
@@ -715,7 +709,7 @@ function renderAuthUI(clerk) {
   userButtonContainer.innerHTML = '';
 
   if (clerk.user) {
-    // Utilisateur connecté → afficher le UserButton Clerk
+
     const userBtnDiv = document.createElement('div');
     userBtnDiv.id = 'clerk-user-button';
     userButtonContainer.appendChild(userBtnDiv);
@@ -734,7 +728,7 @@ function renderAuthUI(clerk) {
       userButtonContainer.appendChild(profileLink);
     }
   } else {
-    // Non connecté → bouton "Se connecter" qui ouvre la modale Clerk ou redirige
+
     const signInButton = document.createElement('button');
     signInButton.innerHTML = '<span>Se connecter</span>';
     signInButton.className = 'cta';

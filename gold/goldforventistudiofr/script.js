@@ -1,11 +1,7 @@
-/* ═══════════════════════════════════════
-   VentiStudio Gold Dashboard — Script
-   ═══════════════════════════════════════ */
-
 (function () {
   'use strict';
 
-  // ── Protection d'accès ──
+
   const gate = document.getElementById('access-gate');
   if (sessionStorage.getItem('gold-access') !== 'true') {
     if (gate) gate.style.display = 'flex';
@@ -13,7 +9,7 @@
   }
   if (gate) gate.remove();
 
-  // ── Particules dorées (Canvas) ──
+
   const canvas = document.getElementById('gold-particles');
   if (canvas) {
     const ctx = canvas.getContext('2d');
@@ -86,7 +82,7 @@
     animate();
   }
 
-  // ── CountUp Animation ──
+
   const statNumbers = document.querySelectorAll('.stat-number[data-count]');
   if (statNumbers.length) {
     const countObserver = new IntersectionObserver((entries) => {
@@ -117,7 +113,7 @@
     requestAnimationFrame(step);
   }
 
-  // ── Filtrage par catégorie ──
+
   const filterBtns = document.querySelectorAll('.filter-btn');
   const searchInput = document.getElementById('gold-search');
   const contentGrid = document.getElementById('content-grid');
@@ -133,7 +129,7 @@
     });
   });
 
-  // ── Recherche live (debounce) ──
+
   let searchTimeout;
   if (searchInput) {
     searchInput.addEventListener('input', () => {
@@ -145,7 +141,7 @@
     });
   }
 
-  // ── Rendu du contenu ──
+
   function renderContent() {
     if (!contentGrid) return;
 
@@ -201,7 +197,7 @@
     observeCards();
   }
 
-  // ── IntersectionObserver pour fadeInUp ──
+
   function observeCards() {
     const cards = contentGrid.querySelectorAll('.content-card');
     const observer = new IntersectionObserver((entries) => {
@@ -218,7 +214,7 @@
     cards.forEach(card => observer.observe(card));
   }
 
-  // ── Changelog ──
+
   const timelineContainer = document.getElementById('timeline');
   if (timelineContainer && typeof goldChangelog !== 'undefined') {
     timelineContainer.innerHTML = goldChangelog.map(entry => `
@@ -243,7 +239,7 @@
     tlItems.forEach(item => tlObserver.observe(item));
   }
 
-  // ── Smooth scroll navigation ──
+
   document.querySelectorAll('.gold-nav .nav-links a[href^="#"]').forEach(link => {
     link.addEventListener('click', (e) => {
       const target = document.querySelector(link.getAttribute('href'));
@@ -254,7 +250,7 @@
     });
   });
 
-  // ── Helpers ──
+
   function isRecent(dateStr, days) {
     const itemDate = new Date(dateStr);
     const now = new Date();
@@ -273,14 +269,14 @@
     return div.innerHTML;
   }
 
-  // ── Init ──
+
   renderContent();
 
-  // ═══════════════════════════════════════
-  //  GOLD TOOLBOX — Outils interactifs
-  // ═══════════════════════════════════════
 
-  // ── 1. Encodeur / Décodeur ──
+
+
+
+
   (function initEncoder() {
     const mode = document.getElementById('enc-mode');
     const input = document.getElementById('enc-input');
@@ -320,7 +316,7 @@
     btnCopy.addEventListener('click', () => copyText(output.value, btnCopy));
   })();
 
-  // ── 2. Générateur de mots de passe ──
+
   (function initPwdGen() {
     const lenRange = document.getElementById('pwd-length');
     const lenVal = document.getElementById('pwd-len-val');
@@ -353,7 +349,7 @@
       const pwd = Array.from(arr, v => pool[v % pool.length]).join('');
       result.textContent = pwd;
 
-      // Strength indicator
+
       let score = 0;
       if (len >= 12) score++;
       if (len >= 20) score++;
@@ -367,7 +363,7 @@
     btnCopy.addEventListener('click', () => copyText(result.textContent, btnCopy));
   })();
 
-  // ── 3. Compteur de texte ──
+
   (function initWordCount() {
     const input = document.getElementById('count-input');
     const chars = document.getElementById('count-chars');
@@ -382,12 +378,12 @@
       const w = text.trim() ? text.trim().split(/\s+/).length : 0;
       words.textContent = w;
       sentences.textContent = text.trim() ? (text.match(/[.!?]+/g) || []).length || (text.trim() ? 1 : 0) : 0;
-      const sec = Math.ceil(w / 3.5); // ~200 mots/min
+      const sec = Math.ceil(w / 3.5);
       reading.textContent = sec >= 60 ? Math.floor(sec / 60) + 'm' + (sec % 60 ? (sec % 60) + 's' : '') : sec + 's';
     });
   })();
 
-  // ── 4. Convertisseur de couleurs ──
+
   (function initColorConvert() {
     const preview = document.getElementById('color-preview');
     const hexInput = document.getElementById('color-hex');
@@ -442,7 +438,7 @@
     });
   })();
 
-  // ── 5. Minuteur Focus (Pomodoro) ──
+
   (function initTimer() {
     const display = document.getElementById('timer-display');
     const label = document.getElementById('timer-label');
@@ -513,7 +509,7 @@
     render();
   })();
 
-  // ── Utilitaire : copier dans le presse-papiers ──
+
   function copyText(text, btn) {
     if (!text || text === '—') return;
     navigator.clipboard.writeText(text).then(() => {

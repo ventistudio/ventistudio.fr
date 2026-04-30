@@ -1,10 +1,9 @@
-/* Wiki VentiStudio — recherche live + auto-TOC + ancres de section */
 (function () {
   'use strict';
 
   const articles = (typeof wikiArticles !== 'undefined') ? wikiArticles : [];
 
-  /* ── Helpers ─────────────────────────────────────────── */
+
   function normalize(s) {
     return (s || '').toString().toLowerCase()
       .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
@@ -18,7 +17,7 @@
     return normalize(s).replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 80);
   }
 
-  /* ── Recherche live ──────────────────────────────────── */
+
   function scoreArticle(article, q) {
     const nq = normalize(q);
     if (!nq) return 0;
@@ -101,7 +100,7 @@
     });
   }
 
-  /* ── Auto-TOC + ancres ────────────────────────────────── */
+
   function initArticle() {
     const content = document.querySelector('.wiki-content');
     if (!content) return;

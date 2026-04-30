@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr" data-theme="dark">
 <head>
   <meta charset="UTF-8">
@@ -444,6 +444,7 @@
   <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
   <meta property="og:type" content="website">
   <link rel="canonical" href="https://ventistudio.eu/social/ctOS/">
+  <script src="/i18n.js" defer></script>
 </head>
 <body>
 
@@ -452,7 +453,7 @@
 
   <div class="ctos-root">
 
-    <!-- Top status bar -->
+
     <div class="top-bar">
       <span id="clock">--:--:--</span>
       <span class="status-pill">
@@ -462,34 +463,34 @@
       <span>v3.2.1</span>
     </div>
 
-    <!-- Main frame -->
+
     <div class="main-frame">
 
-      <!-- HEADER -->
+
       <div class="ctos-header">
         <div class="ctos-logo-wrap">
           <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Outer ring -->
+
             <circle cx="50" cy="50" r="47" stroke="#4fc3f7" stroke-width="1" opacity="0.3"/>
-            <!-- Segmented arc (spinning) -->
+
             <circle cx="50" cy="50" r="43" stroke="#4fc3f7" stroke-width="1.8" opacity="0.6"
               stroke-dasharray="60 210" stroke-linecap="round">
               <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="12s" repeatCount="indefinite"/>
             </circle>
-            <!-- Secondary arc -->
+
             <circle cx="50" cy="50" r="38" stroke="#f0f2f5" stroke-width="0.8" opacity="0.15"
               stroke-dasharray="30 100" stroke-linecap="round">
               <animateTransform attributeName="transform" type="rotate" from="360 50 50" to="0 50 50" dur="18s" repeatCount="indefinite"/>
             </circle>
-            <!-- Inner ring -->
+
             <circle cx="50" cy="50" r="28" stroke="#f0f2f5" stroke-width="0.8" opacity="0.2"/>
-            <!-- Eye / lens center -->
+
             <circle cx="50" cy="50" r="14" fill="#4fc3f7" opacity="0.06"/>
             <circle cx="50" cy="50" r="14" stroke="#4fc3f7" stroke-width="1.2" opacity="0.5"/>
-            <!-- Iris detail -->
+
             <circle cx="50" cy="50" r="6" fill="#4fc3f7" opacity="0.25"/>
             <circle cx="50" cy="50" r="3" fill="#f0f2f5" opacity="0.8"/>
-            <!-- Crosshair lines -->
+
             <line x1="50" y1="6" x2="50" y2="22" stroke="#f0f2f5" stroke-width="0.6" opacity="0.2"/>
             <line x1="50" y1="78" x2="50" y2="94" stroke="#f0f2f5" stroke-width="0.6" opacity="0.2"/>
             <line x1="6" y1="50" x2="22" y2="50" stroke="#f0f2f5" stroke-width="0.6" opacity="0.2"/>
@@ -502,7 +503,7 @@
         </div>
       </div>
 
-      <!-- PROFILER -->
+
       <div class="profiler">
         <div class="profiler-badge"></div>
         <div class="profile-lines">
@@ -519,7 +520,7 @@
         </div>
       </div>
 
-      <!-- INFRASTRUCTURE GRID -->
+
       <div class="infra-grid">
         <div class="infra-item">
           <div class="infra-icon">&#x1F512;</div>
@@ -547,7 +548,7 @@
         </div>
       </div>
 
-      <!-- SCAN PROGRESS -->
+
       <div class="scan-section">
         <span class="scan-label">Connexion r&eacute;seau</span>
         <div class="scan-track">
@@ -556,10 +557,10 @@
         <span class="scan-pct" id="scan-pct">0%</span>
       </div>
 
-      <!-- SYSTEM LOG -->
+
       <div class="sys-log" id="sys-log"></div>
 
-      <!-- BOTTOM BAR -->
+
       <div class="bottom-bar">
         <span class="blume-sig">Blume Corp. &mdash; Smart City Program</span>
         <span class="redirect-cd" id="cd">Redirection : 10s</span>

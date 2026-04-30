@@ -1,7 +1,3 @@
-/**
- * Le Livre de Cuisine — VentiStudio
- * Base de données des recettes
- */
 const cookbookData = [
   {
     id: "gateau-chocolat-fondant",
@@ -448,9 +444,6 @@ const cookbookData = [
   }
 ];
 
-/**
- * API Cookbook
- */
 window.cookbookSystem = {
   getAll() { return cookbookData; },
   getById(id) { return cookbookData.find(r => r.id === id) || null; },

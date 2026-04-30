@@ -1,10 +1,8 @@
-/* Plume — Document Editor Styles */
-
 .plume-editor {
   background: var(--suite-surface);
   width: 100%;
-  max-width: 816px; /* ~A4 width */
-  min-height: 1056px; /* ~A4 height */
+  max-width: 816px;
+  min-height: 1056px;
   border-radius: 4px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.2);
   padding: 72px 72px 96px;
@@ -84,7 +82,6 @@
   margin: 2em 0;
 }
 
-/* Ruler */
 .plume-ruler {
   width: 100%;
   max-width: 816px;
@@ -100,7 +97,6 @@
   flex-shrink: 0;
 }
 
-/* Page counter */
 .plume-pages {
   display: flex;
   flex-direction: column;
@@ -108,7 +104,6 @@
   align-items: center;
 }
 
-/* Toolbar specifics */
 .tb-font-size {
   width: 54px;
   text-align: center;
@@ -118,7 +113,6 @@
   width: 130px;
 }
 
-/* Find & Replace bar */
 .plume-findbar {
   display: none;
   align-items: center;
@@ -153,7 +147,6 @@
   min-width: 60px;
 }
 
-/* Word count in status bar */
 .plume-status-words,
 .plume-status-chars {
   cursor: default;
@@ -171,7 +164,6 @@
   }
 }
 
-/* Page break */
 .plume-page-break {
   display: flex;
   align-items: center;
@@ -186,7 +178,6 @@
   cursor: default;
 }
 
-/* Zoom buttons */
 .plume-zoom-btn {
   width: 20px;
   height: 20px;

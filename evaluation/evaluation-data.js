@@ -1,4 +1,3 @@
-// Données des évaluations VentiStudio v2
 const evaluationData = [
   {
     id: 1,
@@ -5141,7 +5140,6 @@ const evaluationData = [
   }
 ];
 
-// Helper functions with all features
 function getAll(filter = null) {
   if (!filter) return evaluationData;
   if (filter === 'featured') return evaluationData.filter(item => item.featured);
@@ -5178,11 +5176,11 @@ function getStats() {
   evaluationData.forEach(item => {
     types[item.type] = (types[item.type] || 0) + 1;
   });
-  
+
   const avgRating = (evaluationData.reduce((sum, item) => sum + item.rating, 0) / evaluationData.length).toFixed(1);
   const featuredCount = evaluationData.filter(item => item.featured).length;
   const communityCount = evaluationData.filter(item => item.community).length;
-  
+
   return {
     total: evaluationData.length,
     types,
@@ -5201,7 +5199,6 @@ function getAllTags() {
   return Array.from(tags).sort();
 }
 
-// Export system
 window.evaluationSystem = {
   data: evaluationData,
   getAll,

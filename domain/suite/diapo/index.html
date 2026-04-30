@@ -12,10 +12,11 @@
   <script>
     (function(){var t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t)})();
   </script>
+  <script src="/i18n.js" defer></script>
 </head>
 <body class="suite-app">
 
-  <!-- Header -->
+
   <div class="suite-header">
     <a href="/domain/suite/" class="suite-logo">
       <img src="/favicon.avif" alt="VentiStudio" width="24" height="24">
@@ -46,7 +47,7 @@
     </div>
   </div>
 
-  <!-- Toolbar -->
+
   <div class="suite-toolbar">
     <div class="tb-group">
       <button class="tb-btn" onclick="diapoAddTitle()" title="Ajouter un titre">
@@ -96,7 +97,7 @@
     </div>
   </div>
 
-  <!-- Body -->
+
   <div class="suite-body" style="flex-direction:column;min-height:0">
     <div style="display:flex;flex:1;min-height:0">
       <div class="diapo-sidebar" id="diapo-sidebar"></div>
@@ -105,14 +106,14 @@
       </div>
       <div class="diapo-props" id="diapo-props"></div>
     </div>
-    <!-- Speaker Notes -->
+
     <div class="diapo-notes-bar">
       <label class="diapo-notes-label">Notes du présentateur</label>
       <textarea class="diapo-notes-input" id="diapo-notes" placeholder="Ajoutez vos notes ici…" rows="3"></textarea>
     </div>
   </div>
 
-  <!-- Status Bar -->
+
   <div class="suite-statusbar">
     <span id="status-slide">Diapo 1 / 1</span>
     <span style="margin-left:auto">Diapo — VentiStudio Suite</span>

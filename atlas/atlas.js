@@ -1,4 +1,3 @@
-// ═══ Atlas Mondial — Logique ═══
 (function () {
   if (typeof atlasData === 'undefined') return;
 
@@ -37,7 +36,7 @@
   var CRITERIA_REASONS = (typeof atlasCriteriaReasons !== 'undefined') ? atlasCriteriaReasons : {};
   var CRITERIA_KEYS = ['freedom', 'hostility', 'security', 'rights', 'stability'];
 
-  // ── Vue persistée ──
+
   var currentView = (function () {
     try { return localStorage.getItem('atlas-view') || 'cards'; }
     catch (e) { return 'cards'; }
@@ -73,7 +72,7 @@
     return s;
   }
 
-  // ── Stats globales (hero) ──
+
   function updateQuickStats() {
     var total = atlasData.length;
     var excellent = atlasData.filter(function (c) { return getOverallLevel(c) === 5; }).length;
@@ -91,7 +90,7 @@
     if (el) el.textContent = value;
   }
 
-  // ── Render table ──
+
   function renderTable(data) {
     tbody.innerHTML = '';
     var frag = document.createDocumentFragment();
@@ -138,7 +137,7 @@
     tbody.appendChild(frag);
   }
 
-  // ── Render cards ──
+
   function renderCards(data) {
     grid.innerHTML = '';
     var frag = document.createDocumentFragment();
@@ -197,7 +196,7 @@
     grid.appendChild(frag);
   }
 
-  // ── Filtrage / tri ──
+
   function getFilteredAndSorted() {
     var search = (searchInput.value || '').trim().toLowerCase();
     var continent = continentSelect.value;
@@ -235,7 +234,7 @@
     return filtered;
   }
 
-  // ── Vue ──
+
   function applyView() {
     viewButtons.forEach(function (b) {
       b.classList.toggle('active', b.dataset.view === currentView);
@@ -273,7 +272,7 @@
     else renderTable(data);
   }
 
-  // ── Event wiring ──
+
   searchInput.addEventListener('input', refresh);
   sortSelect.addEventListener('change', refresh);
   continentSelect.addEventListener('change', refresh);
@@ -287,7 +286,7 @@
     });
   });
 
-  // ── Modale détails pays ──
+
   var modal = document.getElementById('country-modal');
   var modalClose = document.getElementById('country-modal-close');
   var modalFlag = document.getElementById('country-modal-flag');

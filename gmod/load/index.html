@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr" data-theme="dark">
 <head>
   <meta charset="UTF-8">
@@ -198,7 +198,7 @@
     .loading-container {
       flex-direction: column;
     }
-    
+
     .section:first-child {
       border-right: none;
       border-bottom: 2px solid var(--accent1);
@@ -505,13 +505,14 @@
       document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
+  <script src="/i18n.js" defer></script>
 </head>
 <body>
   <audio id="bgMusic">
     <source src="" type="audio/mpeg">
   </audio>
 
-  <!-- Notification de consentement -->
+
   <div class="consent-overlay" id="consentOverlay">
     <div class="consent-card">
       <div class="consent-header">
@@ -631,7 +632,7 @@
     // Fonction pour forcer l'autoplay
     function forceAutoplay() {
       const audio = document.getElementById('bgMusic');
-      
+
       // Tentative de lecture
       const playAttempt = setInterval(() => {
         audio.play()
@@ -721,10 +722,10 @@
           resetConsentAndQrFlow();
         }
       });
-      
+
       // Définir le volume à 15% (0.15)
       audio.volume = 0.15;
-      
+
       // Si vous avez un volumeSlider, mettez également sa valeur à 15
       if (volumeSlider) {
         volumeSlider.value = 15;
@@ -739,7 +740,7 @@
         audio.src = track.src;
         nowPlayingText.textContent = `${track.title} : ${track.artist}`;
         audio.load();
-        
+
         // Force la lecture
         forceAutoplay();
       }
@@ -752,7 +753,7 @@
         } while (playlist.length > 1 && currentTrackIndex === previousIndex);
         loadAndPlayTrack(currentTrackIndex);
       }
-      
+
       // Démarrage immédiat de la première piste
       playRandomTrack();
 
@@ -799,7 +800,7 @@
       });
     });
 
-    
+
   </script>
   <script>
     // Animation d'entrée des cartes au chargement
@@ -923,5 +924,4 @@
   <script src="/main.js" defer></script>
 </body>
 </html>
-
 

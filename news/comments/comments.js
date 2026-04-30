@@ -1,4 +1,3 @@
-// Système de Commentaires VentiStudio
 const COMMENTS_STORAGE_KEY = 'ventistudio_comments';
 const COMMENT_MODERATION_KEY = 'ventistudio_pending_comments';
 
@@ -31,11 +30,11 @@ class CommentSystem {
       return { success: false, message: '❌ Le commentaire doit faire au moins 5 caractères' };
     }
 
-    // Vérifier si connecté via Clerk
+
     const clerkUser = window.Clerk?.user;
 
     if (!clerkUser) {
-      // Mode anonyme : tous les champs requis
+
       if (!author || !email) {
         return { success: false, message: '❌ Tous les champs sont requis' };
       }
@@ -55,22 +54,22 @@ class CommentSystem {
       content: this.sanitize(content),
       rating: Math.min(5, Math.max(1, parseInt(rating))),
       date: new Date().toISOString(),
-      approved: false, // Modération par défaut
+      approved: false,
       likes: 0,
       replies: []
     };
 
-    // Ajouter aux commentaires en attente
+
     if (!this.pendingComments[newsId]) {
       this.pendingComments[newsId] = [];
     }
     this.pendingComments[newsId].push(comment);
     this.savePendingComments();
 
-    return { 
-      success: true, 
+    return {
+      success: true,
       message: '✅ Commentaire envoyé! En attente de modération.',
-      commentId: comment.id 
+      commentId: comment.id
     };
   }
 
@@ -81,7 +80,7 @@ class CommentSystem {
     if (!comment) return false;
 
     comment.approved = true;
-    
+
     if (!this.comments[newsId]) {
       this.comments[newsId] = [];
     }
@@ -169,10 +168,8 @@ class CommentSystem {
   }
 }
 
-// Instance globale
 const commentSystem = new CommentSystem();
 
-// Fonction helper pour rendu HTML
 function renderComment(comment) {
   const stars = '⭐'.repeat(comment.rating);
   return `
@@ -192,6 +189,5 @@ function renderComment(comment) {
   `;
 }
 
-// Export pour utilisation
 window.CommentSystem = CommentSystem;
 window.commentSystem = commentSystem;

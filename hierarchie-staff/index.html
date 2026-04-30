@@ -1,399 +1,381 @@
 <!DOCTYPE html>
-<html lang="fr" data-theme="dark">
+
+<html data-theme="dark" lang="fr">
 <head>
-
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <meta name="description" content="Hiérarchie Staff – Organisation interne de l'Umaishi Corporation.">
-  <meta name="theme-color" content="#6366f1">
-  <title>Équipe | VentiStudio</title>
-  <link rel="stylesheet" href="/style.css">
-  <link rel="stylesheet" href="/wiki/style.css">
-
-
-  <script async crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
-  <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
-
-  <meta property="og:title" content="Équipe | VentiStudio">
-  <meta property="og:description" content="Hiérarchie Staff – Organisation interne de l'Umaishi Corporation.">
-  <meta property="og:url" content="https://ventistudio.eu/hierarchie-staff/">
-  <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
-  <meta property="og:type" content="website">
-  <link rel="canonical" href="https://ventistudio.eu/hierarchie-staff/">
-
-  <script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport"/>
+<meta content="Hiérarchie Staff – Organisation interne de l'Umaishi Corporation." name="description"/>
+<meta content="#6366f1" name="theme-color"/>
+<title>Équipe | VentiStudio</title>
+<link href="/style.css" rel="stylesheet"/>
+<link href="/wiki/style.css" rel="stylesheet"/>
+<script async="" crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
+<script async="" crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
+<meta content="Équipe | VentiStudio" property="og:title"/>
+<meta content="Hiérarchie Staff – Organisation interne de l'Umaishi Corporation." property="og:description"/>
+<meta content="https://ventistudio.eu/hierarchie-staff/" property="og:url"/>
+<meta content="https://ventistudio.eu/favicon.avif" property="og:image"/>
+<meta content="website" property="og:type"/>
+<link href="https://ventistudio.eu/hierarchie-staff/" rel="canonical"/>
+<script>
     (function() {
       var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
       document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
+<script defer="" src="/i18n.js"></script>
 </head>
 <body>
-  <header>
-    <div class="logo">
-      <img src="/favicon.avif" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
-      <span>VentiStudio</span>
-    </div>
-    <button class="nav-burger" id="nav-burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav">
-      <span></span><span></span><span></span>
-    </button>
-    <nav id="main-nav" class="main-nav" aria-label="Navigation principale">
-      <a href="/" class="nav-link">Accueil</a>
-
-      <details class="nav-group">
-        <summary class="nav-link">Découvrir
-          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </summary>
-        <div class="nav-panel" role="menu">
-          <a href="/evaluation">Évaluation</a>
-          <a href="/wiki">Wiki</a>
-          <a href="/glossary">Glossaire</a>
-          <a href="/news">News</a>
-          <a href="/blog">Blog</a>
-          <a href="/calendar">Calendrier</a>
-          <a href="/cookbook">Cookbook</a>
-          <a href="/gallery">Galerie</a>
-          <a href="/atlas">Atlas</a>
-        </div>
-      </details>
-
-      <details class="nav-group">
-        <summary class="nav-link">Univers
-          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </summary>
-        <div class="nav-panel" role="menu">
-          <a href="/aokiunivers">AOKI Universe</a>
-          <a href="/allofaokiunivers">All AOKI</a>
-          <a href="/university">Université</a>
-          <a href="/history">Histoire</a>
-          <a href="/memorial">Mémorial</a>
-          <a href="/ester-eggs">Easter eggs</a>
-        </div>
-      </details>
-
-      <details class="nav-group">
-        <summary class="nav-link">Outils
-          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </summary>
-        <div class="nav-panel nav-panel-wide" role="menu">
-          <div class="nav-col">
-            <h4>Applications</h4>
-            <a href="/player">Lecteur</a>
-            <a href="/music">Musique</a>
-            <a href="/pip">PIP</a>
-            <a href="/whiteboard">Whiteboard</a>
-            <a href="/portfolio">Portfolio</a>
-            <a href="/gmod">GMod</a>
-          </div>
-          <div class="nav-col">
-            <h4>Domaines</h4>
-            <a href="/domain/aina">AINA</a>
-            <a href="/domain/archive">Archive</a>
-            <a href="/domain/maps">Maps</a>
-            <a href="/domain/movie">Movie</a>
-            <a href="/domain/peer">Peer</a>
-            <a href="/domain/pro">Pro</a>
-            <a href="/domain/search">Search</a>
-            <a href="/domain/suite">Suite</a>
-          </div>
-        </div>
-      </details>
-
-      <details class="nav-group">
-        <summary class="nav-link">Communauté
-          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </summary>
-        <div class="nav-panel nav-panel-wide" role="menu">
-          <div class="nav-col">
-            <h4>Équipe</h4>
-            <a href="/personnel/">Équipe</a>
-            <a href="/hierarchie-staff">Hiérarchie</a>
-            <a href="/hypesquad">Hypesquad</a>
-            <a href="/jobs">Emplois</a>
-            <a href="/birthday">Anniversaires</a>
-          </div>
-          <div class="nav-col">
-            <h4>Réseaux</h4>
-            <a href="/discord">Discord</a>
-            <a href="/teamspeak">TeamSpeak</a>
-            <a href="/steam">Steam</a>
-            <a href="/social">Réseaux sociaux</a>
-          </div>
-          <div class="nav-col">
-            <h4>Activités</h4>
-            <a href="/artist">Artistes</a>
-            <a href="/quests">Quêtes</a>
-            <a href="/suboawards">Suboawards</a>
-            <a href="/eConcert">eConcert</a>
-          </div>
-        </div>
-      </details>
-
-      <details class="nav-group">
-        <summary class="nav-link">Plus
-          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </summary>
-        <div class="nav-panel nav-panel-wide" role="menu">
-          <div class="nav-col">
-            <h4>Aide</h4>
-            <a href="/contact">Contact</a>
-            <a href="/faq">FAQ</a>
-            <a href="/status">Statut</a>
-            <a href="/sitemap">Plan du site</a>
-          </div>
-          <div class="nav-col">
-            <h4>Soutien</h4>
-            <a href="/donate">Faire un don</a>
-            <a href="/gold">Gold</a>
-            <a href="/customization">Personnalisation</a>
-            <a href="/mes-donnees">Mes Données</a>
-            <a href="/newsletter">Newsletter</a>
-          </div>
-          <div class="nav-col">
-            <h4>À propos</h4>
-            <a href="/company">Entreprise</a>
-            <a href="/acknowledgements">Remerciements</a>
-            <a href="/logo">Logo</a>
-            <a href="/tags">Tags</a>
-            <a href="/memory">Mémoire</a>
-            <a href="/why-not-use-roblox">Pourquoi pas Roblox</a>
-            <a href="/lawful">Mentions légales</a>
-          </div>
-        </div>
-      </details>
-    </nav>
-    <div class="controls" role="toolbar" aria-label="Contrôles">
-      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
-        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
-          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
-          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
-          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
-        </svg>
-      </button>
-      <div id="user-button" role="region" aria-label="Authentification"><button class="cta" id="auth-fallback-btn" onclick="window.location.href='https://accounts.ventistudio.eu/sign-in?redirect_url='+encodeURIComponent(window.location.href)" style="padding:0.5rem 1.25rem;font-size:0.9rem;margin:0"><span>Se connecter</span></button></div>
-    </div>
-  </header>
-
-  <main>
-
-    <div class="wiki-container">
-      <a href="/umaishicorp" class="back-button">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M19 12H5M12 19l-7-7 7-7"/>
-        </svg>
+<header>
+<div class="logo">
+<img alt="Logo VentiStudio" class="site-logo" height="32" src="/favicon.avif" width="32"/>
+<span>VentiStudio</span>
+</div>
+<button aria-controls="main-nav" aria-expanded="false" aria-label="Ouvrir le menu" class="nav-burger" data-i18n-attr="aria-label:aria.open_menu" id="nav-burger">
+<span></span><span></span><span></span>
+</button>
+<nav aria-label="Navigation principale" class="main-nav" data-i18n-attr="aria-label:nav.aria" id="main-nav">
+<a class="nav-link" data-i18n="nav.home" href="/">Accueil</a>
+<details class="nav-group">
+<summary class="nav-link" data-i18n="nav.discover">Découvrir
+          <svg aria-hidden="true" class="nav-caret" fill="none" height="12" viewbox="0 0 24 24" width="12"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</summary>
+<div class="nav-panel" role="menu">
+<a data-i18n="nav.evaluation" href="/evaluation">Évaluation</a>
+<a data-i18n="nav.wiki" href="/wiki">Wiki</a>
+<a data-i18n="nav.glossary" href="/glossary">Glossaire</a>
+<a data-i18n="nav.news" href="/news">News</a>
+<a data-i18n="nav.blog" href="/blog">Blog</a>
+<a data-i18n="nav.calendar" href="/calendar">Calendrier</a>
+<a data-i18n="nav.cookbook" href="/cookbook">Cookbook</a>
+<a data-i18n="nav.gallery" href="/gallery">Galerie</a>
+<a data-i18n="nav.atlas" href="/atlas">Atlas</a>
+</div>
+</details>
+<details class="nav-group">
+<summary class="nav-link" data-i18n="nav.universe">Univers
+          <svg aria-hidden="true" class="nav-caret" fill="none" height="12" viewbox="0 0 24 24" width="12"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</summary>
+<div class="nav-panel" role="menu">
+<a href="/aokiunivers">AOKI Universe</a>
+<a href="/allofaokiunivers">All AOKI</a>
+<a data-i18n="nav.university" href="/university">Université</a>
+<a data-i18n="nav.history" href="/history">Histoire</a>
+<a data-i18n="nav.memorial" href="/memorial">Mémorial</a>
+<a data-i18n="nav.easter_eggs" href="/ester-eggs">Easter eggs</a>
+</div>
+</details>
+<details class="nav-group">
+<summary class="nav-link" data-i18n="nav.tools">Outils
+          <svg aria-hidden="true" class="nav-caret" fill="none" height="12" viewbox="0 0 24 24" width="12"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</summary>
+<div class="nav-panel nav-panel-wide" role="menu">
+<div class="nav-col">
+<h4 data-i18n="nav.col.apps">Applications</h4>
+<a data-i18n="nav.player" href="/player">Lecteur</a>
+<a data-i18n="nav.music" href="/music">Musique</a>
+<a href="/pip">PIP</a>
+<a href="/whiteboard">Whiteboard</a>
+<a href="/portfolio">Portfolio</a>
+<a href="/gmod">GMod</a>
+</div>
+<div class="nav-col">
+<h4 data-i18n="nav.col.domains">Domaines</h4>
+<a href="/domain/aina">AINA</a>
+<a href="/domain/archive">Archive</a>
+<a href="/domain/maps">Maps</a>
+<a href="/domain/movie">Movie</a>
+<a href="/domain/peer">Peer</a>
+<a href="/domain/pro">Pro</a>
+<a href="/domain/search">Search</a>
+<a href="/domain/suite">Suite</a>
+</div>
+</div>
+</details>
+<details class="nav-group">
+<summary class="nav-link" data-i18n="nav.community">Communauté
+          <svg aria-hidden="true" class="nav-caret" fill="none" height="12" viewbox="0 0 24 24" width="12"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</summary>
+<div class="nav-panel nav-panel-wide" role="menu">
+<div class="nav-col">
+<h4 data-i18n="nav.col.team">Équipe</h4>
+<a data-i18n="nav.team" href="/personnel/">Équipe</a>
+<a data-i18n="nav.hierarchy" href="/hierarchie-staff">Hiérarchie</a>
+<a href="/hypesquad">Hypesquad</a>
+<a data-i18n="nav.jobs" href="/jobs">Emplois</a>
+<a data-i18n="nav.birthday" href="/birthday">Anniversaires</a>
+</div>
+<div class="nav-col">
+<h4 data-i18n="nav.col.networks">Réseaux</h4>
+<a href="/discord">Discord</a>
+<a href="/teamspeak">TeamSpeak</a>
+<a href="/steam">Steam</a>
+<a data-i18n="nav.social" href="/social">Réseaux sociaux</a>
+</div>
+<div class="nav-col">
+<h4 data-i18n="nav.col.activities">Activités</h4>
+<a data-i18n="nav.artists" href="/artist">Artistes</a>
+<a data-i18n="nav.quests" href="/quests">Quêtes</a>
+<a href="/suboawards">Suboawards</a>
+<a href="/eConcert">eConcert</a>
+</div>
+</div>
+</details>
+<details class="nav-group">
+<summary class="nav-link" data-i18n="nav.more">Plus
+          <svg aria-hidden="true" class="nav-caret" fill="none" height="12" viewbox="0 0 24 24" width="12"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</summary>
+<div class="nav-panel nav-panel-wide" role="menu">
+<div class="nav-col">
+<h4 data-i18n="nav.col.help">Aide</h4>
+<a data-i18n="nav.contact" href="/contact">Contact</a>
+<a href="/faq">FAQ</a>
+<a data-i18n="nav.status" href="/status">Statut</a>
+<a data-i18n="nav.sitemap" href="/sitemap">Plan du site</a>
+</div>
+<div class="nav-col">
+<h4 data-i18n="nav.col.support">Soutien</h4>
+<a data-i18n="nav.donate" href="/donate">Faire un don</a>
+<a href="/gold">Gold</a>
+<a data-i18n="nav.customization" href="/customization">Personnalisation</a>
+<a data-i18n="nav.my_data" href="/mes-donnees">Mes Données</a>
+<a href="/newsletter">Newsletter</a>
+</div>
+<div class="nav-col">
+<h4 data-i18n="nav.col.about">À propos</h4>
+<a data-i18n="nav.company" href="/company">Entreprise</a>
+<a data-i18n="nav.acknowledgements" href="/acknowledgements">Remerciements</a>
+<a href="/logo">Logo</a>
+<a href="/tags">Tags</a>
+<a data-i18n="nav.memory" href="/memory">Mémoire</a>
+<a data-i18n="nav.why_not_roblox" href="/why-not-use-roblox">Pourquoi pas Roblox</a>
+<a data-i18n="nav.legal" href="/lawful">Mentions légales</a>
+</div>
+</div>
+</details>
+</nav>
+<div aria-label="Contrôles" class="controls" data-i18n-attr="aria-label:aria.controls" role="toolbar">
+<button aria-label="Basculer le thème clair/sombre" class="theme-toggle" data-i18n-attr="aria-label:aria.toggle_theme,title:aria.toggle_theme" id="theme-toggle" title="Basculer le thème">
+<svg aria-hidden="true" height="24" viewbox="0 0 24 24" width="24">
+<path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" fill="none" stroke="currentColor"></path>
+<circle class="sun" cx="12" cy="12" fill="none" r="4" stroke="currentColor"></circle>
+<path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" fill="none" stroke="currentColor"></path>
+</svg>
+</button>
+<div aria-label="Authentification" id="user-button" role="region"><button class="cta" id="auth-fallback-btn" onclick="window.location.href='https://accounts.ventistudio.eu/sign-in?redirect_url='+encodeURIComponent(window.location.href)" style="padding:0.5rem 1.25rem;font-size:0.9rem;margin:0"><span data-i18n="nav.signin">Se connecter</span></button></div>
+</div>
+</header>
+<main>
+<div class="wiki-container">
+<a class="back-button" href="/umaishicorp">
+<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M19 12H5M12 19l-7-7 7-7"></path>
+</svg>
         Retour à Umaishi Corp
       </a>
-
-      <div class="wiki-content">
-        <h1>Hiérarchie Staff – Umaishi Corporation</h1>
-        <p>Cette page présente l'organisation interne de l'Umaishi Corporation. Chaque rôle au sein du staff possède des responsabilités précises, déterminées pour assurer un fonctionnement harmonieux des projets et de la communauté. Les catégories ci-dessous décrivent la logique de répartition ainsi que l'importance communautaire de chaque niveau.</p>
-
-        <h2>👑 Celestial</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Grade Discord</th>
-              <th>Titre</th>
-              <th>Description courte</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Archon Primordiaux</td>
-              <td>Fondateur</td>
-              <td>Créateur originel de l'Umaishi Corp</td>
-            </tr>
-            <tr>
-              <td>Archon Supérieur</td>
-              <td>Fondateur Adjoint</td>
-              <td>Soutien direct à la direction</td>
-            </tr>
-            <tr>
-              <td>Archon Ambassadeur</td>
-              <td>Fondateur Ambassadeur</td>
-              <td>Représentant international</td>
-            </tr>
-            <tr>
-              <td>Archon Héritiers</td>
-              <td>Responsable Global</td>
-              <td>Supervise l'ensemble des divisions</td>
-            </tr>
-            <tr>
-              <td>Archon Porte Parole</td>
-              <td>Porte Parole</td>
-              <td>Chargé de la communication officielle</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <h2>💎 Les Sept</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Grade Discord</th>
-              <th>Titre</th>
-              <th>Description courte</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Archonte</td>
-              <td>Assistant des Fondateurs</td>
-              <td>Aide administrative centrale</td>
-            </tr>
-            <tr>
-              <td>Adepte</td>
-              <td>Responsable Staff &amp; Avocat</td>
-              <td>Supervise le staff et intervient juridiquement</td>
-            </tr>
-            <tr>
-              <td>Paimon</td>
-              <td>Ambassadrice Nasawa</td>
-              <td>Rôle unique pour une famille spéciale</td>
-            </tr>
-            <tr>
-              <td>Shogun</td>
-              <td>Juge communautaire élu</td>
-              <td>Applique les règles lors des litiges</td>
-            </tr>
-            <tr>
-              <td>Nahida</td>
-              <td>Aidant communautaire</td>
-              <td>Soutien moral, technique ou créatif</td>
-            </tr>
-            <tr>
-              <td>Artefacts</td>
-              <td>Application Umaishi Corp</td>
-              <td>Entité IA ou logicielle rattachée</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <h2>🛡️ Chevaliers de l'Ordre</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Grade Discord</th>
-              <th>Titre</th>
-              <th>Rôle</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Grand Maître</td>
-              <td>Modérateur Lead</td>
-              <td>Gère les autres modérateurs</td>
-            </tr>
-            <tr>
-              <td>Capitaine</td>
-              <td>Modérateur Senior</td>
-              <td>Modérateur expérimenté</td>
-            </tr>
-            <tr>
-              <td>Chevalier</td>
-              <td>Modérateur</td>
-              <td>Modération quotidienne</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <h2>🪙 Membres Officiels</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Grade Discord</th>
-              <th>Titre</th>
-              <th>Spécialité</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Gei-Suka</td>
-              <td>Artiste Officiel</td>
-              <td>Illustrateurs, musiciens, créateurs visuels</td>
-            </tr>
-            <tr>
-              <td>Tsuman</td>
-              <td>Sportif Officiel</td>
-              <td>Membre reconnu pour ses performances sportives</td>
-            </tr>
-            <tr>
-              <td>Stars Taiyo</td>
-              <td>Idol Officiel</td>
-              <td>Représentants artistiques inspirants</td>
-            </tr>
-            <tr>
-              <td>Game-Suka</td>
-              <td>Gamer Officiel</td>
-              <td>Influenceurs et joueurs partenaires</td>
-            </tr>
-            <tr>
-              <td>FiTsZ Haishin</td>
-              <td>Streamer Officiel</td>
-              <td>Diffuseurs officiels affiliés</td>
-            </tr>
-            <tr>
-              <td>Ginga-Kage</td>
-              <td>Officiel Prestigieux</td>
-              <td>Talent d'exception dans un domaine spécifique</td>
-            </tr>
-            <tr>
-              <td>Hoshi-Jin</td>
-              <td>Associé Officiel</td>
-              <td>Partenaire ou auteur lié au lore VentiStudio</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <p><strong>Note :</strong> Chaque grade est lié à une fonction concrète dans la communauté, avec un niveau de confiance et de responsabilité évolutif. L'accès à certains rôles nécessite une validation manuelle par l'équipe fondatrice.</p>
-      </div>
-    </div>
-
-  </main>
-
-  <footer>
-    <div class="footer-content">
-      <div class="footer-section">
-        <h4>Outils</h4>
-        <ul>
-          <li><a href="/pip">PIP</a></li>
-          <li><a href="/sitemap">Plan du site</a></li>
-          <li><a href="https://status.ventistudio.eu/">Statut</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h4>Entreprise</h4>
-        <ul>
-          <li><a href="/about">À propos</a></li>
-          <li><a href="/jobs">Emplois</a></li>
-          <li><a href="/logo">Marque</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h4>Ressources</h4>
-        <ul>
-          <li><a href="/university">Université</a></li>
-          <li><a href="/lawful/support">Assistance</a></li>
-          <li><a href="/lawful/security">Sécurité</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h4>Chartes</h4>
-        <ul>
-          <li><a href="/lawful/tos">Conditions d'utilisation</a></li>
-          <li><a href="/lawful/cookies">Confidentialité</a></li>
-          <li><a href="/lawful/dmcainfo">Information DMCA</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <iframe src="https://status.ventistudio.eu/badge?theme=dark" width="500" height="30" frameborder="0" scrolling="no" style="color-scheme: normal"></iframe>
-      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
-    </div>
-  </footer>
-
-  <script src="/main.js" defer></script>
-  <script>
+<div class="wiki-content">
+<h1 data-i18n="hierarchie_staff.wiki_container_wiki_content.h1">Hiérarchie Staff – Umaishi Corporation</h1>
+<p data-i18n="hierarchie_staff.wiki_container_wiki_content.p">Cette page présente l'organisation interne de l'Umaishi Corporation. Chaque rôle au sein du staff possède des responsabilités précises, déterminées pour assurer un fonctionnement harmonieux des projets et de la communauté. Les catégories ci-dessous décrivent la logique de répartition ainsi que l'importance communautaire de chaque niveau.</p>
+<h2 data-i18n="hierarchie_staff.wiki_container_wiki_content.h2">👑 Celestial</h2>
+<table>
+<thead>
+<tr>
+<th data-i18n="hierarchie_staff.wiki_container_wiki_content.th">Grade Discord</th>
+<th data-i18n="hierarchie_staff.wiki_container_wiki_content.th2">Titre</th>
+<th data-i18n="hierarchie_staff.wiki_container_wiki_content.th3">Description courte</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td">Archon Primordiaux</td>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td2">Fondateur</td>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td3">Créateur originel de l'Umaishi Corp</td>
+</tr>
+<tr>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td4">Archon Supérieur</td>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td5">Fondateur Adjoint</td>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td6">Soutien direct à la direction</td>
+</tr>
+<tr>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td7">Archon Ambassadeur</td>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td8">Fondateur Ambassadeur</td>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td9">Représentant international</td>
+</tr>
+<tr>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td10">Archon Héritiers</td>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td11">Responsable Global</td>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td12">Supervise l'ensemble des divisions</td>
+</tr>
+<tr>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td13">Archon Porte Parole</td>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td14">Porte Parole</td>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td15">Chargé de la communication officielle</td>
+</tr>
+</tbody>
+</table>
+<h2 data-i18n="hierarchie_staff.wiki_container_wiki_content.h22">💎 Les Sept</h2>
+<table>
+<thead>
+<tr>
+<th data-i18n="hierarchie_staff.wiki_container_wiki_content.th4">Grade Discord</th>
+<th data-i18n="hierarchie_staff.wiki_container_wiki_content.th5">Titre</th>
+<th data-i18n="hierarchie_staff.wiki_container_wiki_content.th6">Description courte</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td16">Archonte</td>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td17">Assistant des Fondateurs</td>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td18">Aide administrative centrale</td>
+</tr>
+<tr>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td19">Adepte</td>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td20">Responsable Staff &amp; Avocat</td>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td21">Supervise le staff et intervient juridiquement</td>
+</tr>
+<tr>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td22">Paimon</td>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td23">Ambassadrice Nasawa</td>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td24">Rôle unique pour une famille spéciale</td>
+</tr>
+<tr>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td25">Shogun</td>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td26">Juge communautaire élu</td>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td27">Applique les règles lors des litiges</td>
+</tr>
+<tr>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td28">Nahida</td>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td29">Aidant communautaire</td>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td30">Soutien moral, technique ou créatif</td>
+</tr>
+<tr>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td31">Artefacts</td>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td32">Application Umaishi Corp</td>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td33">Entité IA ou logicielle rattachée</td>
+</tr>
+</tbody>
+</table>
+<h2 data-i18n="hierarchie_staff.wiki_container_wiki_content.h23">🛡️ Chevaliers de l'Ordre</h2>
+<table>
+<thead>
+<tr>
+<th data-i18n="hierarchie_staff.wiki_container_wiki_content.th7">Grade Discord</th>
+<th data-i18n="hierarchie_staff.wiki_container_wiki_content.th8">Titre</th>
+<th data-i18n="hierarchie_staff.wiki_container_wiki_content.th9">Rôle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td34">Grand Maître</td>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td35">Modérateur Lead</td>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td36">Gère les autres modérateurs</td>
+</tr>
+<tr>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td37">Capitaine</td>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td38">Modérateur Senior</td>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td39">Modérateur expérimenté</td>
+</tr>
+<tr>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td40">Chevalier</td>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td41">Modérateur</td>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td42">Modération quotidienne</td>
+</tr>
+</tbody>
+</table>
+<h2 data-i18n="hierarchie_staff.wiki_container_wiki_content.h24">🪙 Membres Officiels</h2>
+<table>
+<thead>
+<tr>
+<th data-i18n="hierarchie_staff.wiki_container_wiki_content.th10">Grade Discord</th>
+<th data-i18n="hierarchie_staff.wiki_container_wiki_content.th11">Titre</th>
+<th data-i18n="hierarchie_staff.wiki_container_wiki_content.th12">Spécialité</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td43">Gei-Suka</td>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td44">Artiste Officiel</td>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td45">Illustrateurs, musiciens, créateurs visuels</td>
+</tr>
+<tr>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td46">Tsuman</td>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td47">Sportif Officiel</td>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td48">Membre reconnu pour ses performances sportives</td>
+</tr>
+<tr>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td49">Stars Taiyo</td>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td50">Idol Officiel</td>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td51">Représentants artistiques inspirants</td>
+</tr>
+<tr>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td52">Game-Suka</td>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td53">Gamer Officiel</td>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td54">Influenceurs et joueurs partenaires</td>
+</tr>
+<tr>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td55">FiTsZ Haishin</td>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td56">Streamer Officiel</td>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td57">Diffuseurs officiels affiliés</td>
+</tr>
+<tr>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td58">Ginga-Kage</td>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td59">Officiel Prestigieux</td>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td60">Talent d'exception dans un domaine spécifique</td>
+</tr>
+<tr>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td61">Hoshi-Jin</td>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td62">Associé Officiel</td>
+<td data-i18n="hierarchie_staff.wiki_container_wiki_content.td63">Partenaire ou auteur lié au lore VentiStudio</td>
+</tr>
+</tbody>
+</table>
+<p data-i18n-html="hierarchie_staff.wiki_container_wiki_content.p2"><strong>Note :</strong> Chaque grade est lié à une fonction concrète dans la communauté, avec un niveau de confiance et de responsabilité évolutif. L'accès à certains rôles nécessite une validation manuelle par l'équipe fondatrice.</p>
+</div>
+</div>
+</main>
+<footer>
+<div class="footer-content">
+<div class="footer-section">
+<h4 data-i18n="footer.col.tools">Outils</h4>
+<ul>
+<li><a href="/pip">PIP</a></li>
+<li><a data-i18n="footer.tools.sitemap" href="/sitemap">Plan du site</a></li>
+<li><a data-i18n="footer.tools.status" href="https://status.ventistudio.eu/">Statut</a></li>
+</ul>
+</div>
+<div class="footer-section">
+<h4 data-i18n="footer.col.company">Entreprise</h4>
+<ul>
+<li><a data-i18n="footer.company.about" href="/about">À propos</a></li>
+<li><a data-i18n="footer.company.jobs" href="/jobs">Emplois</a></li>
+<li><a data-i18n="footer.company.brand" href="/logo">Marque</a></li>
+</ul>
+</div>
+<div class="footer-section">
+<h4 data-i18n="footer.col.resources">Ressources</h4>
+<ul>
+<li><a data-i18n="footer.resources.university" href="/university">Université</a></li>
+<li><a data-i18n="footer.resources.support" href="/lawful/support">Assistance</a></li>
+<li><a data-i18n="footer.resources.security" href="/lawful/security">Sécurité</a></li>
+</ul>
+</div>
+<div class="footer-section">
+<h4 data-i18n="footer.col.legal">Chartes</h4>
+<ul>
+<li><a data-i18n="footer.legal.tos" href="/lawful/tos">Conditions d'utilisation</a></li>
+<li><a data-i18n="footer.legal.privacy" href="/lawful/cookies">Confidentialité</a></li>
+<li><a data-i18n="footer.legal.dmca" href="/lawful/dmcainfo">Information DMCA</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom">
+<iframe frameborder="0" height="30" scrolling="no" src="https://status.ventistudio.eu/badge?theme=dark" style="color-scheme: normal" width="500"></iframe>
+<div id="lang-switcher"></div>
+<p class="copyright" data-i18n="footer.copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
+</div>
+</footer>
+<script defer="" src="/main.js"></script>
+<script>
     (function () {
       var nav = document.getElementById('main-nav');
       var burger = document.getElementById('nav-burger');
@@ -467,5 +449,3 @@
   </script>
 </body>
 </html>
-
-

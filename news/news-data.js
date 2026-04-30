@@ -1,4 +1,3 @@
-// Données des chroniques - Ajouter de nouvelles chroniques ici
 const newsData = [
   {
     id: 1,
@@ -9,7 +8,7 @@ const newsData = [
     excerpt: 'Le lancement officiel de VentiStudio v4 avec une nouvelle interface modernisée, des performances améliorées et des fonctionnalités révolutionnaires.',
     content: `
       <p>Nous sommes heureux de vous annoncer le lancement de <strong>VentiStudio v4</strong>, une nouvelle version entièrement revisitée de notre plateforme créative.</p>
-      
+
       <h3>Principales améliorations :</h3>
       <ul>
         <li>Interface complètement redessinée avec un design glass-morphism moderne</li>
@@ -18,14 +17,13 @@ const newsData = [
         <li>Nouveau système d'actualités intégré</li>
         <li>Accessibilité WCAG complète</li>
       </ul>
-      
+
       <p>Merci à toute la communauté VentiStudio pour votre soutien continu!</p>
     `
   }
-  // Les nouvelles chroniques seront ajoutées ici
+
 ];
 
-// Exporter pour utilisation dans d'autres scripts
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = newsData;
 }

@@ -1,273 +1,257 @@
 <!DOCTYPE html>
-<html lang="fr" data-theme="dark">
+
+<html data-theme="dark" lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <meta name="description" content="VentiStudio - Pourquoi nous n'utilisons pas Roblox. Explication compl&#232;te de notre d&#233;cision.">
-  <meta name="theme-color" content="#6366f1">
-  <title>Pourquoi pas Roblox ? | VentiStudio</title>
-  <link rel="stylesheet" href="/style.css">
-  <link rel="stylesheet" href="/lawful/lawful.css">
-
-  <script async crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
-  <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
-
-  <meta property="og:title" content="Pourquoi pas Roblox ? | VentiStudio">
-  <meta property="og:description" content="VentiStudio - Pourquoi nous n'utilisons pas Roblox. Explication compl&#232;te de notre d&#233;cision.">
-  <meta property="og:url" content="https://ventistudio.eu/why-not-use-roblox/">
-  <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
-  <meta property="og:type" content="article">
-  <link rel="canonical" href="https://ventistudio.eu/why-not-use-roblox/">
-
-  <script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport"/>
+<meta content="VentiStudio - Pourquoi nous n'utilisons pas Roblox. Explication complète de notre décision." name="description"/>
+<meta content="#6366f1" name="theme-color"/>
+<title>Pourquoi pas Roblox ? | VentiStudio</title>
+<link href="/style.css" rel="stylesheet"/>
+<link href="/lawful/lawful.css" rel="stylesheet"/>
+<script async="" crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
+<script async="" crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
+<meta content="Pourquoi pas Roblox ? | VentiStudio" property="og:title"/>
+<meta content="VentiStudio - Pourquoi nous n'utilisons pas Roblox. Explication complète de notre décision." property="og:description"/>
+<meta content="https://ventistudio.eu/why-not-use-roblox/" property="og:url"/>
+<meta content="https://ventistudio.eu/favicon.avif" property="og:image"/>
+<meta content="article" property="og:type"/>
+<link href="https://ventistudio.eu/why-not-use-roblox/" rel="canonical"/>
+<script>
     (function() {
       var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
       document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
+<script defer="" src="/i18n.js"></script>
 </head>
 <body>
-  <header>
-    <div class="logo">
-      <img src="/favicon.avif" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
-      <span>VentiStudio</span>
-    </div>
-    <button class="nav-burger" id="nav-burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav">
-      <span></span><span></span><span></span>
-    </button>
-    <nav id="main-nav" class="main-nav" aria-label="Navigation principale">
-      <a href="/" class="nav-link">Accueil</a>
-
-      <details class="nav-group">
-        <summary class="nav-link">Découvrir
-          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </summary>
-        <div class="nav-panel" role="menu">
-          <a href="/evaluation">Évaluation</a>
-          <a href="/wiki">Wiki</a>
-          <a href="/glossary">Glossaire</a>
-          <a href="/news">News</a>
-          <a href="/blog">Blog</a>
-          <a href="/calendar">Calendrier</a>
-          <a href="/cookbook">Cookbook</a>
-          <a href="/gallery">Galerie</a>
-          <a href="/atlas">Atlas</a>
-        </div>
-      </details>
-
-      <details class="nav-group">
-        <summary class="nav-link">Univers
-          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </summary>
-        <div class="nav-panel" role="menu">
-          <a href="/aokiunivers">AOKI Universe</a>
-          <a href="/allofaokiunivers">All AOKI</a>
-          <a href="/university">Université</a>
-          <a href="/history">Histoire</a>
-          <a href="/memorial">Mémorial</a>
-          <a href="/ester-eggs">Easter eggs</a>
-        </div>
-      </details>
-
-      <details class="nav-group">
-        <summary class="nav-link">Outils
-          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </summary>
-        <div class="nav-panel nav-panel-wide" role="menu">
-          <div class="nav-col">
-            <h4>Applications</h4>
-            <a href="/player">Lecteur</a>
-            <a href="/music">Musique</a>
-            <a href="/pip">PIP</a>
-            <a href="/whiteboard">Whiteboard</a>
-            <a href="/portfolio">Portfolio</a>
-            <a href="/gmod">GMod</a>
-          </div>
-          <div class="nav-col">
-            <h4>Domaines</h4>
-            <a href="/domain/aina">AINA</a>
-            <a href="/domain/archive">Archive</a>
-            <a href="/domain/maps">Maps</a>
-            <a href="/domain/movie">Movie</a>
-            <a href="/domain/peer">Peer</a>
-            <a href="/domain/pro">Pro</a>
-            <a href="/domain/search">Search</a>
-            <a href="/domain/suite">Suite</a>
-          </div>
-        </div>
-      </details>
-
-      <details class="nav-group">
-        <summary class="nav-link">Communauté
-          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </summary>
-        <div class="nav-panel nav-panel-wide" role="menu">
-          <div class="nav-col">
-            <h4>Équipe</h4>
-            <a href="/personnel/">Équipe</a>
-            <a href="/hierarchie-staff">Hiérarchie</a>
-            <a href="/hypesquad">Hypesquad</a>
-            <a href="/jobs">Emplois</a>
-            <a href="/birthday">Anniversaires</a>
-          </div>
-          <div class="nav-col">
-            <h4>Réseaux</h4>
-            <a href="/discord">Discord</a>
-            <a href="/teamspeak">TeamSpeak</a>
-            <a href="/steam">Steam</a>
-            <a href="/social">Réseaux sociaux</a>
-          </div>
-          <div class="nav-col">
-            <h4>Activités</h4>
-            <a href="/artist">Artistes</a>
-            <a href="/quests">Quêtes</a>
-            <a href="/suboawards">Suboawards</a>
-            <a href="/eConcert">eConcert</a>
-          </div>
-        </div>
-      </details>
-
-      <details class="nav-group">
-        <summary class="nav-link">Plus
-          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </summary>
-        <div class="nav-panel nav-panel-wide" role="menu">
-          <div class="nav-col">
-            <h4>Aide</h4>
-            <a href="/contact">Contact</a>
-            <a href="/faq">FAQ</a>
-            <a href="/status">Statut</a>
-            <a href="/sitemap">Plan du site</a>
-          </div>
-          <div class="nav-col">
-            <h4>Soutien</h4>
-            <a href="/donate">Faire un don</a>
-            <a href="/gold">Gold</a>
-            <a href="/customization">Personnalisation</a>
-            <a href="/mes-donnees">Mes Données</a>
-            <a href="/newsletter">Newsletter</a>
-          </div>
-          <div class="nav-col">
-            <h4>À propos</h4>
-            <a href="/company">Entreprise</a>
-            <a href="/acknowledgements">Remerciements</a>
-            <a href="/logo">Logo</a>
-            <a href="/tags">Tags</a>
-            <a href="/memory">Mémoire</a>
-            <a href="/why-not-use-roblox">Pourquoi pas Roblox</a>
-            <a href="/lawful">Mentions légales</a>
-          </div>
-        </div>
-      </details>
-    </nav>
-    <div class="controls" role="toolbar" aria-label="Contr&#244;les">
-      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le th&#232;me clair/sombre" title="Basculer le th&#232;me">
-        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
-          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
-          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
-          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
-        </svg>
-      </button>
-      <div id="user-button" role="region" aria-label="Authentification"><button class="cta" id="auth-fallback-btn" onclick="window.location.href='https://accounts.ventistudio.eu/sign-in?redirect_url='+encodeURIComponent(window.location.href)" style="padding:0.5rem 1.25rem;font-size:0.9rem;margin:0"><span>Se connecter</span></button></div>
-    </div>
-  </header>
-
-  <main>
-    <section class="hero-section">
-      <h1>Pourquoi nous n'utilisons pas Roblox</h1>
-      <p>Une d&#233;cision m&#251;rement r&#233;fl&#233;chie, prise apr&#232;s plusieurs tentatives et pour de multiples raisons.</p>
-    </section>
-
-    <section class="section">
-
-      <div class="terms-container">
-        <div class="terms-section">
-          <h2>&#127918; La raison principale : le RP est impossible</h2>
-          <p>&#192; la base, nous avions arr&#234;t&#233; les projets sur Roblox parce qu'il n'&#233;tait tout simplement pas possible de faire du <strong>RP (roleplay)</strong> de mani&#232;re s&#233;rieuse. La tranche d'&#226;ge des utilisateurs se situe entre <strong>8 et 14 ans</strong>, ce qui rend l'exp&#233;rience de jeu incompatible avec le type de contenu que nous souhaitons cr&#233;er.</p>
-          <p style="margin-top:1rem">Nous avons donc annul&#233; les projets pour cette raison principale.</p>
-        </div>
-
-        <div class="terms-section">
-          <h2>&#128101; Une &#233;quipe r&#233;duite et des d&#233;lais impossibles</h2>
-          <p>Avec une &#233;quipe de d&#233;veloppement r&#233;duite, nous n'avons jamais pu terminer les projets dans les temps. Le manque de ressources humaines rendait chaque d&#233;veloppement long et p&#233;nible.</p>
-          <p style="margin-top:1rem">En plus de cela, plusieurs membres de l'&#233;quipe n'&#233;taient pas s&#233;rieux dans leur travail et ont par ailleurs <strong>enfreint les r&#232;gles de cr&#233;ation sur Roblox</strong>, ce qui aurait pu causer un bannissement de notre compte. Une situation inacceptable.</p>
-        </div>
-
-        <div class="terms-section">
-          <h2>&#128172; Le syst&#232;me de tchat par tranche d'&#226;ge (fin 2025)</h2>
-          <p>Fin 2025, nous h&#233;sitions encore : devions-nous vraiment mettre fin &#224; tout projet sur Roblox ou tenter une nouvelle fois notre chance ?</p>
-          <p style="margin-top:1rem">Mais Roblox a mis en place un <strong>syst&#232;me de tchat par tranche d'&#226;ge</strong>. Un syst&#232;me que nous comprenons parfaitement et qui a son utilit&#233;, mais qui rend d&#233;sormais <strong>impossible</strong> de faire un serious ou semi-serious RP sans limiter l'entr&#233;e du serveur aux personnes de 18 ans et plus.</p>
-          <p style="margin-top:1rem">Pour &#234;tre honn&#234;te, restreindre un jeu &#224; un public 18+ sur une plateforme o&#249; la tranche d'&#226;ge est de 8 &#224; 14 ans n'est tout simplement <strong>pas acceptable</strong> ni viable.</p>
-        </div>
-
-        <div class="terms-section" style="border-left:4px solid #ef4444;padding-left:1.5rem">
-          <h2>&#128176; NOUS NE SOMMES PAS &#192; VENDRE</h2>
-          <p>Nous avons re&#231;u de nombreuses demandes d'achat et nous le r&#233;p&#233;tons ici clairement :</p>
-          <p style="margin-top:1rem;font-size:1.2rem;font-weight:700;color:var(--accent)">VentiStudio n'est pas &#224; vendre. Point final.</p>
-        </div>
-
-        <div class="terms-section">
-          <h2>&#128078; Les autres raisons</h2>
-          <p>Plusieurs autres facteurs ont confirm&#233; notre d&#233;cision de quitter Roblox :</p>
-          <ul style="margin-top:1rem;padding-left:1.5rem;display:grid;gap:0.5rem">
-            <li>Le <strong>comportement g&#233;n&#233;ral des joueurs</strong> sur la plateforme</li>
-            <li>Le fonctionnement de l'<strong>&#233;quipe de mod&#233;ration de Roblox</strong></li>
-            <li>Un environnement globalement incompatible avec notre vision cr&#233;ative</li>
-          </ul>
-        </div>
-
-        <div class="terms-section" style="border-left:4px solid var(--accent);padding-left:1.5rem">
-          <h2>&#9989; Notre position finale</h2>
-          <p>Nous ne souhaitons tout simplement <strong>plus entendre parler de Roblox</strong>. Cette d&#233;cision est d&#233;finitive. Nous concentrons d&#233;sormais nos efforts sur des plateformes et des projets qui correspondent r&#233;ellement &#224; notre vision et &#224; nos ambitions.</p>
-        </div>
-      </div>
-
-    </section>
-  </main>
-
-  <footer>
-    <div class="footer-content">
-      <div class="footer-section">
-        <h4>Outils</h4>
-        <ul>
-          <li><a href="/pip">PIP</a></li>
-          <li><a href="/sitemap">Plan du site</a></li>
-          <li><a href="https://status.ventistudio.eu/">Statut</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h4>Entreprise</h4>
-        <ul>
-          <li><a href="/about">&#192; propos</a></li>
-          <li><a href="/jobs">Emplois</a></li>
-          <li><a href="/logo">Marque</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h4>Ressources</h4>
-        <ul>
-          <li><a href="/university">Universit&#233;</a></li>
-          <li><a href="/lawful/support">Assistance</a></li>
-          <li><a href="/lawful/security">S&#233;curit&#233;</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h4>Chartes</h4>
-        <ul>
-          <li><a href="/lawful/tos">Conditions d'utilisation</a></li>
-          <li><a href="/lawful/cookies">Confidentialit&#233;</a></li>
-          <li><a href="/lawful/dmcainfo">Information DMCA</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <iframe src="https://status.ventistudio.eu/badge?theme=dark" width="500" height="30" frameborder="0" scrolling="no" style="color-scheme: normal"></iframe>
-      <p class="copyright">Copyright &#169; 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits r&#233;serv&#233;s.</p>
-    </div>
-  </footer>
-
-  <script src="/main.js" defer></script>
-  <script>
+<header>
+<div class="logo">
+<img alt="Logo VentiStudio" class="site-logo" height="32" src="/favicon.avif" width="32"/>
+<span>VentiStudio</span>
+</div>
+<button aria-controls="main-nav" aria-expanded="false" aria-label="Ouvrir le menu" class="nav-burger" data-i18n-attr="aria-label:aria.open_menu" id="nav-burger">
+<span></span><span></span><span></span>
+</button>
+<nav aria-label="Navigation principale" class="main-nav" data-i18n-attr="aria-label:nav.aria" id="main-nav">
+<a class="nav-link" data-i18n="nav.home" href="/">Accueil</a>
+<details class="nav-group">
+<summary class="nav-link" data-i18n="nav.discover">Découvrir
+          <svg aria-hidden="true" class="nav-caret" fill="none" height="12" viewbox="0 0 24 24" width="12"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</summary>
+<div class="nav-panel" role="menu">
+<a data-i18n="nav.evaluation" href="/evaluation">Évaluation</a>
+<a data-i18n="nav.wiki" href="/wiki">Wiki</a>
+<a data-i18n="nav.glossary" href="/glossary">Glossaire</a>
+<a data-i18n="nav.news" href="/news">News</a>
+<a data-i18n="nav.blog" href="/blog">Blog</a>
+<a data-i18n="nav.calendar" href="/calendar">Calendrier</a>
+<a data-i18n="nav.cookbook" href="/cookbook">Cookbook</a>
+<a data-i18n="nav.gallery" href="/gallery">Galerie</a>
+<a data-i18n="nav.atlas" href="/atlas">Atlas</a>
+</div>
+</details>
+<details class="nav-group">
+<summary class="nav-link" data-i18n="nav.universe">Univers
+          <svg aria-hidden="true" class="nav-caret" fill="none" height="12" viewbox="0 0 24 24" width="12"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</summary>
+<div class="nav-panel" role="menu">
+<a href="/aokiunivers">AOKI Universe</a>
+<a href="/allofaokiunivers">All AOKI</a>
+<a data-i18n="nav.university" href="/university">Université</a>
+<a data-i18n="nav.history" href="/history">Histoire</a>
+<a data-i18n="nav.memorial" href="/memorial">Mémorial</a>
+<a data-i18n="nav.easter_eggs" href="/ester-eggs">Easter eggs</a>
+</div>
+</details>
+<details class="nav-group">
+<summary class="nav-link" data-i18n="nav.tools">Outils
+          <svg aria-hidden="true" class="nav-caret" fill="none" height="12" viewbox="0 0 24 24" width="12"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</summary>
+<div class="nav-panel nav-panel-wide" role="menu">
+<div class="nav-col">
+<h4 data-i18n="nav.col.apps">Applications</h4>
+<a data-i18n="nav.player" href="/player">Lecteur</a>
+<a data-i18n="nav.music" href="/music">Musique</a>
+<a href="/pip">PIP</a>
+<a href="/whiteboard">Whiteboard</a>
+<a href="/portfolio">Portfolio</a>
+<a href="/gmod">GMod</a>
+</div>
+<div class="nav-col">
+<h4 data-i18n="nav.col.domains">Domaines</h4>
+<a href="/domain/aina">AINA</a>
+<a href="/domain/archive">Archive</a>
+<a href="/domain/maps">Maps</a>
+<a href="/domain/movie">Movie</a>
+<a href="/domain/peer">Peer</a>
+<a href="/domain/pro">Pro</a>
+<a href="/domain/search">Search</a>
+<a href="/domain/suite">Suite</a>
+</div>
+</div>
+</details>
+<details class="nav-group">
+<summary class="nav-link" data-i18n="nav.community">Communauté
+          <svg aria-hidden="true" class="nav-caret" fill="none" height="12" viewbox="0 0 24 24" width="12"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</summary>
+<div class="nav-panel nav-panel-wide" role="menu">
+<div class="nav-col">
+<h4 data-i18n="nav.col.team">Équipe</h4>
+<a data-i18n="nav.team" href="/personnel/">Équipe</a>
+<a data-i18n="nav.hierarchy" href="/hierarchie-staff">Hiérarchie</a>
+<a href="/hypesquad">Hypesquad</a>
+<a data-i18n="nav.jobs" href="/jobs">Emplois</a>
+<a data-i18n="nav.birthday" href="/birthday">Anniversaires</a>
+</div>
+<div class="nav-col">
+<h4 data-i18n="nav.col.networks">Réseaux</h4>
+<a href="/discord">Discord</a>
+<a href="/teamspeak">TeamSpeak</a>
+<a href="/steam">Steam</a>
+<a data-i18n="nav.social" href="/social">Réseaux sociaux</a>
+</div>
+<div class="nav-col">
+<h4 data-i18n="nav.col.activities">Activités</h4>
+<a data-i18n="nav.artists" href="/artist">Artistes</a>
+<a data-i18n="nav.quests" href="/quests">Quêtes</a>
+<a href="/suboawards">Suboawards</a>
+<a href="/eConcert">eConcert</a>
+</div>
+</div>
+</details>
+<details class="nav-group">
+<summary class="nav-link" data-i18n="nav.more">Plus
+          <svg aria-hidden="true" class="nav-caret" fill="none" height="12" viewbox="0 0 24 24" width="12"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</summary>
+<div class="nav-panel nav-panel-wide" role="menu">
+<div class="nav-col">
+<h4 data-i18n="nav.col.help">Aide</h4>
+<a data-i18n="nav.contact" href="/contact">Contact</a>
+<a href="/faq">FAQ</a>
+<a data-i18n="nav.status" href="/status">Statut</a>
+<a data-i18n="nav.sitemap" href="/sitemap">Plan du site</a>
+</div>
+<div class="nav-col">
+<h4 data-i18n="nav.col.support">Soutien</h4>
+<a data-i18n="nav.donate" href="/donate">Faire un don</a>
+<a href="/gold">Gold</a>
+<a data-i18n="nav.customization" href="/customization">Personnalisation</a>
+<a data-i18n="nav.my_data" href="/mes-donnees">Mes Données</a>
+<a href="/newsletter">Newsletter</a>
+</div>
+<div class="nav-col">
+<h4 data-i18n="nav.col.about">À propos</h4>
+<a data-i18n="nav.company" href="/company">Entreprise</a>
+<a data-i18n="nav.acknowledgements" href="/acknowledgements">Remerciements</a>
+<a href="/logo">Logo</a>
+<a href="/tags">Tags</a>
+<a data-i18n="nav.memory" href="/memory">Mémoire</a>
+<a data-i18n="nav.why_not_roblox" href="/why-not-use-roblox">Pourquoi pas Roblox</a>
+<a data-i18n="nav.legal" href="/lawful">Mentions légales</a>
+</div>
+</div>
+</details>
+</nav>
+<div aria-label="Contrôles" class="controls" role="toolbar">
+<button aria-label="Basculer le thème clair/sombre" class="theme-toggle" id="theme-toggle" title="Basculer le thème">
+<svg aria-hidden="true" height="24" viewbox="0 0 24 24" width="24">
+<path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" fill="none" stroke="currentColor"></path>
+<circle class="sun" cx="12" cy="12" fill="none" r="4" stroke="currentColor"></circle>
+<path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" fill="none" stroke="currentColor"></path>
+</svg>
+</button>
+<div aria-label="Authentification" id="user-button" role="region"><button class="cta" id="auth-fallback-btn" onclick="window.location.href='https://accounts.ventistudio.eu/sign-in?redirect_url='+encodeURIComponent(window.location.href)" style="padding:0.5rem 1.25rem;font-size:0.9rem;margin:0"><span data-i18n="nav.signin">Se connecter</span></button></div>
+</div>
+</header>
+<main>
+<section class="hero-section">
+<h1 data-i18n="why_not_use_roblox.hero_section.h1">Pourquoi nous n'utilisons pas Roblox</h1>
+<p data-i18n="why_not_use_roblox.hero_section.p">Une décision mûrement réfléchie, prise après plusieurs tentatives et pour de multiples raisons.</p>
+</section>
+<section class="section">
+<div class="terms-container">
+<div class="terms-section">
+<h2 data-i18n="why_not_use_roblox.section_terms_container.h2">🎮 La raison principale : le RP est impossible</h2>
+<p data-i18n-html="why_not_use_roblox.section_terms_container.p">À la base, nous avions arrêté les projets sur Roblox parce qu'il n'était tout simplement pas possible de faire du <strong>RP (roleplay)</strong> de manière sérieuse. La tranche d'âge des utilisateurs se situe entre <strong>8 et 14 ans</strong>, ce qui rend l'expérience de jeu incompatible avec le type de contenu que nous souhaitons créer.</p>
+<p data-i18n="why_not_use_roblox.section_terms_container.p2" style="margin-top:1rem">Nous avons donc annulé les projets pour cette raison principale.</p>
+</div>
+<div class="terms-section">
+<h2 data-i18n="why_not_use_roblox.section_terms_container.h22">👥 Une équipe réduite et des délais impossibles</h2>
+<p data-i18n="why_not_use_roblox.section_terms_container.p3">Avec une équipe de développement réduite, nous n'avons jamais pu terminer les projets dans les temps. Le manque de ressources humaines rendait chaque développement long et pénible.</p>
+<p data-i18n-html="why_not_use_roblox.section_terms_container.p4" style="margin-top:1rem">En plus de cela, plusieurs membres de l'équipe n'étaient pas sérieux dans leur travail et ont par ailleurs <strong>enfreint les règles de création sur Roblox</strong>, ce qui aurait pu causer un bannissement de notre compte. Une situation inacceptable.</p>
+</div>
+<div class="terms-section">
+<h2 data-i18n="why_not_use_roblox.section_terms_container.h23">💬 Le système de tchat par tranche d'âge (fin 2025)</h2>
+<p data-i18n="why_not_use_roblox.section_terms_container.p5">Fin 2025, nous hésitions encore : devions-nous vraiment mettre fin à tout projet sur Roblox ou tenter une nouvelle fois notre chance ?</p>
+<p data-i18n-html="why_not_use_roblox.section_terms_container.p6" style="margin-top:1rem">Mais Roblox a mis en place un <strong>système de tchat par tranche d'âge</strong>. Un système que nous comprenons parfaitement et qui a son utilité, mais qui rend désormais <strong>impossible</strong> de faire un serious ou semi-serious RP sans limiter l'entrée du serveur aux personnes de 18 ans et plus.</p>
+<p data-i18n-html="why_not_use_roblox.section_terms_container.p7" style="margin-top:1rem">Pour être honnête, restreindre un jeu à un public 18+ sur une plateforme où la tranche d'âge est de 8 à 14 ans n'est tout simplement <strong>pas acceptable</strong> ni viable.</p>
+</div>
+<div class="terms-section" style="border-left:4px solid #ef4444;padding-left:1.5rem">
+<h2 data-i18n="why_not_use_roblox.section_terms_container.h24">💰 NOUS NE SOMMES PAS À VENDRE</h2>
+<p data-i18n="why_not_use_roblox.section_terms_container.p8">Nous avons reçu de nombreuses demandes d'achat et nous le répétons ici clairement :</p>
+<p data-i18n="why_not_use_roblox.section_terms_container.p9" style="margin-top:1rem;font-size:1.2rem;font-weight:700;color:var(--accent)">VentiStudio n'est pas à vendre. Point final.</p>
+</div>
+<div class="terms-section">
+<h2 data-i18n="why_not_use_roblox.section_terms_container.h25">👎 Les autres raisons</h2>
+<p data-i18n="why_not_use_roblox.section_terms_container.p10">Plusieurs autres facteurs ont confirmé notre décision de quitter Roblox :</p>
+<ul style="margin-top:1rem;padding-left:1.5rem;display:grid;gap:0.5rem">
+<li data-i18n-html="why_not_use_roblox.section_terms_container.li">Le <strong>comportement général des joueurs</strong> sur la plateforme</li>
+<li data-i18n-html="why_not_use_roblox.section_terms_container.li2">Le fonctionnement de l'<strong>équipe de modération de Roblox</strong></li>
+<li data-i18n="why_not_use_roblox.section_terms_container.li3">Un environnement globalement incompatible avec notre vision créative</li>
+</ul>
+</div>
+<div class="terms-section" style="border-left:4px solid var(--accent);padding-left:1.5rem">
+<h2 data-i18n="why_not_use_roblox.section_terms_container.h26">✅ Notre position finale</h2>
+<p data-i18n-html="why_not_use_roblox.section_terms_container.p11">Nous ne souhaitons tout simplement <strong>plus entendre parler de Roblox</strong>. Cette décision est définitive. Nous concentrons désormais nos efforts sur des plateformes et des projets qui correspondent réellement à notre vision et à nos ambitions.</p>
+</div>
+</div>
+</section>
+</main>
+<footer>
+<div class="footer-content">
+<div class="footer-section">
+<h4 data-i18n="footer.col.tools">Outils</h4>
+<ul>
+<li><a href="/pip">PIP</a></li>
+<li><a data-i18n="footer.tools.sitemap" href="/sitemap">Plan du site</a></li>
+<li><a data-i18n="footer.tools.status" href="https://status.ventistudio.eu/">Statut</a></li>
+</ul>
+</div>
+<div class="footer-section">
+<h4 data-i18n="footer.col.company">Entreprise</h4>
+<ul>
+<li><a href="/about">À propos</a></li>
+<li><a data-i18n="footer.company.jobs" href="/jobs">Emplois</a></li>
+<li><a data-i18n="footer.company.brand" href="/logo">Marque</a></li>
+</ul>
+</div>
+<div class="footer-section">
+<h4 data-i18n="footer.col.resources">Ressources</h4>
+<ul>
+<li><a href="/university">Université</a></li>
+<li><a data-i18n="footer.resources.support" href="/lawful/support">Assistance</a></li>
+<li><a href="/lawful/security">Sécurité</a></li>
+</ul>
+</div>
+<div class="footer-section">
+<h4 data-i18n="footer.col.legal">Chartes</h4>
+<ul>
+<li><a data-i18n="footer.legal.tos" href="/lawful/tos">Conditions d'utilisation</a></li>
+<li><a href="/lawful/cookies">Confidentialité</a></li>
+<li><a data-i18n="footer.legal.dmca" href="/lawful/dmcainfo">Information DMCA</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom">
+<iframe frameborder="0" height="30" scrolling="no" src="https://status.ventistudio.eu/badge?theme=dark" style="color-scheme: normal" width="500"></iframe>
+<div id="lang-switcher"></div>
+<p class="copyright" data-i18n="footer.copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
+</div>
+</footer>
+<script defer="" src="/main.js"></script>
+<script>
     (function () {
       var nav = document.getElementById('main-nav');
       var burger = document.getElementById('nav-burger');

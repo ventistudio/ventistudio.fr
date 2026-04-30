@@ -1,9 +1,3 @@
-/* ═══════════════════════════════════════════════════════════
-   VentiStudio Professional — Premium Theme
-   Color & style overrides for a polished, business-grade look
-   ═══════════════════════════════════════════════════════════ */
-
-/* ── Dark theme ── */
 :root {
   --accent: #0ea5e9;
   --accent-secondary: #0284c7;
@@ -17,7 +11,6 @@
   --pro-border-accent: rgba(14, 165, 233, 0.25);
 }
 
-/* ── Light theme ── */
 [data-theme="light"] {
   --accent: #0284c7;
   --accent-secondary: #0369a1;
@@ -31,7 +24,6 @@
   --pro-border-accent: rgba(2, 132, 199, 0.2);
 }
 
-/* ── Background radial accents ── */
 body::before {
   background:
     radial-gradient(ellipse 600px 400px at 15% 20%, rgba(14, 165, 233, 0.07) 0%, transparent 70%),
@@ -44,7 +36,6 @@ body::before {
     radial-gradient(ellipse 500px 500px at 85% 75%, rgba(2, 132, 199, 0.04) 0%, transparent 70%) !important;
 }
 
-/* ── Header refinement ── */
 header {
   border-bottom-color: var(--glass-border);
   background: rgba(11, 15, 26, 0.8);
@@ -56,7 +47,6 @@ header {
   background: rgba(248, 250, 252, 0.85);
 }
 
-/* ── Panels — refined glass ── */
 .panel {
   background: var(--glass-bg) !important;
   border: 1px solid var(--glass-border) !important;
@@ -69,7 +59,6 @@ header {
   letter-spacing: 0.01em;
 }
 
-/* ── Tool cards on index ── */
 .tool-card {
   border-left: 3px solid transparent;
   transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
@@ -91,7 +80,6 @@ header {
   box-shadow: 0 4px 16px rgba(14, 165, 233, 0.2);
 }
 
-/* ── Links & buttons ── */
 .tool-link {
   background: linear-gradient(135deg, var(--accent), var(--accent-secondary)) !important;
   box-shadow: 0 4px 16px rgba(14, 165, 233, 0.25) !important;
@@ -104,7 +92,6 @@ header {
   box-shadow: 0 6px 24px rgba(14, 165, 233, 0.4) !important;
 }
 
-/* ── .btn-export & .btn-action ── */
 .btn-export,
 .btn-action.encode,
 .tool-btn.primary {
@@ -118,25 +105,21 @@ header {
   box-shadow: 0 6px 24px rgba(14, 165, 233, 0.4) !important;
 }
 
-/* ── mode-tab / cat-tab active state ── */
 .mode-tab.active,
 .cat-tab.active,
 .type-tab.active {
   background: linear-gradient(135deg, var(--accent), var(--accent-secondary)) !important;
 }
 
-/* ── Badge (hero) ── */
 .badge {
   border-color: var(--pro-border-accent);
   background: var(--pro-surface);
 }
 
-/* ── External notice ── */
 .external-notice {
   border-left-color: var(--accent);
 }
 
-/* ── Features panel ── */
 .features-panel {
   border: 1px solid var(--glass-border);
   background: var(--glass-bg);
@@ -150,12 +133,10 @@ header {
   color: var(--accent-secondary);
 }
 
-/* ── CTA section ── */
 .cta-section {
   border: 1px solid var(--glass-border);
 }
 
-/* ── Focus ring override ── */
 input:focus,
 textarea:focus,
 select:focus {
@@ -169,7 +150,6 @@ select:focus {
   box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.12) !important;
 }
 
-/* ── Ctrl buttons (timer) ── */
 .ctrl-btn.start {
   background: linear-gradient(135deg, var(--accent), var(--accent-secondary)) !important;
   box-shadow: 0 4px 20px rgba(14, 165, 233, 0.3) !important;
@@ -179,20 +159,17 @@ select:focus {
   box-shadow: 0 8px 30px rgba(14, 165, 233, 0.4) !important;
 }
 
-/* ── Strength / stat chips ── */
 .stat-chip strong,
 .stat-card .value {
   color: var(--accent) !important;
 }
 
-/* ── Flag chip active ── */
 .flag-chip.active {
   background: rgba(14, 165, 233, 0.2) !important;
   border-color: var(--accent) !important;
   color: var(--accent) !important;
 }
 
-/* ── Scrollbar ── */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -211,13 +188,11 @@ select:focus {
   background: rgba(14, 165, 233, 0.35);
 }
 
-/* ── Selection color ── */
 ::selection {
   background: rgba(14, 165, 233, 0.3);
   color: #fff;
 }
 
-/* ── Subtle pro watermark for panels ── */
 .pro-hero h1 {
   background: linear-gradient(135deg, var(--accent), #38bdf8, var(--accent-secondary)) !important;
   -webkit-background-clip: text !important;
@@ -225,7 +200,6 @@ select:focus {
   background-clip: text !important;
 }
 
-/* ── Private tools H2O green override → match pro theme ── */
 .h2o-hero h1 {
   color: var(--accent) !important;
 }

@@ -1,333 +1,308 @@
-﻿<!DOCTYPE html>
-<html lang="fr" data-theme="dark">
+<!DOCTYPE html>
+
+<html data-theme="dark" lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <meta name="description" content="VentiStudio Gold — Votre espace exclusif avec outils premium, jeux, musique et ressources réservés aux donateurs.">
-  <meta name="theme-color" content="#f59e0b">
-  <meta name="robots" content="noindex, nofollow">
-  <title>Gold Dashboard | VentiStudio</title>
-  <link rel="stylesheet" href="/style.css">
-  <link rel="stylesheet" href="style.css">
-
-  <script async crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
-  <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
-
-  <meta property="og:title" content="Gold Dashboard | VentiStudio">
-  <meta property="og:description" content="VentiStudio Gold — Votre espace exclusif avec outils premium, jeux, musique et ressources réservés aux donateurs.">
-  <meta property="og:url" content="https://ventistudio.eu/gold/goldforventistudiofr/">
-  <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
-  <meta property="og:type" content="website">
-  <link rel="canonical" href="https://ventistudio.eu/gold/goldforventistudiofr/">
-
-  <script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport"/>
+<meta content="VentiStudio Gold — Votre espace exclusif avec outils premium, jeux, musique et ressources réservés aux donateurs." name="description"/>
+<meta content="#f59e0b" name="theme-color"/>
+<meta content="noindex, nofollow" name="robots"/>
+<title>Gold Dashboard | VentiStudio</title>
+<link href="/style.css" rel="stylesheet"/>
+<link href="style.css" rel="stylesheet"/>
+<script async="" crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
+<script async="" crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
+<meta content="Gold Dashboard | VentiStudio" property="og:title"/>
+<meta content="VentiStudio Gold — Votre espace exclusif avec outils premium, jeux, musique et ressources réservés aux donateurs." property="og:description"/>
+<meta content="https://ventistudio.eu/gold/goldforventistudiofr/" property="og:url"/>
+<meta content="https://ventistudio.eu/favicon.avif" property="og:image"/>
+<meta content="website" property="og:type"/>
+<link href="https://ventistudio.eu/gold/goldforventistudiofr/" rel="canonical"/>
+<script>
     (function() {
       var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
       document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
+<script defer="" src="/i18n.js"></script>
 </head>
 <body>
 
-  <!-- Gate d'accès (affiché si pas de clé valide) -->
-  <div class="access-gate" id="access-gate" style="display: none;">
-    <div class="gate-content">
-      <span class="gate-icon" aria-hidden="true">🔒</span>
-      <h2>Accès restreint</h2>
-      <p>Vous devez valider votre clé Gold pour accéder à cet espace exclusif.</p>
-      <a href="/gold/">Aller à la page Gold</a>
-    </div>
-  </div>
+<div class="access-gate" id="access-gate" style="display: none;">
+<div class="gate-content">
+<span aria-hidden="true" class="gate-icon">🔒</span>
+<h2>Accès restreint</h2>
+<p>Vous devez valider votre clé Gold pour accéder à cet espace exclusif.</p>
+<a href="/gold/">Aller à la page Gold</a>
+</div>
+</div>
 
-  <!-- Canvas particules dorées -->
-  <canvas id="gold-particles" aria-hidden="true"></canvas>
+<canvas aria-hidden="true" id="gold-particles"></canvas>
+<div class="gold-dashboard">
 
-  <div class="gold-dashboard">
+<nav aria-label="Navigation Gold" class="gold-nav">
+<a class="nav-brand" href="/gold/goldforventistudiofr/">
+<img alt="VentiStudio" height="28" src="/favicon.avif" width="28"/>
+<span>VentiStudio</span>
+<span class="gold-badge">👑 Gold</span>
+</a>
+<div class="nav-links">
+<a href="#content">Contenu</a>
+<a href="#toolbox">Outils</a>
+<a href="#changelog">Nouveautés</a>
+<a href="#support">Support</a>
+</div>
+<div class="nav-controls">
+<a class="btn-back" href="/">← Retour au site</a>
+<button aria-label="Basculer le thème clair/sombre" class="theme-toggle" data-i18n-attr="aria-label:aria.toggle_theme,title:aria.toggle_theme" id="theme-toggle" title="Basculer le thème">
+<svg aria-hidden="true" height="24" viewbox="0 0 24 24" width="24">
+<path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" fill="none" stroke="currentColor"></path>
+<circle class="sun" cx="12" cy="12" fill="none" r="4" stroke="currentColor"></circle>
+<path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" fill="none" stroke="currentColor"></path>
+</svg>
+</button>
+<div aria-label="Authentification" id="user-button" role="region"><button class="cta" id="auth-fallback-btn" onclick="window.location.href='https://accounts.ventistudio.eu/sign-in?redirect_url='+encodeURIComponent(window.location.href)" style="padding:0.5rem 1.25rem;font-size:0.9rem;margin:0"><span data-i18n="nav.signin">Se connecter</span></button></div>
+</div>
+</nav>
+<main>
 
-    <!-- ── Navigation Gold ── -->
-    <nav class="gold-nav" aria-label="Navigation Gold">
-      <a href="/gold/goldforventistudiofr/" class="nav-brand">
-        <img src="/favicon.avif" alt="VentiStudio" width="28" height="28">
-        <span>VentiStudio</span>
-        <span class="gold-badge">👑 Gold</span>
-      </a>
-
-      <div class="nav-links">
-        <a href="#content">Contenu</a>
-        <a href="#toolbox">Outils</a>
-        <a href="#changelog">Nouveautés</a>
-        <a href="#support">Support</a>
-      </div>
-
-      <div class="nav-controls">
-        <a href="/" class="btn-back">← Retour au site</a>
-        <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
-          <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
-            <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
-            <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
-            <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
-          </svg>
-        </button>
-        <div id="user-button" role="region" aria-label="Authentification"><button class="cta" id="auth-fallback-btn" onclick="window.location.href='https://accounts.ventistudio.eu/sign-in?redirect_url='+encodeURIComponent(window.location.href)" style="padding:0.5rem 1.25rem;font-size:0.9rem;margin:0"><span>Se connecter</span></button></div>
-      </div>
-    </nav>
-
-    <main>
-
-      <!-- ── Hero ── -->
-      <section class="gold-hero-section">
-        <p class="welcome-text">Bienvenue, membre Gold</p>
-        <h1>Votre Espace Exclusif</h1>
-        <p class="hero-desc">
+<section class="gold-hero-section">
+<p class="welcome-text" data-i18n="gold.goldforventistudiofr.gold_hero_section.p">Bienvenue, membre Gold</p>
+<h1 data-i18n="gold.goldforventistudiofr.gold_hero_section.h1">Votre Espace Exclusif</h1>
+<p class="hero-desc" data-i18n="gold.goldforventistudiofr.gold_hero_section.p2">
           Explorez vos outils premium, téléchargez du contenu exclusif et profitez de vos avantages Gold.
         </p>
-      </section>
+</section>
 
-      <!-- ── Quick Stats ── -->
-      <section class="stats-section" aria-label="Statistiques Gold">
-        <div class="stat-card">
-          <span class="stat-icon" aria-hidden="true">📦</span>
-          <span class="stat-number" data-count="14">0</span>
-          <span class="stat-label">Contenus Exclusifs</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-icon" aria-hidden="true">🛠️</span>
-          <span class="stat-number" data-count="5">0</span>
-          <span class="stat-label">Outils Interactifs</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-icon" aria-hidden="true">🎮</span>
-          <span class="stat-number" data-count="3">0</span>
-          <span class="stat-label">Jeux Disponibles</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-icon" aria-hidden="true">🎧</span>
-          <span class="stat-number" data-count="3">0</span>
-          <span class="stat-label">Albums Musique</span>
-        </div>
-      </section>
+<section aria-label="Statistiques Gold" class="stats-section" data-i18n-attr="aria-label:gold.goldforventistudiofr.page.aria">
+<div class="stat-card">
+<span aria-hidden="true" class="stat-icon">📦</span>
+<span class="stat-number" data-count="14">0</span>
+<span class="stat-label">Contenus Exclusifs</span>
+</div>
+<div class="stat-card">
+<span aria-hidden="true" class="stat-icon">🛠️</span>
+<span class="stat-number" data-count="5">0</span>
+<span class="stat-label">Outils Interactifs</span>
+</div>
+<div class="stat-card">
+<span aria-hidden="true" class="stat-icon">🎮</span>
+<span class="stat-number" data-count="3">0</span>
+<span class="stat-label">Jeux Disponibles</span>
+</div>
+<div class="stat-card">
+<span aria-hidden="true" class="stat-icon">🎧</span>
+<span class="stat-number" data-count="3">0</span>
+<span class="stat-label">Albums Musique</span>
+</div>
+</section>
 
-      <!-- ── Contenu Exclusif ── -->
-      <section class="content-section" id="content">
-        <div class="section-header">
-          <h2>Contenu Exclusif <span class="gold-line"></span></h2>
-        </div>
+<section class="content-section" id="content">
+<div class="section-header">
+<h2 data-i18n="gold.goldforventistudiofr.content_section_header.h2">Contenu Exclusif <span class="gold-line"></span></h2>
+</div>
+<div class="content-controls">
+<div aria-label="Filtrer par catégorie" class="filter-group" data-i18n-attr="aria-label:gold.goldforventistudiofr.content_content_controls.aria" role="group">
+<button class="filter-btn active" data-category="all" data-i18n="gold.goldforventistudiofr.content_content_controls.button">Tout</button>
+<button class="filter-btn" data-category="tools" data-i18n="gold.goldforventistudiofr.content_content_controls.button2">🛠️ Outils</button>
+<button class="filter-btn" data-category="games" data-i18n="gold.goldforventistudiofr.content_content_controls.button3">🎮 Jeux</button>
+<button class="filter-btn" data-category="music" data-i18n="gold.goldforventistudiofr.content_content_controls.button4">🎵 Musique</button>
+<button class="filter-btn" data-category="resources" data-i18n="gold.goldforventistudiofr.content_content_controls.button5">✨ Ressources</button>
+</div>
+<div class="search-box">
+<span aria-hidden="true" class="search-icon">🔍</span>
+<input aria-label="Rechercher du contenu Gold" data-i18n-attr="placeholder:gold.goldforventistudiofr.content_content_controls.input_placeholder,aria-label:gold.goldforventistudiofr.content_content_controls.aria2" id="gold-search" placeholder="Rechercher..." type="search"/>
+</div>
+</div>
 
-        <div class="content-controls">
-          <div class="filter-group" role="group" aria-label="Filtrer par catégorie">
-            <button class="filter-btn active" data-category="all">Tout</button>
-            <button class="filter-btn" data-category="tools">🛠️ Outils</button>
-            <button class="filter-btn" data-category="games">🎮 Jeux</button>
-            <button class="filter-btn" data-category="music">🎵 Musique</button>
-            <button class="filter-btn" data-category="resources">✨ Ressources</button>
-          </div>
-          <div class="search-box">
-            <span class="search-icon" aria-hidden="true">🔍</span>
-            <input type="search" id="gold-search" placeholder="Rechercher..." aria-label="Rechercher du contenu Gold">
-          </div>
-        </div>
+<div class="featured-card">
+<div class="featured-badge">⭐ À la une</div>
+<div class="featured-body">
+<div class="featured-left">
+<span aria-hidden="true" class="featured-icon">🌟</span>
+<div>
+<h3 data-i18n="gold.goldforventistudiofr.content_featured_card.h3">Gold Starter Pack</h3>
+<p class="featured-desc" data-i18n="gold.goldforventistudiofr.content_featured_card.p">Votre pack de bienvenue Gold ! Inclut un thème exclusif, un fond d'écran 4K, 3 effets sonores premium et un bon de réduction de 10% sur la boutique VentiStudio.</p>
+<div class="featured-tags">
+<span class="card-tag">starter</span>
+<span class="card-tag">exclusif</span>
+<span class="card-tag">bienvenue</span>
+</div>
+</div>
+</div>
+<div class="featured-right">
+<span class="featured-meta">v1.0.0 · 15 Mo</span>
+<a class="btn-download" href="#">⬇ Télécharger</a>
+</div>
+</div>
+</div>
+<div class="content-grid" id="content-grid">
 
-        <!-- Carte À la Une -->
-        <div class="featured-card">
-          <div class="featured-badge">⭐ À la une</div>
-          <div class="featured-body">
-            <div class="featured-left">
-              <span class="featured-icon" aria-hidden="true">🌟</span>
-              <div>
-                <h3>Gold Starter Pack</h3>
-                <p class="featured-desc">Votre pack de bienvenue Gold ! Inclut un thème exclusif, un fond d'écran 4K, 3 effets sonores premium et un bon de réduction de 10% sur la boutique VentiStudio.</p>
-                <div class="featured-tags">
-                  <span class="card-tag">starter</span>
-                  <span class="card-tag">exclusif</span>
-                  <span class="card-tag">bienvenue</span>
-                </div>
-              </div>
-            </div>
-            <div class="featured-right">
-              <span class="featured-meta">v1.0.0 · 15 Mo</span>
-              <a href="#" class="btn-download">⬇ Télécharger</a>
-            </div>
-          </div>
-        </div>
+</div>
+</section>
 
-        <div class="content-grid" id="content-grid">
-          <!-- Rendu dynamique par script.js -->
-        </div>
-      </section>
+<section class="toolbox-section" id="toolbox">
+<div class="section-header">
+<h2 data-i18n="gold.goldforventistudiofr.toolbox_section_header.h2">🛠️ Boîte à Outils <span class="gold-line"></span></h2>
+</div>
+<p class="toolbox-desc" data-i18n="gold.goldforventistudiofr.toolbox.p">Des outils interactifs réservés aux membres Gold. Tout fonctionne directement dans votre navigateur.</p>
+<div class="tools-grid">
 
-      <!-- ── Boîte à Outils Gold ── -->
-      <section class="toolbox-section" id="toolbox">
-        <div class="section-header">
-          <h2>🛠️ Boîte à Outils <span class="gold-line"></span></h2>
-        </div>
-        <p class="toolbox-desc">Des outils interactifs réservés aux membres Gold. Tout fonctionne directement dans votre navigateur.</p>
+<div class="tool-card">
+<div class="tool-header">
+<span class="tool-icon">🔐</span>
+<h3 data-i18n="gold.goldforventistudiofr.toolbox_tools_grid.h3">Encodeur / Décodeur</h3>
+</div>
+<p class="tool-desc" data-i18n="gold.goldforventistudiofr.toolbox_tools_grid.p">Encodez ou décodez du texte en Base64, ROT13 ou Hexadécimal.</p>
+<div class="tool-body">
+<select class="tool-select" id="enc-mode">
+<option value="base64">Base64</option>
+<option value="rot13">ROT13</option>
+<option value="hex">Hexadécimal</option>
+<option value="binary">Binaire</option>
+</select>
+<textarea class="tool-textarea" data-i18n-attr="placeholder:gold.goldforventistudiofr.toolbox_tools_grid.textarea_placeholder" id="enc-input" placeholder="Entrez votre texte…" rows="3"></textarea>
+<div class="tool-actions">
+<button class="tool-btn" data-i18n="gold.goldforventistudiofr.toolbox_tools_grid.button" id="enc-encode">🔒 Encoder</button>
+<button class="tool-btn secondary" data-i18n="gold.goldforventistudiofr.toolbox_tools_grid.button2" id="enc-decode">🔓 Décoder</button>
+</div>
+<textarea class="tool-textarea output" data-i18n-attr="placeholder:gold.goldforventistudiofr.toolbox_tools_grid.textarea_placeholder2" id="enc-output" placeholder="Résultat…" readonly="" rows="3"></textarea>
+<button class="tool-copy" data-i18n="gold.goldforventistudiofr.toolbox_tools_grid.button3" id="enc-copy" title="Copier">📋 Copier</button>
+</div>
+</div>
 
-        <div class="tools-grid">
+<div class="tool-card">
+<div class="tool-header">
+<span class="tool-icon">🔑</span>
+<h3 data-i18n="gold.goldforventistudiofr.toolbox_tools_grid.h32">Générateur de mot de passe</h3>
+</div>
+<p class="tool-desc" data-i18n="gold.goldforventistudiofr.toolbox_tools_grid.p2">Générez des mots de passe sécurisés avec les options de votre choix.</p>
+<div class="tool-body">
+<div class="tool-row">
+<label data-i18n="gold.goldforventistudiofr.toolbox_tools_grid.label">Longueur : <span id="pwd-len-val">16</span></label>
+<input class="tool-range" id="pwd-length" max="64" min="8" type="range" value="16"/>
+</div>
+<div class="tool-checks">
+<label class="tool-check" data-i18n="gold.goldforventistudiofr.toolbox_tools_grid.label2"><input checked="" id="pwd-upper" type="checkbox"/> Majuscules</label>
+<label class="tool-check" data-i18n="gold.goldforventistudiofr.toolbox_tools_grid.label3"><input checked="" id="pwd-lower" type="checkbox"/> Minuscules</label>
+<label class="tool-check" data-i18n="gold.goldforventistudiofr.toolbox_tools_grid.label4"><input checked="" id="pwd-digits" type="checkbox"/> Chiffres</label>
+<label class="tool-check" data-i18n="gold.goldforventistudiofr.toolbox_tools_grid.label5"><input checked="" id="pwd-symbols" type="checkbox"/> Symboles</label>
+</div>
+<div class="pwd-display">
+<code id="pwd-result">—</code>
+<button class="tool-copy" id="pwd-copy" title="Copier">📋</button>
+</div>
+<div class="pwd-strength" id="pwd-strength"></div>
+<button class="tool-btn" data-i18n="gold.goldforventistudiofr.toolbox_tools_grid.button4" id="pwd-generate">⚡ Générer</button>
+</div>
+</div>
 
-          <!-- Outil 1 : Encodeur/Décodeur -->
-          <div class="tool-card">
-            <div class="tool-header">
-              <span class="tool-icon">🔐</span>
-              <h3>Encodeur / Décodeur</h3>
-            </div>
-            <p class="tool-desc">Encodez ou décodez du texte en Base64, ROT13 ou Hexadécimal.</p>
-            <div class="tool-body">
-              <select id="enc-mode" class="tool-select">
-                <option value="base64">Base64</option>
-                <option value="rot13">ROT13</option>
-                <option value="hex">Hexadécimal</option>
-                <option value="binary">Binaire</option>
-              </select>
-              <textarea id="enc-input" class="tool-textarea" placeholder="Entrez votre texte…" rows="3"></textarea>
-              <div class="tool-actions">
-                <button class="tool-btn" id="enc-encode">🔒 Encoder</button>
-                <button class="tool-btn secondary" id="enc-decode">🔓 Décoder</button>
-              </div>
-              <textarea id="enc-output" class="tool-textarea output" placeholder="Résultat…" rows="3" readonly></textarea>
-              <button class="tool-copy" id="enc-copy" title="Copier">📋 Copier</button>
-            </div>
-          </div>
+<div class="tool-card">
+<div class="tool-header">
+<span class="tool-icon">📝</span>
+<h3 data-i18n="gold.goldforventistudiofr.toolbox_tools_grid.h33">Compteur de texte</h3>
+</div>
+<p class="tool-desc" data-i18n="gold.goldforventistudiofr.toolbox_tools_grid.p3">Analysez votre texte : caractères, mots, phrases, temps de lecture.</p>
+<div class="tool-body">
+<textarea class="tool-textarea" data-i18n-attr="placeholder:gold.goldforventistudiofr.toolbox_tools_grid.textarea_placeholder3" id="count-input" placeholder="Collez ou écrivez votre texte ici…" rows="5"></textarea>
+<div class="count-stats">
+<div class="count-stat"><span class="count-num" id="count-chars">0</span><span class="count-lbl">Caractères</span></div>
+<div class="count-stat"><span class="count-num" id="count-words">0</span><span class="count-lbl">Mots</span></div>
+<div class="count-stat"><span class="count-num" id="count-sentences">0</span><span class="count-lbl">Phrases</span></div>
+<div class="count-stat"><span class="count-num" id="count-reading">0s</span><span class="count-lbl">Lecture</span></div>
+</div>
+</div>
+</div>
 
-          <!-- Outil 2 : Générateur de mots de passe -->
-          <div class="tool-card">
-            <div class="tool-header">
-              <span class="tool-icon">🔑</span>
-              <h3>Générateur de mot de passe</h3>
-            </div>
-            <p class="tool-desc">Générez des mots de passe sécurisés avec les options de votre choix.</p>
-            <div class="tool-body">
-              <div class="tool-row">
-                <label>Longueur : <span id="pwd-len-val">16</span></label>
-                <input type="range" id="pwd-length" min="8" max="64" value="16" class="tool-range">
-              </div>
-              <div class="tool-checks">
-                <label class="tool-check"><input type="checkbox" id="pwd-upper" checked> Majuscules</label>
-                <label class="tool-check"><input type="checkbox" id="pwd-lower" checked> Minuscules</label>
-                <label class="tool-check"><input type="checkbox" id="pwd-digits" checked> Chiffres</label>
-                <label class="tool-check"><input type="checkbox" id="pwd-symbols" checked> Symboles</label>
-              </div>
-              <div class="pwd-display">
-                <code id="pwd-result">&#8212;</code>
-                <button class="tool-copy" id="pwd-copy" title="Copier">📋</button>
-              </div>
-              <div class="pwd-strength" id="pwd-strength"></div>
-              <button class="tool-btn" id="pwd-generate">⚡ Générer</button>
-            </div>
-          </div>
+<div class="tool-card">
+<div class="tool-header">
+<span class="tool-icon">🎨</span>
+<h3 data-i18n="gold.goldforventistudiofr.toolbox_tools_grid.h34">Convertisseur de couleurs</h3>
+</div>
+<p class="tool-desc" data-i18n="gold.goldforventistudiofr.toolbox_tools_grid.p4">Convertissez entre HEX, RGB et HSL. Prévisualisation en direct.</p>
+<div class="tool-body">
+<div class="color-preview" id="color-preview"></div>
+<div class="color-inputs">
+<label data-i18n="gold.goldforventistudiofr.toolbox_tools_grid.label6">HEX
+                  <input class="tool-input" id="color-hex" maxlength="7" type="text" value="#f59e0b"/>
+</label>
+<label data-i18n="gold.goldforventistudiofr.toolbox_tools_grid.label7">RGB
+                  <input class="tool-input" id="color-rgb" readonly="" type="text" value="rgb(245, 158, 11)"/>
+</label>
+<label data-i18n="gold.goldforventistudiofr.toolbox_tools_grid.label8">HSL
+                  <input class="tool-input" id="color-hsl" readonly="" type="text" value="hsl(38, 92%, 50%)"/>
+</label>
+</div>
+<input class="tool-color-picker" id="color-picker" type="color" value="#f59e0b"/>
+</div>
+</div>
 
-          <!-- Outil 3 : Compteur de texte -->
-          <div class="tool-card">
-            <div class="tool-header">
-              <span class="tool-icon">📝</span>
-              <h3>Compteur de texte</h3>
-            </div>
-            <p class="tool-desc">Analysez votre texte : caractères, mots, phrases, temps de lecture.</p>
-            <div class="tool-body">
-              <textarea id="count-input" class="tool-textarea" placeholder="Collez ou écrivez votre texte ici…" rows="5"></textarea>
-              <div class="count-stats">
-                <div class="count-stat"><span class="count-num" id="count-chars">0</span><span class="count-lbl">Caractères</span></div>
-                <div class="count-stat"><span class="count-num" id="count-words">0</span><span class="count-lbl">Mots</span></div>
-                <div class="count-stat"><span class="count-num" id="count-sentences">0</span><span class="count-lbl">Phrases</span></div>
-                <div class="count-stat"><span class="count-num" id="count-reading">0s</span><span class="count-lbl">Lecture</span></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Outil 4 : Convertisseur de couleurs -->
-          <div class="tool-card">
-            <div class="tool-header">
-              <span class="tool-icon">🎨</span>
-              <h3>Convertisseur de couleurs</h3>
-            </div>
-            <p class="tool-desc">Convertissez entre HEX, RGB et HSL. Prévisualisation en direct.</p>
-            <div class="tool-body">
-              <div class="color-preview" id="color-preview"></div>
-              <div class="color-inputs">
-                <label>HEX
-                  <input type="text" id="color-hex" class="tool-input" value="#f59e0b" maxlength="7">
-                </label>
-                <label>RGB
-                  <input type="text" id="color-rgb" class="tool-input" value="rgb(245, 158, 11)" readonly>
-                </label>
-                <label>HSL
-                  <input type="text" id="color-hsl" class="tool-input" value="hsl(38, 92%, 50%)" readonly>
-                </label>
-              </div>
-              <input type="color" id="color-picker" class="tool-color-picker" value="#f59e0b">
-            </div>
-          </div>
-
-          <!-- Outil 5 : Minuteur Focus -->
-          <div class="tool-card">
-            <div class="tool-header">
-              <span class="tool-icon">⏱️</span>
-              <h3>Minuteur Focus</h3>
-            </div>
-            <p class="tool-desc">Technique Pomodoro : 25 min de focus, 5 min de pause. Restez productif.</p>
-            <div class="tool-body">
-              <div class="timer-display" id="timer-display">25:00</div>
-              <div class="timer-label" id="timer-label">🍅 Focus</div>
-              <div class="timer-controls">
-                <button class="tool-btn" id="timer-start">▶ Démarrer</button>
-                <button class="tool-btn secondary" id="timer-reset">🔄 Reset</button>
-              </div>
-              <div class="timer-sessions">
+<div class="tool-card">
+<div class="tool-header">
+<span class="tool-icon">⏱️</span>
+<h3 data-i18n="gold.goldforventistudiofr.toolbox_tools_grid.h35">Minuteur Focus</h3>
+</div>
+<p class="tool-desc" data-i18n="gold.goldforventistudiofr.toolbox_tools_grid.p5">Technique Pomodoro : 25 min de focus, 5 min de pause. Restez productif.</p>
+<div class="tool-body">
+<div class="timer-display" id="timer-display">25:00</div>
+<div class="timer-label" id="timer-label">🍅 Focus</div>
+<div class="timer-controls">
+<button class="tool-btn" data-i18n="gold.goldforventistudiofr.toolbox_tools_grid.button5" id="timer-start">▶ Démarrer</button>
+<button class="tool-btn secondary" data-i18n="gold.goldforventistudiofr.toolbox_tools_grid.button6" id="timer-reset">🔄 Reset</button>
+</div>
+<div class="timer-sessions">
                 Sessions complétées : <span id="timer-count">0</span>
-              </div>
-            </div>
-          </div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
 
-        </div>
-      </section>
-
-    </main>
-
-    <!-- ── Footer Gold ── -->
-    <footer>
-    <div class="footer-content">
-      <div class="footer-section">
-        <h4>Outils</h4>
-        <ul>
-          <li><a href="/pip">PIP</a></li>
-          <li><a href="/sitemap">Plan du site</a></li>
-          <li><a href="https://status.ventistudio.eu/">Statut</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h4>Entreprise</h4>
-        <ul>
-          <li><a href="/about">À propos</a></li>
-          <li><a href="/jobs">Emplois</a></li>
-          <li><a href="/logo">Marque</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h4>Ressources</h4>
-        <ul>
-          <li><a href="/university">Université</a></li>
-          <li><a href="/lawful/support">Assistance</a></li>
-          <li><a href="/lawful/security">Sécurité</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h4>Chartes</h4>
-        <ul>
-          <li><a href="/lawful/tos">Conditions d'utilisation</a></li>
-          <li><a href="/lawful/cookies">Confidentialité</a></li>
-          <li><a href="/lawful/dmcainfo">Information DMCA</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <iframe src="https://status.ventistudio.eu/badge?theme=dark" width="500" height="30" frameborder="0" scrolling="no" style="color-scheme: normal"></iframe>
-      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
-    </div>
-  </footer>
-
-  </div>
-
-  <script src="/main.js" defer></script>
-  <script src="gold-data.js"></script>
-  <script src="script.js"></script>
+<footer>
+<div class="footer-content">
+<div class="footer-section">
+<h4 data-i18n="footer.col.tools">Outils</h4>
+<ul>
+<li><a href="/pip">PIP</a></li>
+<li><a data-i18n="footer.tools.sitemap" href="/sitemap">Plan du site</a></li>
+<li><a data-i18n="footer.tools.status" href="https://status.ventistudio.eu/">Statut</a></li>
+</ul>
+</div>
+<div class="footer-section">
+<h4 data-i18n="footer.col.company">Entreprise</h4>
+<ul>
+<li><a data-i18n="footer.company.about" href="/about">À propos</a></li>
+<li><a data-i18n="footer.company.jobs" href="/jobs">Emplois</a></li>
+<li><a data-i18n="footer.company.brand" href="/logo">Marque</a></li>
+</ul>
+</div>
+<div class="footer-section">
+<h4 data-i18n="footer.col.resources">Ressources</h4>
+<ul>
+<li><a data-i18n="footer.resources.university" href="/university">Université</a></li>
+<li><a data-i18n="footer.resources.support" href="/lawful/support">Assistance</a></li>
+<li><a data-i18n="footer.resources.security" href="/lawful/security">Sécurité</a></li>
+</ul>
+</div>
+<div class="footer-section">
+<h4 data-i18n="footer.col.legal">Chartes</h4>
+<ul>
+<li><a data-i18n="footer.legal.tos" href="/lawful/tos">Conditions d'utilisation</a></li>
+<li><a data-i18n="footer.legal.privacy" href="/lawful/cookies">Confidentialité</a></li>
+<li><a data-i18n="footer.legal.dmca" href="/lawful/dmcainfo">Information DMCA</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom">
+<iframe frameborder="0" height="30" scrolling="no" src="https://status.ventistudio.eu/badge?theme=dark" style="color-scheme: normal" width="500"></iframe>
+<div id="lang-switcher"></div>
+<p class="copyright" data-i18n="footer.copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
+</div>
+</footer>
+</div>
+<script defer="" src="/main.js"></script>
+<script src="gold-data.js"></script>
+<script src="script.js"></script>
 </body>
 </html>

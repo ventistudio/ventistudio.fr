@@ -101,7 +101,6 @@ nav.main-nav {
   flex-wrap: wrap;
 }
 
-/* Burger (mobile only) */
 .nav-burger {
   display: none;
   background: var(--glass-bg);
@@ -170,7 +169,6 @@ nav.main-nav details[open] > .nav-link .nav-caret {
   transform: rotate(180deg);
 }
 
-/* Dropdown groups */
 .nav-group {
   position: relative;
 }
@@ -192,7 +190,7 @@ nav.main-nav details[open] > .nav-link .nav-caret {
   box-shadow: var(--glass-shadow), 0 12px 32px rgba(0,0,0,0.35);
   z-index: 200;
   animation: navPanelFade 0.18s ease;
-  /* Sort le panneau du contexte de blur du header parent */
+
   will-change: transform;
   transform: translateZ(0);
 }
@@ -246,7 +244,6 @@ nav.main-nav details[open] > .nav-link .nav-caret {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Right-align last dropdowns to avoid overflow */
 .nav-group:nth-last-child(-n+2) > .nav-panel {
   left: auto;
   right: 0;
@@ -470,7 +467,6 @@ h1 {
   text-decoration: underline;
 }
 
-/* Features */
 .features {
   padding: 4rem 0;
   text-align: center;
@@ -537,7 +533,6 @@ h1 {
   margin: 0;
 }
 
-/* Stats Banner */
 .stats-banner {
   display: flex;
   align-items: center;
@@ -582,7 +577,6 @@ h1 {
   background: var(--glass-border);
 }
 
-/* Join CTA */
 .join-cta {
   margin-top: 5rem;
 }
@@ -609,7 +603,6 @@ h1 {
   margin-right: auto;
 }
 
-/* Keep old .about/.cards/.card for other pages */
 .about {
   padding: 4rem 0;
   text-align: center;
@@ -774,7 +767,6 @@ footer {
   box-shadow: 0 0 6px rgba(74, 222, 128, 0.5);
 }
 
-/* Mobile Responsiveness */
 @media (max-width: 1024px) {
   header {
     padding: 1rem 1.5rem;
@@ -881,7 +873,7 @@ footer {
     border-radius: 0.6rem;
   }
 
-  /* Native disclosure on mobile: panel sits inline below summary */
+
   .nav-group {
     position: static;
     width: 100%;
@@ -1162,7 +1154,6 @@ footer {
   }
 }
 
-/* ═══ Hero Enhancements ═══ */
 .hero-badge {
   display: inline-flex;
   align-items: center;
@@ -1209,7 +1200,6 @@ footer {
   50% { transform: translateY(8px); }
 }
 
-/* ═══ Feature Arrow ═══ */
 .feature-arrow {
   display: inline-block;
   margin-top: auto;
@@ -1225,7 +1215,6 @@ footer {
   transform: translateX(0);
 }
 
-/* ═══ Values Section ═══ */
 .values {
   padding: 3rem 0 2rem;
 }
@@ -1277,7 +1266,6 @@ footer {
   line-height: 1.6;
 }
 
-/* ═══ Latest News Section ═══ */
 .latest-news {
   margin-top: 4rem;
 }
@@ -1356,7 +1344,6 @@ footer {
   overflow: hidden;
 }
 
-/* ═══ Join CTA Enhancements ═══ */
 .join-cta-inner {
   position: relative;
   overflow: hidden;
@@ -1380,7 +1367,6 @@ footer {
   flex-wrap: wrap;
 }
 
-/* ═══ Responsive: Values + Latest News ═══ */
 @media (max-width: 1024px) {
   .values-grid {
     grid-template-columns: repeat(3, 1fr);
@@ -1449,7 +1435,6 @@ footer {
   }
 }
 
-/* ═══ Gold Easter Egg Secret Panel ═══ */
 .gold-secret-overlay {
   position: fixed;
   inset: 0;
@@ -1580,7 +1565,6 @@ footer {
   color: #ef4444;
 }
 
-/* Newsletter Promotion */
 .newsletter-promo {
   background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(147, 51, 234, 0.15) 100%);
   border: 2px solid rgba(99, 102, 241, 0.3);
@@ -1630,7 +1614,6 @@ footer {
   }
 }
 
-/* ADS Page - Beautiful UI */
 main .hero {
   position: relative;
   padding: 60px 20px;
@@ -1921,7 +1904,6 @@ main .hero-description {
   }
 }
 
-/* ===== SITEMAP STYLES ===== */
 .page-title {
   text-align: center;
   margin: 3rem 0 2rem;
@@ -2045,7 +2027,6 @@ main .hero-description {
   box-shadow: 0 6px 20px rgba(99, 102, 241, 0.6);
 }
 
-/* Responsive Sitemap */
 @media (max-width: 768px) {
   .page-title h1 {
     font-size: 2rem;
@@ -2094,7 +2075,6 @@ main .hero-description {
   }
 }
 
-/* ===== WARNING PAGE STYLES ===== */
 .warning-disclaimer {
   max-width: 900px;
   margin: 0 auto 3rem;
@@ -2297,7 +2277,6 @@ main .hero-description {
   transform: translateX(0);
 }
 
-/* Warning Checkboxes */
 .warning-checkbox {
   display: flex;
   align-items: center;
@@ -2359,7 +2338,6 @@ main .hero-description {
   background: rgba(99, 102, 241, 0.05);
 }
 
-/* Warning Progress Bar */
 .warning-progress {
   width: 100%;
   height: 6px;
@@ -2386,7 +2364,6 @@ main .hero-description {
   margin-top: 0.5rem;
 }
 
-/* Warning Locked Overlay */
 .warning-categories {
   position: relative;
   overflow: hidden;
@@ -2452,7 +2429,6 @@ main .hero-description {
   }
 }
 
-/* Warning Page Responsive */
 @media (max-width: 768px) {
   .warning-disclaimer {
     gap: 1.5rem;
@@ -2502,7 +2478,6 @@ main .hero-description {
   }
 }
 
-/* ===== VERSION PAGE STYLES ===== */
 .version-subtitle {
   color: var(--text-secondary);
   font-size: 1.1rem;
@@ -2513,7 +2488,6 @@ main .hero-description {
   text-align: center;
 }
 
-/* Current Version Card */
 .version-current {
   max-width: 900px;
   margin: 0 auto 3rem;
@@ -2623,7 +2597,6 @@ main .hero-description {
   font-size: 0.9rem;
 }
 
-/* Version Format Legend */
 .version-legend {
   max-width: 900px;
   margin: 0 auto 3rem;
@@ -2662,7 +2635,6 @@ main .hero-description {
   text-align: left;
 }
 
-/* Version Timeline */
 .version-timeline {
   max-width: 900px;
   margin: 0 auto;
@@ -2783,7 +2755,6 @@ main .hero-description {
   transform: translateX(4px);
 }
 
-/* Version Page Responsive */
 @media (max-width: 768px) {
   .version-current-card {
     flex-direction: column;
@@ -2854,7 +2825,6 @@ main .hero-description {
   }
 }
 
-/* ===== COMPATIBILITY PAGE STYLES ===== */
 .compat-subtitle {
   color: var(--text-secondary);
   font-size: 1.1rem;
@@ -2862,7 +2832,6 @@ main .hero-description {
   text-align: center;
 }
 
-/* Brave Recommendation Banner */
 .compat-recommend {
   max-width: 900px;
   margin: 0 auto 3rem;
@@ -2938,7 +2907,6 @@ main .hero-description {
   box-shadow: 0 8px 24px rgba(252, 102, 1, 0.4);
 }
 
-/* Compatibility Grid */
 .compat-section {
   max-width: 900px;
   margin: 0 auto 3rem;
@@ -2970,7 +2938,6 @@ main .hero-description {
   background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%) !important;
 }
 
-/* Compatibility List */
 .compat-list {
   list-style: none;
   display: flex;
@@ -3034,7 +3001,6 @@ main .hero-description {
   border: 1px solid rgba(252, 102, 1, 0.3);
 }
 
-/* Legend */
 .compat-legend-section {
   max-width: 900px;
   margin: 0 auto;
@@ -3071,7 +3037,6 @@ main .hero-description {
   font-size: 0.9rem;
 }
 
-/* Compatibility Responsive */
 @media (max-width: 768px) {
   .compat-recommend-card {
     flex-direction: column;
@@ -3118,7 +3083,6 @@ main .hero-description {
   }
 }
 
-/* ===== UNIVERSITY PAGE STYLES ===== */
 .uni-section {
   max-width: 900px;
   margin: 0 auto 3rem;
@@ -3133,7 +3097,6 @@ main .hero-description {
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
-/* Resource Links */
 .uni-resources-grid {
   display: flex;
   flex-direction: column;
@@ -3207,7 +3170,6 @@ main .hero-description {
   color: var(--accent);
 }
 
-/* FAQ Accordion */
 .uni-faq-list {
   display: flex;
   flex-direction: column;
@@ -3280,7 +3242,6 @@ main .hero-description {
   font-size: 0.95rem;
 }
 
-/* University Responsive */
 @media (max-width: 768px) {
   .uni-section .cards {
     grid-template-columns: 1fr 1fr;
@@ -3339,7 +3300,6 @@ main .hero-description {
   }
 }
 
-/* ===== SUBO AWARDS PAGE STYLES ===== */
 .subo-section {
   max-width: 900px;
   margin: 0 auto 3rem;
@@ -3350,7 +3310,6 @@ main .hero-description {
   margin-bottom: 2rem;
 }
 
-/* Current Edition Card */
 .subo-current-card {
   background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(139, 92, 246, 0.1) 100%);
   border: 1px solid var(--accent);
@@ -3478,7 +3437,6 @@ main .hero-description {
   z-index: 1;
 }
 
-/* Year Tabs */
 .subo-tabs {
   display: flex;
   gap: 0.5rem;
@@ -3520,7 +3478,6 @@ main .hero-description {
   box-shadow: 0 4px 16px rgba(99, 102, 241, 0.4);
 }
 
-/* Year Panels */
 .subo-year-panel {
   display: none;
   animation: suboFadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -3556,7 +3513,6 @@ main .hero-description {
   color: var(--text-primary);
 }
 
-/* Winners Grid */
 .subo-winners-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -3630,7 +3586,6 @@ main .hero-description {
   line-height: 1.4;
 }
 
-/* Archive Link */
 .subo-archive-link {
   display: inline-flex;
   align-items: center;
@@ -3664,7 +3619,6 @@ main .hero-description {
   transform: translateX(4px);
 }
 
-/* Process Grid */
 .subo-process-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -3715,7 +3669,6 @@ main .hero-description {
   line-height: 1.6;
 }
 
-/* Subo Timeline */
 .subo-timeline {
   position: relative;
   padding-left: 2.5rem;
@@ -3794,7 +3747,6 @@ main .hero-description {
   line-height: 1.5;
 }
 
-/* Archive Empty State */
 .subo-archive-empty {
   display: flex;
   flex-direction: column;
@@ -3820,7 +3772,6 @@ main .hero-description {
   max-width: 300px;
 }
 
-/* Subo Awards Responsive */
 @media (max-width: 768px) {
   .subo-current-card {
     padding: 1.75rem;
@@ -3933,11 +3884,6 @@ main .hero-description {
   }
 }
 
-/* ══════════════════════════════════════════════
-   Seasonal Themes
-   ══════════════════════════════════════════════ */
-
-/* ── Particle container ── */
 #season-particles {
   position: fixed;
   inset: 0;
@@ -3946,7 +3892,6 @@ main .hero-description {
   overflow: hidden;
 }
 
-/* ── Spring — Cherry blossom petals ── */
 [data-season="spring"] #season-particles .petal {
   position: absolute;
   top: -30px;
@@ -3988,14 +3933,12 @@ main .hero-description {
   }
 }
 
-/* Spring ambient — subtle pink radial on body */
 [data-season="spring"] body::before {
   background: radial-gradient(circle at 20% 50%, rgba(255, 183, 197, 0.08) 0%, transparent 50%),
               radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.08) 0%, transparent 50%),
               radial-gradient(circle at 60% 20%, rgba(255, 192, 203, 0.06) 0%, transparent 40%);
 }
 
-/* ── Summer — Fireflies ── */
 [data-season="summer"] #season-particles .firefly {
   position: absolute;
   display: block;
@@ -4030,7 +3973,6 @@ main .hero-description {
               radial-gradient(circle at 50% 80%, rgba(99, 102, 241, 0.06) 0%, transparent 40%);
 }
 
-/* ── Autumn — Falling leaves ── */
 [data-season="autumn"] #season-particles .leaf {
   position: absolute;
   top: -20px;
@@ -4060,7 +4002,6 @@ main .hero-description {
               radial-gradient(circle at 60% 20%, rgba(139, 69, 19, 0.05) 0%, transparent 40%);
 }
 
-/* ── Winter — Snowflakes ── */
 [data-season="winter"] #season-particles .snowflake {
   position: absolute;
   top: -15px;
@@ -4093,10 +4034,6 @@ main .hero-description {
               radial-gradient(circle at 50% 20%, rgba(200, 220, 255, 0.06) 0%, transparent 40%);
 }
 
-/* ══════════════════════════════════════════════
-   Event Particles & Banners (shared)
-   ══════════════════════════════════════════════ */
-
 #event-particles {
   position: fixed;
   inset: 0;
@@ -4118,7 +4055,6 @@ main .hero-description {
   100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
 }
 
-/* ── Event Banner (shared) ── */
 #event-banner {
   position: fixed;
   top: 0;
@@ -4239,14 +4175,9 @@ main .hero-description {
   animation: chaosBannerSlide 4s linear infinite;
 }
 
-/* Offset header when ANY event banner is visible */
 [data-event] header {
   top: 38px;
 }
-
-/* ══════════════════════════════════════════════
-   Event: Halloween (30-31 octobre)
-   ══════════════════════════════════════════════ */
 
 [data-event="halloween"] {
   --accent: #ff6a00;
@@ -4290,10 +4221,6 @@ main .hero-description {
   box-shadow: 0 0 25px rgba(255, 106, 0, 0.3), 0 0 50px rgba(139, 0, 255, 0.15);
 }
 
-/* ══════════════════════════════════════════════
-   Event: Christmas (24-26 décembre)
-   ══════════════════════════════════════════════ */
-
 [data-event="christmas"] {
   --accent: #c41e3a;
   --accent-secondary: #0d5c2e;
@@ -4329,10 +4256,6 @@ main .hero-description {
 [data-event="christmas"] .event-card:hover {
   box-shadow: 0 0 25px rgba(196, 30, 58, 0.25), 0 0 50px rgba(13, 92, 46, 0.15);
 }
-
-/* ══════════════════════════════════════════════
-   Event: New Year (1er janvier)
-   ══════════════════════════════════════════════ */
 
 [data-event="new-year"] {
   --accent: #ffd700;
@@ -4371,10 +4294,6 @@ main .hero-description {
   box-shadow: 0 0 25px rgba(255, 215, 0, 0.3), 0 0 50px rgba(255, 215, 0, 0.1);
 }
 
-/* ══════════════════════════════════════════════
-   Event: Valentine's Day (13-15 février)
-   ══════════════════════════════════════════════ */
-
 [data-event="valentines"] {
   --accent: #e91e63;
   --accent-secondary: #ff6090;
@@ -4410,10 +4329,6 @@ main .hero-description {
 [data-event="valentines"] .event-card:hover {
   box-shadow: 0 0 25px rgba(233, 30, 99, 0.25), 0 0 50px rgba(255, 96, 144, 0.15);
 }
-
-/* ══════════════════════════════════════════════
-   Event: National Day (14 juillet)
-   ══════════════════════════════════════════════ */
 
 [data-event="national-day"] {
   --accent: #002395;
@@ -4452,10 +4367,6 @@ main .hero-description {
   box-shadow: 0 0 20px rgba(0, 35, 149, 0.2), 0 0 40px rgba(237, 41, 57, 0.15);
 }
 
-/* ══════════════════════════════════════════════
-   Event: Fête de la Musique (21 juin)
-   ══════════════════════════════════════════════ */
-
 [data-event="fete-musique"] {
   --accent: #ec4899;
   --accent-secondary: #f59e0b;
@@ -4481,10 +4392,6 @@ main .hero-description {
   background: linear-gradient(135deg, #ec4899, #f59e0b) !important;
 }
 
-/* ══════════════════════════════════════════════
-   Event: Hatsumode (2-3 janvier)
-   ══════════════════════════════════════════════ */
-
 [data-event="hatsumode"] {
   --accent: #c41e3a;
   --accent-secondary: #ffd700;
@@ -4509,10 +4416,6 @@ main .hero-description {
   background: linear-gradient(135deg, #c41e3a, #ffd700) !important;
 }
 
-/* ══════════════════════════════════════════════
-   Event: Setsubun (3 février)
-   ══════════════════════════════════════════════ */
-
 [data-event="setsubun"] {
   --accent: #c41e3a;
   --accent-secondary: #4a1942;
@@ -4536,10 +4439,6 @@ main .hero-description {
 [data-event="setsubun"] .cta {
   background: linear-gradient(135deg, #c41e3a, #4a1942) !important;
 }
-
-/* ══════════════════════════════════════════════
-   Event: Hinamatsuri (3 mars)
-   ══════════════════════════════════════════════ */
 
 [data-event="hinamatsuri"] {
   --accent: #ff69b4;
@@ -4566,10 +4465,6 @@ main .hero-description {
   background: linear-gradient(135deg, #ff69b4, #ffb7c5) !important;
   color: #2d0a1e !important;
 }
-
-/* ══════════════════════════════════════════════
-   Event: Tanabata (7 juillet)
-   ══════════════════════════════════════════════ */
 
 [data-event="tanabata"] {
   --accent: #7c4dff;
@@ -4601,16 +4496,11 @@ main .hero-description {
   background: linear-gradient(135deg, #7c4dff, #00bcd4) !important;
 }
 
-/* Tanabata — twinkling stars on cards */
 [data-event="tanabata"] .card:hover,
 [data-event="tanabata"] .feature-card:hover,
 [data-event="tanabata"] .event-card:hover {
   box-shadow: 0 0 20px rgba(124, 77, 255, 0.3), 0 0 40px rgba(0, 188, 212, 0.2);
 }
-
-/* ══════════════════════════════════════════════
-   Event: Obon (13-15 août)
-   ══════════════════════════════════════════════ */
 
 [data-event="obon"] {
   --accent: #ff6b35;
@@ -4635,11 +4525,6 @@ main .hero-description {
 [data-event="obon"] .cta {
   background: linear-gradient(135deg, #ff6b35, #c62828) !important;
 }
-
-/* ══════════════════════════════════════════════
-   Event: Star Wars Day (4 mai)
-   Hyperspace jump effect
-   ══════════════════════════════════════════════ */
 
 [data-event="star-wars"] {
   --accent: #ffe81f;
@@ -4673,7 +4558,6 @@ main .hero-description {
   color: #000 !important;
 }
 
-/* Hyperspace stars */
 .star-wars-hyperspace {
   background: transparent;
 }
@@ -4715,11 +4599,6 @@ main .hero-description {
   }
 }
 
-/* ══════════════════════════════════════════════
-   Event: Star Trek — First Contact Day (5 avril)
-   Warp speed effect
-   ══════════════════════════════════════════════ */
-
 [data-event="star-trek"] {
   --accent: #5c9eff;
   --accent-secondary: #1a237e;
@@ -4750,7 +4629,6 @@ main .hero-description {
   background: linear-gradient(135deg, #5c9eff, #1a237e) !important;
 }
 
-/* Warp stars */
 .star-trek-warp {
   perspective: 600px;
 }
@@ -4774,6 +4652,75 @@ main .hero-description {
   background: #80d8ff;
 }
 
+#lang-switcher {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.lang-btn {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--text-primary);
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  white-space: nowrap;
+  line-height: 1;
+}
+.lang-btn:hover,
+.lang-btn:focus {
+  border-color: var(--accent);
+  outline: none;
+  background: rgba(99, 102, 241, 0.1);
+}
+
+.lang-dropdown {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  top: auto;
+  right: 50%;
+  transform: translateX(50%);
+  min-width: 180px;
+  max-height: 320px;
+  overflow-y: auto;
+  background: var(--bg-primary, #0a0a0f);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  box-shadow: 0 -8px 40px rgba(0, 0, 0, 0.4);
+  z-index: 9999;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.lang-dropdown[hidden] { display: none; }
+
+.lang-opt {
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  text-align: left;
+  padding: 7px 12px;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+.lang-opt:hover,
+.lang-opt:focus {
+  background: rgba(99, 102, 241, 0.12);
+  outline: none;
+}
+.lang-opt-active {
+  color: var(--accent);
+  font-weight: 600;
+}
+
 @keyframes warpSpeed {
   0% {
     transform: translate(0, 0) scale(0.5);
@@ -4790,10 +4737,6 @@ main .hero-description {
     opacity: 0;
   }
 }
-
-/* ══════════════════════════════════════════════
-   Event: Towel Day (25 mai)
-   ══════════════════════════════════════════════ */
 
 [data-event="towel-day"] {
   --accent: #00897b;
@@ -4818,11 +4761,6 @@ main .hero-description {
 [data-event="towel-day"] .cta {
   background: linear-gradient(135deg, #00897b, #004d40) !important;
 }
-
-/* ══════════════════════════════════════════════
-   Event: Back to the Future Day (21 octobre)
-   Lightning / time flux effect
-   ══════════════════════════════════════════════ */
 
 [data-event="back-to-future"] {
   --accent: #ff6600;
@@ -4853,7 +4791,6 @@ main .hero-description {
   background: linear-gradient(135deg, #ff6600, #1a1aff) !important;
 }
 
-/* Flux Capacitor flash */
 .bttf-flash {
   position: fixed;
   inset: 0;
@@ -4871,10 +4808,6 @@ main .hero-description {
   70% { opacity: 0.4; background: rgba(100, 100, 255, 0.1); }
   100% { opacity: 0; }
 }
-
-/* ══════════════════════════════════════════════
-   Event: VentiStudio Anniversary (24 septembre)
-   ══════════════════════════════════════════════ */
 
 [data-event="anniversary"] {
   --accent: #a855f7;
@@ -4914,7 +4847,6 @@ main .hero-description {
   box-shadow: 0 0 25px rgba(168, 85, 247, 0.3), 0 0 50px rgba(99, 102, 241, 0.15);
 }
 
-/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   #season-particles,
   #event-particles,
@@ -4931,12 +4863,6 @@ main .hero-description {
   z-index: 9996;
 }
 
-/* ══════════════════════════════════════════════
-   Event: April Fools (Poisson d'Avril)
-   Active le 1er avril — CSS chaos total
-   ══════════════════════════════════════════════ */
-
-/* ── Banner ── */
 #april-fools-banner {
   position: fixed;
   top: 0;
@@ -4963,7 +4889,6 @@ main .hero-description {
   top: 38px;
 }
 
-/* ── Chaotic Colors — rotate CSS hue-shift on everything ── */
 [data-event="april-fools"] body {
   font-family: 'Comic Sans MS', 'Comic Sans', 'Chalkboard SE', 'Marker Felt', cursive !important;
 }
@@ -4977,7 +4902,6 @@ main .hero-description {
   transition: background 2s ease;
 }
 
-/* Header goes rainbow */
 [data-event="april-fools"] header {
   background: linear-gradient(90deg,
     rgba(255, 0, 110, 0.15),
@@ -4995,7 +4919,6 @@ main .hero-description {
   100% { background-position: 300% 50%; }
 }
 
-/* Nav links wiggle */
 [data-event="april-fools"] nav a {
   animation: chaosWiggle 0.5s ease-in-out infinite;
   display: inline-block;
@@ -5016,7 +4939,6 @@ main .hero-description {
   75% { transform: rotate(-3deg); }
 }
 
-/* Cards go wild on hover */
 [data-event="april-fools"] .card,
 [data-event="april-fools"] .feature-card,
 [data-event="april-fools"] .event-card {
@@ -5033,14 +4955,12 @@ main .hero-description {
               0 0 60px var(--chaos-color-2, #3a86ff);
 }
 
-/* Accent colors go chaos */
 [data-event="april-fools"] {
   --accent: var(--chaos-color-1, #ff006e);
   --accent-secondary: var(--chaos-color-2, #3a86ff);
   --neon-glow: 0 0 20px var(--chaos-color-1, #ff006e);
 }
 
-/* CTA buttons bounce and change color */
 [data-event="april-fools"] .cta {
   animation: chaosBounce 2s ease-in-out infinite;
   background: linear-gradient(135deg, var(--chaos-color-1, #ff006e), var(--chaos-color-3, #ffbe0b)) !important;
@@ -5061,7 +4981,6 @@ main .hero-description {
   100% { transform: rotate(360deg); }
 }
 
-/* Headings rainbow text */
 [data-event="april-fools"] h1,
 [data-event="april-fools"] h2 {
   background: linear-gradient(90deg, #ff006e, #fb5607, #ffbe0b, #3a86ff, #8338ec, #06d6a0, #ff006e);
@@ -5077,7 +4996,6 @@ main .hero-description {
   100% { background-position: 300% 50%; }
 }
 
-/* Some elements upside down */
 [data-event="april-fools"] footer .footer-section:nth-child(2n) {
   transform: rotate(180deg);
 }
@@ -5087,7 +5005,6 @@ main .hero-description {
   transition: transform 0.5s ease;
 }
 
-/* Logo spins slowly */
 [data-event="april-fools"] .site-logo {
   animation: chaosLogoSpin 8s linear infinite;
 }
@@ -5097,7 +5014,6 @@ main .hero-description {
   100% { transform: rotate(360deg); }
 }
 
-/* Random border radius on glass elements */
 [data-event="april-fools"] .countdown-main {
   border-radius: 3rem 0.5rem 3rem 0.5rem;
   border-color: var(--chaos-color-3, #ffbe0b);
@@ -5111,7 +5027,6 @@ main .hero-description {
   border-radius: 0.25rem 2rem 0.25rem 2rem;
 }
 
-/* ── Fish swimming across screen ── */
 #april-fools-fish {
   position: fixed;
   inset: 0;
@@ -5175,13 +5090,11 @@ main .hero-description {
   }
 }
 
-/* Custom cursors */
 .april-fools-cursor,
 .april-fools-cursor * {
   cursor: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><text y='24' font-size='24'>🐟</text></svg>") 16 16, auto !important;
 }
 
-/* Disco background pulse */
 [data-event="april-fools"] main {
   animation: chaosDiscoPulse 8s ease-in-out infinite;
 }
@@ -5193,7 +5106,6 @@ main .hero-description {
   75% { filter: hue-rotate(180deg); }
 }
 
-/* Timer values go rainbow in cooldown */
 [data-event="april-fools"] .timer-value {
   background: linear-gradient(90deg, #ff006e, #fb5607, #ffbe0b, #3a86ff, #8338ec, #ff006e);
   background-size: 200% 100%;
@@ -5202,19 +5114,16 @@ main .hero-description {
   animation: chaosRainbowText 2s linear infinite;
 }
 
-/* Footer copyright wiggles */
 [data-event="april-fools"] .copyright {
   animation: chaosWiggle 0.3s ease-in-out infinite;
   display: inline-block;
 }
 
-/* Selection color chaos */
 [data-event="april-fools"] ::selection {
   background: #ff006e;
   color: #ffbe0b;
 }
 
-/* Reduced motion — disable all the chaos animations */
 @media (prefers-reduced-motion: reduce) {
   #april-fools-fish,
   #april-fools-banner {
@@ -5233,11 +5142,6 @@ main .hero-description {
   }
 }
 
-/* ══════════════════════════════════════════════
-   Cooldown Page
-   ══════════════════════════════════════════════ */
-
-/* ── Hero ── */
 .cooldown-hero {
   text-align: center;
   padding: 4rem 0 2rem;
@@ -5266,7 +5170,6 @@ main .hero-description {
   z-index: -1;
 }
 
-/* ── Main countdown ── */
 .countdown-main {
   background: var(--glass-bg);
   backdrop-filter: blur(20px);
@@ -5297,7 +5200,6 @@ main .hero-description {
   background: radial-gradient(circle, rgba(255, 183, 197, 0.12) 0%, rgba(99, 102, 241, 0.06) 50%, transparent 70%);
 }
 
-/* Progress ring */
 .countdown-progress {
   position: relative;
   display: inline-block;
@@ -5406,7 +5308,6 @@ main .hero-description {
   margin-top: 0.5rem;
 }
 
-/* ── Event list ── */
 .events-section {
   padding: 2rem 0 3rem;
 }
@@ -5535,7 +5436,6 @@ main .hero-description {
   letter-spacing: 0.04em;
 }
 
-/* ── Cooldown Responsive ── */
 @media (max-width: 768px) {
   .cooldown-hero h1 {
     font-size: 2rem;

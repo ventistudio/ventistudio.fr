@@ -292,6 +292,7 @@
       document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
+  <script src="/i18n.js" defer></script>
 </head>
 <body>
   <header>
@@ -299,59 +300,59 @@
       <img src="/favicon.avif" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
       <span>VentiStudio</span>
     </div>
-    <button class="nav-burger" id="nav-burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav">
+    <button class="nav-burger" id="nav-burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav" data-i18n-attr="aria-label:aria.open_menu">
       <span></span><span></span><span></span>
     </button>
-    <nav id="main-nav" class="main-nav" aria-label="Navigation principale">
-      <a href="/" class="nav-link">Accueil</a>
+    <nav id="main-nav" class="main-nav" aria-label="Navigation principale" data-i18n-attr="aria-label:nav.aria">
+      <a href="/" class="nav-link" data-i18n="nav.home">Accueil</a>
 
       <details class="nav-group">
-        <summary class="nav-link">Découvrir
+        <summary class="nav-link" data-i18n="nav.discover">Découvrir
           <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </summary>
         <div class="nav-panel" role="menu">
-          <a href="/evaluation">Évaluation</a>
-          <a href="/wiki">Wiki</a>
-          <a href="/glossary">Glossaire</a>
-          <a href="/news">News</a>
-          <a href="/blog">Blog</a>
-          <a href="/calendar">Calendrier</a>
-          <a href="/cookbook">Cookbook</a>
-          <a href="/gallery">Galerie</a>
-          <a href="/atlas">Atlas</a>
+          <a href="/evaluation" data-i18n="nav.evaluation">Évaluation</a>
+          <a href="/wiki" data-i18n="nav.wiki">Wiki</a>
+          <a href="/glossary" data-i18n="nav.glossary">Glossaire</a>
+          <a href="/news" data-i18n="nav.news">News</a>
+          <a href="/blog" data-i18n="nav.blog">Blog</a>
+          <a href="/calendar" data-i18n="nav.calendar">Calendrier</a>
+          <a href="/cookbook" data-i18n="nav.cookbook">Cookbook</a>
+          <a href="/gallery" data-i18n="nav.gallery">Galerie</a>
+          <a href="/atlas" data-i18n="nav.atlas">Atlas</a>
         </div>
       </details>
 
       <details class="nav-group">
-        <summary class="nav-link">Univers
+        <summary class="nav-link" data-i18n="nav.universe">Univers
           <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </summary>
         <div class="nav-panel" role="menu">
           <a href="/aokiunivers">AOKI Universe</a>
           <a href="/allofaokiunivers">All AOKI</a>
-          <a href="/university">Université</a>
-          <a href="/history">Histoire</a>
-          <a href="/memorial">Mémorial</a>
-          <a href="/ester-eggs">Easter eggs</a>
+          <a href="/university" data-i18n="nav.university">Université</a>
+          <a href="/history" data-i18n="nav.history">Histoire</a>
+          <a href="/memorial" data-i18n="nav.memorial">Mémorial</a>
+          <a href="/ester-eggs" data-i18n="nav.easter_eggs">Easter eggs</a>
         </div>
       </details>
 
       <details class="nav-group">
-        <summary class="nav-link">Outils
+        <summary class="nav-link" data-i18n="nav.tools">Outils
           <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </summary>
         <div class="nav-panel nav-panel-wide" role="menu">
           <div class="nav-col">
-            <h4>Applications</h4>
-            <a href="/player">Lecteur</a>
-            <a href="/music">Musique</a>
+            <h4 data-i18n="nav.col.apps">Applications</h4>
+            <a href="/player" data-i18n="nav.player">Lecteur</a>
+            <a href="/music" data-i18n="nav.music">Musique</a>
             <a href="/pip">PIP</a>
             <a href="/whiteboard">Whiteboard</a>
             <a href="/portfolio">Portfolio</a>
             <a href="/gmod">GMod</a>
           </div>
           <div class="nav-col">
-            <h4>Domaines</h4>
+            <h4 data-i18n="nav.col.domains">Domaines</h4>
             <a href="/domain/aina">AINA</a>
             <a href="/domain/archive">Archive</a>
             <a href="/domain/maps">Maps</a>
@@ -365,29 +366,29 @@
       </details>
 
       <details class="nav-group">
-        <summary class="nav-link">Communauté
+        <summary class="nav-link" data-i18n="nav.community">Communauté
           <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </summary>
         <div class="nav-panel nav-panel-wide" role="menu">
           <div class="nav-col">
-            <h4>Équipe</h4>
-            <a href="/personnel/">Équipe</a>
-            <a href="/hierarchie-staff">Hiérarchie</a>
+            <h4 data-i18n="nav.col.team">Équipe</h4>
+            <a href="/personnel/" data-i18n="nav.team">Équipe</a>
+            <a href="/hierarchie-staff" data-i18n="nav.hierarchy">Hiérarchie</a>
             <a href="/hypesquad">Hypesquad</a>
-            <a href="/jobs">Emplois</a>
-            <a href="/birthday">Anniversaires</a>
+            <a href="/jobs" data-i18n="nav.jobs">Emplois</a>
+            <a href="/birthday" data-i18n="nav.birthday">Anniversaires</a>
           </div>
           <div class="nav-col">
-            <h4>Réseaux</h4>
+            <h4 data-i18n="nav.col.networks">Réseaux</h4>
             <a href="/discord">Discord</a>
             <a href="/teamspeak">TeamSpeak</a>
             <a href="/steam">Steam</a>
-            <a href="/social">Réseaux sociaux</a>
+            <a href="/social" data-i18n="nav.social">Réseaux sociaux</a>
           </div>
           <div class="nav-col">
-            <h4>Activités</h4>
-            <a href="/artist">Artistes</a>
-            <a href="/quests">Quêtes</a>
+            <h4 data-i18n="nav.col.activities">Activités</h4>
+            <a href="/artist" data-i18n="nav.artists">Artistes</a>
+            <a href="/quests" data-i18n="nav.quests">Quêtes</a>
             <a href="/suboawards">Suboawards</a>
             <a href="/eConcert">eConcert</a>
           </div>
@@ -395,47 +396,47 @@
       </details>
 
       <details class="nav-group">
-        <summary class="nav-link">Plus
+        <summary class="nav-link" data-i18n="nav.more">Plus
           <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </summary>
         <div class="nav-panel nav-panel-wide" role="menu">
           <div class="nav-col">
-            <h4>Aide</h4>
-            <a href="/contact">Contact</a>
+            <h4 data-i18n="nav.col.help">Aide</h4>
+            <a href="/contact" data-i18n="nav.contact">Contact</a>
             <a href="/faq">FAQ</a>
-            <a href="/status">Statut</a>
-            <a href="/sitemap">Plan du site</a>
+            <a href="/status" data-i18n="nav.status">Statut</a>
+            <a href="/sitemap" data-i18n="nav.sitemap">Plan du site</a>
           </div>
           <div class="nav-col">
-            <h4>Soutien</h4>
-            <a href="/donate">Faire un don</a>
+            <h4 data-i18n="nav.col.support">Soutien</h4>
+            <a href="/donate" data-i18n="nav.donate">Faire un don</a>
             <a href="/gold">Gold</a>
-            <a href="/customization">Personnalisation</a>
-            <a href="/mes-donnees">Mes Données</a>
+            <a href="/customization" data-i18n="nav.customization">Personnalisation</a>
+            <a href="/mes-donnees" data-i18n="nav.my_data">Mes Données</a>
             <a href="/newsletter">Newsletter</a>
           </div>
           <div class="nav-col">
-            <h4>À propos</h4>
-            <a href="/company">Entreprise</a>
-            <a href="/acknowledgements">Remerciements</a>
+            <h4 data-i18n="nav.col.about">À propos</h4>
+            <a href="/company" data-i18n="nav.company">Entreprise</a>
+            <a href="/acknowledgements" data-i18n="nav.acknowledgements">Remerciements</a>
             <a href="/logo">Logo</a>
             <a href="/tags">Tags</a>
-            <a href="/memory">Mémoire</a>
-            <a href="/why-not-use-roblox">Pourquoi pas Roblox</a>
-            <a href="/lawful">Mentions légales</a>
+            <a href="/memory" data-i18n="nav.memory">Mémoire</a>
+            <a href="/why-not-use-roblox" data-i18n="nav.why_not_roblox">Pourquoi pas Roblox</a>
+            <a href="/lawful" data-i18n="nav.legal">Mentions légales</a>
           </div>
         </div>
       </details>
     </nav>
-    <div class="controls" role="toolbar" aria-label="Contrôles">
-      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
+    <div class="controls" role="toolbar" aria-label="Contrôles" data-i18n-attr="aria-label:aria.controls">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème" data-i18n-attr="aria-label:aria.toggle_theme,title:aria.toggle_theme">
         <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
           <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
           <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
           <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
         </svg>
       </button>
-      <div id="user-button" role="region" aria-label="Authentification"><button class="cta" id="auth-fallback-btn" onclick="window.location.href='https://accounts.ventistudio.eu/sign-in?redirect_url='+encodeURIComponent(window.location.href)" style="padding:0.5rem 1.25rem;font-size:0.9rem;margin:0"><span>Se connecter</span></button></div>
+      <div id="user-button" role="region" aria-label="Authentification"><button class="cta" id="auth-fallback-btn" onclick="window.location.href='https://accounts.ventistudio.eu/sign-in?redirect_url='+encodeURIComponent(window.location.href)" style="padding:0.5rem 1.25rem;font-size:0.9rem;margin:0"><span data-i18n="nav.signin">Se connecter</span></button></div>
     </div>
   </header>
 

@@ -1,8 +1,7 @@
-// ═══ VentiStudio Maps — Privacy-first open cartography ═══
 (function () {
   'use strict';
 
-  // ── Tile providers (aucun tracking, open source) ──
+
   const TILES = {
     standard: {
       url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -28,19 +27,19 @@
   const STORAGE_FAVORITES = 'vs-maps-favorites';
   const MAX_HISTORY = 10;
 
-  // ── État ──
+
   let map, currentLayer, searchMarkers = [], routeLayer = null;
   let routeStartMarker = null, routeEndMarker = null;
   let routeStartCoords = null, routeEndCoords = null;
   let searchTimeout = null, selectedResultIndex = -1;
   let measureMode = false, measurePoints = [], measureLayers = [];
-  let currentPanel = 'home'; // home | route | measure | place | track | pin
+  let currentPanel = 'home';
   let trackWatchId = null, trackPoints = [], trackLine = null, trackStartTime = null, trackPaused = false, trackTimer = null;
   let pinMode = false, pinMarkers = [];
   const STORAGE_TRACKS = 'vs-maps-tracks';
   const STORAGE_PINS = 'vs-maps-pins';
 
-  // ── Éléments DOM ──
+
   const $ = (sel) => document.querySelector(sel);
   const $$ = (sel) => document.querySelectorAll(sel);
   const sidebar = $('#sidebar');
@@ -99,7 +98,7 @@
   const coordZoom = $('#coord-zoom');
   const toast = $('#toast');
 
-  // ── Initialisation carte ──
+
   function initMap() {
     map = L.map('map', {
       center: [46.6034, 1.8883],
@@ -122,7 +121,7 @@
     map.on('moveend', updateHash);
   }
 
-  // ── Barre de coordonnées ──
+
   function onMapMouseMove(e) {
     coordLat.textContent = `Lat: ${e.latlng.lat.toFixed(5)}`;
     coordLng.textContent = `Lng: ${e.latlng.lng.toFixed(5)}`;
@@ -132,7 +131,7 @@
     coordZoom.textContent = `Zoom: ${map.getZoom()}`;
   }
 
-  // ── Hash URL ──
+
   function updateHash() {
     const c = map.getCenter();
     const z = map.getZoom();
@@ -157,7 +156,7 @@
     }
   }
 
-  // ── Sidebar ──
+
   function toggleSidebar(show) {
     const isCollapsed = sidebar.classList.contains('collapsed');
     if (show === undefined) show = isCollapsed;
@@ -190,7 +189,7 @@
     }
   }
 
-  // ── Quick actions ──
+
   $('#quick-locate').addEventListener('click', () => doLocate());
   $('#quick-route').addEventListener('click', () => {
     showPanel('route');
@@ -216,7 +215,7 @@
     enterPinMode();
   });
 
-  // ── Recherche (Nominatim) ──
+
   function performSearch(query) {
     if (!query || query.length < 2) {
       searchResults.classList.add('hidden');
@@ -314,7 +313,7 @@
     }
   });
 
-  // Ctrl+F raccourci
+
   document.addEventListener('keydown', (e) => {
     if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
       e.preventDefault();
@@ -340,7 +339,7 @@
     if (currentPanel === 'place') showPanel('home');
   });
 
-  // ── Historique (localStorage) ──
+
   function getHistory() {
     try { return JSON.parse(localStorage.getItem(STORAGE_HISTORY)) || []; }
     catch { return []; }
@@ -407,7 +406,7 @@
     showToast('Historique effacé');
   });
 
-  // ── Favoris (localStorage) ──
+
   function getFavorites() {
     try { return JSON.parse(localStorage.getItem(STORAGE_FAVORITES)) || []; }
     catch { return []; }
@@ -486,7 +485,7 @@
     });
   }
 
-  // ── Marqueurs ──
+
   function createMarker(lat, lon, title, type) {
     const css = type === 'start' ? 'marker-start' : type === 'end' ? 'marker-end' : '';
     const icon = L.divIcon({
@@ -507,7 +506,7 @@
     searchMarkers = [];
   }
 
-  // ── Info lieu ──
+
   function showPlaceInfo(displayName, lat, lon, type) {
     const parts = displayName.split(',');
     placeName.textContent = parts[0].trim();
@@ -553,7 +552,7 @@
 
   placeClose.addEventListener('click', () => showPanel('home'));
 
-  // ── Clic carte ──
+
   function onMapClick(e) {
     searchResults.classList.add('hidden');
     layersPanel.classList.add('hidden');
@@ -604,7 +603,7 @@
       });
   }
 
-  // ── Itinéraire ──
+
   routeToggleBtn.addEventListener('click', () => {
     if (currentPanel === 'route') {
       showPanel('home');
@@ -641,7 +640,7 @@
     });
   });
 
-  // Bouton "ma position" dans champ départ
+
   document.querySelector('.route-field-locate').addEventListener('click', () => {
     doLocate((lat, lon) => {
       routeStartCoords = [lat, lon];
@@ -754,7 +753,7 @@
       }
     }).addTo(map);
 
-    // Ajouter contour
+
     L.geoJSON(route.geometry, {
       style: {
         color: '#4338ca',
@@ -799,7 +798,7 @@
     }
   }
 
-  // ── Mesure ──
+
   measureToggleBtn.addEventListener('click', () => {
     if (currentPanel === 'measure') {
       showPanel('home');
@@ -842,7 +841,7 @@
   function addMeasurePoint(latlng) {
     measurePoints.push(latlng);
 
-    // Point marker
+
     const circleMarker = L.circleMarker(latlng, {
       radius: 5,
       color: '#f59e0b',
@@ -877,7 +876,7 @@
     }
   }
 
-  // ── Géolocalisation ──
+
   function doLocate(callback) {
     if (!navigator.geolocation) {
       showToast('Géolocalisation non disponible');
@@ -914,7 +913,7 @@
 
   locateBtn.addEventListener('click', () => doLocate());
 
-  // ── Couches ──
+
   layersBtn.addEventListener('click', (e) => {
     e.stopPropagation();
     layersPanel.classList.toggle('hidden');
@@ -935,7 +934,7 @@
     });
   });
 
-  // ── Plein écran ──
+
   fullscreenBtn.addEventListener('click', () => {
     const el = document.querySelector('.maps-main');
     if (!document.fullscreenElement) {
@@ -950,7 +949,7 @@
     setTimeout(() => map.invalidateSize(), 100);
   });
 
-  // ── Toast ──
+
   let toastTimer = null;
   function showToast(message) {
     toast.textContent = message;
@@ -959,7 +958,7 @@
     toastTimer = setTimeout(() => toast.classList.add('hidden'), 2500);
   }
 
-  // ── Fermer panels au clic extérieur ──
+
   document.addEventListener('click', (e) => {
     if (!layersPanel.contains(e.target) && e.target !== layersBtn && !layersBtn.contains(e.target)) {
       layersPanel.classList.add('hidden');
@@ -967,7 +966,7 @@
     }
   });
 
-  // ── Enregistrement de trajet GPS ──
+
   trackToggleBtn.addEventListener('click', () => {
     if (currentPanel === 'track') {
       showPanel('home');
@@ -983,7 +982,7 @@
     if (!navigator.geolocation) { showToast('Géolocalisation non disponible'); return; }
 
     if (trackPaused) {
-      // Reprendre
+
       trackPaused = false;
       trackStartBtn.classList.add('recording');
       trackStartBtn.querySelector('span:last-child').textContent = 'En cours…';
@@ -994,7 +993,7 @@
       return;
     }
 
-    // Nouveau trajet
+
     trackPoints = [];
     if (trackLine) { map.removeLayer(trackLine); trackLine = null; }
     trackStartTime = Date.now();
@@ -1046,7 +1045,7 @@
     trackWatchId = navigator.geolocation.watchPosition(
       (pos) => {
         const { latitude, longitude, speed, accuracy } = pos.coords;
-        if (accuracy > 100) return; // ignorer les points trop imprécis
+        if (accuracy > 100) return;
 
         const latlng = L.latLng(latitude, longitude);
         trackPoints.push({ lat: latitude, lng: longitude, ts: Date.now(), speed: speed || 0 });
@@ -1100,7 +1099,7 @@
     trackPointsEl.textContent = trackPoints.length;
 
     if (trackStartTime && totalDist > 0) {
-      const elapsed = (Date.now() - trackStartTime) / 1000 / 3600; // en heures
+      const elapsed = (Date.now() - trackStartTime) / 1000 / 3600;
       const avgSpeed = (totalDist / 1000) / elapsed;
       trackSpeedEl.textContent = `${avgSpeed.toFixed(1)} km/h`;
     }
@@ -1203,7 +1202,7 @@
     showPanel('home');
   }
 
-  // ── Export GPX ──
+
   function toGpxString(points, name) {
     const pts = points.map(p =>
       `      <trkpt lat="${p.lat}" lon="${p.lng}"><time>${new Date(p.ts).toISOString()}</time></trkpt>`
@@ -1266,7 +1265,7 @@ ${pts}
     }
   });
 
-  // ── Drop Pin (repères personnalisés) ──
+
   pinClose.addEventListener('click', () => showPanel('home'));
 
   pinsClear.addEventListener('click', () => {
@@ -1363,7 +1362,7 @@ ${pts}
     renderPins();
   }
 
-  // ── Helpers ──
+
   function escapeHtml(str) {
     const div = document.createElement('div');
     div.textContent = str;
@@ -1374,7 +1373,7 @@ ${pts}
     return str.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, '&#39;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   }
 
-  // ── Boot ──
+
   initMap();
   parseHash();
   renderHistory();

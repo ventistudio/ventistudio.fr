@@ -1,379 +1,362 @@
 <!DOCTYPE html>
-<html lang="fr" data-theme="dark">
+
+<html data-theme="dark" lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <meta name="description" content="VentiStudio - Compatibilité des navigateurs et systèmes d'exploitation supportés.">
-  <meta name="theme-color" content="#6366f1">
-  <title>Compatibilité | VentiStudio</title>
-  <link rel="stylesheet" href="/style.css">
-
-  <script async crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
-  <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
-
-  <meta property="og:title" content="Compatibilité | VentiStudio">
-  <meta property="og:description" content="VentiStudio - Compatibilité des navigateurs et systèmes d'exploitation supportés.">
-  <meta property="og:url" content="https://ventistudio.eu/unsupported/">
-  <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
-  <meta property="og:type" content="website">
-  <link rel="canonical" href="https://ventistudio.eu/unsupported/">
-
-  <script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport"/>
+<meta content="VentiStudio - Compatibilité des navigateurs et systèmes d'exploitation supportés." name="description"/>
+<meta content="#6366f1" name="theme-color"/>
+<title>Compatibilité | VentiStudio</title>
+<link href="/style.css" rel="stylesheet"/>
+<script async="" crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
+<script async="" crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
+<meta content="Compatibilité | VentiStudio" property="og:title"/>
+<meta content="VentiStudio - Compatibilité des navigateurs et systèmes d'exploitation supportés." property="og:description"/>
+<meta content="https://ventistudio.eu/unsupported/" property="og:url"/>
+<meta content="https://ventistudio.eu/favicon.avif" property="og:image"/>
+<meta content="website" property="og:type"/>
+<link href="https://ventistudio.eu/unsupported/" rel="canonical"/>
+<script>
     (function() {
       var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
       document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
+<script defer="" src="/i18n.js"></script>
 </head>
 <body>
-  <header>
-    <div class="logo">
-      <img src="/favicon.avif" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
-      <span>VentiStudio</span>
-    </div>
-    <button class="nav-burger" id="nav-burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav">
-      <span></span><span></span><span></span>
-    </button>
-    <nav id="main-nav" class="main-nav" aria-label="Navigation principale">
-      <a href="/" class="nav-link">Accueil</a>
+<header>
+<div class="logo">
+<img alt="Logo VentiStudio" class="site-logo" height="32" src="/favicon.avif" width="32"/>
+<span>VentiStudio</span>
+</div>
+<button aria-controls="main-nav" aria-expanded="false" aria-label="Ouvrir le menu" class="nav-burger" data-i18n-attr="aria-label:aria.open_menu" id="nav-burger">
+<span></span><span></span><span></span>
+</button>
+<nav aria-label="Navigation principale" class="main-nav" data-i18n-attr="aria-label:nav.aria" id="main-nav">
+<a class="nav-link" data-i18n="nav.home" href="/">Accueil</a>
+<details class="nav-group">
+<summary class="nav-link" data-i18n="nav.discover">Découvrir
+          <svg aria-hidden="true" class="nav-caret" fill="none" height="12" viewbox="0 0 24 24" width="12"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</summary>
+<div class="nav-panel" role="menu">
+<a data-i18n="nav.evaluation" href="/evaluation">Évaluation</a>
+<a data-i18n="nav.wiki" href="/wiki">Wiki</a>
+<a data-i18n="nav.glossary" href="/glossary">Glossaire</a>
+<a data-i18n="nav.news" href="/news">News</a>
+<a data-i18n="nav.blog" href="/blog">Blog</a>
+<a data-i18n="nav.calendar" href="/calendar">Calendrier</a>
+<a data-i18n="nav.cookbook" href="/cookbook">Cookbook</a>
+<a data-i18n="nav.gallery" href="/gallery">Galerie</a>
+<a data-i18n="nav.atlas" href="/atlas">Atlas</a>
+</div>
+</details>
+<details class="nav-group">
+<summary class="nav-link" data-i18n="nav.universe">Univers
+          <svg aria-hidden="true" class="nav-caret" fill="none" height="12" viewbox="0 0 24 24" width="12"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</summary>
+<div class="nav-panel" role="menu">
+<a href="/aokiunivers">AOKI Universe</a>
+<a href="/allofaokiunivers">All AOKI</a>
+<a data-i18n="nav.university" href="/university">Université</a>
+<a data-i18n="nav.history" href="/history">Histoire</a>
+<a data-i18n="nav.memorial" href="/memorial">Mémorial</a>
+<a data-i18n="nav.easter_eggs" href="/ester-eggs">Easter eggs</a>
+</div>
+</details>
+<details class="nav-group">
+<summary class="nav-link" data-i18n="nav.tools">Outils
+          <svg aria-hidden="true" class="nav-caret" fill="none" height="12" viewbox="0 0 24 24" width="12"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</summary>
+<div class="nav-panel nav-panel-wide" role="menu">
+<div class="nav-col">
+<h4 data-i18n="nav.col.apps">Applications</h4>
+<a data-i18n="nav.player" href="/player">Lecteur</a>
+<a data-i18n="nav.music" href="/music">Musique</a>
+<a href="/pip">PIP</a>
+<a href="/whiteboard">Whiteboard</a>
+<a href="/portfolio">Portfolio</a>
+<a href="/gmod">GMod</a>
+</div>
+<div class="nav-col">
+<h4 data-i18n="nav.col.domains">Domaines</h4>
+<a href="/domain/aina">AINA</a>
+<a href="/domain/archive">Archive</a>
+<a href="/domain/maps">Maps</a>
+<a href="/domain/movie">Movie</a>
+<a href="/domain/peer">Peer</a>
+<a href="/domain/pro">Pro</a>
+<a href="/domain/search">Search</a>
+<a href="/domain/suite">Suite</a>
+</div>
+</div>
+</details>
+<details class="nav-group">
+<summary class="nav-link" data-i18n="nav.community">Communauté
+          <svg aria-hidden="true" class="nav-caret" fill="none" height="12" viewbox="0 0 24 24" width="12"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</summary>
+<div class="nav-panel nav-panel-wide" role="menu">
+<div class="nav-col">
+<h4 data-i18n="nav.col.team">Équipe</h4>
+<a data-i18n="nav.team" href="/personnel/">Équipe</a>
+<a data-i18n="nav.hierarchy" href="/hierarchie-staff">Hiérarchie</a>
+<a href="/hypesquad">Hypesquad</a>
+<a data-i18n="nav.jobs" href="/jobs">Emplois</a>
+<a data-i18n="nav.birthday" href="/birthday">Anniversaires</a>
+</div>
+<div class="nav-col">
+<h4 data-i18n="nav.col.networks">Réseaux</h4>
+<a href="/discord">Discord</a>
+<a href="/teamspeak">TeamSpeak</a>
+<a href="/steam">Steam</a>
+<a data-i18n="nav.social" href="/social">Réseaux sociaux</a>
+</div>
+<div class="nav-col">
+<h4 data-i18n="nav.col.activities">Activités</h4>
+<a data-i18n="nav.artists" href="/artist">Artistes</a>
+<a data-i18n="nav.quests" href="/quests">Quêtes</a>
+<a href="/suboawards">Suboawards</a>
+<a href="/eConcert">eConcert</a>
+</div>
+</div>
+</details>
+<details class="nav-group">
+<summary class="nav-link" data-i18n="nav.more">Plus
+          <svg aria-hidden="true" class="nav-caret" fill="none" height="12" viewbox="0 0 24 24" width="12"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</summary>
+<div class="nav-panel nav-panel-wide" role="menu">
+<div class="nav-col">
+<h4 data-i18n="nav.col.help">Aide</h4>
+<a data-i18n="nav.contact" href="/contact">Contact</a>
+<a href="/faq">FAQ</a>
+<a data-i18n="nav.status" href="/status">Statut</a>
+<a data-i18n="nav.sitemap" href="/sitemap">Plan du site</a>
+</div>
+<div class="nav-col">
+<h4 data-i18n="nav.col.support">Soutien</h4>
+<a data-i18n="nav.donate" href="/donate">Faire un don</a>
+<a href="/gold">Gold</a>
+<a data-i18n="nav.customization" href="/customization">Personnalisation</a>
+<a data-i18n="nav.my_data" href="/mes-donnees">Mes Données</a>
+<a href="/newsletter">Newsletter</a>
+</div>
+<div class="nav-col">
+<h4 data-i18n="nav.col.about">À propos</h4>
+<a data-i18n="nav.company" href="/company">Entreprise</a>
+<a data-i18n="nav.acknowledgements" href="/acknowledgements">Remerciements</a>
+<a href="/logo">Logo</a>
+<a href="/tags">Tags</a>
+<a data-i18n="nav.memory" href="/memory">Mémoire</a>
+<a data-i18n="nav.why_not_roblox" href="/why-not-use-roblox">Pourquoi pas Roblox</a>
+<a data-i18n="nav.legal" href="/lawful">Mentions légales</a>
+</div>
+</div>
+</details>
+</nav>
+<div aria-label="Contrôles" class="controls" data-i18n-attr="aria-label:aria.controls" role="toolbar">
+<button aria-label="Basculer le thème clair/sombre" class="theme-toggle" data-i18n-attr="aria-label:aria.toggle_theme,title:aria.toggle_theme" id="theme-toggle" title="Basculer le thème">
+<svg aria-hidden="true" height="24" viewbox="0 0 24 24" width="24">
+<path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" fill="none" stroke="currentColor"></path>
+<circle class="sun" cx="12" cy="12" fill="none" r="4" stroke="currentColor"></circle>
+<path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" fill="none" stroke="currentColor"></path>
+</svg>
+</button>
+<div aria-label="Authentification" id="user-button" role="region"><button class="cta" id="auth-fallback-btn" onclick="window.location.href='https://accounts.ventistudio.eu/sign-in?redirect_url='+encodeURIComponent(window.location.href)" style="padding:0.5rem 1.25rem;font-size:0.9rem;margin:0"><span data-i18n="nav.signin">Se connecter</span></button></div>
+</div>
+</header>
+<main>
+<div class="page-title">
+<h1 data-i18n="unsupported.page_title.h1">Compatibilité du site</h1>
+<p class="compat-subtitle" data-i18n="unsupported.page_title.p">Navigateurs et systèmes d'exploitation supportés par VentiStudio.</p>
+</div>
 
-      <details class="nav-group">
-        <summary class="nav-link">Découvrir
-          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </summary>
-        <div class="nav-panel" role="menu">
-          <a href="/evaluation">Évaluation</a>
-          <a href="/wiki">Wiki</a>
-          <a href="/glossary">Glossaire</a>
-          <a href="/news">News</a>
-          <a href="/blog">Blog</a>
-          <a href="/calendar">Calendrier</a>
-          <a href="/cookbook">Cookbook</a>
-          <a href="/gallery">Galerie</a>
-          <a href="/atlas">Atlas</a>
-        </div>
-      </details>
+<section class="compat-recommend">
+<div class="compat-recommend-card">
+<div class="compat-recommend-icon">
+<svg aria-hidden="true" fill="none" height="32" viewbox="0 0 24 24" width="32">
+<path d="M12 2L3 7v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z" fill="currentColor" opacity="0.1"></path>
+<path d="M12 2L3 7v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z" stroke="currentColor" stroke-linejoin="round" stroke-width="2"></path>
+<path d="M9 12l2 2 4-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<div class="compat-recommend-text">
+<h2 data-i18n="unsupported.compat_recommend_compat_recommend_card.h2">VentiStudio recommande Brave</h2>
+<p data-i18n="unsupported.compat_recommend_compat_recommend_card.p">Pour une expérience optimale, sécurisée et respectueuse de votre vie privée.</p>
+</div>
+<a class="compat-download-btn" href="https://brave.com/download" rel="noopener" target="_blank">
+<span>Télécharger Brave</span>
+<svg fill="none" height="16" viewbox="0 0 24 24" width="16"><path d="M7 17L17 7M17 7H7M17 7v10" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</a>
+</div>
+</section>
 
-      <details class="nav-group">
-        <summary class="nav-link">Univers
-          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </summary>
-        <div class="nav-panel" role="menu">
-          <a href="/aokiunivers">AOKI Universe</a>
-          <a href="/allofaokiunivers">All AOKI</a>
-          <a href="/university">Université</a>
-          <a href="/history">Histoire</a>
-          <a href="/memorial">Mémorial</a>
-          <a href="/ester-eggs">Easter eggs</a>
-        </div>
-      </details>
+<section class="compat-section">
+<div class="cards compat-grid">
 
-      <details class="nav-group">
-        <summary class="nav-link">Outils
-          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </summary>
-        <div class="nav-panel nav-panel-wide" role="menu">
-          <div class="nav-col">
-            <h4>Applications</h4>
-            <a href="/player">Lecteur</a>
-            <a href="/music">Musique</a>
-            <a href="/pip">PIP</a>
-            <a href="/whiteboard">Whiteboard</a>
-            <a href="/portfolio">Portfolio</a>
-            <a href="/gmod">GMod</a>
-          </div>
-          <div class="nav-col">
-            <h4>Domaines</h4>
-            <a href="/domain/aina">AINA</a>
-            <a href="/domain/archive">Archive</a>
-            <a href="/domain/maps">Maps</a>
-            <a href="/domain/movie">Movie</a>
-            <a href="/domain/peer">Peer</a>
-            <a href="/domain/pro">Pro</a>
-            <a href="/domain/search">Search</a>
-            <a href="/domain/suite">Suite</a>
-          </div>
-        </div>
-      </details>
+<div class="card compat-card">
+<div class="card-icon compat-icon-tested">
+<svg aria-hidden="true" fill="none" height="24" viewbox="0 0 24 24" width="24">
+<circle cx="12" cy="12" fill="currentColor" opacity="0.1" r="10"></circle>
+<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"></circle>
+<path d="M8 12l3 3 5-5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</div>
+<h3 data-i18n="unsupported.compat_section_cards.h3">Navigateurs testés</h3>
+<p data-i18n="unsupported.compat_section_cards.p">Entièrement compatibles et vérifiés.</p>
+<ul class="compat-list">
+<li data-i18n="unsupported.compat_section_cards.li">
+<span class="compat-dot tested"></span>
+<span>Brave</span>
+<span class="compat-tag recommended">Recommandé</span>
+</li>
+<li data-i18n="unsupported.compat_section_cards.li2">
+<span class="compat-dot tested"></span>
+<span>Opera GX</span>
+</li>
+<li data-i18n="unsupported.compat_section_cards.li3">
+<span class="compat-dot tested"></span>
+<span>Opera Crypto</span>
+</li>
+<li data-i18n="unsupported.compat_section_cards.li4">
+<span class="compat-dot tested"></span>
+<span>Opera Air</span>
+</li>
+<li data-i18n="unsupported.compat_section_cards.li5">
+<span class="compat-dot tested"></span>
+<span>Firefox</span>
+</li>
+<li data-i18n="unsupported.compat_section_cards.li6">
+<span class="compat-dot tested"></span>
+<span>Tor Browser</span>
+</li>
+</ul>
+</div>
 
-      <details class="nav-group">
-        <summary class="nav-link">Communauté
-          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </summary>
-        <div class="nav-panel nav-panel-wide" role="menu">
-          <div class="nav-col">
-            <h4>Équipe</h4>
-            <a href="/personnel/">Équipe</a>
-            <a href="/hierarchie-staff">Hiérarchie</a>
-            <a href="/hypesquad">Hypesquad</a>
-            <a href="/jobs">Emplois</a>
-            <a href="/birthday">Anniversaires</a>
-          </div>
-          <div class="nav-col">
-            <h4>Réseaux</h4>
-            <a href="/discord">Discord</a>
-            <a href="/teamspeak">TeamSpeak</a>
-            <a href="/steam">Steam</a>
-            <a href="/social">Réseaux sociaux</a>
-          </div>
-          <div class="nav-col">
-            <h4>Activités</h4>
-            <a href="/artist">Artistes</a>
-            <a href="/quests">Quêtes</a>
-            <a href="/suboawards">Suboawards</a>
-            <a href="/eConcert">eConcert</a>
-          </div>
-        </div>
-      </details>
+<div class="card compat-card">
+<div class="card-icon compat-icon-partial">
+<svg aria-hidden="true" fill="none" height="24" viewbox="0 0 24 24" width="24">
+<circle cx="12" cy="12" fill="currentColor" opacity="0.1" r="10"></circle>
+<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"></circle>
+<path d="M12 8v4M12 16h.01" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+</div>
+<h3 data-i18n="unsupported.compat_section_cards.h32">Compatibilité partielle</h3>
+<p data-i18n="unsupported.compat_section_cards.p2">Fonctionnels mais non vérifiés intégralement.</p>
+<ul class="compat-list">
+<li data-i18n="unsupported.compat_section_cards.li7">
+<span class="compat-dot partial"></span>
+<span>Opera Dev</span>
+</li>
+<li data-i18n="unsupported.compat_section_cards.li8">
+<span class="compat-dot partial"></span>
+<span>Opera One</span>
+</li>
+<li data-i18n="unsupported.compat_section_cards.li9">
+<span class="compat-dot partial"></span>
+<span>Opera Neon</span>
+</li>
+<li data-i18n="unsupported.compat_section_cards.li10">
+<span class="compat-dot partial"></span>
+<span>Chrome</span>
+</li>
+<li data-i18n="unsupported.compat_section_cards.li11">
+<span class="compat-dot partial"></span>
+<span>Edge</span>
+</li>
+<li data-i18n="unsupported.compat_section_cards.li12">
+<span class="compat-dot partial"></span>
+<span>Safari</span>
+</li>
+</ul>
+</div>
 
-      <details class="nav-group">
-        <summary class="nav-link">Plus
-          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </summary>
-        <div class="nav-panel nav-panel-wide" role="menu">
-          <div class="nav-col">
-            <h4>Aide</h4>
-            <a href="/contact">Contact</a>
-            <a href="/faq">FAQ</a>
-            <a href="/status">Statut</a>
-            <a href="/sitemap">Plan du site</a>
-          </div>
-          <div class="nav-col">
-            <h4>Soutien</h4>
-            <a href="/donate">Faire un don</a>
-            <a href="/gold">Gold</a>
-            <a href="/customization">Personnalisation</a>
-            <a href="/mes-donnees">Mes Données</a>
-            <a href="/newsletter">Newsletter</a>
-          </div>
-          <div class="nav-col">
-            <h4>À propos</h4>
-            <a href="/company">Entreprise</a>
-            <a href="/acknowledgements">Remerciements</a>
-            <a href="/logo">Logo</a>
-            <a href="/tags">Tags</a>
-            <a href="/memory">Mémoire</a>
-            <a href="/why-not-use-roblox">Pourquoi pas Roblox</a>
-            <a href="/lawful">Mentions légales</a>
-          </div>
-        </div>
-      </details>
-    </nav>
-    <div class="controls" role="toolbar" aria-label="Contrôles">
-      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
-        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
-          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
-          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
-          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
-        </svg>
-      </button>
-      <div id="user-button" role="region" aria-label="Authentification"><button class="cta" id="auth-fallback-btn" onclick="window.location.href='https://accounts.ventistudio.eu/sign-in?redirect_url='+encodeURIComponent(window.location.href)" style="padding:0.5rem 1.25rem;font-size:0.9rem;margin:0"><span>Se connecter</span></button></div>
-    </div>
-  </header>
+<div class="card compat-card">
+<div class="card-icon compat-icon-unsupported">
+<svg aria-hidden="true" fill="none" height="24" viewbox="0 0 24 24" width="24">
+<circle cx="12" cy="12" fill="currentColor" opacity="0.1" r="10"></circle>
+<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"></circle>
+<path d="M15 9l-6 6M9 9l6 6" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+</div>
+<h3 data-i18n="unsupported.compat_section_cards.h33">Non supportés</h3>
+<p data-i18n="unsupported.compat_section_cards.p3">Ne fonctionneront pas correctement.</p>
+<ul class="compat-list">
+<li data-i18n="unsupported.compat_section_cards.li13">
+<span class="compat-dot unsupported"></span>
+<span>Navigateurs Windows XP/Vista/7/8</span>
+</li>
+<li data-i18n="unsupported.compat_section_cards.li14">
+<span class="compat-dot unsupported"></span>
+<span>Navigateurs iOS</span>
+</li>
+</ul>
+</div>
+</div>
+</section>
 
-  <main>
-
-    <div class="page-title">
-      <h1>Compatibilité du site</h1>
-      <p class="compat-subtitle">Navigateurs et systèmes d'exploitation supportés par VentiStudio.</p>
-    </div>
-
-    <!-- Brave Recommendation -->
-    <section class="compat-recommend">
-      <div class="compat-recommend-card">
-        <div class="compat-recommend-icon">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M12 2L3 7v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z" fill="currentColor" opacity="0.1"/>
-            <path d="M12 2L3 7v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-            <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <div class="compat-recommend-text">
-          <h2>VentiStudio recommande Brave</h2>
-          <p>Pour une expérience optimale, sécurisée et respectueuse de votre vie privée.</p>
-        </div>
-        <a href="https://brave.com/download" target="_blank" rel="noopener" class="compat-download-btn">
-          <span>Télécharger Brave</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7v10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-      </div>
-    </section>
-
-    <!-- Compatibility Grid -->
-    <section class="compat-section">
-      <div class="cards compat-grid">
-
-        <!-- Tested -->
-        <div class="card compat-card">
-          <div class="card-icon compat-icon-tested">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <circle cx="12" cy="12" r="10" fill="currentColor" opacity="0.1"/>
-              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
-              <path d="M8 12l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <h3>Navigateurs testés</h3>
-          <p>Entièrement compatibles et vérifiés.</p>
-          <ul class="compat-list">
-            <li>
-              <span class="compat-dot tested"></span>
-              <span>Brave</span>
-              <span class="compat-tag recommended">Recommandé</span>
-            </li>
-            <li>
-              <span class="compat-dot tested"></span>
-              <span>Opera GX</span>
-            </li>
-            <li>
-              <span class="compat-dot tested"></span>
-              <span>Opera Crypto</span>
-            </li>
-            <li>
-              <span class="compat-dot tested"></span>
-              <span>Opera Air</span>
-            </li>
-            <li>
-              <span class="compat-dot tested"></span>
-              <span>Firefox</span>
-            </li>
-            <li>
-              <span class="compat-dot tested"></span>
-              <span>Tor Browser</span>
-            </li>
-          </ul>
-        </div>
-
-        <!-- Partial -->
-        <div class="card compat-card">
-          <div class="card-icon compat-icon-partial">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <circle cx="12" cy="12" r="10" fill="currentColor" opacity="0.1"/>
-              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
-              <path d="M12 8v4M12 16h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <h3>Compatibilité partielle</h3>
-          <p>Fonctionnels mais non vérifiés intégralement.</p>
-          <ul class="compat-list">
-            <li>
-              <span class="compat-dot partial"></span>
-              <span>Opera Dev</span>
-            </li>
-            <li>
-              <span class="compat-dot partial"></span>
-              <span>Opera One</span>
-            </li>
-            <li>
-              <span class="compat-dot partial"></span>
-              <span>Opera Neon</span>
-            </li>
-            <li>
-              <span class="compat-dot partial"></span>
-              <span>Chrome</span>
-            </li>
-            <li>
-              <span class="compat-dot partial"></span>
-              <span>Edge</span>
-            </li>
-            <li>
-              <span class="compat-dot partial"></span>
-              <span>Safari</span>
-            </li>
-          </ul>
-        </div>
-
-        <!-- Unsupported -->
-        <div class="card compat-card">
-          <div class="card-icon compat-icon-unsupported">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <circle cx="12" cy="12" r="10" fill="currentColor" opacity="0.1"/>
-              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
-              <path d="M15 9l-6 6M9 9l6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <h3>Non supportés</h3>
-          <p>Ne fonctionneront pas correctement.</p>
-          <ul class="compat-list">
-            <li>
-              <span class="compat-dot unsupported"></span>
-              <span>Navigateurs Windows XP/Vista/7/8</span>
-            </li>
-            <li>
-              <span class="compat-dot unsupported"></span>
-              <span>Navigateurs iOS</span>
-            </li>
-          </ul>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- Legend -->
-    <section class="compat-legend-section">
-      <div class="compat-legend">
-        <h3>Légende</h3>
-        <div class="compat-legend-items">
-          <div class="compat-legend-item">
-            <span class="compat-dot tested"></span>
-            <span>Testé et compatible</span>
-          </div>
-          <div class="compat-legend-item">
-            <span class="compat-dot partial"></span>
-            <span>Compatibilité partielle</span>
-          </div>
-          <div class="compat-legend-item">
-            <span class="compat-dot unsupported"></span>
-            <span>Non supporté</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <footer>
-    <div class="footer-content">
-      <div class="footer-section">
-        <h4>Outils</h4>
-        <ul>
-          <li><a href="/pip">PIP</a></li>
-          <li><a href="/sitemap">Plan du site</a></li>
-          <li><a href="https://status.ventistudio.eu/">Statut</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h4>Entreprise</h4>
-        <ul>
-          <li><a href="/about">À propos</a></li>
-          <li><a href="/jobs">Emplois</a></li>
-          <li><a href="/logo">Marque</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h4>Ressources</h4>
-        <ul>
-          <li><a href="/university">Université</a></li>
-          <li><a href="/lawful/support">Assistance</a></li>
-          <li><a href="/lawful/security">Sécurité</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h4>Chartes</h4>
-        <ul>
-          <li><a href="/lawful/tos">Conditions d'utilisation</a></li>
-          <li><a href="/lawful/cookies">Confidentialité</a></li>
-          <li><a href="/lawful/dmcainfo">Information DMCA</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <iframe src="https://status.ventistudio.eu/badge?theme=dark" width="500" height="30" frameborder="0" scrolling="no" style="color-scheme: normal"></iframe>
-      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
-    </div>
-  </footer>
-
-  <script src="/main.js" defer></script>
-  <script>
+<section class="compat-legend-section">
+<div class="compat-legend">
+<h3 data-i18n="unsupported.compat_legend_section_compat_legend.h3">Légende</h3>
+<div class="compat-legend-items">
+<div class="compat-legend-item">
+<span class="compat-dot tested"></span>
+<span>Testé et compatible</span>
+</div>
+<div class="compat-legend-item">
+<span class="compat-dot partial"></span>
+<span>Compatibilité partielle</span>
+</div>
+<div class="compat-legend-item">
+<span class="compat-dot unsupported"></span>
+<span>Non supporté</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer>
+<div class="footer-content">
+<div class="footer-section">
+<h4 data-i18n="footer.col.tools">Outils</h4>
+<ul>
+<li><a href="/pip">PIP</a></li>
+<li><a data-i18n="footer.tools.sitemap" href="/sitemap">Plan du site</a></li>
+<li><a data-i18n="footer.tools.status" href="https://status.ventistudio.eu/">Statut</a></li>
+</ul>
+</div>
+<div class="footer-section">
+<h4 data-i18n="footer.col.company">Entreprise</h4>
+<ul>
+<li><a data-i18n="footer.company.about" href="/about">À propos</a></li>
+<li><a data-i18n="footer.company.jobs" href="/jobs">Emplois</a></li>
+<li><a data-i18n="footer.company.brand" href="/logo">Marque</a></li>
+</ul>
+</div>
+<div class="footer-section">
+<h4 data-i18n="footer.col.resources">Ressources</h4>
+<ul>
+<li><a data-i18n="footer.resources.university" href="/university">Université</a></li>
+<li><a data-i18n="footer.resources.support" href="/lawful/support">Assistance</a></li>
+<li><a data-i18n="footer.resources.security" href="/lawful/security">Sécurité</a></li>
+</ul>
+</div>
+<div class="footer-section">
+<h4 data-i18n="footer.col.legal">Chartes</h4>
+<ul>
+<li><a data-i18n="footer.legal.tos" href="/lawful/tos">Conditions d'utilisation</a></li>
+<li><a data-i18n="footer.legal.privacy" href="/lawful/cookies">Confidentialité</a></li>
+<li><a data-i18n="footer.legal.dmca" href="/lawful/dmcainfo">Information DMCA</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom">
+<iframe frameborder="0" height="30" scrolling="no" src="https://status.ventistudio.eu/badge?theme=dark" style="color-scheme: normal" width="500"></iframe>
+<div id="lang-switcher"></div>
+<p class="copyright" data-i18n="footer.copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
+</div>
+</footer>
+<script defer="" src="/main.js"></script>
+<script>
     (function () {
       var nav = document.getElementById('main-nav');
       var burger = document.getElementById('nav-burger');

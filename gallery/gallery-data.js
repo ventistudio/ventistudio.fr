@@ -1,7 +1,3 @@
-// ═══ Données de la Galerie — Créations Communautaires VentiStudio ═══
-// type: illustration | music | writing | video | photo | 3d
-// featured: true pour les œuvres mises en avant
-
 var galleryData = [
   {
     id: "art-001",

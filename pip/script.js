@@ -1,9 +1,3 @@
-﻿/**
- * Lecteur PIP VentiStudio
- * Gestion complète: import local, URL, protection écran, mode cinéma, audio visualizer
- */
-
-// Storage Manager
 const StorageManager = (() => {
   const DB_NAME = 'PIPLecteur';
   const STORE_NAME = 'medias';
@@ -63,7 +57,6 @@ const StorageManager = (() => {
   return { init, add, getAll, remove, clear };
 })();
 
-// Konami Code Handler
 const KonamiCode = (() => {
   const sequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight'];
   let current = 0;
@@ -87,23 +80,22 @@ const KonamiCode = (() => {
   return { init };
 })();
 
-// Screen Capture Protection - Invisible QR Code Watermark
 const ScreenProtection = (() => {
   let isProtected = localStorage.getItem('pip-screen-protected') !== 'false';
   let currentCode = null;
   let autoMode = true;
   const overlay = document.getElementById('screen-capture-overlay');
 
-  // Minimal QR Code generator (Version 1, 21×21, numeric/alphanumeric)
-  // Generates a matrix for a URL string using canvas drawing
+
+
   const QRMatrix = (() => {
-    // Encode text to a simple visual pattern matrix (steganographic QR-like grid)
-    // This creates a deterministic visual pattern from the data that encodes the URL
+
+
     const generate = (text) => {
       const size = 25;
       const matrix = Array.from({ length: size }, () => Array(size).fill(false));
 
-      // Finder patterns (3 corners)
+
       const drawFinder = (row, col) => {
         for (let r = 0; r < 7; r++) {
           for (let c = 0; c < 7; c++) {
@@ -117,19 +109,19 @@ const ScreenProtection = (() => {
       drawFinder(0, size - 7);
       drawFinder(size - 7, 0);
 
-      // Timing patterns
+
       for (let i = 8; i < size - 8; i++) {
         matrix[6][i] = i % 2 === 0;
         matrix[i][6] = i % 2 === 0;
       }
 
-      // Data encoding - hash the text into module positions
+
       let hash = 0;
       for (let i = 0; i < text.length; i++) {
         hash = ((hash << 5) - hash + text.charCodeAt(i)) | 0;
       }
 
-      // Fill data area with pattern derived from text
+
       let bitIndex = 0;
       const textBytes = new TextEncoder().encode(text);
       for (let col = size - 1; col >= 0; col -= 2) {
@@ -138,7 +130,7 @@ const ScreenProtection = (() => {
           for (let c = 0; c < 2 && col - c >= 0; c++) {
             const r = row;
             const cc = col - c;
-            // Skip finder/timing areas
+
             if ((r < 8 && cc < 8) || (r < 8 && cc >= size - 8) || (r >= size - 8 && cc < 8)) continue;
             if (r === 6 || cc === 6) continue;
 
@@ -147,7 +139,7 @@ const ScreenProtection = (() => {
             if (byteIdx < textBytes.length) {
               matrix[r][cc] = ((textBytes[byteIdx] >> bitPos) & 1) === 1;
             } else {
-              // XOR pattern for error correction lookalike
+
               matrix[r][cc] = ((r * 3 + cc * 7 + hash) & 1) === 1;
             }
             bitIndex++;
@@ -161,7 +153,7 @@ const ScreenProtection = (() => {
     return { generate };
   })();
 
-  // Generate unique protection code with metadata
+
   const generateCode = (mediaData) => {
     const timestamp = Date.now().toString(36);
     const random = Math.random().toString(36).substring(2, 8);
@@ -182,7 +174,7 @@ const ScreenProtection = (() => {
     return currentCode;
   };
 
-  // Get current media metadata
+
   const getMediaData = () => {
     const media = document.getElementById('active-media');
     if (!media) return null;
@@ -196,12 +188,12 @@ const ScreenProtection = (() => {
     };
   };
 
-  // Render invisible QR code on a canvas overlay
+
   const renderQR = (code) => {
     const player = document.getElementById('player-container');
     if (!player) return;
 
-    // Remove existing QR
+
     const oldCanvas = player.querySelector('.qr-watermark');
     if (oldCanvas) oldCanvas.remove();
 
@@ -241,7 +233,7 @@ const ScreenProtection = (() => {
     player.appendChild(canvas);
   };
 
-  // Remove QR watermark
+
   const removeQR = () => {
     const qr = document.querySelector('.qr-watermark');
     if (qr) qr.remove();
@@ -264,7 +256,7 @@ const ScreenProtection = (() => {
     const btn = document.getElementById('protection-toggle');
     if (btn) btn.classList.toggle('active', isProtected);
 
-    // Update protection panel
+
     const panel = document.getElementById('protection-panel');
     if (panel) panel.classList.toggle('hidden', !isProtected);
 
@@ -275,7 +267,7 @@ const ScreenProtection = (() => {
     const player = document.getElementById('player-container');
     if (!player) return;
 
-    // Watermark lines
+
     if (!player.querySelector('.watermark-pattern')) {
       const watermark = document.createElement('div');
       watermark.className = 'watermark-pattern';
@@ -288,7 +280,7 @@ const ScreenProtection = (() => {
       player.appendChild(watermark);
     }
 
-    // Generate and render QR
+
     if (autoMode || !currentCode) {
       regenerateCode();
     } else {
@@ -340,7 +332,7 @@ const ScreenProtection = (() => {
       history.unshift({ ...code, thumbnail: generateThumbnail() });
       if (history.length > 100) history.length = 100;
       localStorage.setItem('pip-protection-history', JSON.stringify(history));
-    } catch { /* quota exceeded or parse error */ }
+    } catch {  }
   };
 
   const regenerateCode = () => {
@@ -403,7 +395,7 @@ const ScreenProtection = (() => {
     autoMode = localStorage.getItem('pip-protection-auto') !== 'false';
     updateUI();
 
-    // Regenerate on media change if protected : one QR per media, not per mutation
+
     let lastMediaSrc = null;
     let debounceTimer = null;
     const obs = new MutationObserver(() => {
@@ -423,7 +415,6 @@ const ScreenProtection = (() => {
   return { init, toggle, regenerateCode, manualGenerate, setAutoMode, getAutoMode, getCurrentCode, isProtected: () => isProtected, updateCodeDisplay };
 })();
 
-// Audio Visualizer - Multiple visualization modes
 const AudioVisualizer = (() => {
   let audioContext = null;
   let analyser = null;
@@ -441,11 +432,11 @@ const AudioVisualizer = (() => {
         if (!AudioContextClass) throw new Error('AudioContext not supported');
         audioContext = new AudioContextClass();
       }
-      
+
       if (audioContext.state === 'suspended') {
         audioContext.resume().catch(e => console.warn('Resume failed:', e));
       }
-      
+
       return audioContext;
     } catch (e) {
       console.warn('AudioContext creation failed:', e.message);
@@ -458,7 +449,7 @@ const AudioVisualizer = (() => {
       const ctx = getAudioContext();
       if (!ctx) return false;
 
-      // Reset if audio changed
+
       if (currentAudio && currentAudio !== audio) {
         stop();
         analyser = null;
@@ -467,8 +458,8 @@ const AudioVisualizer = (() => {
       }
 
       currentAudio = audio;
-      
-      // Create analysers if needed
+
+
       if (!analyser) {
         analyser = ctx.createAnalyser();
         analyser.fftSize = 256;
@@ -479,7 +470,7 @@ const AudioVisualizer = (() => {
         analyser2.fftSize = 2048;
       }
 
-      // Create source only once per audio element
+
       if (!source) {
         try {
           source = ctx.createMediaElementAudioSource(audio);
@@ -491,7 +482,7 @@ const AudioVisualizer = (() => {
           return false;
         }
       }
-      
+
       dataArray = new Uint8Array(analyser.frequencyBinCount);
       dataArrayWave = new Uint8Array(analyser2.frequencyBinCount);
       return true;
@@ -505,7 +496,7 @@ const AudioVisualizer = (() => {
     if (!analyser || !dataArray || !canvas) return;
     const ctx = canvas.getContext('2d');
     const { width, height } = canvas;
-    
+
     const animate = () => {
       animationId = requestAnimationFrame(animate);
       try {
@@ -514,22 +505,22 @@ const AudioVisualizer = (() => {
         console.warn('Spectrum data error:', e.message);
         return;
       }
-      
+
       ctx.fillStyle = 'rgba(20, 20, 30, 0.08)';
       ctx.fillRect(0, 0, width, height);
-      
+
       const barWidth = width / dataArray.length * 2.5;
       let x = 0;
-      
+
       for (let i = 0; i < dataArray.length; i++) {
         const barHeight = (dataArray[i] / 255) * height;
         const hue = (i / dataArray.length) * 360;
-        
+
         ctx.fillStyle = `hsl(${hue}, 100%, 50%)`;
         ctx.shadowColor = `hsla(${hue}, 100%, 50%, 0.5)`;
         ctx.shadowBlur = 10;
         ctx.fillRect(x, height - barHeight, barWidth - 2, barHeight);
-        
+
         x += barWidth;
       }
     };
@@ -541,7 +532,7 @@ const AudioVisualizer = (() => {
     const ctx = canvas.getContext('2d');
     const { width, height } = canvas;
     const centerY = height / 2;
-    
+
     const animate = () => {
       animationId = requestAnimationFrame(animate);
       try {
@@ -550,31 +541,31 @@ const AudioVisualizer = (() => {
         console.warn('Wave data error:', e.message);
         return;
       }
-      
+
       ctx.fillStyle = 'rgba(20, 20, 30, 0.1)';
       ctx.fillRect(0, 0, width, height);
-      
+
       ctx.strokeStyle = '#6366f1';
       ctx.lineWidth = 2;
       ctx.beginPath();
-      
+
       const sliceWidth = width / dataArrayWave.length;
       let x = 0;
-      
+
       for (let i = 0; i < dataArrayWave.length; i++) {
         const v = dataArrayWave[i] / 128.0;
         const y = (v * height) / 2;
-        
+
         if (i === 0) ctx.moveTo(x, centerY - y);
         else ctx.lineTo(x, centerY - y);
-        
+
         x += sliceWidth;
       }
-      
+
       ctx.lineTo(width, centerY);
       ctx.stroke();
-      
-      // Draw reflection
+
+
       ctx.strokeStyle = 'rgba(99, 102, 241, 0.3)';
       x = 0;
       ctx.beginPath();
@@ -597,7 +588,7 @@ const AudioVisualizer = (() => {
     const { width, height } = canvas;
     const centerX = width / 2;
     const centerY = height / 2;
-    
+
     const animate = () => {
       animationId = requestAnimationFrame(animate);
       try {
@@ -606,18 +597,18 @@ const AudioVisualizer = (() => {
         console.warn('Circle data error:', e.message);
         return;
       }
-      
+
       ctx.fillStyle = 'rgba(20, 20, 30, 0.05)';
       ctx.fillRect(0, 0, width, height);
-      
+
       for (let i = 0; i < dataArray.length; i++) {
         const v = dataArray[i] / 255;
         const radius = (v * Math.min(width, height)) / 2.5;
         const angle = (i / dataArray.length) * Math.PI * 2;
-        
+
         const x = centerX + Math.cos(angle) * radius;
         const y = centerY + Math.sin(angle) * radius;
-        
+
         const hue = (i / dataArray.length) * 360;
         ctx.fillStyle = `hsla(${hue}, 100%, 50%, 0.8)`;
         ctx.beginPath();
@@ -634,7 +625,7 @@ const AudioVisualizer = (() => {
     const { width, height } = canvas;
     const centerX = width / 2;
     const centerY = height / 2;
-    
+
     const animate = () => {
       animationId = requestAnimationFrame(animate);
       try {
@@ -643,23 +634,23 @@ const AudioVisualizer = (() => {
         console.warn('Sunburst data error:', e.message);
         return;
       }
-      
+
       ctx.fillStyle = 'rgba(20, 20, 30, 0.08)';
       ctx.fillRect(0, 0, width, height);
-      
+
       const barWidth = (Math.PI * 2) / dataArray.length;
       const maxRadius = Math.min(width, height) / 2.5;
-      
+
       for (let i = 0; i < dataArray.length; i++) {
         const v = dataArray[i] / 255;
         const angle = (i / dataArray.length) * Math.PI * 2;
         const barHeight = v * maxRadius;
-        
+
         const x1 = centerX + Math.cos(angle) * (maxRadius * 0.3);
         const y1 = centerY + Math.sin(angle) * (maxRadius * 0.3);
         const x2 = centerX + Math.cos(angle) * (maxRadius * 0.3 + barHeight);
         const y2 = centerY + Math.sin(angle) * (maxRadius * 0.3 + barHeight);
-        
+
         const hue = (i / dataArray.length) * 360;
         ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
         ctx.lineWidth = Math.max(2, barWidth * 50);
@@ -690,7 +681,6 @@ const AudioVisualizer = (() => {
   return { init, drawSpectrum, drawWave, drawCircles, drawSunburst, stop, reset };
 })();
 
-// Cinema Mode
 const CinemaMode = (() => {
   let isActive = false;
 
@@ -708,7 +698,6 @@ const CinemaMode = (() => {
   return { toggle, isActive: () => isActive };
 })();
 
-// NVIDIA Enhanced Video - GPU acceleration, HDR tone mapping, super resolution hints
 const NvidiaEnhance = (() => {
   let isActive = false;
   let gl = null;
@@ -733,16 +722,16 @@ const NvidiaEnhance = (() => {
   const applyEnhancements = (videoElement) => {
     if (!videoElement || videoElement.tagName !== 'VIDEO') return false;
 
-    // Request high-performance GPU
+
     videoElement.style.willChange = 'transform';
     videoElement.style.transform = 'translateZ(0)';
 
-    // Enable hardware decode hints
+
     if ('requestVideoFrameCallback' in HTMLVideoElement.prototype) {
       videoElement.setAttribute('disablePictureInPicture', 'false');
     }
 
-    // HDR tone mapping via CSS filter (GPU-accelerated)
+
     if (isActive) {
       videoElement.dataset.nvidiaFilter = 'contrast(1.05) saturate(1.1) brightness(1.02)';
       videoElement.style.imageRendering = 'high-quality';
@@ -771,7 +760,7 @@ const NvidiaEnhance = (() => {
       if (media) removeEnhancements(media);
     }
 
-    // Update button
+
     const btn = document.getElementById('nvidia-enhance');
     if (btn) btn.classList.toggle('active', isActive);
 
@@ -797,7 +786,7 @@ const NvidiaEnhance = (() => {
       btn.title = 'Accélération GPU non disponible';
     }
 
-    // Restore state
+
     const saved = localStorage.getItem('pip-nvidia-enhance') === 'true';
     if (saved && gpu.supported) {
       isActive = true;
@@ -814,7 +803,6 @@ const NvidiaEnhance = (() => {
   return { init, toggle, detectGPU, onMediaLoaded, applyEnhancements, removeEnhancements };
 })();
 
-// Composite filter helper : merges Cinema + NVIDIA + user filters
 const applyCompositeFilter = (element) => {
   if (!element) return;
   const parts = [];
@@ -824,7 +812,6 @@ const applyCompositeFilter = (element) => {
   element.style.filter = parts.join(' ') || '';
 };
 
-// Audio Equalizer : 3-band EQ via Web Audio API BiquadFilters
 const AudioEqualizer = (() => {
   let audioContext = null;
   let source = null;
@@ -848,7 +835,7 @@ const AudioEqualizer = (() => {
     const ctx = getContext();
     if (!ctx) return;
 
-    // Disconnect previous
+
     if (source) {
       try { source.disconnect(); } catch (_) {}
     }
@@ -858,8 +845,8 @@ const AudioEqualizer = (() => {
     try {
       source = ctx.createMediaElementSource(mediaElement);
     } catch (e) {
-      // Already connected via AudioVisualizer : reuse that context
-      // Can't create two sources from same element; EQ won't apply in this case
+
+
       console.warn('EQ: source already connected, skipping');
       return;
     }
@@ -899,7 +886,6 @@ const AudioEqualizer = (() => {
   return { connect, setBass, setMid, setTreble, reset };
 })();
 
-// Sleep Timer
 const SleepTimer = (() => {
   let timerId = null;
   let endTime = null;
@@ -945,7 +931,6 @@ const SleepTimer = (() => {
   return { start, stop, isActive };
 })();
 
-// Media Manager
 const MediaManager = (() => {
   let playlist = [];
   let currentMedia = null;
@@ -972,7 +957,7 @@ const MediaManager = (() => {
         sourceType: 'local',
         timestamp: Date.now()
       };
-      
+
       try {
         await StorageManager.add(media);
         await loadPlaylist();
@@ -984,11 +969,11 @@ const MediaManager = (() => {
   };
 
   const addURL = async (url, title) => {
-    // Verify URL accessibility
+
     try {
       const response = await fetch(url, { method: 'HEAD', mode: 'no-cors' });
       const type = url.includes('.mp3') || url.includes('.wav') ? 'audio' : 'video';
-      
+
       const media = {
         type,
         title: title || new URL(url).pathname.split('/').pop(),
@@ -997,7 +982,7 @@ const MediaManager = (() => {
         sourceType: 'url',
         timestamp: Date.now()
       };
-      
+
       await StorageManager.add(media);
       await loadPlaylist();
     } catch (err) {
@@ -1009,7 +994,7 @@ const MediaManager = (() => {
   const play = async (id) => {
     currentIndex = playlist.findIndex(m => m.id === id);
     if (currentIndex === -1) return;
-    
+
     const media = playlist[currentIndex];
     await renderMedia(media);
   };
@@ -1018,10 +1003,10 @@ const MediaManager = (() => {
     const container = document.getElementById('player-container');
     container.innerHTML = '';
     currentMedia = media;
-    
+
     const title = media.title || 'Sans titre';
     document.getElementById('media-title').textContent = title;
-    
+
     if (media.type === 'video') {
       const video = document.createElement('video');
       video.id = 'active-media';
@@ -1030,18 +1015,18 @@ const MediaManager = (() => {
       video.style.height = '100%';
       video.style.display = 'block';
       video.crossOrigin = 'anonymous';
-      
+
       if (media.sourceType === 'local') {
         const blob = new Blob([media.source], { type: 'video/mp4' });
         video.src = URL.createObjectURL(blob);
       } else {
         video.src = media.source;
       }
-      
+
       container.appendChild(video);
       enableControls('video');
     } else {
-      // Audio custom player with multiple visualizers
+
       const wrapper = document.createElement('div');
       wrapper.style.cssText = `
         padding: 1.5rem;
@@ -1051,7 +1036,7 @@ const MediaManager = (() => {
         height: 100%;
         background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
       `;
-      
+
       const titleDiv = document.createElement('div');
       titleDiv.style.cssText = `
         font-size: 1.2rem;
@@ -1059,24 +1044,24 @@ const MediaManager = (() => {
         color: var(--text-primary);
       `;
       titleDiv.textContent = media.title;
-      
-      // Visualizer selector
+
+
       const visContainer = document.createElement('div');
       visContainer.style.cssText = `
         display: flex;
         gap: 0.5rem;
         flex-wrap: wrap;
       `;
-      
+
       const modes = [
         { id: 'spectrum', label: '📊 Spectre', fn: AudioVisualizer.drawSpectrum },
         { id: 'wave', label: '〰️  Onde', fn: AudioVisualizer.drawWave },
         { id: 'circles', label: '⭐ Cercles', fn: AudioVisualizer.drawCircles },
         { id: 'sunburst', label: '✨ Sunburst', fn: AudioVisualizer.drawSunburst }
       ];
-      
+
       let currentVis = 'spectrum';
-      
+
       modes.forEach(mode => {
         const btn = document.createElement('button');
         btn.textContent = mode.label;
@@ -1090,7 +1075,7 @@ const MediaManager = (() => {
           font-size: 0.85rem;
           transition: all 0.3s;
         `;
-        
+
         btn.addEventListener('click', () => {
           currentVis = mode.id;
           AudioVisualizer.stop();
@@ -1098,7 +1083,7 @@ const MediaManager = (() => {
             const b = visContainer.querySelector(`button[data-mode="${m.id}"]`);
             if (b) b.style.background = m.id === mode.id ? 'rgba(99, 102, 241, 0.5)' : 'rgba(99, 102, 241, 0.1)';
           });
-          
+
           const audio = document.getElementById('active-media');
           if (audio && !audio.paused) {
             if (AudioVisualizer.init(audio)) {
@@ -1109,7 +1094,7 @@ const MediaManager = (() => {
         btn.setAttribute('data-mode', mode.id);
         visContainer.appendChild(btn);
       });
-      
+
       const canvas = document.createElement('canvas');
       canvas.width = 0;
       canvas.height = 0;
@@ -1118,25 +1103,25 @@ const MediaManager = (() => {
         background: rgba(0,0,0,0.3);
         flex: 1;
       `;
-      
+
       const audio = document.createElement('audio');
       audio.id = 'active-media';
       audio.controls = true;
       audio.style.width = '100%';
       audio.crossOrigin = 'anonymous';
-      
+
       if (media.sourceType === 'local') {
         const blob = new Blob([media.source], { type: 'audio/mpeg' });
         audio.src = URL.createObjectURL(blob);
       } else {
         audio.src = media.source;
       }
-      
+
       audio.addEventListener('play', () => {
         const rect = canvas.getBoundingClientRect();
         canvas.width = rect.width;
         canvas.height = rect.height;
-        
+
         if (AudioVisualizer.init(audio)) {
           const visMode = currentVis;
           if (visMode === 'spectrum') AudioVisualizer.drawSpectrum(canvas);
@@ -1145,10 +1130,10 @@ const MediaManager = (() => {
           else if (visMode === 'sunburst') AudioVisualizer.drawSunburst(canvas);
         }
       });
-      
+
       audio.addEventListener('pause', () => AudioVisualizer.stop());
       audio.addEventListener('ended', () => AudioVisualizer.stop());
-      
+
       wrapper.appendChild(titleDiv);
       wrapper.appendChild(visContainer);
       wrapper.appendChild(canvas);
@@ -1156,23 +1141,23 @@ const MediaManager = (() => {
       container.appendChild(wrapper);
       enableControls('audio');
     }
-    
+
     document.getElementById('media-info').classList.remove('hidden');
   };
 
   const renderPlaylist = () => {
     const playlistEl = document.getElementById('playlist');
     const filter = document.querySelector('.filter-btn.active').dataset.filter;
-    
+
     if (!playlist.length) {
       playlistEl.innerHTML = '<div class="empty-state"><p>Aucun média</p></div>';
       document.getElementById('clear-list').classList.add('hidden');
       document.getElementById('item-count').textContent = '0';
       return;
     }
-    
+
     const filtered = filter === 'all' ? playlist : playlist.filter(m => m.type === filter);
-    
+
     playlistEl.innerHTML = filtered.map(media => `
       <div class="playlist-item" data-id="${media.id}" draggable="true">
         <div class="item-icon">${media.type === 'video' ? '🎬' : '🎵'}</div>
@@ -1183,12 +1168,12 @@ const MediaManager = (() => {
         <button class="item-delete" data-id="${media.id}">✕</button>
       </div>
     `).join('');
-    
+
     playlistEl.querySelectorAll('.playlist-item').forEach(item => {
       item.addEventListener('click', () => play(parseInt(item.dataset.id)));
       item.addEventListener('dragstart', (e) => e.dataTransfer.effectAllowed = 'move');
     });
-    
+
     playlistEl.querySelectorAll('.item-delete').forEach(btn => {
       btn.addEventListener('click', async (e) => {
         e.stopPropagation();
@@ -1197,7 +1182,7 @@ const MediaManager = (() => {
         await loadPlaylist();
       });
     });
-    
+
     document.getElementById('clear-list').classList.toggle('hidden', !playlist.length);
     document.getElementById('item-count').textContent = playlist.length;
   };
@@ -1227,12 +1212,11 @@ const MediaManager = (() => {
   return { init, addLocalFile, addURL, play, loadPlaylist, renderPlaylist, playNext, playRandom, getPlaylist, getCurrentIndex };
 })();
 
-// UI Controls
 const enableControls = (type) => {
   const pipBtn = document.getElementById('pip-toggle');
   const cinemaBtn = document.getElementById('cinema-mode');
   const fullscreenBtn = document.getElementById('fullscreen-btn');
-  
+
   if (type === 'video') {
     pipBtn.disabled = !document.pictureInPictureEnabled;
     cinemaBtn.disabled = false;
@@ -1244,21 +1228,20 @@ const enableControls = (type) => {
   }
 };
 
-// Event Listeners
 document.addEventListener('DOMContentLoaded', async () => {
   ScreenProtection.init();
   await MediaManager.init();
-  
-  // File upload
+
+
   const fileInput = document.getElementById('file-input');
   const fileBtn = document.getElementById('file-input-btn');
   const dropZone = document.getElementById('drop-zone');
-  
+
   fileBtn.addEventListener('click', () => fileInput.click());
   fileInput.addEventListener('change', (e) => {
     Array.from(e.target.files).forEach(file => MediaManager.addLocalFile(file));
   });
-  
+
   dropZone.addEventListener('dragover', (e) => {
     e.preventDefault();
     dropZone.classList.add('drag-over');
@@ -1269,8 +1252,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     dropZone.classList.remove('drag-over');
     Array.from(e.dataTransfer.files).forEach(file => MediaManager.addLocalFile(file));
   });
-  
-  // URL upload
+
+
   document.getElementById('url-form').addEventListener('submit', async (e) => {
     e.preventDefault();
     const url = document.getElementById('url-input').value;
@@ -1278,8 +1261,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     await MediaManager.addURL(url, title);
     e.target.reset();
   });
-  
-  // Upload tabs
+
+
   document.querySelectorAll('.upload-tab').forEach(tab => {
     tab.addEventListener('click', () => {
       document.querySelectorAll('.upload-tab').forEach(t => t.classList.remove('active'));
@@ -1288,8 +1271,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       document.getElementById(tab.dataset.tab + '-tab').classList.remove('hidden');
     });
   });
-  
-  // Playlist filters
+
+
   document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -1297,8 +1280,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       MediaManager.renderPlaylist();
     });
   });
-  
-  // Player controls
+
+
   document.getElementById('pip-toggle').addEventListener('click', async () => {
     try {
       const media = document.getElementById('active-media');
@@ -1312,7 +1295,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       alert('PIP indisponible: ' + e.message);
     }
   });
-  
+
   document.getElementById('cinema-mode').addEventListener('click', () => {
     const media = document.getElementById('active-media');
     if (media) {
@@ -1320,7 +1303,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       document.getElementById('cinema-mode').classList.toggle('active', isActive);
     }
   });
-  
+
   document.getElementById('fullscreen-btn').addEventListener('click', async () => {
     const media = document.getElementById('active-media');
     if (!media) return;
@@ -1334,15 +1317,15 @@ document.addEventListener('DOMContentLoaded', async () => {
       console.error('Fullscreen error:', e);
     }
   });
-  
+
   document.getElementById('clear-list').addEventListener('click', async () => {
     if (confirm('Êtes-vous sûr?')) {
       await StorageManager.clear();
       await MediaManager.loadPlaylist();
     }
   });
-  
-  // Volume control
+
+
   const volumeSlider = document.getElementById('volume-slider');
   const volumeToggle = document.getElementById('volume-toggle');
   const volumeValue = document.getElementById('volume-value');
@@ -1381,7 +1364,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   });
 
-  // Apply saved volume to newly loaded media
+
   const observer = new MutationObserver(() => {
     const media = document.getElementById('active-media');
     if (media) {
@@ -1390,12 +1373,12 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
   observer.observe(document.getElementById('player-container'), { childList: true, subtree: true });
 
-  // Protection toggle button
+
   document.getElementById('protection-toggle').addEventListener('click', () => {
     ScreenProtection.toggle();
   });
 
-  // Protection panel : mode auto/manual
+
   const protAutoBtn = document.getElementById('protection-auto-btn');
   const protManualBtn = document.getElementById('protection-manual-btn');
   const protManualGroup = document.getElementById('protection-manual-group');
@@ -1407,7 +1390,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     protManualGroup.classList.toggle('hidden', auto);
   };
 
-  // Restore saved mode
+
   setProtectionMode(ScreenProtection.getAutoMode());
 
   protAutoBtn.addEventListener('click', () => setProtectionMode(true));
@@ -1435,24 +1418,24 @@ document.addEventListener('DOMContentLoaded', async () => {
     ScreenProtection.regenerateCode();
   });
 
-  // NVIDIA Enhance
+
   NvidiaEnhance.init();
   document.getElementById('nvidia-enhance').addEventListener('click', () => {
     NvidiaEnhance.toggle();
   });
 
-  // Apply NVIDIA enhancements on new media
+
   const nvidiaObserver = new MutationObserver(() => NvidiaEnhance.onMediaLoaded());
   nvidiaObserver.observe(document.getElementById('player-container'), { childList: true, subtree: true });
 
-  // Enhancement tools panel toggle
+
   document.getElementById('enhance-toggle').addEventListener('click', () => {
     const panel = document.getElementById('enhance-panel');
     panel.classList.toggle('hidden');
     document.getElementById('enhance-toggle').classList.toggle('active', !panel.classList.contains('hidden'));
   });
 
-  // Playback speed
+
   document.querySelectorAll('.speed-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const media = document.getElementById('active-media');
@@ -1462,7 +1445,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   });
 
-  // Video filters (user-adjustable)
+
   const filterIds = ['brightness', 'contrast', 'saturate', 'hue', 'blur'];
   const buildUserFilter = () => {
     const b = document.getElementById('filter-brightness').value;
@@ -1494,7 +1477,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   });
 
-  // Loop controls
+
   let loopMode = 'none';
   let abPointA = null;
   let abPointB = null;
@@ -1509,7 +1492,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       const media = document.getElementById('active-media');
       const abInfo = document.getElementById('ab-loop-info');
 
-      // Clear existing A-B loop
+
       if (abCheckInterval) { clearInterval(abCheckInterval); abCheckInterval = null; }
       abPointA = null;
       abPointB = null;
@@ -1539,7 +1522,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           }
         };
 
-        // Use the media element click to set A/B points
+
         if (media) {
           media._abHandler = setPoint;
           media.addEventListener('click', setPoint);
@@ -1549,7 +1532,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         abInfo.classList.add('hidden');
       }
 
-      // Cleanup previous handler
+
       if (loopMode !== 'ab' && media && media._abHandler) {
         media.removeEventListener('click', media._abHandler);
         delete media._abHandler;
@@ -1564,7 +1547,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('ab-loop-status').textContent = 'Cliquez pour définir le point A';
   });
 
-  // Screenshot (video only)
+
   document.getElementById('screenshot-btn').addEventListener('click', () => {
     const media = document.getElementById('active-media');
     if (!media || media.tagName !== 'VIDEO') return;
@@ -1578,7 +1561,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     link.click();
   });
 
-  // Rotation
+
   let currentRotation = 0;
   document.getElementById('rotate-btn').addEventListener('click', () => {
     const media = document.getElementById('active-media');
@@ -1586,7 +1569,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     currentRotation = (currentRotation + 90) % 360;
     media.style.transform = `translateZ(0) rotate(${currentRotation}deg)`;
     if (currentRotation % 180 !== 0) {
-      media.style.maxWidth = '56.25%'; // 9/16
+      media.style.maxWidth = '56.25%';
       media.style.margin = 'auto';
     } else {
       media.style.maxWidth = '';
@@ -1594,7 +1577,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   });
 
-  // Flip horizontal
+
   let isFlipped = false;
   document.getElementById('flip-h-btn').addEventListener('click', () => {
     const media = document.getElementById('active-media');
@@ -1605,13 +1588,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('flip-h-btn').classList.toggle('active', isFlipped);
   });
 
-  // Enhancement reset
+
   document.getElementById('enhance-reset').addEventListener('click', () => {
-    // Reset speed
+
     document.querySelectorAll('.speed-btn').forEach(b => b.classList.remove('active'));
     document.querySelector('.speed-btn[data-speed="1"]').classList.add('active');
 
-    // Reset filters
+
     filterIds.forEach(id => {
       const slider = document.getElementById('filter-' + id);
       const valEl = document.getElementById('val-' + id);
@@ -1620,7 +1603,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       else { slider.value = 100; valEl.textContent = '100%'; }
     });
 
-    // Reset loop
+
     loopMode = 'none';
     document.querySelectorAll('.loop-btn').forEach(b => b.classList.remove('active'));
     document.querySelector('.loop-btn[data-loop="none"]').classList.add('active');
@@ -1629,12 +1612,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     abPointA = null;
     abPointB = null;
 
-    // Reset rotation/flip
+
     currentRotation = 0;
     isFlipped = false;
     document.getElementById('flip-h-btn').classList.remove('active');
 
-    // Apply to media
+
     const media = document.getElementById('active-media');
     if (media) {
       media.playbackRate = 1;
@@ -1646,49 +1629,49 @@ document.addEventListener('DOMContentLoaded', async () => {
       applyCompositeFilter(media);
     }
 
-    // Reset EQ
+
     AudioEqualizer.reset();
     ['eq-bass', 'eq-mid', 'eq-treble'].forEach(id => {
       document.getElementById(id).value = 0;
       document.getElementById('val-' + id).textContent = '0 dB';
     });
 
-    // Reset sleep timer
+
     SleepTimer.stop();
 
-    // Reset auto-next / shuffle
+
     autoNextEnabled = false;
     shuffleEnabled = false;
     document.getElementById('auto-next-btn').classList.remove('active');
     document.getElementById('shuffle-btn').classList.remove('active');
   });
 
-  // Enable enhancement tools when media is loaded
+
   const enhanceObserver = new MutationObserver(() => {
     const media = document.getElementById('active-media');
     const isVideo = media && media.tagName === 'VIDEO';
     document.getElementById('screenshot-btn').disabled = !isVideo;
     document.getElementById('rotate-btn').disabled = !media;
     document.getElementById('flip-h-btn').disabled = !media;
-    // Reset rotation/flip on new media
+
     currentRotation = 0;
     isFlipped = false;
-    // Apply saved speed
+
     const activeSpeed = document.querySelector('.speed-btn.active');
     if (media && activeSpeed) media.playbackRate = parseFloat(activeSpeed.dataset.speed);
-    // Apply loop
+
     if (media && loopMode === 'single') media.loop = true;
-    // Update media details
+
     updateMediaDetails(media);
-    // Connect EQ if not audio visualizer
+
     if (media && media.tagName !== 'VIDEO') {
-      // Audio elements: EQ will conflict with AudioVisualizer's createMediaElementSource
-      // Only connect EQ for video elements or if visualizer didn't connect
+
+
     }
   });
   enhanceObserver.observe(document.getElementById('player-container'), { childList: true, subtree: true });
 
-  // Audio Equalizer
+
   document.getElementById('eq-bass').addEventListener('input', (e) => {
     AudioEqualizer.setBass(parseFloat(e.target.value));
     document.getElementById('val-eq-bass').textContent = e.target.value + ' dB';
@@ -1702,7 +1685,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('val-eq-treble').textContent = e.target.value + ' dB';
   });
 
-  // Sleep Timer
+
   document.querySelectorAll('.sleep-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.sleep-btn').forEach(b => b.classList.remove('active'));
@@ -1713,7 +1696,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   });
 
-  // Auto-next playlist
+
   let autoNextEnabled = false;
   let shuffleEnabled = false;
 
@@ -1727,10 +1710,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('shuffle-btn').classList.toggle('active', shuffleEnabled);
   });
 
-  // Listen for media ended to trigger auto-next/shuffle
+
   document.getElementById('player-container').addEventListener('ended', (e) => {
     if (e.target.id !== 'active-media') return;
-    if (loopMode !== 'none') return; // loop modes handle their own behavior
+    if (loopMode !== 'none') return;
     if (shuffleEnabled) {
       MediaManager.playRandom();
     } else if (autoNextEnabled) {
@@ -1738,7 +1721,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }, true);
 
-  // Media details
+
   const formatDuration = (s) => {
     if (!s || !isFinite(s)) return ':';
     const h = Math.floor(s / 3600);
@@ -1774,22 +1757,22 @@ document.addEventListener('DOMContentLoaded', async () => {
       ).join('');
     };
 
-    // Wait for metadata if not yet loaded
+
     if (media.readyState >= 1) {
       populate();
     } else {
       media.addEventListener('loadedmetadata', populate, { once: true });
     }
-    // Update play/pause state live
+
     media.addEventListener('play', () => { const el = container.querySelector('.media-detail-row:last-child span:last-child'); if (el) el.textContent = '▶ Lecture'; });
     media.addEventListener('pause', () => { const el = container.querySelector('.media-detail-row:last-child span:last-child'); if (el) el.textContent = '⏸ En pause'; });
   };
 
-  // Keyboard shortcuts
+
   const speedValues = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 2, 3];
 
   document.addEventListener('keydown', (e) => {
-    // Don't capture when typing in inputs
+
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.isContentEditable) return;
 
     const media = document.getElementById('active-media');
@@ -1861,11 +1844,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   });
 
-  // PIP events
+
   document.addEventListener('enterpictureinpicture', () => {
     document.getElementById('pip-toggle').classList.add('active');
   });
-  
+
   document.addEventListener('leavepictureinpicture', () => {
     document.getElementById('pip-toggle').classList.remove('active');
   });

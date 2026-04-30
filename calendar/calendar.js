@@ -1,4 +1,3 @@
-// ═══ Calendrier des Événements — Logique ═══
 (function() {
   if (typeof calendarData === 'undefined') return;
 
@@ -57,7 +56,7 @@
 
   function getFirstDayOfMonth(year, month) {
     var day = new Date(year, month, 1).getDay();
-    return day === 0 ? 6 : day - 1; // Monday = 0
+    return day === 0 ? 6 : day - 1;
   }
 
   function isToday(year, month, day) {
@@ -74,20 +73,20 @@
 
     grid.innerHTML = '';
 
-    // Previous month's trailing days
+
     for (var i = firstDay - 1; i >= 0; i--) {
       var day = prevMonthDays - i;
       var cell = createDayCell(viewYear, viewMonth - 1, day, true);
       grid.appendChild(cell);
     }
 
-    // Current month days
+
     for (var d = 1; d <= daysInMonth; d++) {
       var cell = createDayCell(viewYear, viewMonth, d, false);
       grid.appendChild(cell);
     }
 
-    // Next month's leading days
+
     var totalCells = firstDay + daysInMonth;
     var remaining = totalCells % 7 === 0 ? 0 : 7 - (totalCells % 7);
     for (var n = 1; n <= remaining; n++) {
@@ -97,7 +96,7 @@
   }
 
   function createDayCell(year, month, day, otherMonth) {
-    // Normalize month overflow
+
     var d = new Date(year, month, day);
     var ny = d.getFullYear();
     var nm = d.getMonth();
@@ -241,7 +240,7 @@
     renderUpcoming();
   }
 
-  // Navigation
+
   prevBtn.addEventListener('click', function() {
     viewMonth--;
     if (viewMonth < 0) { viewMonth = 11; viewYear--; }
@@ -261,11 +260,11 @@
     render();
   });
 
-  // Close modal on Escape
+
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') closeModal();
   });
 
-  // Initial render
+
   render();
 })();

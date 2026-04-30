@@ -1,40 +1,25 @@
-/**
- * PeerCom - Communication P2P chiffrée de bout en bout
- *
- * Features :
- * - Messages E2EE (ECDH P-256 + AES-256-GCM)
- * - Échange de fichiers chiffrés (jusqu'à 100 Mo)
- * - Appels vocaux (WebRTC DTLS-SRTP)
- * - Partage d'écran + capture audio
- * - Identité permanente (pseudonyme + ID localStorage)
- * - Liste de contacts avec approbation mutuelle
- * - Mode anonyme (ID temporaire, pas d'identité partagée)
- * - Groupes P2P (max 8, maillage complet, E2EE par paire)
- * - Serveurs P2P (illimité, hôte relais, E2EE hôte-membre)
- */
-
 document.addEventListener('DOMContentLoaded', () => {
-  // ─── DOM References ─────────────────────────────
+
   const $ = id => document.getElementById(id);
 
-  // Setup
+
   const setupModal = $('pc-setup-modal');
   const setupPseudoInput = $('pc-setup-pseudo');
   const setupConfirmBtn = $('pc-setup-confirm');
 
-  // Edit Pseudo Modal
+
   const pseudoModal = $('pc-pseudo-modal');
   const pseudoInput = $('pc-pseudo-input');
   const pseudoSaveBtn = $('pc-pseudo-save');
   const pseudoCancelBtn = $('pc-pseudo-cancel');
 
-  // Identity Bar
+
   const myAvatarEl = $('pc-my-avatar');
   const myPseudoEl = $('pc-my-pseudo');
   const myPermanentIdEl = $('pc-my-permanent-id');
   const anonToggle = $('pc-anon-toggle');
 
-  // Landing
+
   const landing = $('pc-landing');
   const statusDot = $('pc-status-dot');
   const statusText = $('pc-status-text');
@@ -46,20 +31,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const featuresSection = $('pc-features');
   const howSection = $('pc-how');
 
-  // Contacts
+
   const contactsCountEl = $('pc-contacts-count');
   const contactsListEl = $('pc-contacts-list');
   const contactsEmptyEl = $('pc-contacts-empty');
   const pendingSection = $('pc-pending-section');
   const pendingListEl = $('pc-pending-list');
 
-  // Contact Request Modal
+
   const contactModal = $('pc-contact-modal');
   const contactRequestText = $('pc-contact-request-text');
   const contactAcceptBtn = $('pc-contact-accept');
   const contactRejectBtn = $('pc-contact-reject');
 
-  // Group Modal
+
   const groupModal = $('pc-group-modal');
   const groupNameInput = $('pc-group-name-input');
   const groupCreateBtn = $('pc-group-create-btn');
@@ -68,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const groupJoinInput = $('pc-group-join-input');
   const groupJoinBtn = $('pc-group-join-btn');
 
-  // Server Modal
+
   const serverModal = $('pc-server-modal');
   const serverNameInput = $('pc-server-name-input');
   const serverCreateBtn = $('pc-server-create-btn');
@@ -77,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const serverJoinInput = $('pc-server-join-input');
   const serverJoinBtn = $('pc-server-join-btn');
 
-  // Chat
+
   const chatSection = $('pc-chat-section');
   const chatPeerName = $('pc-chat-peer-name');
   const connStatus = $('pc-conn-status');
@@ -96,13 +81,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const fileInput = $('pc-file-input');
   const toastContainer = $('toast-container');
 
-  // Members drawer
+
   const membersDrawer = $('pc-members-drawer');
   const membersCountEl = $('pc-members-count');
   const membersListEl = $('pc-members-list');
   const membersCloseBtn = $('pc-members-close-btn');
 
-  // Banners
+
   const callBanner = $('pc-call-banner');
   const callTimerEl = $('pc-call-timer');
   const muteBtn = $('pc-mute-btn');
@@ -110,20 +95,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const screenBanner = $('pc-screen-banner');
   const screenStopBtn = $('pc-screen-stop-btn');
 
-  // Screen overlay
+
   const screenOverlay = $('pc-screen-overlay');
   const screenVideo = $('pc-screen-video');
   const screenCloseBtn = $('pc-screen-close-btn');
   const remoteAudio = $('pc-remote-audio');
 
-  // Incoming modal
+
   const incomingModal = $('pc-incoming-modal');
   const incomingName = $('pc-incoming-name');
   const incomingType = $('pc-incoming-type');
   const incomingAcceptBtn = $('pc-incoming-accept');
   const incomingRejectBtn = $('pc-incoming-reject');
 
-  // Profile
+
   const profilePopup = $('pc-profile-popup');
   const profileBanner = $('pc-profile-banner');
   const profileAvatar = $('pc-profile-avatar');
@@ -139,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const profileCloseBtn = $('pc-profile-close');
   const myAvatarImg = $('pc-my-avatar-img');
 
-  // Profile Edit
+
   const profileEditModal = $('pc-profile-edit-modal');
   const editAvatar = $('pc-edit-avatar');
   const editAvatarImg = $('pc-edit-avatar-img');
@@ -154,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const editProfileBtn = $('pc-edit-profile-btn');
   const upLeft = $('pc-up-left');
 
-  // New feature DOM refs
+
   const emojiPickerEl = $('pc-emoji-picker');
   const emojiGridEl = $('pc-emoji-grid');
   const replyBarEl = $('pc-reply-bar');
@@ -164,43 +149,43 @@ document.addEventListener('DOMContentLoaded', () => {
   const statusSelector = $('pc-status-selector');
   const statusDotUser = $('pc-user-status-dot');
 
-  // ─── Constants ──────────────────────────────────
+
   const STORAGE_IDENTITY = 'peercom_identity';
   const STORAGE_CONTACTS = 'peercom_contacts';
   const STORAGE_PROFILE = 'peercom_profile';
-  const MAX_FILE_SIZE = 100 * 1024 * 1024; // 100 MB
-  const CHUNK_SIZE = 64 * 1024; // 64 KB
+  const MAX_FILE_SIZE = 100 * 1024 * 1024;
+  const CHUNK_SIZE = 64 * 1024;
   const MAX_GROUP_SIZE = 8;
-  const MAX_AVATAR_SIZE = 256 * 1024; // 256 KB for avatar images
+  const MAX_AVATAR_SIZE = 256 * 1024;
   const STORAGE_SETTINGS = 'peercom_settings';
   const STORAGE_USER_STATUS = 'peercom_status';
   const COMMON_EMOJIS = ['😀','😂','😍','🥺','😎','🤔','👍','👎','❤️','🔥','🎉','💯','😢','😡','👀','🙏','✅','❌','⭐','💀','🤡','😭','🥰','😏','🫡','💔','😱','🤝','🫠','👏'];
 
-  // ─── State ──────────────────────────────────────
+
   let peer = null;
   let myKeyPair = null;
   let reconnectAttempts = 0;
   const MAX_RECONNECT = 5;
 
-  // Chat mode: 'dm' | 'group' | 'server'
+
   let chatMode = 'dm';
 
-  // DM state (single connection)
+
   let connection = null;
   let sharedKey = null;
   let typingTimeout = null;
   let isTyping = false;
-  let peerIdentity = null; // { pseudo, peerId }
+  let peerIdentity = null;
 
-  // Identity
-  let identity = null; // { id, pseudo, created }
+
+  let identity = null;
   let isAnonymous = false;
 
-  // Contacts
+
   let contacts = [];
   let pendingContactRequest = null;
 
-  // Call
+
   let currentCall = null;
   let localStream = null;
   let isMuted = false;
@@ -208,44 +193,44 @@ document.addEventListener('DOMContentLoaded', () => {
   let callStartTime = null;
   let pendingIncomingCall = null;
 
-  // Screen share
+
   let screenCall = null;
   let screenStream = null;
   let isScreenSharing = false;
   let pendingIncomingScreen = null;
 
-  // Message IDs & features
+
   let msgIdCounter = 0;
-  let replyingTo = null; // { id, author, text }
+  let replyingTo = null;
   let editingMsgId = null;
-  let userStatus = 'online'; // online | idle | dnd | invisible
+  let userStatus = 'online';
   let settings = { sounds: true, desktopNotif: false, theme: 'dark', localStorageEnabled: false, shareStatus: true, fontSize: 15 };
   let notifSound = null;
-  let peerLocalStorageEnabled = false; // peer's local-storage pref
+  let peerLocalStorageEnabled = false;
 
-  // File transfers
+
   const activeTransfers = new Map();
 
-  // ── Group state (mesh) ──
-  // connections: Map<peerId, DataConnection>
-  // sharedKeys: Map<peerId, CryptoKey>
-  // groupMembers: Map<peerId, { pseudo, peerId }>
+
+
+
+
   let groupConnections = new Map();
   let groupSharedKeys = new Map();
   let groupMembers = new Map();
-  let groupInfo = null; // { id, name, creatorId }
+  let groupInfo = null;
 
-  // ── Server state (star) ──
-  // If we're the host: serverClients Map<peerId, { conn, sharedKey, pseudo }>
-  // If we're a client: serverConn + serverSharedKey
-  let serverInfo = null; // { id, name, hostId }
+
+
+
+  let serverInfo = null;
   let isServerHost = false;
-  let serverClients = new Map(); // host only
-  let serverConn = null; // client only
-  let serverSharedKey = null; // client only
-  let serverMembers = new Map(); // both: Map<peerId, { pseudo }>
+  let serverClients = new Map();
+  let serverConn = null;
+  let serverSharedKey = null;
+  let serverMembers = new Map();
 
-  // ─── Crypto Helpers (E2EE) ──────────────────────
+
   const subtle = window.crypto.subtle;
 
   async function generateKeyPair() {
@@ -312,7 +297,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function b64Encode(bytes) { return btoa(String.fromCharCode(...bytes)); }
   function b64Decode(str) { return Uint8Array.from(atob(str), c => c.charCodeAt(0)); }
 
-  // ─── Storage Helpers ────────────────────────────
+
   function loadIdentity() {
     try {
       const raw = localStorage.getItem(STORAGE_IDENTITY);
@@ -335,7 +320,7 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.setItem(STORAGE_CONTACTS, JSON.stringify(list));
   }
 
-  // ─── Profile Helpers ────────────────────────────
+
   const HYPESQUAD_HOUSES = {
     anemo:   { name: 'Anémo',   emoji: '🍃', color: '#87ceeb' },
     geo:     { name: 'Géo',     emoji: '🌍', color: '#6b9e4f' },
@@ -399,20 +384,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ─── Settings & Status Helpers ─────────────────
+
   function loadSettings() {
     try { const r = localStorage.getItem(STORAGE_SETTINGS); return r ? JSON.parse(r) : { sounds: true, desktopNotif: false, theme: 'dark', localStorageEnabled: false, shareStatus: true, fontSize: 15 }; }
     catch { return { sounds: true, desktopNotif: false, theme: 'dark', localStorageEnabled: false, shareStatus: true, fontSize: 15 }; }
   }
   function saveSettings(s) { localStorage.setItem(STORAGE_SETTINGS, JSON.stringify(s)); }
 
-  // ─── Local message storage (conservation locale) ──
+
   const STORAGE_MESSAGES_PREFIX = 'peercom_msgs_';
   function canSaveMessages() {
     if (!settings.localStorageEnabled) return false;
     if (chatMode === 'dm') return peerLocalStorageEnabled;
-    if (chatMode === 'server') return true; // always enabled for servers
-    // For groups: would need all members to enable — simplified: save if local is on
+    if (chatMode === 'server') return true;
+
     return false;
   }
   function saveMessageToLocal(convId, msgObj) {
@@ -421,10 +406,10 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       const existing = JSON.parse(localStorage.getItem(key) || '[]');
       existing.push(msgObj);
-      // Keep max 500 messages per conversation
+
       if (existing.length > 500) existing.splice(0, existing.length - 500);
       localStorage.setItem(key, JSON.stringify(existing));
-    } catch { /* storage full, ignore */ }
+    } catch {  }
   }
   function loadMessagesFromLocal(convId) {
     const key = STORAGE_MESSAGES_PREFIX + convId;
@@ -444,7 +429,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!settings.sounds) return;
     if (!notifSound) {
       notifSound = new Audio('data:audio/wav;base64,UklGRl9vT19teleXBl');
-      // Use a short beep via oscillator instead
+
       try {
         const ctx = new (window.AudioContext || window.webkitAudioContext)();
         const osc = ctx.createOscillator();
@@ -471,19 +456,19 @@ document.addEventListener('DOMContentLoaded', () => {
   function genMsgId() { return 'msg-' + (++msgIdCounter) + '-' + Date.now(); }
 
   function formatMsgText(text) {
-    // Basic markdown: **bold**, *italic*, `code`, ~~strike~~, ||spoiler||
+
     let h = escapeHTML(text);
     h = h.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
     h = h.replace(/(?<!\*)\*(?!\*)(.+?)(?<!\*)\*(?!\*)/g, '<em>$1</em>');
     h = h.replace(/~~(.+?)~~/g, '<del>$1</del>');
     h = h.replace(/`([^`]+)`/g, '<code>$1</code>');
     h = h.replace(/\|\|(.+?)\|\|/g, '<span class="pc-spoiler" onclick="this.classList.toggle(\'revealed\')">$1</span>');
-    // URLs
+
     h = h.replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>');
     return h;
   }
 
-  // ─── PeerJS / P2P ──────────────────────────────
+
   function generatePeerId() {
     const c = 'abcdefghijklmnopqrstuvwxyz0123456789';
     const seg = () => { let s = ''; for (let i = 0; i < 4; i++) s += c[Math.floor(Math.random() * c.length)]; return s; };
@@ -517,7 +502,7 @@ document.addEventListener('DOMContentLoaded', () => {
     peer.on('connection', (conn) => {
       const meta = conn.metadata || {};
 
-      // ── Group join request ──
+
       if (meta.mode === 'group' && meta.groupId) {
         if (groupInfo && groupInfo.id === meta.groupId) {
           handleGroupIncoming(conn, meta);
@@ -527,7 +512,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      // ── Server join request ──
+
       if (meta.mode === 'server' && meta.serverId) {
         if (isServerHost && serverInfo && serverInfo.id === meta.serverId) {
           handleServerClientJoin(conn, meta);
@@ -537,7 +522,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      // ── DM connection ──
+
       if (chatMode !== 'dm' || connection) { conn.close(); return; }
       handleConnection(conn);
     });
@@ -592,9 +577,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ═══════════════════════════════════════════════
-  //  DM (1:1) — existing logic
-  // ═══════════════════════════════════════════════
+
+
+
 
   async function handleConnection(conn) {
     connection = conn;
@@ -685,7 +670,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const parsed = JSON.parse(raw);
             addChatMessage(parsed.text, 'peer', data.timestamp, { msgId: parsed.msgId, replyTo: parsed.replyTo });
           } catch {
-            // Legacy plain text message
+
             addChatMessage(raw, 'peer', data.timestamp);
           }
         } else {
@@ -854,9 +839,9 @@ document.addEventListener('DOMContentLoaded', () => {
     activeTransfers.clear();
   }
 
-  // ═══════════════════════════════════════════════
-  //  GROUP (mesh, max 8)
-  // ═══════════════════════════════════════════════
+
+
+
 
   function createGroup(name) {
     const gId = 'grp-' + generatePeerId().slice(3);
@@ -878,16 +863,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!gId) { toast('Entrez l\'ID du groupe.', 'error'); return; }
     if (!peer || peer.destroyed) { toast('P2P non initialisé.', 'error'); return; }
 
-    // Connect to the creator/first member — they'll send us the member list
+
     chatMode = 'group';
     groupInfo = { id: gId, name: 'Groupe', creatorId: null };
     const myPseudo = isAnonymous ? 'Anonyme' : (identity?.pseudo || 'Pair');
     groupMembers.set(peer.id, { pseudo: myPseudo, peerId: peer.id });
 
-    // Try connecting to the peer ID embedded in the group ID
-    // Group ID format: grp-XXXX-XXXX-XXXX → creator's peer IS the group "server"
-    // We connect to the creator with metadata
-    const creatorId = 'pc-' + gId.slice(4); // grp-xxxx-xxxx-xxxx → pc-xxxx-xxxx-xxxx
+
+
+
+    const creatorId = 'pc-' + gId.slice(4);
     if (creatorId === peer.id) { toast('Vous ne pouvez pas rejoindre votre propre groupe.', 'error'); chatMode = 'dm'; groupInfo = null; return; }
 
     setLandingStatus('online', 'Connexion au groupe...');
@@ -901,7 +886,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function handleGroupIncoming(conn, meta) {
     if (!groupInfo) { conn.close(); return; }
-    // Check group size
+
     if (groupMembers.size >= MAX_GROUP_SIZE) {
       conn.on('open', () => {
         conn.send({ type: 'group-full' });
@@ -912,7 +897,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setupGroupConnection(conn, conn.peer);
 
-    // Once open, send them the current member list so they can connect to everyone
+
     conn.on('open', () => {
       const members = [];
       for (const [pid, info] of groupMembers) {
@@ -926,7 +911,7 @@ document.addEventListener('DOMContentLoaded', () => {
     groupConnections.set(remotePeerId, conn);
 
     conn.on('open', async () => {
-      // Start key exchange
+
       const pubKeyB64 = await exportPublicKey(myKeyPair.publicKey);
       conn.send({ type: 'key-exchange', publicKey: pubKeyB64 });
       const idPayload = buildIdentityPayload();
@@ -989,7 +974,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       case 'group-members': {
-        // We received the member list — connect to all existing members
+
         if (data.groupName) groupInfo.name = data.groupName;
         if (data.groupId) groupInfo.id = data.groupId;
 
@@ -1001,7 +986,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (m.peerId === peer.id) continue;
           if (groupConnections.has(m.peerId)) continue;
           groupMembers.set(m.peerId, { pseudo: m.pseudo, peerId: m.peerId });
-          // Connect to each existing member
+
           const c = peer.connect(m.peerId, {
             reliable: true,
             metadata: { mode: 'group', groupId: groupInfo.id, pseudo: myPseudo, peerId: peer.id }
@@ -1031,7 +1016,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       case 'typing': {
-        // For groups, show who's typing
+
         if (data.typing) {
           const info = groupMembers.get(remotePeerId);
           showPeerTyping(true, info?.pseudo);
@@ -1064,7 +1049,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (howSection) howSection.hidden = true;
     chatPeerName.textContent = groupInfo?.name || 'Groupe';
 
-    // Replace avatar with group icon
+
     const avatar = $('pc-peer-avatar');
     if (avatar) avatar.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" stroke="currentColor" stroke-width="2"/><circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke="currentColor" stroke-width="2"/></svg>';
 
@@ -1072,7 +1057,7 @@ document.addEventListener('DOMContentLoaded', () => {
     connStatus.className = 'pc-connection-status connected';
     msgInput.disabled = false;
     sendBtn.disabled = false;
-    callBtn.disabled = true; // No call in group for now
+    callBtn.disabled = true;
     screenshareBtn.disabled = true;
     addContactBtn.disabled = true;
     membersBtn.hidden = false;
@@ -1098,9 +1083,9 @@ document.addEventListener('DOMContentLoaded', () => {
     membersDrawer.hidden = true;
   }
 
-  // ═══════════════════════════════════════════════
-  //  SERVER (star topology, unlimited, host relays)
-  // ═══════════════════════════════════════════════
+
+
+
 
   function createServer(name) {
     const sId = 'srv-' + generatePeerId().slice(3);
@@ -1166,7 +1151,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Host: new client joins
+
   function handleServerClientJoin(conn, meta) {
     const remotePeerId = conn.peer;
     const clientState = { conn, sharedKey: null, pseudo: meta.pseudo || remotePeerId, keyPair: null };
@@ -1207,7 +1192,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Host: handle data from a client
+
   async function handleServerHostData(data, conn, remotePeerId) {
     const client = serverClients.get(remotePeerId);
 
@@ -1239,12 +1224,12 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       case 'encrypted-msg': {
-        // Decrypt, display locally, re-encrypt and relay to all other clients
+
         if (!client?.sharedKey) break;
         const text = await decryptMessage(data.payload, client.sharedKey);
         if (text !== null) {
           addGroupMessage(text, client.pseudo || remotePeerId, data.timestamp);
-          // Relay to others
+
           for (const [pid, c] of serverClients) {
             if (pid === remotePeerId || !c.sharedKey || !c.conn.open) continue;
             const relayPayload = await encryptMessage(text, c.sharedKey);
@@ -1257,7 +1242,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       case 'typing': {
-        // Relay typing to others
+
         for (const [pid, c] of serverClients) {
           if (pid === remotePeerId || !c.conn.open) continue;
           c.conn.send({ type: 'typing', typing: data.typing, sender: client?.pseudo || remotePeerId });
@@ -1272,7 +1257,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Client: handle data from server host
+
   async function handleServerClientData(data, conn) {
     switch (data.type) {
       case 'key-exchange': {
@@ -1318,7 +1303,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       case 'server-members': {
-        // Update member list
+
         serverMembers.clear();
         const myPseudo = isAnonymous ? 'Anonyme' : (identity?.pseudo || 'Pair');
         serverMembers.set(peer.id, { pseudo: myPseudo });
@@ -1358,7 +1343,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const myPseudo = isAnonymous ? 'Anonyme' : (identity?.pseudo || 'Pair');
 
     if (isServerHost) {
-      // Host: encrypt and send to each client
+
       for (const [, c] of serverClients) {
         if (!c.sharedKey || !c.conn.open) continue;
         const payload = await encryptMessage(truncated, c.sharedKey);
@@ -1367,7 +1352,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
     } else {
-      // Client: send encrypted to host, who relays
+
       if (!serverConn || !serverSharedKey) return;
       const payload = await encryptMessage(truncated, serverSharedKey);
       if (payload) {
@@ -1401,7 +1386,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function leaveServer() {
     if (isServerHost) {
-      // Close all client connections
+
       for (const [, c] of serverClients) {
         if (c.conn.open) c.conn.close();
       }
@@ -1425,9 +1410,9 @@ document.addEventListener('DOMContentLoaded', () => {
     membersDrawer.hidden = true;
   }
 
-  // ═══════════════════════════════════════════════
-  //  Voice Call (DM only)
-  // ═══════════════════════════════════════════════
+
+
+
 
   async function startCall() {
     if (!connection || currentCall) return;
@@ -1516,7 +1501,7 @@ document.addEventListener('DOMContentLoaded', () => {
     callTimerEl.textContent = m + ':' + s;
   }
 
-  // ─── Screen Share ───────────────────────────────
+
   async function startScreenShare() {
     if (!connection || screenCall) return;
     try {
@@ -1578,7 +1563,7 @@ document.addEventListener('DOMContentLoaded', () => {
     screenshareBtn.disabled = false;
   }
 
-  // ─── File Transfer ──────────────────────────────
+
   async function initiateFileTransfer(file) {
     if (chatMode !== 'dm' || !connection || !sharedKey) { toast('Transfert de fichiers disponible en DM uniquement.', 'error'); return; }
     if (file.size > MAX_FILE_SIZE) { toast('Fichier trop volumineux (max 100 Mo).', 'error'); return; }
@@ -1721,7 +1706,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (meta) meta.textContent += ' · Envoyé ✓';
   }
 
-  // ─── Contacts Management ────────────────────────
+
   function renderContacts() {
     contactsListEl.querySelectorAll('.pc-contact-item').forEach(e => e.remove());
     contactsCountEl.textContent = contacts.length;
@@ -1807,7 +1792,7 @@ document.addEventListener('DOMContentLoaded', () => {
     toast('Demande refusée.', 'info');
   }
 
-  // ─── Incoming Call/Screen Modal ─────────────────
+
   function showIncomingModal(name, typeText) {
     incomingName.textContent = name;
     incomingType.textContent = typeText;
@@ -1820,7 +1805,7 @@ document.addEventListener('DOMContentLoaded', () => {
     pendingIncomingScreen = null;
   }
 
-  // ─── Members Rendering ─────────────────────────
+
   function renderMembers() {
     membersListEl.innerHTML = '';
     let members;
@@ -1847,7 +1832,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // ─── Identity Management ────────────────────────
+
   function initIdentity() {
     identity = loadIdentity();
     contacts = loadContacts();
@@ -1888,7 +1873,7 @@ document.addEventListener('DOMContentLoaded', () => {
     toast(isAnonymous ? 'Mode anonyme activé.' : 'Mode normal activé.', 'info');
   }
 
-  // ─── UI View Management ─────────────────────────
+
   function setLandingStatus(status, text) {
     statusDot.className = 'pc-status-dot';
     if (status === 'online') statusDot.classList.add('online');
@@ -1921,7 +1906,7 @@ document.addEventListener('DOMContentLoaded', () => {
     _lastMsgTimestamp = 0;
     msgInput.focus();
 
-    // Restore saved messages if conservation is enabled
+
     if (settings.localStorageEnabled && peerId) {
       const saved = loadMessagesFromLocal(peerId);
       if (saved.length > 0) {
@@ -1962,8 +1947,8 @@ document.addEventListener('DOMContentLoaded', () => {
     chatMode = 'dm';
   }
 
-  // ─── Messages ──────────────────────────────────
-  // ─── Date separator helper ───
+
+
   let _lastMsgDate = null;
   function _maybeDateSep(ts) {
     const d = new Date(ts || Date.now());
@@ -1977,12 +1962,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // ─── Message grouping helper ───
+
   let _lastMsgSender = null;
   let _lastMsgTimestamp = 0;
   function _shouldGroup(sender, ts) {
     const same = sender === _lastMsgSender;
-    const close = (ts - _lastMsgTimestamp) < 5 * 60 * 1000; // 5 min
+    const close = (ts - _lastMsgTimestamp) < 5 * 60 * 1000;
     _lastMsgSender = sender;
     _lastMsgTimestamp = ts;
     return same && close;
@@ -2006,7 +1991,7 @@ document.addEventListener('DOMContentLoaded', () => {
     el.dataset.rawText = text;
     el.dataset.ts = ts;
 
-    // Reply reference
+
     if (opts.replyTo) {
       const refDiv = document.createElement('div');
       refDiv.className = 'pc-msg-reply-ref';
@@ -2056,7 +2041,7 @@ document.addEventListener('DOMContentLoaded', () => {
       msgP.innerHTML = formatMsgText(text);
       body.appendChild(msgP);
 
-      // Reactions container
+
       const reactionsDiv = document.createElement('div');
       reactionsDiv.className = 'pc-msg-reactions';
       body.appendChild(reactionsDiv);
@@ -2081,7 +2066,7 @@ document.addEventListener('DOMContentLoaded', () => {
       el.appendChild(reactionsDiv);
     }
 
-    // Hover action bar
+
     const actions = document.createElement('div');
     actions.className = 'pc-msg-actions';
     actions.innerHTML = '<button class="pc-msg-act-btn" data-action="react" title="Réaction">😀</button>'
@@ -2093,13 +2078,13 @@ document.addEventListener('DOMContentLoaded', () => {
     messagesEl.appendChild(el);
     messagesEl.scrollTop = messagesEl.scrollHeight;
 
-    // Notification
+
     if (sender !== 'me' && !opts.skipSave) {
       playNotifSound();
       sendDesktopNotif(peerIdentity?.pseudo || 'Nouveau message', text.slice(0, 100));
     }
 
-    // Save to local if conservation is enabled
+
     if (connection?.peer && !opts.skipSave) {
       saveMessageToLocal(connection.peer, { text, sender, ts, msgId });
     }
@@ -2172,7 +2157,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function addSystemMessage(text) {
     messagesEmpty.hidden = true;
-    _lastMsgSender = null; // break grouping
+    _lastMsgSender = null;
     const el = document.createElement('div');
     el.className = 'pc-msg pc-msg-system';
     const icon = document.createElement('span');
@@ -2191,7 +2176,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!text) return;
     const truncated = text.slice(0, 5000);
 
-    // Editing existing message
+
     if (editingMsgId) {
       const el = messagesEl.querySelector('[data-msg-id="' + editingMsgId + '"]');
       if (el) {
@@ -2226,7 +2211,7 @@ document.addEventListener('DOMContentLoaded', () => {
       addChatMessage(truncated, 'me', Date.now(), { msgId, replyTo: replyData });
     }
 
-    // Clear reply bar
+
     if (replyingTo) {
       replyingTo = null;
       if (replyBarEl) replyBarEl.hidden = true;
@@ -2282,7 +2267,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typing) messagesEl.scrollTop = messagesEl.scrollHeight;
   }
 
-  // ─── Toast ──────────────────────────────────────
+
   function toast(message, type = 'info') {
     const icons = { success: '✓', error: '✗', info: 'ℹ' };
     const el = document.createElement('div');
@@ -2302,15 +2287,15 @@ document.addEventListener('DOMContentLoaded', () => {
     return div.innerHTML;
   }
 
-  // ─── Event Listeners ───────────────────────────
 
-  // Setup modal
+
+
   setupConfirmBtn.addEventListener('click', () => createIdentity(setupPseudoInput.value));
   setupPseudoInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') { e.preventDefault(); createIdentity(setupPseudoInput.value); }
   });
 
-  // Edit pseudo
+
   myPseudoEl.addEventListener('click', () => {
     if (isAnonymous) { toast('Désactivez le mode anonyme d\'abord.', 'info'); return; }
     pseudoInput.value = identity?.pseudo || '';
@@ -2329,10 +2314,10 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   pseudoCancelBtn.addEventListener('click', () => { pseudoModal.hidden = true; });
 
-  // Anonymous mode
+
   anonToggle.addEventListener('change', toggleAnonymousMode);
 
-  // Copy ID
+
   copyIdBtn.addEventListener('click', async () => {
     const id = myIdEl.textContent;
     if (!id || id === 'Chargement...') return;
@@ -2340,7 +2325,7 @@ document.addEventListener('DOMContentLoaded', () => {
     catch { toast('Impossible de copier.', 'error'); }
   });
 
-  // Refresh ID
+
   refreshIdBtn.addEventListener('click', () => {
     if (connection || chatMode !== 'dm') { toast('Déconnectez-vous d\'abord.', 'info'); return; }
     if (peer) peer.destroy();
@@ -2355,20 +2340,20 @@ document.addEventListener('DOMContentLoaded', () => {
     toast('Nouvel identifiant généré.', 'success');
   });
 
-  // Connect
+
   connectBtn.addEventListener('click', () => connectToPeer());
   peerInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') { e.preventDefault(); connectToPeer(); }
   });
 
-  // Disconnect
+
   disconnectBtn.addEventListener('click', disconnectPeer);
 
-  // Send message
+
   chatForm.addEventListener('submit', (e) => { e.preventDefault(); sendMessage(); });
   msgInput.addEventListener('input', handleTypingInput);
 
-  // File attach
+
   attachBtn.addEventListener('click', () => fileInput.click());
   fileInput.addEventListener('change', () => {
     if (fileInput.files.length > 0) {
@@ -2377,24 +2362,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Call
+
   callBtn.addEventListener('click', startCall);
   callHangupBtn.addEventListener('click', () => { endCall(); addSystemMessage('Appel terminé.'); });
   muteBtn.addEventListener('click', toggleMute);
 
-  // Screen share
+
   screenshareBtn.addEventListener('click', startScreenShare);
   screenStopBtn.addEventListener('click', () => { endScreenShare(); addSystemMessage('Partage d\'écran arrêté.'); });
   screenCloseBtn.addEventListener('click', closeScreenViewer);
 
-  // Add contact
+
   addContactBtn.addEventListener('click', sendContactRequest);
 
-  // Contact request modal
+
   contactAcceptBtn.addEventListener('click', acceptContactRequest);
   contactRejectBtn.addEventListener('click', rejectContactRequest);
 
-  // Incoming call/screen modal
+
   incomingAcceptBtn.addEventListener('click', () => {
     if (pendingIncomingCall) {
       answerCall(pendingIncomingCall);
@@ -2411,14 +2396,14 @@ document.addEventListener('DOMContentLoaded', () => {
     hideIncomingModal();
   });
 
-  // Members drawer
+
   membersBtn.addEventListener('click', () => {
     membersDrawer.hidden = !membersDrawer.hidden;
     if (!membersDrawer.hidden) renderMembers();
   });
   membersCloseBtn.addEventListener('click', () => { membersDrawer.hidden = true; });
 
-  // ── Group events ──
+
   openGroupModalBtn.addEventListener('click', () => {
     groupNameInput.value = '';
     groupModal.hidden = false;
@@ -2443,7 +2428,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Enter') { e.preventDefault(); groupJoinBtn.click(); }
   });
 
-  // ── Server events ──
+
   openServerModalBtn.addEventListener('click', () => {
     serverNameInput.value = '';
     serverModal.hidden = false;
@@ -2468,7 +2453,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Enter') { e.preventDefault(); serverJoinBtn.click(); }
   });
 
-  // Keyboard shortcut: Escape
+
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       if (!profilePopup.hidden) { hideProfilePopup(); return; }
@@ -2483,14 +2468,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // ─── Message Actions ─────────────────────────────
+
 
   function addReactionToMsg(msgId, emoji, who) {
     const el = messagesEl.querySelector('[data-msg-id="' + msgId + '"]');
     if (!el) return;
     let container = el.querySelector('.pc-msg-reactions');
     if (!container) { container = document.createElement('div'); container.className = 'pc-msg-reactions'; (el.querySelector('.pc-msg-body') || el).appendChild(container); }
-    // Check if emoji already exists
+
     let badge = container.querySelector('[data-emoji="' + emoji + '"]');
     if (badge) {
       let count = parseInt(badge.dataset.count || '1') + 1;
@@ -2562,14 +2547,14 @@ document.addEventListener('DOMContentLoaded', () => {
     msgInput.classList.remove('pc-editing');
   }
 
-  // ─── Emoji Picker ──────────────────────────────
-  let emojiTarget = null; // 'input' or msgId
+
+  let emojiTarget = null;
 
   function showEmojiPicker(target, anchorEl) {
     if (!emojiPickerEl) return;
     emojiTarget = target;
     emojiPickerEl.hidden = false;
-    // Position near anchor
+
     if (anchorEl) {
       const rect = anchorEl.getBoundingClientRect();
       emojiPickerEl.style.bottom = (window.innerHeight - rect.top + 6) + 'px';
@@ -2589,17 +2574,17 @@ document.addEventListener('DOMContentLoaded', () => {
       msgInput.value += emoji;
       msgInput.focus();
     } else if (emojiTarget) {
-      // It's a msgId for reaction
+
       sendReaction(emojiTarget, emoji);
     }
     hideEmojiPicker();
   }
 
-  // ─── Settings (full-page Discord-style) ─────────
+
   function openSettings() {
     if (!settingsModal) return;
     settings = loadSettings();
-    // Populate controls
+
     const soundsCb = $('pc-set-sounds');
     const notifCb = $('pc-set-notif');
     const localCb = $('pc-set-local-storage');
@@ -2613,7 +2598,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (shareStatusCb) shareStatusCb.checked = settings.shareStatus !== false;
     if (fontSizeSel) fontSizeSel.value = String(settings.fontSize || 15);
 
-    // Account card
+
     const cardName = $('pc-set-card-name');
     const cardAvatar = $('pc-set-card-avatar');
     const cardAvatarImg = $('pc-set-card-avatar-img');
@@ -2626,17 +2611,17 @@ document.addEventListener('DOMContentLoaded', () => {
     if (cardAvatarImg && identity?.avatar) { cardAvatarImg.src = identity.avatar; cardAvatarImg.hidden = false; }
     else if (cardAvatarImg) cardAvatarImg.hidden = true;
 
-    // Theme buttons
+
     settingsModal.querySelectorAll('.pc-theme-btn').forEach(b => {
       b.classList.toggle('active', b.dataset.theme === (settings.theme || 'dark'));
     });
 
-    // Status
+
     if (statusSelector) {
       statusSelector.querySelectorAll('[data-status]').forEach(b => b.classList.toggle('active', b.dataset.status === userStatus));
     }
 
-    // Show first section
+
     switchSettingsSection('account');
     settingsModal.classList.add('open');
   }
@@ -2654,7 +2639,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function applySetting(key, value) {
     settings[key] = value;
     saveSettings(settings);
-    // Side effects
+
     if (key === 'theme') {
       document.documentElement.setAttribute('data-theme', value);
       localStorage.setItem('theme', value);
@@ -2666,20 +2651,20 @@ document.addEventListener('DOMContentLoaded', () => {
       Notification.requestPermission();
     }
     if (key === 'localStorageEnabled') {
-      // Broadcast local-storage preference to peer
+
       if (chatMode === 'dm' && connection && connection.open) {
         connection.send({ type: 'local-storage-pref', enabled: value });
       }
     }
   }
 
-  // ─── Device Transfer ────────────────────────────
+
   let transferPeer = null;
   let transferConn = null;
   let transferTimerId = null;
 
   function generateTransferKey() {
-    const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; // no ambiguous chars (0/O, 1/I)
+    const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
     let key = '';
     const arr = crypto.getRandomValues(new Uint8Array(6));
     for (let i = 0; i < 6; i++) key += chars[arr[i] % chars.length];
@@ -2690,7 +2675,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const data = {};
     const keys = Object.keys(localStorage).filter(k => k.startsWith('peercom'));
     keys.forEach(k => { data[k] = localStorage.getItem(k); });
-    // Also include HypeSquad
+
     const hs = localStorage.getItem('vs-hypesquad-house');
     if (hs) data['vs-hypesquad-house'] = hs;
     return data;
@@ -2726,7 +2711,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (genBtn) genBtn.disabled = true;
     if (resultEl) resultEl.hidden = true;
 
-    // Countdown
+
     let remaining = 120;
     const timerEl = $('pc-transfer-key-timer');
     if (timerEl) timerEl.textContent = remaining;
@@ -2742,7 +2727,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }, 1000);
 
-    // Create a temporary PeerJS peer with the transfer ID
+
     transferPeer = new Peer(transferId, {
       host: location.hostname === '127.0.0.1' || location.hostname === 'localhost' ? '127.0.0.1' : 'peer.ventistudio.eu',
       port: location.hostname === '127.0.0.1' || location.hostname === 'localhost' ? 9000 : 443,
@@ -2769,7 +2754,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (sendStatus) sendStatus.querySelector('span').textContent = 'Appareil connecté, transfert en cours...';
 
       conn.on('open', () => {
-        // Send all data
+
         const payload = {
           type: 'device-transfer',
           data: getTransferableData(),
@@ -2778,7 +2763,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         conn.send(payload);
 
-        // Wait for acknowledgment
+
         conn.on('data', (resp) => {
           if (resp && resp.type === 'transfer-ack') {
             if (sendStatus) sendStatus.hidden = true;
@@ -2836,7 +2821,7 @@ document.addEventListener('DOMContentLoaded', () => {
       transferConn.on('data', (payload) => {
         if (payload && payload.type === 'device-transfer' && payload.data) {
           applyTransferData(payload.data);
-          // Send acknowledgment
+
           transferConn.send({ type: 'transfer-ack' });
           if (recvStatus) recvStatus.hidden = true;
           if (resultEl) resultEl.hidden = false;
@@ -2868,14 +2853,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ─── User Status ───────────────────────────────
+
   function setUserStatus(status) {
     userStatus = status;
     saveUserStatus(status);
     if (statusDotUser) {
       statusDotUser.className = 'pc-user-status-dot pc-status-' + status;
     }
-    // Broadcast to current connection
+
     if (chatMode === 'dm' && connection && connection.open) {
       connection.send({ type: 'user-status', status });
     }
@@ -2886,7 +2871,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (dot) dot.className = 'pc-peer-status-dot pc-status-' + (status || 'online');
   }
 
-  // ─── Message Action Bar Events ──────────────────
+
   messagesEl.addEventListener('click', (e) => {
     const btn = e.target.closest('.pc-msg-act-btn');
     if (!btn) return;
@@ -2901,52 +2886,52 @@ document.addEventListener('DOMContentLoaded', () => {
     else if (action === 'react') showEmojiPicker(msgId, btn);
   });
 
-  // Reply bar close
+
   if (replyBarClose) replyBarClose.addEventListener('click', () => {
     replyingTo = null;
     if (replyBarEl) replyBarEl.hidden = true;
   });
 
-  // Emoji picker: open from chat input emoji button
+
   const emojiBtnChat = $('pc-emoji-btn');
   if (emojiBtnChat) emojiBtnChat.addEventListener('click', () => {
     if (emojiPickerEl && !emojiPickerEl.hidden) { hideEmojiPicker(); return; }
     showEmojiPicker('input', emojiBtnChat);
   });
 
-  // Emoji grid clicks
+
   if (emojiGridEl) emojiGridEl.addEventListener('click', (e) => {
     const btn = e.target.closest('.pc-emoji-item');
     if (btn) handleEmojiSelect(btn.textContent.trim());
   });
 
-  // Close emoji picker on outside click
+
   document.addEventListener('mousedown', (e) => {
     if (emojiPickerEl && !emojiPickerEl.hidden && !emojiPickerEl.contains(e.target) && e.target.id !== 'pc-emoji-btn' && !e.target.closest('.pc-msg-act-btn[data-action="react"]')) {
       hideEmojiPicker();
     }
   });
 
-  // Cancel edit on Escape in input
+
   msgInput.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && editingMsgId) { e.stopPropagation(); cancelEdit(); }
   });
 
-  // Settings button
+
   const settingsBtn = $('pc-settings-btn');
   if (settingsBtn) settingsBtn.addEventListener('click', openSettings);
 
-  // Settings close
+
   const settingsCloseBtn = $('pc-settings-close');
   if (settingsCloseBtn) settingsCloseBtn.addEventListener('click', closeSettings);
 
-  // Settings nav items
+
   if (settingsModal) {
     settingsModal.addEventListener('click', (e) => {
       const navBtn = e.target.closest('.pc-settings-nav-item');
       if (navBtn && navBtn.dataset.section) {
         if (navBtn.dataset.section === 'logout') {
-          // Handle logout — reset peer
+
           if (confirm('Êtes-vous sûr de vouloir vous déconnecter ?')) {
             closeSettings();
             if (peer) peer.destroy();
@@ -2958,7 +2943,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Live toggles
+
     settingsModal.addEventListener('change', (e) => {
       const t = e.target;
       if (t.id === 'pc-set-sounds') applySetting('sounds', t.checked);
@@ -2969,7 +2954,7 @@ document.addEventListener('DOMContentLoaded', () => {
       else if (t.id === 'pc-set-font-size') applySetting('fontSize', parseInt(t.value, 10));
     });
 
-    // Theme buttons
+
     settingsModal.addEventListener('click', (e) => {
       const themeBtn = e.target.closest('.pc-theme-btn');
       if (themeBtn && themeBtn.dataset.theme) {
@@ -2978,7 +2963,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Account buttons
+
     const setEditProfile = $('pc-set-edit-profile');
     if (setEditProfile) setEditProfile.addEventListener('click', () => { closeSettings(); if (profileEditModal) profileEditModal.hidden = false; });
     const setEditPseudo = $('pc-set-edit-pseudo');
@@ -2986,7 +2971,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const setCopyId = $('pc-set-copy-id');
     if (setCopyId) setCopyId.addEventListener('click', () => { if (peer && peer.id) { navigator.clipboard.writeText(peer.id); toast('ID copié !', 'success'); } });
 
-    // Clear data
+
     const setClearData = $('pc-set-clear-data');
     if (setClearData) setClearData.addEventListener('click', () => {
       if (confirm('Cela supprimera tous vos messages, contacts et paramètres stockés localement. Continuer ?')) {
@@ -2998,7 +2983,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Logout
+
     const setLogout = $('pc-set-logout');
     if (setLogout) setLogout.addEventListener('click', () => {
       if (confirm('Êtes-vous sûr de vouloir vous déconnecter ?')) {
@@ -3008,13 +2993,13 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Device Transfer
+
     const transferGenBtn = $('pc-transfer-generate');
     if (transferGenBtn) transferGenBtn.addEventListener('click', startTransferSend);
     const transferRecvBtn = $('pc-transfer-receive');
     if (transferRecvBtn) transferRecvBtn.addEventListener('click', startTransferReceive);
 
-    // Close with Escape
+
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && settingsModal && settingsModal.classList.contains('open')) {
         e.stopPropagation();
@@ -3023,7 +3008,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Status selector
+
   if (statusSelector) statusSelector.addEventListener('click', (e) => {
     const btn = e.target.closest('[data-status]');
     if (!btn) return;
@@ -3031,14 +3016,14 @@ document.addEventListener('DOMContentLoaded', () => {
     statusSelector.querySelectorAll('[data-status]').forEach(b => b.classList.toggle('active', b === btn));
   });
 
-  // Handle incoming user-status in DM
-  // (already handled in handleDMData via case below)
 
-    // ─── Profile System ──────────────────────────────
+
+
+
 
   function buildBadgesHTML(profileData, hsData) {
     let html = '';
-    // HypeSquad badge
+
     if (hsData && hsData.house && HYPESQUAD_HOUSES[hsData.house]) {
       const h = HYPESQUAD_HOUSES[hsData.house];
       const displayHouse = (hsData.house === 'erudis' && hsData.publicHouse && HYPESQUAD_HOUSES[hsData.publicHouse])
@@ -3046,7 +3031,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const displayId = (hsData.house === 'erudis' && hsData.publicHouse) ? hsData.publicHouse : hsData.house;
       html += `<span class="pc-badge" data-type="${displayId}" title="HypeSquad ${displayHouse.name}"><span class="pc-badge-emoji">${displayHouse.emoji}</span>${displayHouse.name}</span>`;
     }
-    // Custom badges from profile
+
     if (profileData.badges && Array.isArray(profileData.badges)) {
       for (const b of profileData.badges) {
         const t = (b.type || 'custom').replace(/[<>"']/g, '');
@@ -3059,11 +3044,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function showProfilePopup(data) {
-    // data: { pseudo, peerId, avatar, avatarFrame, bio, badges, hypesquad, created, isSelf }
+
     profileName.textContent = data.pseudo || 'Utilisateur';
     profilePseudoId.textContent = data.peerId || '';
 
-    // Avatar
+
     if (data.avatar) {
       profileAvatarImg.src = data.avatar;
       profileAvatarImg.hidden = false;
@@ -3074,7 +3059,7 @@ document.addEventListener('DOMContentLoaded', () => {
       profileAvatar.textContent = (data.pseudo || '?')[0].toUpperCase();
     }
 
-    // Frame
+
     if (data.avatarFrame && data.avatarFrame !== 'none') {
       profileFrame.hidden = false;
       profileFrame.setAttribute('data-frame', data.avatarFrame);
@@ -3083,14 +3068,14 @@ document.addEventListener('DOMContentLoaded', () => {
       profileFrame.removeAttribute('data-frame');
     }
 
-    // Badges
+
     const hsData = data.hypesquad || (data.isSelf ? getHypesquadData() : null);
     profileBadges.innerHTML = buildBadgesHTML(data, hsData);
 
-    // Bio
+
     profileBio.textContent = data.bio || 'Aucune bio définie.';
 
-    // HypeSquad section
+
     if (hsData && hsData.house && HYPESQUAD_HOUSES[hsData.house]) {
       const h = HYPESQUAD_HOUSES[hsData.house];
       const displayHouse = (hsData.house === 'erudis' && hsData.publicHouse && HYPESQUAD_HOUSES[hsData.publicHouse])
@@ -3101,7 +3086,7 @@ document.addEventListener('DOMContentLoaded', () => {
       profileHsSection.hidden = true;
     }
 
-    // Member since
+
     if (data.created) {
       profileMemberSince.textContent = new Date(data.created).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
     } else {
@@ -3147,7 +3132,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- Profile Edit ---
+
   let editAvatarData = null;
   let editFrameChoice = 'none';
 
@@ -3155,7 +3140,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!identity) return;
     const profile = loadProfile();
 
-    // Populate avatar
+
     editAvatarData = profile.avatar || null;
     if (editAvatarData) {
       editAvatarImg.src = editAvatarData;
@@ -3169,11 +3154,11 @@ document.addEventListener('DOMContentLoaded', () => {
       editAvatarRemove.hidden = true;
     }
 
-    // Bio
+
     editBio.value = profile.bio || '';
     editBioCount.textContent = editBio.value.length;
 
-    // Frame
+
     editFrameChoice = profile.avatarFrame || 'none';
     framePicker.querySelectorAll('.pc-frame-option').forEach(btn => {
       btn.classList.toggle('active', btn.dataset.frame === editFrameChoice);
@@ -3198,7 +3183,7 @@ document.addEventListener('DOMContentLoaded', () => {
     toast('Profil mis à jour !', 'success');
   }
 
-  // Update identity UI to include avatar image
+
   function updateAvatarUI() {
     const profile = loadProfile();
     if (profile.avatar) {
@@ -3209,7 +3194,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Build the identity payload to send over the wire
+
   function buildIdentityPayload() {
     if (isAnonymous || !identity) return null;
     const profile = loadProfile();
@@ -3227,7 +3212,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return payload;
   }
 
-  // --- Profile Event Listeners ---
+
   if (profileCloseBtn) profileCloseBtn.addEventListener('click', hideProfilePopup);
   if (upLeft) upLeft.addEventListener('click', showMyProfile);
   if (editProfileBtn) editProfileBtn.addEventListener('click', openProfileEdit);
@@ -3269,11 +3254,11 @@ document.addEventListener('DOMContentLoaded', () => {
     framePicker.querySelectorAll('.pc-frame-option').forEach(b => b.classList.toggle('active', b === btn));
   });
 
-  // Click on peer avatar in chat header to see their profile
+
   const peerAvatarEl = $('pc-peer-avatar');
   if (peerAvatarEl) peerAvatarEl.addEventListener('click', showPeerProfile);
 
-  // ─── Mobile sidebar toggle ──────────────────────
+
   const mobileToggle = $('pc-mobile-toggle');
   const sidebarBackdrop = $('pc-sidebar-backdrop');
   const sidebar = $('pc-sidebar');
@@ -3292,7 +3277,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   if (sidebarBackdrop) sidebarBackdrop.addEventListener('click', closeSidebar);
 
-  // Close sidebar on DM item click (mobile)
+
   const dmListEl = document.getElementById('pc-dm-list');
   if (dmListEl) dmListEl.addEventListener('click', (e) => {
     if (e.target.closest('.pc-dm-item') && window.innerWidth <= 768) {
@@ -3300,22 +3285,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // ─── Initialize ─────────────────────────────────
+
   settings = loadSettings();
   userStatus = loadUserStatus();
   if (statusDotUser) statusDotUser.className = 'pc-user-status-dot pc-status-' + userStatus;
   if (statusSelector) {
     statusSelector.querySelectorAll('[data-status]').forEach(b => b.classList.toggle('active', b.dataset.status === userStatus));
   }
-  // Apply saved font size
+
   if (settings.fontSize && settings.fontSize !== 15) {
     messagesEl.style.fontSize = settings.fontSize + 'px';
   }
-  // Populate emoji grid
+
   if (emojiGridEl) {
     emojiGridEl.innerHTML = COMMON_EMOJIS.map(e => '<button class="pc-emoji-item" type="button">' + e + '</button>').join('');
   }
-  // Request notification permission
+
   if (settings.desktopNotif && Notification.permission === 'default') {
     Notification.requestPermission();
   }

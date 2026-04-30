@@ -26,10 +26,11 @@
       document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
+  <script src="/i18n.js" defer></script>
 </head>
 <body>
   <main class="maps-main">
-    <!-- Panneau latéral -->
+
     <aside id="sidebar" class="maps-sidebar">
       <div class="sidebar-header">
         <div class="maps-brand">
@@ -41,7 +42,7 @@
         </button>
       </div>
 
-      <!-- Recherche -->
+
       <div class="search-container">
         <div class="search-box">
           <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
@@ -53,10 +54,10 @@
         <div id="search-results" class="search-results hidden" role="listbox" aria-label="Résultats de recherche"></div>
       </div>
 
-      <!-- Section contenu sidebar -->
+
       <div class="sidebar-content">
 
-        <!-- Accueil (affiché par défaut) -->
+
         <div id="sidebar-home" class="sidebar-section">
           <div class="quick-actions">
             <button id="quick-locate" class="quick-action-btn">
@@ -97,7 +98,7 @@
             </button>
           </div>
 
-          <!-- Historique récent -->
+
           <div id="history-section" class="history-section hidden">
             <div class="section-header">
               <h3>Récents</h3>
@@ -106,7 +107,7 @@
             <div id="history-list" class="history-list"></div>
           </div>
 
-          <!-- Favoris -->
+
           <div id="favorites-section" class="favorites-section hidden">
             <div class="section-header">
               <h3>Favoris</h3>
@@ -114,7 +115,7 @@
             <div id="favorites-list" class="favorites-list"></div>
           </div>
 
-          <!-- Tips -->
+
           <div class="tips-section">
             <div class="tip-card">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><circle cx="12" cy="17" r="0.5"/></svg>
@@ -122,7 +123,7 @@
             </div>
           </div>
 
-          <!-- Trajets enregistrés -->
+
           <div id="tracks-section" class="track-section hidden">
             <div class="section-header">
               <h3>Mes trajets</h3>
@@ -131,7 +132,7 @@
           </div>
         </div>
 
-        <!-- Itinéraire -->
+
         <div id="route-panel" class="sidebar-section hidden">
           <div class="section-header">
             <h2>Itinéraire</h2>
@@ -173,7 +174,7 @@
           <div id="route-steps" class="route-steps hidden"></div>
         </div>
 
-        <!-- Mesure -->
+
         <div id="measure-panel" class="sidebar-section hidden">
           <div class="section-header">
             <h2>Mesurer une distance</h2>
@@ -194,7 +195,7 @@
           </button>
         </div>
 
-        <!-- Enregistrement trajet -->
+
         <div id="track-panel" class="sidebar-section hidden">
           <div class="section-header">
             <h2>Enregistrer un trajet</h2>
@@ -247,7 +248,7 @@
           </div>
         </div>
 
-        <!-- Drop Pin -->
+
         <div id="pin-panel" class="sidebar-section hidden">
           <div class="section-header">
             <h2>Placer un repère</h2>
@@ -263,7 +264,7 @@
           </button>
         </div>
 
-        <!-- Infos lieu -->
+
         <div id="place-info" class="sidebar-section hidden">
           <div class="section-header">
             <h2 id="place-name"></h2>
@@ -295,7 +296,7 @@
 
       </div>
 
-      <!-- Privacy notice -->
+
       <div class="privacy-notice">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         <div>
@@ -305,15 +306,15 @@
       </div>
     </aside>
 
-    <!-- Bouton sidebar mobile -->
+
     <button id="sidebar-open" class="sidebar-open-btn hidden" aria-label="Ouvrir le panneau" title="Ouvrir le panneau">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
     </button>
 
-    <!-- Conteneur carte -->
+
     <div id="map" class="maps-container" role="application" aria-label="Carte interactive"></div>
 
-    <!-- Barre de coordonnées -->
+
     <div id="coord-bar" class="coord-bar">
       <span id="coord-lat" class="coord-item">Lat: :</span>
       <span class="coord-sep">|</span>
@@ -322,7 +323,7 @@
       <span id="coord-zoom" class="coord-item">Zoom: 6</span>
     </div>
 
-    <!-- Contrôles carte -->
+
     <div class="map-controls">
       <button id="locate-btn" class="map-control-btn" aria-label="Ma position" title="Ma position">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4m0 12v4M2 12h4m12 0h4"/><circle cx="12" cy="12" r="10" stroke-dasharray="2 2"/></svg>
@@ -344,7 +345,7 @@
       </button>
     </div>
 
-    <!-- Sélection couches -->
+
     <div id="layers-panel" class="layers-panel hidden">
       <h3>Couches</h3>
       <div class="layers-grid">
@@ -371,7 +372,7 @@
       </div>
     </div>
 
-    <!-- Toast -->
+
     <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
   </main>
 

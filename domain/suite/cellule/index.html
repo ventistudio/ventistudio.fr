@@ -12,10 +12,11 @@
   <script>
     (function(){var t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t)})();
   </script>
+  <script src="/i18n.js" defer></script>
 </head>
 <body class="suite-app">
 
-  <!-- Header -->
+
   <div class="suite-header">
     <a href="/domain/suite/" class="suite-logo">
       <img src="/favicon.avif" alt="VentiStudio" width="24" height="24">
@@ -44,14 +45,14 @@
     </div>
   </div>
 
-  <!-- Formula Bar -->
+
   <div class="cellule-formula-bar">
     <span class="cell-ref" id="cell-ref">A1</span>
     <span class="fx-label">fx</span>
     <input type="text" id="fx-input" placeholder="Entrez une valeur ou formule (ex: =SUM(A1:A10))" aria-label="Barre de formule">
   </div>
 
-  <!-- Formatting Toolbar -->
+
   <div class="cellule-format-bar">
     <div class="tb-group">
       <button class="tb-btn" onclick="celluleToggleStyle('bold')" id="fmt-bold" title="Gras"><svg viewBox="0 0 24 24"><path d="M6 4h8a4 4 0 014 4 4 4 0 01-4 4H6z"/><path d="M6 12h9a4 4 0 014 4 4 4 0 01-4 4H6z"/></svg></button>
@@ -90,15 +91,15 @@
     </div>
   </div>
 
-  <!-- Spreadsheet Body -->
+
   <div class="suite-body" style="flex-direction:column">
     <div class="cellule-container" id="cellule-container"></div>
 
-    <!-- Sheet Tabs -->
+
     <div class="cellule-tabs" id="cellule-tabs"></div>
   </div>
 
-  <!-- Status Bar -->
+
   <div class="suite-statusbar">
     <span id="status-sel">A1</span>
     <span id="status-sum"></span>

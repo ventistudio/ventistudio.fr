@@ -1,7 +1,3 @@
-/**
- * Le Livre de Cuisine — Page Recette (book.js)
- * Fonctionnalités : portions dynamiques, to-do étapes, minuteur/semi-auto
- */
 (function () {
   'use strict';
 
@@ -9,7 +5,7 @@
   const params = new URLSearchParams(window.location.search);
   const cookId = params.get('cook');
 
-  /* ---- Vérifications ---- */
+
   if (!window.cookbookSystem) {
     container.innerHTML = errorHTML('Erreur système', 'Les données du livre de cuisine ne sont pas disponibles.');
     return;
@@ -25,18 +21,18 @@
     return;
   }
 
-  /* ---- Titre page ---- */
+
   document.title = `${recipe.title} | Le Livre de Cuisine`;
   const ogTitle = document.querySelector('meta[property="og:title"]');
   if (ogTitle) ogTitle.content = `${recipe.title} Le Livre de Cuisine VentiStudio`;
 
-  /* ---- État ---- */
+
   let servings = recipe.defaultServings;
   const stepsDone = new Array(recipe.steps.length).fill(false);
   let semiAuto = false;
-  const timers = {}; // { stepIndex: { interval, remaining, original } }
+  const timers = {};
 
-  /* ---- Rendu ---- */
+
   render();
 
   function render() {
@@ -125,7 +121,7 @@
       </nav>
     `;
 
-    /* Minuteur flottant */
+
     if (!document.getElementById('timer-float')) {
       const float = document.createElement('div');
       float.className = 'book-timer-float';
@@ -149,7 +145,7 @@
     updateProgress();
   }
 
-  /* ---- Rendu ingrédients ---- */
+
   function renderIngredients() {
     const ratio = servings / recipe.defaultServings;
     return recipe.ingredients.map(ing => {
@@ -159,7 +155,7 @@
     }).join('');
   }
 
-  /* ---- Rendu étape ---- */
+
   function renderStep(step, idx) {
     const timerHTML = step.timer ? `
       <div class="step-timer-row">
@@ -181,9 +177,9 @@
     `;
   }
 
-  /* ---- Events ---- */
+
   function bindEvents() {
-    /* Portions */
+
     document.getElementById('srv-minus').addEventListener('click', () => {
       if (servings > 1) { servings--; updateServings(); }
     });
@@ -191,12 +187,12 @@
       if (servings < 50) { servings++; updateServings(); }
     });
 
-    /* Semi-auto */
+
     document.getElementById('semiauto-toggle').addEventListener('change', function () {
       semiAuto = this.checked;
     });
 
-    /* Étapes check */
+
     document.querySelectorAll('.step-card').forEach(card => {
       card.addEventListener('click', function (e) {
         if (e.target.closest('.step-timer-btn')) return;
@@ -213,7 +209,7 @@
       });
     });
 
-    /* Timer buttons */
+
     document.querySelectorAll('.step-timer-btn').forEach(btn => {
       btn.addEventListener('click', function (e) {
         e.stopPropagation();
@@ -223,7 +219,7 @@
       });
     });
 
-    /* Floating timer controls */
+
     const tfClose = document.getElementById('tf-close');
     const tfPause = document.getElementById('tf-pause');
     const tfReset = document.getElementById('tf-reset');
@@ -264,7 +260,7 @@
     });
   }
 
-  /* ---- Portions ---- */
+
   function updateServings() {
     document.getElementById('srv-value').textContent = servings;
     document.getElementById('srv-minus').disabled = servings <= 1;
@@ -272,7 +268,7 @@
     document.getElementById('ingredient-list').innerHTML = renderIngredients();
   }
 
-  /* ---- Progression ---- */
+
   function updateProgress() {
     const done = stepsDone.filter(Boolean).length;
     const total = stepsDone.length;
@@ -281,7 +277,7 @@
     document.getElementById('progress-label').textContent = `${done} / ${total} étapes — ${pct}%`;
   }
 
-  /* ---- Minuteurs ---- */
+
   function toggleTimer(idx, time, btn) {
     if (timers[idx]) {
       clearInterval(timers[idx].interval);
@@ -351,7 +347,7 @@
     }
     delete timers[idx];
 
-    // Notification sonore (petit beep via AudioContext)
+
     try {
       const ctx = new (window.AudioContext || window.webkitAudioContext)();
       const osc = ctx.createOscillator();
@@ -372,13 +368,13 @@
         osc2.start();
         osc2.stop(ctx.currentTime + 0.3);
       }, 350);
-    } catch (e) { /* silently fail */ }
+    } catch (e) {  }
 
     if (getActiveTimer() === null) {
       document.getElementById('timer-float').classList.remove('visible');
     }
 
-    // Semi-auto : cocher l'étape et lancer le timer suivant
+
     if (semiAuto) {
       stepsDone[idx] = true;
       const card = document.querySelector(`.step-card[data-step="${idx}"]`);
@@ -435,7 +431,7 @@
     });
   }
 
-  /* ---- Helpers ---- */
+
   function formatTime(s) {
     if (s < 0) s = 0;
     const h = Math.floor(s / 3600);

@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="fr" data-theme="dark">
 <head>
   <meta charset="utf-8" />
@@ -137,6 +137,7 @@
   <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
   <meta property="og:type" content="website">
   <link rel="canonical" href="https://ventistudio.eu/player/game/pacman/">
+  <script src="/i18n.js" defer></script>
 </head>
 
 <body>
@@ -387,7 +388,7 @@
       this.pathCache = null;
       this.pathIdx = 0;
     }
-    
+
     findPath(targetX, targetY) {
       const start = key(this.x, this.y);
       const goal = key(targetX, targetY);
@@ -413,7 +414,7 @@
           const nx = wrapTunnel(d.x);
           const ny = d.y;
           if (isWall(nx, ny)) continue;
-          
+
           const nkey = key(nx, ny);
           if (visited.has(nkey)) continue;
 
@@ -471,7 +472,7 @@
         const useScatter = (game.tick % game.scatterPeriod) < game.scatterDuration;
         let tx = game.pac.x;
         let ty = game.pac.y;
-        
+
         if (useScatter && !frightened) {
           tx = this.sx;
           ty = this.sy;

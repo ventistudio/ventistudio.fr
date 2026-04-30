@@ -1,5 +1,5 @@
 const goldContent = [
-  // ── Outils ──
+
   {
     id: 1,
     title: 'VentiStudio DevKit',
@@ -49,7 +49,7 @@ const goldContent = [
     tags: ['code', 'snippets', 'référence']
   },
 
-  // ── Jeux ──
+
   {
     id: 5,
     title: 'Aoki Univers: Prologue',
@@ -87,7 +87,7 @@ const goldContent = [
     tags: ['puzzle', 'réflexion', 'musique']
   },
 
-  // ── Musique ──
+
   {
     id: 8,
     title: 'Gold Collection Vol. 1',
@@ -125,7 +125,7 @@ const goldContent = [
     tags: ['ost', 'aoki', 'bonus']
   },
 
-  // ── Ressources ──
+
   {
     id: 11,
     title: 'Icon Pack Premium',

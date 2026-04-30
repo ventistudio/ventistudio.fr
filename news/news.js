@@ -1,10 +1,9 @@
-// Script pour afficher les données des news
 document.addEventListener('DOMContentLoaded', function() {
   loadNews();
 });
 
 function loadNews() {
-  // Charger le fichier de données
+
   const script = document.createElement('script');
   script.src = '/news/news-data.js';
   script.onload = function() {
@@ -26,7 +25,7 @@ function displayNews() {
   const newsList = document.getElementById('newsList');
   newsList.innerHTML = '';
 
-  // Trier les actualités par date (plus récentes en premier)
+
   const sortedNews = newsData.sort((a, b) => new Date(b.date) - new Date(a.date));
 
   sortedNews.forEach(news => {
@@ -34,7 +33,7 @@ function displayNews() {
     newsList.appendChild(newsItem);
   });
 
-  // Cacher l'état vide
+
   const emptyState = document.getElementById('emptyState');
   if (emptyState) {
     emptyState.style.display = 'none';
@@ -44,7 +43,7 @@ function displayNews() {
 function createNewsElement(news) {
   const article = document.createElement('article');
   article.className = 'news-item';
-  
+
   const categoryLabel = getCategoryLabel(news.category);
   const formattedDate = formatDate(news.date);
 
@@ -69,7 +68,7 @@ function createNewsElement(news) {
 function toggleContent(button, newsId) {
   const content = document.getElementById(`content-${newsId}`);
   const isVisible = content.style.display !== 'none';
-  
+
   if (isVisible) {
     content.style.display = 'none';
     button.textContent = 'Lire la suite';
@@ -98,7 +97,7 @@ function getCategoryLabel(category) {
 function showEmptyState() {
   const newsList = document.getElementById('newsList');
   const emptyState = document.getElementById('emptyState');
-  
+
   if (newsList) newsList.style.display = 'none';
   if (emptyState) emptyState.style.display = 'block';
 }
@@ -109,7 +108,6 @@ function escapeHtml(text) {
   return div.innerHTML;
 }
 
-// Ajouter les styles dynamiques
 const newsStyles = document.createElement('style');
 newsStyles.textContent = `
   .news-full-content {

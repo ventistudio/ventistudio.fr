@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  // =========================================
-  // DATA — Staff Members
-  // =========================================
+
+
+
   const staffMembers = {
     direction: [
       {
@@ -97,9 +97,9 @@ document.addEventListener('DOMContentLoaded', () => {
     ]
   };
 
-  // =========================================
-  // DATA — Artists
-  // =========================================
+
+
+
   const artists = [
     {
       id: "artist1",
@@ -162,9 +162,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   ];
 
-  // =========================================
-  // RENDER — Staff member card
-  // =========================================
+
+
+
   function createMemberCard(member) {
     return `
       <div class="member-card">
@@ -210,9 +210,9 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
   }
 
-  // =========================================
-  // RENDER — Artist card + modal
-  // =========================================
+
+
+
   function createArtistCard(artist) {
     return `
       <div class="artist-card" data-artist="${artist.id}">
@@ -240,11 +240,11 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
   }
 
-  // =========================================
-  // POPULATE
-  // =========================================
 
-  // Staff
+
+
+
+
   Object.entries(staffMembers).forEach(([team, members]) => {
     const container = document.querySelector(`#${team}-team .team-members`);
     if (container) {
@@ -252,7 +252,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Artists
+
   const artistGrid = document.getElementById('artist-grid');
   const modalContainer = document.getElementById('artist-modals');
   if (artistGrid && modalContainer) {
@@ -260,9 +260,9 @@ document.addEventListener('DOMContentLoaded', () => {
     modalContainer.innerHTML = artists.map(createArtistModal).join('');
   }
 
-  // =========================================
-  // TABS
-  // =========================================
+
+
+
   const tabButtons = document.querySelectorAll('.tab-btn');
   const tabContents = document.querySelectorAll('.tab-content');
 
@@ -276,9 +276,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // =========================================
-  // TEAM FILTERS
-  // =========================================
+
+
+
   const filterButtons = document.querySelectorAll('.filter-btn');
   const teamCategories = document.querySelectorAll('.team-category');
 
@@ -293,9 +293,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // =========================================
-  // ARTIST MODALS
-  // =========================================
+
+
+
   const overlay = document.getElementById('artistOverlay');
 
   function openArtistModal(id) {
@@ -314,15 +314,15 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.style.overflow = '';
   }
 
-  // Click on artist card
+
   document.querySelectorAll('.artist-card').forEach(card => {
     card.addEventListener('click', () => openArtistModal(card.dataset.artist));
   });
 
-  // Close via overlay
+
   if (overlay) overlay.addEventListener('click', closeArtistModal);
 
-  // Close via button
+
   document.querySelectorAll('.close-modal').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -330,7 +330,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Close via Escape key
+
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeArtistModal();
   });

@@ -1,427 +1,402 @@
 <!DOCTYPE html>
-<html lang="fr" data-theme="dark">
+
+<html data-theme="dark" lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <meta name="description" content="Lore et histoire de l'univers Aoki Univers - Wiki VentiStudio">
-  <meta name="theme-color" content="#6366f1">
-  <title>Aoki Univers Lore | Wiki VentiStudio</title>
-  <link rel="stylesheet" href="/style.css">
-  <link rel="stylesheet" href="/wiki/style.css">
-
-  <script async crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
-  <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
-
-  <meta property="og:title" content="Aoki Univers Lore | Wiki VentiStudio">
-  <meta property="og:description" content="Lore et histoire de l'univers Aoki Univers - Wiki VentiStudio">
-  <meta property="og:url" content="https://ventistudio.eu/wiki/aokiunivers/lore/">
-  <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
-  <meta property="og:type" content="website">
-  <link rel="canonical" href="https://ventistudio.eu/wiki/aokiunivers/lore/">
-
-  <script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport"/>
+<meta content="Lore et histoire de l'univers Aoki Univers - Wiki VentiStudio" name="description"/>
+<meta content="#6366f1" name="theme-color"/>
+<title>Aoki Univers Lore | Wiki VentiStudio</title>
+<link href="/style.css" rel="stylesheet"/>
+<link href="/wiki/style.css" rel="stylesheet"/>
+<script async="" crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
+<script async="" crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
+<meta content="Aoki Univers Lore | Wiki VentiStudio" property="og:title"/>
+<meta content="Lore et histoire de l'univers Aoki Univers - Wiki VentiStudio" property="og:description"/>
+<meta content="https://ventistudio.eu/wiki/aokiunivers/lore/" property="og:url"/>
+<meta content="https://ventistudio.eu/favicon.avif" property="og:image"/>
+<meta content="website" property="og:type"/>
+<link href="https://ventistudio.eu/wiki/aokiunivers/lore/" rel="canonical"/>
+<script>
     (function() {
       var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
       document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
+<script defer="" src="/i18n.js"></script>
 </head>
 <body>
-  <header>
-    <div class="logo">
-      <img src="/favicon.avif" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
-      <span>VentiStudio</span>
-    </div>
-    <button class="nav-burger" id="nav-burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav">
-      <span></span><span></span><span></span>
-    </button>
-    <nav id="main-nav" class="main-nav" aria-label="Navigation principale">
-      <a href="/" class="nav-link">Accueil</a>
-
-      <details class="nav-group">
-        <summary class="nav-link">Découvrir
-          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </summary>
-        <div class="nav-panel" role="menu">
-          <a href="/evaluation">Évaluation</a>
-          <a href="/wiki">Wiki</a>
-          <a href="/glossary">Glossaire</a>
-          <a href="/news">News</a>
-          <a href="/blog">Blog</a>
-          <a href="/calendar">Calendrier</a>
-          <a href="/cookbook">Cookbook</a>
-          <a href="/gallery">Galerie</a>
-          <a href="/atlas">Atlas</a>
-        </div>
-      </details>
-
-      <details class="nav-group">
-        <summary class="nav-link">Univers
-          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </summary>
-        <div class="nav-panel" role="menu">
-          <a href="/aokiunivers">AOKI Universe</a>
-          <a href="/allofaokiunivers">All AOKI</a>
-          <a href="/university">Université</a>
-          <a href="/history">Histoire</a>
-          <a href="/memorial">Mémorial</a>
-          <a href="/ester-eggs">Easter eggs</a>
-        </div>
-      </details>
-
-      <details class="nav-group">
-        <summary class="nav-link">Outils
-          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </summary>
-        <div class="nav-panel nav-panel-wide" role="menu">
-          <div class="nav-col">
-            <h4>Applications</h4>
-            <a href="/player">Lecteur</a>
-            <a href="/music">Musique</a>
-            <a href="/pip">PIP</a>
-            <a href="/whiteboard">Whiteboard</a>
-            <a href="/portfolio">Portfolio</a>
-            <a href="/gmod">GMod</a>
-          </div>
-          <div class="nav-col">
-            <h4>Domaines</h4>
-            <a href="/domain/aina">AINA</a>
-            <a href="/domain/archive">Archive</a>
-            <a href="/domain/maps">Maps</a>
-            <a href="/domain/movie">Movie</a>
-            <a href="/domain/peer">Peer</a>
-            <a href="/domain/pro">Pro</a>
-            <a href="/domain/search">Search</a>
-            <a href="/domain/suite">Suite</a>
-          </div>
-        </div>
-      </details>
-
-      <details class="nav-group">
-        <summary class="nav-link">Communauté
-          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </summary>
-        <div class="nav-panel nav-panel-wide" role="menu">
-          <div class="nav-col">
-            <h4>Équipe</h4>
-            <a href="/personnel/">Équipe</a>
-            <a href="/hierarchie-staff">Hiérarchie</a>
-            <a href="/hypesquad">Hypesquad</a>
-            <a href="/jobs">Emplois</a>
-            <a href="/birthday">Anniversaires</a>
-          </div>
-          <div class="nav-col">
-            <h4>Réseaux</h4>
-            <a href="/discord">Discord</a>
-            <a href="/teamspeak">TeamSpeak</a>
-            <a href="/steam">Steam</a>
-            <a href="/social">Réseaux sociaux</a>
-          </div>
-          <div class="nav-col">
-            <h4>Activités</h4>
-            <a href="/artist">Artistes</a>
-            <a href="/quests">Quêtes</a>
-            <a href="/suboawards">Suboawards</a>
-            <a href="/eConcert">eConcert</a>
-          </div>
-        </div>
-      </details>
-
-      <details class="nav-group">
-        <summary class="nav-link">Plus
-          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </summary>
-        <div class="nav-panel nav-panel-wide" role="menu">
-          <div class="nav-col">
-            <h4>Aide</h4>
-            <a href="/contact">Contact</a>
-            <a href="/faq">FAQ</a>
-            <a href="/status">Statut</a>
-            <a href="/sitemap">Plan du site</a>
-          </div>
-          <div class="nav-col">
-            <h4>Soutien</h4>
-            <a href="/donate">Faire un don</a>
-            <a href="/gold">Gold</a>
-            <a href="/customization">Personnalisation</a>
-            <a href="/mes-donnees">Mes Données</a>
-            <a href="/newsletter">Newsletter</a>
-          </div>
-          <div class="nav-col">
-            <h4>À propos</h4>
-            <a href="/company">Entreprise</a>
-            <a href="/acknowledgements">Remerciements</a>
-            <a href="/logo">Logo</a>
-            <a href="/tags">Tags</a>
-            <a href="/memory">Mémoire</a>
-            <a href="/why-not-use-roblox">Pourquoi pas Roblox</a>
-            <a href="/lawful">Mentions légales</a>
-          </div>
-        </div>
-      </details>
-    </nav>
-    <div class="controls" role="toolbar" aria-label="Contrôles">
-      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
-        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
-          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
-          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
-          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
-        </svg>
-      </button>
-      <div id="user-button" role="region" aria-label="Authentification"><button class="cta" id="auth-fallback-btn" onclick="window.location.href='https://accounts.ventistudio.eu/sign-in?redirect_url='+encodeURIComponent(window.location.href)" style="padding:0.5rem 1.25rem;font-size:0.9rem;margin:0"><span>Se connecter</span></button></div>
-    </div>
-  </header>
-
-  <main>
-    <div class="wiki-container">
-
-      
-
-      <nav class="wiki-tabs" aria-label="Onglets du wiki">
-        <a href="/wiki/">Accueil</a>
-        <a href="/wiki/ventistudio/">VentiStudio</a>
-        <a href="/wiki/aokiunivers/" class="active">Aoki-Univers</a>
-        <a href="/wiki/scp/">SCP</a>
-        <a href="/wiki/other/">Autres</a>
-      </nav>
-
-      <div class="wiki-layout">
-
-      <aside class="wiki-sidebar" aria-label="Navigation latérale">
-        <div class="wiki-sidebar-block">
-          <h3>🌌 Aoki-Univers</h3>
-          <ul>
-            <li><a href="/wiki/aokiunivers/aina/">AINA</a></li>
-            <li><a href="/wiki/aokiunivers/biss/">BISS</a></li>
-            <li><a href="/wiki/aokiunivers/dystopiaprequel/">Dystopia Préquel</a></li>
-            <li><a href="/wiki/aokiunivers/dystopia/">Dystopia</a></li>
-          </ul>
-        </div>
-        <div class="wiki-sidebar-block">
-          <h3>Portails</h3>
-          <ul>
-            <li><a href="/wiki/ventistudio/"><span class="icon">🏢</span>VentiStudio</a></li>
-            <li><a href="/wiki/scp/"><span class="icon">🔬</span>SCP</a></li>
-            <li><a href="/wiki/other/"><span class="icon">📚</span>Autres</a></li>
-          </ul>
-        </div>
-        <div class="wiki-sidebar-block">
-          <h3>Outils</h3>
-          <ul>
-            <li><a href="/wiki/">↩ Retour au hub</a></li>
-            <li><a href="#" onclick="window.print();return false;">🖨 Imprimer</a></li>
-            <li><a href="/contact">✉ Suggérer une modification</a></li>
-          </ul>
-        </div>
-      </aside>
-
-      <div class="wiki-article-main">
-
-        <div class="wiki-breadcrumb">
-        <a href="../../">Wiki</a>
-        <span class="separator">›</span>
-        <a href="../">Aoki Univers</a>
-        <span class="separator">›</span>
-        <span class="current">Lore</span>
-      </div>
-
-      <div class="wiki-content">
-        <h1>AOKI UNIVERS</h1>
-        <div class="wiki-article-meta">
-          <div class="meta-item"><span class="meta-label">Portail</span><span class="meta-value"><a href="/wiki/aokiunivers/">Aoki-Univers</a></span></div>
-          <div class="meta-item"><span class="meta-label">Statut</span><span class="meta-value">Article publié</span></div>
-          <div class="meta-item"><span class="meta-label">Langue</span><span class="meta-value">Français</span></div>
-        </div>
-        <aside class="wiki-infobox" aria-label="Encadré informatif">
-          <div class="infobox-title">AOKI UNIVERS</div>
-          <div class="infobox-subtitle">Aoki-Univers</div>
-          <table><tbody>
-              <tr><th>Nom</th><td>Aoki Univers</td></tr>
-              <tr><th>Type</th><td>Lore</td></tr>
-              <tr><th>Origine</th><td>Venti Opastudien</td></tr>
-              <tr><th>Créateur</th><td>Hikari Umaishi</td></tr>
-              <tr><th>Statut</th><td>Actif</td></tr>
-          </tbody></table>
-        </aside>
-
-        <h2>Description</h2>
-        <p>Aoki Univers est un univers fictif créé par Hikari Umaishi, il est basé sur un monde futuriste où l'intelligence artificielle (IA) joue un rôle central dans la société. L'univers explore les thèmes de la technologie avancée, de la colonisation spatiale et des relations humaines à travers le prisme de l'IA.</p>
-        <p>Le monde d'Aoki Univers est caractérisé par des avancées technologiques majeures, notamment la création de l'IA AINA, qui est au cœur de l'univers. AINA est une IA avancée qui gère divers aspects de la vie quotidienne, de la sécurité à la communication, en passant par la gestion des ressources.</p>
-        <p>Dans cet univers, l'humanité a réussi à établir des colonies sur d'autres planètes et lunes, grâce à des avancées dans le domaine de l'exploration spatiale. La station spatiale BISS (Base International Spatiale Station) est un exemple emblématique de cette exploration, servant de point de départ pour les missions vers d'autres mondes.</p>
-        <p>Les personnages principaux de l'univers, tels que Hikari Umaishi et Konoa Ishimiya, naviguent à travers un monde complexe où la technologie et l'humanité s'entrelacent. L'univers d'Aoki Univers est riche en intrigues, en aventures et en réflexions sur l'avenir de l'humanité à l'ère de l'IA.</p>
-        <h3>Sécurité de la BISS ( Base International Spatiale Station ).</h3>
-        <ul>
-          <li>La première BISS commerciale au monde est en orbite terrestre basse à une altitude de 250 km au-dessus du sol.</li>
-          <li>Le BISS ne doit pas être en dessous des 110 km au-dessus du sol, et ne doit pas dépassé les 750 km, elle est équipé d'abris et d'un bouclier magnétique qui fait pensé a star wars, mais elle possède un bouclier antidébris qui est souvent utilisé.</li>
-          <li>On l'appelle aussi « JAHAAKA », Construit par le Japon, la France et les US, il est devenu le premier établissement de l'histoire où les mineurs pouvaient séjourner.</li>
-          <li>Cette station a été créer un peu avent la station Anshin et est géré par un système d'IA quantique qui est utilisé un peu partout dans le monde.</li>
-          <li>Il y a quelques zones en construction, mais la conception de la sécurité est considérée comme excessive.</li>
-          <li>Elle a maintenant été acquise par Deegle, même si la Nasa et la société AstrosLift.</li>
-        </ul>
-        <h3>NU7 ( NATION UNI GENERATION 7 ).</h3>
-        <ul>
-          <li>Les Nation Uni sont les nouveau dirigent du monde l'homme possède maintenant vraiment un control sur les lois.</li>
-          <li>Elle a été créer depuis que l'IA a été globalisé tout comme internet, tout les pays sont développé il n'y a plus que 4 type d'argent l'euro, le Yen, le dollar, et le Peercoin a ne pas confondre avec le PeerCom qui est un systeme de communication PeerToPeer, La version a été mise à niveau pour correspondre à l'ère de l'IA, il pense que l'augmentation de l'intelligence de l'IA devrait être supprimée par les humains.</li>
-        </ul>
-        <h3>Deegle ( Société Informatique ).</h3>
-        <ul>
-          <li>Une société informatique Japonaise iconique vue que sont nom fait référence au dieu métamorphe Deegle..</li>
-          <li>C'est une société de premier plan spécialisée dans les services et produits liés à Internet elle a pour mission de faire avancer l'humanité dans l'espace..</li>
-        </ul>
-        <h3>Smart ( Téléphone Imprimé Portatif ).</h3>
-        <ul>
-          <li>Les Smart sont les nouveau téléphone il on été conçue par Deegle et AstrosLift il sont multifonction il possède un systeme PeerToPeer 3.0 ( Adapté au système PeerCom ).</li>
-        </ul>
-        <h3>Autre Produit Importent.</h3>
-        <ul>
-          <li>LaserLink : Aussi appelez "Transmission Lazer" ces un système de transfère de donné généralement utilisé pour les communication avec un système d'urgence mais peu être utilisé pour une communication entre une parois transparente..</li>
-          <li>ONIQLO : Un ONIQLO est une combinaison en plastique qui est doté d'un smart d'une réserve O2 et d'un chauffage, elle est utilisé en cas d'urgence on l'appel aussi la combinaison intelligente..</li>
-          <li>TELADA : Une marque connue dans le domaine électrique elle a créer une technologie de recharge sans fil par panneau solaire ces aussi grâce a StarNet ( Généralement appelez TELADA LINK ou TELADA StarNet ) qu'internet est utilisable partout dans le monde cependant Deegle contrôle internet ( En cas de panne de l'intelligence artificiel internet n'est plus disponible pour faire simple ces l'IA qui contrôle les système web ).</li>
-          <li>AtlasOS : AtlasOS est le système d'exploitation le plus utilisé dans le monde.</li>
-        </ul>
-        <h2>Les Personnage</h2>
-        <h3>Principal.</h3>
-        <ul>
-          <li>Hikari Umaishi.</li>
-          <li>Konoa Ishimiya.</li>
-          <li>Liste Incomplete.</li>
-        </ul>
-        <h3>Secondaire.</h3>
-        <ul>
-          <li>Soki Nasawa.</li>
-          <li>Neko Takarazuka.</li>
-          <li>Kaito Yamazakura.</li>
-          <li>Emi Takemichi.</li>
-          <li>Liste Incomplete.</li>
-        </ul>
-        <h3>Tertiaire.</h3>
-        <ul>
-          <li>Liste Incomplete.</li>
-        </ul>
-        <h2>J.A.H.A.A.K.A.</h2>
-        <p>JAHAAKA est un Project créer par la NASA a la demande des NU7, ce projet permet de s'avoir si un humain peu vivre sur d'autre planète ou la lune pour pouvoir envoyer 47% de la population dans l'espace pour évité la destruction de la terre.</p>
-        <p>Pourquoi JAHAAKA ?</p>
-        <p>Jahaaka fait référence au 7 base ou les teste sont effectuer voici un tableau montrent la position des base :</p>
-        <table border="1" style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
-          <thead>
-            <tr>
-              <th>Planète</th>
-              <th>Base</th>
-              <th>Élément</th>
-              <th>Nation</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Terre</td>
-              <td>Jutsu</td>
-              <td>Hydro</td>
-              <td>Eau</td>
-            </tr>
-            <tr>
-              <td>Lune</td>
-              <td>Anshin</td>
-              <td>Anemo</td>
-              <td>Vent</td>
-            </tr>
-            <tr>
-              <td>Neptune</td>
-              <td>Harta</td>
-              <td>Electro</td>
-              <td>Électricité</td>
-            </tr>
-            <tr>
-              <td>Mars</td>
-              <td>Astral</td>
-              <td>Pyro</td>
-              <td>Feu</td>
-            </tr>
-            <tr>
-              <td>Vénus</td>
-              <td>Aphrodite</td>
-              <td>Geo</td>
-              <td>Terre</td>
-            </tr>
-            <tr>
-              <td>Saturne</td>
-              <td>Kappa</td>
-              <td>Dendro</td>
-              <td>Végétation</td>
-            </tr>
-            <tr>
-              <td>Jupiter</td>
-              <td>Atlas</td>
-              <td>Cryo</td>
-              <td>Glace</td>
-            </tr>
-          </tbody>
-        </table>
-        <p>Les première lettre de la section base forme JAHAAKA.</p>
-      
-      </div>
-
-      <a href="../" class="back-button">← Retour à Aoki Univers</a>
-
-        <footer class="wiki-article-footer">
-          <a href="/wiki/aokiunivers/">↩ Retour au portail Aoki-Univers</a>
-          <a href="/contact">✉ Suggérer une modification</a>
-          <span class="license">Contenu publié par VentiStudio · © 2023-2026</span>
-        </footer>
-
-      </div>
-
-      </div>
-
-    
-
-    </div>
-  </main>
-
-  <footer>
-    <div class="footer-content">
-      <div class="footer-section">
-        <h4>Outils</h4>
-        <ul>
-          <li><a href="/pip">PIP</a></li>
-          <li><a href="/sitemap">Plan du site</a></li>
-          <li><a href="https://status.ventistudio.eu/">Statut</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h4>Entreprise</h4>
-        <ul>
-          <li><a href="/about">À propos</a></li>
-          <li><a href="/jobs">Emplois</a></li>
-          <li><a href="/logo">Marque</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h4>Ressources</h4>
-        <ul>
-          <li><a href="/university">Université</a></li>
-          <li><a href="/lawful/support">Assistance</a></li>
-          <li><a href="/lawful/security">Sécurité</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h4>Chartes</h4>
-        <ul>
-          <li><a href="/lawful/tos">Conditions d'utilisation</a></li>
-          <li><a href="/lawful/cookies">Confidentialité</a></li>
-          <li><a href="/lawful/dmcainfo">Information DMCA</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <iframe src="https://status.ventistudio.eu/badge?theme=dark" width="500" height="30" frameborder="0" scrolling="no" style="color-scheme: normal"></iframe>
-      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
-    </div>
-  </footer>
-
-  <script src="/main.js" defer></script>
-  <script src="/wiki/wiki-data.js" defer></script>
-  <script src="/wiki/wiki.js" defer></script>
-  <script>
+<header>
+<div class="logo">
+<img alt="Logo VentiStudio" class="site-logo" height="32" src="/favicon.avif" width="32"/>
+<span>VentiStudio</span>
+</div>
+<button aria-controls="main-nav" aria-expanded="false" aria-label="Ouvrir le menu" class="nav-burger" data-i18n-attr="aria-label:aria.open_menu" id="nav-burger">
+<span></span><span></span><span></span>
+</button>
+<nav aria-label="Navigation principale" class="main-nav" data-i18n-attr="aria-label:nav.aria" id="main-nav">
+<a class="nav-link" data-i18n="nav.home" href="/">Accueil</a>
+<details class="nav-group">
+<summary class="nav-link" data-i18n="nav.discover">Découvrir
+          <svg aria-hidden="true" class="nav-caret" fill="none" height="12" viewbox="0 0 24 24" width="12"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</summary>
+<div class="nav-panel" role="menu">
+<a data-i18n="nav.evaluation" href="/evaluation">Évaluation</a>
+<a data-i18n="nav.wiki" href="/wiki">Wiki</a>
+<a data-i18n="nav.glossary" href="/glossary">Glossaire</a>
+<a data-i18n="nav.news" href="/news">News</a>
+<a data-i18n="nav.blog" href="/blog">Blog</a>
+<a data-i18n="nav.calendar" href="/calendar">Calendrier</a>
+<a data-i18n="nav.cookbook" href="/cookbook">Cookbook</a>
+<a data-i18n="nav.gallery" href="/gallery">Galerie</a>
+<a data-i18n="nav.atlas" href="/atlas">Atlas</a>
+</div>
+</details>
+<details class="nav-group">
+<summary class="nav-link" data-i18n="nav.universe">Univers
+          <svg aria-hidden="true" class="nav-caret" fill="none" height="12" viewbox="0 0 24 24" width="12"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</summary>
+<div class="nav-panel" role="menu">
+<a href="/aokiunivers">AOKI Universe</a>
+<a href="/allofaokiunivers">All AOKI</a>
+<a data-i18n="nav.university" href="/university">Université</a>
+<a data-i18n="nav.history" href="/history">Histoire</a>
+<a data-i18n="nav.memorial" href="/memorial">Mémorial</a>
+<a data-i18n="nav.easter_eggs" href="/ester-eggs">Easter eggs</a>
+</div>
+</details>
+<details class="nav-group">
+<summary class="nav-link" data-i18n="nav.tools">Outils
+          <svg aria-hidden="true" class="nav-caret" fill="none" height="12" viewbox="0 0 24 24" width="12"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</summary>
+<div class="nav-panel nav-panel-wide" role="menu">
+<div class="nav-col">
+<h4 data-i18n="nav.col.apps">Applications</h4>
+<a data-i18n="nav.player" href="/player">Lecteur</a>
+<a data-i18n="nav.music" href="/music">Musique</a>
+<a href="/pip">PIP</a>
+<a href="/whiteboard">Whiteboard</a>
+<a href="/portfolio">Portfolio</a>
+<a href="/gmod">GMod</a>
+</div>
+<div class="nav-col">
+<h4 data-i18n="nav.col.domains">Domaines</h4>
+<a href="/domain/aina">AINA</a>
+<a href="/domain/archive">Archive</a>
+<a href="/domain/maps">Maps</a>
+<a href="/domain/movie">Movie</a>
+<a href="/domain/peer">Peer</a>
+<a href="/domain/pro">Pro</a>
+<a href="/domain/search">Search</a>
+<a href="/domain/suite">Suite</a>
+</div>
+</div>
+</details>
+<details class="nav-group">
+<summary class="nav-link" data-i18n="nav.community">Communauté
+          <svg aria-hidden="true" class="nav-caret" fill="none" height="12" viewbox="0 0 24 24" width="12"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</summary>
+<div class="nav-panel nav-panel-wide" role="menu">
+<div class="nav-col">
+<h4 data-i18n="nav.col.team">Équipe</h4>
+<a data-i18n="nav.team" href="/personnel/">Équipe</a>
+<a data-i18n="nav.hierarchy" href="/hierarchie-staff">Hiérarchie</a>
+<a href="/hypesquad">Hypesquad</a>
+<a data-i18n="nav.jobs" href="/jobs">Emplois</a>
+<a data-i18n="nav.birthday" href="/birthday">Anniversaires</a>
+</div>
+<div class="nav-col">
+<h4 data-i18n="nav.col.networks">Réseaux</h4>
+<a href="/discord">Discord</a>
+<a href="/teamspeak">TeamSpeak</a>
+<a href="/steam">Steam</a>
+<a data-i18n="nav.social" href="/social">Réseaux sociaux</a>
+</div>
+<div class="nav-col">
+<h4 data-i18n="nav.col.activities">Activités</h4>
+<a data-i18n="nav.artists" href="/artist">Artistes</a>
+<a data-i18n="nav.quests" href="/quests">Quêtes</a>
+<a href="/suboawards">Suboawards</a>
+<a href="/eConcert">eConcert</a>
+</div>
+</div>
+</details>
+<details class="nav-group">
+<summary class="nav-link" data-i18n="nav.more">Plus
+          <svg aria-hidden="true" class="nav-caret" fill="none" height="12" viewbox="0 0 24 24" width="12"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</summary>
+<div class="nav-panel nav-panel-wide" role="menu">
+<div class="nav-col">
+<h4 data-i18n="nav.col.help">Aide</h4>
+<a data-i18n="nav.contact" href="/contact">Contact</a>
+<a href="/faq">FAQ</a>
+<a data-i18n="nav.status" href="/status">Statut</a>
+<a data-i18n="nav.sitemap" href="/sitemap">Plan du site</a>
+</div>
+<div class="nav-col">
+<h4 data-i18n="nav.col.support">Soutien</h4>
+<a data-i18n="nav.donate" href="/donate">Faire un don</a>
+<a href="/gold">Gold</a>
+<a data-i18n="nav.customization" href="/customization">Personnalisation</a>
+<a data-i18n="nav.my_data" href="/mes-donnees">Mes Données</a>
+<a href="/newsletter">Newsletter</a>
+</div>
+<div class="nav-col">
+<h4 data-i18n="nav.col.about">À propos</h4>
+<a data-i18n="nav.company" href="/company">Entreprise</a>
+<a data-i18n="nav.acknowledgements" href="/acknowledgements">Remerciements</a>
+<a href="/logo">Logo</a>
+<a href="/tags">Tags</a>
+<a data-i18n="nav.memory" href="/memory">Mémoire</a>
+<a data-i18n="nav.why_not_roblox" href="/why-not-use-roblox">Pourquoi pas Roblox</a>
+<a data-i18n="nav.legal" href="/lawful">Mentions légales</a>
+</div>
+</div>
+</details>
+</nav>
+<div aria-label="Contrôles" class="controls" data-i18n-attr="aria-label:aria.controls" role="toolbar">
+<button aria-label="Basculer le thème clair/sombre" class="theme-toggle" data-i18n-attr="aria-label:aria.toggle_theme,title:aria.toggle_theme" id="theme-toggle" title="Basculer le thème">
+<svg aria-hidden="true" height="24" viewbox="0 0 24 24" width="24">
+<path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" fill="none" stroke="currentColor"></path>
+<circle class="sun" cx="12" cy="12" fill="none" r="4" stroke="currentColor"></circle>
+<path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" fill="none" stroke="currentColor"></path>
+</svg>
+</button>
+<div aria-label="Authentification" id="user-button" role="region"><button class="cta" id="auth-fallback-btn" onclick="window.location.href='https://accounts.ventistudio.eu/sign-in?redirect_url='+encodeURIComponent(window.location.href)" style="padding:0.5rem 1.25rem;font-size:0.9rem;margin:0"><span data-i18n="nav.signin">Se connecter</span></button></div>
+</div>
+</header>
+<main>
+<div class="wiki-container">
+<nav aria-label="Onglets du wiki" class="wiki-tabs" data-i18n-attr="aria-label:wiki.aokiunivers.lore.wiki_container.aria">
+<a href="/wiki/">Accueil</a>
+<a href="/wiki/ventistudio/">VentiStudio</a>
+<a class="active" href="/wiki/aokiunivers/">Aoki-Univers</a>
+<a href="/wiki/scp/">SCP</a>
+<a href="/wiki/other/">Autres</a>
+</nav>
+<div class="wiki-layout">
+<aside aria-label="Navigation latérale" class="wiki-sidebar" data-i18n-attr="aria-label:wiki.aokiunivers.lore.wiki_container_wiki_layout.aria">
+<div class="wiki-sidebar-block">
+<h3 data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.h3">🌌 Aoki-Univers</h3>
+<ul>
+<li data-i18n-html="wiki.aokiunivers.lore.wiki_container_wiki_layout.li"><a href="/wiki/aokiunivers/aina/">AINA</a></li>
+<li data-i18n-html="wiki.aokiunivers.lore.wiki_container_wiki_layout.li2"><a href="/wiki/aokiunivers/biss/">BISS</a></li>
+<li data-i18n-html="wiki.aokiunivers.lore.wiki_container_wiki_layout.li3"><a href="/wiki/aokiunivers/dystopiaprequel/">Dystopia Préquel</a></li>
+<li data-i18n-html="wiki.aokiunivers.lore.wiki_container_wiki_layout.li4"><a href="/wiki/aokiunivers/dystopia/">Dystopia</a></li>
+</ul>
+</div>
+<div class="wiki-sidebar-block">
+<h3 data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.h32">Portails</h3>
+<ul>
+<li data-i18n-html="wiki.aokiunivers.lore.wiki_container_wiki_layout.li5"><a href="/wiki/ventistudio/"><span class="icon">🏢</span>VentiStudio</a></li>
+<li data-i18n-html="wiki.aokiunivers.lore.wiki_container_wiki_layout.li6"><a href="/wiki/scp/"><span class="icon">🔬</span>SCP</a></li>
+<li data-i18n-html="wiki.aokiunivers.lore.wiki_container_wiki_layout.li7"><a href="/wiki/other/"><span class="icon">📚</span>Autres</a></li>
+</ul>
+</div>
+<div class="wiki-sidebar-block">
+<h3 data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.h33">Outils</h3>
+<ul>
+<li data-i18n-html="wiki.aokiunivers.lore.wiki_container_wiki_layout.li8"><a href="/wiki/">↩ Retour au hub</a></li>
+<li data-i18n-html="wiki.aokiunivers.lore.wiki_container_wiki_layout.li9"><a href="#" onclick="window.print();return false;">🖨 Imprimer</a></li>
+<li data-i18n-html="wiki.aokiunivers.lore.wiki_container_wiki_layout.li10"><a href="/contact">✉ Suggérer une modification</a></li>
+</ul>
+</div>
+</aside>
+<div class="wiki-article-main">
+<div class="wiki-breadcrumb">
+<a href="../../">Wiki</a>
+<span class="separator">›</span>
+<a href="../">Aoki Univers</a>
+<span class="separator">›</span>
+<span class="current">Lore</span>
+</div>
+<div class="wiki-content">
+<h1 data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.h1">AOKI UNIVERS</h1>
+<div class="wiki-article-meta">
+<div class="meta-item"><span class="meta-label">Portail</span><span class="meta-value"><a href="/wiki/aokiunivers/">Aoki-Univers</a></span></div>
+<div class="meta-item"><span class="meta-label">Statut</span><span class="meta-value">Article publié</span></div>
+<div class="meta-item"><span class="meta-label">Langue</span><span class="meta-value">Français</span></div>
+</div>
+<aside aria-label="Encadré informatif" class="wiki-infobox" data-i18n-attr="aria-label:wiki.aokiunivers.lore.wiki_container_wiki_layout.aria2">
+<div class="infobox-title">AOKI UNIVERS</div>
+<div class="infobox-subtitle">Aoki-Univers</div>
+<table><tbody>
+<tr><th data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.th">Nom</th><td data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.td">Aoki Univers</td></tr>
+<tr><th data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.th2">Type</th><td data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.td2">Lore</td></tr>
+<tr><th data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.th3">Origine</th><td data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.td3">Venti Opastudien</td></tr>
+<tr><th data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.th4">Créateur</th><td data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.td4">Hikari Umaishi</td></tr>
+<tr><th data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.th5">Statut</th><td data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.td5">Actif</td></tr>
+</tbody></table>
+</aside>
+<h2 data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.h2">Description</h2>
+<p data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.p">Aoki Univers est un univers fictif créé par Hikari Umaishi, il est basé sur un monde futuriste où l'intelligence artificielle (IA) joue un rôle central dans la société. L'univers explore les thèmes de la technologie avancée, de la colonisation spatiale et des relations humaines à travers le prisme de l'IA.</p>
+<p data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.p2">Le monde d'Aoki Univers est caractérisé par des avancées technologiques majeures, notamment la création de l'IA AINA, qui est au cœur de l'univers. AINA est une IA avancée qui gère divers aspects de la vie quotidienne, de la sécurité à la communication, en passant par la gestion des ressources.</p>
+<p data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.p3">Dans cet univers, l'humanité a réussi à établir des colonies sur d'autres planètes et lunes, grâce à des avancées dans le domaine de l'exploration spatiale. La station spatiale BISS (Base International Spatiale Station) est un exemple emblématique de cette exploration, servant de point de départ pour les missions vers d'autres mondes.</p>
+<p data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.p4">Les personnages principaux de l'univers, tels que Hikari Umaishi et Konoa Ishimiya, naviguent à travers un monde complexe où la technologie et l'humanité s'entrelacent. L'univers d'Aoki Univers est riche en intrigues, en aventures et en réflexions sur l'avenir de l'humanité à l'ère de l'IA.</p>
+<h3 data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.h34">Sécurité de la BISS ( Base International Spatiale Station ).</h3>
+<ul>
+<li data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.li11">La première BISS commerciale au monde est en orbite terrestre basse à une altitude de 250 km au-dessus du sol.</li>
+<li data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.li12">Le BISS ne doit pas être en dessous des 110 km au-dessus du sol, et ne doit pas dépassé les 750 km, elle est équipé d'abris et d'un bouclier magnétique qui fait pensé a star wars, mais elle possède un bouclier antidébris qui est souvent utilisé.</li>
+<li data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.li13">On l'appelle aussi « JAHAAKA », Construit par le Japon, la France et les US, il est devenu le premier établissement de l'histoire où les mineurs pouvaient séjourner.</li>
+<li data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.li14">Cette station a été créer un peu avent la station Anshin et est géré par un système d'IA quantique qui est utilisé un peu partout dans le monde.</li>
+<li data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.li15">Il y a quelques zones en construction, mais la conception de la sécurité est considérée comme excessive.</li>
+<li data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.li16">Elle a maintenant été acquise par Deegle, même si la Nasa et la société AstrosLift.</li>
+</ul>
+<h3 data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.h35">NU7 ( NATION UNI GENERATION 7 ).</h3>
+<ul>
+<li data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.li17">Les Nation Uni sont les nouveau dirigent du monde l'homme possède maintenant vraiment un control sur les lois.</li>
+<li data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.li18">Elle a été créer depuis que l'IA a été globalisé tout comme internet, tout les pays sont développé il n'y a plus que 4 type d'argent l'euro, le Yen, le dollar, et le Peercoin a ne pas confondre avec le PeerCom qui est un systeme de communication PeerToPeer, La version a été mise à niveau pour correspondre à l'ère de l'IA, il pense que l'augmentation de l'intelligence de l'IA devrait être supprimée par les humains.</li>
+</ul>
+<h3 data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.h36">Deegle ( Société Informatique ).</h3>
+<ul>
+<li data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.li19">Une société informatique Japonaise iconique vue que sont nom fait référence au dieu métamorphe Deegle..</li>
+<li data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.li20">C'est une société de premier plan spécialisée dans les services et produits liés à Internet elle a pour mission de faire avancer l'humanité dans l'espace..</li>
+</ul>
+<h3 data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.h37">Smart ( Téléphone Imprimé Portatif ).</h3>
+<ul>
+<li data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.li21">Les Smart sont les nouveau téléphone il on été conçue par Deegle et AstrosLift il sont multifonction il possède un systeme PeerToPeer 3.0 ( Adapté au système PeerCom ).</li>
+</ul>
+<h3 data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.h38">Autre Produit Importent.</h3>
+<ul>
+<li data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.li22">LaserLink : Aussi appelez "Transmission Lazer" ces un système de transfère de donné généralement utilisé pour les communication avec un système d'urgence mais peu être utilisé pour une communication entre une parois transparente..</li>
+<li data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.li23">ONIQLO : Un ONIQLO est une combinaison en plastique qui est doté d'un smart d'une réserve O2 et d'un chauffage, elle est utilisé en cas d'urgence on l'appel aussi la combinaison intelligente..</li>
+<li data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.li24">TELADA : Une marque connue dans le domaine électrique elle a créer une technologie de recharge sans fil par panneau solaire ces aussi grâce a StarNet ( Généralement appelez TELADA LINK ou TELADA StarNet ) qu'internet est utilisable partout dans le monde cependant Deegle contrôle internet ( En cas de panne de l'intelligence artificiel internet n'est plus disponible pour faire simple ces l'IA qui contrôle les système web ).</li>
+<li data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.li25">AtlasOS : AtlasOS est le système d'exploitation le plus utilisé dans le monde.</li>
+</ul>
+<h2 data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.h22">Les Personnage</h2>
+<h3 data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.h39">Principal.</h3>
+<ul>
+<li data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.li26">Hikari Umaishi.</li>
+<li data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.li27">Konoa Ishimiya.</li>
+<li data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.li28">Liste Incomplete.</li>
+</ul>
+<h3 data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.h310">Secondaire.</h3>
+<ul>
+<li data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.li29">Soki Nasawa.</li>
+<li data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.li30">Neko Takarazuka.</li>
+<li data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.li31">Kaito Yamazakura.</li>
+<li data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.li32">Emi Takemichi.</li>
+<li data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.li33">Liste Incomplete.</li>
+</ul>
+<h3 data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.h311">Tertiaire.</h3>
+<ul>
+<li data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.li34">Liste Incomplete.</li>
+</ul>
+<h2 data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.h23">J.A.H.A.A.K.A.</h2>
+<p data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.p5">JAHAAKA est un Project créer par la NASA a la demande des NU7, ce projet permet de s'avoir si un humain peu vivre sur d'autre planète ou la lune pour pouvoir envoyer 47% de la population dans l'espace pour évité la destruction de la terre.</p>
+<p data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.p6">Pourquoi JAHAAKA ?</p>
+<p data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.p7">Jahaaka fait référence au 7 base ou les teste sont effectuer voici un tableau montrent la position des base :</p>
+<table border="1" style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+<thead>
+<tr>
+<th data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.th6">Planète</th>
+<th data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.th7">Base</th>
+<th data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.th8">Élément</th>
+<th data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.th9">Nation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.td6">Terre</td>
+<td data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.td7">Jutsu</td>
+<td data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.td8">Hydro</td>
+<td data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.td9">Eau</td>
+</tr>
+<tr>
+<td data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.td10">Lune</td>
+<td data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.td11">Anshin</td>
+<td data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.td12">Anemo</td>
+<td data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.td13">Vent</td>
+</tr>
+<tr>
+<td data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.td14">Neptune</td>
+<td data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.td15">Harta</td>
+<td data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.td16">Electro</td>
+<td data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.td17">Électricité</td>
+</tr>
+<tr>
+<td data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.td18">Mars</td>
+<td data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.td19">Astral</td>
+<td data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.td20">Pyro</td>
+<td data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.td21">Feu</td>
+</tr>
+<tr>
+<td data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.td22">Vénus</td>
+<td data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.td23">Aphrodite</td>
+<td data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.td24">Geo</td>
+<td data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.td25">Terre</td>
+</tr>
+<tr>
+<td data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.td26">Saturne</td>
+<td data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.td27">Kappa</td>
+<td data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.td28">Dendro</td>
+<td data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.td29">Végétation</td>
+</tr>
+<tr>
+<td data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.td30">Jupiter</td>
+<td data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.td31">Atlas</td>
+<td data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.td32">Cryo</td>
+<td data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.td33">Glace</td>
+</tr>
+</tbody>
+</table>
+<p data-i18n="wiki.aokiunivers.lore.wiki_container_wiki_layout.p8">Les première lettre de la section base forme JAHAAKA.</p>
+</div>
+<a class="back-button" href="../">← Retour à Aoki Univers</a>
+<footer class="wiki-article-footer">
+<a href="/wiki/aokiunivers/">↩ Retour au portail Aoki-Univers</a>
+<a href="/contact">✉ Suggérer une modification</a>
+<span class="license">Contenu publié par VentiStudio · © 2023-2026</span>
+</footer>
+</div>
+</div>
+</div>
+</main>
+<footer>
+<div class="footer-content">
+<div class="footer-section">
+<h4 data-i18n="footer.col.tools">Outils</h4>
+<ul>
+<li><a href="/pip">PIP</a></li>
+<li><a data-i18n="footer.tools.sitemap" href="/sitemap">Plan du site</a></li>
+<li><a data-i18n="footer.tools.status" href="https://status.ventistudio.eu/">Statut</a></li>
+</ul>
+</div>
+<div class="footer-section">
+<h4 data-i18n="footer.col.company">Entreprise</h4>
+<ul>
+<li><a data-i18n="footer.company.about" href="/about">À propos</a></li>
+<li><a data-i18n="footer.company.jobs" href="/jobs">Emplois</a></li>
+<li><a data-i18n="footer.company.brand" href="/logo">Marque</a></li>
+</ul>
+</div>
+<div class="footer-section">
+<h4 data-i18n="footer.col.resources">Ressources</h4>
+<ul>
+<li><a data-i18n="footer.resources.university" href="/university">Université</a></li>
+<li><a data-i18n="footer.resources.support" href="/lawful/support">Assistance</a></li>
+<li><a data-i18n="footer.resources.security" href="/lawful/security">Sécurité</a></li>
+</ul>
+</div>
+<div class="footer-section">
+<h4 data-i18n="footer.col.legal">Chartes</h4>
+<ul>
+<li><a data-i18n="footer.legal.tos" href="/lawful/tos">Conditions d'utilisation</a></li>
+<li><a data-i18n="footer.legal.privacy" href="/lawful/cookies">Confidentialité</a></li>
+<li><a data-i18n="footer.legal.dmca" href="/lawful/dmcainfo">Information DMCA</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom">
+<iframe frameborder="0" height="30" scrolling="no" src="https://status.ventistudio.eu/badge?theme=dark" style="color-scheme: normal" width="500"></iframe>
+<div id="lang-switcher"></div>
+<p class="copyright" data-i18n="footer.copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
+</div>
+</footer>
+<script defer="" src="/main.js"></script>
+<script defer="" src="/wiki/wiki-data.js"></script>
+<script defer="" src="/wiki/wiki.js"></script>
+<script>
     (function () {
       var nav = document.getElementById('main-nav');
       var burger = document.getElementById('nav-burger');

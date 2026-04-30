@@ -1,4 +1,3 @@
-/* Cellule — Spreadsheet Logic */
 (function () {
   'use strict';
 
@@ -31,14 +30,14 @@
     return { r: parseInt(m[2], 10) - 1, c: m[1].charCodeAt(0) - 65 };
   }
 
-  /* ---- Render ---- */
+
   function render() {
     const container = document.getElementById('cellule-container');
     container.innerHTML = '';
 
     const sheet = sheets[activeSheet];
 
-    // Column header
+
     const colRow = document.createElement('div');
     colRow.className = 'cellule-col-header';
     const corner = document.createElement('div');
@@ -52,7 +51,7 @@
     }
     container.appendChild(colRow);
 
-    // Rows
+
     for (let r = 0; r < ROWS; r++) {
       const row = document.createElement('div');
       row.className = 'cellule-row';
@@ -78,7 +77,7 @@
           cell.classList.add('type-number');
         }
 
-        // Apply cell styles
+
         const cs = (sheet.styles || {})[r + ',' + c];
         if (cs) {
           if (cs.bold) cell.style.fontWeight = '700';
@@ -127,7 +126,7 @@
     return r >= minR && r <= maxR && c >= minC && c <= maxC;
   }
 
-  /* ---- Selection ---- */
+
   function onCellMouseDown(e, r, c) {
     selectedCell = { r, c };
     if (e.shiftKey) {
@@ -147,7 +146,7 @@
 
   document.addEventListener('mouseup', () => { isSelecting = false; });
 
-  /* ---- Editing ---- */
+
   function startEditing(r, c) {
     const cellEl = document.querySelector(`.cellule-cell[data-r="${r}"][data-c="${c}"]`);
     if (!cellEl) return;
@@ -157,7 +156,7 @@
     cellEl.contentEditable = true;
     cellEl.focus();
 
-    // Select text
+
     const range = document.createRange();
     range.selectNodeContents(cellEl);
     const sel = window.getSelection();
@@ -197,7 +196,7 @@
     render();
   }
 
-  /* ---- Formula Bar ---- */
+
   function updateFormulaBar() {
     const refEl = document.getElementById('cell-ref');
     const fxInput = document.getElementById('fx-input');
@@ -205,7 +204,7 @@
     if (fxInput) fxInput.value = sheets[activeSheet].data[selectedCell.r][selectedCell.c];
   }
 
-  // Formula bar input → cell
+
   const fxInput = document.getElementById('fx-input');
   if (fxInput) {
     fxInput.addEventListener('keydown', (e) => {
@@ -218,7 +217,7 @@
     });
   }
 
-  /* ---- Keyboard navigation on grid ---- */
+
   document.addEventListener('keydown', (e) => {
     if (e.target.contentEditable === 'true' || e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
 
@@ -244,7 +243,7 @@
         render();
         break;
       default:
-        // Start typing in cell
+
         if (e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey) {
           sheets[activeSheet].data[r][c] = '';
           render();
@@ -253,7 +252,7 @@
     }
   });
 
-  /* ---- Formula evaluation ---- */
+
   function evaluate(raw, data, depth) {
     depth = depth || 0;
     if (depth > 10) return '#ERREUR';
@@ -262,7 +261,7 @@
 
     const expr = raw.slice(1).trim();
     try {
-      // Replace cell references (A1, B2, etc.)
+
       const resolved = expr.replace(/\b([A-Z])(\d+)\b/g, (_, col, row) => {
         const r = parseInt(row, 10) - 1;
         const c = col.charCodeAt(0) - 65;
@@ -272,7 +271,7 @@
         return isNaN(v) ? '0' : v || '0';
       });
 
-      // Support SUM(A1:A10), AVERAGE(A1:A10), MIN, MAX, COUNT
+
       const withFunctions = resolved
         .replace(/SUM\(([A-Z])(\d+):([A-Z])(\d+)\)/gi, (_, c1, r1, c2, r2) => rangeOp(data, c1, r1, c2, r2, 'sum'))
         .replace(/AVERAGE\(([A-Z])(\d+):([A-Z])(\d+)\)/gi, (_, c1, r1, c2, r2) => rangeOp(data, c1, r1, c2, r2, 'avg'))
@@ -280,7 +279,7 @@
         .replace(/MAX\(([A-Z])(\d+):([A-Z])(\d+)\)/gi, (_, c1, r1, c2, r2) => rangeOp(data, c1, r1, c2, r2, 'max'))
         .replace(/COUNT\(([A-Z])(\d+):([A-Z])(\d+)\)/gi, (_, c1, r1, c2, r2) => rangeOp(data, c1, r1, c2, r2, 'count'));
 
-      // Additional functions
+
       let processed = withFunctions;
       processed = processed.replace(/PI\(\)/gi, String(Math.PI));
       processed = processed.replace(/ABS\(([^)]+)\)/gi, (_, v) => { const n = parseFloat(v); return isNaN(n) ? v : Math.abs(n); });
@@ -301,12 +300,12 @@
         } catch { return '#ERREUR'; }
       });
 
-      // Safe eval: only allow numbers and operators
+
       if (/^[\d\s+\-*/%().]+$/.test(processed)) {
         const result = Function('"use strict"; return (' + processed + ')')();
         return isFinite(result) ? (Math.round(result * 1e10) / 1e10) : '#ERREUR';
       }
-      // If not a number expression, return as text (for TODAY, CONCAT, etc.)
+
       if (processed && processed !== expr) return processed;
       return '#ERREUR';
     } catch {
@@ -341,7 +340,7 @@
     }
   }
 
-  /* ---- Sheet Tabs ---- */
+
   function renderTabs() {
     const tabsEl = document.getElementById('cellule-tabs');
     if (!tabsEl) return;
@@ -369,13 +368,13 @@
     tabsEl.appendChild(addBtn);
   }
 
-  /* ---- Status bar ---- */
+
   function updateStatus() {
     const selInfo = document.getElementById('status-sel');
     const sumInfo = document.getElementById('status-sum');
     if (selInfo) selInfo.textContent = cellRef(selectedCell.r, selectedCell.c);
 
-    // Calculate sum of selection
+
     if (selectionRange && sumInfo) {
       const data = sheets[activeSheet].data;
       let sum = 0, count = 0;
@@ -395,7 +394,7 @@
     }
   }
 
-  /* ---- Auto-save ---- */
+
   function scheduleAutoSave() {
     clearTimeout(autoSaveTimer);
     autoSaveTimer = setTimeout(() => {
@@ -411,7 +410,7 @@
     }
   }
 
-  /* ---- File operations ---- */
+
   window.celluleNew = function () {
     if (!confirm('Créer un nouveau tableur ?')) return;
     sheets = [{ name: 'Feuille 1', data: createEmptyGrid(), styles: {} }];
@@ -448,7 +447,7 @@
 
   window.celluleExportCSV = function () {
     const data = sheets[activeSheet].data;
-    // Only export filled rows/cols
+
     let maxR = 0, maxC = 0;
     data.forEach((row, r) => row.forEach((cell, c) => {
       if (cell) { maxR = Math.max(maxR, r); maxC = Math.max(maxC, c); }
@@ -466,7 +465,7 @@
     VSSuite.exportHTML(document.getElementById('cellule-container'), docNameInput.value);
   };
 
-  /* ---- Dropdown ---- */
+
   window.toggleDropdown = function (id) {
     const dd = document.getElementById(id);
     if (!dd) return;
@@ -482,7 +481,7 @@
     }
   });
 
-  /* ---- Shortcuts ---- */
+
   VSSuite.registerShortcuts({
     'ctrl+s': () => celluleSave(),
     'ctrl+o': () => celluleOpen(),
@@ -493,7 +492,7 @@
     'ctrl+u': (e) => { e.preventDefault(); celluleToggleStyle('underline'); },
   });
 
-  /* ---- Cell formatting ---- */
+
   function getSelectedCells() {
     const cells = [];
     if (selectionRange) {
@@ -550,10 +549,10 @@
     const col = selectedCell.c;
     const data = sheets[activeSheet].data;
     const styles = sheets[activeSheet].styles || {};
-    // Find filled rows
+
     let maxR = 0;
     data.forEach((row, r) => { if (row[col]) maxR = r; });
-    // Sort rows 0..maxR by the selected column
+
     const rowIndices = Array.from({ length: maxR + 1 }, (_, i) => i);
     rowIndices.sort((a, b) => {
       const va = evaluate(data[a][col], data) || '';
@@ -579,7 +578,7 @@
     render();
   };
 
-  // Color inputs for formatting
+
   const fmtColor = document.getElementById('fmt-color');
   const fmtBg = document.getElementById('fmt-bg');
   if (fmtColor) fmtColor.addEventListener('input', () => {
@@ -591,7 +590,7 @@
     scheduleAutoSave(); render();
   });
 
-  /* ---- Init ---- */
+
   function init() {
     VSSuite.initTheme();
     loadAutoSave();

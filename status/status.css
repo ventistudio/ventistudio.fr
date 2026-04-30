@@ -1,5 +1,3 @@
-/* ═══ Page de Statut — Styles ═══ */
-
 .status-page-header {
   text-align: center;
   padding: 3rem 2rem 2rem;
@@ -15,7 +13,6 @@
   font-size: 1.05rem;
 }
 
-/* ── Badge Global ── */
 .status-global {
   max-width: 800px;
   margin: 0 auto 2.5rem;
@@ -57,7 +54,6 @@
   font-size: 0.85rem;
 }
 
-/* ── Catégories ── */
 .status-categories {
   max-width: 900px;
   margin: 0 auto;
@@ -158,7 +154,6 @@
   text-align: right;
 }
 
-/* ── Incidents ── */
 .status-incidents {
   max-width: 900px;
   margin: 3rem auto 0;
@@ -223,7 +218,6 @@
 .incident-badge.resolved { color: #22c55e; background: rgba(34, 197, 94, 0.1); }
 .incident-badge.ongoing { color: #ef4444; background: rgba(239, 68, 68, 0.1); }
 
-/* ── Auto-refresh ── */
 .status-refresh-bar {
   max-width: 900px;
   margin: 1.5rem auto 0;
@@ -254,7 +248,6 @@
   color: #fff;
 }
 
-/* ── Responsive ── */
 @media (max-width: 640px) {
   .status-global {
     flex-direction: column;

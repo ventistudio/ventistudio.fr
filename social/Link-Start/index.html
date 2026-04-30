@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr" data-theme="dark">
 <head>
   <meta charset="UTF-8">
@@ -338,16 +338,17 @@
   <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
   <meta property="og:type" content="website">
   <link rel="canonical" href="https://ventistudio.eu/social/Link-Start/">
+  <script src="/i18n.js" defer></script>
 </head>
 <body>
 
-  <!-- Light tunnel canvas -->
+
   <canvas id="tunnel"></canvas>
 
-  <!-- Phase 1: LINK START text -->
+
   <div id="linkStartText">Link Start</div>
 
-  <!-- Phase 3: Senses check -->
+
   <div id="sensesOverlay">
     <div class="sense-item" data-sense="touch">
       <span class="sense-name">Touch</span>
@@ -376,7 +377,7 @@
     </div>
   </div>
 
-  <!-- Phase 4: Language selection -->
+
   <div id="langOverlay">
     <div class="lang-title">Select Language</div>
     <div class="lang-option" data-lang="ja">Japanese</div>
@@ -386,7 +387,7 @@
     <div class="lang-option" data-lang="zh">中文</div>
   </div>
 
-  <!-- Phase 5: Login -->
+
   <div id="loginOverlay">
     <div class="login-title">Player Login</div>
     <div class="login-field">
@@ -405,19 +406,19 @@
     </div>
   </div>
 
-  <!-- Phase 6: Destination -->
+
   <div id="destOverlay">
     <div class="dest-label">Teleporting to</div>
     <div class="dest-url" id="destUrl"></div>
   </div>
 
-  <!-- Error state -->
+
   <div id="errorOverlay">
     <div class="error-title">System Error</div>
     <div class="error-msg" id="errorMsg"></div>
   </div>
 
-  <!-- White flash -->
+
   <div id="whiteFlash"></div>
 
   <script>

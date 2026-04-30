@@ -1,19 +1,3 @@
-/*!
- * VentiStudio i18n v1.0 — Moteur de traduction client-side
- * ─────────────────────────────────────────────────────────
- * Usage HTML :
- *   data-i18n="key"               → remplace textContent (ou 1er nœud texte si SVG présent)
- *   data-i18n-html="key"          → remplace innerHTML (contenu mixte avec balises)
- *   data-i18n-attr="attr:key"     → remplace un attribut (aria-label, placeholder, title…)
- *   data-i18n-attr="a:k1,b:k2"   → plusieurs attributs séparés par virgule
- *
- * Fichiers de langue : /locales/{lang}.json (JSON plat, clés pointées)
- * Source (fallback) : /locales/fr.json (ou HTML statique = déjà en français)
- *
- * API publique :
- *   window.VS_I18N.getLang()      → code langue actif
- *   window.VS_I18N.setLang('en')  → changer la langue
- */
 (function () {
   'use strict';
 
@@ -21,7 +5,7 @@
   var STORAGE_KEY = 'vs-lang';
   var _cache = {};
 
-  /* ─── Détection ──────────────────────────────────────────── */
+
   function detect() {
     var stored = localStorage.getItem(STORAGE_KEY);
     if (stored) return stored;
@@ -30,18 +14,18 @@
 
   var _lang = detect();
 
-  /* ─── Application ────────────────────────────────────────── */
+
   function apply(data) {
     _cache[_lang] = data;
 
-    // data-i18n : texte simple
+
     var els = document.querySelectorAll('[data-i18n]');
     for (var i = 0; i < els.length; i++) {
       var el = els[i];
       var v = data[el.getAttribute('data-i18n')];
       if (v == null) continue;
 
-      // Si l'élément a des enfants HTML (SVG, spans…) → mise à jour du 1er nœud texte uniquement
+
       var hasChild = false;
       for (var c = 0; c < el.childNodes.length; c++) {
         if (el.childNodes[c].nodeType === 1) { hasChild = true; break; }
@@ -56,14 +40,14 @@
       }
     }
 
-    // data-i18n-html : innerHTML (liens, <em>, etc. dans le texte)
+
     var hels = document.querySelectorAll('[data-i18n-html]');
     for (var i = 0; i < hels.length; i++) {
       var v = data[hels[i].getAttribute('data-i18n-html')];
       if (v != null) hels[i].innerHTML = v;
     }
 
-    // data-i18n-attr : attributs
+
     var aels = document.querySelectorAll('[data-i18n-attr]');
     for (var i = 0; i < aels.length; i++) {
       var pairs = aels[i].getAttribute('data-i18n-attr').split(',');
@@ -76,7 +60,7 @@
       }
     }
 
-    // Méta HTML
+
     document.documentElement.lang = _lang;
     if (data['page.title']) document.title = data['page.title'];
     var md = document.querySelector('meta[name=description]');
@@ -85,7 +69,7 @@
     document.dispatchEvent(new CustomEvent('i18n:ready', { detail: { lang: _lang, data: data } }));
   }
 
-  /* ─── Chargement JSON ────────────────────────────────────── */
+
   function load(l, fallback) {
     if (_cache[l]) { apply(_cache[l]); return; }
     fetch('/locales/' + l + '.json')
@@ -94,7 +78,7 @@
       .catch(function () { if (!fallback && l !== FALLBACK) load(FALLBACK, true); });
   }
 
-  /* ─── Sélecteur de langue ────────────────────────────────── */
+
   var LANGS = [
     ['fr', '🇫🇷 FR', 'Français'],
     ['en', '🇬🇧 EN', 'English'],
@@ -185,7 +169,7 @@
     wrap.appendChild(dropdown);
   }
 
-  /* ─── Init ───────────────────────────────────────────────── */
+
   function init() {
     buildSwitcher();
     if (_lang !== FALLBACK) load(_lang);
@@ -195,7 +179,7 @@
     ? document.addEventListener('DOMContentLoaded', init)
     : init();
 
-  /* ─── API publique ───────────────────────────────────────── */
+
   window.VS_I18N = {
     getLang: function () { return _lang; },
     setLang: function (l) {

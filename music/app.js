@@ -1,8 +1,3 @@
-// ============================================================
-// VentiStudio Music Complete Spotify-like App
-// ============================================================
-
-// ---- Global State ----
 let musicData = [];
 let currentIndex = 0;
 let isLoop = false;
@@ -11,9 +6,8 @@ let audioCtxInitialized = false;
 let audioCtx, analyser, source, dataArray;
 let ledColors = [];
 let ledAnimationId = null;
-let currentView = 'home'; // home | allTracks | artists | artist | albums | album | search
+let currentView = 'home';
 
-// ---- DOM References ----
 const audio = document.getElementById('mainAudio');
 const progressBar = document.getElementById('progressBar');
 const progressHandle = document.getElementById('progressHandle');
@@ -28,14 +22,12 @@ const progressWrapper = document.getElementById('progressWrapper');
 const currentAlbumImage = document.getElementById('currentAlbumImage');
 const viewContainer = document.getElementById('viewContainer');
 
-// Mobile player refs
 const pmTitle = document.getElementById('pmTitle');
 const pmArtist = document.getElementById('pmArtist');
 const pmCover = document.getElementById('pmCover');
 const pmPlayBtn = document.getElementById('pmPlayBtn');
 const pmProgressBar = document.getElementById('pmProgressBar');
 
-// ---- DOM Ready ----
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', init);
 } else {
@@ -50,9 +42,6 @@ function init() {
   setupSearch();
 }
 
-// ============================================================
-// SIDEBAR
-// ============================================================
 function setupSidebar() {
   const toggle = document.getElementById('sidebarToggle');
   const sidebar = document.getElementById('sidebar');
@@ -85,9 +74,6 @@ function updateActiveNav(view) {
   }
 }
 
-// ============================================================
-// VOLUME
-// ============================================================
 function setupVolumeSlider() {
   const slider = document.getElementById('volumeSlider');
   if (!slider) return;
@@ -97,9 +83,6 @@ function setupVolumeSlider() {
   });
 }
 
-// ============================================================
-// PROGRESS DRAG
-// ============================================================
 function setupProgressDrag() {
   if (!progressWrapper) return;
   let isDragging = false;
@@ -122,9 +105,6 @@ function setupProgressDrag() {
   progressWrapper.addEventListener('touchend', () => isDragging = false);
 }
 
-// ============================================================
-// SEARCH
-// ============================================================
 function setupSearch() {
   const input = document.getElementById('searchInput');
   if (!input) return;
@@ -149,9 +129,6 @@ function setupSearch() {
   });
 }
 
-// ============================================================
-// DATA EXTRACTION HELPERS
-// ============================================================
 function getArtists() {
   const map = {};
   musicData.forEach(t => {
@@ -194,9 +171,6 @@ function getRecentlyPlayed() {
   return history.slice(0, 8).filter(h => musicData.some(t => t.title === h.title));
 }
 
-// ============================================================
-// VIEW SYSTEM
-// ============================================================
 function showView(view, param, extraData) {
   currentView = view;
   const container = viewContainer;
@@ -204,7 +178,7 @@ function showView(view, param, extraData) {
   const backBtn = document.getElementById('backBtn');
   const sortWrap = document.getElementById('sortSelectWrap');
 
-  // Show/hide back button
+
   const subViews = ['artist', 'album', 'allTracks', 'search'];
   if (backBtn) backBtn.style.display = subViews.includes(view) ? 'flex' : 'none';
   if (sortWrap) sortWrap.style.display = (view === 'allTracks' || view === 'search') ? '' : 'none';
@@ -222,9 +196,6 @@ function showView(view, param, extraData) {
   }
 }
 
-// ============================================================
-// HOME VIEW
-// ============================================================
 function renderHome(container) {
   const recent = getRecentlyPlayed();
   const albums = getAlbums();
@@ -232,7 +203,7 @@ function renderHome(container) {
 
   let html = '';
 
-  // Welcome
+
   html += `
     <div class="home-welcome">
       <h1>Bienvenue sur VentiStudio Music</h1>
@@ -240,7 +211,7 @@ function renderHome(container) {
     </div>
   `;
 
-  // Recently played
+
   if (recent.length > 0) {
     html += `
       <section class="home-section">
@@ -268,7 +239,7 @@ function renderHome(container) {
     `;
   }
 
-  // Artists
+
   html += `
     <section class="home-section">
       <div class="section-header">
@@ -289,7 +260,7 @@ function renderHome(container) {
     </section>
   `;
 
-  // Albums
+
   html += `
     <section class="home-section">
       <div class="section-header">
@@ -308,7 +279,7 @@ function renderHome(container) {
     </section>
   `;
 
-  // All tracks teaser
+
   html += `
     <section class="home-section">
       <div class="section-header">
@@ -324,9 +295,6 @@ function renderHome(container) {
   container.innerHTML = html;
 }
 
-// ============================================================
-// ALL TRACKS VIEW
-// ============================================================
 function renderAllTracks(container, tracks) {
   container.innerHTML = `
     <div class="view-header">
@@ -339,9 +307,6 @@ function renderAllTracks(container, tracks) {
   `;
 }
 
-// ============================================================
-// SEARCH VIEW
-// ============================================================
 function renderSearch(container, query) {
   const q = query.toLowerCase();
   const matchedTracks = musicData.filter(t =>
@@ -412,9 +377,6 @@ function renderSearch(container, query) {
   container.innerHTML = html;
 }
 
-// ============================================================
-// ARTISTS LIST VIEW
-// ============================================================
 function renderArtistsList(container) {
   const artists = getArtists();
   container.innerHTML = `
@@ -436,9 +398,6 @@ function renderArtistsList(container) {
   `;
 }
 
-// ============================================================
-// ARTIST PAGE VIEW
-// ============================================================
 function renderArtistPage(container, artistName) {
   const artist = getArtists().find(a => a.name === artistName);
   if (!artist) {
@@ -446,9 +405,9 @@ function renderArtistPage(container, artistName) {
     return;
   }
 
-  // Get albums for this artist
+
   const artistAlbums = getAlbums().filter(a => a.artist === artistName);
-  // Get play counts from history
+
   const history = JSON.parse(localStorage.getItem('musicHistory') || '[]');
   const tracksWithPopularity = artist.tracks.map(t => {
     const h = history.find(h => h.title === t.title);
@@ -527,9 +486,6 @@ function renderArtistPage(container, artistName) {
   `;
 }
 
-// ============================================================
-// ALBUMS LIST VIEW
-// ============================================================
 function renderAlbumsList(container) {
   const albums = getAlbums();
   container.innerHTML = `
@@ -549,9 +505,6 @@ function renderAlbumsList(container) {
   `;
 }
 
-// ============================================================
-// ALBUM PAGE VIEW
-// ============================================================
 function renderAlbumPage(container, key) {
   const [albumName, artistName] = key.split('___');
   const albums = getAlbums();
@@ -561,7 +514,7 @@ function renderAlbumPage(container, key) {
     return;
   }
 
-  const totalDuration = '—'; // no duration data available
+  const totalDuration = '—';
   const history = JSON.parse(localStorage.getItem('musicHistory') || '[]');
 
   container.innerHTML = `
@@ -613,9 +566,6 @@ function renderAlbumPage(container, key) {
   `;
 }
 
-// ============================================================
-// TRACK CARD RENDERING
-// ============================================================
 function renderTrackCards(tracks) {
   return tracks.map(track => {
     const actualIndex = musicData.findIndex(t =>
@@ -642,9 +592,6 @@ function escapeAttr(str) {
   return str.replace(/'/g, "\\'").replace(/"/g, '&quot;');
 }
 
-// ============================================================
-// PLAY ARTIST / ALBUM HELPERS
-// ============================================================
 function playArtist(artistName) {
   const artistTracks = musicData.filter(t => t.artist === artistName);
   if (artistTracks.length === 0) return;
@@ -681,17 +628,12 @@ function shuffleAlbum(key) {
   playTrack(idx);
 }
 
-// ============================================================
-// PLAYER LOGIC
-// ============================================================
-
-// ---- Smooth fade helpers ----
-const FADE_DURATION = 300; // ms
+const FADE_DURATION = 300;
 let _fadeInterval = null;
 
 function _fadeOut(cb) {
   if (_fadeInterval) clearInterval(_fadeInterval);
-  // If audio is already paused or at 0, skip fade
+
   if (audio.paused || audio.volume <= 0) { if (cb) cb(); return; }
   const startVol = audio.volume;
   const step = startVol / (FADE_DURATION / 15);
@@ -746,7 +688,7 @@ function playTrack(index, autoPlay = true) {
     if (pmArtist) pmArtist.textContent = musicData[index].artist;
     if (pmCover) pmCover.src = '/' + musicData[index].cover;
 
-    // Make artist name in desktop player clickable
+
     if (nowPlayingArtist) {
       nowPlayingArtist.style.cursor = 'pointer';
       nowPlayingArtist.onclick = () => showView('artist', musicData[currentIndex].artist);
@@ -755,7 +697,7 @@ function playTrack(index, autoPlay = true) {
     const artEl = document.querySelector('.player-album-art');
     if (artEl) artEl.classList.add('playing-glow');
 
-    // Update track highlight in any view
+
     document.querySelectorAll('.track.playing, .track-row.playing').forEach(el => el.classList.remove('playing'));
     document.querySelectorAll(`[data-index="${index}"]`).forEach(el => el.classList.add('playing'));
 
@@ -772,7 +714,7 @@ function playTrack(index, autoPlay = true) {
     }
   };
 
-  // Fade out current track before switching, then load new one
+
   if (wasPlaying) {
     _fadeOut(() => {
       audio.pause();
@@ -847,9 +789,6 @@ function shareTrack() {
   alert('Lien de partage copié !');
 }
 
-// ============================================================
-// PROGRESS
-// ============================================================
 function updateProgress() {
   const progress = (audio.currentTime / audio.duration) * 100 || 0;
   if (progressBar) progressBar.style.width = `${progress}%`;
@@ -866,14 +805,10 @@ function formatTime(seconds) {
   return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
 }
 
-// ---- Audio Events ----
 audio.addEventListener('ended', () => { if (!audio.loop) nextTrack(); });
 audio.addEventListener('timeupdate', updateProgress);
 audio.addEventListener('error', () => console.error("Erreur audio."));
 
-// ============================================================
-// SESSION PERSISTENCE
-// ============================================================
 const LAST_TRACK_KEY = "lastPlayedTrackIndex";
 const LAST_POSITION_KEY = "lastPlayedPosition";
 const LAST_VOLUME_KEY = "lastSetVolume";
@@ -925,9 +860,6 @@ audio.addEventListener('volumechange', saveCurrentMusicSession);
 audio.addEventListener('timeupdate', () => { if (!audio.paused && audio.currentTime > 0) saveCurrentMusicSession(); });
 window.addEventListener('beforeunload', saveCurrentMusicSession);
 
-// ============================================================
-// AUDIO CONTEXT (LED visualization)
-// ============================================================
 function initAudioContext() {
   if (audioCtxInitialized) return;
   audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -940,9 +872,6 @@ function initAudioContext() {
   audioCtxInitialized = true;
 }
 
-// ============================================================
-// LED FULLSCREEN
-// ============================================================
 function extractDominantColors(imageSrc, callback) {
   const img = new Image();
   img.crossOrigin = "Anonymous";
@@ -1030,15 +959,12 @@ function startLedAnimation() {
 function stopLedAnimation() { if (ledAnimationId) cancelAnimationFrame(ledAnimationId); }
 function resizeLedCanvas() { const c = document.querySelector('.led-canvas'); if (c) { c.width = window.innerWidth; c.height = window.innerHeight; } }
 
-// ============================================================
-// HISTORY
-// ============================================================
 function saveToHistory(track) {
   let history = JSON.parse(localStorage.getItem('musicHistory') || '[]');
   const existing = history.find(item => item.title === track.title && item.artist === track.artist);
   if (existing) {
     existing.playCount = (existing.playCount || 0) + 1;
-    // Move to top
+
     history = [existing, ...history.filter(h => h !== existing)];
   } else {
     history.unshift({ ...track, playCount: 1 });
@@ -1047,9 +973,6 @@ function saveToHistory(track) {
   localStorage.setItem('musicHistory', JSON.stringify(history));
 }
 
-// ============================================================
-// FETCH & INIT
-// ============================================================
 async function fetchMusic() {
   try {
     const urlParams = new URLSearchParams(window.location.search);
@@ -1062,7 +985,7 @@ async function fetchMusic() {
     musicData = await res.json();
     musicData = musicData.filter(track => !track.paid || track.accessible);
 
-    // Determine initial view
+
     if (sharedTrack) {
       showView('home');
       const idx = musicData.findIndex(t => t.title.toLowerCase() === sharedTrack.toLowerCase());

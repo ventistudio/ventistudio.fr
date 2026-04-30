@@ -1,351 +1,331 @@
 <!DOCTYPE html>
-<html lang="fr" data-theme="dark">
+
+<html data-theme="dark" lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <meta name="description" content="VentiStudio - Centre d'Assistance. FAQ, formulaire de contact et ressources pour vous aider.">
-  <meta name="theme-color" content="#6366f1">
-  <title>Assistance | VentiStudio</title>
-  <link rel="stylesheet" href="/style.css">
-  <link rel="stylesheet" href="../lawful.css">
-
-  <script async crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
-  <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
-
-  <meta property="og:title" content="Assistance | VentiStudio">
-  <meta property="og:description" content="VentiStudio - Centre d'Assistance. FAQ, formulaire de contact et ressources pour vous aider.">
-  <meta property="og:url" content="https://ventistudio.eu/lawful/support/">
-  <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
-  <meta property="og:type" content="website">
-  <link rel="canonical" href="https://ventistudio.eu/lawful/support/">
-
-  <script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport"/>
+<meta content="VentiStudio - Centre d'Assistance. FAQ, formulaire de contact et ressources pour vous aider." name="description"/>
+<meta content="#6366f1" name="theme-color"/>
+<title>Assistance | VentiStudio</title>
+<link href="/style.css" rel="stylesheet"/>
+<link href="../lawful.css" rel="stylesheet"/>
+<script async="" crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
+<script async="" crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
+<meta content="Assistance | VentiStudio" property="og:title"/>
+<meta content="VentiStudio - Centre d'Assistance. FAQ, formulaire de contact et ressources pour vous aider." property="og:description"/>
+<meta content="https://ventistudio.eu/lawful/support/" property="og:url"/>
+<meta content="https://ventistudio.eu/favicon.avif" property="og:image"/>
+<meta content="website" property="og:type"/>
+<link href="https://ventistudio.eu/lawful/support/" rel="canonical"/>
+<script>
     (function() {
       var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
       document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
+<script defer="" src="/i18n.js"></script>
 </head>
 <body>
-  <header>
-    <div class="logo">
-      <img src="/favicon.avif" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
-      <span>VentiStudio</span>
-    </div>
-    <button class="nav-burger" id="nav-burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav">
-      <span></span><span></span><span></span>
-    </button>
-    <nav id="main-nav" class="main-nav" aria-label="Navigation principale">
-      <a href="/" class="nav-link">Accueil</a>
-
-      <details class="nav-group">
-        <summary class="nav-link">Découvrir
-          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </summary>
-        <div class="nav-panel" role="menu">
-          <a href="/evaluation">Évaluation</a>
-          <a href="/wiki">Wiki</a>
-          <a href="/glossary">Glossaire</a>
-          <a href="/news">News</a>
-          <a href="/blog">Blog</a>
-          <a href="/calendar">Calendrier</a>
-          <a href="/cookbook">Cookbook</a>
-          <a href="/gallery">Galerie</a>
-          <a href="/atlas">Atlas</a>
-        </div>
-      </details>
-
-      <details class="nav-group">
-        <summary class="nav-link">Univers
-          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </summary>
-        <div class="nav-panel" role="menu">
-          <a href="/aokiunivers">AOKI Universe</a>
-          <a href="/allofaokiunivers">All AOKI</a>
-          <a href="/university">Université</a>
-          <a href="/history">Histoire</a>
-          <a href="/memorial">Mémorial</a>
-          <a href="/ester-eggs">Easter eggs</a>
-        </div>
-      </details>
-
-      <details class="nav-group">
-        <summary class="nav-link">Outils
-          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </summary>
-        <div class="nav-panel nav-panel-wide" role="menu">
-          <div class="nav-col">
-            <h4>Applications</h4>
-            <a href="/player">Lecteur</a>
-            <a href="/music">Musique</a>
-            <a href="/pip">PIP</a>
-            <a href="/whiteboard">Whiteboard</a>
-            <a href="/portfolio">Portfolio</a>
-            <a href="/gmod">GMod</a>
-          </div>
-          <div class="nav-col">
-            <h4>Domaines</h4>
-            <a href="/domain/aina">AINA</a>
-            <a href="/domain/archive">Archive</a>
-            <a href="/domain/maps">Maps</a>
-            <a href="/domain/movie">Movie</a>
-            <a href="/domain/peer">Peer</a>
-            <a href="/domain/pro">Pro</a>
-            <a href="/domain/search">Search</a>
-            <a href="/domain/suite">Suite</a>
-          </div>
-        </div>
-      </details>
-
-      <details class="nav-group">
-        <summary class="nav-link">Communauté
-          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </summary>
-        <div class="nav-panel nav-panel-wide" role="menu">
-          <div class="nav-col">
-            <h4>Équipe</h4>
-            <a href="/personnel/">Équipe</a>
-            <a href="/hierarchie-staff">Hiérarchie</a>
-            <a href="/hypesquad">Hypesquad</a>
-            <a href="/jobs">Emplois</a>
-            <a href="/birthday">Anniversaires</a>
-          </div>
-          <div class="nav-col">
-            <h4>Réseaux</h4>
-            <a href="/discord">Discord</a>
-            <a href="/teamspeak">TeamSpeak</a>
-            <a href="/steam">Steam</a>
-            <a href="/social">Réseaux sociaux</a>
-          </div>
-          <div class="nav-col">
-            <h4>Activités</h4>
-            <a href="/artist">Artistes</a>
-            <a href="/quests">Quêtes</a>
-            <a href="/suboawards">Suboawards</a>
-            <a href="/eConcert">eConcert</a>
-          </div>
-        </div>
-      </details>
-
-      <details class="nav-group">
-        <summary class="nav-link">Plus
-          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </summary>
-        <div class="nav-panel nav-panel-wide" role="menu">
-          <div class="nav-col">
-            <h4>Aide</h4>
-            <a href="/contact">Contact</a>
-            <a href="/faq">FAQ</a>
-            <a href="/status">Statut</a>
-            <a href="/sitemap">Plan du site</a>
-          </div>
-          <div class="nav-col">
-            <h4>Soutien</h4>
-            <a href="/donate">Faire un don</a>
-            <a href="/gold">Gold</a>
-            <a href="/customization">Personnalisation</a>
-            <a href="/mes-donnees">Mes Données</a>
-            <a href="/newsletter">Newsletter</a>
-          </div>
-          <div class="nav-col">
-            <h4>À propos</h4>
-            <a href="/company">Entreprise</a>
-            <a href="/acknowledgements">Remerciements</a>
-            <a href="/logo">Logo</a>
-            <a href="/tags">Tags</a>
-            <a href="/memory">Mémoire</a>
-            <a href="/why-not-use-roblox">Pourquoi pas Roblox</a>
-            <a href="/lawful">Mentions légales</a>
-          </div>
-        </div>
-      </details>
-    </nav>
-    <div class="controls" role="toolbar" aria-label="Contrôles">
-      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
-        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
-          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
-          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
-          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
-        </svg>
-      </button>
-      <div id="user-button" role="region" aria-label="Authentification"><button class="cta" id="auth-fallback-btn" onclick="window.location.href='https://accounts.ventistudio.eu/sign-in?redirect_url='+encodeURIComponent(window.location.href)" style="padding:0.5rem 1.25rem;font-size:0.9rem;margin:0"><span>Se connecter</span></button></div>
-    </div>
-  </header>
-
-  <main>
-    <section class="hero-section">
-      <h1>Centre d'Assistance</h1>
-      <p>Notre équipe est là pour vous aider. Trouvez des réponses ou contactez-nous directement.</p>
-    </section>
-
-    <div class="support-container">
-      <h2 class="section-title">Comment Pouvons-Nous Vous Aider ?</h2>
-
-      <div class="legal-container">
-        <div class="service-card">
-          <h3>🔧 Support Technique</h3>
-          <p>Un bug, un problème d'affichage ou une fonctionnalité qui ne marche pas ? Décrivez votre problème et nous vous répondrons rapidement.</p>
-          <p style="margin-top:1rem"><strong>Délai moyen :</strong> <span style="color:var(--accent)">24 - 48h</span></p>
-        </div>
-        <div class="service-card">
-          <h3>👤 Compte &amp; Connexion</h3>
-          <p>Problème de connexion, réinitialisation de mot de passe, gestion de votre profil ou suppression de compte.</p>
-          <p style="margin-top:1rem"><strong>Gestion :</strong> <a href="https://accounts.ventistudio.eu" style="color:var(--accent)">accounts.ventistudio.eu</a></p>
-        </div>
-        <div class="service-card">
-          <h3>🚩 Signalement</h3>
-          <p>Contenu inapproprié, comportement abusif ou violation des conditions d'utilisation. Chaque signalement est examiné.</p>
-          <p style="margin-top:1rem"><a href="/lawful/security" style="color:var(--accent);font-weight:600">Centre de Sécurité →</a></p>
-        </div>
-        <div class="service-card">
-          <h3>⚖️ Réclamation DMCA</h3>
-          <p>Vous pensez qu'un contenu enfreint vos droits d'auteur ? Suivez notre procédure de réclamation.</p>
-          <p style="margin-top:1rem"><a href="/lawful/dmcainfo" style="color:var(--accent);font-weight:600">Information DMCA →</a></p>
-        </div>
-        <div class="service-card">
-          <h3>💡 Suggestions</h3>
-          <p>Vous avez une idée pour améliorer VentiStudio ? Nous adorons recevoir vos retours et suggestions.</p>
-        </div>
-        <div class="service-card">
-          <h3>❓ Questions Générales</h3>
-          <p>Toute autre question sur nos services, nos projets ou notre communauté.</p>
-        </div>
-      </div>
-
-      <h2 class="section-title">Questions Fréquentes</h2>
-      <p class="section-subtitle">Trouvez rapidement la réponse à votre question.</p>
-
-      <div class="terms-container">
-        <div class="terms-section">
-          <h2>🔑 Comment réinitialiser mon mot de passe ?</h2>
-          <p>Rendez-vous sur <a href="https://accounts.ventistudio.eu" style="color:var(--accent)">accounts.ventistudio.eu</a>, cliquez sur « Mot de passe oublié » et suivez les instructions envoyées par email.</p>
-        </div>
-        <div class="terms-section">
-          <h2>🗑️ Comment supprimer mon compte ?</h2>
-          <p>Connectez-vous à votre espace compte sur <a href="https://accounts.ventistudio.eu" style="color:var(--accent)">accounts.ventistudio.eu</a>, accédez aux paramètres de sécurité et cliquez sur « Supprimer le compte ». La suppression est irréversible.</p>
-        </div>
-        <div class="terms-section">
-          <h2>📊 Quelles données collectez-vous ?</h2>
-          <p>Nous collectons le minimum nécessaire au fonctionnement du site. Aucun cookie publicitaire n'est utilisé. Consultez notre <a href="/lawful/cookies" style="color:var(--accent)">politique de confidentialité</a> pour tous les détails.</p>
-        </div>
-        <div class="terms-section">
-          <h2>🌐 Le site est-il accessible dans tous les pays ?</h2>
-          <p>VentiStudio est accessible depuis le monde entier. Certains contenus peuvent être soumis à des restrictions géographiques en fonction des droits d'auteur.</p>
-        </div>
-        <div class="terms-section">
-          <h2>🐛 J'ai trouvé un bug, comment le signaler ?</h2>
-          <p>Utilisez le formulaire de contact ci-dessous en sélectionnant « Problème technique », ou signalez-le directement via notre <a href="/lawful/security" style="color:var(--accent)">Centre de Sécurité</a> s'il s'agit d'une vulnérabilité.</p>
-        </div>
-        <div class="terms-section">
-          <h2>⏱️ Quel est le délai de réponse ?</h2>
-          <p>Nous traitons les demandes de support sous <strong>24 à 48 heures ouvrées</strong>. Les signalements de sécurité critiques sont traités en priorité.</p>
-        </div>
-      </div>
-
-      <h2 class="section-title">Nous Contacter</h2>
-      <p class="section-subtitle">Aucune des réponses ci-dessus ne correspond ? Envoyez-nous un message.</p>
-
-      <form id="supportForm" class="contact-form">
-        <h2>Formulaire de Contact</h2>
-        <div class="form-group">
-          <label for="name">Nom complet</label>
-          <input type="text" id="name" required placeholder="Votre nom">
-        </div>
-
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" required placeholder="votre@email.com">
-        </div>
-
-        <div class="form-group">
-          <label for="category">Catégorie</label>
-          <select id="category" required>
-            <option value="">Sélectionnez une catégorie</option>
-            <option value="technical">Problème technique</option>
-            <option value="account">Compte &amp; Connexion</option>
-            <option value="report">Signalement</option>
-            <option value="suggestion">Suggestion</option>
-            <option value="question">Question générale</option>
-            <option value="other">Autre</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="url">Page Concernée (optionnel)</label>
-          <input type="url" id="url" placeholder="https://ventistudio.eu/...">
-        </div>
-
-        <div class="form-group">
-          <label for="message">Message</label>
-          <textarea id="message" rows="5" required placeholder="Décrivez votre demande en détail..."></textarea>
-        </div>
-
-        <button type="submit">Envoyer le Message</button>
-      </form>
-
-      <div class="legal-container" style="margin-top:3rem">
-        <div class="service-card" style="text-align:center">
-          <h3>📧 Email Direct</h3>
-          <p>Pour toute demande :</p>
-          <p style="margin-top:0.5rem"><strong><a href="mailto:support@ventistudio.eu" style="color:var(--accent);font-size:1.1rem">support@ventistudio.eu</a></strong></p>
-        </div>
-        <div class="service-card" style="text-align:center">
-          <h3>💬 Discord</h3>
-          <p>Rejoignez notre communauté :</p>
-          <p style="margin-top:0.5rem"><strong><a href="/discord" style="color:var(--accent);font-size:1.1rem">Serveur Discord</a></strong></p>
-        </div>
-        <div class="service-card" style="text-align:center">
-          <h3>📡 Statut des Services</h3>
-          <p>Vérifiez l'état de nos services :</p>
-          <p style="margin-top:0.5rem"><strong><a href="https://status.ventistudio.eu/" style="color:var(--accent);font-size:1.1rem">status.ventistudio.eu</a></strong></p>
-        </div>
-      </div>
-    </div>
-  </main>
-
-  <footer>
-    <div class="footer-content">
-      <div class="footer-section">
-        <h4>Outils</h4>
-        <ul>
-          <li><a href="/pip">PIP</a></li>
-          <li><a href="/sitemap">Plan du site</a></li>
-          <li><a href="https://status.ventistudio.eu/">Statut</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h4>Entreprise</h4>
-        <ul>
-          <li><a href="/about">À propos</a></li>
-          <li><a href="/jobs">Emplois</a></li>
-          <li><a href="/logo">Marque</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h4>Ressources</h4>
-        <ul>
-          <li><a href="/university">Université</a></li>
-          <li><a href="/lawful/support">Assistance</a></li>
-          <li><a href="/lawful/security">Sécurité</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h4>Chartes</h4>
-        <ul>
-          <li><a href="/lawful/tos">Conditions d'utilisation</a></li>
-          <li><a href="/lawful/cookies">Confidentialité</a></li>
-          <li><a href="/lawful/dmcainfo">Information DMCA</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <iframe src="https://status.ventistudio.eu/badge?theme=dark" width="500" height="30" frameborder="0" scrolling="no" style="color-scheme: normal"></iframe>
-      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
-    </div>
-  </footer>
-
-  <script src="/main.js" defer></script>
-  <script>
+<header>
+<div class="logo">
+<img alt="Logo VentiStudio" class="site-logo" height="32" src="/favicon.avif" width="32"/>
+<span>VentiStudio</span>
+</div>
+<button aria-controls="main-nav" aria-expanded="false" aria-label="Ouvrir le menu" class="nav-burger" data-i18n-attr="aria-label:aria.open_menu" id="nav-burger">
+<span></span><span></span><span></span>
+</button>
+<nav aria-label="Navigation principale" class="main-nav" data-i18n-attr="aria-label:nav.aria" id="main-nav">
+<a class="nav-link" data-i18n="nav.home" href="/">Accueil</a>
+<details class="nav-group">
+<summary class="nav-link" data-i18n="nav.discover">Découvrir
+          <svg aria-hidden="true" class="nav-caret" fill="none" height="12" viewbox="0 0 24 24" width="12"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</summary>
+<div class="nav-panel" role="menu">
+<a data-i18n="nav.evaluation" href="/evaluation">Évaluation</a>
+<a data-i18n="nav.wiki" href="/wiki">Wiki</a>
+<a data-i18n="nav.glossary" href="/glossary">Glossaire</a>
+<a data-i18n="nav.news" href="/news">News</a>
+<a data-i18n="nav.blog" href="/blog">Blog</a>
+<a data-i18n="nav.calendar" href="/calendar">Calendrier</a>
+<a data-i18n="nav.cookbook" href="/cookbook">Cookbook</a>
+<a data-i18n="nav.gallery" href="/gallery">Galerie</a>
+<a data-i18n="nav.atlas" href="/atlas">Atlas</a>
+</div>
+</details>
+<details class="nav-group">
+<summary class="nav-link" data-i18n="nav.universe">Univers
+          <svg aria-hidden="true" class="nav-caret" fill="none" height="12" viewbox="0 0 24 24" width="12"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</summary>
+<div class="nav-panel" role="menu">
+<a href="/aokiunivers">AOKI Universe</a>
+<a href="/allofaokiunivers">All AOKI</a>
+<a data-i18n="nav.university" href="/university">Université</a>
+<a data-i18n="nav.history" href="/history">Histoire</a>
+<a data-i18n="nav.memorial" href="/memorial">Mémorial</a>
+<a data-i18n="nav.easter_eggs" href="/ester-eggs">Easter eggs</a>
+</div>
+</details>
+<details class="nav-group">
+<summary class="nav-link" data-i18n="nav.tools">Outils
+          <svg aria-hidden="true" class="nav-caret" fill="none" height="12" viewbox="0 0 24 24" width="12"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</summary>
+<div class="nav-panel nav-panel-wide" role="menu">
+<div class="nav-col">
+<h4 data-i18n="nav.col.apps">Applications</h4>
+<a data-i18n="nav.player" href="/player">Lecteur</a>
+<a data-i18n="nav.music" href="/music">Musique</a>
+<a href="/pip">PIP</a>
+<a href="/whiteboard">Whiteboard</a>
+<a href="/portfolio">Portfolio</a>
+<a href="/gmod">GMod</a>
+</div>
+<div class="nav-col">
+<h4 data-i18n="nav.col.domains">Domaines</h4>
+<a href="/domain/aina">AINA</a>
+<a href="/domain/archive">Archive</a>
+<a href="/domain/maps">Maps</a>
+<a href="/domain/movie">Movie</a>
+<a href="/domain/peer">Peer</a>
+<a href="/domain/pro">Pro</a>
+<a href="/domain/search">Search</a>
+<a href="/domain/suite">Suite</a>
+</div>
+</div>
+</details>
+<details class="nav-group">
+<summary class="nav-link" data-i18n="nav.community">Communauté
+          <svg aria-hidden="true" class="nav-caret" fill="none" height="12" viewbox="0 0 24 24" width="12"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</summary>
+<div class="nav-panel nav-panel-wide" role="menu">
+<div class="nav-col">
+<h4 data-i18n="nav.col.team">Équipe</h4>
+<a data-i18n="nav.team" href="/personnel/">Équipe</a>
+<a data-i18n="nav.hierarchy" href="/hierarchie-staff">Hiérarchie</a>
+<a href="/hypesquad">Hypesquad</a>
+<a data-i18n="nav.jobs" href="/jobs">Emplois</a>
+<a data-i18n="nav.birthday" href="/birthday">Anniversaires</a>
+</div>
+<div class="nav-col">
+<h4 data-i18n="nav.col.networks">Réseaux</h4>
+<a href="/discord">Discord</a>
+<a href="/teamspeak">TeamSpeak</a>
+<a href="/steam">Steam</a>
+<a data-i18n="nav.social" href="/social">Réseaux sociaux</a>
+</div>
+<div class="nav-col">
+<h4 data-i18n="nav.col.activities">Activités</h4>
+<a data-i18n="nav.artists" href="/artist">Artistes</a>
+<a data-i18n="nav.quests" href="/quests">Quêtes</a>
+<a href="/suboawards">Suboawards</a>
+<a href="/eConcert">eConcert</a>
+</div>
+</div>
+</details>
+<details class="nav-group">
+<summary class="nav-link" data-i18n="nav.more">Plus
+          <svg aria-hidden="true" class="nav-caret" fill="none" height="12" viewbox="0 0 24 24" width="12"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</summary>
+<div class="nav-panel nav-panel-wide" role="menu">
+<div class="nav-col">
+<h4 data-i18n="nav.col.help">Aide</h4>
+<a data-i18n="nav.contact" href="/contact">Contact</a>
+<a href="/faq">FAQ</a>
+<a data-i18n="nav.status" href="/status">Statut</a>
+<a data-i18n="nav.sitemap" href="/sitemap">Plan du site</a>
+</div>
+<div class="nav-col">
+<h4 data-i18n="nav.col.support">Soutien</h4>
+<a data-i18n="nav.donate" href="/donate">Faire un don</a>
+<a href="/gold">Gold</a>
+<a data-i18n="nav.customization" href="/customization">Personnalisation</a>
+<a data-i18n="nav.my_data" href="/mes-donnees">Mes Données</a>
+<a href="/newsletter">Newsletter</a>
+</div>
+<div class="nav-col">
+<h4 data-i18n="nav.col.about">À propos</h4>
+<a data-i18n="nav.company" href="/company">Entreprise</a>
+<a data-i18n="nav.acknowledgements" href="/acknowledgements">Remerciements</a>
+<a href="/logo">Logo</a>
+<a href="/tags">Tags</a>
+<a data-i18n="nav.memory" href="/memory">Mémoire</a>
+<a data-i18n="nav.why_not_roblox" href="/why-not-use-roblox">Pourquoi pas Roblox</a>
+<a data-i18n="nav.legal" href="/lawful">Mentions légales</a>
+</div>
+</div>
+</details>
+</nav>
+<div aria-label="Contrôles" class="controls" data-i18n-attr="aria-label:aria.controls" role="toolbar">
+<button aria-label="Basculer le thème clair/sombre" class="theme-toggle" data-i18n-attr="aria-label:aria.toggle_theme,title:aria.toggle_theme" id="theme-toggle" title="Basculer le thème">
+<svg aria-hidden="true" height="24" viewbox="0 0 24 24" width="24">
+<path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" fill="none" stroke="currentColor"></path>
+<circle class="sun" cx="12" cy="12" fill="none" r="4" stroke="currentColor"></circle>
+<path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" fill="none" stroke="currentColor"></path>
+</svg>
+</button>
+<div aria-label="Authentification" id="user-button" role="region"><button class="cta" id="auth-fallback-btn" onclick="window.location.href='https://accounts.ventistudio.eu/sign-in?redirect_url='+encodeURIComponent(window.location.href)" style="padding:0.5rem 1.25rem;font-size:0.9rem;margin:0"><span data-i18n="nav.signin">Se connecter</span></button></div>
+</div>
+</header>
+<main>
+<section class="hero-section">
+<h1 data-i18n="lawful.support.hero_section.h1">Centre d'Assistance</h1>
+<p data-i18n="lawful.support.hero_section.p">Notre équipe est là pour vous aider. Trouvez des réponses ou contactez-nous directement.</p>
+</section>
+<div class="support-container">
+<h2 class="section-title" data-i18n="lawful.support.support_container.h2">Comment Pouvons-Nous Vous Aider ?</h2>
+<div class="legal-container">
+<div class="service-card">
+<h3 data-i18n="lawful.support.support_container_legal_container.h3">🔧 Support Technique</h3>
+<p data-i18n="lawful.support.support_container_legal_container.p">Un bug, un problème d'affichage ou une fonctionnalité qui ne marche pas ? Décrivez votre problème et nous vous répondrons rapidement.</p>
+<p data-i18n-html="lawful.support.support_container_legal_container.p2" style="margin-top:1rem"><strong>Délai moyen :</strong> <span style="color:var(--accent)">24 - 48h</span></p>
+</div>
+<div class="service-card">
+<h3 data-i18n="lawful.support.support_container_legal_container.h32">👤 Compte &amp; Connexion</h3>
+<p data-i18n="lawful.support.support_container_legal_container.p3">Problème de connexion, réinitialisation de mot de passe, gestion de votre profil ou suppression de compte.</p>
+<p data-i18n-html="lawful.support.support_container_legal_container.p4" style="margin-top:1rem"><strong>Gestion :</strong> <a href="https://accounts.ventistudio.eu" style="color:var(--accent)">accounts.ventistudio.eu</a></p>
+</div>
+<div class="service-card">
+<h3 data-i18n="lawful.support.support_container_legal_container.h33">🚩 Signalement</h3>
+<p data-i18n="lawful.support.support_container_legal_container.p5">Contenu inapproprié, comportement abusif ou violation des conditions d'utilisation. Chaque signalement est examiné.</p>
+<p data-i18n-html="lawful.support.support_container_legal_container.p6" style="margin-top:1rem"><a href="/lawful/security" style="color:var(--accent);font-weight:600">Centre de Sécurité →</a></p>
+</div>
+<div class="service-card">
+<h3 data-i18n="lawful.support.support_container_legal_container.h34">⚖️ Réclamation DMCA</h3>
+<p data-i18n="lawful.support.support_container_legal_container.p7">Vous pensez qu'un contenu enfreint vos droits d'auteur ? Suivez notre procédure de réclamation.</p>
+<p data-i18n-html="lawful.support.support_container_legal_container.p8" style="margin-top:1rem"><a href="/lawful/dmcainfo" style="color:var(--accent);font-weight:600">Information DMCA →</a></p>
+</div>
+<div class="service-card">
+<h3 data-i18n="lawful.support.support_container_legal_container.h35">💡 Suggestions</h3>
+<p data-i18n="lawful.support.support_container_legal_container.p9">Vous avez une idée pour améliorer VentiStudio ? Nous adorons recevoir vos retours et suggestions.</p>
+</div>
+<div class="service-card">
+<h3 data-i18n="lawful.support.support_container_legal_container.h36">❓ Questions Générales</h3>
+<p data-i18n="lawful.support.support_container_legal_container.p10">Toute autre question sur nos services, nos projets ou notre communauté.</p>
+</div>
+</div>
+<h2 class="section-title" data-i18n="lawful.support.support_container.h22">Questions Fréquentes</h2>
+<p class="section-subtitle" data-i18n="lawful.support.support_container.p">Trouvez rapidement la réponse à votre question.</p>
+<div class="terms-container">
+<div class="terms-section">
+<h2 data-i18n="lawful.support.support_container_terms_container.h2">🔑 Comment réinitialiser mon mot de passe ?</h2>
+<p data-i18n-html="lawful.support.support_container_terms_container.p">Rendez-vous sur <a href="https://accounts.ventistudio.eu" style="color:var(--accent)">accounts.ventistudio.eu</a>, cliquez sur « Mot de passe oublié » et suivez les instructions envoyées par email.</p>
+</div>
+<div class="terms-section">
+<h2 data-i18n="lawful.support.support_container_terms_container.h22">🗑️ Comment supprimer mon compte ?</h2>
+<p data-i18n-html="lawful.support.support_container_terms_container.p2">Connectez-vous à votre espace compte sur <a href="https://accounts.ventistudio.eu" style="color:var(--accent)">accounts.ventistudio.eu</a>, accédez aux paramètres de sécurité et cliquez sur « Supprimer le compte ». La suppression est irréversible.</p>
+</div>
+<div class="terms-section">
+<h2 data-i18n="lawful.support.support_container_terms_container.h23">📊 Quelles données collectez-vous ?</h2>
+<p data-i18n-html="lawful.support.support_container_terms_container.p3">Nous collectons le minimum nécessaire au fonctionnement du site. Aucun cookie publicitaire n'est utilisé. Consultez notre <a href="/lawful/cookies" style="color:var(--accent)">politique de confidentialité</a> pour tous les détails.</p>
+</div>
+<div class="terms-section">
+<h2 data-i18n="lawful.support.support_container_terms_container.h24">🌐 Le site est-il accessible dans tous les pays ?</h2>
+<p data-i18n="lawful.support.support_container_terms_container.p4">VentiStudio est accessible depuis le monde entier. Certains contenus peuvent être soumis à des restrictions géographiques en fonction des droits d'auteur.</p>
+</div>
+<div class="terms-section">
+<h2 data-i18n="lawful.support.support_container_terms_container.h25">🐛 J'ai trouvé un bug, comment le signaler ?</h2>
+<p data-i18n-html="lawful.support.support_container_terms_container.p5">Utilisez le formulaire de contact ci-dessous en sélectionnant « Problème technique », ou signalez-le directement via notre <a href="/lawful/security" style="color:var(--accent)">Centre de Sécurité</a> s'il s'agit d'une vulnérabilité.</p>
+</div>
+<div class="terms-section">
+<h2 data-i18n="lawful.support.support_container_terms_container.h26">⏱️ Quel est le délai de réponse ?</h2>
+<p data-i18n-html="lawful.support.support_container_terms_container.p6">Nous traitons les demandes de support sous <strong>24 à 48 heures ouvrées</strong>. Les signalements de sécurité critiques sont traités en priorité.</p>
+</div>
+</div>
+<h2 class="section-title" data-i18n="lawful.support.support_container.h23">Nous Contacter</h2>
+<p class="section-subtitle" data-i18n="lawful.support.support_container.p2">Aucune des réponses ci-dessus ne correspond ? Envoyez-nous un message.</p>
+<form class="contact-form" id="supportForm">
+<h2 data-i18n="lawful.support.supportform.h2">Formulaire de Contact</h2>
+<div class="form-group">
+<label data-i18n="lawful.support.supportform_form_group.label" for="name">Nom complet</label>
+<input data-i18n-attr="placeholder:lawful.support.supportform_form_group.input_placeholder" id="name" placeholder="Votre nom" required="" type="text"/>
+</div>
+<div class="form-group">
+<label data-i18n="lawful.support.supportform_form_group.label2" for="email">Email</label>
+<input data-i18n-attr="placeholder:lawful.support.supportform_form_group.input_placeholder2" id="email" placeholder="votre@email.com" required="" type="email"/>
+</div>
+<div class="form-group">
+<label data-i18n="lawful.support.supportform_form_group.label3" for="category">Catégorie</label>
+<select id="category" required="">
+<option value="">Sélectionnez une catégorie</option>
+<option value="technical">Problème technique</option>
+<option value="account">Compte &amp; Connexion</option>
+<option value="report">Signalement</option>
+<option value="suggestion">Suggestion</option>
+<option value="question">Question générale</option>
+<option value="other">Autre</option>
+</select>
+</div>
+<div class="form-group">
+<label data-i18n="lawful.support.supportform_form_group.label4" for="url">Page Concernée (optionnel)</label>
+<input id="url" placeholder="https://ventistudio.eu/..." type="url"/>
+</div>
+<div class="form-group">
+<label data-i18n="lawful.support.supportform_form_group.label5" for="message">Message</label>
+<textarea data-i18n-attr="placeholder:lawful.support.supportform_form_group.textarea_placeholder" id="message" placeholder="Décrivez votre demande en détail..." required="" rows="5"></textarea>
+</div>
+<button data-i18n="lawful.support.supportform.button" type="submit">Envoyer le Message</button>
+</form>
+<div class="legal-container" style="margin-top:3rem">
+<div class="service-card" style="text-align:center">
+<h3 data-i18n="lawful.support.support_container_legal_container.h37">📧 Email Direct</h3>
+<p data-i18n="lawful.support.support_container_legal_container.p11">Pour toute demande :</p>
+<p data-i18n-html="lawful.support.support_container_legal_container.p12" style="margin-top:0.5rem"><strong><a href="mailto:support@ventistudio.eu" style="color:var(--accent);font-size:1.1rem">support@ventistudio.eu</a></strong></p>
+</div>
+<div class="service-card" style="text-align:center">
+<h3 data-i18n="lawful.support.support_container_legal_container.h38">💬 Discord</h3>
+<p data-i18n="lawful.support.support_container_legal_container.p13">Rejoignez notre communauté :</p>
+<p data-i18n-html="lawful.support.support_container_legal_container.p14" style="margin-top:0.5rem"><strong><a href="/discord" style="color:var(--accent);font-size:1.1rem">Serveur Discord</a></strong></p>
+</div>
+<div class="service-card" style="text-align:center">
+<h3 data-i18n="lawful.support.support_container_legal_container.h39">📡 Statut des Services</h3>
+<p data-i18n="lawful.support.support_container_legal_container.p15">Vérifiez l'état de nos services :</p>
+<p data-i18n-html="lawful.support.support_container_legal_container.p16" style="margin-top:0.5rem"><strong><a href="https://status.ventistudio.eu/" style="color:var(--accent);font-size:1.1rem">status.ventistudio.eu</a></strong></p>
+</div>
+</div>
+</div>
+</main>
+<footer>
+<div class="footer-content">
+<div class="footer-section">
+<h4 data-i18n="footer.col.tools">Outils</h4>
+<ul>
+<li><a href="/pip">PIP</a></li>
+<li><a data-i18n="footer.tools.sitemap" href="/sitemap">Plan du site</a></li>
+<li><a data-i18n="footer.tools.status" href="https://status.ventistudio.eu/">Statut</a></li>
+</ul>
+</div>
+<div class="footer-section">
+<h4 data-i18n="footer.col.company">Entreprise</h4>
+<ul>
+<li><a data-i18n="footer.company.about" href="/about">À propos</a></li>
+<li><a data-i18n="footer.company.jobs" href="/jobs">Emplois</a></li>
+<li><a data-i18n="footer.company.brand" href="/logo">Marque</a></li>
+</ul>
+</div>
+<div class="footer-section">
+<h4 data-i18n="footer.col.resources">Ressources</h4>
+<ul>
+<li><a data-i18n="footer.resources.university" href="/university">Université</a></li>
+<li><a data-i18n="footer.resources.support" href="/lawful/support">Assistance</a></li>
+<li><a data-i18n="footer.resources.security" href="/lawful/security">Sécurité</a></li>
+</ul>
+</div>
+<div class="footer-section">
+<h4 data-i18n="footer.col.legal">Chartes</h4>
+<ul>
+<li><a data-i18n="footer.legal.tos" href="/lawful/tos">Conditions d'utilisation</a></li>
+<li><a data-i18n="footer.legal.privacy" href="/lawful/cookies">Confidentialité</a></li>
+<li><a data-i18n="footer.legal.dmca" href="/lawful/dmcainfo">Information DMCA</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom">
+<iframe frameborder="0" height="30" scrolling="no" src="https://status.ventistudio.eu/badge?theme=dark" style="color-scheme: normal" width="500"></iframe>
+<div id="lang-switcher"></div>
+<p class="copyright" data-i18n="footer.copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
+</div>
+</footer>
+<script defer="" src="/main.js"></script>
+<script>
     document.getElementById('supportForm').addEventListener('submit', function(e) {
       e.preventDefault();
 
@@ -376,7 +356,7 @@
       window.location.href = mailtoLink;
     });
   </script>
-  <script>
+<script>
     (function () {
       var nav = document.getElementById('main-nav');
       var burger = document.getElementById('nav-burger');
@@ -450,5 +430,3 @@
   </script>
 </body>
 </html>
-
-

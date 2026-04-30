@@ -1,11 +1,10 @@
-// ═══ Tableau Blanc P2P ═══
 (function () {
   var canvas = document.getElementById('wb-canvas');
   var wrapper = document.getElementById('wb-canvas-wrapper');
   if (!canvas || !wrapper) return;
   var ctx = canvas.getContext('2d');
 
-  // DOM
+
   var toolBtns = document.querySelectorAll('.wb-tool-btn');
   var colorSwatches = document.querySelectorAll('.wb-color-swatch');
   var colorCustom = document.getElementById('wb-color-custom');
@@ -22,19 +21,19 @@
   var modalOverlay = document.getElementById('wb-modal');
   var participantsEl = document.getElementById('wb-participants');
 
-  // State
+
   var tool = 'pen';
   var color = '#e0e0e0';
   var size = 3;
   var drawing = false;
   var lx = 0, ly = 0, sx = 0, sy = 0;
 
-  // History
+
   var states = [];
   var redoStack = [];
   var MAX_HIST = 40;
 
-  // P2P
+
   var peer = null;
   var conns = [];
   var myId = null;
@@ -43,7 +42,7 @@
   var myName = 'Utilisateur';
   var COLORS = ['#6366f1', '#22c55e', '#f59e0b', '#ef4444', '#ec4899', '#8b5cf6', '#3b82f6', '#14b8a6'];
 
-  // ── Canvas resize ──
+
   function resize() {
     var r = wrapper.getBoundingClientRect();
     var img = null;
@@ -60,14 +59,14 @@
   window.addEventListener('resize', resize);
   snap();
 
-  // ── Coordinates ──
+
   function pos(e) {
     var r = canvas.getBoundingClientRect();
     if (e.touches) return { x: e.touches[0].clientX - r.left, y: e.touches[0].clientY - r.top };
     return { x: e.clientX - r.left, y: e.clientY - r.top };
   }
 
-  // ── Drawing ──
+
   function onDown(e) {
     e.preventDefault();
     drawing = true;
@@ -170,7 +169,7 @@
   canvas.addEventListener('touchmove', onMove, { passive: false });
   canvas.addEventListener('touchend', onUp);
 
-  // ── Tool selection ──
+
   toolBtns.forEach(function (btn) {
     btn.addEventListener('click', function () {
       tool = btn.dataset.tool;
@@ -180,7 +179,7 @@
     });
   });
 
-  // Colors
+
   colorSwatches.forEach(function (s) {
     s.addEventListener('click', function () {
       color = s.dataset.color;
@@ -195,13 +194,13 @@
     });
   }
 
-  // Size
+
   sizeSlider.addEventListener('input', function () {
     size = parseInt(sizeSlider.value);
     sizeLabel.textContent = size + 'px';
   });
 
-  // ── History ──
+
   function snap() {
     if (states.length >= MAX_HIST) states.shift();
     states.push(canvas.toDataURL());
@@ -260,9 +259,9 @@
     if (e.ctrlKey && e.key === 'y') { e.preventDefault(); redo(); }
   });
 
-  // ══════════════════════════
-  // ── P2P via PeerJS ──
-  // ══════════════════════════
+
+
+
 
   function initPeer(cb) {
     if (typeof Peer === 'undefined') {
@@ -391,7 +390,7 @@
     });
   }
 
-  // ── Modals ──
+
   function showModal(html) {
     modalOverlay.innerHTML = '<div class="wb-modal">' + html + '</div>';
     modalOverlay.hidden = false;

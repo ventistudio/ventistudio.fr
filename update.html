@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
@@ -177,7 +177,6 @@
       border-radius: 12px;
     }
 
-    /* Tablettes */
     @media (max-width: 900px) {
       .container {
         margin-top: 2vh;
@@ -199,7 +198,6 @@
       }
     }
 
-    /* Mobiles */
     @media (max-width: 480px) {
       .container {
         padding: 1rem;
@@ -231,7 +229,6 @@
       }
     }
 
-    /* Paysage très bas (mobiles couchés) */
     @media (max-height: 500px) and (orientation: landscape) {
       .container {
         margin-top: 1vh;
@@ -267,6 +264,7 @@
   <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
   <meta property="og:type" content="website">
   <link rel="canonical" href="https://ventistudio.eu/update/">
+  <script src="/i18n.js" defer></script>
 </head>
 <body>
   <div class="glow"></div>
@@ -322,7 +320,6 @@
     setTimeout(() => {
       fadeOut();
       setTimeout(() => {
-        // Phase 2 : ONIQLO
         title.textContent = '🔴 ALERTE ONIQLO (TYPE 1)';
         subtitle.textContent = 'Distribution de combinaisons pressurisées en cours.';
         info.innerHTML = 'Tout personnel non équipé doit revêtir immédiatement une combinaison ONIQLO. Accès restreint aux modules non sécurisés.';
@@ -341,7 +338,6 @@
     setTimeout(() => {
       fadeOut();
       setTimeout(() => {
-        // Phase 3 : URGENCE MAXIMALE
         title.textContent = '🚨 ALERTE D\'URGENCE MAXIMALE';
         subtitle.textContent = 'Connexion prioritaire à AINA... Situation critique.';
         info.innerHTML = `
@@ -354,28 +350,26 @@
         fadeIn();
         setTimeout(() => {
           startRepairGame();
-        }, 2000); // Start the mini-game after showing the alert
+        }, 2000);
       }, 1500);
     }, 32000);
 
     let repairCount = 0;
-    let repairNeeded = 5; // Number of repairs needed to succeed
+    let repairNeeded = 5;
     let repairTimeout;
 
     function startRepairGame() {
-      // Clear previous content
       alertBox.innerHTML = `
         <h1 id="title">🛠️ Réparations nécessaires</h1>
         <h2 id="subtitle">Cliquez sur les points critiques pour réparer !</h2>
         <div id="repair-zone">
-          <!-- Repair points will be dynamically added here -->
+
         </div>
         <div class="info" id="info-box">
           Réparations effectuées : <span id="repair-count">0</span> / ${repairNeeded}
         </div>
       `;
 
-      // Add repair points
       const repairZone = document.getElementById('repair-zone');
       for (let i = 0; i < repairNeeded; i++) {
         const repairPoint = document.createElement('div');
@@ -400,10 +394,9 @@
         repairZone.appendChild(repairPoint);
       }
 
-      // Set timeout for failure
       repairTimeout = setTimeout(() => {
         repairFailure();
-      }, 15000); // 15 seconds to complete repairs
+      }, 15000);
     }
 
     function repairSuccess() {
@@ -447,5 +440,4 @@
   </script>
 </body>
 </html>
-
 

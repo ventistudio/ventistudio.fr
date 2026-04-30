@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="fr" data-theme="dark">
+
+<html data-theme="dark" lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <meta name="description" content="VentiStudio - Accès refusé. Le site est actuellement fermé ou inaccessible.">
-  <meta name="theme-color" content="#6366f1">
-  <title>Accès Refusé | VentiStudio</title>
-  <link rel="stylesheet" href="/style.css">
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport"/>
+<meta content="VentiStudio - Accès refusé. Le site est actuellement fermé ou inaccessible." name="description"/>
+<meta content="#6366f1" name="theme-color"/>
+<title>Accès Refusé | VentiStudio</title>
+<link href="/style.css" rel="stylesheet"/>
+<style>
     .warning-container {
       display: flex;
       flex-direction: column;
@@ -136,58 +137,52 @@
       .warning-box { padding: 1.2rem; }
     }
   </style>
-
-  <script async crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
-  <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
-
-  <meta property="og:title" content="Accès Refusé | VentiStudio">
-  <meta property="og:description" content="VentiStudio - Accès refusé. Le site est actuellement fermé ou inaccessible.">
-  <meta property="og:url" content="https://ventistudio.eu/warning-page/">
-  <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
-  <meta property="og:type" content="website">
-  <link rel="canonical" href="https://ventistudio.eu/warning-page/">
-
-  <script>
+<script async="" crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
+<script async="" crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
+<meta content="Accès Refusé | VentiStudio" property="og:title"/>
+<meta content="VentiStudio - Accès refusé. Le site est actuellement fermé ou inaccessible." property="og:description"/>
+<meta content="https://ventistudio.eu/warning-page/" property="og:url"/>
+<meta content="https://ventistudio.eu/favicon.avif" property="og:image"/>
+<meta content="website" property="og:type"/>
+<link href="https://ventistudio.eu/warning-page/" rel="canonical"/>
+<script>
     (function() {
       var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
       document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
+<script defer="" src="/i18n.js"></script>
 </head>
 <body>
- <main>
-    <div class="warning-container">
-      <span class="warning-icon" aria-hidden="true">🔒</span>
-      <h1>Accès Refusé</h1>
+<main>
+<div class="warning-container">
+<span aria-hidden="true" class="warning-icon">🔒</span>
+<h1 data-i18n="warning_page.warning_container.h1">Accès Refusé</h1>
+<div class="warning-box">
+<div class="typewriter" id="typewriter">
 
-      <div class="warning-box">
-        <div class="typewriter" id="typewriter">
-          <!-- Lines injected by JS with staggered animation -->
-        </div>
-      </div>
-
-      <div class="warning-details">
-        <div class="detail-card">
-          <span class="detail-icon" aria-hidden="true">📡</span>
-          <span class="detail-label">Statut</span>
-          <span class="detail-value">Fermé</span>
-        </div>
-        <div class="detail-card">
-          <span class="detail-icon" aria-hidden="true">🕐</span>
-          <span class="detail-label">Heure</span>
-          <span class="detail-value" id="current-time"></span>
-        </div>
-      </div>
-    </div>
-
-    <div class="warning-cta">
-      <a href="/" class="primary">← Retour à l'accueil</a>
-      <a href="/lawful/support">Contacter le support</a>
-    </div>
-  </main>
-
-  <script src="/main.js" defer></script>
-  <script>
+</div>
+</div>
+<div class="warning-details">
+<div class="detail-card">
+<span aria-hidden="true" class="detail-icon">📡</span>
+<span class="detail-label">Statut</span>
+<span class="detail-value">Fermé</span>
+</div>
+<div class="detail-card">
+<span aria-hidden="true" class="detail-icon">🕐</span>
+<span class="detail-label">Heure</span>
+<span class="detail-value" id="current-time"></span>
+</div>
+</div>
+</div>
+<div class="warning-cta">
+<a class="primary" href="/">← Retour à l'accueil</a>
+<a href="/lawful/support">Contacter le support</a>
+</div>
+</main>
+<script defer="" src="/main.js"></script>
+<script>
     // Typewriter effect with staggered lines
     const lines = [
       'Avertissement : l\'accès à ce site a été refusé.',

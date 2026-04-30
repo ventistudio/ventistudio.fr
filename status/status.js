@@ -1,4 +1,3 @@
-// ═══ Page de Statut — Logique ═══
 (function() {
   if (typeof statusData === 'undefined') return;
 
@@ -128,7 +127,7 @@
         if (err.name === 'AbortError') {
           serviceStates[service.id] = { status: 'offline', latency: null };
         } else {
-          // no-cors returns opaque response, treat as online
+
           var latency = Math.round(performance.now() - start);
           serviceStates[service.id] = {
             status: latency > 3000 ? 'degraded' : 'online',
@@ -179,17 +178,17 @@
     return div.innerHTML;
   }
 
-  // Initial render
+
   renderServices();
   renderIncidents();
 
-  // First check
+
   checkAllServices();
 
-  // Auto-refresh every 60s
+
   setInterval(checkAllServices, 60000);
 
-  // Manual refresh
+
   if (refreshBtn) {
     refreshBtn.addEventListener('click', function() {
       refreshInfo.textContent = 'Rafraîchissement…';

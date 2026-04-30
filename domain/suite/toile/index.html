@@ -12,10 +12,11 @@
   <script>
     (function(){var t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t)})();
   </script>
+  <script src="/i18n.js" defer></script>
 </head>
 <body class="suite-app">
 
-  <!-- Header -->
+
   <div class="suite-header">
     <a href="/domain/suite/" class="suite-logo">
       <img src="/favicon.avif" alt="VentiStudio" width="24" height="24">
@@ -52,9 +53,9 @@
     </div>
   </div>
 
-  <!-- Body -->
+
   <div class="toile-body">
-    <!-- Tool palette -->
+
     <div class="toile-tools">
       <button class="toile-tool active" data-tool="pen" title="Crayon">
         <svg viewBox="0 0 24 24"><path d="M17 3a2.828 2.828 0 114 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
@@ -90,12 +91,12 @@
       </button>
     </div>
 
-    <!-- Canvas -->
+
     <div class="toile-canvas-wrap grid-bg" id="toile-canvas-wrap">
       <canvas id="toile-canvas"></canvas>
     </div>
 
-    <!-- Properties -->
+
     <div class="toile-props">
       <h4>Couleur du trait</h4>
       <label>
@@ -129,7 +130,7 @@
     </div>
   </div>
 
-  <!-- Status Bar -->
+
   <div class="suite-statusbar">
     <span id="status-objects">0 objet</span>
     <span style="margin-left:auto;display:flex;align-items:center;gap:6px">

@@ -1,4 +1,3 @@
-// ═══ Glossaire du Lore — Logique ═══
 (function() {
   if (typeof glossaryData === 'undefined') return;
 
@@ -189,7 +188,7 @@
   }
 
   function scrollToTerm(id) {
-    // Expand and scroll to a term
+
     var el = document.getElementById('term-' + id);
     if (!el) return;
     activeLetter = null;
@@ -197,7 +196,7 @@
     categoryFilter.value = '';
     universeFilter.value = '';
     render();
-    // wait for render
+
     setTimeout(function() {
       var target = document.getElementById('term-' + id);
       if (target) {
@@ -230,7 +229,7 @@
     updateStats(data);
   }
 
-  // Handle URL hash
+
   function checkHash() {
     var hash = window.location.hash;
     if (hash && hash.indexOf('#term-') === 0) {
@@ -239,12 +238,12 @@
     }
   }
 
-  // Events
+
   searchInput.addEventListener('input', function() { activeLetter = null; render(); });
   categoryFilter.addEventListener('change', render);
   universeFilter.addEventListener('change', render);
 
-  // Initial render
+
   render();
   checkHash();
   window.addEventListener('hashchange', checkHash);

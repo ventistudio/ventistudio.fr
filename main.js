@@ -1,4 +1,3 @@
-// ═══ Theme Toggle ═══
 (function initTheme() {
   var saved = localStorage.getItem('theme');
   if (saved) {
@@ -19,53 +18,52 @@
   }
 })();
 
-// ═══ Seasonal Theme Detection ═══
 (function initSeason() {
-  // La page center-testor gère ses propres attributs via boutons
+
   if (document.documentElement.getAttribute('data-testor') === 'true') return;
 
   var now = new Date();
-  var month = now.getMonth(); // 0-indexed
+  var month = now.getMonth();
   var day = now.getDate();
 
-  // ── Événements ponctuels (prioritaires, 1 jour ou période courte) ──
+
   var event = null;
 
-  // Fêtes françaises
-  if (month === 0 && day === 1) event = 'new-year';                             // 1er janvier
-  if (month === 1 && day >= 13 && day <= 15) event = 'valentines';              // 13-15 février
-  if (month === 3 && day === 1) event = 'april-fools';                          // 1er avril
-  if (month === 5 && day === 21) event = 'fete-musique';                        // 21 juin — Fête de la Musique
-  if (month === 6 && day === 14) event = 'national-day';                        // 14 juillet
-  if (month === 9 && day >= 30 && day <= 31) event = 'halloween';              // 30-31 octobre
-  if (month === 11 && day >= 24 && day <= 26) event = 'christmas';              // 24-26 décembre
 
-  // Fêtes japonaises
-  if (month === 0 && day >= 2 && day <= 3) event = 'hatsumode';                 // 2-3 janvier — Hatsumode (premier temple)
-  if (month === 1 && day === 3) event = 'setsubun';                             // 3 février — Setsubun
-  if (month === 2 && day === 3) event = 'hinamatsuri';                          // 3 mars — Hinamatsuri (fête des poupées)
-  if (month === 6 && day === 7) event = 'tanabata';                             // 7 juillet — Tanabata (fête des étoiles)
-  if (month === 7 && day >= 13 && day <= 15) event = 'obon';                    // 13-15 août — Obon (fête des morts)
+  if (month === 0 && day === 1) event = 'new-year';
+  if (month === 1 && day >= 13 && day <= 15) event = 'valentines';
+  if (month === 3 && day === 1) event = 'april-fools';
+  if (month === 5 && day === 21) event = 'fete-musique';
+  if (month === 6 && day === 14) event = 'national-day';
+  if (month === 9 && day >= 30 && day <= 31) event = 'halloween';
+  if (month === 11 && day >= 24 && day <= 26) event = 'christmas';
 
-  // Pop culture
-  if (month === 4 && day === 4) event = 'star-wars';                            // 4 mai — May the 4th
-  if (month === 3 && day === 5) event = 'star-trek';                            // 5 avril — First Contact Day
-  if (month === 4 && day === 25) event = 'towel-day';                           // 25 mai — Towel Day (H2G2)
-  if (month === 9 && day === 21) event = 'back-to-future';                      // 21 octobre — Back to the Future Day
 
-  // Anniversaire VentiStudio
-  if (month === 8 && day === 24) event = 'anniversary';                         // 24 septembre
+  if (month === 0 && day >= 2 && day <= 3) event = 'hatsumode';
+  if (month === 1 && day === 3) event = 'setsubun';
+  if (month === 2 && day === 3) event = 'hinamatsuri';
+  if (month === 6 && day === 7) event = 'tanabata';
+  if (month === 7 && day >= 13 && day <= 15) event = 'obon';
+
+
+  if (month === 4 && day === 4) event = 'star-wars';
+  if (month === 3 && day === 5) event = 'star-trek';
+  if (month === 4 && day === 25) event = 'towel-day';
+  if (month === 9 && day === 21) event = 'back-to-future';
+
+
+  if (month === 8 && day === 24) event = 'anniversary';
 
   if (event) {
     document.documentElement.setAttribute('data-event', event);
   }
 
-  // ── Saisons (fond continu) ──
+
   var season = null;
-  if (month >= 2 && month <= 4) season = 'spring';    // Mars - Mai
-  if (month >= 5 && month <= 7) season = 'summer';    // Juin - Août
-  if (month >= 8 && month <= 10) season = 'autumn';   // Sept - Nov
-  if (month === 11 || month <= 1) season = 'winter';  // Déc - Fév
+  if (month >= 2 && month <= 4) season = 'spring';
+  if (month >= 5 && month <= 7) season = 'summer';
+  if (month >= 8 && month <= 10) season = 'autumn';
+  if (month === 11 || month <= 1) season = 'winter';
   if (season) {
     document.documentElement.setAttribute('data-season', season);
   }
@@ -73,7 +71,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // ═══ April Fools — Chaos Mode ═══
+
   (function initAprilFools() {
     if (document.documentElement.getAttribute('data-event') !== 'april-fools') return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -127,10 +125,10 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.prepend(banner);
   })();
 
-  // ═══ Event Particles (All events except April Fools) ═══
+
   (function initEventParticles() {
     var ev = document.documentElement.getAttribute('data-event');
-    if (!ev || ev === 'april-fools') return; // April Fools a son propre système
+    if (!ev || ev === 'april-fools') return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     var container = document.createElement('div');
@@ -154,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'anniversary':     { emojis: ['🎉', '🎂', '🥳', '✨', '🎊', '💜'], count: 25, cls: 'anniversary-particle' }
     };
 
-    // Star Wars : pas de particules emoji classiques, on fait un lightspeed effect
+
     if (ev === 'star-wars') {
       container.classList.add('star-wars-hyperspace');
       for (var i = 0; i < 80; i++) {
@@ -168,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // Star Trek : warp stars effect
+
     if (ev === 'star-trek') {
       container.classList.add('star-trek-warp');
       for (var i = 0; i < 60; i++) {
@@ -184,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // Back to the Future: flux capacitor lightning effect at intervals
+
     if (ev === 'back-to-future') {
       setInterval(function() {
         var flash = document.createElement('div');
@@ -208,7 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // Bannière d'événement
+
     var bannerTexts = {
       'halloween':      '🎃 Happy Halloween ! 👻 Boo ! 🦇',
       'christmas':      '🎄 Joyeux Noël ! 🎁 Ho Ho Ho ! ⭐',
@@ -236,7 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   })();
 
-  // ═══ Immersive Event Effects (Canvas-based) ═══
+
   (function initEventEffects() {
     var ev = document.documentElement.getAttribute('data-event');
     if (!ev || ev === 'april-fools') return;
@@ -265,7 +263,7 @@ document.addEventListener('DOMContentLoaded', () => {
     var W = function() { return canvas.width / dpr; };
     var H = function() { return canvas.height / dpr; };
 
-    // ── Fireworks engine (national-day, new-year) ──
+
     if (ev === 'national-day' || ev === 'new-year') {
       var palettes = {
         'national-day': ['#002395', '#ffffff', '#ED2939'],
@@ -343,7 +341,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // ── Halloween: fog waves ──
+
     if (ev === 'halloween') {
       var fogOffset = 0;
       function tickFog() {
@@ -367,7 +365,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // ── Christmas: twinkling lights garland ──
+
     if (ev === 'christmas') {
       var lights = [];
       var xmasColors = ['#ff0000', '#00cc00', '#ffd700', '#ff4444', '#44ff44', '#ff6600'];
@@ -403,7 +401,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // ── Valentine's: floating hearts ──
+
     if (ev === 'valentines') {
       var hearts = [];
       function spawnHeart() {
@@ -443,7 +441,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // ── Fête de la Musique: equalizer bars ──
+
     if (ev === 'fete-musique') {
       var barCount = 40;
       var barHeights = new Array(barCount).fill(0);
@@ -473,7 +471,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // ── Tanabata: shooting stars ──
+
     if (ev === 'tanabata') {
       var shootingStars = [];
       function spawnStar() {
@@ -520,7 +518,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // ── Obon / Hatsumode: floating lanterns rising ──
+
     if (ev === 'obon' || ev === 'hatsumode') {
       var lanterns = [];
       var lanternColor = ev === 'obon' ? '#ff6b35' : '#c41e3a';
@@ -561,7 +559,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // ── Anniversary: confetti cannon ──
+
     if (ev === 'anniversary') {
       var confetti = [];
       var confettiColors = ['#a855f7', '#6366f1', '#ec4899', '#fbbf24', '#34d399', '#60a5fa', '#f43f5e', '#fcd34d'];
@@ -607,7 +605,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // ── Hinamatsuri: dense cherry blossom rain ──
+
     if (ev === 'hinamatsuri') {
       var blossoms = [];
       for (var i = 0; i < 70; i++) {
@@ -648,7 +646,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // ── Setsubun: flying beans ──
+
     if (ev === 'setsubun') {
       var beans = [];
       function throwBeans() {
@@ -691,7 +689,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // ── Towel Day: "42" matrix rain ──
+
     if (ev === 'towel-day') {
       var columns = Math.floor(W() / 18);
       var drops = new Array(columns).fill(0);
@@ -716,7 +714,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   })();
 
-  // ═══ Seasonal Particles ═══
+
   (function initSeasonParticles() {
     var season = document.documentElement.getAttribute('data-season');
     if (!season) return;
@@ -786,7 +784,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   })();
 
-  // ═══ Easter Egg Gold ═══
+
   (function initGoldEasterEgg() {
     const statusDot = document.querySelector('.status-dot');
     if (!statusDot) return;
@@ -805,7 +803,7 @@ document.addEventListener('DOMContentLoaded', () => {
       clicks.push(now);
       clicks = clicks.filter(t => now - t < CLICK_WINDOW);
 
-      // Feedback visuel subtil
+
       statusDot.style.boxShadow = '0 0 8px #f59e0b';
       statusDot.style.background = '#f59e0b';
       setTimeout(() => {
@@ -839,7 +837,7 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
       document.body.appendChild(overlay);
 
-      // Animer l'apparition
+
       requestAnimationFrame(() => overlay.classList.add('visible'));
 
       const keyInput = document.getElementById('gold-secret-key');
@@ -882,30 +880,30 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   })();
 
-  // Mobile menu toggle (if nav gets too long)
+
   const nav = document.querySelector('nav');
   const header = document.querySelector('header');
-  
-  // Ensure proper responsive behavior
+
+
   window.addEventListener('resize', () => {
     if (window.innerWidth > 768 && nav) {
       nav.style.display = 'flex';
     }
   });
 
-  // Card hover effects
+
   const cards = document.querySelectorAll('.card');
   cards.forEach(card => {
     card.addEventListener('mouseenter', () => {
       card.style.boxShadow = 'var(--neon-glow)';
     });
-    
+
     card.addEventListener('mouseleave', () => {
       card.style.boxShadow = 'none';
     });
   });
 
-  // CTA button animation
+
   document.querySelectorAll('.cta').forEach(cta => {
     cta.addEventListener('click', () => {
       cta.style.transform = 'scale(0.95)';
@@ -915,7 +913,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // ═══ Recommandations dynamiques depuis les données d'évaluation ═══
+
   const recoContainer = document.getElementById('recommendations-container');
   if (recoContainer && typeof evaluationData !== 'undefined') {
     const typeLabels = {
@@ -929,7 +927,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'applications': '💻 Applications',
     };
 
-    // Grouper les items featured par type
+
     const featured = evaluationData.filter(item => item.featured);
     const grouped = {};
     featured.forEach(item => {
@@ -937,13 +935,13 @@ document.addEventListener('DOMContentLoaded', () => {
       grouped[item.type].push(item);
     });
 
-    // Trier par note décroissante dans chaque groupe, garder les 3 meilleurs
+
     Object.keys(grouped).forEach(type => {
       grouped[type].sort((a, b) => b.rating - a.rating);
       grouped[type] = grouped[type].slice(0, 3);
     });
 
-    // Ne garder que les catégories avec au moins 1 item
+
     const types = Object.keys(grouped).filter(t => grouped[t].length > 0);
 
     if (types.length > 0) {
@@ -989,7 +987,7 @@ document.addEventListener('DOMContentLoaded', () => {
         recoContainer.appendChild(section);
       });
 
-      // Lien "Voir tout"
+
       const seeAll = document.createElement('div');
       seeAll.style.cssText = 'grid-column: 1 / -1; text-align: center; margin-top: 1rem;';
       seeAll.innerHTML = '<a href="/evaluation" class="cta" style="display:inline-block;padding:0.6rem 1.5rem;font-size:0.9rem;">Voir tout le catalogue évalué</a>';
@@ -997,7 +995,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // ═══ Dernières nouvelles dynamiques ═══
+
   const newsContainer = document.getElementById('latest-news-container');
   if (newsContainer && typeof newsData !== 'undefined' && newsData.length > 0) {
     const latest = [...newsData].sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 3);
@@ -1016,12 +1014,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ═══════════════════════════════════════════════════════
-  //  EASTER EGGS ENGINE — Succès débloquables sur le site
-  // ═══════════════════════════════════════════════════════
+
+
+
   (function initEasterEggEngine() {
     var EE_KEY = 'vs-ee-unlocked';
-    var TOTAL_EGGS = 49; // hors "completionist"
+    var TOTAL_EGGS = 49;
 
     var eggNames = {
       'konami': '🎮 Konami Code',
@@ -1092,7 +1090,7 @@ document.addEventListener('DOMContentLoaded', () => {
       localStorage.setItem(EE_KEY, JSON.stringify(unlocked));
       showToast(id);
       window.dispatchEvent(new CustomEvent('vs-ee-unlock', { detail: { id: id } }));
-      // Check completionist (all 11 others unlocked)
+
       if (id !== 'completionist') {
         var count = unlocked.filter(function(x) { return x !== 'completionist'; }).length;
         if (count >= TOTAL_EGGS) {
@@ -1105,7 +1103,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.vsUnlockEgg = unlockEgg;
     window.vsIsEggUnlocked = isUnlocked;
 
-    // ── Toast Notification ──
+
     function showToast(id) {
       var toast = document.createElement('div');
       toast.setAttribute('role', 'status');
@@ -1126,7 +1124,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 3500);
     }
 
-    // ── Trigger: Konami Code (toutes pages) ──
+
     (function() {
       var sequence = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
       var pos = 0;
@@ -1137,7 +1135,7 @@ document.addEventListener('DOMContentLoaded', () => {
           if (pos >= sequence.length) {
             pos = 0;
             unlockEgg('konami');
-            // Rainbow flash
+
             var s = document.createElement('style');
             s.textContent = '@keyframes vsEeRainbow{0%{opacity:0}20%{opacity:.3}100%{opacity:0}}';
             document.head.appendChild(s);
@@ -1152,7 +1150,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     })();
 
-    // ── Trigger: Word detection (circus, flip, matrix) ──
+
     (function() {
       var typed = '';
       document.addEventListener('keydown', function(e) {
@@ -1160,7 +1158,7 @@ document.addEventListener('DOMContentLoaded', () => {
         typed += e.key.toLowerCase();
         if (typed.length > 30) typed = typed.slice(-30);
 
-        // Circus
+
         if (typed.endsWith('circus')) {
           typed = '';
           unlockEgg('circus');
@@ -1171,7 +1169,7 @@ document.addEventListener('DOMContentLoaded', () => {
           setTimeout(function() { document.body.style.animation = ''; s.remove(); }, 5000);
         }
 
-        // Flip
+
         if (typed.endsWith('flip')) {
           typed = '';
           unlockEgg('flip');
@@ -1183,7 +1181,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }, 3000);
         }
 
-        // Disco
+
         if (typed.endsWith('disco')) {
           typed = '';
           unlockEgg('disco');
@@ -1199,7 +1197,7 @@ document.addEventListener('DOMContentLoaded', () => {
           setTimeout(function() { ball.remove(); light.remove(); sDisco.remove(); }, 6000);
         }
 
-        // Neko (cat walk)
+
         if (typed.endsWith('neko') || typed.endsWith('cat')) {
           typed = '';
           unlockEgg('neko');
@@ -1216,7 +1214,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }, 20);
         }
 
-        // Gravity
+
         if (typed.endsWith('gravity')) {
           typed = '';
           unlockEgg('gravity');
@@ -1234,7 +1232,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }, 8000);
         }
 
-        // Retro
+
         if (typed.endsWith('retro')) {
           typed = '';
           unlockEgg('retro');
@@ -1253,7 +1251,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }, 7000);
         }
 
-        // Ghost
+
         if (typed.endsWith('ghost')) {
           typed = '';
           unlockEgg('ghost');
@@ -1270,7 +1268,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }, 4000);
         }
 
-        // Pirate
+
         if (typed.endsWith('pirate')) {
           typed = '';
           unlockEgg('pirate');
@@ -1289,7 +1287,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }, 7000);
         }
 
-        // Matrix
+
         if (typed.endsWith('matrix')) {
           typed = '';
           unlockEgg('matrix');
@@ -1327,7 +1325,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     })();
 
-    // ── Trigger: Double Face (10 theme toggles in 5s) ──
+
     (function() {
       var toggle = document.getElementById('theme-toggle');
       if (!toggle) return;
@@ -1347,7 +1345,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     })();
 
-    // ── Trigger: Night Owl (visit between midnight and 3am) ──
+
     (function() {
       var hour = new Date().getHours();
       if (hour >= 0 && hour < 3) {
@@ -1355,7 +1353,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     })();
 
-    // ── Trigger: Anniversary (September 24) ──
+
     (function() {
       var now = new Date();
       if (now.getMonth() === 8 && now.getDate() === 24) {
@@ -1363,14 +1361,14 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     })();
 
-    // ── Trigger: Perfect Hour (minute === 42) ──
+
     (function() {
       if (new Date().getMinutes() === 42) {
         unlockEgg('perfect-hour');
       }
     })();
 
-    // ── Trigger: Explorer (visit 8+ different pages) ──
+
     (function() {
       var PAGES_KEY = 'vs-ee-pages';
       var pages;
@@ -1386,7 +1384,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     })();
 
-    // ── Trigger: Hidden Pixel (homepage only) ──
+
     (function() {
       var path = location.pathname.replace(/\/+$/, '') || '/';
       if (path !== '/' && path !== '/index.html') return;
@@ -1407,13 +1405,13 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     })();
 
-    // ── Trigger: Logo Maniaque (click logo 5 times in 3s) ──
+
     (function() {
       var logoEl = document.querySelector('.logo');
       if (!logoEl) return;
       var logoClicks = [];
       logoEl.addEventListener('click', function(e) {
-        if (e.target.closest('a[href]')) return; // ne pas bloquer les liens
+        if (e.target.closest('a[href]')) return;
         logoClicks.push(Date.now());
         logoClicks = logoClicks.filter(function(t) { return Date.now() - t < 3000; });
         if (logoClicks.length >= 5) {
@@ -1432,7 +1430,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     })();
 
-    // ── Trigger: Scroll King (scroll 15000px total on one page) ──
+
     (function() {
       var totalScroll = 0;
       var lastY = window.scrollY;
@@ -1445,7 +1443,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     })();
 
-    // ── Trigger: Long Press (hold click on footer copyright 5s) ──
+
     (function() {
       var copyright = document.querySelector('.copyright');
       if (!copyright) return;
@@ -1469,7 +1467,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       copyright.addEventListener('mouseup', function() { clearTimeout(timer); });
       copyright.addEventListener('mouseleave', function() { clearTimeout(timer); });
-      // Touch support
+
       copyright.addEventListener('touchstart', function(e) {
         timer = setTimeout(function() {
           unlockEgg('long-press');
@@ -1488,7 +1486,7 @@ document.addEventListener('DOMContentLoaded', () => {
       copyright.addEventListener('touchend', function() { clearTimeout(timer); });
     })();
 
-    // ── Trigger: Speed Click (20 clicks anywhere in 3s) ──
+
     (function() {
       var clicks = [];
       document.addEventListener('click', function() {
@@ -1497,7 +1495,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (clicks.length >= 20) {
           clicks = [];
           unlockEgg('speed-click');
-          // Explosion de particules
+
           for (var i = 0; i < 30; i++) {
             (function(idx) {
               var p = document.createElement('div');
@@ -1517,7 +1515,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     })();
 
-    // ── Trigger: Circle Draw (draw a circle with the mouse) ──
+
     (function() {
       var points = [];
       var lastTime = 0;
@@ -1526,10 +1524,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (now - lastTime < 50) return;
         lastTime = now;
         points.push({ x: e.clientX, y: e.clientY, t: now });
-        // Keep only recent points (last 2s)
+
         points = points.filter(function(p) { return now - p.t < 2000; });
         if (points.length < 12) return;
-        // Check if points form a circle
+
         var sumX = 0, sumY = 0;
         for (var i = 0; i < points.length; i++) { sumX += points[i].x; sumY += points[i].y; }
         var cx = sumX / points.length;
@@ -1538,17 +1536,17 @@ document.addEventListener('DOMContentLoaded', () => {
           return Math.sqrt((p.x - cx) * (p.x - cx) + (p.y - cy) * (p.y - cy));
         });
         var avgR = distances.reduce(function(a, b) { return a + b; }, 0) / distances.length;
-        if (avgR < 40) return; // Too small
+        if (avgR < 40) return;
         var variance = distances.reduce(function(a, d) { return a + (d - avgR) * (d - avgR); }, 0) / distances.length;
         var stdDev = Math.sqrt(variance);
-        // Check it returned near starting point
+
         var start = points[0];
         var end = points[points.length - 1];
         var closeDist = Math.sqrt((start.x - end.x) * (start.x - end.x) + (start.y - end.y) * (start.y - end.y));
         if (stdDev / avgR < 0.3 && closeDist < avgR * 0.8) {
           points = [];
           unlockEgg('circle-draw');
-          // Visual: expanding ring
+
           var ring = document.createElement('div');
           ring.style.cssText = 'position:fixed;border:3px solid #6366f1;border-radius:50%;pointer-events:none;z-index:9999;width:0;height:0;left:' + cx + 'px;top:' + cy + 'px;transform:translate(-50%,-50%);transition:all 1s ease-out;box-shadow:0 0 30px rgba(99,102,241,.5);';
           document.body.appendChild(ring);
@@ -1562,10 +1560,10 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     })();
 
-    // ── Trigger: Zen Master (no interaction for 2 minutes) ──
+
     (function() {
       var zenTimer = null;
-      var ZEN_DELAY = 120000; // 2 minutes
+      var ZEN_DELAY = 120000;
       function resetZen() {
         clearTimeout(zenTimer);
         zenTimer = setTimeout(function() {
@@ -1575,10 +1573,10 @@ document.addEventListener('DOMContentLoaded', () => {
       ['mousemove','mousedown','keydown','scroll','touchstart'].forEach(function(evt) {
         document.addEventListener(evt, resetZen, { passive: true });
       });
-      resetZen(); // Start timer
+      resetZen();
     })();
 
-    // ── Trigger: Double Secret (double-click on footer logo/text "VentiStudio") ──
+
     (function() {
       var footerLinks = document.querySelectorAll('footer a, footer h4');
       var footerTarget = null;
@@ -1587,12 +1585,12 @@ document.addEventListener('DOMContentLoaded', () => {
           footerTarget = el;
         }
       });
-      // Fallback: use footer-bottom or copyright
+
       if (!footerTarget) footerTarget = document.querySelector('.footer-bottom') || document.querySelector('footer');
       if (!footerTarget) return;
       footerTarget.addEventListener('dblclick', function(e) {
         unlockEgg('double-secret');
-        // Glitch effect
+
         var sGlitch = document.createElement('style');
         sGlitch.textContent = '@keyframes vsEeGlitch{0%{transform:translate(0)}10%{transform:translate(-3px,2px)}20%{transform:translate(3px,-2px)}30%{transform:translate(-2px,-1px)}40%{transform:translate(2px,3px)}50%{transform:translate(-1px,-3px)}60%{transform:translate(3px,1px)}70%{transform:translate(-3px,2px)}80%{transform:translate(1px,-2px)}90%{transform:translate(-2px,3px)}100%{transform:translate(0)}}.vs-ee-glitch{animation:vsEeGlitch .15s linear infinite}.vs-ee-glitch-overlay{position:fixed;inset:0;z-index:9999;pointer-events:none;mix-blend-mode:screen;background:repeating-linear-gradient(0deg,rgba(0,255,0,0.03) 0px,rgba(0,255,0,0.03) 1px,transparent 1px,transparent 2px);}';
         document.head.appendChild(sGlitch);
@@ -1608,7 +1606,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     })();
 
-    // ── Trigger: Shake (rapidly move mouse left-right) ──
+
     (function() {
       var positions = [];
       var shakeCount = 0;
@@ -1617,7 +1615,7 @@ document.addEventListener('DOMContentLoaded', () => {
         positions.push({ x: e.clientX, t: now });
         positions = positions.filter(function(p) { return now - p.t < 1000; });
         if (positions.length < 4) return;
-        // Detect direction changes
+
         var reversals = 0;
         for (var i = 2; i < positions.length; i++) {
           var dx1 = positions[i - 1].x - positions[i - 2].x;
@@ -1629,12 +1627,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (reversals >= 6) {
           positions = [];
           unlockEgg('shake');
-          // Earthquake effect
+
           var sShake = document.createElement('style');
           sShake.textContent = '@keyframes vsEeShake{0%,100%{transform:translateX(0)}10%{transform:translateX(-8px) rotate(-0.5deg)}20%{transform:translateX(8px) rotate(0.5deg)}30%{transform:translateX(-6px) rotate(-0.3deg)}40%{transform:translateX(6px) rotate(0.3deg)}50%{transform:translateX(-4px)}60%{transform:translateX(4px)}70%{transform:translateX(-2px)}80%{transform:translateX(2px)}}';
           document.head.appendChild(sShake);
           document.body.style.animation = 'vsEeShake 0.5s ease 4';
-          // Falling elements
+
           var emojis = ['💥','⚡','🌟','✨','🔥'];
           for (var i = 0; i < 15; i++) {
             (function(idx) {
@@ -1652,7 +1650,7 @@ document.addEventListener('DOMContentLoaded', () => {
           setTimeout(function() { document.body.style.animation = ''; sShake.remove(); }, 2500);
         }
       });
-      // Touch support: use devicemotion
+
       if (window.DeviceMotionEvent) {
         var lastShakeTime = 0;
         window.addEventListener('devicemotion', function(e) {
@@ -1667,7 +1665,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     })();
 
-    // ── Trigger: Drag Master (drag mouse 500px while holding button) ──
+
     (function() {
       var dragging = false;
       var startX = 0, startY = 0;
@@ -1690,7 +1688,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.addEventListener('mouseup', function() { dragging = false; });
     })();
 
-    // ── Trigger: Alt-Tabeur (leave/return to tab 10 times) ──
+
     (function() {
       var switchCount = 0;
       var wasHidden = false;
@@ -1712,7 +1710,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     })();
 
-    // ── Trigger: Redimensionneur (resize window 8 times in 10s) ──
+
     (function() {
       var resizes = [];
       window.addEventListener('resize', function() {
@@ -1732,7 +1730,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     })();
 
-    // ── Trigger: Clic Droit Fou (right-click 10 times in 10s) ──
+
     (function() {
       var rClicks = [];
       document.addEventListener('contextmenu', function() {
@@ -1750,7 +1748,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     })();
 
-    // ── Trigger: Tout Sélectionner (Ctrl+A) ──
+
     (function() {
       document.addEventListener('keydown', function(e) {
         if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'a') {
@@ -1764,7 +1762,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     })();
 
-    // ── Trigger: Copieur (Ctrl+C 5 times in 15s) ──
+
     (function() {
       var copies = [];
       document.addEventListener('copy', function() {
@@ -1782,7 +1780,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     })();
 
-    // ── Trigger: Zoom Fou (Ctrl+wheel 10 times in 5s) ──
+
     (function() {
       var zooms = [];
       document.addEventListener('wheel', function(e) {
@@ -1801,7 +1799,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }, { passive: true });
     })();
 
-    // ── Trigger: Les Abysses (reach absolute bottom of a long page) ──
+
     (function() {
       window.addEventListener('scroll', function() {
         var scrollBottom = window.scrollY + window.innerHeight;
@@ -1812,7 +1810,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     })();
 
-    // ── Trigger: Triple Clic ──
+
     (function() {
       document.addEventListener('click', function(e) {
         if (e.detail >= 3) {
@@ -1826,7 +1824,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     })();
 
-    // ── Trigger: Le Survoleur (hover footer 30s continuously) ──
+
     (function() {
       var footer = document.querySelector('footer');
       if (!footer) return;
@@ -1845,7 +1843,7 @@ document.addEventListener('DOMContentLoaded', () => {
       footer.addEventListener('mouseleave', function() { clearTimeout(hoverTimer); });
     })();
 
-    // ── Trigger: Pianiste Fou (30 keystrokes in 3s) ──
+
     (function() {
       var ksTimes = [];
       document.addEventListener('keydown', function() {
@@ -1874,10 +1872,10 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     })();
 
-    // ── Trigger: Surligneur (select more than 200 characters) ──
+
     (function() {
       document.addEventListener('mouseup', function() {
-        // Si le badge est déjà débloqué, on ne déclenche plus le flash.
+
         if (isUnlocked('highlight-text')) return;
         var sel = window.getSelection();
         if (sel && sel.toString().length > 200) {
@@ -1891,7 +1889,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     })();
 
-    // ── Trigger: Inspecteur (F12 or Ctrl+Shift+I) ──
+
     (function() {
       document.addEventListener('keydown', function(e) {
         if (e.key === 'F12' || ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key.toLowerCase() === 'i')) {
@@ -1900,7 +1898,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     })();
 
-    // ── Trigger: Tabulateur (Tab key 20 times) ──
+
     (function() {
       var tabCount = 0;
       var lastTab = 0;
@@ -1923,7 +1921,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     })();
 
-    // ── Trigger: Retour Fusée (press Home key while scrolled down) ──
+
     (function() {
       document.addEventListener('keydown', function(e) {
         if (e.key === 'Home' && window.scrollY > 500) {
@@ -1941,7 +1939,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     })();
 
-    // ── Trigger: Tête en Bas (device orientation change 3 times) ──
+
     (function() {
       var orientChanges = [];
       function onOrientChange() {
@@ -1956,7 +1954,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (screen.orientation) screen.orientation.addEventListener('change', onOrientChange);
     })();
 
-    // ── Trigger: Imprimeur (Ctrl+P / print) ──
+
     (function() {
       window.addEventListener('beforeprint', function() { unlockEgg('print-page'); });
       document.addEventListener('keydown', function(e) {
@@ -1964,7 +1962,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     })();
 
-    // ── Trigger: Plein Écran (enter fullscreen) ──
+
     (function() {
       document.addEventListener('fullscreenchange', function() {
         if (document.fullscreenElement) {
@@ -1978,7 +1976,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     })();
 
-    // ── Trigger: Hors Ligne (go offline then come back) ──
+
     (function() {
       var wasOffline = false;
       window.addEventListener('offline', function() { wasOffline = true; });
@@ -1995,7 +1993,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     })();
 
-    // ── Trigger: Accord Parfait (hold 5+ keys simultaneously) ──
+
     (function() {
       var held = {};
       var heldCount = 0;
@@ -2015,7 +2013,7 @@ document.addEventListener('DOMContentLoaded', () => {
       window.addEventListener('blur', function() { held = {}; heldCount = 0; });
     })();
 
-    // ── Trigger: Quatre Coins (move mouse to all 4 corners of viewport) ──
+
     (function() {
       var corners = { tl: false, tr: false, bl: false, br: false };
       var MARGIN = 30;
@@ -2044,7 +2042,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     })();
 
-    // ── Trigger: Navigateur Rapide (visit 5 pages in 15s) ──
+
     (function() {
       var NAV_KEY = 'vs-ee-speed-nav';
       var navData;
@@ -2055,7 +2053,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (navData.length >= 5) unlockEgg('speed-nav');
     })();
 
-    // ── Trigger: Rage Click (click same spot 10 times in 2s) ──
+
     (function() {
       var rageClicks = [];
       document.addEventListener('click', function(e) {
@@ -2083,7 +2081,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     })();
 
-    // ── Trigger: Danse des Flèches (LRLR UDUD arrow key pattern) ──
+
     (function() {
       var arrowSeq = ['ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','ArrowUp','ArrowDown','ArrowUp','ArrowDown'];
       var arrowPos = 0;
@@ -2115,14 +2113,9 @@ document.addEventListener('DOMContentLoaded', () => {
     })();
 
   })();
-  // ═══ Fin Easter Eggs Engine ═══
+
 });
 
-// ═══════════════════════════════════════════════════════════
-// CLERK AUTHENTICATION
-// ═══════════════════════════════════════════════════════════
-
-// Clé publique Clerk (safe côté client)
 const CLERK_PUBLISHABLE_KEY = 'pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk';
 
 const userButtonContainer = document.getElementById('user-button');
@@ -2130,7 +2123,7 @@ const userButtonContainer = document.getElementById('user-button');
 (async function initClerk() {
   if (!userButtonContainer) return;
 
-  // Ne pas initialiser Clerk hors du domaine de production
+
   var _host = window.location.hostname;
   if (_host !== 'ventistudio.eu' && !_host.endsWith('.ventistudio.eu')) {
     console.warn('Clerk: domaine non autorisé (' + _host + ') — fallback activé');
@@ -2138,9 +2131,9 @@ const userButtonContainer = document.getElementById('user-button');
     return;
   }
 
-  // Attendre que le SDK Clerk soit chargé
+
   if (typeof window.Clerk === 'undefined') {
-    // Fallback si le script CDN n'est pas encore chargé
+
     await new Promise((resolve, reject) => {
       const maxWait = setTimeout(() => reject(new Error('Clerk SDK timeout')), 10000);
       const check = setInterval(() => {
@@ -2173,7 +2166,7 @@ const userButtonContainer = document.getElementById('user-button');
       },
     });
 
-    // Écouter les changements d'état d'authentification
+
     renderAuthUI(clerk);
     clerk.addListener(() => renderAuthUI(clerk));
   } catch (err) {
@@ -2187,7 +2180,7 @@ function renderAuthUI(clerk) {
   userButtonContainer.innerHTML = '';
 
   if (clerk.user) {
-    // Utilisateur connecté → afficher le UserButton Clerk
+
     const userBtnDiv = document.createElement('div');
     userBtnDiv.id = 'clerk-user-button';
     userButtonContainer.appendChild(userBtnDiv);
@@ -2206,7 +2199,7 @@ function renderAuthUI(clerk) {
       userButtonContainer.appendChild(profileLink);
     }
   } else {
-    // Non connecté → bouton "Se connecter" qui ouvre la modale Clerk ou redirige
+
     const signInButton = document.createElement('button');
     signInButton.innerHTML = '<span>Se connecter</span>';
     signInButton.className = 'cta';
@@ -2243,14 +2236,10 @@ function showFallbackButton() {
   userButtonContainer.appendChild(btn);
 }
 
-
-// ═══ AFK / Idle Detection ═══
-// Affiche un message non répétitif quand l'utilisateur est inactif.
-// Reste visible jusqu'au retour. Bouton pour ne plus afficher (préférence persistée).
 (function initAfkDetector() {
   var STORAGE_KEY = 'afk-disabled';
-  var IDLE_DELAY  = 5 * 60 * 1000; // 5 minutes
-  var TICK        = 30 * 1000;     // vérification toutes les 30 s
+  var IDLE_DELAY  = 5 * 60 * 1000;
+  var TICK        = 30 * 1000;
 
   if (localStorage.getItem(STORAGE_KEY) === '1') return;
 
@@ -2258,12 +2247,12 @@ function showFallbackButton() {
   var overlay = null;
   var shown   = false;
   var graceTimer = null;
-  var GRACE_DELAY = 5 * 1000; // 5 s pour cliquer un bouton avant fermeture auto
+  var GRACE_DELAY = 5 * 1000;
 
   function activity() {
     lastActivity = Date.now();
     if (shown && graceTimer === null) {
-      // Laisse 5 s à l'utilisateur pour cliquer sur un bouton, puis ferme.
+
       graceTimer = setTimeout(function() { graceTimer = null; hide(); }, GRACE_DELAY);
     }
   }
@@ -2328,7 +2317,7 @@ function showFallbackButton() {
   }
 
   function check() {
-    if (document.hidden) return; // ne déclenche pas en arrière-plan
+    if (document.hidden) return;
     if (Date.now() - lastActivity >= IDLE_DELAY) show();
   }
 
@@ -2339,7 +2328,7 @@ function showFallbackButton() {
   });
   document.addEventListener('visibilitychange', onVisibility);
 
-  // Inject CSS une seule fois
+
   if (!document.getElementById('afk-style')) {
     var st = document.createElement('style');
     st.id = 'afk-style';
@@ -2365,7 +2354,7 @@ function showFallbackButton() {
 
   var timerId = setInterval(check, TICK);
 
-  // API publique discrète
+
   window.VentiAfk = {
     reset: function() { try { localStorage.removeItem(STORAGE_KEY); } catch(_) {} },
     trigger: show,

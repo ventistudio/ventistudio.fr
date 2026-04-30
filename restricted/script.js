@@ -1,4 +1,4 @@
-﻿document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
   const detectedCountry = localStorage.getItem('detectedCountry');
   if (detectedCountry) {
     const container = document.getElementById('geo-detected');
@@ -9,7 +9,7 @@
     }
   }
 
-  // Highlight matching country card if detected
+
   const code = localStorage.getItem('detectedCountryCode');
   if (code) {
     const card = document.querySelector(`.country-card[data-country="${code.toUpperCase()}"]`);

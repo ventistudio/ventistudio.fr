@@ -1,5 +1,3 @@
-/* Diapo — Presentation Editor Styles */
-
 .diapo-sidebar {
   width: 220px;
   background: var(--suite-surface);
@@ -99,7 +97,6 @@
   color: var(--suite-accent);
 }
 
-/* Main slide area */
 .diapo-stage {
   flex: 1;
   display: flex;
@@ -125,7 +122,6 @@
   box-shadow: 0 4px 24px rgba(0,0,0,0.1);
 }
 
-/* Slide elements */
 .diapo-element {
   position: absolute;
   cursor: move;
@@ -173,7 +169,6 @@
   justify-content: center;
 }
 
-/* Resize handles */
 .diapo-element .resize-handle {
   position: absolute;
   width: 10px;
@@ -192,7 +187,6 @@
 .resize-handle.sw { bottom: -5px; left: -5px; cursor: sw-resize; }
 .resize-handle.se { bottom: -5px; right: -5px; cursor: se-resize; }
 
-/* Properties panel */
 .diapo-props {
   width: 240px;
   background: var(--suite-surface);
@@ -238,7 +232,6 @@
   border-color: var(--suite-accent);
 }
 
-/* Themes */
 .diapo-themes {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -261,7 +254,6 @@
   border-color: var(--suite-border);
 }
 
-/* Presentation mode */
 .diapo-presentation-mode {
   position: fixed;
   inset: 0;
@@ -279,7 +271,6 @@
   box-shadow: none;
 }
 
-/* Speaker Notes Bar */
 .diapo-notes-bar {
   display: flex;
   flex-direction: column;
@@ -316,7 +307,6 @@
   border-color: var(--suite-accent);
 }
 
-/* Slide Transitions */
 @keyframes diapo-fade {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -337,7 +327,6 @@
   to { transform: scale(1); opacity: 1; }
 }
 
-/* Toolbar add buttons */
 .diapo-insert-group {
   display: flex;
   gap: 2px;

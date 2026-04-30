@@ -1,4 +1,3 @@
-// Système de Recommandations VentiStudio
 class RecommendationEngine {
   constructor(newsData) {
     this.newsData = newsData || [];
@@ -22,7 +21,7 @@ class RecommendationEngine {
     this.saveViewTracking();
   }
 
-  // Recommandations basées sur la catégorie actuelle
+
   getRelated(currentNewsId, limit = 3) {
     const current = this.newsData.find(n => n.id === currentNewsId);
     if (!current) return [];
@@ -33,7 +32,7 @@ class RecommendationEngine {
       .slice(0, limit);
   }
 
-  // Recommandations populaires (plus vues)
+
   getPopular(limit = 5) {
     return this.newsData
       .sort((a, b) => {
@@ -44,7 +43,7 @@ class RecommendationEngine {
       .slice(0, limit);
   }
 
-  // Recommandations récentes
+
   getLatest(limit = 5, exclude = null) {
     return this.newsData
       .filter(n => n.id !== exclude)
@@ -52,19 +51,19 @@ class RecommendationEngine {
       .slice(0, limit);
   }
 
-  // Recommandations intelligentes (mix catégorie + popularité)
+
   getSmart(currentNewsId, limit = 4) {
     const current = this.newsData.find(n => n.id === currentNewsId);
     if (!current) return [];
 
-    // 60% catégorie + 40% populaire
+
     const sameCat = this.getRelated(currentNewsId, Math.ceil(limit * 0.6));
     const popular = this.getPopular(Math.ceil(limit * 0.4)).filter(n => n.id !== currentNewsId);
 
     return [...sameCat, ...popular].slice(0, limit);
   }
 
-  // Recommandations par tags (si disponibles)
+
   getByTags(tags, limit = 5, exclude = null) {
     return this.newsData
       .filter(n => n.id !== exclude && n.tags && n.tags.some(t => tags.includes(t)))
@@ -76,7 +75,7 @@ class RecommendationEngine {
       .slice(0, limit);
   }
 
-  // Score de recommandation personnalisée
+
   getPersonalized(userPreferences = {}, limit = 5) {
     const preferences = {
       categories: userPreferences.categories || [],
@@ -112,7 +111,7 @@ class RecommendationEngine {
       score += matches * 2;
     }
 
-    // Bonus de récence (moins d'une semaine)
+
     const daysSince = Math.floor((Date.now() - new Date(news.date)) / (1000 * 60 * 60 * 24));
     if (daysSince < 7) {
       score += 1.5 * preferences.recency_weight;
@@ -124,7 +123,7 @@ class RecommendationEngine {
     return score;
   }
 
-  // Tendances du mois
+
   getTrending(limit = 5) {
     const monthAgo = new Date();
     monthAgo.setMonth(monthAgo.getMonth() - 1);
@@ -172,5 +171,4 @@ class RecommendationEngine {
   }
 }
 
-// Export
 window.RecommendationEngine = RecommendationEngine;

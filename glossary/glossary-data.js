@@ -1,9 +1,5 @@
-// ═══ Données du Glossaire — Lore VentiStudio ═══
-// category: character | location | organization | technology | concept | event
-// universe: aoki-universe | scp | ventistudio | general
-
 var glossaryData = [
-  // ── Aoki Universe — Personnages ──
+
   {
     id: "venti-aoki",
     term: "Venti Aoki",
@@ -35,7 +31,7 @@ var glossaryData = [
     tags: ["enfant-de-la-lune"]
   },
 
-  // ── Aoki Universe — Lieux ──
+
   {
     id: "jahaaka",
     term: "JAHAAKA",
@@ -57,7 +53,7 @@ var glossaryData = [
     tags: ["civilisation-ancienne", "mystère"]
   },
 
-  // ── Aoki Universe — Organisations ──
+
   {
     id: "onite",
     term: "Onite",
@@ -109,7 +105,7 @@ var glossaryData = [
     tags: ["formation", "sélection"]
   },
 
-  // ── Aoki Universe — Technologies ──
+
   {
     id: "nucleonite",
     term: "Nucléonite",
@@ -141,7 +137,7 @@ var glossaryData = [
     tags: ["intelligence-artificielle", "conscience"]
   },
 
-  // ── Aoki Universe — Concepts ──
+
   {
     id: "sept-cles",
     term: "Les Sept Clés",
@@ -183,7 +179,7 @@ var glossaryData = [
     tags: ["spatial", "stabilisation"]
   },
 
-  // ── Aoki Universe — Événements ──
+
   {
     id: "dedoublement-ao",
     term: "Dédoublement AO",
@@ -205,7 +201,7 @@ var glossaryData = [
     tags: ["projet-majeur", "2020"]
   },
 
-  // ── VentiStudio ──
+
   {
     id: "ventistudio",
     term: "VentiStudio",
@@ -267,7 +263,7 @@ var glossaryData = [
     tags: ["communauté", "élite"]
   },
 
-  // ── SCP (références basiques) ──
+
   {
     id: "scp-fondation",
     term: "Fondation SCP",

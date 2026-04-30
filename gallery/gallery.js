@@ -1,4 +1,3 @@
-// ═══ Galerie Communautaire — Logique ═══
 (function() {
   if (typeof galleryData === 'undefined') return;
 

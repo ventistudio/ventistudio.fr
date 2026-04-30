@@ -1,4 +1,3 @@
-/* Note — Notebook Logic */
 (function () {
   'use strict';
 
@@ -21,7 +20,7 @@
   let activePage = 0;
   let autoSaveTimer;
 
-  /* ---- Render ---- */
+
   function render() {
     renderPageList();
     renderEditor();
@@ -91,7 +90,7 @@
     page.modified = new Date().toISOString();
   }
 
-  /* ---- Events ---- */
+
   titleInput.addEventListener('input', () => {
     pages[activePage].title = titleInput.value;
     renderPageList();
@@ -108,7 +107,7 @@
     searchInput.addEventListener('input', () => renderPageList());
   }
 
-  /* ---- Toolbar commands ---- */
+
   function exec(cmd, value) {
     document.execCommand(cmd, false, value || null);
     editorEl.focus();
@@ -139,59 +138,7 @@
   window.noteInsertImage = function () {
     const input = document.createElement('input');
     input.type = 'file';
-    input.accept = 'image/*';
-    input.addEventListener('change', () => {
-      const file = input.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = () => exec('insertHTML', '<img src="' + reader.result + '" style="max-width:100%;border-radius:6px;margin:8px 0" alt="image">');
-      reader.readAsDataURL(file);
-    });
-    input.click();
-  };
-
-  window.noteInsertLink = function () {
-    const url = prompt('URL du lien :');
-    if (!url) return;
-    exec('createLink', url);
-  };
-
-  // Text color
-  const textColorInput = document.getElementById('tb-text-color');
-  if (textColorInput) {
-    textColorInput.addEventListener('input', () => exec('foreColor', textColorInput.value));
-    textColorInput.closest('.tb-btn')?.addEventListener('click', () => textColorInput.click());
-  }
-
-  // Highlight
-  const highlightInput = document.getElementById('tb-highlight');
-  if (highlightInput) {
-    highlightInput.addEventListener('input', () => exec('hiliteColor', highlightInput.value));
-    highlightInput.closest('.tb-btn')?.addEventListener('click', () => highlightInput.click());
-  }
-
-  // Tags
-  const tagsSel = document.getElementById('tb-tags');
-  if (tagsSel) {
-    tagsSel.addEventListener('change', () => {
-      if (!tagsSel.value) return;
-      const labels = { important: '⭐ Important', todo: '☑ À faire', question: '❓ Question', idea: '💡 Idée', remember: '📌 À retenir' };
-      exec('insertHTML', '<span class="note-tag-badge note-tag-' + tagsSel.value + '">' + (labels[tagsSel.value] || tagsSel.value) + '</span>&nbsp;');
-      tagsSel.value = '';
-    });
-  }
-
-  const headingSel = document.getElementById('tb-heading');
-  if (headingSel) {
-    headingSel.addEventListener('change', () => {
-      if (headingSel.value) {
-        exec('formatBlock', headingSel.value);
-        headingSel.value = '';
-      }
-    });
-  }
-
-  /* ---- Add page ---- */
+    input.accept = 'image
   window.noteAddPage = function () {
     saveCurrentPage();
     pages.push({
@@ -208,7 +155,7 @@
     titleInput.select();
   };
 
-  /* ---- Auto-save ---- */
+
   function scheduleAutoSave() {
     clearTimeout(autoSaveTimer);
     autoSaveTimer = setTimeout(() => {
@@ -225,7 +172,7 @@
     }
   }
 
-  /* ---- File operations ---- */
+
   window.noteNew = function () {
     if (!confirm('Créer un nouveau carnet ?')) return;
     pages = [{
@@ -282,7 +229,7 @@
     VSSuite.exportText(editorEl, (docNameInput.value || 'note') + ' - ' + (pages[activePage]?.title || ''));
   };
 
-  /* ---- Dropdown ---- */
+
   window.toggleDropdown = function (id) {
     const dd = document.getElementById(id);
     if (!dd) return;
@@ -295,7 +242,7 @@
     }
   });
 
-  /* ---- Status ---- */
+
   function updateStatus() {
     const s = document.getElementById('status-pages');
     if (s) s.textContent = `Page ${activePage + 1} / ${pages.length}`;
@@ -306,7 +253,7 @@
     }
   }
 
-  /* ---- Shortcuts ---- */
+
   VSSuite.registerShortcuts({
     'ctrl+s': () => noteSave(),
     'ctrl+o': () => noteOpen(),
@@ -314,7 +261,7 @@
     'ctrl+p': () => noteExportPDF(),
   });
 
-  /* ---- Init ---- */
+
   function init() {
     VSSuite.initTheme();
     loadAutoSave();

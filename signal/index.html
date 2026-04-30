@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr" data-theme="dark">
 <head>
   <meta charset="UTF-8">
@@ -788,12 +788,13 @@
   <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
 
   <link rel="canonical" href="https://ventistudio.eu/signal/">
+  <script src="/i18n.js" defer></script>
 </head>
 <body>
 
   <div class="crt-monitor">
     <div class="crt-bezel">
-      <!-- Decorative screws -->
+
       <div class="bezel-screw tl"></div>
       <div class="bezel-screw tr"></div>
       <div class="bezel-screw bl"></div>
@@ -801,7 +802,7 @@
       <div class="power-led" id="powerLed"></div>
 
       <div class="crt-screen-wrap" id="screenWrap">
-        <!-- CRT effects layers -->
+
         <div class="crt-scanlines"></div>
         <div class="crt-flicker"></div>
         <div class="crt-vignette"></div>
@@ -810,13 +811,13 @@
         <div class="scan-line-moving"></div>
         <div class="glitch-overlay" id="glitchOverlay"></div>
 
-        <!-- Boot matrix rain -->
+
         <div id="boot-matrix"><canvas id="matrixCanvas"></canvas></div>
 
-        <!-- Screen content -->
+
         <div class="screen-content" id="screenContent" style="display:none;">
 
-          <!-- Top status bar -->
+
           <div class="top-bar">
             <div>
               <span class="sys-name">ROBCO INDUSTRIES (TM) TERMLINK</span>
@@ -829,16 +830,16 @@
             </div>
           </div>
 
-          <!-- Terminal output -->
+
           <div class="terminal-body" id="terminalBody"></div>
 
-          <!-- Input -->
+
           <div class="input-area" id="inputArea">
             <span class="prompt-symbol">root@abri-hikari:~$</span>
             <input type="text" id="cmd-input" autocomplete="off" spellcheck="false" placeholder="Entrez une commande...">
           </div>
 
-          <!-- Bottom bar -->
+
           <div class="bottom-bar">
             <span>MEM: 640K OK &nbsp;|&nbsp; HOLODISK: READY</span>
             <span id="nowPlaying" class="now-playing-bar">&#9835; <span class="np-text" id="npText"></span></span>

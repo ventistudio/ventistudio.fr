@@ -1,4 +1,3 @@
-// Script de gestion de la newsletter
 const SUBSCRIBERS_KEY = 'ventistudio_newsletter_subscribers';
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -11,13 +10,13 @@ function handleSubscribe(e) {
   const email = document.getElementById('subscribeEmail').value;
   const messageDiv = document.getElementById('newsletterMessage');
 
-  // Valider l'email
+
   if (!isValidEmail(email)) {
     showMessage('❌ Adresse email invalide', 'error', messageDiv);
     return;
   }
 
-  // Vérifier si email existe déjà
+
   const subscribers = getSubscribers();
   if (subscribers.find(s => s.email === email)) {
     showMessage('⚠️ Cet email est déjà abonné', 'error', messageDiv);
@@ -25,7 +24,7 @@ function handleSubscribe(e) {
     return;
   }
 
-  // Ajouter le nouvel abonné
+
   const newSubscriber = {
     email: email,
     date: new Date().toISOString().split('T')[0],
@@ -38,11 +37,11 @@ function handleSubscribe(e) {
 
   showMessage('✅ Merci! Vous êtes maintenant abonné à notre infolettre', 'success', messageDiv);
   document.getElementById('subscribeEmail').value = '';
-  
-  // Recharger la liste
+
+
   loadSubscribers();
 
-  // Envoyer confirmation (simulation)
+
   simulateSendEmail(email, 'confirmation');
 }
 
@@ -99,7 +98,7 @@ function unsubscribeEmail(id, email) {
 
 function sendTestNewsletter() {
   const subscribers = getSubscribers();
-  
+
   if (subscribers.length === 0) {
     alert('❌ Aucun abonné pour envoyer un email test');
     return;
@@ -107,7 +106,7 @@ function sendTestNewsletter() {
 
   const testEmails = subscribers.slice(0, 3).map(s => s.email);
   alert(`📬 Email test envoyé à:\n${testEmails.join('\n')}\n\nNote: Ceci est une simulation. Dans un vrai système, utilise un service comme SendGrid, Mailgun ou AWS SES`);
-  
+
   console.log('Test newsletter envoyé à:', testEmails);
   logNewsletterAction('send', 'test', testEmails.length);
 }
@@ -150,7 +149,7 @@ function simulateSendEmail(email, type) {
     type: type,
     timestamp: new Date().toISOString(),
     subject: type === 'confirmation' ? '✅ Confirmez votre abonnement à VentiStudio' : '📰 Nouvelle chronique VentiStudio',
-    body: type === 'confirmation' 
+    body: type === 'confirmation'
       ? `Bienvenue sur la newsletter de VentiStudio!\n\nMerci de vous être abonné. Vous recevrez maintenant nos dernières chroniques et actualités directement dans votre boîte mail.`
       : `Découvrez la nouvelle chronique: [TITRE CHRONIQUE]\n\nLisez la suite sur ventistudio.eu/news/`
   };
@@ -188,13 +187,12 @@ function escapeHtml(text) {
   return div.innerHTML;
 }
 
-// Fonction pour envoyer un email de newsletter (à implémenter avec un service BackEnd)
 function sendNewsletterEmail(chronique) {
   const subscribers = getSubscribers();
-  
-  // Simulation: envoyer à maximum 5 abonnés pour les tests
+
+
   const testSubscribers = subscribers.slice(0, 5);
-  
+
   const emailTemplate = `
     <h2>${chronique.title}</h2>
     <p><strong>Par</strong> ${chronique.author}</p>
@@ -208,14 +206,13 @@ function sendNewsletterEmail(chronique) {
     content: emailTemplate
   });
 
-  // Dans un vrai système:
-  // 1. Utiliser un service EMAIL (SendGrid, Mailgun, AWS SES)
-  // 2. Personnaliser les emails
-  // 3. Tracker les ouvertures et clics
-  // 4. Gérer les désabonnements automatiques
+
+
+
+
+
 }
 
-// Exporter la fonction pour utilisation dans news.js
 window.newsletterModule = {
   sendNewsletterEmail: sendNewsletterEmail,
   getSubscribersCount: () => getSubscribers().length

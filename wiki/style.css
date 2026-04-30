@@ -1,9 +1,3 @@
-/* ============================================================
-   Wiki VentiStudio — style « encyclopédie »
-   Inspiré de Wikipedia, intégré au design system VentiStudio
-   ============================================================ */
-
-/* ── Reset / typo encyclopédie ───────────────────────────── */
 .wiki-container {
   max-width: 1280px;
   margin: 0 auto;
@@ -26,7 +20,6 @@
   background: rgba(99, 102, 241, 0.35);
 }
 
-/* ── Barre supérieure (onglets style Wikipedia) ─────────── */
 .wiki-tabs {
   display: flex;
   flex-wrap: wrap;
@@ -61,7 +54,6 @@
   font-weight: 600;
 }
 
-/* ── Layout principal — sidebar + article ───────────────── */
 .wiki-layout {
   display: grid;
   grid-template-columns: 220px minmax(0, 1fr);
@@ -73,7 +65,6 @@
   .wiki-layout { grid-template-columns: 1fr; }
 }
 
-/* ── Sidebar gauche (portails / outils) ─────────────────── */
 .wiki-sidebar {
   position: sticky;
   top: 1rem;
@@ -135,7 +126,6 @@
   opacity: 0.7;
 }
 
-/* ── Hero du hub (page d'accueil wiki) ──────────────────── */
 .wiki-hero {
   text-align: center;
   padding: 1.75rem 1rem 1.5rem;
@@ -178,7 +168,6 @@
 
 .wiki-hero .wiki-search { margin: 1.25rem auto 0; }
 
-/* ── Recherche ──────────────────────────────────────────── */
 .wiki-search {
   position: relative;
   max-width: 640px;
@@ -272,7 +261,6 @@
   font-style: italic;
 }
 
-/* ── Stats ──────────────────────────────────────────────── */
 .wiki-stats {
   display: flex;
   justify-content: center;
@@ -298,7 +286,6 @@
   color: var(--text-secondary);
 }
 
-/* ── Cadres « Article du jour » & « Le saviez-vous » ───── */
 .wiki-feature-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -363,7 +350,6 @@
 
 .wiki-feature .more:hover { text-decoration: underline; }
 
-/* ── Grille de portails (catégories) ───────────────────── */
 .wiki-portals h2.section-heading,
 .wiki-recent h2.section-heading {
   font-size: 1.4rem;
@@ -475,7 +461,6 @@
 
 .wiki-section-footer a:hover { text-decoration: underline; }
 
-/* ── Recent / random panel ─────────────────────────────── */
 .wiki-recent {
   margin-bottom: 2rem;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -517,7 +502,6 @@
   letter-spacing: 0.08em;
 }
 
-/* ── Fil d'Ariane ──────────────────────────────────────── */
 .wiki-breadcrumb {
   display: flex;
   align-items: center;
@@ -538,7 +522,6 @@
 .wiki-breadcrumb .separator { color: var(--text-secondary); opacity: 0.6; }
 .wiki-breadcrumb .current { color: var(--text-primary); font-weight: 500; }
 
-/* ── Article (corps principal) ─────────────────────────── */
 .wiki-content {
   background: transparent;
   border: none;
@@ -621,7 +604,6 @@
 .wiki-content em { color: var(--text-primary); }
 .wiki-content hr { border: none; border-top: 1px solid var(--glass-border); margin: 1.6rem 0; }
 
-/* Tableaux — façon « wikitable » */
 .wiki-content table {
   width: auto;
   border-collapse: collapse;
@@ -649,7 +631,6 @@
 
 .wiki-content table tbody tr:hover { background: rgba(99, 102, 241, 0.05); }
 
-/* Bandeaux d'information */
 .wiki-content .alert-box,
 .wiki-content .info-box {
   padding: 0.85rem 1.15rem;
@@ -672,7 +653,6 @@
   margin-right: 0.35rem;
 }
 
-/* Code */
 .wiki-content code {
   background: rgba(99, 102, 241, 0.1);
   padding: 0.1rem 0.4rem;
@@ -698,7 +678,6 @@
   color: var(--text-primary);
 }
 
-/* Citation */
 .wiki-content blockquote {
   border-left: 3px solid var(--accent);
   margin: 1.2rem 0;
@@ -712,7 +691,6 @@
 
 .wiki-content blockquote p { margin: 0; color: var(--text-secondary); }
 
-/* ── Infobox (encart latéral à droite) ─────────────────── */
 .wiki-infobox {
   float: right;
   width: 280px;
@@ -795,7 +773,6 @@
 .wiki-infobox table tr:last-child th,
 .wiki-infobox table tr:last-child td { border-bottom: none; }
 
-/* ── Sommaire automatique (TOC) ────────────────────────── */
 .wiki-toc {
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
@@ -874,7 +851,6 @@
 .wiki-toc a:hover { text-decoration: underline; }
 .wiki-toc.collapsed ol { display: none; }
 
-/* Ancres auto */
 .wiki-content h2[id],
 .wiki-content h3[id],
 .wiki-content h4[id] {
@@ -896,7 +872,6 @@
 .wiki-content h3:hover .anchor,
 .wiki-content h4:hover .anchor { opacity: 1; }
 
-/* ── Méta article (auteur, dernière modif, etc.) ──────── */
 .wiki-article-meta {
   display: flex;
   flex-wrap: wrap;
@@ -925,7 +900,6 @@
 
 .wiki-article-meta .meta-value { color: var(--text-primary); font-weight: 500; }
 
-/* ── Page catégorie : grille cartes ────────────────────── */
 .wiki-article-card {
   display: block;
   background: var(--glass-bg);
@@ -972,7 +946,6 @@
   line-height: 1.5;
 }
 
-/* ── Bouton retour ─────────────────────────────────────── */
 .back-button {
   display: inline-flex;
   align-items: center;
@@ -996,7 +969,6 @@
   transform: translateX(-2px);
 }
 
-/* ── En-tête de page catégorie ─────────────────────────── */
 .category-header {
   padding: 1rem 0 1rem;
   border-bottom: 1px solid var(--glass-border);
@@ -1016,7 +988,6 @@
   margin: 0;
 }
 
-/* Grille articles dans une catégorie */
 .wiki-articles-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -1024,7 +995,6 @@
   margin-bottom: 2rem;
 }
 
-/* ── Pied d'article (citer / contribuer) ───────────────── */
 .wiki-article-footer {
   margin-top: 2.5rem;
   padding-top: 1rem;
@@ -1046,7 +1016,6 @@
 .wiki-article-footer a:hover { text-decoration: underline; }
 .wiki-article-footer .license { margin-left: auto; opacity: 0.8; }
 
-/* ── Highlight de recherche ─────────────────────────────── */
 .wiki-content mark.search-hit {
   background: rgba(245, 158, 11, 0.35);
   color: var(--text-primary);
@@ -1054,15 +1023,12 @@
   padding: 0 2px;
 }
 
-/* ── Petits utilitaires ─────────────────────────────────── */
 .wiki-clear { clear: both; }
 .wiki-muted { color: var(--text-secondary); }
 
-/* ── Colonne article (utilisée par wiki.js) ─────────────── */
 .wiki-article-main { min-width: 0; }
 .wiki-article-main > .wiki-breadcrumb { margin-top: 0; }
 
-/* ── Impression ─────────────────────────────────────────── */
 @media print {
   header, footer, .wiki-tabs, .wiki-sidebar, .back-button,
   .wiki-article-footer, .wiki-toc-toggle, .anchor { display: none !important; }
@@ -1073,7 +1039,6 @@
   body { background: #fff; color: #000; }
 }
 
-/* ── Responsive ─────────────────────────────────────────── */
 @media (max-width: 760px) {
   .wiki-container { padding: 1rem 0.85rem 3rem; }
   .wiki-hero h1 { font-size: 2rem; }

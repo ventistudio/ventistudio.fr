@@ -1,4 +1,3 @@
-/* Plume — Document Editor Logic */
 (function () {
   'use strict';
 
@@ -7,7 +6,7 @@
   const undoStack = new VSSuite.UndoStack(80);
   let autoSaveTimer;
 
-  /* ---- Init ---- */
+
   function init() {
     VSSuite.initTheme();
     editor.focus();
@@ -28,7 +27,7 @@
     });
   }
 
-  /* ---- Toolbar commands ---- */
+
   function exec(cmd, value) {
     document.execCommand(cmd, false, value || null);
     editor.focus();
@@ -41,7 +40,7 @@
       });
     });
 
-    // Heading select
+
     const headingSel = document.getElementById('tb-heading');
     if (headingSel) {
       headingSel.addEventListener('change', () => {
@@ -54,7 +53,7 @@
       });
     }
 
-    // Font family
+
     const fontSel = document.getElementById('tb-font');
     if (fontSel) {
       fontSel.addEventListener('change', () => {
@@ -62,7 +61,7 @@
       });
     }
 
-    // Font size
+
     const sizeSel = document.getElementById('tb-fontsize');
     if (sizeSel) {
       sizeSel.addEventListener('change', () => {
@@ -70,7 +69,7 @@
       });
     }
 
-    // Text color
+
     const colorInput = document.getElementById('tb-color');
     if (colorInput) {
       colorInput.addEventListener('input', () => {
@@ -78,7 +77,7 @@
       });
     }
 
-    // Highlight color
+
     const hlInput = document.getElementById('tb-highlight');
     if (hlInput) {
       hlInput.addEventListener('input', () => {
@@ -86,25 +85,25 @@
       });
     }
 
-    // Insert image
+
     const imgBtn = document.getElementById('tb-image');
     if (imgBtn) {
       imgBtn.addEventListener('click', insertImage);
     }
 
-    // Insert table
+
     const tableBtn = document.getElementById('tb-table');
     if (tableBtn) {
       tableBtn.addEventListener('click', insertTable);
     }
 
-    // Insert link
+
     const linkBtn = document.getElementById('tb-link');
     if (linkBtn) {
       linkBtn.addEventListener('click', insertLink);
     }
 
-    // Line spacing
+
     const lineSpacing = document.getElementById('tb-linespacing');
     if (lineSpacing) {
       lineSpacing.addEventListener('change', () => {
@@ -116,50 +115,7 @@
   function insertImage() {
     const input = document.createElement('input');
     input.type = 'file';
-    input.accept = 'image/*';
-    input.addEventListener('change', () => {
-      const file = input.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = () => {
-        exec('insertImage', reader.result);
-      };
-      reader.readAsDataURL(file);
-    });
-    input.click();
-  }
-
-  function insertTable() {
-    const rows = parseInt(prompt('Nombre de lignes :', '3'), 10) || 3;
-    const cols = parseInt(prompt('Nombre de colonnes :', '3'), 10) || 3;
-    const clampedRows = Math.min(Math.max(rows, 1), 50);
-    const clampedCols = Math.min(Math.max(cols, 1), 26);
-    let html = '<table><thead><tr>';
-    for (let c = 0; c < clampedCols; c++) html += '<th>En-tête</th>';
-    html += '</tr></thead><tbody>';
-    for (let r = 0; r < clampedRows - 1; r++) {
-      html += '<tr>';
-      for (let c = 0; c < clampedCols; c++) html += '<td>&nbsp;</td>';
-      html += '</tr>';
-    }
-    html += '</tbody></table>';
-    exec('insertHTML', html);
-  }
-
-  function insertLink() {
-    const url = prompt('URL du lien :');
-    if (url) {
-      // Basic URL validation
-      try {
-        new URL(url);
-        exec('createLink', url);
-      } catch {
-        alert('URL invalide');
-      }
-    }
-  }
-
-  /* ---- Find & Replace ---- */
+    input.accept = 'image
   window.toggleFindBar = function () {
     document.getElementById('findbar').classList.toggle('open');
     const input = document.getElementById('find-input');
@@ -194,7 +150,7 @@
     pushUndo();
   };
 
-  /* ---- Undo / Redo ---- */
+
   function pushUndo() {
     undoStack.push({ html: editor.innerHTML });
   }
@@ -209,7 +165,7 @@
     if (s) editor.innerHTML = s.html;
   };
 
-  /* ---- Status bar ---- */
+
   function updateStatus() {
     const text = editor.innerText || '';
     const words = text.trim() ? text.trim().split(/\s+/).length : 0;
@@ -223,7 +179,7 @@
       pEl.textContent = (pageBreaks + 1) + ' page' + (pageBreaks > 0 ? 's' : '');
     }  }
 
-  /* ---- Auto-save (localStorage) ---- */
+
   function doAutoSave() {
     VSSuite.autoSave('plume_current', {
       title: docNameInput.value,
@@ -241,7 +197,7 @@
     }
   }
 
-  /* ---- File operations ---- */
+
   window.plumeNew = function () {
     if (!confirm('Créer un nouveau document ? Les modifications non sauvegardées seront perdues.')) return;
     editor.innerHTML = '<p><br></p>';
@@ -290,7 +246,7 @@
     VSSuite.exportText(editor, docNameInput.value);
   };
 
-  /* ---- Clear format, Page break, Date, Zoom ---- */
+
   window.plumeClearFormat = function () {
     exec('removeFormat');
   };
@@ -334,7 +290,7 @@
     }
   }
 
-  /* ---- Shortcuts ---- */
+
   function setupShortcuts() {
     VSSuite.registerShortcuts({
       'ctrl+s': (e) => { e.preventDefault(); plumeSave(); },
@@ -349,7 +305,7 @@
     });
   }
 
-  /* ---- Dropdown menus ---- */
+
   window.toggleDropdown = function (id) {
     const dd = document.getElementById(id);
     if (!dd) return;
@@ -365,6 +321,6 @@
     }
   });
 
-  /* ---- Start ---- */
+
   document.addEventListener('DOMContentLoaded', init);
 })();

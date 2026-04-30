@@ -1,4 +1,3 @@
-/* Toile — Drawing / Whiteboard Logic */
 (function () {
   'use strict';
 
@@ -16,7 +15,7 @@
   let zoomLevel = 100;
   let isDrawing = false;
   let startX, startY;
-  let layers = []; // Array of drawn objects (strokes, shapes)
+  let layers = [];
   let currentPath = [];
   let undoStack = [];
   let redoStack = [];
@@ -24,7 +23,7 @@
 
   const COLORS = ['#e0e0e0', '#000000', '#ef4444', '#f59e0b', '#10b981', '#3b82f6', '#8b5cf6', '#ec4899', '#6366f1', '#14b8a6', '#f97316', '#a3e635'];
 
-  /* ---- Canvas Sizing ---- */
+
   function resizeCanvas() {
     const rect = canvasWrap.getBoundingClientRect();
     canvas.width = rect.width;
@@ -34,7 +33,7 @@
 
   window.addEventListener('resize', resizeCanvas);
 
-  /* ---- Drawing ---- */
+
   function snapGrid(v) { return gridSnap ? Math.round(v / 20) * 20 : v; }
 
   function getPos(e) {
@@ -188,7 +187,7 @@
     c.stroke();
   }
 
-  /* ---- Redraw all layers ---- */
+
   function drawStar(c, x1, y1, x2, y2, fill) {
     const cx = (x1 + x2) / 2, cy = (y1 + y2) / 2;
     const outerR = Math.min(Math.abs(x2 - x1), Math.abs(y2 - y1)) / 2;
@@ -276,7 +275,7 @@
     });
   }
 
-  /* ---- Tool selection ---- */
+
   document.querySelectorAll('.toile-tool[data-tool]').forEach(btn => {
     btn.addEventListener('click', () => {
       tool = btn.dataset.tool;
@@ -286,7 +285,7 @@
     });
   });
 
-  /* ---- Props panel ---- */
+
   const colorInput = document.getElementById('prop-color');
   const fillInput = document.getElementById('prop-fill');
   const sizeInput = document.getElementById('prop-size');
@@ -305,7 +304,7 @@
     });
   }
 
-  // Opacity
+
   const opacityInput = document.getElementById('prop-opacity');
   const opacityVal = document.getElementById('prop-opacity-val');
   if (opacityInput) {
@@ -315,13 +314,13 @@
     });
   }
 
-  // Grid snap
+
   const gridSnapInput = document.getElementById('prop-grid-snap');
   if (gridSnapInput) {
     gridSnapInput.addEventListener('change', () => { gridSnap = gridSnapInput.checked; });
   }
 
-  // Color presets
+
   function renderColorPresets() {
     const container = document.getElementById('color-presets');
     if (!container) return;
@@ -352,7 +351,7 @@
     return '#' + m.slice(0, 3).map(n => parseInt(n).toString(16).padStart(2, '0')).join('');
   }
 
-  /* ---- Undo / Redo ---- */
+
   window.toileUndo = function () {
     if (layers.length === 0) return;
     redoStack.push(JSON.stringify(layers));
@@ -389,13 +388,13 @@
     if (lbl) lbl.textContent = zoomLevel + '%';
   };
 
-  /* ---- Status ---- */
+
   function updateStatus() {
     const el = document.getElementById('status-objects');
     if (el) el.textContent = layers.length + ' objet' + (layers.length !== 1 ? 's' : '');
   }
 
-  /* ---- Auto-save ---- */
+
   function scheduleAutoSave() {
     clearTimeout(autoSaveTimer);
     autoSaveTimer = setTimeout(() => {
@@ -411,7 +410,7 @@
     }
   }
 
-  /* ---- File operations ---- */
+
   window.toileNew = function () {
     if (!confirm('Nouveau dessin ?')) return;
     layers = [];
@@ -459,7 +458,7 @@
     win.print();
   };
 
-  /* ---- Dropdown ---- */
+
   window.toggleDropdown = function (id) {
     const dd = document.getElementById(id);
     if (!dd) return;
@@ -472,7 +471,7 @@
     }
   });
 
-  /* ---- Shortcuts ---- */
+
   VSSuite.registerShortcuts({
     'ctrl+s': () => toileSave(),
     'ctrl+o': () => toileOpen(),
@@ -483,14 +482,14 @@
     'ctrl+p': () => toileExportPDF(),
   });
 
-  /* ---- Init ---- */
+
   function init() {
     VSSuite.initTheme();
     loadAutoSave();
     resizeCanvas();
     renderColorPresets();
     updateStatus();
-    // Set pen as default active
+
     document.querySelector('.toile-tool[data-tool="pen"]')?.classList.add('active');
   }
 

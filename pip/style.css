@@ -1,11 +1,8 @@
-﻿/* PIP Lecteur Multimédia - Styles */
-
 :root {
   --player-bg: rgba(0, 0, 0, 0.5);
   --sidebar-bg: rgba(99, 102, 241, 0.05);
 }
 
-/* Main Container */
 .pip-container {
   display: grid;
   grid-template-columns: 2fr 1.2fr;
@@ -13,7 +10,6 @@
   margin: 2rem 0;
 }
 
-/* Player Section */
 .player-section {
   display: flex;
   flex-direction: column;
@@ -61,7 +57,6 @@
   stroke-width: 1.5;
 }
 
-/* Screen Capture Protection */
 .screen-capture-overlay {
   position: absolute;
   top: 0;
@@ -92,7 +87,6 @@
   display: none;
 }
 
-/* Protection Panel */
 .protection-panel {
   background: var(--glass-bg);
   backdrop-filter: blur(20px);
@@ -199,7 +193,6 @@
   font-size: 0.8rem;
 }
 
-/* Player Controls */
 .player-controls {
   display: flex;
   flex-wrap: wrap;
@@ -254,14 +247,12 @@
   color: white;
 }
 
-/* Protection Button */
 .control-btn.protection-btn.active {
   background: linear-gradient(135deg, #ef4444 0%, #f97316 100%);
   color: white;
   border-color: transparent;
 }
 
-/* NVIDIA Enhance Button */
 .control-btn.nvidia-btn {
   border-color: rgba(118, 185, 0, 0.3);
 }
@@ -283,7 +274,6 @@
   border-color: rgba(118, 185, 0, 0.5);
 }
 
-/* Volume Control */
 .volume-control {
   display: flex;
   align-items: center;
@@ -343,7 +333,6 @@
   display: none;
 }
 
-/* Media Info */
 .media-info {
   padding: 1rem;
   background: var(--glass-bg);
@@ -369,7 +358,6 @@
   color: var(--text-secondary);
 }
 
-/* Enhancement Tools Panel */
 .enhance-panel {
   background: var(--glass-bg);
   backdrop-filter: blur(20px);
@@ -435,7 +423,6 @@
   letter-spacing: 0.05em;
 }
 
-/* Speed Controls */
 .speed-controls {
   display: flex;
   flex-wrap: wrap;
@@ -465,7 +452,6 @@
   border-color: transparent;
 }
 
-/* Filter Sliders */
 .filter-sliders {
   display: flex;
   flex-direction: column;
@@ -527,7 +513,6 @@
   border: 2px solid rgba(255, 255, 255, 0.2);
 }
 
-/* Loop Controls */
 .loop-controls {
   display: flex;
   flex-wrap: wrap;
@@ -570,7 +555,6 @@
   display: none;
 }
 
-/* Enhance Actions */
 .enhance-actions {
   display: flex;
   flex-wrap: wrap;
@@ -586,7 +570,6 @@
   font-size: 0.85rem;
 }
 
-/* Sleep Timer */
 .sleep-timer-controls {
   display: flex;
   flex-wrap: wrap;
@@ -631,14 +614,12 @@
   display: none;
 }
 
-/* Playlist Mode Controls */
 .playlist-mode-controls {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
 }
 
-/* Keyboard Shortcuts Grid */
 .shortcuts-grid {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -666,7 +647,6 @@
   color: var(--text-secondary);
 }
 
-/* Media Details */
 .media-details {
   display: flex;
   flex-direction: column;
@@ -702,7 +682,6 @@
   margin: 0;
 }
 
-/* Sidebar */
 .sidebar {
   display: flex;
   flex-direction: column;
@@ -725,7 +704,6 @@
   color: var(--text-primary);
 }
 
-/* Upload Section */
 .upload-tabs {
   display: flex;
   gap: 0.5rem;
@@ -812,7 +790,6 @@
   text-align: center;
 }
 
-/* URL Form */
 .url-form {
   display: flex;
   flex-direction: column;
@@ -837,7 +814,6 @@
   width: 100%;
 }
 
-/* Playlist Section */
 .playlist-header {
   display: flex;
   justify-content: space-between;
@@ -886,7 +862,6 @@
   border-color: transparent;
 }
 
-/* Playlist */
 .playlist {
   display: flex;
   flex-direction: column;
@@ -963,7 +938,6 @@
   opacity: 1;
 }
 
-/* Features Section */
 .features-section {
   margin-top: 4rem;
 }
@@ -1012,7 +986,6 @@
   font-size: 0.95rem;
 }
 
-/* Audio Visualizer Container */
 .audio-visualizer-container {
   display: flex;
   flex-direction: column;
@@ -1081,12 +1054,11 @@
   background: var(--text-secondary);
 }
 
-/* Responsive Design */
 @media (max-width: 1200px) {
   .pip-container {
     grid-template-columns: 1fr;
   }
-  
+
   .sidebar {
     max-height: none;
   }
@@ -1096,7 +1068,7 @@
   .player-controls {
     flex-wrap: wrap;
   }
-  
+
   .control-btn {
     flex: 1;
     min-width: 100px;
@@ -1107,17 +1079,16 @@
     justify-content: center;
     margin-left: 0;
   }
-  
+
   .features-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .playlist-item {
     font-size: 0.9rem;
   }
 }
 
-/* Accessibility */
 .control-btn:focus,
 .filter-btn:focus,
 .upload-tab:focus {
@@ -1125,18 +1096,16 @@
   outline-offset: 2px;
 }
 
-/* Dark mode adjustments */
 @media (prefers-color-scheme: dark) {
   .drop-zone {
     background: rgba(99, 102, 241, 0.05);
   }
-  
+
   .playlist-item {
     background: rgba(99, 102, 241, 0.08);
   }
 }
 
-/* Print styles */
 @media print {
   .player-controls,
   .upload-section,

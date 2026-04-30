@@ -1,4 +1,3 @@
-/* Diapo — Presentation Editor Logic */
 (function () {
   'use strict';
 
@@ -34,7 +33,7 @@
     };
   }
 
-  /* ---- Render ---- */
+
   function render() {
     renderSlide();
     renderSidebar();
@@ -78,7 +77,7 @@
         div.textContent = el.content;
       }
 
-      // Resize handles
+
       ['nw', 'ne', 'sw', 'se'].forEach(pos => {
         const handle = document.createElement('div');
         handle.className = 'resize-handle ' + pos;
@@ -128,7 +127,7 @@
         render();
       });
 
-      // Right-click to delete
+
       thumb.addEventListener('contextmenu', (e) => {
         e.preventDefault();
         if (slides.length > 1 && confirm('Supprimer cette diapositive ?')) {
@@ -194,12 +193,12 @@
       }
       html += `<br><button class="suite-btn suite-btn-ghost" style="width:100%;margin-top:8px" onclick="diapoDeleteElement()">Supprimer l'élément</button>`;
     }
-    // Transition selector sync
+
     const transSelect = document.getElementById('tb-transition');
     if (transSelect) transSelect.value = slide.transition || 'none';
     propsPanel.innerHTML = html;
 
-    // Event listeners for props
+
     propsPanel.querySelectorAll('.diapo-theme-swatch').forEach(sw => {
       sw.addEventListener('click', () => {
         slide.theme = sw.dataset.theme;
@@ -227,7 +226,7 @@
     });
   }
 
-  /* ---- Drag & Drop ---- */
+
   function startDrag(e, el) {
     if (e.target.classList.contains('resize-handle')) return;
     e.preventDefault();
@@ -281,7 +280,7 @@
     document.addEventListener('mouseup', onUp);
   }
 
-  /* ---- Edit element text ---- */
+
   function startEditElement(el) {
     if (el.type === 'image' || el.type === 'shape') return;
     const div = slideContainer.querySelector(`[data-id="${el.id}"]`);
@@ -311,7 +310,7 @@
     });
   }
 
-  /* ---- Click on stage to deselect ---- */
+
   slideContainer.addEventListener('mousedown', (e) => {
     if (e.target === slideContainer) {
       selectedElement = null;
@@ -319,7 +318,7 @@
     }
   });
 
-  /* ---- Insert elements ---- */
+
   window.diapoAddTitle = function () {
     const slide = slides[activeSlide];
     slide.elements.push({
@@ -345,45 +344,7 @@
   window.diapoAddImage = function () {
     const input = document.createElement('input');
     input.type = 'file';
-    input.accept = 'image/*';
-    input.addEventListener('change', () => {
-      const file = input.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = () => {
-        slides[activeSlide].elements.push({
-          id: elementIdCounter++, type: 'image',
-          x: 200, y: 100, w: 400, h: 300,
-          content: reader.result, style: {},
-        });
-        scheduleAutoSave();
-        render();
-      };
-      reader.readAsDataURL(file);
-    });
-    input.click();
-  };
-
-  window.diapoAddShape = function () {
-    slides[activeSlide].elements.push({
-      id: elementIdCounter++, type: 'shape',
-      x: 300, y: 200, w: 200, h: 150,
-      content: '', style: { background: '#6366f1', borderRadius: '8px' },
-    });
-    scheduleAutoSave();
-    render();
-  };
-
-  window.diapoDeleteElement = function () {
-    if (selectedElement === null) return;
-    const slide = slides[activeSlide];
-    slide.elements = slide.elements.filter(e => e.id !== selectedElement);
-    selectedElement = null;
-    scheduleAutoSave();
-    render();
-  };
-
-  /* ---- Duplicate / Delete / Move Slide ---- */
+    input.accept = 'image
   window.diapoDuplicateSlide = function () {
     const src = slides[activeSlide];
     const dup = JSON.parse(JSON.stringify(src));
@@ -417,13 +378,13 @@
     render();
   };
 
-  /* ---- Transitions ---- */
+
   window.diapoSetTransition = function (t) {
     slides[activeSlide].transition = t;
     scheduleAutoSave();
   };
 
-  /* ---- Speaker Notes ---- */
+
   function renderNotes() {
     const textarea = document.getElementById('diapo-notes');
     if (textarea) textarea.value = slides[activeSlide].notes || '';
@@ -437,7 +398,7 @@
     });
   }
 
-  /* ---- Keyboard ---- */
+
   document.addEventListener('keydown', (e) => {
     if (e.target.contentEditable === 'true' || e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
     if (e.key === 'Delete' || e.key === 'Backspace') {
@@ -456,7 +417,7 @@
     }
   });
 
-  /* ---- Presentation mode ---- */
+
   window.diapoPresent = function () {
     const overlay = document.createElement('div');
     overlay.className = 'diapo-presentation-mode';
@@ -533,17 +494,17 @@
     const slide = overlay.querySelector('.diapo-slide');
     if (!slide || type === 'none') return;
     slide.style.animation = 'none';
-    slide.offsetHeight; // reflow
+    slide.offsetHeight;
     slide.style.animation = 'diapo-' + type + ' 0.5s ease';
   }
 
-  /* ---- Status ---- */
+
   function updateStatus() {
     const sEl = document.getElementById('status-slide');
     if (sEl) sEl.textContent = `Diapo ${activeSlide + 1} / ${slides.length}`;
   }
 
-  /* ---- Auto-save ---- */
+
   function scheduleAutoSave() {
     clearTimeout(autoSaveTimer);
     autoSaveTimer = setTimeout(() => {
@@ -557,7 +518,7 @@
       if (data.title) docNameInput.value = data.title;
       if (data.slides && data.slides.length) {
         slides = data.slides;
-        // Restore id counter
+
         slides.forEach(s => s.elements.forEach(el => {
           if (el.id >= elementIdCounter) elementIdCounter = el.id + 1;
         }));
@@ -565,7 +526,7 @@
     }
   }
 
-  /* ---- File operations ---- */
+
   window.diapoNew = function () {
     if (!confirm('Créer une nouvelle présentation ?')) return;
     slides = [createDefaultSlide()];
@@ -606,7 +567,7 @@
     VSSuite.exportHTML(slideContainer, docNameInput.value);
   };
 
-  /* ---- Dropdown ---- */
+
   window.toggleDropdown = function (id) {
     const dd = document.getElementById(id);
     if (!dd) return;
@@ -619,7 +580,7 @@
     }
   });
 
-  /* ---- Shortcuts ---- */
+
   VSSuite.registerShortcuts({
     'ctrl+s': () => diapoSave(),
     'ctrl+o': () => diapoOpen(),
@@ -628,7 +589,7 @@
     'ctrl+shift+p': () => diapoPresent(),
   });
 
-  /* ---- Init ---- */
+
   function init() {
     VSSuite.initTheme();
     loadAutoSave();

@@ -12,10 +12,11 @@
   <script>
     (function(){var t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t)})();
   </script>
+  <script src="/i18n.js" defer></script>
 </head>
 <body class="suite-app">
 
-  <!-- Header -->
+
   <div class="suite-header">
     <a href="/domain/suite/" class="suite-logo">
       <img src="/favicon.avif" alt="VentiStudio" width="24" height="24">
@@ -44,7 +45,7 @@
     </div>
   </div>
 
-  <!-- Toolbar -->
+
   <div class="suite-toolbar">
     <div class="tb-group">
       <select class="tb-select" id="tb-heading" title="Style">
@@ -75,7 +76,7 @@
       <button class="tb-btn" data-cmd="insertHorizontalRule" title="Séparateur"><svg viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"/></svg></button>
     </div>
     <div class="tb-sep"></div>
-    <!-- Colors -->
+
     <div class="tb-group">
       <label class="tb-btn" title="Couleur du texte" style="position:relative">
         <input type="color" id="tb-text-color" value="#e0e0e0" style="width:0;height:0;opacity:0;position:absolute;left:0;top:0">
@@ -87,20 +88,20 @@
       </label>
     </div>
     <div class="tb-sep"></div>
-    <!-- Indent -->
+
     <div class="tb-group">
       <button class="tb-btn" data-cmd="indent" title="Augmenter le retrait"><svg viewBox="0 0 24 24"><line x1="3" y1="8" x2="21" y2="8"/><line x1="3" y1="16" x2="21" y2="16"/><line x1="7" y1="12" x2="21" y2="12"/><polyline points="3 10 5 12 3 14"/></svg></button>
       <button class="tb-btn" data-cmd="outdent" title="Diminuer le retrait"><svg viewBox="0 0 24 24"><line x1="3" y1="8" x2="21" y2="8"/><line x1="3" y1="16" x2="21" y2="16"/><line x1="7" y1="12" x2="21" y2="12"/><polyline points="5 10 3 12 5 14"/></svg></button>
     </div>
     <div class="tb-sep"></div>
-    <!-- Insert -->
+
     <div class="tb-group">
       <button class="tb-btn" onclick="noteInsertTable()" title="Insérer un tableau"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg></button>
       <button class="tb-btn" onclick="noteInsertImage()" title="Insérer une image"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></button>
       <button class="tb-btn" onclick="noteInsertLink()" title="Insérer un lien"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></button>
     </div>
     <div class="tb-sep"></div>
-    <!-- Tags -->
+
     <div class="tb-group">
       <select class="tb-select" id="tb-tags" title="Insérer un tag" style="width:100px">
         <option value="">Tag…</option>
@@ -113,9 +114,9 @@
     </div>
   </div>
 
-  <!-- Body -->
+
   <div class="suite-body">
-    <!-- Sidebar with pages -->
+
     <div class="note-sidebar" id="note-sidebar">
       <div class="note-sidebar-header">
         <input type="text" id="note-search" placeholder="Rechercher…" aria-label="Rechercher une page">
@@ -124,7 +125,7 @@
       <button class="note-add-page" onclick="noteAddPage()">+ Nouvelle page</button>
     </div>
 
-    <!-- Editor -->
+
     <div class="note-editor-area">
       <input type="text" class="note-title-input" id="note-title" placeholder="Titre de la page" aria-label="Titre de la page">
       <div class="note-meta" id="note-meta"></div>
@@ -133,7 +134,7 @@
     </div>
   </div>
 
-  <!-- Status Bar -->
+
   <div class="suite-statusbar">
     <span id="status-pages">Page 1 / 1</span>
     <span id="status-words">0 mot</span>

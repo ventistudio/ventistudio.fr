@@ -1,4 +1,3 @@
-// Script pour la page de création de news
 document.getElementById('newsForm').addEventListener('submit', function(e) {
   e.preventDefault();
 
@@ -11,7 +10,7 @@ document.getElementById('newsForm').addEventListener('submit', function(e) {
     content: document.getElementById('newsContent').value
   };
 
-  // Générer le code HTML
+
   const htmlCode = `{
     id: '${Date.now()}',
     title: '${formData.title.replace(/'/g, "\\'")}',
@@ -22,13 +21,12 @@ document.getElementById('newsForm').addEventListener('submit', function(e) {
     content: \`${formData.content.replace(/`/g, '\\`')}\`
   },`;
 
-  // Afficher le code généré
+
   document.getElementById('generatedCode').textContent = htmlCode;
   document.getElementById('outputSection').style.display = 'block';
   document.getElementById('outputSection').scrollIntoView({ behavior: 'smooth' });
 });
 
-// Fonction pour copier le code
 function copyToClipboard() {
   const code = document.getElementById('generatedCode').textContent;
   navigator.clipboard.writeText(code).then(() => {

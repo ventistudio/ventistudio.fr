@@ -24,9 +24,10 @@
       document.documentElement.setAttribute('data-theme',t);
     })();
   </script>
+  <script src="/i18n.js" defer></script>
 </head>
 <body>
-   <!-- ====== Modals ====== -->
+
   <div class="pc-modal-overlay" id="pc-setup-modal" hidden>
     <div class="pc-modal pc-setup-modal">
       <div class="pc-modal-icon">
@@ -102,7 +103,7 @@
     </div>
   </div>
 
-  <!-- ====== Profile View Popup ====== -->
+
   <div class="pc-profile-popup" id="pc-profile-popup" hidden>
     <div class="pc-profile-banner" id="pc-profile-banner"></div>
     <div class="pc-profile-head">
@@ -133,7 +134,7 @@
     <button class="pc-profile-close" id="pc-profile-close" title="Fermer">&times;</button>
   </div>
 
-  <!-- ====== Profile Edit Modal ====== -->
+
   <div class="pc-modal-overlay" id="pc-profile-edit-modal" hidden>
     <div class="pc-modal pc-profile-edit">
       <h3>Modifier le profil</h3>
@@ -171,7 +172,7 @@
     </div>
   </div>
 
-  <!-- ====== Settings (Full-page Discord-style) ====== -->
+
   <div class="pc-settings-page" id="pc-settings-modal">
     <div class="pc-settings-sidebar">
       <div class="pc-settings-sidebar-scroll">
@@ -230,7 +231,7 @@
     <div class="pc-settings-content">
       <div class="pc-settings-content-scroll">
 
-        <!-- Mon compte -->
+
         <div class="pc-settings-section active" data-section="account">
           <h2>Mon compte</h2>
           <div class="pc-settings-card">
@@ -262,7 +263,7 @@
           </div>
         </div>
 
-        <!-- Notifications -->
+
         <div class="pc-settings-section" data-section="notifications">
           <h2>Notifications</h2>
           <div class="pc-settings-option-row">
@@ -287,7 +288,7 @@
           </div>
         </div>
 
-        <!-- Données et confidentialité -->
+
         <div class="pc-settings-section" data-section="privacy">
           <h2>Données et confidentialité</h2>
           <div class="pc-settings-option-row">
@@ -312,7 +313,7 @@
           </div>
         </div>
 
-        <!-- Sécurité -->
+
         <div class="pc-settings-section" data-section="security">
           <h2>Sécurité</h2>
           <div class="pc-settings-info-box">
@@ -342,7 +343,7 @@
           </div>
         </div>
 
-        <!-- Apparence -->
+
         <div class="pc-settings-section" data-section="appearance">
           <h2>Apparence</h2>
           <div class="pc-settings-option-row">
@@ -370,7 +371,7 @@
           </div>
         </div>
 
-        <!-- Accessibilité -->
+
         <div class="pc-settings-section" data-section="accessibility">
           <h2>Accessibilité</h2>
           <div class="pc-settings-option-row">
@@ -387,7 +388,7 @@
           </div>
         </div>
 
-        <!-- Raccourcis clavier -->
+
         <div class="pc-settings-section" data-section="keybinds">
           <h2>Raccourcis clavier</h2>
           <div class="pc-settings-keybind-list">
@@ -409,7 +410,7 @@
           </div>
         </div>
 
-        <!-- Langue -->
+
         <div class="pc-settings-section" data-section="language">
           <h2>Langue</h2>
           <div class="pc-settings-option-row">
@@ -423,7 +424,7 @@
           </div>
         </div>
 
-        <!-- Transfert d'appareil -->
+
         <div class="pc-settings-section" data-section="transfer">
           <h2>Transfert d'appareil</h2>
           <div class="pc-settings-info-box">
@@ -465,7 +466,7 @@
           </div>
         </div>
 
-        <!-- Déconnexion -->
+
         <div class="pc-settings-section" data-section="logout">
           <h2>Déconnexion</h2>
           <p class="pc-settings-logout-text">Vous serez déconnecté de PeerCom. Vos données locales seront conservées.</p>
@@ -473,7 +474,7 @@
         </div>
 
       </div>
-      <!-- Close button -->
+
       <button class="pc-settings-close" id="pc-settings-close" title="Fermer (Échap)">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         <span class="pc-settings-close-hint">ÉCHAP</span>
@@ -481,25 +482,25 @@
     </div>
   </div>
 
-  <!-- ====== Emoji Picker ====== -->
+
   <div class="pc-emoji-picker" id="pc-emoji-picker" hidden>
     <div class="pc-emoji-header">Emoji</div>
     <div class="pc-emoji-grid" id="pc-emoji-grid"></div>
   </div>
 
-  <!-- ====== App Layout ====== -->
+
   <div class="pc-app">
 
-    <!-- Mobile sidebar toggle -->
+
     <button class="pc-mobile-toggle" id="pc-mobile-toggle" aria-label="Ouvrir le panneau latéral">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
     </button>
     <div class="pc-sidebar-backdrop" id="pc-sidebar-backdrop"></div>
 
-    <!-- ---- Left Sidebar ---- -->
+
     <aside class="pc-sidebar" id="pc-sidebar">
 
-      <!-- Search / Connect -->
+
       <div class="pc-sidebar-search">
         <div class="pc-search-box">
           <input type="text" id="pc-peer-input" placeholder="Recherche ou lance une conversation" autocomplete="off" spellcheck="false">
@@ -507,7 +508,7 @@
         </div>
       </div>
 
-      <!-- Nav: Amis -->
+
       <div class="pc-sidebar-nav">
         <button class="pc-nav-item pc-nav-friends active">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" stroke="currentColor" stroke-width="2"/><circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke="currentColor" stroke-width="2"/></svg>
@@ -517,7 +518,7 @@
 
       <div class="pc-sidebar-sep"></div>
 
-      <!-- DMs / Contacts -->
+
       <div class="pc-dm-header">
         <span class="pc-sidebar-label">MESSAGES DIRECTS</span>
         <button class="pc-dm-add" id="pc-open-group-modal" title="Créer un groupe"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><line x1="12" y1="5" x2="12" y2="19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="5" y1="12" x2="19" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
@@ -534,7 +535,7 @@
 
       <div class="pc-sidebar-sep"></div>
 
-      <!-- Group / Server joins -->
+
       <div class="pc-gs-block">
         <div class="pc-gs-row">
           <span class="pc-sidebar-label">GROUPES</span>
@@ -553,7 +554,7 @@
         </div>
       </div>
 
-      <!-- User Panel (bottom) -->
+
       <div class="pc-user-panel">
         <div class="pc-up-left" id="pc-up-left" role="button" tabindex="0" title="Voir mon profil">
           <div class="pc-avatar-wrapper">
@@ -577,12 +578,12 @@
       </div>
     </aside>
 
-    <!-- ---- Main Area ---- -->
+
     <div class="pc-main">
 
-      <!-- === Friends / Landing View === -->
+
       <section class="pc-landing" id="pc-landing">
-        <!-- Toolbar (Discord-style top bar) -->
+
         <div class="pc-toolbar">
           <div class="pc-tb-left">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" stroke="currentColor" stroke-width="2"/><circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke="currentColor" stroke-width="2"/></svg>
@@ -604,7 +605,7 @@
           </div>
         </div>
 
-        <!-- Friends body -->
+
         <div class="pc-friends-body">
           <div class="pc-empty-friends">
             <svg width="200" height="140" viewBox="0 0 200 140" fill="none" aria-hidden="true">
@@ -619,14 +620,14 @@
           </div>
         </div>
 
-        <!-- Hidden elements for JS compat -->
+
         <div id="pc-features" hidden></div>
         <div id="pc-how" hidden></div>
       </section>
 
-      <!-- === Chat Section === -->
+
       <section class="pc-chat-section" id="pc-chat-section" hidden>
-        <!-- Chat header -->
+
         <div class="pc-chat-header">
           <div class="pc-ch-left">
             <span class="pc-ch-at">@</span>
@@ -648,7 +649,7 @@
           </div>
         </div>
 
-        <!-- Banners -->
+
         <div class="pc-banner pc-banner-screen" id="pc-screen-banner" hidden>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="2"/><path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
           <span>Vous partagez votre écran</span>
@@ -662,7 +663,7 @@
           <button class="pc-banner-stop" id="pc-call-hangup-btn">Raccrocher</button>
         </div>
 
-        <!-- Members drawer -->
+
         <div class="pc-members-drawer" id="pc-members-drawer" hidden>
           <div class="pc-members-head">
             <h4>Membres <span id="pc-members-count">0</span></h4>
@@ -671,7 +672,7 @@
           <div class="pc-members-list" id="pc-members-list"></div>
         </div>
 
-        <!-- Messages -->
+
         <div class="pc-messages" id="pc-messages" role="log" aria-label="Messages" aria-live="polite">
           <div class="pc-messages-empty" id="pc-messages-empty">
             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" stroke="var(--pc-text-muted)" stroke-width="1.5" opacity=".3"/><path d="M7 11V7a5 5 0 0110 0v4" stroke="var(--pc-text-muted)" stroke-width="1.5" opacity=".3"/></svg>
@@ -680,20 +681,20 @@
           </div>
         </div>
 
-        <!-- Typing -->
+
         <div class="pc-typing" id="pc-typing" hidden>
           <div class="pc-typing-dots"><span></span><span></span><span></span></div>
           <span>en train d’écrire...</span>
         </div>
 
-        <!-- Reply bar -->
+
         <div class="pc-reply-bar" id="pc-reply-bar" hidden>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M9 17l-5-5 5-5M4 12h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
           <span class="pc-reply-bar-text" id="pc-reply-bar-text">Répondre à...</span>
           <button class="pc-reply-bar-close" id="pc-reply-bar-close" title="Annuler">&times;</button>
         </div>
 
-        <!-- Chat input -->
+
         <div class="pc-input-bar">
           <form class="pc-chat-form" id="pc-chat-form">
             <button type="button" class="pc-attach-circle" id="pc-attach-btn" title="Joindre un fichier"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><line x1="12" y1="5" x2="12" y2="19" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="5" y1="12" x2="19" y2="12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></button>
@@ -711,7 +712,7 @@
     </div>
   </div>
 
-  <!-- Screen overlay -->
+
   <div class="pc-screen-overlay" id="pc-screen-overlay" hidden>
     <div class="pc-screen-header"><span>Partage d’écran distant</span><button class="pc-icon-btn" id="pc-screen-close-btn" title="Fermer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button></div>
     <video id="pc-screen-video" autoplay playsinline></video>

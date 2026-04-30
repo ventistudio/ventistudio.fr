@@ -1,5 +1,3 @@
-/* ═══ Calendrier des Événements — Styles ═══ */
-
 .calendar-header {
   text-align: center;
   padding: 3rem 2rem 1.5rem;
@@ -15,7 +13,6 @@
   font-size: 1.05rem;
 }
 
-/* ── Filtres ── */
 .calendar-controls {
   max-width: 900px;
   margin: 0 auto 1.5rem;
@@ -43,7 +40,6 @@
   border-color: var(--accent);
 }
 
-/* ── Navigation Mois ── */
 .calendar-nav {
   max-width: 900px;
   margin: 0 auto 1rem;
@@ -74,7 +70,6 @@
   font-weight: 700;
 }
 
-/* ── Grille Calendrier ── */
 .calendar-grid-wrapper {
   max-width: 900px;
   margin: 0 auto;
@@ -183,7 +178,6 @@
   text-align: center;
 }
 
-/* ── Légende ── */
 .calendar-legend {
   max-width: 900px;
   margin: 1rem auto 0;
@@ -213,7 +207,6 @@
 .legend-dot.birthday { background: #ec4899; }
 .legend-dot.special { background: #8b5cf6; }
 
-/* ── Modal événement ── */
 .cal-modal {
   background: var(--bg-primary);
   border: 1px solid var(--glass-border);
@@ -302,7 +295,6 @@
 
 .cal-modal-event-link:hover { text-decoration: underline; }
 
-/* ── Upcoming Events ── */
 .calendar-upcoming {
   max-width: 900px;
   margin: 2.5rem auto 0;
@@ -380,7 +372,6 @@
   color: var(--text-secondary);
 }
 
-/* ── Responsive ── */
 @media (max-width: 640px) {
   .calendar-day {
     min-height: 50px;

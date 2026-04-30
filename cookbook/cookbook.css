@@ -1,9 +1,3 @@
-/* ========================================
-   Le Livre de Cuisine — VentiStudio
-   CSS unique à l'esprit culinaire
-   ======================================== */
-
-/* Palette culinaire */
 :root {
   --cook-warm: #e07a3a;
   --cook-warm-light: #f4a261;
@@ -16,13 +10,12 @@
   --cook-paper: #fdf6ec;
   --cook-ink: #3e2723;
   --cook-spice-glow: rgba(224, 122, 58, 0.35);
-  /* Rythme vertical cohérent */
+
   --cook-max: 1100px;
   --cook-section-py: clamp(2.5rem, 5vw, 4rem);
   --cook-section-px: clamp(1rem, 3vw, 2rem);
 }
 
-/* Conteneur global pour homogénéiser */
 .cookbook-categories,
 .cookbook-featured,
 .cookbook-stats,
@@ -33,7 +26,6 @@
   margin-right: auto;
 }
 
-/* ---- Hero Culinaire ---- */
 .cookbook-hero {
   position: relative;
   text-align: center;
@@ -122,7 +114,6 @@
   background: linear-gradient(90deg, transparent, var(--cook-warm), transparent);
 }
 
-/* ---- Intro texte ---- */
 .cookbook-intro {
   max-width: 720px;
   margin: 0 auto;
@@ -136,7 +127,6 @@
   line-height: 1.8;
 }
 
-/* ---- Section catégories ---- */
 .cookbook-categories {
   padding: 0 var(--cook-section-px) var(--cook-section-py);
 }
@@ -162,7 +152,6 @@
   gap: 1.75rem;
 }
 
-/* ---- Carte recette / catégorie ---- */
 .recipe-card {
   position: relative;
   background: var(--glass-bg);
@@ -257,7 +246,6 @@
   transform: translateX(4px);
 }
 
-/* ---- Section vedette (recette du jour) ---- */
 .cookbook-featured {
   padding: 0 var(--cook-section-px) var(--cook-section-py);
 }
@@ -359,7 +347,6 @@
   color: var(--text-secondary);
 }
 
-/* ---- Statistiques culinaires (au fun) ---- */
 .cookbook-stats {
   max-width: 900px;
   padding: 0 var(--cook-section-px) var(--cook-section-py);
@@ -406,7 +393,6 @@
   margin-top: 0.2rem;
 }
 
-/* ---- CTA de fin ---- */
 .cookbook-cta {
   text-align: center;
   padding: 0 var(--cook-section-px) calc(var(--cook-section-py) + 1rem);
@@ -469,7 +455,6 @@
   box-shadow: 0 8px 24px var(--cook-spice-glow);
 }
 
-/* ---- Sections de recettes détaillées ---- */
 .cookbook-recipe-section {
   padding: 0 var(--cook-section-px) var(--cook-section-py);
   scroll-margin-top: 6rem;
@@ -571,7 +556,6 @@
   }
 }
 
-/* ---- Barre d'ancrage entre sections (TOC catégories) ---- */
 .cookbook-anchor-bar {
   position: sticky;
   top: 70px;
@@ -613,7 +597,6 @@
   border-color: transparent;
 }
 
-/* ---- Divider décoratif entre grandes sections ---- */
 .cookbook-divider {
   display: flex;
   align-items: center;
@@ -635,7 +618,6 @@
   max-width: 240px;
 }
 
-/* ---- Banni\u00e8re collaboration CookADeux ---- */
 :root {
   --cookadeux-primary: #d63b3b;
   --cookadeux-secondary: #f4b942;
@@ -877,7 +859,6 @@
   border-radius: 50%;
 }
 
-/* ---- Responsive ---- */
 @media (max-width: 768px) {
   .cookbook-hero {
     padding: 3.5rem 1.25rem 3rem;
@@ -930,11 +911,6 @@
     grid-template-columns: 1fr;
   }
 }
-
-
-/* ========================================
-   Page CookADeux - Le Livre Officiel
-   ======================================== */
 
 .cookadeux-breadcrumb {
   max-width: var(--cook-max);
@@ -1011,7 +987,6 @@
 }
 .cookadeux-tag:hover { color: var(--cookadeux-secondary); border-color: var(--cookadeux-secondary); }
 
-/* Piliers */
 .cookadeux-manifesto {
   max-width: var(--cook-max);
   margin: 0 auto;
@@ -1055,7 +1030,6 @@
   color: var(--text-secondary);
 }
 
-/* Code parrainage */
 .cookadeux-sponsor {
   max-width: var(--cook-max);
   margin: 0 auto;

@@ -1,336 +1,314 @@
 <!DOCTYPE html>
-<html lang="fr" data-theme="dark">
+
+<html data-theme="dark" lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <meta name="description" content="Historique complet de VentiStudio - Évolution, versions et jalons importants">
-  <meta name="theme-color" content="#6366f1">
-  <title>Historique | VentiStudio</title>
-  <link rel="stylesheet" href="/style.css">
-
-  <script async crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
-  <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
-
-  <meta property="og:title" content="Historique | VentiStudio">
-  <meta property="og:description" content="Historique complet de VentiStudio - Évolution, versions et jalons importants">
-  <meta property="og:url" content="https://ventistudio.eu/history/">
-  <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
-  <meta property="og:type" content="website">
-  <link rel="canonical" href="https://ventistudio.eu/history/">
-
-  <script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport"/>
+<meta content="Historique complet de VentiStudio - Évolution, versions et jalons importants" name="description"/>
+<meta content="#6366f1" name="theme-color"/>
+<title>Historique | VentiStudio</title>
+<link href="/style.css" rel="stylesheet"/>
+<script async="" crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
+<script async="" crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
+<meta content="Historique | VentiStudio" property="og:title"/>
+<meta content="Historique complet de VentiStudio - Évolution, versions et jalons importants" property="og:description"/>
+<meta content="https://ventistudio.eu/history/" property="og:url"/>
+<meta content="https://ventistudio.eu/favicon.avif" property="og:image"/>
+<meta content="website" property="og:type"/>
+<link href="https://ventistudio.eu/history/" rel="canonical"/>
+<script>
     (function() {
       var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
       document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
+<script defer="" src="/i18n.js"></script>
 </head>
 <body>
-  <header>
-    <div class="logo">
-      <img src="/favicon.avif" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
-      <span>VentiStudio</span>
-    </div>
-    <button class="nav-burger" id="nav-burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav">
-      <span></span><span></span><span></span>
-    </button>
-    <nav id="main-nav" class="main-nav" aria-label="Navigation principale">
-      <a href="/" class="nav-link">Accueil</a>
+<header>
+<div class="logo">
+<img alt="Logo VentiStudio" class="site-logo" height="32" src="/favicon.avif" width="32"/>
+<span>VentiStudio</span>
+</div>
+<button aria-controls="main-nav" aria-expanded="false" aria-label="Ouvrir le menu" class="nav-burger" data-i18n-attr="aria-label:aria.open_menu" id="nav-burger">
+<span></span><span></span><span></span>
+</button>
+<nav aria-label="Navigation principale" class="main-nav" data-i18n-attr="aria-label:nav.aria" id="main-nav">
+<a class="nav-link" data-i18n="nav.home" href="/">Accueil</a>
+<details class="nav-group">
+<summary class="nav-link" data-i18n="nav.discover">Découvrir
+          <svg aria-hidden="true" class="nav-caret" fill="none" height="12" viewbox="0 0 24 24" width="12"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</summary>
+<div class="nav-panel" role="menu">
+<a data-i18n="nav.evaluation" href="/evaluation">Évaluation</a>
+<a data-i18n="nav.wiki" href="/wiki">Wiki</a>
+<a data-i18n="nav.glossary" href="/glossary">Glossaire</a>
+<a data-i18n="nav.news" href="/news">News</a>
+<a data-i18n="nav.blog" href="/blog">Blog</a>
+<a data-i18n="nav.calendar" href="/calendar">Calendrier</a>
+<a data-i18n="nav.cookbook" href="/cookbook">Cookbook</a>
+<a data-i18n="nav.gallery" href="/gallery">Galerie</a>
+<a data-i18n="nav.atlas" href="/atlas">Atlas</a>
+</div>
+</details>
+<details class="nav-group">
+<summary class="nav-link" data-i18n="nav.universe">Univers
+          <svg aria-hidden="true" class="nav-caret" fill="none" height="12" viewbox="0 0 24 24" width="12"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</summary>
+<div class="nav-panel" role="menu">
+<a href="/aokiunivers">AOKI Universe</a>
+<a href="/allofaokiunivers">All AOKI</a>
+<a data-i18n="nav.university" href="/university">Université</a>
+<a data-i18n="nav.history" href="/history">Histoire</a>
+<a data-i18n="nav.memorial" href="/memorial">Mémorial</a>
+<a data-i18n="nav.easter_eggs" href="/ester-eggs">Easter eggs</a>
+</div>
+</details>
+<details class="nav-group">
+<summary class="nav-link" data-i18n="nav.tools">Outils
+          <svg aria-hidden="true" class="nav-caret" fill="none" height="12" viewbox="0 0 24 24" width="12"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</summary>
+<div class="nav-panel nav-panel-wide" role="menu">
+<div class="nav-col">
+<h4 data-i18n="nav.col.apps">Applications</h4>
+<a data-i18n="nav.player" href="/player">Lecteur</a>
+<a data-i18n="nav.music" href="/music">Musique</a>
+<a href="/pip">PIP</a>
+<a href="/whiteboard">Whiteboard</a>
+<a href="/portfolio">Portfolio</a>
+<a href="/gmod">GMod</a>
+</div>
+<div class="nav-col">
+<h4 data-i18n="nav.col.domains">Domaines</h4>
+<a href="/domain/aina">AINA</a>
+<a href="/domain/archive">Archive</a>
+<a href="/domain/maps">Maps</a>
+<a href="/domain/movie">Movie</a>
+<a href="/domain/peer">Peer</a>
+<a href="/domain/pro">Pro</a>
+<a href="/domain/search">Search</a>
+<a href="/domain/suite">Suite</a>
+</div>
+</div>
+</details>
+<details class="nav-group">
+<summary class="nav-link" data-i18n="nav.community">Communauté
+          <svg aria-hidden="true" class="nav-caret" fill="none" height="12" viewbox="0 0 24 24" width="12"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</summary>
+<div class="nav-panel nav-panel-wide" role="menu">
+<div class="nav-col">
+<h4 data-i18n="nav.col.team">Équipe</h4>
+<a data-i18n="nav.team" href="/personnel/">Équipe</a>
+<a data-i18n="nav.hierarchy" href="/hierarchie-staff">Hiérarchie</a>
+<a href="/hypesquad">Hypesquad</a>
+<a data-i18n="nav.jobs" href="/jobs">Emplois</a>
+<a data-i18n="nav.birthday" href="/birthday">Anniversaires</a>
+</div>
+<div class="nav-col">
+<h4 data-i18n="nav.col.networks">Réseaux</h4>
+<a href="/discord">Discord</a>
+<a href="/teamspeak">TeamSpeak</a>
+<a href="/steam">Steam</a>
+<a data-i18n="nav.social" href="/social">Réseaux sociaux</a>
+</div>
+<div class="nav-col">
+<h4 data-i18n="nav.col.activities">Activités</h4>
+<a data-i18n="nav.artists" href="/artist">Artistes</a>
+<a data-i18n="nav.quests" href="/quests">Quêtes</a>
+<a href="/suboawards">Suboawards</a>
+<a href="/eConcert">eConcert</a>
+</div>
+</div>
+</details>
+<details class="nav-group">
+<summary class="nav-link" data-i18n="nav.more">Plus
+          <svg aria-hidden="true" class="nav-caret" fill="none" height="12" viewbox="0 0 24 24" width="12"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</summary>
+<div class="nav-panel nav-panel-wide" role="menu">
+<div class="nav-col">
+<h4 data-i18n="nav.col.help">Aide</h4>
+<a data-i18n="nav.contact" href="/contact">Contact</a>
+<a href="/faq">FAQ</a>
+<a data-i18n="nav.status" href="/status">Statut</a>
+<a data-i18n="nav.sitemap" href="/sitemap">Plan du site</a>
+</div>
+<div class="nav-col">
+<h4 data-i18n="nav.col.support">Soutien</h4>
+<a data-i18n="nav.donate" href="/donate">Faire un don</a>
+<a href="/gold">Gold</a>
+<a data-i18n="nav.customization" href="/customization">Personnalisation</a>
+<a data-i18n="nav.my_data" href="/mes-donnees">Mes Données</a>
+<a href="/newsletter">Newsletter</a>
+</div>
+<div class="nav-col">
+<h4 data-i18n="nav.col.about">À propos</h4>
+<a data-i18n="nav.company" href="/company">Entreprise</a>
+<a data-i18n="nav.acknowledgements" href="/acknowledgements">Remerciements</a>
+<a href="/logo">Logo</a>
+<a href="/tags">Tags</a>
+<a data-i18n="nav.memory" href="/memory">Mémoire</a>
+<a data-i18n="nav.why_not_roblox" href="/why-not-use-roblox">Pourquoi pas Roblox</a>
+<a data-i18n="nav.legal" href="/lawful">Mentions légales</a>
+</div>
+</div>
+</details>
+</nav>
+<div aria-label="Contrôles" class="controls" data-i18n-attr="aria-label:aria.controls" role="toolbar">
+<button aria-label="Basculer le thème clair/sombre" class="theme-toggle" data-i18n-attr="aria-label:aria.toggle_theme,title:aria.toggle_theme" id="theme-toggle" title="Basculer le thème">
+<svg aria-hidden="true" height="24" viewbox="0 0 24 24" width="24">
+<path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" fill="none" stroke="currentColor"></path>
+<circle class="sun" cx="12" cy="12" fill="none" r="4" stroke="currentColor"></circle>
+<path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" fill="none" stroke="currentColor"></path>
+</svg>
+</button>
+<div aria-label="Authentification" id="user-button" role="region"><button class="cta" id="auth-fallback-btn" onclick="window.location.href='https://accounts.ventistudio.eu/sign-in?redirect_url='+encodeURIComponent(window.location.href)" style="padding:0.5rem 1.25rem;font-size:0.9rem;margin:0"><span data-i18n="nav.signin">Se connecter</span></button></div>
+</div>
+</header>
+<main>
+<section class="hero">
+<h1 data-i18n="history.hero.h1">Historique de VentiStudio</h1>
+<p data-i18n="history.hero.p">L'évolution de notre plateforme créative au fil du temps</p>
+</section>
+<section class="history-container">
+<div class="timeline">
 
-      <details class="nav-group">
-        <summary class="nav-link">Découvrir
-          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </summary>
-        <div class="nav-panel" role="menu">
-          <a href="/evaluation">Évaluation</a>
-          <a href="/wiki">Wiki</a>
-          <a href="/glossary">Glossaire</a>
-          <a href="/news">News</a>
-          <a href="/blog">Blog</a>
-          <a href="/calendar">Calendrier</a>
-          <a href="/cookbook">Cookbook</a>
-          <a href="/gallery">Galerie</a>
-          <a href="/atlas">Atlas</a>
-        </div>
-      </details>
+<div class="timeline-item">
+<div class="timeline-marker">
+<span class="version-badge v1">v1</span>
+</div>
+<div class="timeline-content">
+<h3 data-i18n="history.history_container_timeline.h3">VentiStudio v1 - Les Débuts</h3>
+<p class="timeline-date">2023</p>
+<p data-i18n="history.history_container_timeline.p">Les premiers pas de VentiStudio. Une plateforme basique de partage de contenu créatif avec les fondamentaux.</p>
+<ul>
+<li data-i18n="history.history_container_timeline.li">Base de donnée simple</li>
+<li data-i18n="history.history_container_timeline.li2">Interface minimale</li>
+<li data-i18n="history.history_container_timeline.li3">Premiers utilisateurs</li>
+<li data-i18n="history.history_container_timeline.li4">Fondation de la communauté</li>
+</ul>
+</div>
+</div>
 
-      <details class="nav-group">
-        <summary class="nav-link">Univers
-          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </summary>
-        <div class="nav-panel" role="menu">
-          <a href="/aokiunivers">AOKI Universe</a>
-          <a href="/allofaokiunivers">All AOKI</a>
-          <a href="/university">Université</a>
-          <a href="/history">Histoire</a>
-          <a href="/memorial">Mémorial</a>
-          <a href="/ester-eggs">Easter eggs</a>
-        </div>
-      </details>
+<div class="timeline-item">
+<div class="timeline-marker">
+<span class="version-badge v2">v2</span>
+</div>
+<div class="timeline-content">
+<h3 data-i18n="history.history_container_timeline.h32">VentiStudio v2 - Expansion</h3>
+<p class="timeline-date">2024</p>
+<p data-i18n="history.history_container_timeline.p2">Deuxième génération apportant de nouvelles fonctionnalités majeures et l'amélioration de la stabilité.</p>
+<ul>
+<li data-i18n="history.history_container_timeline.li5">Système de lecteur multimédia</li>
+<li data-i18n="history.history_container_timeline.li6">Meilleure organisation du contenu</li>
+<li data-i18n="history.history_container_timeline.li7">Interface améliorée</li>
+<li data-i18n="history.history_container_timeline.li8">Croissance de la communauté</li>
+</ul>
+</div>
+</div>
 
-      <details class="nav-group">
-        <summary class="nav-link">Outils
-          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </summary>
-        <div class="nav-panel nav-panel-wide" role="menu">
-          <div class="nav-col">
-            <h4>Applications</h4>
-            <a href="/player">Lecteur</a>
-            <a href="/music">Musique</a>
-            <a href="/pip">PIP</a>
-            <a href="/whiteboard">Whiteboard</a>
-            <a href="/portfolio">Portfolio</a>
-            <a href="/gmod">GMod</a>
-          </div>
-          <div class="nav-col">
-            <h4>Domaines</h4>
-            <a href="/domain/aina">AINA</a>
-            <a href="/domain/archive">Archive</a>
-            <a href="/domain/maps">Maps</a>
-            <a href="/domain/movie">Movie</a>
-            <a href="/domain/peer">Peer</a>
-            <a href="/domain/pro">Pro</a>
-            <a href="/domain/search">Search</a>
-            <a href="/domain/suite">Suite</a>
-          </div>
-        </div>
-      </details>
+<div class="timeline-item">
+<div class="timeline-marker">
+<span class="version-badge v3">v3</span>
+</div>
+<div class="timeline-content">
+<h3 data-i18n="history.history_container_timeline.h33">VentiStudio v3 - Renaissance</h3>
+<p class="timeline-date">2025</p>
+<p data-i18n="history.history_container_timeline.p3">Une refonte complète de la plateforme avec une attention particulière à l'expérience utilisateur.</p>
+<ul>
+<li data-i18n="history.history_container_timeline.li9">Redesign UI/UX complet</li>
+<li data-i18n="history.history_container_timeline.li10">Support multi-navigateur optimisé</li>
+<li data-i18n="history.history_container_timeline.li11">Nouvelles sections (Wiki, Galerie d'artistes)</li>
+<li data-i18n="history.history_container_timeline.li12">Amélioration de la performance</li>
+<li data-i18n="history.history_container_timeline.li13">Intégration d'outils avancés</li>
+</ul>
+</div>
+</div>
 
-      <details class="nav-group">
-        <summary class="nav-link">Communauté
-          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </summary>
-        <div class="nav-panel nav-panel-wide" role="menu">
-          <div class="nav-col">
-            <h4>Équipe</h4>
-            <a href="/personnel/">Équipe</a>
-            <a href="/hierarchie-staff">Hiérarchie</a>
-            <a href="/hypesquad">Hypesquad</a>
-            <a href="/jobs">Emplois</a>
-            <a href="/birthday">Anniversaires</a>
-          </div>
-          <div class="nav-col">
-            <h4>Réseaux</h4>
-            <a href="/discord">Discord</a>
-            <a href="/teamspeak">TeamSpeak</a>
-            <a href="/steam">Steam</a>
-            <a href="/social">Réseaux sociaux</a>
-          </div>
-          <div class="nav-col">
-            <h4>Activités</h4>
-            <a href="/artist">Artistes</a>
-            <a href="/quests">Quêtes</a>
-            <a href="/suboawards">Suboawards</a>
-            <a href="/eConcert">eConcert</a>
-          </div>
-        </div>
-      </details>
-
-      <details class="nav-group">
-        <summary class="nav-link">Plus
-          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </summary>
-        <div class="nav-panel nav-panel-wide" role="menu">
-          <div class="nav-col">
-            <h4>Aide</h4>
-            <a href="/contact">Contact</a>
-            <a href="/faq">FAQ</a>
-            <a href="/status">Statut</a>
-            <a href="/sitemap">Plan du site</a>
-          </div>
-          <div class="nav-col">
-            <h4>Soutien</h4>
-            <a href="/donate">Faire un don</a>
-            <a href="/gold">Gold</a>
-            <a href="/customization">Personnalisation</a>
-            <a href="/mes-donnees">Mes Données</a>
-            <a href="/newsletter">Newsletter</a>
-          </div>
-          <div class="nav-col">
-            <h4>À propos</h4>
-            <a href="/company">Entreprise</a>
-            <a href="/acknowledgements">Remerciements</a>
-            <a href="/logo">Logo</a>
-            <a href="/tags">Tags</a>
-            <a href="/memory">Mémoire</a>
-            <a href="/why-not-use-roblox">Pourquoi pas Roblox</a>
-            <a href="/lawful">Mentions légales</a>
-          </div>
-        </div>
-      </details>
-    </nav>
-    <div class="controls" role="toolbar" aria-label="Contrôles">
-      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
-        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
-          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
-          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
-          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
-        </svg>
-      </button>
-      <div id="user-button" role="region" aria-label="Authentification"><button class="cta" id="auth-fallback-btn" onclick="window.location.href='https://accounts.ventistudio.eu/sign-in?redirect_url='+encodeURIComponent(window.location.href)" style="padding:0.5rem 1.25rem;font-size:0.9rem;margin:0"><span>Se connecter</span></button></div>
-    </div>
-  </header>
-
-  <main>
-    <section class="hero">
-      <h1>Historique de VentiStudio</h1>
-      <p>L'évolution de notre plateforme créative au fil du temps</p>
-    </section>
-
-    <section class="history-container">
-      <div class="timeline">
-        <!-- v1 -->
-        <div class="timeline-item">
-          <div class="timeline-marker">
-            <span class="version-badge v1">v1</span>
-          </div>
-          <div class="timeline-content">
-            <h3>VentiStudio v1 - Les Débuts</h3>
-            <p class="timeline-date">2023</p>
-            <p>Les premiers pas de VentiStudio. Une plateforme basique de partage de contenu créatif avec les fondamentaux.</p>
-            <ul>
-              <li>Base de donnée simple</li>
-              <li>Interface minimale</li>
-              <li>Premiers utilisateurs</li>
-              <li>Fondation de la communauté</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- v2 -->
-        <div class="timeline-item">
-          <div class="timeline-marker">
-            <span class="version-badge v2">v2</span>
-          </div>
-          <div class="timeline-content">
-            <h3>VentiStudio v2 - Expansion</h3>
-            <p class="timeline-date">2024</p>
-            <p>Deuxième génération apportant de nouvelles fonctionnalités majeures et l'amélioration de la stabilité.</p>
-            <ul>
-              <li>Système de lecteur multimédia</li>
-              <li>Meilleure organisation du contenu</li>
-              <li>Interface améliorée</li>
-              <li>Croissance de la communauté</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- v3 -->
-        <div class="timeline-item">
-          <div class="timeline-marker">
-            <span class="version-badge v3">v3</span>
-          </div>
-          <div class="timeline-content">
-            <h3>VentiStudio v3 - Renaissance</h3>
-            <p class="timeline-date">2025</p>
-            <p>Une refonte complète de la plateforme avec une attention particulière à l'expérience utilisateur.</p>
-            <ul>
-              <li>Redesign UI/UX complet</li>
-              <li>Support multi-navigateur optimisé</li>
-              <li>Nouvelles sections (Wiki, Galerie d'artistes)</li>
-              <li>Amélioration de la performance</li>
-              <li>Intégration d'outils avancés</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- v4 -->
-        <div class="timeline-item">
-          <div class="timeline-marker">
-            <span class="version-badge v4">v4</span>
-          </div>
-          <div class="timeline-content">
-            <h3>VentiStudio v4 - L'Avenir</h3>
-            <p class="timeline-date">2026 - Actuellement</p>
-            <p>Architecture modernisée avec technologie de pointe et design futuriste. L'accomplissement de notre vision créative.</p>
-            <ul>
-              <li>Design glass-morphism révolutionnaire</li>
-              <li>Architecture UTF-8 complète</li>
-              <li>Responsivité mobile optimale</li>
-              <li>Accessibility WCAG 2.1 complète</li>
-              <li>System d'actualités intégré (News)</li>
-              <li>Historique unifié</li>
-              <li>Performance 40% améliorée</li>
-              <li>Équipe et gestion unifiée</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="milestones">
-        <h2>Jalons Importants</h2>
-        <div class="milestones-grid">
-          <div class="milestone">
-            <div class="milestone-icon">🚀</div>
-            <h4>Lancement Initial</h4>
-            <p>Création et première mise en ligne de VentiStudio</p>
-            <span class="milestone-date">2023</span>
-          </div>
-
-          <div class="milestone">
-            <div class="milestone-icon">👥</div>
-            <h4>Croissance Communautaire</h4>
-            <p>Atteinte de 10 000+ utilisateurs actifs</p>
-            <span class="milestone-date">2024</span>
-          </div>
-
-          <div class="milestone">
-            <div class="milestone-icon">🎨</div>
-            <h4>Galerie d'Artistes</h4>
-            <p>Lancement de la plateforme pour les créateurs</p>
-            <span class="milestone-date">2025</span>
-          </div>
-
-          <div class="milestone">
-            <div class="milestone-icon">🌐</div>
-            <h4>Domaine .eu</h4>
-            <p>Migration vers ventistudio.eu</p>
-            <span class="milestone-date">2026</span>
-          </div>
-
-          <div class="milestone">
-            <div class="milestone-icon">📚</div>
-            <h4>RFC 9116 & Sécurité</h4>
-            <p>Implémentation complète des standards de sécurité</p>
-            <span class="milestone-date">2026</span>
-          </div>
-
-          <div class="milestone">
-            <div class="milestone-icon">✨</div>
-            <h4>Système d'Actualités</h4>
-            <p>Lancement des Chroniques de VentiStudio</p>
-            <span class="milestone-date">2026</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="future-section">
-        <h2>À Venir</h2>
-        <div class="future-items">
-          <div class="future-item">
-            <h4>🔮 v5 - L'IA Créative</h4>
-            <p>Intégration d'outils IA pour assister les créateurs. Prévue pour 2027.</p>
-          </div>
-
-          <div class="future-item">
-            <h4>🌍 Expansion Mondiale</h4>
-            <p>Support multilingue complet et serveurs dans plusieurs régions.</p>
-          </div>
-
-          <div class="future-item">
-            <h4>📱 Application Mobile</h4>
-            <p>Applications natives iOS et Android pour meilleure accessibilité.</p>
-          </div>
-
-          <div class="future-item">
-            <h4>💰 Programme Créateur</h4>
-            <p>Monétisation pour les créateurs avec système de rémunération équitable.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <style>
+<div class="timeline-item">
+<div class="timeline-marker">
+<span class="version-badge v4">v4</span>
+</div>
+<div class="timeline-content">
+<h3 data-i18n="history.history_container_timeline.h34">VentiStudio v4 - L'Avenir</h3>
+<p class="timeline-date" data-i18n="history.history_container_timeline.p4">2026 - Actuellement</p>
+<p data-i18n="history.history_container_timeline.p5">Architecture modernisée avec technologie de pointe et design futuriste. L'accomplissement de notre vision créative.</p>
+<ul>
+<li data-i18n="history.history_container_timeline.li14">Design glass-morphism révolutionnaire</li>
+<li data-i18n="history.history_container_timeline.li15">Architecture UTF-8 complète</li>
+<li data-i18n="history.history_container_timeline.li16">Responsivité mobile optimale</li>
+<li data-i18n="history.history_container_timeline.li17">Accessibility WCAG 2.1 complète</li>
+<li data-i18n="history.history_container_timeline.li18">System d'actualités intégré (News)</li>
+<li data-i18n="history.history_container_timeline.li19">Historique unifié</li>
+<li data-i18n="history.history_container_timeline.li20">Performance 40% améliorée</li>
+<li data-i18n="history.history_container_timeline.li21">Équipe et gestion unifiée</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="milestones">
+<h2 data-i18n="history.history_container_milestones.h2">Jalons Importants</h2>
+<div class="milestones-grid">
+<div class="milestone">
+<div class="milestone-icon">🚀</div>
+<h4 data-i18n="history.history_container_milestones.h4">Lancement Initial</h4>
+<p data-i18n="history.history_container_milestones.p">Création et première mise en ligne de VentiStudio</p>
+<span class="milestone-date">2023</span>
+</div>
+<div class="milestone">
+<div class="milestone-icon">👥</div>
+<h4 data-i18n="history.history_container_milestones.h42">Croissance Communautaire</h4>
+<p data-i18n="history.history_container_milestones.p2">Atteinte de 10 000+ utilisateurs actifs</p>
+<span class="milestone-date">2024</span>
+</div>
+<div class="milestone">
+<div class="milestone-icon">🎨</div>
+<h4 data-i18n="history.history_container_milestones.h43">Galerie d'Artistes</h4>
+<p data-i18n="history.history_container_milestones.p3">Lancement de la plateforme pour les créateurs</p>
+<span class="milestone-date">2025</span>
+</div>
+<div class="milestone">
+<div class="milestone-icon">🌐</div>
+<h4 data-i18n="history.history_container_milestones.h44">Domaine .eu</h4>
+<p data-i18n="history.history_container_milestones.p4">Migration vers ventistudio.eu</p>
+<span class="milestone-date">2026</span>
+</div>
+<div class="milestone">
+<div class="milestone-icon">📚</div>
+<h4 data-i18n="history.history_container_milestones.h45">RFC 9116 &amp; Sécurité</h4>
+<p data-i18n="history.history_container_milestones.p5">Implémentation complète des standards de sécurité</p>
+<span class="milestone-date">2026</span>
+</div>
+<div class="milestone">
+<div class="milestone-icon">✨</div>
+<h4 data-i18n="history.history_container_milestones.h46">Système d'Actualités</h4>
+<p data-i18n="history.history_container_milestones.p6">Lancement des Chroniques de VentiStudio</p>
+<span class="milestone-date">2026</span>
+</div>
+</div>
+</div>
+<div class="future-section">
+<h2 data-i18n="history.history_container_future_section.h2">À Venir</h2>
+<div class="future-items">
+<div class="future-item">
+<h4 data-i18n="history.history_container_future_section.h4">🔮 v5 - L'IA Créative</h4>
+<p data-i18n="history.history_container_future_section.p">Intégration d'outils IA pour assister les créateurs. Prévue pour 2027.</p>
+</div>
+<div class="future-item">
+<h4 data-i18n="history.history_container_future_section.h42">🌍 Expansion Mondiale</h4>
+<p data-i18n="history.history_container_future_section.p2">Support multilingue complet et serveurs dans plusieurs régions.</p>
+</div>
+<div class="future-item">
+<h4 data-i18n="history.history_container_future_section.h43">📱 Application Mobile</h4>
+<p data-i18n="history.history_container_future_section.p3">Applications natives iOS et Android pour meilleure accessibilité.</p>
+</div>
+<div class="future-item">
+<h4 data-i18n="history.history_container_future_section.h44">💰 Programme Créateur</h4>
+<p data-i18n="history.history_container_future_section.p4">Monétisation pour les créateurs avec système de rémunération équitable.</p>
+</div>
+</div>
+</div>
+</section>
+<style>
       .history-container {
         max-width: 1000px;
         margin: 60px auto;
@@ -586,51 +564,50 @@
         }
       }
     </style>
-  </main>
-
-  <footer>
-    <div class="footer-content">
-      <div class="footer-section">
-        <h4>Outils</h4>
-        <ul>
-          <li><a href="/pip">PIP</a></li>
-          <li><a href="/sitemap">Plan du site</a></li>
-          <li><a href="https://status.ventistudio.eu/">Statut</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h4>Entreprise</h4>
-        <ul>
-          <li><a href="/about">À propos</a></li>
-          <li><a href="/jobs">Emplois</a></li>
-          <li><a href="/logo">Marque</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h4>Ressources</h4>
-        <ul>
-          <li><a href="/university">Université</a></li>
-          <li><a href="/lawful/support">Assistance</a></li>
-          <li><a href="/lawful/security">Sécurité</a></li>
-        </ul>
-      </div>
-      <div class="footer-section">
-        <h4>Chartes</h4>
-        <ul>
-          <li><a href="/lawful/tos">Conditions d'utilisation</a></li>
-          <li><a href="/lawful/cookies">Confidentialité</a></li>
-          <li><a href="/lawful/dmcainfo">Information DMCA</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <iframe src="https://status.ventistudio.eu/badge?theme=dark" width="500" height="30" frameborder="0" scrolling="no" style="color-scheme: normal"></iframe>
-      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
-    </div>
-  </footer>
-
-  <script defer src="/main.js"></script>
-  <script>
+</main>
+<footer>
+<div class="footer-content">
+<div class="footer-section">
+<h4 data-i18n="footer.col.tools">Outils</h4>
+<ul>
+<li><a href="/pip">PIP</a></li>
+<li><a data-i18n="footer.tools.sitemap" href="/sitemap">Plan du site</a></li>
+<li><a data-i18n="footer.tools.status" href="https://status.ventistudio.eu/">Statut</a></li>
+</ul>
+</div>
+<div class="footer-section">
+<h4 data-i18n="footer.col.company">Entreprise</h4>
+<ul>
+<li><a data-i18n="footer.company.about" href="/about">À propos</a></li>
+<li><a data-i18n="footer.company.jobs" href="/jobs">Emplois</a></li>
+<li><a data-i18n="footer.company.brand" href="/logo">Marque</a></li>
+</ul>
+</div>
+<div class="footer-section">
+<h4 data-i18n="footer.col.resources">Ressources</h4>
+<ul>
+<li><a data-i18n="footer.resources.university" href="/university">Université</a></li>
+<li><a data-i18n="footer.resources.support" href="/lawful/support">Assistance</a></li>
+<li><a data-i18n="footer.resources.security" href="/lawful/security">Sécurité</a></li>
+</ul>
+</div>
+<div class="footer-section">
+<h4 data-i18n="footer.col.legal">Chartes</h4>
+<ul>
+<li><a data-i18n="footer.legal.tos" href="/lawful/tos">Conditions d'utilisation</a></li>
+<li><a data-i18n="footer.legal.privacy" href="/lawful/cookies">Confidentialité</a></li>
+<li><a data-i18n="footer.legal.dmca" href="/lawful/dmcainfo">Information DMCA</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom">
+<iframe frameborder="0" height="30" scrolling="no" src="https://status.ventistudio.eu/badge?theme=dark" style="color-scheme: normal" width="500"></iframe>
+<div id="lang-switcher"></div>
+<p class="copyright" data-i18n="footer.copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
+</div>
+</footer>
+<script defer="" src="/main.js"></script>
+<script>
     (function () {
       var nav = document.getElementById('main-nav');
       var burger = document.getElementById('nav-burger');

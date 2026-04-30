@@ -1,12 +1,7 @@
-/* ============================================================
-   VentiStudio Suite — Shared Utilities (suite.js)
-   100% client-side — no server requests
-   ============================================================ */
-
 const VSSuite = (() => {
   'use strict';
 
-  /* ---------- File format helpers ---------- */
+
   const FILE_TYPES = {
     vdoc:  { name: 'Plume Document',   mime: 'application/vnd.ventistudio.vdoc+json',  ext: '.vdoc'  },
     vcal:  { name: 'Cellule Spreadsheet', mime: 'application/vnd.ventistudio.vcal+json', ext: '.vcal'  },
@@ -15,7 +10,7 @@ const VSSuite = (() => {
     vdraw: { name: 'Toile Drawing',     mime: 'application/vnd.ventistudio.vdraw+json', ext: '.vdraw' },
   };
 
-  /** Create a new file envelope */
+
   function createFile(type, data = {}) {
     return {
       type,
@@ -30,7 +25,7 @@ const VSSuite = (() => {
     };
   }
 
-  /** Save JSON to disk as a .v--- file */
+
   function saveFile(fileObj) {
     const ft = FILE_TYPES[fileObj.type];
     if (!ft) return;
@@ -43,7 +38,7 @@ const VSSuite = (() => {
     URL.revokeObjectURL(a.href);
   }
 
-  /** Open and parse a .v--- file from disk */
+
   function openFile(accept) {
     return new Promise((resolve, reject) => {
       const input = document.createElement('input');
@@ -68,9 +63,9 @@ const VSSuite = (() => {
     });
   }
 
-  /* ---------- Export helpers ---------- */
 
-  /** Export to PDF via browser print */
+
+
   function exportPDF(element, title) {
     const win = window.open('', '_blank');
     win.document.write(`<!DOCTYPE html><html><head><title>${esc(title)}</title>
@@ -86,7 +81,7 @@ const VSSuite = (() => {
     win.print();
   }
 
-  /** Export as HTML file */
+
   function exportHTML(element, title) {
     const html = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>${esc(title)}</title>
       <style>body{font-family:sans-serif;padding:40px;max-width:800px;margin:auto}table{border-collapse:collapse;width:100%}th,td{border:1px solid #ccc;padding:6px 10px}</style>
@@ -94,12 +89,12 @@ const VSSuite = (() => {
     download(html, title + '.html', 'text/html');
   }
 
-  /** Export as plain text */
+
   function exportText(element, title) {
     download(element.innerText, title + '.txt', 'text/plain');
   }
 
-  /** Export as DOCX (basic — HTML wrapped in Word XML container) */
+
   function exportDOCX(element, title) {
     const header = `<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40"><head><meta charset="utf-8"><title>${esc(title)}</title></head><body>`;
     const footer = '</body></html>';
@@ -112,7 +107,7 @@ const VSSuite = (() => {
     URL.revokeObjectURL(a.href);
   }
 
-  /** Export as CSV (for spreadsheets) */
+
   function exportCSV(data2D, title) {
     const csv = data2D.map(row =>
       row.map(cell => {
@@ -125,12 +120,12 @@ const VSSuite = (() => {
     download(csv, title + '.csv', 'text/csv');
   }
 
-  /* ---------- LocalStorage persistence ---------- */
+
 
   function autoSave(key, data) {
     try {
       localStorage.setItem('vs_suite_' + key, JSON.stringify(data));
-    } catch { /* quota exceeded — silently fail */ }
+    } catch {  }
   }
 
   function autoLoad(key) {
@@ -144,7 +139,7 @@ const VSSuite = (() => {
     localStorage.removeItem('vs_suite_' + key);
   }
 
-  /* ---------- Utility ---------- */
+
 
   function download(content, filename, mime) {
     const blob = new Blob([content], { type: mime });
@@ -161,7 +156,7 @@ const VSSuite = (() => {
     return d.innerHTML;
   }
 
-  /** Keyboard shortcut manager */
+
   function registerShortcuts(map) {
     document.addEventListener('keydown', (e) => {
       const key = [];
@@ -177,7 +172,7 @@ const VSSuite = (() => {
     });
   }
 
-  /** Simple undo/redo stack */
+
   class UndoStack {
     constructor(maxSize = 100) {
       this._stack = [];
@@ -201,7 +196,7 @@ const VSSuite = (() => {
     current() { return this._stack[this._index] ?? null; }
   }
 
-  /* ---------- Theme sync ---------- */
+
   function initTheme() {
     const t = localStorage.getItem('theme') ||
       (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
@@ -215,7 +210,7 @@ const VSSuite = (() => {
     localStorage.setItem('theme', next);
   }
 
-  /* ---------- Public API ---------- */
+
   return {
     FILE_TYPES,
     createFile,
