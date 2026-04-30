@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="VentiStudio - Licence FiTsZ Digital Media Agreement (FiTsZ-DMA) v1.0 : licence éthique propriétaire avec copyleft conditionnel et redevance commerciale.">
+  <meta name="theme-color" content="#6366f1">
+  <title>Licence FiTsZ-DMA 1.0 | VentiStudio</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="../lawful.css">
+
+  <script async crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
+  <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
+
+  <meta property="og:title" content="Licence FiTsZ-DMA 1.0 | VentiStudio">
+  <meta property="og:description" content="Licence éthique propriétaire à copyleft conditionnel et redevance, applicable à tout contenu : code, jeux, image, vidéo, musique, etc.">
+  <meta property="og:url" content="https://ventistudio.eu/lawful/license-fitsz-dma/">
+  <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://ventistudio.eu/lawful/license-fitsz-dma/">
+
+  <style>
+    .lic-container { max-width: 1100px; margin: 0 auto; padding: 2rem; }
+    .lic-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin: 2rem 0 3rem;
+    }
+    .lic-meta-item {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 0.75rem;
+      padding: 1rem 1.25rem;
+      text-align: center;
+    }
+    .lic-meta-item strong {
+      color: var(--accent);
+      display: block;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.4rem;
+    }
+    .lic-meta-item span { color: var(--text-secondary); font-size: 0.95rem; word-break: break-word; }
+
+    .lic-toc {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 1rem;
+      padding: 1.75rem 2rem;
+      margin-bottom: 2.5rem;
+    }
+    .lic-toc h2 { color: var(--accent); margin-bottom: 1rem; font-size: 1.25rem; text-align: center; }
+    .lic-toc ol { columns: 2; column-gap: 2rem; padding-left: 1.25rem; margin: 0; }
+    @media (max-width: 700px) { .lic-toc ol { columns: 1; } }
+    .lic-toc li { margin-bottom: 0.4rem; }
+    .lic-toc a { color: var(--text-primary); text-decoration: none; transition: color .15s; }
+    .lic-toc a:hover { color: var(--accent); }
+
+    .lic-section {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 1rem;
+      padding: 2rem 2.25rem;
+      margin-bottom: 1.5rem;
+      scroll-margin-top: 100px;
+    }
+    .lic-section h2 {
+      color: var(--accent);
+      font-size: 1.5rem;
+      margin: 0 0 1rem;
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+    }
+    .lic-section h2 .num {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.95rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 0.4rem;
+      background: rgba(99, 102, 241, 0.18);
+      color: var(--accent);
+    }
+    .lic-section h3 {
+      font-size: 1.05rem;
+      color: var(--text-primary);
+      margin: 1.25rem 0 0.5rem;
+    }
+    .lic-section p { color: var(--text-secondary); line-height: 1.7; margin-bottom: 0.75rem; }
+    .lic-section ul, .lic-section ol { color: var(--text-secondary); line-height: 1.7; padding-left: 1.4rem; margin-bottom: 0.75rem; }
+    .lic-section li { margin-bottom: 0.35rem; }
+    .lic-section strong { color: var(--text-primary); }
+    .lic-section code {
+      background: rgba(255,255,255,0.06);
+      padding: 0.1rem 0.35rem;
+      border-radius: 0.3rem;
+      font-size: 0.9em;
+      color: var(--accent);
+    }
+
+    .lic-callout {
+      border-left: 3px solid var(--accent);
+      background: rgba(99,102,241,0.08);
+      padding: 0.9rem 1.1rem;
+      border-radius: 0.5rem;
+      margin: 1rem 0;
+    }
+    .lic-callout.danger { border-left-color: #ef4444; background: rgba(239,68,68,0.08); }
+    .lic-callout.warn { border-left-color: #f59e0b; background: rgba(245,158,11,0.08); }
+    .lic-callout p { margin: 0; color: var(--text-primary); }
+
+    .lic-spdx {
+      background: #0b0f1a;
+      color: #e2e8f0;
+      padding: 1rem 1.25rem;
+      border-radius: 0.6rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.85rem;
+      overflow-x: auto;
+      border: 1px solid var(--glass-border);
+    }
+
+    .lic-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+      margin: 2rem 0 1rem;
+    }
+    .lic-actions a, .lic-actions button {
+      background: var(--accent);
+      color: #fff;
+      padding: 0.7rem 1.4rem;
+      border-radius: 0.6rem;
+      text-decoration: none;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: filter .15s, transform .15s;
+    }
+    .lic-actions a:hover, .lic-actions button:hover { filter: brightness(1.1); transform: translateY(-1px); }
+    .lic-actions .alt { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
+
+    .lic-lang-tabs {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+    .lic-lang-tabs button {
+      padding: 0.5rem 1.1rem;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      color: var(--text-secondary);
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .lic-lang-tabs button.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+    .lic-en { display: none; }
+    body.lang-en .lic-fr { display: none; }
+    body.lang-en .lic-en { display: block; }
+
+    .ethics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 0.75rem;
+      margin-top: 0.75rem;
+    }
+    .ethics-item {
+      padding: 0.75rem 1rem;
+      border: 1px solid rgba(239,68,68,0.35);
+      background: rgba(239,68,68,0.06);
+      border-radius: 0.5rem;
+      color: var(--text-primary);
+      font-size: 0.92rem;
+    }
+    .ethics-item span { display: block; color: #ef4444; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.25rem; }
+  </style>
+
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="/favicon.avif" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
+      <span>VentiStudio</span>
+    </div>
+    <button class="nav-burger" id="nav-burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="main-nav" class="main-nav" aria-label="Navigation principale">
+      <a href="/" class="nav-link">Accueil</a>
+
+      <details class="nav-group">
+        <summary class="nav-link">Découvrir
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel" role="menu">
+          <a href="/evaluation">Évaluation</a>
+          <a href="/wiki">Wiki</a>
+          <a href="/glossary">Glossaire</a>
+          <a href="/news">News</a>
+          <a href="/blog">Blog</a>
+          <a href="/calendar">Calendrier</a>
+          <a href="/cookbook">Cookbook</a>
+          <a href="/gallery">Galerie</a>
+          <a href="/atlas">Atlas</a>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Plus
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Aide</h4>
+            <a href="/contact">Contact</a>
+            <a href="/faq">FAQ</a>
+            <a href="/status">Statut</a>
+            <a href="/sitemap">Plan du site</a>
+          </div>
+          <div class="nav-col">
+            <h4>Chartes</h4>
+            <a href="/lawful">Mentions légales</a>
+            <a href="/lawful/tos">CGU</a>
+            <a href="/lawful/cookies">Cookies</a>
+            <a href="/lawful/dmcainfo">DMCA</a>
+            <a href="/lawful/license-fitsz-dma">Licence FiTsZ-DMA</a>
+          </div>
+        </div>
+      </details>
+    </nav>
+    <div class="controls" role="toolbar" aria-label="Contrôles">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
+          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
+          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
+        </svg>
+      </button>
+      <div id="user-button" role="region" aria-label="Authentification"><button class="cta" id="auth-fallback-btn" onclick="window.location.href='https://accounts.ventistudio.eu/sign-in?redirect_url='+encodeURIComponent(window.location.href)" style="padding:0.5rem 1.25rem;font-size:0.9rem;margin:0"><span>Se connecter</span></button></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-section">
+      <h1>FiTsZ Digital Media Agreement</h1>
+      <p>Licence éthique propriétaire avec copyleft conditionnel et redevance commerciale &middot; <strong>FiTsZ-DMA v1.0</strong></p>
+    </section>
+
+    <div class="lic-container">
+
+      <div class="lic-lang-tabs" role="tablist">
+        <button type="button" class="active" data-lang="fr" aria-pressed="true">🇫🇷 Français (faisant foi)</button>
+        <button type="button" data-lang="en" aria-pressed="false">🇬🇧 English (courtesy)</button>
+      </div>
+
+      <div class="lic-meta-grid">
+        <div class="lic-meta-item"><strong>Identifiant</strong><span>FiTsZ-DMA-1.0</span></div>
+        <div class="lic-meta-item"><strong>Version</strong><span>1.0</span></div>
+        <div class="lic-meta-item"><strong>Publication</strong><span>30 avril 2026</span></div>
+        <div class="lic-meta-item"><strong>Auteur d'origine</strong><span>Umaishi H.</span></div>
+        <div class="lic-meta-item"><strong>Contact</strong><span><a href="mailto:umaishi.h@ventistudio.eu">umaishi.h@ventistudio.eu</a></span></div>
+        <div class="lic-meta-item"><strong>Juridiction</strong><span>Droit français + conventions internationales</span></div>
+      </div>
+
+      <div class="lic-actions">
+        <a href="/LICENSE.md" download>📄 Télécharger LICENSE.md</a>
+        <a href="/lawful/license-fitsz-dma/verify/">✓ Vérifier une licence</a>
+        <button type="button" id="copy-spdx" class="alt">Copier l'en-tête SPDX</button>
+        <a href="mailto:umaishi.h@ventistudio.eu?subject=FiTsZ-DMA%20%E2%80%94%20Demande%20commerciale" class="alt">Demande commerciale</a>
+      </div>
+
+      <!-- ============ FRENCH ============ -->
+      <div class="lic-fr">
+
+        <div class="lic-toc">
+          <h2>Sommaire</h2>
+          <ol>
+            <li><a href="#preambule">Préambule</a></li>
+            <li><a href="#definitions">Définitions</a></li>
+            <li><a href="#droits">Concession de droits</a></li>
+            <li><a href="#propriete">Réserve de propriété</a></li>
+            <li><a href="#copyleft">Copyleft conditionnel (≥ 50 %)</a></li>
+            <li><a href="#redevance">Redevance commerciale 5 %</a></li>
+            <li><a href="#attribution">Attribution</a></li>
+            <li><a href="#ethique">Clause éthique</a></li>
+            <li><a href="#revocation">Révocation</a></li>
+            <li><a href="#illegal">Interdiction d'usage illégal</a></li>
+            <li><a href="#garantie">Absence de garantie</a></li>
+            <li><a href="#resiliation">Résiliation automatique</a></li>
+            <li><a href="#droit">Droit applicable</a></li>
+            <li><a href="#acceptation">Acceptation</a></li>
+            <li><a href="#spdx">En-tête SPDX</a></li>
+          </ol>
+        </div>
+
+        <section class="lic-section" id="preambule">
+          <h2><span class="num">§ 0</span> Préambule</h2>
+          <p>La <strong>FiTsZ Digital Media Agreement</strong> (ci-après « la Licence » ou « FiTsZ-DMA ») est une licence propriétaire à caractère éthique conçue pour s'appliquer à toute œuvre de l'esprit : code source, logiciels, jeux, images, photographies, vidéos, musiques, modèles 3D, textes, scénarios, ou tout autre contenu numérique ou analogique (ci-après « l'Œuvre »).</p>
+          <p>Elle vise à concilier la liberté de réutilisation et de modification avec la juste rétribution de l'Auteur d'origine et le respect de principes éthiques fondamentaux. Elle est conçue pour être applicable à l'international, sur le fondement des conventions multilatérales relatives au droit d'auteur (notamment la <strong>Convention de Berne</strong>, l'<strong>Accord ADPIC/TRIPS</strong> et le <strong>Traité OMPI sur le droit d'auteur</strong>).</p>
+        </section>
+
+        <section class="lic-section" id="definitions">
+          <h2><span class="num">§ 1</span> Définitions</h2>
+          <p><strong>1.1. Auteur d'origine</strong> — la personne physique ou morale ayant créé l'Œuvre et publié la Licence en son nom. Par défaut : <strong>Umaishi H.</strong> (<code>umaishi.h@ventistudio.eu</code>).</p>
+          <p><strong>1.2. Utilisateur</strong> — toute personne qui télécharge, copie, modifie, distribue, exécute, intègre ou exploite l'Œuvre.</p>
+          <p><strong>1.3. Œuvre dérivée</strong> — toute création résultant d'une modification, traduction, adaptation, transformation, intégration partielle ou totale de l'Œuvre.</p>
+          <p><strong>1.4. Réutilisation substantielle</strong> — toute Œuvre dérivée dans laquelle au moins <strong>50 %</strong> de l'Œuvre originale est repris. Le seuil s'apprécie selon une <strong>combinaison</strong> de critères : nombre de lignes de code (LOC) significatives <em>et</em> fonctionnalités, composants, éléments graphiques ou narratifs identifiables. À défaut d'accord, l'évaluation est confiée à expertise indépendante ou à une décision judiciaire.</p>
+          <p><strong>1.5. Exploitation commerciale</strong> — toute utilisation directe ou indirecte de l'Œuvre générant un revenu, un avantage économique, une contrepartie monétaire ou en nature.</p>
+        </section>
+
+        <section class="lic-section" id="droits">
+          <h2><span class="num">§ 2</span> Concession de droits</h2>
+          <p>Sous réserve du respect intégral et continu de la Licence, l'Auteur d'origine concède à l'Utilisateur, à titre <strong>non exclusif, mondial et révocable</strong>, les droits de :</p>
+          <ul>
+            <li><strong>(a) Reproduction</strong> sur tout support, en tout ou partie ;</li>
+            <li><strong>(b) Modification</strong> : adapter, traduire, transformer, corriger, étendre l'Œuvre ;</li>
+            <li><strong>(c) Distribution</strong>, modifiée ou non, à des tiers ;</li>
+            <li><strong>(d) Exécution publique</strong> ou diffusion ;</li>
+            <li><strong>(e) Exploitation commerciale</strong>, sous réserve de l'art. 5.</li>
+          </ul>
+        </section>
+
+        <section class="lic-section" id="propriete">
+          <h2><span class="num">§ 3</span> Réserve de propriété</h2>
+          <p>L'Œuvre demeure la <strong>propriété pleine et entière de l'Auteur d'origine</strong>. La Licence n'opère <strong>aucun transfert</strong> de titularité des droits de propriété intellectuelle ; elle accorde uniquement un droit d'usage encadré.</p>
+        </section>
+
+        <section class="lic-section" id="copyleft">
+          <h2><span class="num">§ 4</span> Copyleft conditionnel et droit de regard (≥ 50 %)</h2>
+          <p><strong>4.1.</strong> Toute <strong>Réutilisation substantielle</strong> (≥ 50 %, cf. art. 1.4) déclenche les obligations cumulatives suivantes :</p>
+          <ul>
+            <li><strong>(a)</strong> L'Œuvre dérivée doit être placée sous la <strong>présente Licence FiTsZ-DMA</strong> dans une version identique ou ultérieure compatible (clause <strong>copyleft strict</strong>).</li>
+            <li><strong>(b)</strong> Le code source intégral, les ressources, les éléments graphiques et la documentation doivent être <strong>accessibles à l'Auteur d'origine</strong> sans contrepartie, sur simple demande, dans un délai de <strong>15 jours</strong>.</li>
+            <li><strong>(c)</strong> L'Auteur d'origine se voit reconnaître un <strong>droit de modification</strong> de l'Œuvre dérivée et un <strong>droit non exclusif de l'exploiter commercialement</strong> pour son propre compte, sans devoir de redevance à l'Utilisateur.</li>
+          </ul>
+          <p><strong>4.2.</strong> En deçà du seuil de 50 %, seules les obligations d'attribution (§ 6), d'éthique (§ 7) et, le cas échéant, de redevance (§ 5) s'appliquent.</p>
+        </section>
+
+        <section class="lic-section" id="redevance">
+          <h2><span class="num">§ 5</span> Redevance commerciale (5 %)</h2>
+          <div class="lic-callout warn">
+            <p><strong>Règle clé :</strong> 5 % du chiffre d'affaires brut, dès le 1<sup>er</sup> euro, sur tout produit incluant l'Œuvre — même partiellement.</p>
+          </div>
+          <p><strong>5.1.</strong> Toute Exploitation commerciale d'un produit, service ou contenu incluant tout ou partie de l'Œuvre donne lieu au versement d'une <strong>redevance forfaitaire de 5 % du chiffre d'affaires brut</strong> à l'Auteur d'origine.</p>
+          <p><strong>5.2.</strong> <strong>Aucun seuil de minimis</strong> n'est appliqué : la redevance est due dès le premier euro (1 €) de revenu généré.</p>
+          <p><strong>5.3.</strong> Les modalités pratiques (devise, moyen de paiement, fréquence, justificatifs) sont convenues <strong>au cas par cas</strong> par contact direct à <code>umaishi.h@ventistudio.eu</code>. L'Utilisateur s'engage à initier ce contact <strong>avant</strong> toute exploitation commerciale, ou au plus tard <strong>30 jours</strong> après le premier revenu.</p>
+          <p><strong>5.4.</strong> L'Utilisateur tient à disposition de l'Auteur d'origine, pendant <strong>5 ans</strong>, une comptabilité honnête et auditable des revenus concernés.</p>
+        </section>
+
+        <section class="lic-section" id="attribution">
+          <h2><span class="num">§ 6</span> Attribution obligatoire</h2>
+          <p>L'attribution doit figurer <strong>à la fois</strong> :</p>
+          <ul>
+            <li>(a) dans le <strong>code source</strong> (en-tête ou fichier <code>NOTICE</code>/<code>CREDITS</code>) ;</li>
+            <li>(b) dans la <strong>documentation visible</strong> par l'utilisateur final (à propos, générique, mentions légales, page d'accueil ou équivalent).</li>
+          </ul>
+          <p>Mention minimale :</p>
+          <div class="lic-callout">
+            <p><em>« Basé sur l'Œuvre de Umaishi H., distribuée sous licence FiTsZ-DMA 1.0 — https://ventistudio.eu/lawful/license-fitsz-dma/ »</em></p>
+          </div>
+        </section>
+
+        <section class="lic-section" id="ethique">
+          <h2><span class="num">§ 7</span> Clause éthique (essentielle)</h2>
+          <p><strong>7.1.</strong> Sont <strong>strictement interdites</strong> les utilisations de l'Œuvre, en tout ou partie, dans les domaines suivants :</p>
+          <div class="ethics-grid">
+            <div class="ethics-item"><span>(a)</span>Armement et applications militaires offensives, autonomes ou létales</div>
+            <div class="ethics-item"><span>(b)</span>Surveillance de masse ou ciblée sans base légale et proportionnée</div>
+            <div class="ethics-item"><span>(c)</span>Discrimination (race, genre, orientation, religion, handicap, opinion…)</div>
+            <div class="ethics-item"><span>(d)</span>Toute atteinte aux droits humains (DUDH 1948 et conventions)</div>
+            <div class="ethics-item"><span>(e)</span>Exploitation de mineurs, contenus pédopornographiques, traite</div>
+            <div class="ethics-item"><span>(f)</span>Désinformation, deepfakes non consentis, manipulation électorale</div>
+            <div class="ethics-item"><span>(g)</span>Cryptominage caché, malwares, ransomwares, spywares, stalkerware</div>
+            <div class="ethics-item"><span>(h)</span>Jeux d'argent / paris non régulés, ciblant des publics vulnérables</div>
+            <div class="ethics-item"><span>(i)</span>Production / hébergement / distribution de contenus pour adultes (NSFW)</div>
+            <div class="ethics-item"><span>(j)</span>Industries fossiles et activités à pollution majeure documentée</div>
+            <div class="ethics-item"><span>(k)</span>Entraînement d'IA sans consentement écrit, préalable et révocable</div>
+          </div>
+          <p style="margin-top:1rem;"><strong>7.2.</strong> L'Auteur d'origine se réserve en outre le droit d'<strong>interdire <em>ad nutum</em></strong>, à tout moment, l'utilisation de l'Œuvre par toute entité, personne physique ou morale, pour des <strong>motifs éthiques</strong> publics ou personnels qu'il n'est pas tenu de justifier en détail (cf. § 8).</p>
+        </section>
+
+        <section class="lic-section" id="revocation">
+          <h2><span class="num">§ 8</span> Révocation et interdiction</h2>
+          <p><strong>8.1.</strong> L'Auteur d'origine peut, à tout moment et sans avoir à motiver sa décision, <strong>révoquer la Licence</strong> à l'égard d'un Utilisateur, d'une entité, d'un secteur d'activité ou d'un usage spécifique, par notification écrite (courrier, courriel à une adresse identifiable, ou publication officielle sur cette page).</p>
+          <p><strong>8.2.</strong> À compter de la réception, l'Utilisateur dispose d'un délai de <strong>90 jours</strong> pour :</p>
+          <ul>
+            <li>(a) cesser toute nouvelle exploitation de l'Œuvre ;</li>
+            <li>(b) retirer l'Œuvre de ses produits, services et dépôts publics ;</li>
+            <li>(c) ou négocier de bonne foi une licence commerciale alternative.</li>
+          </ul>
+          <p><strong>8.3.</strong> Au-delà, toute utilisation persistante constitue une <strong>contrefaçon</strong> sanctionnée par les lois nationales et internationales applicables.</p>
+          <p><strong>8.4.</strong> La révocation n'a pas d'effet rétroactif sur les exemplaires déjà légitimement distribués avant notification, <strong>sauf</strong> en cas de violation des clauses éthiques (§ 7), où elle est de plein droit et sans délai.</p>
+        </section>
+
+        <section class="lic-section" id="illegal">
+          <h2><span class="num">§ 9</span> Interdiction d'usage illégal</h2>
+          <div class="lic-callout danger">
+            <p>Il est <strong>formellement interdit</strong> d'utiliser l'Œuvre pour commettre, faciliter ou inciter à un acte illégal, en violation de droits d'auteur, droits voisins, droits sui generis sur les bases de données, droits des marques, ou de la législation sur la protection des données personnelles (RGPD, CCPA et équivalents).</p>
+          </div>
+        </section>
+
+        <section class="lic-section" id="garantie">
+          <h2><span class="num">§ 10</span> Absence de garantie</h2>
+          <p>L'Œuvre est fournie <strong>« EN L'ÉTAT » (AS IS)</strong>, sans aucune garantie expresse ou implicite, notamment de qualité marchande, d'adéquation à un usage particulier, de non-contrefaçon ou de continuité de service. L'Auteur d'origine ne saurait être tenu responsable de tout dommage direct, indirect, incident, spécial, exemplaire ou consécutif résultant de l'utilisation de l'Œuvre, dans toute la mesure permise par la loi applicable.</p>
+        </section>
+
+        <section class="lic-section" id="resiliation">
+          <h2><span class="num">§ 11</span> Résiliation automatique</h2>
+          <p>Tout manquement aux articles <strong>4 (copyleft)</strong>, <strong>5 (redevance)</strong>, <strong>6 (attribution)</strong>, <strong>7 (éthique)</strong> ou <strong>9 (légalité)</strong> entraîne la <strong>résiliation de plein droit</strong> de la Licence, sans mise en demeure préalable, et sans préjudice des dommages et intérêts dus à l'Auteur d'origine.</p>
+        </section>
+
+        <section class="lic-section" id="droit">
+          <h2><span class="num">§ 12</span> Droit applicable et juridiction</h2>
+          <p><strong>12.1.</strong> La Licence est régie par le <strong>droit français</strong>, complété par les conventions internationales applicables (Convention de Berne, ADPIC, Traités OMPI).</p>
+          <p><strong>12.2.</strong> Tout litige relatif à l'interprétation, l'exécution ou la résiliation de la Licence sera porté devant les <strong>tribunaux compétents du ressort du domicile de l'Auteur d'origine</strong>, sauf disposition impérative contraire de la loi applicable au consommateur.</p>
+          <p><strong>12.3.</strong> Si une stipulation est jugée nulle ou inopposable, les autres demeurent pleinement applicables (clause de divisibilité).</p>
+        </section>
+
+        <section class="lic-section" id="acceptation">
+          <h2><span class="num">§ 13</span> Acceptation</h2>
+          <p>L'utilisation, le téléchargement, la copie, la modification ou la distribution de l'Œuvre vaut <strong>acceptation pleine, entière et sans réserve</strong> de la présente Licence. À défaut, l'Utilisateur doit immédiatement cesser toute utilisation et détruire toute copie en sa possession.</p>
+        </section>
+
+        <section class="lic-section" id="spdx">
+          <h2><span class="num">§ 14</span> En-tête SPDX recommandée</h2>
+          <p>À insérer en tête de chaque fichier source publié sous cette Licence :</p>
+<pre class="lic-spdx">// SPDX-License-Identifier: LicenseRef-FiTsZ-DMA-1.0
+// Copyright (c) 2026 Umaishi H. &lt;umaishi.h@ventistudio.eu&gt;
+// Distributed under the FiTsZ Digital Media Agreement v1.0
+// See https://ventistudio.eu/lawful/license-fitsz-dma/ for the full terms.</pre>
+        </section>
+      </div>
+
+      <!-- ============ ENGLISH ============ -->
+      <div class="lic-en">
+        <div class="lic-toc">
+          <h2>Table of contents</h2>
+          <ol>
+            <li><a href="#en-preamble">Preamble</a></li>
+            <li><a href="#en-defs">Definitions</a></li>
+            <li><a href="#en-grant">Grant of rights</a></li>
+            <li><a href="#en-title">Reservation of title</a></li>
+            <li><a href="#en-copyleft">Conditional copyleft (≥ 50 %)</a></li>
+            <li><a href="#en-royalty">Commercial royalty (5 %)</a></li>
+            <li><a href="#en-attr">Attribution</a></li>
+            <li><a href="#en-ethics">Ethical clause</a></li>
+            <li><a href="#en-revoke">Revocation</a></li>
+            <li><a href="#en-illegal">Illegal use prohibition</a></li>
+            <li><a href="#en-warranty">No warranty</a></li>
+            <li><a href="#en-term">Automatic termination</a></li>
+            <li><a href="#en-law">Governing law</a></li>
+            <li><a href="#en-accept">Acceptance</a></li>
+          </ol>
+        </div>
+
+        <section class="lic-section" id="en-preamble">
+          <h2><span class="num">§ 0</span> Preamble</h2>
+          <p>The <strong>FiTsZ Digital Media Agreement</strong> ("the License" or "FiTsZ-DMA") is an ethical proprietary license intended to apply to any creative work — source code, software, games, images, photographs, videos, music, 3D models, texts, scripts, and any other digital or analog content ("the Work"). It balances freedom of reuse and modification with fair compensation to the Original Author and respect for fundamental ethical principles. It is enforceable internationally under the Berne Convention, TRIPS, and WIPO copyright treaties.</p>
+        </section>
+
+        <section class="lic-section" id="en-defs">
+          <h2><span class="num">§ 1</span> Definitions</h2>
+          <p><strong>1.1. Original Author</strong> — the natural or legal person who created the Work and published this License. Default: <strong>Umaishi H.</strong> (<code>umaishi.h@ventistudio.eu</code>).</p>
+          <p><strong>1.2. User</strong> — anyone who downloads, copies, modifies, distributes, runs, integrates, or exploits the Work.</p>
+          <p><strong>1.3. Derivative Work</strong> — any creation resulting from modification, translation, adaptation, transformation, or partial/total integration of the Work.</p>
+          <p><strong>1.4. Substantial Reuse</strong> — any Derivative Work in which at least <strong>50 %</strong> of the original Work is reused, measured by a combination of significant LOC <em>and</em> identifiable features, components, graphic or narrative elements.</p>
+          <p><strong>1.5. Commercial Exploitation</strong> — any direct or indirect use of the Work generating revenue or economic advantage.</p>
+        </section>
+
+        <section class="lic-section" id="en-grant">
+          <h2><span class="num">§ 2</span> Grant of rights</h2>
+          <p>Subject to ongoing compliance, the Original Author grants a <strong>non-exclusive, worldwide, revocable</strong> right to (a) reproduce, (b) modify, (c) distribute, (d) publicly perform, and (e) commercially exploit the Work — subject to § 5.</p>
+        </section>
+
+        <section class="lic-section" id="en-title">
+          <h2><span class="num">§ 3</span> Reservation of title</h2>
+          <p>The Work remains the <strong>full and exclusive property</strong> of the Original Author. No transfer of intellectual property ownership occurs.</p>
+        </section>
+
+        <section class="lic-section" id="en-copyleft">
+          <h2><span class="num">§ 4</span> Conditional copyleft &amp; author oversight (≥ 50 %)</h2>
+          <p><strong>4.1.</strong> Any Substantial Reuse triggers cumulative obligations:</p>
+          <ul>
+            <li><strong>(a)</strong> The Derivative Work must be released under this same FiTsZ-DMA License (or a later compatible version) — strict copyleft.</li>
+            <li><strong>(b)</strong> Full source, assets and documentation must be made available to the Original Author free of charge, on simple request, within <strong>15 days</strong>.</li>
+            <li><strong>(c)</strong> The Original Author is granted a right of modification and a non-exclusive right to commercially exploit the Derivative Work, royalty-free.</li>
+          </ul>
+          <p><strong>4.2.</strong> Below the 50 % threshold, only attribution (§ 6), ethics (§ 7) and royalty (§ 5) apply.</p>
+        </section>
+
+        <section class="lic-section" id="en-royalty">
+          <h2><span class="num">§ 5</span> Commercial royalty (5 %)</h2>
+          <div class="lic-callout warn"><p><strong>Key rule:</strong> 5 % of gross revenue, from the very first euro, on any product including the Work — even partially.</p></div>
+          <p><strong>5.1.</strong> Any Commercial Exploitation triggers a <strong>5 % flat royalty on gross revenue</strong>, payable to the Original Author.</p>
+          <p><strong>5.2.</strong> No de minimis threshold; royalty due from <strong>€1</strong> of revenue.</p>
+          <p><strong>5.3.</strong> Practical terms agreed case-by-case via <code>umaishi.h@ventistudio.eu</code>; contact must be initiated <strong>before</strong> commercial exploitation, or within <strong>30 days</strong> of first revenue.</p>
+          <p><strong>5.4.</strong> The User keeps an honest, auditable record of revenue for <strong>5 years</strong>.</p>
+        </section>
+
+        <section class="lic-section" id="en-attr">
+          <h2><span class="num">§ 6</span> Attribution</h2>
+          <p>Mandatory in both the <strong>source code</strong> (header or <code>NOTICE</code>/<code>CREDITS</code>) and <strong>user-visible documentation</strong>. Minimum wording:</p>
+          <div class="lic-callout"><p><em>"Based on the Work of Umaishi H., distributed under the FiTsZ-DMA 1.0 license — https://ventistudio.eu/lawful/license-fitsz-dma/"</em></p></div>
+        </section>
+
+        <section class="lic-section" id="en-ethics">
+          <h2><span class="num">§ 7</span> Ethical clause</h2>
+          <p>Strictly forbidden uses include: military / weapons, mass surveillance, discrimination, human-rights violations, exploitation of minors, organized disinformation &amp; deepfakes, hidden cryptomining / malware, unregulated gambling, NSFW content, fossil-fuel industries, AI training without prior written consent. The Original Author may further prohibit <em>ad nutum</em> any entity for ethical reasons (see § 8).</p>
+        </section>
+
+        <section class="lic-section" id="en-revoke">
+          <h2><span class="num">§ 8</span> Revocation &amp; prohibition</h2>
+          <p>The Original Author may revoke the License at any time without justification, by written notice. The User has <strong>90 days</strong> to stop, remove, or negotiate. Continued use thereafter constitutes infringement. No retroactivity except for ethical breaches (immediate).</p>
+        </section>
+
+        <section class="lic-section" id="en-illegal">
+          <h2><span class="num">§ 9</span> Illegal use prohibition</h2>
+          <div class="lic-callout danger"><p>Strictly forbidden to use the Work for illegal acts, infringement of third-party IP rights, or breach of personal data protection laws (GDPR, CCPA, equivalents).</p></div>
+        </section>
+
+        <section class="lic-section" id="en-warranty">
+          <h2><span class="num">§ 10</span> No warranty</h2>
+          <p>The Work is provided <strong>"AS IS"</strong>, without warranty of any kind. The Original Author shall not be liable for any damages, to the fullest extent permitted by law.</p>
+        </section>
+
+        <section class="lic-section" id="en-term">
+          <h2><span class="num">§ 11</span> Automatic termination</h2>
+          <p>Any breach of § 4, 5, 6, 7 or 9 results in automatic termination, without prior notice and without prejudice to damages.</p>
+        </section>
+
+        <section class="lic-section" id="en-law">
+          <h2><span class="num">§ 12</span> Governing law &amp; jurisdiction</h2>
+          <p>Governed by <strong>French law</strong>, complemented by international conventions (Berne, TRIPS, WIPO). Disputes brought before the competent courts of the Original Author's domicile, save for mandatory consumer rules. Severability applies.</p>
+        </section>
+
+        <section class="lic-section" id="en-accept">
+          <h2><span class="num">§ 13</span> Acceptance</h2>
+          <p>Use, download, copy, modification, or distribution of the Work constitutes <strong>full and unreserved acceptance</strong> of this License.</p>
+        </section>
+      </div>
+
+      <p style="text-align:center; color: var(--text-secondary); margin-top: 2rem; font-size: 0.9rem;">
+        Texte intégral &amp; téléchargeable : <a href="/LICENSE.md">/LICENSE.md</a> &middot; Identifiant : <code>FiTsZ-DMA-1.0</code> &middot;
+        © 2026 Umaishi H. — Tous droits réservés.
+      </p>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Outils</h4>
+        <ul>
+          <li><a href="/pip">PIP</a></li>
+          <li><a href="/sitemap">Plan du site</a></li>
+          <li><a href="https://status.ventistudio.eu/">Statut</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Entreprise</h4>
+        <ul>
+          <li><a href="/about">À propos</a></li>
+          <li><a href="/jobs">Emplois</a></li>
+          <li><a href="/logo">Marque</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Ressources</h4>
+        <ul>
+          <li><a href="/university">Université</a></li>
+          <li><a href="/lawful/support">Assistance</a></li>
+          <li><a href="/lawful/security">Sécurité</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Chartes</h4>
+        <ul>
+          <li><a href="/lawful/tos">Conditions d'utilisation</a></li>
+          <li><a href="/lawful/cookies">Confidentialité</a></li>
+          <li><a href="/lawful/dmcainfo">Information DMCA</a></li>
+          <li><a href="/lawful/license-fitsz-dma">Licence FiTsZ-DMA</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <iframe src="https://status.ventistudio.eu/badge?theme=dark" width="500" height="30" frameborder="0" scrolling="no" style="color-scheme: normal"></iframe>
+      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <script src="/main.js" defer></script>
+  <script>
+    // Language toggle
+    (function () {
+      var tabs = document.querySelectorAll('.lic-lang-tabs button');
+      tabs.forEach(function (b) {
+        b.addEventListener('click', function () {
+          var lang = b.dataset.lang;
+          document.body.classList.toggle('lang-en', lang === 'en');
+          tabs.forEach(function (t) {
+            var on = t === b;
+            t.classList.toggle('active', on);
+            t.setAttribute('aria-pressed', on ? 'true' : 'false');
+          });
+        });
+      });
+    })();
+
+    // Copy SPDX header
+    (function () {
+      var btn = document.getElementById('copy-spdx');
+      if (!btn) return;
+      var spdx = '// SPDX-License-Identifier: LicenseRef-FiTsZ-DMA-1.0\n'
+               + '// Copyright (c) 2026 Umaishi H. <umaishi.h@ventistudio.eu>\n'
+               + '// Distributed under the FiTsZ Digital Media Agreement v1.0\n'
+               + '// See https://ventistudio.eu/lawful/license-fitsz-dma/ for the full terms.';
+      btn.addEventListener('click', function () {
+        navigator.clipboard.writeText(spdx).then(function () {
+          var original = btn.textContent;
+          btn.textContent = '✓ Copié !';
+          setTimeout(function () { btn.textContent = original; }, 1800);
+        });
+      });
+    })();
+
+    // Burger nav (parity with other lawful pages)
+    (function () {
+      var nav = document.getElementById('main-nav');
+      var burger = document.getElementById('nav-burger');
+      if (!nav || !burger) return;
+      burger.addEventListener('click', function () {
+        var open = nav.classList.toggle('is-open');
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        burger.classList.toggle('is-active', open);
+      });
+    })();
+  </script>
+</body>
+</html>

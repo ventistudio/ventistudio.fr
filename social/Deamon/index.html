@@ -1,8 +1,10 @@
-<!DOCTYPE html>
-<html lang="fr">
+﻿<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Breach Protocol - Interface sociale VentiStudio.">
+  <meta name="theme-color" content="#6366f1">
   <title>BREACH PROTOCOL // VentiStudio</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Chakra+Petch:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap');
@@ -92,7 +94,7 @@
       grid-template-columns: 1fr;
     }
 
-    /* ═══ TOP BAR — yellow warning strip ═══ */
+    /* ═══ TOP BAR yellow warning strip ═══ */
     .top-bar {
       display: flex;
       align-items: center;
@@ -680,6 +682,16 @@
       .m-cell { font-size: 0.65rem; }
     }
   </style>
+
+  <script async crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
+  <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
+
+  <meta property="og:title" content="BREACH PROTOCOL // VentiStudio">
+  <meta property="og:description" content="Breach Protocol - Interface sociale VentiStudio.">
+  <meta property="og:url" content="https://ventistudio.eu/social/Deamon/">
+  <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://ventistudio.eu/social/Deamon/">
 </head>
 <body>
   <div class="bg-circuits"></div>
@@ -951,13 +963,13 @@
       const logs = [
         { m: 'Scanning access point...', c: 'warn' },
         { m: 'ICE level 3 détecté sur le noeud', c: 'err' },
-        { m: 'Breach Protocol activé — buffer alloué', c: 'ok' },
+        { m: 'Breach Protocol activé buffer alloué', c: 'ok' },
         { m: 'Connexion au sous-réseau local', c: 'ok' },
         { m: 'Déchiffrement du code matrix en cours', c: 'sys' },
         { m: 'DATAMINE_V1 uploadé avec succès', c: 'ok' },
         { m: 'DATAMINE_V2 uploadé avec succès', c: 'ok' },
-        { m: 'ICEPICK installé — coût RAM réduit', c: 'ok' },
-        { m: 'MASS VULNERABILITY — séquence invalide', c: 'err' },
+        { m: 'ICEPICK installé coût RAM réduit', c: 'ok' },
+        { m: 'MASS VULNERABILITY séquence invalide', c: 'err' },
         { m: 'ALERTE: NetWatch détecté à proximité', c: 'err' },
         { m: 'Nettoyage des traces réseau...', c: 'sys' },
         { m: 'Déconnexion du sous-réseau imminente', c: 'warn' },

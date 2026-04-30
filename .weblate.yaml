@@ -1,0 +1,42 @@
+component:
+  name: Website Frontend
+  slug: website-frontend
+  project: ventistudio-website
+  vcs: git
+  repo: https://github.com/VentiStudio/ventistudio.eu
+  branch: main
+  filemask: locales/*.json
+  template: locales/fr.json
+  file_format: json-nested
+  source_language: fr
+  new_base: locales/fr.json
+  license: proprietary
+  push_on_commit: false
+  commit_pending_age: 24
+
+  push_branch: i18n/translations
+
+  check_flags:
+    - python-format
+    - json-syntax
+
+  auto_lock_error: true
+  suggestion_voting: false
+  enable_suggestions: true
+  merge_style: rebase
+
+  translation_flags:
+    - skip-review
+
+  addon:
+    - name: weblate.consistency.languages
+    - name: weblate.flags.same_edit
+    - name: weblate.autotranslate.autotranslate
+      configuration:
+        mode: suggest
+        filter_type: todo
+        auto_source: mt
+        engines:
+          - deepl
+          - libretranslate
+        threshold: 80

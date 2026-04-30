@@ -1,0 +1,247 @@
+/* Cellule — Spreadsheet Styles */
+
+.cellule-container {
+  flex: 1;
+  overflow: auto;
+  position: relative;
+}
+
+.cellule-grid {
+  display: grid;
+  border-collapse: collapse;
+  width: max-content;
+  min-width: 100%;
+}
+
+/* Column headers (A, B, C...) */
+.cellule-col-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  background: var(--suite-surface2);
+  border-bottom: 2px solid var(--suite-border);
+}
+
+.cellule-col-header .col-h {
+  min-width: 100px;
+  width: 100px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .72rem;
+  font-weight: 600;
+  color: var(--suite-text2);
+  border-right: 1px solid var(--suite-border);
+  user-select: none;
+}
+
+.cellule-col-header .col-h.selected {
+  background: rgba(99, 102, 241, 0.15);
+  color: var(--suite-accent);
+}
+
+.cellule-col-header .row-indicator {
+  min-width: 48px;
+  width: 48px;
+}
+
+/* Rows */
+.cellule-row {
+  display: flex;
+}
+
+.cellule-row .row-h {
+  min-width: 48px;
+  width: 48px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .72rem;
+  font-weight: 600;
+  color: var(--suite-text2);
+  background: var(--suite-surface2);
+  border-right: 2px solid var(--suite-border);
+  border-bottom: 1px solid var(--suite-border);
+  position: sticky;
+  left: 0;
+  z-index: 5;
+  user-select: none;
+}
+
+.cellule-row .row-h.selected {
+  background: rgba(99, 102, 241, 0.15);
+  color: var(--suite-accent);
+}
+
+/* Cells */
+.cellule-cell {
+  min-width: 100px;
+  width: 100px;
+  height: 28px;
+  padding: 0 6px;
+  border-right: 1px solid var(--suite-border);
+  border-bottom: 1px solid var(--suite-border);
+  font-size: .8rem;
+  color: var(--suite-text);
+  background: transparent;
+  outline: none;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+  cursor: cell;
+}
+
+.cellule-cell:focus,
+.cellule-cell.editing {
+  outline: 2px solid var(--suite-accent);
+  outline-offset: -1px;
+  z-index: 2;
+  background: var(--suite-surface);
+}
+
+.cellule-cell.selected {
+  background: rgba(99, 102, 241, 0.06);
+}
+
+/* Formula bar */
+.cellule-formula-bar {
+  display: flex;
+  align-items: center;
+  height: 32px;
+  padding: 0 8px;
+  background: var(--suite-surface);
+  border-bottom: 1px solid var(--suite-border);
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.cellule-formula-bar .cell-ref {
+  min-width: 60px;
+  font-size: .78rem;
+  font-weight: 600;
+  color: var(--suite-accent);
+  text-align: center;
+  padding: 2px 8px;
+  background: var(--suite-surface2);
+  border-radius: 4px;
+}
+
+.cellule-formula-bar .fx-label {
+  font-size: .8rem;
+  font-weight: 700;
+  color: var(--suite-text2);
+  font-style: italic;
+}
+
+.cellule-formula-bar input {
+  flex: 1;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--suite-text);
+  font-size: .82rem;
+  padding: 4px 8px;
+  border-radius: 4px;
+  outline: none;
+  font-family: 'Fira Code', monospace;
+}
+
+.cellule-formula-bar input:focus {
+  border-color: var(--suite-accent);
+  background: var(--suite-surface2);
+}
+
+/* Sheet tabs */
+.cellule-tabs {
+  display: flex;
+  align-items: center;
+  height: 30px;
+  background: var(--suite-surface);
+  border-top: 1px solid var(--suite-border);
+  padding: 0 8px;
+  gap: 2px;
+  overflow-x: auto;
+  flex-shrink: 0;
+}
+
+.cellule-tabs .sheet-tab {
+  padding: 4px 12px;
+  font-size: .75rem;
+  border-radius: 6px 6px 0 0;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-bottom: none;
+  background: transparent;
+  color: var(--suite-text2);
+  white-space: nowrap;
+  transition: var(--suite-transition);
+}
+
+.cellule-tabs .sheet-tab.active {
+  background: var(--suite-bg);
+  color: var(--suite-text);
+  border-color: var(--suite-border);
+}
+
+.cellule-tabs .sheet-tab:hover:not(.active) {
+  background: var(--suite-surface2);
+}
+
+.cellule-tabs .add-sheet {
+  width: 28px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  color: var(--suite-text2);
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.cellule-tabs .add-sheet:hover {
+  background: var(--suite-surface2);
+  color: var(--suite-accent);
+}
+
+/* Selection highlight */
+.cellule-selection {
+  position: absolute;
+  border: 2px solid var(--suite-accent);
+  background: rgba(99, 102, 241, 0.08);
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* Right-align numbers */
+.cellule-cell.type-number {
+  justify-content: flex-end;
+}
+
+/* Cell formatting */
+.cellule-cell.bold { font-weight: 700; }
+.cellule-cell.italic { font-style: italic; }
+
+/* Formatting toolbar */
+.cellule-format-bar {
+  display: flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 2px 12px;
+  background: var(--suite-surface);
+  border-bottom: 1px solid var(--suite-border);
+  gap: 2px;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+}
+
+@media print {
+  .suite-header, .suite-toolbar, .suite-statusbar, .cellule-formula-bar, .cellule-tabs { display: none !important; }
+  .cellule-cell { border: 1px solid #ccc !important; }
+}

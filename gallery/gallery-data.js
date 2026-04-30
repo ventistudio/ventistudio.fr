@@ -1,0 +1,150 @@
+// ═══ Données de la Galerie — Créations Communautaires VentiStudio ═══
+// type: illustration | music | writing | video | photo | 3d
+// featured: true pour les œuvres mises en avant
+
+var galleryData = [
+  {
+    id: "art-001",
+    title: "Venti sous les étoiles",
+    artist: "LunaArtist",
+    type: "illustration",
+    tags: ["fanart", "aoki-universe", "digital", "espace"],
+    image: "/favicon.avif",
+    date: "2026-03-28",
+    description: "Illustration digitale de Venti Aoki contemplant les étoiles depuis la station JAHAAKA.",
+    featured: true,
+    link: ""
+  },
+  {
+    id: "art-002",
+    title: "JAHAAKA en orbite",
+    artist: "SpaceDesigner",
+    type: "3d",
+    tags: ["3d", "aoki-universe", "station", "sci-fi"],
+    image: "/favicon.avif",
+    date: "2026-03-25",
+    description: "Modélisation 3D de la station JAHAAKA en orbite terrestre basse avec les sept points d'ancrage visibles.",
+    featured: true,
+    link: ""
+  },
+  {
+    id: "art-003",
+    title: "Mélodie de l'Arche",
+    artist: "SoundCrafter",
+    type: "music",
+    tags: ["musique", "ambient", "aoki-universe", "orchestral"],
+    image: "/favicon.avif",
+    date: "2026-03-20",
+    description: "Composition orchestrale ambient inspirée de l'Ordre de l'Arche et du Projet LifeStar.",
+    featured: false,
+    link: ""
+  },
+  {
+    id: "art-004",
+    title: "Chroniques d'Atlan",
+    artist: "LoreWriter",
+    type: "writing",
+    tags: ["écriture", "lore", "atlan", "histoire"],
+    image: "/favicon.avif",
+    date: "2026-03-15",
+    description: "Nouvelle courte racontant la chute de l'Empire d'Atlan du point de vue d'un gardien des Artefacts.",
+    featured: false,
+    link: ""
+  },
+  {
+    id: "art-005",
+    title: "Makina Ryou — Portrait",
+    artist: "PixelMaster",
+    type: "illustration",
+    tags: ["portrait", "aoki-universe", "personnage", "digital"],
+    image: "/favicon.avif",
+    date: "2026-03-10",
+    description: "Portrait digital de Makina Ryou dans son laboratoire, entourée de documents et d'hologrammes.",
+    featured: true,
+    link: ""
+  },
+  {
+    id: "art-006",
+    title: "VentiStudio HQ — Concept Art",
+    artist: "ArchViz",
+    type: "illustration",
+    tags: ["concept-art", "ventistudio", "architecture"],
+    image: "/favicon.avif",
+    date: "2026-03-05",
+    description: "Concept art du quartier général fictif de VentiStudio, entre technologie et nature.",
+    featured: false,
+    link: ""
+  },
+  {
+    id: "art-007",
+    title: "Dédoublement AO",
+    artist: "VFXCreator",
+    type: "video",
+    tags: ["vidéo", "aoki-universe", "effets", "animation"],
+    image: "/favicon.avif",
+    date: "2026-02-28",
+    description: "Animation courte montrant le moment du Dédoublement AO lors du test Trinity en 1945.",
+    featured: false,
+    link: ""
+  },
+  {
+    id: "art-008",
+    title: "Les Sept Clés — Infographie",
+    artist: "InfoDesigner",
+    type: "illustration",
+    tags: ["infographie", "aoki-universe", "artefacts", "éducatif"],
+    image: "/favicon.avif",
+    date: "2026-02-20",
+    description: "Infographie détaillée des Sept Clés Atlantes avec leurs propriétés et connexions.",
+    featured: true,
+    link: ""
+  },
+  {
+    id: "art-009",
+    title: "PeerCom Ambiance",
+    artist: "BeatMaker",
+    type: "music",
+    tags: ["musique", "lo-fi", "ventistudio", "chill"],
+    image: "/favicon.avif",
+    date: "2026-02-15",
+    description: "Mix lo-fi chill pour accompagner vos sessions PeerCom.",
+    featured: false,
+    link: ""
+  },
+  {
+    id: "art-010",
+    title: "Coucher de soleil sur Anemo",
+    artist: "PhotoArtist",
+    type: "photo",
+    tags: ["photo", "nature", "inspiration", "espace"],
+    image: "/favicon.avif",
+    date: "2026-02-10",
+    description: "Photographie composite inspirée de la station Anemo en orbite de Jupiter.",
+    featured: false,
+    link: ""
+  },
+  {
+    id: "art-011",
+    title: "AINA — Éveil",
+    artist: "LunaArtist",
+    type: "illustration",
+    tags: ["fanart", "aoki-universe", "IA", "digital"],
+    image: "/favicon.avif",
+    date: "2026-02-05",
+    description: "Illustration représentant le moment où AINA, l'IA Quantique, prend conscience.",
+    featured: true,
+    link: ""
+  },
+  {
+    id: "art-012",
+    title: "Guide de l'Univers Aoki",
+    artist: "LoreWriter",
+    type: "writing",
+    tags: ["guide", "aoki-universe", "lore", "encyclopédie"],
+    image: "/favicon.avif",
+    date: "2026-01-30",
+    description: "Guide introductif à l'univers Aoki pour les nouveaux membres de la communauté.",
+    featured: false,
+    link: ""
+  }
+];

@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="Compteur de texte — Analysez vos textes : mots, caractères, phrases, temps de lecture, fréquence. 100% client-side.">
+  <meta name="theme-color" content="#0ea5e9">
+  <title>Compteur de Texte | VentiStudio Pro</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/domain/pro/pro.css">
+  <style>
+    .text-layout { margin-top: 2rem; }
+
+    .panel {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      box-shadow: var(--glass-shadow);
+      margin-bottom: 1.5rem;
+    }
+
+    .panel h3 {
+      margin: 0 0 1rem;
+      font-size: 1rem;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    #textInput {
+      width: 100%;
+      min-height: 200px;
+      padding: 1rem;
+      border: 1px solid var(--glass-border);
+      border-radius: 0.75rem;
+      background: var(--glass-bg);
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 1rem;
+      line-height: 1.7;
+      resize: vertical;
+      transition: border-color 0.2s;
+    }
+
+    #textInput:focus { outline: none; border-color: var(--accent); }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem;
+    }
+
+    .stat-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--glass-border);
+      border-radius: 1rem;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .stat-card .value {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--accent);
+      display: block;
+    }
+
+    .stat-card .label {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-top: 0.25rem;
+    }
+
+    .freq-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+
+    .freq-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--glass-border);
+      border-radius: 2rem;
+      padding: 0.3rem 0.75rem;
+      font-size: 0.8rem;
+    }
+
+    .freq-chip .word { color: var(--text-primary); font-weight: 600; }
+    .freq-chip .count { color: var(--accent); font-size: 0.75rem; }
+
+    .density-bar {
+      display: flex;
+      height: 8px;
+      border-radius: 4px;
+      overflow: hidden;
+      background: var(--glass-border);
+      margin-top: 0.5rem;
+    }
+
+    .density-bar .seg {
+      height: 100%;
+      transition: width 0.3s;
+    }
+
+    .density-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    .density-legend span::before {
+      content: '';
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+      margin-right: 0.35rem;
+      vertical-align: middle;
+    }
+
+    @media (max-width: 768px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+
+  <script async crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
+  <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
+
+  <meta property="og:title" content="Compteur de Texte | VentiStudio Pro">
+  <meta property="og:description" content="Compteur de texte — Analysez vos textes : mots, caractères, phrases, temps de lecture, fréquence. 100% client-side.">
+  <meta property="og:url" content="https://ventistudio.eu/domain/pro/text/">
+  <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://ventistudio.eu/domain/pro/text/">
+
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="/favicon.avif" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
+      <span>VentiStudio</span>
+    </div>
+    <button class="nav-burger" id="nav-burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="main-nav" class="main-nav" aria-label="Navigation principale">
+      <a href="/" class="nav-link">Accueil</a>
+
+      <details class="nav-group">
+        <summary class="nav-link">Découvrir
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel" role="menu">
+          <a href="/evaluation">Évaluation</a>
+          <a href="/wiki">Wiki</a>
+          <a href="/glossary">Glossaire</a>
+          <a href="/news">News</a>
+          <a href="/blog">Blog</a>
+          <a href="/calendar">Calendrier</a>
+          <a href="/cookbook">Cookbook</a>
+          <a href="/gallery">Galerie</a>
+          <a href="/atlas">Atlas</a>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Univers
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel" role="menu">
+          <a href="/aokiunivers">AOKI Universe</a>
+          <a href="/allofaokiunivers">All AOKI</a>
+          <a href="/university">Université</a>
+          <a href="/history">Histoire</a>
+          <a href="/memorial">Mémorial</a>
+          <a href="/ester-eggs">Easter eggs</a>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Outils
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Applications</h4>
+            <a href="/player">Lecteur</a>
+            <a href="/music">Musique</a>
+            <a href="/pip">PIP</a>
+            <a href="/whiteboard">Whiteboard</a>
+            <a href="/portfolio">Portfolio</a>
+            <a href="/gmod">GMod</a>
+          </div>
+          <div class="nav-col">
+            <h4>Domaines</h4>
+            <a href="/domain/aina">AINA</a>
+            <a href="/domain/archive">Archive</a>
+            <a href="/domain/maps">Maps</a>
+            <a href="/domain/movie">Movie</a>
+            <a href="/domain/peer">Peer</a>
+            <a href="/domain/pro">Pro</a>
+            <a href="/domain/search">Search</a>
+            <a href="/domain/suite">Suite</a>
+          </div>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Communauté
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Équipe</h4>
+            <a href="/personnel/">Équipe</a>
+            <a href="/hierarchie-staff">Hiérarchie</a>
+            <a href="/hypesquad">Hypesquad</a>
+            <a href="/jobs">Emplois</a>
+            <a href="/birthday">Anniversaires</a>
+          </div>
+          <div class="nav-col">
+            <h4>Réseaux</h4>
+            <a href="/discord">Discord</a>
+            <a href="/teamspeak">TeamSpeak</a>
+            <a href="/steam">Steam</a>
+            <a href="/social">Réseaux sociaux</a>
+          </div>
+          <div class="nav-col">
+            <h4>Activités</h4>
+            <a href="/artist">Artistes</a>
+            <a href="/quests">Quêtes</a>
+            <a href="/suboawards">Suboawards</a>
+            <a href="/eConcert">eConcert</a>
+          </div>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Plus
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Aide</h4>
+            <a href="/contact">Contact</a>
+            <a href="/faq">FAQ</a>
+            <a href="/status">Statut</a>
+            <a href="/sitemap">Plan du site</a>
+          </div>
+          <div class="nav-col">
+            <h4>Soutien</h4>
+            <a href="/donate">Faire un don</a>
+            <a href="/gold">Gold</a>
+            <a href="/customization">Personnalisation</a>
+            <a href="/mes-donnees">Mes Données</a>
+            <a href="/newsletter">Newsletter</a>
+          </div>
+          <div class="nav-col">
+            <h4>À propos</h4>
+            <a href="/company">Entreprise</a>
+            <a href="/acknowledgements">Remerciements</a>
+            <a href="/logo">Logo</a>
+            <a href="/tags">Tags</a>
+            <a href="/memory">Mémoire</a>
+            <a href="/why-not-use-roblox">Pourquoi pas Roblox</a>
+            <a href="/lawful">Mentions légales</a>
+          </div>
+        </div>
+      </details>
+    </nav>
+    <div class="controls" role="toolbar" aria-label="Contrôles">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
+          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
+          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
+        </svg>
+      </button>
+      <div id="user-button" role="region" aria-label="Authentification"><button class="cta" id="auth-fallback-btn" onclick="window.location.href='https://accounts.ventistudio.eu/sign-in?redirect_url='+encodeURIComponent(window.location.href)" style="padding:0.5rem 1.25rem;font-size:0.9rem;margin:0"><span>Se connecter</span></button></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" style="padding: 3rem 0 1rem;">
+      <h1 style="font-size: 2.5rem;">Compteur de Texte</h1>
+      <p style="color: var(--text-secondary);">Analysez vos textes : mots, caractères, phrases, temps de lecture</p>
+    </section>
+
+    <div class="text-layout">
+      <div class="panel">
+        <h3>📝 Texte</h3>
+        <textarea id="textInput" placeholder="Collez ou tapez votre texte ici…"></textarea>
+      </div>
+
+      <div class="panel">
+        <h3>📊 Statistiques</h3>
+        <div class="stats-grid" id="statsGrid"></div>
+      </div>
+
+      <div class="panel">
+        <h3>📈 Densité de caractères</h3>
+        <div class="density-bar" id="densityBar"></div>
+        <div class="density-legend" id="densityLegend"></div>
+      </div>
+
+      <div class="panel">
+        <h3>🔤 Mots les plus fréquents</h3>
+        <div class="freq-list" id="freqList"></div>
+      </div>
+    </div>
+  </main>
+
+  <script src="/main.js"></script>
+  <script>
+  (() => {
+    'use strict';
+    const $ = (s) => document.getElementById(s);
+
+    function analyze(text) {
+      const chars = text.length;
+      const charsNoSpace = text.replace(/\s/g, '').length;
+      const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+      const sentences = text.trim() ? (text.match(/[.!?…]+/g) || []).length || (text.trim() ? 1 : 0) : 0;
+      const paragraphs = text.trim() ? text.split(/\n\s*\n/).filter(p => p.trim()).length : 0;
+      const lines = text ? text.split('\n').length : 0;
+
+      const readTime = Math.max(1, Math.ceil(words / 230));
+      const speakTime = Math.max(1, Math.ceil(words / 150));
+
+      // Frequency
+      const stopWords = new Set(['le','la','les','un','une','des','de','du','et','en','est','que','qui','dans','pour','sur','avec','ce','il','ne','pas','se','au','son','sa','ses','par','ou','mais','on','je','tu','nous','vous','ils','plus','a','à']);
+      const wordList = text.toLowerCase().match(/[\p{L}]+/gu) || [];
+      const freq = {};
+      wordList.forEach(w => { if (w.length > 1 && !stopWords.has(w)) freq[w] = (freq[w] || 0) + 1; });
+      const topWords = Object.entries(freq).sort((a, b) => b[1] - a[1]).slice(0, 30);
+
+      // Character density
+      const letters = (text.match(/[\p{L}]/gu) || []).length;
+      const digits = (text.match(/\d/g) || []).length;
+      const spaces = (text.match(/\s/g) || []).length;
+      const punct = chars - letters - digits - spaces;
+
+      return { chars, charsNoSpace, words, sentences, paragraphs, lines, readTime, speakTime, topWords, letters, digits, spaces, punct };
+    }
+
+    function render(stats) {
+      $('statsGrid').innerHTML = [
+        { v: stats.chars, l: 'Caractères' },
+        { v: stats.charsNoSpace, l: 'Sans espaces' },
+        { v: stats.words, l: 'Mots' },
+        { v: stats.sentences, l: 'Phrases' },
+        { v: stats.paragraphs, l: 'Paragraphes' },
+        { v: stats.lines, l: 'Lignes' },
+        { v: `~${stats.readTime} min`, l: 'Temps de lecture' },
+        { v: `~${stats.speakTime} min`, l: 'Temps de parole' },
+      ].map(s => `<div class="stat-card"><span class="value">${s.v}</span><span class="label">${s.l}</span></div>`).join('');
+
+      // Density
+      const total = Math.max(stats.chars, 1);
+      const segs = [
+        { pct: stats.letters / total * 100, color: '#6366f1', label: `Lettres ${Math.round(stats.letters / total * 100)}%` },
+        { pct: stats.digits / total * 100, color: '#10b981', label: `Chiffres ${Math.round(stats.digits / total * 100)}%` },
+        { pct: stats.spaces / total * 100, color: '#f59e0b', label: `Espaces ${Math.round(stats.spaces / total * 100)}%` },
+        { pct: stats.punct / total * 100, color: '#ef4444', label: `Ponctuation ${Math.round(stats.punct / total * 100)}%` },
+      ];
+      $('densityBar').innerHTML = segs.map(s => `<div class="seg" style="width:${s.pct}%;background:${s.color}"></div>`).join('');
+      $('densityLegend').innerHTML = segs.map(s => `<span style="--c:${s.color}"><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:${s.color};margin-right:0.35rem;vertical-align:middle;"></span>${s.label}</span>`).join('');
+
+      // Frequency
+      $('freqList').innerHTML = stats.topWords.map(([w, c]) =>
+        `<div class="freq-chip"><span class="word">${w}</span><span class="count">${c}</span></div>`
+      ).join('') || '<p style="color:var(--text-secondary);font-size:0.85rem;">Tapez du texte pour voir la fréquence des mots.</p>';
+    }
+
+    $('textInput').addEventListener('input', () => render(analyze($('textInput').value)));
+    render(analyze(''));
+  })();
+  </script>
+  <script>
+    (function () {
+      var nav = document.getElementById('main-nav');
+      var burger = document.getElementById('nav-burger');
+      if (!nav || !burger) return;
+
+      // Marque le lien actif d'apres l'URL courante
+      try {
+        var path = window.location.pathname.replace(/\/index\.html?$/, '/').replace(/\/$/, '') || '/';
+        var best = null, bestLen = -1;
+        nav.querySelectorAll('a[href]').forEach(function (a) {
+          var href = a.getAttribute('href').replace(/\/$/, '') || '/';
+          if (href === path || (href !== '/' && path.indexOf(href + '/') === 0) || (href !== '/' && path === href)) {
+            if (href.length > bestLen) { best = a; bestLen = href.length; }
+          }
+        });
+        if (path === '/' || path === '') {
+          best = nav.querySelector('a[href="/"]');
+        }
+        if (best) {
+          best.classList.add('active');
+          var grp = best.closest('details.nav-group');
+          if (grp) {
+            var s = grp.querySelector('summary.nav-link');
+            if (s) s.classList.add('active');
+          }
+        }
+      } catch (e) {}
+
+      function closeAllGroups(except) {
+        nav.querySelectorAll('details.nav-group[open]').forEach(function (d) {
+          if (d !== except) d.removeAttribute('open');
+        });
+      }
+
+      burger.addEventListener('click', function () {
+        var open = nav.classList.toggle('is-open');
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        burger.classList.toggle('is-active', open);
+        if (!open) closeAllGroups();
+      });
+
+      nav.querySelectorAll('details.nav-group').forEach(function (d) {
+        d.addEventListener('toggle', function () {
+          if (d.open) closeAllGroups(d);
+        });
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!nav.contains(e.target) && !burger.contains(e.target)) {
+          closeAllGroups();
+          if (nav.classList.contains('is-open')) {
+            nav.classList.remove('is-open');
+            burger.classList.remove('is-active');
+            burger.setAttribute('aria-expanded', 'false');
+          }
+        }
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          closeAllGroups();
+          if (nav.classList.contains('is-open')) {
+            nav.classList.remove('is-open');
+            burger.classList.remove('is-active');
+            burger.setAttribute('aria-expanded', 'false');
+            burger.focus();
+          }
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

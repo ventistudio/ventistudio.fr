@@ -1,0 +1,1812 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="VentiStudio - Charte Général d'Umaishi Corp (C.G.U.C.) - Conditions Générales d'Utilisation">
+  <meta name="theme-color" content="#6366f1">
+  <title>Conditions d'Utilisation | VentiStudio</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="../lawful.css">
+  <style>
+    .tos-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .tos-meta {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .tos-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .tos-meta-item {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 0.75rem;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .tos-meta-item strong {
+      color: var(--accent);
+      display: block;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.35rem;
+    }
+
+    .tos-meta-item span {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    .toc-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 1rem;
+      padding: 2.5rem;
+      box-shadow: var(--glass-shadow);
+      margin-bottom: 3rem;
+    }
+
+    .toc-card h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .toc-section-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .toc-section-group h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    .toc-section-group ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .toc-section-group li {
+      padding: 0.4rem 0 0.4rem 1.5rem;
+      position: relative;
+    }
+
+    .toc-section-group li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: bold;
+    }
+
+    .toc-section-group a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .toc-section-group a:hover {
+      color: var(--accent);
+    }
+
+    .section-divider {
+      text-align: center;
+      padding: 2.5rem 0 1rem;
+    }
+
+    .section-divider h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-divider p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+
+    .tos-section {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 1rem;
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--glass-shadow);
+    }
+
+    .tos-section h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+
+    .tos-section h3 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .tos-section h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--accent-secondary);
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .tos-section p {
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 0.75rem;
+    }
+
+    .tos-section ul, .tos-section ol {
+      padding-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .tos-section li {
+      color: var(--text-secondary);
+      line-height: 1.8;
+      padding: 0.25rem 0;
+    }
+
+    .tos-section strong {
+      color: var(--text-primary);
+    }
+
+    .tos-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-size: 0.95rem;
+    }
+
+    .tos-table th, .tos-table td {
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--glass-border);
+      text-align: left;
+      color: var(--text-secondary);
+    }
+
+    .tos-table th {
+      background: rgba(99, 102, 241, 0.1);
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .tos-table tr:nth-child(even) {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .severity-badge {
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      border-radius: 0.4rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .severity-a { background: rgba(34, 197, 94, 0.15); color: #22c55e; }
+    .severity-b { background: rgba(234, 179, 8, 0.15); color: #eab308; }
+    .severity-c { background: rgba(249, 115, 22, 0.15); color: #f97316; }
+    .severity-d { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
+    .severity-e { background: rgba(168, 85, 247, 0.15); color: #a855f7; }
+    .severity-f { background: rgba(236, 72, 153, 0.15); color: #ec4899; }
+
+    .alert-box {
+      padding: 1.25rem;
+      border-radius: 0.75rem;
+      margin: 1.5rem 0;
+      border-left: 4px solid;
+    }
+
+    .alert-box.warning {
+      background: rgba(234, 179, 8, 0.08);
+      border-color: #eab308;
+    }
+
+    .alert-box.danger {
+      background: rgba(239, 68, 68, 0.08);
+      border-color: #ef4444;
+    }
+
+    .alert-box.info {
+      background: rgba(99, 102, 241, 0.08);
+      border-color: var(--accent);
+    }
+
+    .alert-box p {
+      margin: 0;
+    }
+
+    .hierarchy-card {
+      background: rgba(99, 102, 241, 0.05);
+      border: 1px solid rgba(99, 102, 241, 0.15);
+      border-radius: 0.75rem;
+      padding: 1.25rem;
+      margin: 0.75rem 0;
+    }
+
+    .hierarchy-card h5 {
+      font-size: 1rem;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .hierarchy-card p {
+      font-size: 0.95rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .protocol-steps {
+      counter-reset: step;
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .protocol-steps li {
+      counter-increment: step;
+      padding-left: 2.5rem;
+      position: relative;
+      margin-bottom: 0.75rem;
+    }
+
+    .protocol-steps li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      width: 1.75rem;
+      height: 1.75rem;
+      background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    .tos-footer-notice {
+      text-align: center;
+      padding: 3rem 2rem;
+      margin-top: 2rem;
+    }
+
+    .tos-footer-notice p {
+      color: var(--text-secondary);
+      line-height: 1.8;
+    }
+
+    .tos-footer-notice .legal-notice {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 1rem;
+      padding: 2rem;
+      margin-top: 1.5rem;
+      box-shadow: var(--glass-shadow);
+    }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 3rem;
+      height: 3rem;
+      background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+      color: white;
+      border: none;
+      border-radius: 50%;
+      font-size: 1.25rem;
+      cursor: pointer;
+      opacity: 0;
+      transition: all 0.3s;
+      z-index: 99;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+    }
+
+    .back-to-top:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
+    }
+
+    @media (max-width: 768px) {
+      .tos-container { padding: 1rem; }
+      .tos-section { padding: 1.5rem; }
+      .toc-card { padding: 1.5rem; }
+      .tos-meta-grid { grid-template-columns: 1fr 1fr; }
+      .tos-table { font-size: 0.8rem; }
+      .tos-table th, .tos-table td { padding: 0.5rem; }
+    }
+  </style>
+
+  <script async crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
+  <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
+
+  <meta property="og:title" content="Conditions d'Utilisation | VentiStudio">
+  <meta property="og:description" content="VentiStudio - Charte Général d'Umaishi Corp (C.G.U.C.) - Conditions Générales d'Utilisation">
+  <meta property="og:url" content="https://ventistudio.eu/lawful/tos/">
+  <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://ventistudio.eu/lawful/tos/">
+
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="/favicon.avif" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
+      <span>VentiStudio</span>
+    </div>
+    <nav aria-label="Navigation principale">
+      <a href="/">Accueil</a>
+      <a href="/evaluation">Évaluation</a>
+      <a href="/player">Lecteur</a>
+      <a href="/wiki">Wiki</a>
+      <a href="/personnel/">Équipe</a>
+      <a href="/news">News</a>
+      <a href="/pip">PIP</a>
+      <a href="/status/">Status</a>
+      <a href="/gallery/">Galerie</a>
+      <a href="/calendar/">Calendrier</a>
+      <a href="/glossary/">Glossaire</a>
+      <a href="/whiteboard/">Tableau Blanc</a>
+      <a href="/sitemap">Plan du site</a>
+    </nav>
+    <div class="controls" role="toolbar" aria-label="Contrôles">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
+          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
+          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
+        </svg>
+      </button>
+      <div id="user-button" role="region" aria-label="Authentification"><button class="cta" id="auth-fallback-btn" onclick="window.location.href='https://accounts.ventistudio.eu/sign-in?redirect_url='+encodeURIComponent(window.location.href)" style="padding:0.5rem 1.25rem;font-size:0.9rem;margin:0"><span>Se connecter</span></button></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-section">
+      <h1>Charte Général d'Umaishi Corp</h1>
+      <p>C.G.U.C. Document Juridiquement Contraignant</p>
+    </section>
+
+    <div class="tos-container">
+
+      <!-- Métadonnées du document -->
+      <div class="tos-meta">
+        <div class="tos-meta-grid">
+          <div class="tos-meta-item">
+            <strong>Version</strong>
+            <span>2.0 Définitive</span>
+          </div>
+          <div class="tos-meta-item">
+            <strong>Date d'entrée en vigueur</strong>
+            <span>16 décembre 2025</span>
+          </div>
+          <div class="tos-meta-item">
+            <strong>Classification</strong>
+            <span>Public</span>
+          </div>
+          <div class="tos-meta-item">
+            <strong>Juridiction</strong>
+            <span>France, Suisse, Japon, UE</span>
+          </div>
+          <div class="tos-meta-item">
+            <strong>Identifiant</strong>
+            <span>CHARTE-GÉNÉRAL-UMAISHI-2025-v2.0</span>
+          </div>
+          <div class="tos-meta-item">
+            <strong>Dernière révision</strong>
+            <span>16 décembre 2025</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Table des matières -->
+      <div class="toc-card" id="toc">
+        <h2>📑 Table des Matières</h2>
+
+        <div class="toc-section-group">
+          <h3>Section I Fondamentaux</h3>
+          <ul>
+            <li><a href="#s1">1. Conditions Générales d'Utilisation</a></li>
+            <li><a href="#s2">2. Politique de Confidentialité et Protection des Données</a></li>
+            <li><a href="#s3">3. Charte de Comportement Communautaire</a></li>
+            <li><a href="#s4">4. Charte de l'Utilisateur</a></li>
+          </ul>
+        </div>
+
+        <div class="toc-section-group">
+          <h3>Section II Gouvernance et Modération</h3>
+          <ul>
+            <li><a href="#s5">5. Charte du Modérateur</a></li>
+            <li><a href="#s6">6. Structure de Gouvernance et Rôles</a></li>
+            <li><a href="#s7">7. Procédures de Modération et Sanctions</a></li>
+            <li><a href="#s8">8. Appels et Recours</a></li>
+          </ul>
+        </div>
+
+        <div class="toc-section-group">
+          <h3>Section III Propriété et Licences</h3>
+          <ul>
+            <li><a href="#s9">9. Propriété Intellectuelle et Licences</a></li>
+            <li><a href="#s10">10. Notice and Takedown (DMCA)</a></li>
+          </ul>
+        </div>
+
+        <div class="toc-section-group">
+          <h3>Section IV Information Groupe</h3>
+          <ul>
+            <li><a href="#s11">11. Informations sur le Groupe Umaishi</a></li>
+            <li><a href="#s12">12. Remerciements</a></li>
+          </ul>
+        </div>
+
+        <div class="toc-section-group">
+          <h3>Section V Annexes et Compléments</h3>
+          <ul>
+            <li><a href="#s13">13. Annexes Techniques et Opérationnelles</a></li>
+            <li><a href="#s14">14. Dispositions Finales</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════ -->
+      <!-- SECTION I : FONDAMENTAUX              -->
+      <!-- ═══════════════════════════════════════ -->
+      <div class="section-divider">
+        <h2>Section I Fondamentaux</h2>
+      </div>
+
+      <!-- 1. CGU -->
+      <div class="tos-section" id="s1">
+        <h2>1. Conditions Générales d'Utilisation</h2>
+
+        <h3>1.1 Objet et Portée</h3>
+        <p>Les présentes Conditions Générales d'Utilisation (« Conditions ») régissent l'accès et l'usage intégral de tous les services, espaces, plateformes et outils proposés par Umaishi Corp et l'ensemble de ses structures associées (collectivement, les « Services »).</p>
+
+        <h4>Services Couverts</h4>
+        <ul>
+          <li>Serveurs Discord (tous serveurs officiels)</li>
+          <li>Comptes et chaînes Spotify (contenu officiel)</li>
+          <li>Profils et communautés Steam (groupe officiel)</li>
+          <li>Chaînes et listes de lecture Twitch (comptes de streaming)</li>
+          <li>Chaînes YouTube et contenus vidéo officiels</li>
+          <li>Tous autres espaces numériques reconnus ou développés par Umaishi Corp</li>
+          <li>Systèmes internes : tickets, wikis, bases de données, outils d'administration</li>
+          <li>Bots et automatisations opérées par Umaishi Corp</li>
+          <li>Tout service futur ajouté par Umaishi Corp</li>
+        </ul>
+        <p>Cette Charte Général s'applique indistinctement à tous ces Services, sans exception.</p>
+
+        <h4>Acceptation et Consentement</h4>
+        <p>L'accès ou l'utilisation de <strong>TOUT</strong> Service vaut acceptation pleine, entière et irrévocable de :</p>
+        <ul>
+          <li>Ces Conditions Générales d'Utilisation</li>
+          <li>La Charte de Comportement Communautaire (section 3)</li>
+          <li>La Politique de Confidentialité (section 2)</li>
+          <li>La Charte de l'Utilisateur (section 4)</li>
+          <li>Toutes les annexes et documents incorporés par référence</li>
+          <li>Toutes les mises à jour futures de ces documents</li>
+        </ul>
+        <div class="alert-box warning">
+          <p>⚠️ <strong>Conséquence de non-acceptation :</strong> Si vous n'acceptez pas ces termes, vous devez cesser immédiatement l'accès à tous les Services et supprimer tous les accès configurés.</p>
+        </div>
+
+        <h3>1.2 Définitions Juridiques</h3>
+        <table class="tos-table">
+          <thead>
+            <tr>
+              <th>Terme</th>
+              <th>Définition</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Utilisateur</strong></td><td>Toute personne physique ou représentant légal d'une entité ayant accès à un Service</td></tr>
+            <tr><td><strong>Compte</strong></td><td>Identifiant unique, non-transférable et personnel lié à une personne physique unique</td></tr>
+            <tr><td><strong>Contenu</strong></td><td>Toute expression, message, fichier, image, vidéo, code, lien, métadonnée, réaction, pseudo, statut, avatar ou toute manifestation numérique</td></tr>
+            <tr><td><strong>Infraction</strong></td><td>Violation documentée des Conditions, de la Charte de Comportement ou de la loi applicable</td></tr>
+            <tr><td><strong>Sanction</strong></td><td>Mesure disciplinaire appliquée selon le barème S0-S8 défini à la section 7</td></tr>
+            <tr><td><strong>Modérateur Accrédité</strong></td><td>Personnel expressément désigné par Umaishi Corp habilité à appliquer les sanctions</td></tr>
+            <tr><td><strong>Données Personnelles</strong></td><td>Toute information identifiant ou permettant d'identifier une personne</td></tr>
+          </tbody>
+        </table>
+
+        <h3>1.3 Conditions d'Admissibilité et Création de Compte</h3>
+        <h4>Conditions Préalables Obligatoires</h4>
+        <ol>
+          <li><strong>Majorité légale :</strong> Avoir atteint l'âge de majorité numérique (16 ans minimum, ou seuil supérieur si légalement exigé)</li>
+          <li><strong>Capacité juridique :</strong> Avoir la capacité légale de conclure des contrats</li>
+          <li><strong>Autorité de représentation :</strong> Si vous représentez une entité, être expressément autorisé</li>
+          <li><strong>Information exacte :</strong> Toutes les informations fournies doivent être exactes, complètes, à jour</li>
+          <li><strong>Respect légal :</strong> Respecter les lois de votre juridiction, les lois françaises, suisses, japonaises, les directives UE, les règles des plateformes hôtes et cette Charte</li>
+        </ol>
+
+        <h4>Interdictions</h4>
+        <ul>
+          <li><strong>Création multiple :</strong> Plusieurs comptes par la même personne sans autorisation écrite</li>
+          <li><strong>Usurpation :</strong> Utiliser des alias/pseudo imitant des personnes réelles, marques ou fonctions officielles</li>
+          <li><strong>Contournement :</strong> Créer un compte pour contourner une sanction antérieure</li>
+          <li><strong>Délégation :</strong> Partager l'accès du compte avec un tiers</li>
+          <li><strong>Automatisation non-autorisée :</strong> Créer bots ou scripts accédant au Service sans permission écrite</li>
+          <li><strong>Mineurs :</strong> Accès par enfants aux espaces réservés aux adultes</li>
+        </ul>
+        <p>Conséquence : Comptes non-conformes sanctionnés S1-S6 immédiatement sans préavis.</p>
+
+        <h3>1.4 Sécurité du Compte et Responsabilité Titulaire</h3>
+        <h4>Obligations de Sécurisation</h4>
+        <ol>
+          <li>Maintenir un mot de passe secret, unique, robuste (min. 12 caractères, symboles mélangés)</li>
+          <li>Activer l'authentification à deux facteurs (2FA) si disponible</li>
+          <li>Contrôler l'accès au compte, éviter la saisie d'identifiants sur sites non-vérifiés</li>
+          <li>Mettre à jour régulièrement terminaux, navigateurs, applications, extensions</li>
+          <li>Déconnecter les sessions inactives, révoquer les accès si suspicion de compromission</li>
+          <li>Signaler immédiatement toute compromission avérée ou suspectée</li>
+        </ol>
+
+        <div class="alert-box danger">
+          <p>⚠️ <strong>Principe fondamental :</strong> Le titulaire du compte est responsable intégralement et sans exception de TOUTES les actions réalisées via son compte, indépendamment d'un accès non-autorisé, compromission par malware, vol ou partage accidentel d'identifiants.</p>
+        </div>
+
+        <h4>Compte Compromis ou Utilisé par Tiers</h4>
+        <ul>
+          <li><strong>Classification :</strong> Infraction de Catégorie F (Catastrophique)</li>
+          <li><strong>Sanction par défaut :</strong> S6 (Blacklist inter-serveurs et inter-plateforme)</li>
+          <li><strong>Mesures additionnelles :</strong> S7-S8 possibles</li>
+          <li><strong>Obligation :</strong> Signalement immédiat via ticket-🪪</li>
+        </ul>
+
+        <h4>Procédure de Remédiation</h4>
+        <ol class="protocol-steps">
+          <li>Signaler immédiatement via système ticket (ticket-🪪)</li>
+          <li>Modifier mot de passe depuis appareil sécurisé</li>
+          <li>Réinitialiser toutes sessions actives</li>
+          <li>Révoquer toutes clés API, webhooks, accès tiers</li>
+          <li>Activer 2FA immédiatement</li>
+          <li>Attendre confirmation cellule sécurité</li>
+          <li>Implémenter toutes recommandations de renforcement</li>
+        </ol>
+
+        <h3>1.5 Utilisations Autorisées et Interdites</h3>
+        <h4>Utilisations Autorisées</h4>
+        <ul>
+          <li>Participation respectueuse, constructive, de bonne foi</li>
+          <li>Création et partage de contenu original conforme à la Charte</li>
+          <li>Signalements de violations par bonne foi</li>
+          <li>Tests et intégrations documentées et autorisées</li>
+          <li>Feedback, suggestions, contributions constructives</li>
+          <li>Collaboration, mentorat, entraide entre membres</li>
+        </ul>
+
+        <h4>Interdictions Catégorisées par Gravité</h4>
+        <table class="tos-table">
+          <thead>
+            <tr>
+              <th>Catégorie</th>
+              <th>Niveau</th>
+              <th>Exemples</th>
+              <th>Sanction</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="severity-badge severity-a">A</span></td>
+              <td>Mineure</td>
+              <td>Hors-sujet répété, flood léger, publicité non-malveillante, langage familier</td>
+              <td>S0-S1</td>
+            </tr>
+            <tr>
+              <td><span class="severity-badge severity-b">B</span></td>
+              <td>Significative</td>
+              <td>Propos irrespectueux répétés, spoilers malveillants, spam modéré, ping abusif, menaces implicites</td>
+              <td>S1-S3</td>
+            </tr>
+            <tr>
+              <td><span class="severity-badge severity-c">C</span></td>
+              <td>Grave</td>
+              <td>Harcèlement ciblé, insultes graves, tentative doxxing, phishing, deepfakes de nuisance, discrimination légère</td>
+              <td>S2-S4</td>
+            </tr>
+            <tr>
+              <td><span class="severity-badge severity-d">D</span></td>
+              <td>Critique</td>
+              <td>Doxxing avéré, menaces crédibles, pornographie non-consentie, incitation à la haine, malwares, contrefaçon, extorsion</td>
+              <td>S3-S5</td>
+            </tr>
+            <tr>
+              <td><span class="severity-badge severity-e">E</span></td>
+              <td>Extrême</td>
+              <td>CSAM, terrorisme, menaces de mort crédibles, diffusion données bancaires, grooming, chantage</td>
+              <td>S5-S8 + autorités</td>
+            </tr>
+            <tr>
+              <td><span class="severity-badge severity-f">F</span></td>
+              <td>Catastrophique</td>
+              <td>Menaces imminentes, raids massifs, compromission systèmes, fuites données, coordination criminelle</td>
+              <td>S6-S8 + autorités</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h4>Contournement, Obstruction et Abus</h4>
+        <ul>
+          <li><strong>Contournement technique :</strong> VPN/proxy pour contourner modération ou bans</li>
+          <li><strong>Ingénierie sociale :</strong> Tromper le staff pour obtenir accès ou informations</li>
+          <li><strong>Manipulation preuves :</strong> Altérer, falsifier ou retirer des preuves</li>
+          <li><strong>Faux signalements :</strong> Signaler faussement des violations pour nuire</li>
+          <li><strong>Obstruction :</strong> Refuser de coopérer avec enquête modération</li>
+          <li><strong>Vigilantisme :</strong> Organiser des contre-attaques ou raids de représailles</li>
+        </ul>
+        <p>Conséquence : S4-S7 selon ampleur et intention.</p>
+
+        <h3>1.6 Propriété Intellectuelle et Contenu Utilisateur</h3>
+        <p>Vous conservez l'intégrité des droits de propriété intellectuelle sur tous contenus originaux créés et publiés par vous. En publiant du contenu, vous accordez à Umaishi Corp une licence mondiale, non-exclusive, gratuite et perpétuelle pour la reproduction, l'affichage, l'analyse, la conservation et le traitement nécessaire au fonctionnement des Services.</p>
+        <p><strong>Vos Garanties :</strong> Vous détenez tous les droits nécessaires, le contenu ne viole aucune loi ni droit tiers, vous êtes autorisé à accorder ces licences, le contenu ne contient aucun malware.</p>
+        <p><strong>Propriété Umaishi Corp :</strong> Marques, logos, designs, interfaces, codes, bases de données, contenus et processus sont protégés. Interdictions absolues : utilisation sans autorisation, reproduction, intégration concurrente, utilisation commerciale, reverse-engineering.</p>
+
+        <h3>1.7 Services Tiers, Plateformes Hôtes et Responsabilités</h3>
+        <p>Les Services intégrés (Discord, Spotify, Steam, Twitch, YouTube) relèvent de la responsabilité exclusive de leurs éditeurs. Umaishi Corp n'est pas responsable de leur disponibilité, sécurité, performance, contenus hébergés, modifications unilatérales ou conformité.</p>
+
+        <h3>1.8 Modifications, Interruptions et Disponibilité</h3>
+        <p>Umaishi Corp se réserve le droit de modifier, suspendre, interrompre ou cesser les Services à tout moment. Changements majeurs notifiés minimum 14 jours à l'avance (sauf urgence sécurité). Services fournis en « best-effort », sans garantie d'accès ininterrompu.</p>
+
+        <h3>1.9 Paiements, Transactions et Donations</h3>
+        <p>Les donations sont <strong>volontaires</strong>, <strong>non-remboursables</strong> (sauf erreur), <strong>sans garantie</strong> et <strong>à fin de soutien</strong>. Tout abus de système de paiement entraîne annulation, sanction S4-S8 et possibles actions légales.</p>
+
+        <h3>1.10 Limitation de Responsabilité</h3>
+        <p>Services fournis « en l'état » (as-is). Umaishi Corp décline toute garantie de qualité marchande, adéquation, continuité ou sécurité totale. Responsabilité limitée au montant payé par l'utilisateur (zéro si gratuit). Ne limite pas la responsabilité pour : mort/lésion corporelle, fraude intentionnelle, violations droits fondamentaux, droits impératifs consommateur.</p>
+
+        <h3>1.11 Droit Applicable et Juridictions</h3>
+        <p><strong>Droit applicable :</strong> Droit français en priorité, avec respect des directives UE, lois suisses, japonaises et locales de l'utilisateur.</p>
+        <p><strong>Hiérarchie en cas de conflit :</strong> Le standard le plus protecteur des personnes prévaut, puis le plus strict pour la sécurité, puis le droit français.</p>
+        <p><strong>Prescription :</strong> 2 ans dès connaissance du préjudice (délais particuliers selon loi applicable).</p>
+      </div>
+
+      <!-- 2. Politique de Confidentialité -->
+      <div class="tos-section" id="s2">
+        <h2>2. Politique de Confidentialité et Protection des Données</h2>
+
+        <h3>2.1 Champ d'Application et Principes</h3>
+        <p>En conformité volontaire avec le RGPD, la Loi Informatique et Libertés (CNIL), l'APPI (Japon), le droit suisse et les principes éthiques d'Umaishi Corp.</p>
+        <ul>
+          <li><strong>Contrôleur principal :</strong> Umaishi Corp</li>
+          <li><strong>Sous-traitants :</strong> Divisions (VentiStudio FiTsZ, etc.), prestataires techniques</li>
+          <li><strong>Coresponsables :</strong> Plateformes hôtes pour les données qu'elles hébergent</li>
+        </ul>
+
+        <h3>2.2 Données Collectées</h3>
+        <h4>Données Obligatoires (Automatique)</h4>
+        <ul>
+          <li>Identifiant compte (pseudo, ID unique plateforme)</li>
+          <li>Identité plateforme (ID Discord, Steam, Spotify, Twitch, YouTube)</li>
+          <li>Adresse IP publique</li>
+          <li>Horodatage (date/heure accès, actions)</li>
+          <li>Logs techniques (navigateur, OS, résolution, langue)</li>
+          <li>Historique actions (messagerie, publications, réactions, votes)</li>
+        </ul>
+        <h4>Données Facultatives (Consentement)</h4>
+        <ul>
+          <li>Avatar, bio, statut personnalisé, informations profil</li>
+          <li>Messages privés, fichiers partagés, images</li>
+          <li>Données de localisation (si activée)</li>
+          <li>Informations fournies via formulaires</li>
+        </ul>
+        <div class="alert-box info">
+          <p>ℹ️ Nous ne collectons pas email, numéro de téléphone, adresse postale ou données sensibles (sauf cas exceptionnel légalement justifié).</p>
+        </div>
+
+        <h3>2.3 Finalités du Traitement</h3>
+        <ol>
+          <li><strong>Fonctionnement Services</strong> (Nécessité contractuelle) Authentification, gestion compte, maintenance, support</li>
+          <li><strong>Sécurité et Prévention Abus</strong> (Intérêt légitime) Détection fraude, prévention raids/spam, enquêtes, signalements aux autorités</li>
+          <li><strong>Modération et Conformité</strong> (Obligation légale + Intérêt légitime) Signalements, sanctions, preuves, arbitrage appels</li>
+          <li><strong>Communication</strong> (Nécessité contractuelle + Intérêt légitime) Notifications, support, annonces, communications sécurité</li>
+          <li><strong>Amélioration Services</strong> (Intérêt légitime) Statistiques agrégées anonymes, optimisation performances</li>
+        </ol>
+        <p><strong>Finalités interdites :</strong> Marketing, vente données tiers, profilage comportemental, publicités ciblées sans consentement.</p>
+
+        <h3>2.4 Base Légale du Traitement (RGPD Art. 6-9)</h3>
+        <table class="tos-table">
+          <thead>
+            <tr><th>Traitement</th><th>Base Légale</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Authentification, fonctionnement</td><td>Contrat (Art. 6.1.b)</td></tr>
+            <tr><td>Modération, sécurité, preuves</td><td>Obligation légale (Art. 6.1.c) + Intérêt légitime (Art. 6.1.f)</td></tr>
+            <tr><td>Signalements autorités</td><td>Obligation légale (Art. 6.1.c)</td></tr>
+            <tr><td>Protection mineurs</td><td>Obligation légale (Art. 6.1.c) + Intérêt vital (Art. 9.2.c)</td></tr>
+            <tr><td>Données sensibles</td><td>Consentement explicite (Art. 7, 9.2.a) ou exception légale</td></tr>
+          </tbody>
+        </table>
+
+        <h3>2.5 Partage des Données</h3>
+        <h4>Partages Internes (Légitimes)</h4>
+        <p>Équipes modération/sécurité, direction juridique, support technique, administrateurs limité au « besoin d'en connaître », accès logué, confidentialité contractuelle.</p>
+
+        <h4>Partages Externes Autorisés (sans consentement additionnel)</h4>
+        <ol>
+          <li><strong>Plateformes hôtes :</strong> Données identité, changements statut modération, violations règles</li>
+          <li><strong>Autorités légales :</strong> Sommation officielle, ordonnance judiciaire, danger immédiat</li>
+          <li><strong>Partenaires sécurité :</strong> Indicateurs techniques agrégés uniquement (jamais données personnelles identifiantes)</li>
+          <li><strong>Prestataires techniques :</strong> Sous contrats RGPD Art. 28, données minimales nécessaires</li>
+        </ol>
+
+        <h4>Partages INTERDITS sans consentement</h4>
+        <ul>
+          <li>Vente à tiers commerciaux</li>
+          <li>Cession fins marketing</li>
+          <li>Divulgation contenu privé</li>
+          <li>Partage avec sociétés analytics ou agrégateurs données</li>
+        </ul>
+
+        <h3>2.6 Durée de Conservation des Données</h3>
+        <table class="tos-table">
+          <thead>
+            <tr><th>Catégorie</th><th>Durée</th><th>Justification</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><span class="severity-badge severity-a">A-B</span> Mineure-Significative</td><td>90 jours</td><td>Infraction légère</td></tr>
+            <tr><td><span class="severity-badge severity-c">C</span> Grave</td><td>180 jours</td><td>Besoin historique</td></tr>
+            <tr><td><span class="severity-badge severity-d">D-F</span> Critique-Catastrophique</td><td>5 ans</td><td>Preuve long terme</td></tr>
+            <tr><td><span class="severity-badge severity-e">E-F</span> Mineur impliqué</td><td>10 ans ou majorité +5 ans</td><td>Protection renforcée</td></tr>
+            <tr><td>Comptes actifs</td><td>Tant que l'accès est actif</td><td>Fonctionnement</td></tr>
+            <tr><td>Comptes supprimés</td><td>30 jours</td><td>Suppression définitive</td></tr>
+            <tr><td>Logs techniques</td><td>90 jours</td><td>Sauf incident sécurité</td></tr>
+            <tr><td>Donations</td><td>3 ans</td><td>Obligation fiscale</td></tr>
+          </tbody>
+        </table>
+
+        <h3>2.7 Sécurité des Données</h3>
+        <h4>Mesures Techniques</h4>
+        <ul>
+          <li>Chiffrement transit (TLS/HTTPS obligatoire)</li>
+          <li>Chiffrement au repos (AES-256 pour données sensibles)</li>
+          <li>Contrôle d'accès, authentification staff, accès limité</li>
+          <li>Isolation environnements test/production</li>
+          <li>Audit trails, sauvegardes régulières, plan d'incident response</li>
+        </ul>
+        <h4>Mesures Organisationnelles</h4>
+        <ul>
+          <li>Code d'éthique staff obligatoire</li>
+          <li>NDAs signés avec tout staff/prestataire</li>
+          <li>Contrats sous-traitance RGPD Art. 28 obligatoires</li>
+          <li>Exercices sécurité et post-mortems systématiques</li>
+        </ul>
+
+        <h3>2.8 Notification d'Incident</h3>
+        <ol class="protocol-steps">
+          <li>Détection : Incident identifié par Umaishi Corp</li>
+          <li>Assessment : Évaluation impact, données affectées, individus concernés</li>
+          <li>Notification immédiate : Contact utilisateurs concernés, délai max. 72 heures</li>
+          <li>Communication : Description incident, mesures correctives, recours</li>
+        </ol>
+
+        <h3>2.9 Vos Droits RGPD</h3>
+        <table class="tos-table">
+          <thead>
+            <tr><th>Droit</th><th>Article RGPD</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Accès</strong></td><td>Art. 15</td><td>Copie de toutes vos données personnelles, réponse sous 30 jours</td></tr>
+            <tr><td><strong>Rectification</strong></td><td>Art. 16</td><td>Correction des données inexactes ou incomplètes</td></tr>
+            <tr><td><strong>Effacement</strong></td><td>Art. 17</td><td>« Droit à l'oubli » suppression de vos données (sauf obligations légales)</td></tr>
+            <tr><td><strong>Limitation</strong></td><td>Art. 18</td><td>Restriction du traitement dans certains cas</td></tr>
+            <tr><td><strong>Portabilité</strong></td><td>Art. 20</td><td>Récupération de vos données dans un format structuré</td></tr>
+            <tr><td><strong>Opposition</strong></td><td>Art. 21</td><td>Refus du traitement basé sur intérêt légitime</td></tr>
+            <tr><td><strong>Décisions automatisées</strong></td><td>Art. 22</td><td>Ne pas faire l'objet d'une décision entièrement automatisée</td></tr>
+          </tbody>
+        </table>
+        <p><strong>Procédure :</strong> Formulaire via ticket-🪪, objet « Droit RGPD [Type] ». Fournir preuve d'identité. Délai de réponse : 30 jours.</p>
+      </div>
+
+      <!-- 3. Charte de Comportement -->
+      <div class="tos-section" id="s3">
+        <h2>3. Charte de Comportement Communautaire</h2>
+
+        <h3>3.1 Règle 1 Respect et Dignité</h3>
+        <p>Traiter chaque membre avec respect fondamental. Sont interdits : insultes, moqueries, humiliations publiques, sarcasmes hostiles, condescendance systématique, menaces voilées, dénigrement.</p>
+
+        <h3>3.2 Règle 2 Anti-harcèlement (Tolérance Zéro)</h3>
+        <p>Tolérance absolument zéro pour tout harcèlement. Inclut : ciblage répété, harcèlement par messages privés, harcèlement de groupe/raids, menaces de doxxing, cyberstalking, harcèlement sexuel, revenge porn.</p>
+        <div class="alert-box danger">
+          <p>🚫 <strong>Catégorie D-F :</strong> Sanctions S3-S8 immédiatement. Signalement aux autorités si applicable.</p>
+        </div>
+
+        <h3>3.3 Règle 3 Anti-discrimination</h3>
+        <p>Aucune discrimination tolérée basée sur : race, ethnie, genre, orientation sexuelle, religion, nationalité, handicap, âge, statut socio-économique, apparence physique ou neurodivergence.</p>
+
+        <h3>3.4 Règle 4 Propriété Intellectuelle</h3>
+        <p>Respecter les droits d'auteur. Interdit : contrefaçon, piratage, distribution non-autorisée, plagiat, utilisation non-autorisée d'IA sur contenus protégés.</p>
+
+        <h3>3.5 Règle 5 Confidentialité</h3>
+        <p>Respecter la vie privée d'autrui. Interdit : doxxing, partage de conversations privées sans consentement, collecte de données personnelles, stalking, diffusion de photos/vidéos privées.</p>
+
+        <h3>3.6 Règle 6 Sécurité des Comptes</h3>
+        <p>Maintenir la sécurité de votre compte. Interdit : partage d'identifiants, création multicomptes, usurpation d'identité, vente/échange de comptes, utilisation de bots non-autorisés.</p>
+
+        <h3>3.7 Règle 7 Utilisation des Plateformes</h3>
+        <p>Utiliser les Services conformément à leur destination. Interdit : spam, flood, manipulation d'algorithmes, détournement de fonctionnalités, publicité non-autorisée.</p>
+
+        <h3>3.8 Règle 8 Inclusion et Accessibilité</h3>
+        <p>Favoriser l'inclusivité. Obligations : langage inclusif, respect des pronoms, accessibilité du contenu, patience, aide aux nouveaux membres.</p>
+
+        <h3>3.9 Barème des Sanctions</h3>
+        <table class="tos-table">
+          <thead>
+            <tr><th>Niveau</th><th>Sanction</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>S0</td><td>Rappel à l'ordre</td><td>Avertissement informel privé</td></tr>
+            <tr><td>S1</td><td>Avertissement officiel</td><td>Consigné au dossier, visible direction</td></tr>
+            <tr><td>S2</td><td>Restriction temporaire</td><td>Accès limité (30-90 jours)</td></tr>
+            <tr><td>S3</td><td>Exclusion temporaire</td><td>Ban temporaire (7 jours par défaut)</td></tr>
+            <tr><td>S4</td><td>Exclusion prolongée</td><td>Ban (30-180 jours)</td></tr>
+            <tr><td>S5</td><td>Exclusion définitive</td><td>Ban permanent d'un Service</td></tr>
+            <tr><td>S6</td><td>Blacklist</td><td>Bannissement inter-serveurs et inter-plateforme</td></tr>
+            <tr><td>S7</td><td>Signalements</td><td>Signalements plateformes, bannissement cross-community</td></tr>
+            <tr><td>S8</td><td>Actions légales</td><td>Actions civiles/pénales, coopération autorités</td></tr>
+          </tbody>
+        </table>
+
+        <h4>Facteurs Aggravants (+1-2 niveaux)</h4>
+        <ul>
+          <li>Récidive rapide</li>
+          <li>Préméditation</li>
+          <li>Ciblage de mineurs</li>
+          <li>Coordination multi-plateforme</li>
+          <li>Refus de coopération</li>
+        </ul>
+        <h4>Facteurs Atténuants (-1-2 niveaux)</h4>
+        <ul>
+          <li>Auto-signalement</li>
+          <li>Coopération complète</li>
+          <li>Absence d'antécédents</li>
+          <li>Circonstances exceptionnelles</li>
+        </ul>
+
+        <h3>3.10 Procédure de Modération</h3>
+        <ol class="protocol-steps">
+          <li><strong>Signalement :</strong> Réception et enregistrement</li>
+          <li><strong>Collecte preuves :</strong> Captures, IDs, contexte</li>
+          <li><strong>Instruction :</strong> Classification infractions, droit de réponse</li>
+          <li><strong>Décision :</strong> Sanction appliquée selon barème</li>
+          <li><strong>Notification :</strong> Message détaillé + voie recours</li>
+        </ol>
+
+        <h3>3.11 Protocoles d'Urgence</h3>
+        <table class="tos-table">
+          <thead>
+            <tr><th>Code</th><th>Niveau</th><th>Indicateurs</th><th>Activation</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>🟡 AMBRE</td><td>Escalade légère</td><td>Augmentation x3 infractions, raid léger, spam accru</td><td>Modérateur senior / Admin</td></tr>
+            <tr><td>🔴 ROUGE</td><td>Menace grave</td><td>Raid massif >50 comptes, CSAM, menaces de mort, intrusion</td><td>Admin+ uniquement</td></tr>
+            <tr><td>⚫ MASTER</td><td>Incident existentiel</td><td>Serveur compromis, DDoS massif, menace survie</td><td>Archon Primordiaux SEUL</td></tr>
+          </tbody>
+        </table>
+
+        <h3>3.12 Protection des Lanceurs d'Alerte</h3>
+        <p>Toute personne signalant une violation de bonne foi est protégée contre les représailles. Rétorsion = S4-S7. Confidentialité garantie.</p>
+      </div>
+
+      <!-- 4. Charte de l'Utilisateur -->
+      <div class="tos-section" id="s4">
+        <h2>4. Charte de l'Utilisateur</h2>
+
+        <h3>4.1 Vos Droits</h3>
+        <ol>
+          <li><strong>Droit au respect :</strong> Être traité avec dignité et équité</li>
+          <li><strong>Droit à la sécurité :</strong> Environnement protégé, modération efficace</li>
+          <li><strong>Droit d'expression :</strong> S'exprimer librement dans les limites de la Charte</li>
+          <li><strong>Droit de recours :</strong> Contester une sanction via procédure d'appel</li>
+          <li><strong>Droit à la vie privée :</strong> Protection des données conformément au RGPD</li>
+        </ol>
+
+        <h3>4.2 Vos Responsabilités</h3>
+        <ul>
+          <li><strong>Connaissance des règles :</strong> Lire et comprendre la Charte</li>
+          <li><strong>Sécurité du compte :</strong> Mot de passe robuste, 2FA, signalement compromission</li>
+          <li><strong>Qualité des contributions :</strong> Contenu constructif et pertinent</li>
+          <li><strong>Respect d'autrui :</strong> Dignité, tolérance, courtoisie</li>
+          <li><strong>Signalement :</strong> Signaler les violations constatées de bonne foi</li>
+        </ul>
+
+        <h3>4.3 Système de Progression des Rôles</h3>
+        <p>L'accès à des rôles supérieurs est basé sur l'activité, la confiance et la contribution. L'investissement et l'exemplarité sont récompensés par des responsabilités accrues.</p>
+
+        <h3>4.4 Procédure de Signalement</h3>
+        <ol class="protocol-steps">
+          <li>Identifier le comportement contraire à la Charte</li>
+          <li>Collecter les preuves (captures d'écran, liens)</li>
+          <li>Soumettre via ticket-🪪 avec description factuelle</li>
+          <li>Ne pas engager de confrontation directe</li>
+          <li>Attendre le traitement par l'équipe de modération</li>
+        </ol>
+
+        <h3>4.5 Engagement d'Inclusivité</h3>
+        <p>Chaque utilisateur s'engage à favoriser un environnement inclusif. Respect des identités, pronoms, cultures. Zéro tolérance pour la discrimination sous toutes ses formes.</p>
+      </div>
+
+      <!-- ═══════════════════════════════════════ -->
+      <!-- SECTION II : GOUVERNANCE ET MODÉRATION -->
+      <!-- ═══════════════════════════════════════ -->
+      <div class="section-divider">
+        <h2>Section II Gouvernance et Modération</h2>
+      </div>
+
+      <!-- 5. Charte du Modérateur -->
+      <div class="tos-section" id="s5">
+        <h2>5. Charte du Modérateur</h2>
+
+        <h3>5.1 Code Éthique du Modérateur</h3>
+        <ol>
+          <li><strong>Impartialité absolue :</strong> Jamais de favoritisme, traitements égaux</li>
+          <li><strong>Transparence de décision :</strong> Toute sanction accompagnée de justification écrite, base factuelle</li>
+          <li><strong>Confidentialité :</strong> Ne jamais divulguer informations modération internes</li>
+          <li><strong>Proportionnalité :</strong> Sanction proportionnée à l'infraction</li>
+          <li><strong>Humanité :</strong> Se souvenir que derrière chaque pseudo il y a une personne</li>
+          <li><strong>Responsabilité :</strong> Assumer les erreurs, coopérer avec révision</li>
+        </ol>
+
+        <h3>5.2 Niveaux de Pouvoir</h3>
+        <table class="tos-table">
+          <thead>
+            <tr><th>Niveau</th><th>Identifiant</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>U</strong></td><td>Standard</td><td>Modération courante : sanctions S0-S4, mutes, triage signalements</td></tr>
+            <tr><td><strong>A</strong></td><td>Administrateur</td><td>Décisions avancées, sanctions S5-S6, gestion événements</td></tr>
+            <tr><td><strong>M</strong></td><td>Master / Archon</td><td>Pouvoir d'exception : sanctions S7-S8, protocoles urgence, modifications politiques</td></tr>
+          </tbody>
+        </table>
+
+        <h3>5.3 Limitations Strictes</h3>
+        <ul>
+          <li>Ne jamais utiliser les pouvoirs à des fins personnelles</li>
+          <li>Ne jamais sanctionner dans un contexte de conflit d'intérêt</li>
+          <li>Ne jamais contourner le barème sans approbation hiérarchique</li>
+          <li>Ne jamais divulguer les données des utilisateurs hors cadre modération</li>
+          <li>Ne jamais exercer de représailles contre un appelant</li>
+        </ul>
+
+        <h3>5.4 Distinction Erreur vs Faute</h3>
+        <p><strong>Erreur (Bonne Foi) :</strong> Mauvaise interprétation, connaissance incomplète, pression temps exceptionnel → Formation, correction, pas de sanction si rectifiée.</p>
+        <p><strong>Faute (Mauvaise Foi) :</strong> Abus intentionnel, négligence grossière, falsification → Sanctions disciplinaires internes.</p>
+
+        <h3>5.5 Système Disciplinaire Interne</h3>
+        <table class="tos-table">
+          <thead>
+            <tr><th>Niveau</th><th>Description</th><th>Sanction</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>F1</td><td>Violation légère éthique, 1ère fois</td><td>Avertissement + formation obligatoire</td></tr>
+            <tr><td>F2</td><td>Abus modéré, négligence grossière</td><td>Restriction pouvoirs 60-180j + probation</td></tr>
+            <tr><td>F3</td><td>Abus grave, falsification, rétorsion</td><td>Révocation fonctions + possible S5-S7</td></tr>
+            <tr><td>F4</td><td>Abus très grave, criminel, systématique</td><td>Révocation + signalements autorités + S6-S8</td></tr>
+          </tbody>
+        </table>
+
+        <h4>Procédure de Révision Interne</h4>
+        <ol class="protocol-steps">
+          <li>Constatation : Erreur/faute détectée</li>
+          <li>Notification modérateur : Raison, base, opportunité de répondre</li>
+          <li>Défense : Le modérateur peut présenter sa version</li>
+          <li>Évaluation : Comité impartial (excluant l'accusateur)</li>
+          <li>Décision : Verdict et mesures</li>
+          <li>Appel : Droit d'appel interne unique</li>
+        </ol>
+
+        <h3>5.6 Soutien et Protection du Modérateur</h3>
+        <p>Le modérateur agissant de bonne foi bénéficie de protection contre : accusations infondées, harcèlement coordonné, rétorsion, doxxing (S6-S8 contre le rétaliateur).</p>
+        <h4>Soutien Fourni</h4>
+        <ul>
+          <li>Débriefing après incidents critiques</li>
+          <li>Accès à un référent senior</li>
+          <li>Limites horaires (pas de modération 24/7 forcée)</li>
+          <li>Rotation d'astreinte équitable</li>
+          <li>Formation continue</li>
+          <li>Reconnaissance régulière</li>
+        </ul>
+
+        <h3>5.7 Conflit d'Intérêt et Déport</h3>
+        <p>Déport obligatoire si décision implique : ami proche, ennemi personnel, rival communautaire, famille, partenaire romantique, intérêt financier ou litige antérieur.</p>
+        <ol class="protocol-steps">
+          <li>Auto-déclaration ou signalement par un pair</li>
+          <li>Retrait immédiat du modérateur</li>
+          <li>Assignation à un collègue impartial</li>
+          <li>Validation par staff senior</li>
+          <li>Documentation dans les logs</li>
+        </ol>
+
+        <h3>5.8 Journalisation et Traçabilité (Logs « Bodycam »)</h3>
+        <p>Chaque action modérateur documentée immédiatement avec : <strong>QUI</strong> (ID modérateur), <strong>QUOI</strong> (sanction précise), <strong>QUAND</strong> (horodatage UTC), <strong>OÙ</strong> (serveur/plateforme/canal), <strong>POURQUOI</strong> (motif, catégorie infraction), <strong>PREUVES</strong> (captures, IDs, liens).</p>
+        <div class="alert-box info">
+          <p>ℹ️ <strong>Immutabilité :</strong> Les logs ne peuvent jamais être modifiés. Audit trimestriel. Conservation selon section 2.6.</p>
+        </div>
+      </div>
+
+      <!-- 6. Structure de Gouvernance -->
+      <div class="tos-section" id="s6">
+        <h2>6. Structure de Gouvernance et Rôles</h2>
+
+        <h3>6.1 Hiérarchie et Responsabilités</h3>
+
+        <h4>🏛️ Archons (Cercle de Direction)</h4>
+        <div class="hierarchy-card">
+          <h5>🧑‍🎨 Archon Primordiaux FONDATEUR</h5>
+          <p>Autorité sommet, direction stratégique, arbitrage final. Pouvoirs Master Code.</p>
+        </div>
+        <div class="hierarchy-card">
+          <h5>• Celestia • COLLÈGE ADMINISTRATION</h5>
+          <p>Conseil stratégique, priorités transverses, décisions majeures. Pouvoirs A+ coordination.</p>
+        </div>
+        <div class="hierarchy-card">
+          <h5>🧑‍🎨 Archon Héritier FONDATEUR ADJOINT</h5>
+          <p>Délégation Archon Primordiaux, opérations quotidiennes direction. Pouvoirs M sur mandat.</p>
+        </div>
+        <div class="hierarchy-card">
+          <h5>🧑‍🎨 Archon Piliers GARANTS CULTURE ORIGINE</h5>
+          <p>Conseil mémoire/éthique, préservation culture, mentorat. Pouvoirs U/A selon domaine.</p>
+        </div>
+        <div class="hierarchy-card">
+          <h5>🧑‍🎨 Archon Ambassadeur RELATIONS EXTERNES</h5>
+          <p>Représentation externe, partenariats, relations inter-communautés. Pouvoirs U.</p>
+        </div>
+        <div class="hierarchy-card">
+          <h5>🧑‍🎨 Archon Émissaire MISSIONS SPÉCIALES</h5>
+          <p>Opérations tactiques transversales, coordination projets ponctuels. Pouvoirs U/A selon mission.</p>
+        </div>
+        <div class="hierarchy-card">
+          <h5>🧑‍🎨 Archon Architecte DIRECTION PROJET</h5>
+          <p>Gestion produits/infrastructures, roadmaps, équipes, livraison. Pouvoirs U/A technique.</p>
+        </div>
+        <div class="hierarchy-card">
+          <h5>🧑‍🎨 Archon Instructeur RESPONSABLE STAFF</h5>
+          <p>Encadrement personnel, recrutement, formation, éthique staff. Pouvoirs A modération.</p>
+        </div>
+        <div class="hierarchy-card">
+          <h5>🧑‍🎨 Archon Conseiller CONSEILLER FONDATEUR</h5>
+          <p>Stratégie, risques, éthique. Pouvoirs A consulting, pas d'exécution directe.</p>
+        </div>
+        <div class="hierarchy-card">
+          <h5>🧑‍🎨 Archon Porte-Parole COMMUNICATION OFFICIELLE</h5>
+          <p>Voix publique officielle, annonces, gestion crise. Pouvoirs U/A communication.</p>
+        </div>
+
+        <h4>🔧 Les Sept (Administration Thématique)</h4>
+        <div class="hierarchy-card">
+          <h5>🔧 Archonte Administrateur Leader</h5>
+          <p>Chef administrateurs, coordination inter-équipes. Pouvoirs A (S7 avec approbation).</p>
+        </div>
+        <div class="hierarchy-card">
+          <h5>👔 Adepte Avocat/Senior</h5>
+          <p>Conformité juridique, veille légale. Pouvoirs A (relecture PPS/PPM).</p>
+        </div>
+        <div class="hierarchy-card">
+          <h5>✨ Paimon Ambassadrice Nasawa</h5>
+          <p>Liaison partenaires, protocoles. Pouvoirs A/U modération locale.</p>
+        </div>
+        <div class="hierarchy-card">
+          <h5>⚖️ Shogun Juge Élu</h5>
+          <p>Arbitrage appels, comités. Pouvoirs A (décisions collégiales).</p>
+        </div>
+        <div class="hierarchy-card">
+          <h5>🎗️ Nahida Aidant Communautaire</h5>
+          <p>Bien-être, prévention, médiation. Pouvoirs U (recommandations comité).</p>
+        </div>
+        <div class="hierarchy-card">
+          <h5>💎 Artefacts Automate Umaishi</h5>
+          <p>Bots, automatisations, détection. Pouvoirs U automatisé (revue humaine C-F).</p>
+        </div>
+
+        <h4>⚔️ Chevalier de l'Ordre (Modération)</h4>
+        <div class="hierarchy-card">
+          <h5>👑 Grand Maître Leader Modération</h5>
+          <p>Coordination quotidienne. Pouvoirs A/U (S6 selon Charte).</p>
+        </div>
+        <div class="hierarchy-card">
+          <h5>⚔️ Capitaine Modérateur Senior</h5>
+          <p>Dossiers complexes, formation juniors. Pouvoirs U (S0-S5), propose escalade.</p>
+        </div>
+        <div class="hierarchy-card">
+          <h5>🛡️ Chevalier Modérateur Standard</h5>
+          <p>Veille, triage, réponses initiales. Pouvoirs U (S0-S4).</p>
+        </div>
+
+        <h4>🎀 Officiels (Représentation)</h4>
+        <p>Gei-Suka (Artistes), Tsuman (Sportifs), Stars Taiyo (Idols), Game-Suka (Gamers), FiTsZ Haishin (Streamers), Ginga-Kage (Talents Prestigieux), Hoshi-Jin (Associés), Sutīmu Famirī (Famille Steam) Représentation et exemplarité, aucun pouvoir disciplinaire.</p>
+
+        <h4>👑 Nobles (Statut Social)</h4>
+        <p>Seigneur (Amis fondateur), Archiduc (Pass Social 3), Duc (Pass Social 2), Comte (Discord Booster), Citadin (Pass Social 1) Statut de reconnaissance, aucun pouvoir.</p>
+
+        <h4>🏅 Honorables (Mérite et Reconnaissance)</h4>
+        <p>Porteur de Grâce, Protecteur, Diplomate, Apothicaire, Vétéran du Conseil, Vétéran du Village, Chevalier Déchu, Première Ère, Vestiges Reconnaissance historique, aucun pouvoir.</p>
+
+        <h4>🏠 Maisons (Archétype Personnalité)</h4>
+        <p>🍃 Anémo (Indépendant Créatif), 🪨 Géo (Pragmatique Fiable), ⚡ Électro (Ingénieux Dynamique), 🌿 Dendro (Empathique Calme), 💧 Hydro (Émotionnel Intuitif), 🔥 Pyro (Passionnel Impulsif), ❄️ Cryo (Réfléchi Discret) Classement personnalité communautaire.</p>
+
+        <h3>6.2 Nominations et Élections</h3>
+        <ul>
+          <li><strong>Archons / Administrateurs :</strong> Nomination directe par Archon Primordiaux + approbation Celestia</li>
+          <li><strong>Modération (Chevalier/Capitaine/Grand Maître) :</strong> Nomination par Archon Instructeur + évaluation Archonte</li>
+          <li><strong>Shogun (Juge Élu) :</strong> Élection annuelle par vote communauté (membres avec 180j+ d'activité)</li>
+          <li><strong>Officiels :</strong> Nomination staff + approbation représentativité domaine</li>
+          <li><strong>Nobles / Honorables / Maison :</strong> Conditions spécifiques</li>
+        </ul>
+      </div>
+
+      <!-- 7. Procédures de Modération -->
+      <div class="tos-section" id="s7">
+        <h2>7. Procédures de Modération et Sanctions</h2>
+
+        <h3>7.1 Procédure Résumée</h3>
+        <ol class="protocol-steps">
+          <li>Signalement</li>
+          <li>Collecte de preuves</li>
+          <li>Instruction</li>
+          <li>Décision</li>
+          <li>Notification</li>
+          <li>Appel possible</li>
+        </ol>
+
+        <h3>7.2 Délais de Réponse Cibles</h3>
+        <table class="tos-table">
+          <thead>
+            <tr><th>Catégorie</th><th>Délai</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><span class="severity-badge severity-a">A-B</span> Mineure-Significative</td><td>Sous 12h</td></tr>
+            <tr><td><span class="severity-badge severity-c">C</span> Grave</td><td>Sous 4h</td></tr>
+            <tr><td><span class="severity-badge severity-d">D-F</span> Critique-Catastrophique</td><td>IMMÉDIAT (minutes)</td></tr>
+          </tbody>
+        </table>
+
+        <h3>7.3 Appels et Recours</h3>
+        <p>Voir <a href="#s8" style="color: var(--accent);">section 8</a> complète. Droit unique : 1 seul appel par sanction. Délai : 14j (A-C) ou 7j (D-F). Juge : personne accréditée, jamais le modérateur original.</p>
+      </div>
+
+      <!-- 8. Appels et Recours -->
+      <div class="tos-section" id="s8">
+        <h2>8. Appels et Recours</h2>
+
+        <h3>8.1 Droit d'Appel Fondamental</h3>
+        <p>Tout utilisateur sanctionné a droit <strong>UNIQUE</strong> à un appel. L'appel est un <strong>DROIT</strong>, pas un privilège.</p>
+
+        <h3>8.2 Fondements d'Appel</h3>
+        <h4>A) Sanction « Non Méritée » (Erreur manifeste)</h4>
+        <ul>
+          <li>Faits incorrects</li>
+          <li>Mauvaise classification de l'infraction</li>
+          <li>Omission de preuve importante</li>
+          <li>Violation majeure de procédure</li>
+        </ul>
+        <p>Délai : 14 jours (A-C) ou 7 jours (D-F)</p>
+
+        <h4>B) Sanction « Méritée » Mais Excédentaire (Rare)</h4>
+        <ul>
+          <li>Sanction disproportionnée par rapport au barème</li>
+          <li>Facteurs atténuants non considérés</li>
+          <li>Circonstances exceptionnelles surgies</li>
+        </ul>
+        <p>Délai : 14-30 jours si fondement solide</p>
+
+        <h4>C) Amélioration + Absence Récidive (Long-Terme)</h4>
+        <ul>
+          <li>Sanction méritée à l'époque</li>
+          <li>Amélioration vérifiable</li>
+          <li>Absence récidive minimum ~12 mois</li>
+          <li>Engagement écrit à respecter les règles</li>
+        </ul>
+        <p>Délai : Minimum ~1 an après sanction</p>
+
+        <h3>8.3 Procédure d'Appel</h3>
+        <h4>Étape 1 Dépôt</h4>
+        <p>Formulaire via ticket-🪪 incluant : ID utilisateur, sanction contestée, motif (A, B ou C), preuves/justification, engagement futur.</p>
+
+        <h4>Étape 2 Recevabilité</h4>
+        <p>Vérification : appel dans le délai légal, un seul appel pour cette sanction, fondement existant. Si refus : notification immédiate avec motif.</p>
+
+        <h4>Étape 3 Instruction Impartiale</h4>
+        <p>Juge désigné (jamais le modérateur original) : personnel accrédité ou Shogun (élu communauté). Examen des preuves originales, historique, fondement de l'appel.</p>
+
+        <h4>Étape 4 Décision</h4>
+        <table class="tos-table">
+          <thead>
+            <tr><th>Décision</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Maintien</strong></td><td>Sanction confirmée, fondement insuffisant</td></tr>
+            <tr><td><strong>Annulation</strong></td><td>Sanction levée, utilisateur réintégré (erreur manifeste)</td></tr>
+            <tr><td><strong>Commutation</strong></td><td>Sanction remplacée par alternative moins sévère</td></tr>
+            <tr><td><strong>Réduction</strong></td><td>Durée raccourcie (facteurs atténuants reconnus)</td></tr>
+          </tbody>
+        </table>
+
+        <h4>Étape 5 Notification</h4>
+        <p>Résultat, justification détaillée, date d'implémentation. Décision finale, pas d'appel ultérieur.</p>
+
+        <h3>8.4 Erreur Modérateur Confirmée</h3>
+        <p>Si l'appel démontre une erreur non de bonne foi : sanction levée/réduite pour l'utilisateur, blâme interne F2 minimum pour le modérateur.</p>
+        <p><strong>Exceptions :</strong> Auto-reconnaissance = pas de blâme (formation seule). Circonstances exceptionnelles = F1 léger.</p>
+
+        <h3>8.5 Meta-Appel (Cas Très Rare)</h3>
+        <p>Si le jugement d'appel contient une erreur manifeste : escalade auprès de la direction (Archon), révision par personnel senior, délai 30j. Décision finale et irrévocable.</p>
+      </div>
+
+      <!-- ═══════════════════════════════════════ -->
+      <!-- SECTION III : PROPRIÉTÉ ET LICENCES    -->
+      <!-- ═══════════════════════════════════════ -->
+      <div class="section-divider">
+        <h2>Section III Propriété et Licences</h2>
+      </div>
+
+      <!-- 9. Propriété Intellectuelle -->
+      <div class="tos-section" id="s9">
+        <h2>9. Propriété Intellectuelle et Licences</h2>
+
+        <h3>9.1 Contenu Utilisateur : Propriété et Licences</h3>
+        <p>Vous conservez la propriété intégrale de vos contenus créés par vous.</p>
+
+        <h4>Licence Non-Exclusive Accordée</h4>
+        <p>En publiant, vous accordez à Umaishi Corp une licence :</p>
+        <ul>
+          <li><strong>Champ :</strong> Monde entier</li>
+          <li><strong>Durée :</strong> Perpétuelle</li>
+          <li><strong>Type :</strong> Non-exclusive (publication ailleurs possible)</li>
+          <li><strong>Coût :</strong> Gratuit</li>
+          <li><strong>Usages :</strong> Reproduction, stockage, transmission, affichage, analyse, modération, archive</li>
+        </ul>
+
+        <h4>Exceptions</h4>
+        <ul>
+          <li><strong>Suppression :</strong> La licence cesse rapidement après suppression</li>
+          <li><strong>Contenu banni :</strong> La licence cesse mais copies légales demeurent</li>
+          <li><strong>Propriété tiers :</strong> Aucun droit acquis (vous restez responsable)</li>
+        </ul>
+
+        <h4>Garanties Fournies</h4>
+        <ol>
+          <li>Vous détenez tous les droits nécessaires</li>
+          <li>Le contenu ne viole aucune loi</li>
+          <li>Le contenu ne viole aucun droit tiers</li>
+          <li>Vous êtes autorisé à accorder les licences décrites</li>
+          <li>Le contenu est sans malware/virus</li>
+        </ol>
+        <p><strong>Indemnisation :</strong> Vous indemnisez Umaishi Corp contre toute réclamation tiers.</p>
+
+        <h3>9.2 Propriété Umaishi Corp : Protection Absolue</h3>
+        <p>Protégés par droit d'auteur, marque, brevet, secrets commerciaux :</p>
+        <ul>
+          <li>Marques, logos, designs visuels</li>
+          <li>Interfaces, UX/UI</li>
+          <li>Codes sources, APIs</li>
+          <li>Contenus (articles, guides, vidéos)</li>
+          <li>Bases de données, compilations</li>
+          <li>Modèles, processus internes</li>
+          <li>Noms, identités, caractères</li>
+        </ul>
+
+        <h4>Interdictions Absolues</h4>
+        <ul>
+          <li>✗ Toute utilisation sans autorisation écrite</li>
+          <li>✗ Reproduction, adaptation, modification</li>
+          <li>✗ Intégration dans produits concurrents</li>
+          <li>✗ Utilisation commerciale sans accord</li>
+          <li>✗ Reverse-engineering, extraction de secrets</li>
+          <li>✗ Dérivés non-autorisés</li>
+        </ul>
+
+        <h4>Exceptions Très Limitées</h4>
+        <ol>
+          <li><strong>Liens hypertexte :</strong> Vers nos espaces (avec identification claire)</li>
+          <li><strong>Citation académique :</strong> Limitée, crédit complet, contexte entier</li>
+          <li><strong>Fair Use critique :</strong> Très restrictif, non-commercial, transformatif</li>
+        </ol>
+
+        <h3>9.3 Licences Open Source et Contributions</h3>
+        <p>Les dépôts publics suivent les licences mentionnées (MIT, GPL, Apache, CC, etc.). La licence du dépôt prévaut sur ce document pour ce dépôt.</p>
+        <p>En contribuant (PR, code, contenu), vous accordez une licence non-exclusive. Certains dépôts requièrent un CLA (Contributor License Agreement).</p>
+      </div>
+
+      <!-- 10. DMCA -->
+      <div class="tos-section" id="s10">
+        <h2>10. Notice and Takedown (DMCA)</h2>
+
+        <h3>10.1 Procédure de Signalement</h3>
+        <p>Si du contenu enfreint vos droits, envoyez une notification écrite contenant :</p>
+        <ol>
+          <li>Identification de l'œuvre protégée (description détaillée)</li>
+          <li>Description de l'infraction (où et comment)</li>
+          <li>Localisation du contenu (URL complet)</li>
+          <li>Votre identité (nom, adresse, email, téléphone)</li>
+          <li>Déclaration sous serment (bonne foi, légitimité propriété)</li>
+          <li>Signature (électronique acceptée)</li>
+        </ol>
+        <p><strong>Délai de réponse :</strong> 10 jours ouvrables.</p>
+
+        <h3>10.2 Contre-Notification</h3>
+        <p>Si vous recevez un avis de retrait et contestez : soumettez une contre-notification avec explication détaillée de légitimité, consentement à action judiciaire, et signature. Délai : 10-14 jours après avis de retrait.</p>
+
+        <h3>10.3 Implications</h3>
+        <ul>
+          <li><strong>Notices abusives :</strong> Responsabilité légale du signaleur</li>
+          <li><strong>Notices multiples non-fondées :</strong> Possible action contre le signaleur</li>
+          <li><strong>Fraude :</strong> Conséquences pénales</li>
+        </ul>
+      </div>
+
+      <!-- ═══════════════════════════════════════ -->
+      <!-- SECTION IV : INFORMATION GROUPE        -->
+      <!-- ═══════════════════════════════════════ -->
+      <div class="section-divider">
+        <h2>Section IV Information Groupe</h2>
+      </div>
+
+      <!-- 11. Informations Groupe -->
+      <div class="tos-section" id="s11">
+        <h2>11. Informations sur le Groupe Umaishi</h2>
+
+        <h3>11.1 Structure Organisationnelle</h3>
+        <h4>Entité Mère UMAISHI CORP</h4>
+        <ul>
+          <li><strong>Catégorie :</strong> Groupe communautaire international</li>
+          <li><strong>Juridiction :</strong> France (primaire) avec présence mondiale</li>
+          <li><strong>Fondation :</strong> 2016</li>
+          <li><strong>Secteur :</strong> Communautaire</li>
+        </ul>
+
+        <h4>Divisions et Filiales</h4>
+        <div class="hierarchy-card">
+          <h5>VENTISTUDIO FITSZ Studio Principal Créatif</h5>
+          <p>▸ <strong>Nexus Lumina FiTsZ</strong> Studio et Agence Communautaire (liaison, gestion communauté)</p>
+          <p>▸ <strong>Retribution Studio</strong> Studio Gaming (développement jeux, contenu gaming)</p>
+          <p>▸ <strong>Rush KA Studio</strong> Studio Web &amp; Apps (développement sites, applications)</p>
+          <p>▸ <strong>Subo Awards</strong> Système Awards Général (reconnaissance, événements)</p>
+          <p>▸ <strong>Services Variés Divers</strong> Multiples services complémentaires</p>
+        </div>
+        <div class="hierarchy-card">
+          <h5>TRIFORCE REPUBLIQUE Studio Secondaire Interne</h5>
+          <p>Développement projets internes confidentiels. Recherche, prototypage, projets futurs.</p>
+        </div>
+        <div class="hierarchy-card">
+          <h5>SANTAS KRYPT Studio Secondaire Politique</h5>
+          <p>Développement et rédaction nouvelles politiques. Création Chartes, règles, gouvernance.</p>
+        </div>
+
+        <h3>11.2 Secteur d'Activité</h3>
+        <p>Secteur principal : <strong>COMMUNAUTAIRE</strong>. Détails limités volontairement par politique stricte de confidentialité.</p>
+
+        <h3>11.3 Équipes et Contacts</h3>
+        <p><strong>Archon Primordiaux (Fondateur) :</strong> H. Umaishi</p>
+        <p>Points de contact officiels : Support général, Juridique, Sécurité, Modération, Partenariats via les canaux prévus. Demandes RGPD adressées à la direction directement.</p>
+
+        <h3>11.4 Plateformes Officielles</h3>
+        <ul>
+          <li>Discord (serveurs multiples)</li>
+          <li>Spotify (playlists officielles)</li>
+          <li>Steam (groupe officiel)</li>
+          <li>Twitch (comptes streaming)</li>
+          <li>YouTube (chaînes contenu)</li>
+        </ul>
+
+        <h3>11.5 Infrastructure et Sécurité</h3>
+        <p>Sécurité informatique renforcée, équipes sécurité dédiées, procédures incident response. Conformité volontaire : Droit Français, Normes Suisse, Directives UE (RGPD, DSA), Lois Japon.</p>
+
+        <h3>11.6 Partenariats</h3>
+        <p>Collaborations avec : plateformes hôtes, organismes cybersécurité, communautés associées internationales, créateurs et artistes. Modèle : win-win, respect mutuel, transparence.</p>
+
+        <h3>11.7 Mission et Valeurs</h3>
+        <p><strong>Mission :</strong> Créer des espaces numériques sains, inclusifs, créatifs où les personnes peuvent collaborer, s'exprimer, grandir et être protégées.</p>
+        <h4>Valeurs Fondatrices</h4>
+        <ol>
+          <li><strong>Transparence</strong> Communication claire et honnête</li>
+          <li><strong>Intégrité</strong> Respect des promesses et engagement éthique</li>
+          <li><strong>Inclusion</strong> Égalité d'accès, diversité célébrée</li>
+          <li><strong>Sécurité</strong> Protection des personnes vulnérables</li>
+          <li><strong>Innovation</strong> Amélioration continue, expérimentation</li>
+          <li><strong>Responsabilité</strong> Transparence des décisions</li>
+        </ol>
+
+        <h3>11.8 Historique</h3>
+        <ul>
+          <li><strong>2016 :</strong> Fondation d'Umaishi Corp en tant que communauté</li>
+          <li><strong>Évolution :</strong> Croissance progressive, diversification, création sous-structures (VentiStudio FiTsZ, etc.)</li>
+          <li><strong>2025 :</strong> Groupe communautaire mature, multi-plateformes, international, focus qualité et sécurité</li>
+        </ul>
+      </div>
+
+      <!-- 12. Remerciements -->
+      <div class="tos-section" id="s12">
+        <h2>12. Remerciements</h2>
+        <p>Nos plus sincères remerciements à :</p>
+
+        <h4>Communauté Umaishi</h4>
+        <ul>
+          <li><strong>Modérateurs et Staff</strong> Dévouement bénévole, éthique intransigeante</li>
+          <li><strong>Contributeurs Contenu</strong> Articles, guides, créations originales</li>
+          <li><strong>Artistes et Créateurs</strong> Talents exceptionnels, passion, innovation</li>
+          <li><strong>Administrateurs et Archons</strong> Vision long-terme, leadership</li>
+          <li><strong>Lanceurs d'Alerte</strong> Intégrité, signalements courageux</li>
+          <li><strong>Membres Ordinaires</strong> Respect de la Charte, participation constructive</li>
+        </ul>
+
+        <h4>Partenaires Externes</h4>
+        <ul>
+          <li>Plateformes hôtes (Discord, Spotify, Steam, Twitch, YouTube)</li>
+          <li>Prestataires Sécurité et Consultants Légaux</li>
+          <li>Organisations de Protection de l'Enfance</li>
+          <li>Communautés Partenaires</li>
+        </ul>
+
+        <h4>Engagement Futur</h4>
+        <ul>
+          <li>✓ Écouter continuellement votre feedback</li>
+          <li>✓ Améliorer les politiques basées sur l'expérience réelle</li>
+          <li>✓ Investir dans la sécurité et le bien-être</li>
+          <li>✓ Rester transparent dans les limites légales</li>
+          <li>✓ Prioriser la dignité humaine inconditionnellement</li>
+        </ul>
+
+        <p style="text-align: center; margin-top: 2rem; font-style: italic; color: var(--text-primary);">Merci de votre confiance. Ensemble, créons un futur meilleur.</p>
+      </div>
+
+      <!-- ═══════════════════════════════════════ -->
+      <!-- SECTION V : ANNEXES ET COMPLÉMENTS     -->
+      <!-- ═══════════════════════════════════════ -->
+      <div class="section-divider">
+        <h2>Section V Annexes et Compléments</h2>
+      </div>
+
+      <!-- 13. Annexes -->
+      <div class="tos-section" id="s13">
+        <h2>13. Annexes Techniques et Opérationnelles</h2>
+
+        <h3>Annexe A Glossaire Technique et Juridique</h3>
+        <table class="tos-table">
+          <thead>
+            <tr><th>Terme</th><th>Définition</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Utilisateur</strong></td><td>Personne ayant accès aux Services</td></tr>
+            <tr><td><strong>Compte</strong></td><td>Identifiant unique non-transférable</td></tr>
+            <tr><td><strong>Infraction</strong></td><td>Violation de la Charte documentée</td></tr>
+            <tr><td><strong>Sanction</strong></td><td>Mesure disciplinaire S0-S8</td></tr>
+            <tr><td><strong>Modérateur</strong></td><td>Personnel accrédité de modération</td></tr>
+            <tr><td><strong>Master Code</strong></td><td>Pouvoir d'urgence Niveau M uniquement</td></tr>
+            <tr><td><strong>Déport</strong></td><td>Récusation pour conflit d'intérêt</td></tr>
+            <tr><td><strong>Logs</strong></td><td>Journaux de traces d'actions immutables</td></tr>
+            <tr><td><strong>2FA</strong></td><td>Authentification à deux facteurs</td></tr>
+            <tr><td><strong>RGPD</strong></td><td>Règlement Général sur la Protection des Données (UE)</td></tr>
+            <tr><td><strong>DMCA</strong></td><td>Digital Millennium Copyright Act (USA)</td></tr>
+            <tr><td><strong>Notice</strong></td><td>Notification officielle d'infraction</td></tr>
+            <tr><td><strong>Fair Use</strong></td><td>Usage légitime de contenu protégé (limité)</td></tr>
+          </tbody>
+        </table>
+
+        <h3>Annexe B Modèles de Documents</h3>
+        <h4>Modèle 1 Notification de Sanction</h4>
+        <div class="alert-box info">
+          <p>Sujet : Notification Sanction [Catégorie Infraction]<br>
+          Contenu : Faits objectifs, preuves, classification (A-F), sanction (S0-S8), durée, justification, voie de recours (appel sous 14j/7j via ticket-🪪).</p>
+        </div>
+
+        <h4>Modèle 2 Appel Utilisateur</h4>
+        <div class="alert-box info">
+          <p>Sujet : Appel Sanction [Date Sanction]<br>
+          Contenu : Motif (non-méritée / disproportionnée / amélioration), motif détaillé, preuves, engagement futur, signature digitale.</p>
+        </div>
+
+        <h4>Modèle 3 Notification DMCA</h4>
+        <div class="alert-box info">
+          <p>Sujet : Notice Copyright Infringement<br>
+          Contenu : Œuvre protégée, infraction (URL), déclaration sous serment, contact complet, signature.</p>
+        </div>
+
+        <h3>Annexe C Matrices de Décisions</h3>
+        <h4>Matrice Infraction → Catégorie</h4>
+        <ol>
+          <li>Implique mineur sexuellement ? → <span class="severity-badge severity-e">E-F</span> (TOLÉRANCE ZÉRO)</li>
+          <li>Menace de mort crédible ? → <span class="severity-badge severity-d">D-F</span></li>
+          <li>Terrorisme / apologie crime ? → <span class="severity-badge severity-d">D-F</span></li>
+          <li>Données sensibles massives ? → <span class="severity-badge severity-d">D-F</span></li>
+          <li>Doxxing avéré ? → <span class="severity-badge severity-c">D-C</span></li>
+          <li>Harcèlement ciblé ? → <span class="severity-badge severity-c">C-D</span></li>
+          <li>Insultes / haine ? → <span class="severity-badge severity-b">B-C</span></li>
+          <li>Hors-sujet / spam léger ? → <span class="severity-badge severity-a">A-B</span></li>
+        </ol>
+
+        <h3>Annexe D Checklists Opérationnelles</h3>
+        <h4>Checklist Modérateur Avant Sanction</h4>
+        <ul>
+          <li>☐ Signalement reçu et compris</li>
+          <li>☐ Preuves complètes collectées et vérifiées</li>
+          <li>☐ Catégorie infraction déterminée (A-F)</li>
+          <li>☐ Barème sanction consulté (section 3.3)</li>
+          <li>☐ Historique utilisateur examiné (récidive ?)</li>
+          <li>☐ Conflit d'intérêt détecté (déport nécessaire ?)</li>
+          <li>☐ Aggravants/atténuants identifiés</li>
+          <li>☐ Staff senior consulté si doute</li>
+          <li>☐ Procédure standard respectée intégralement</li>
+          <li>☐ Message notification préparé</li>
+        </ul>
+
+        <h4>Checklist Utilisateur Avant Appel</h4>
+        <ul>
+          <li>☐ Délai d'appel respecté (14j/7j)</li>
+          <li>☐ Fondement d'appel solide (A, B ou C)</li>
+          <li>☐ Preuves supplémentaires collectées</li>
+          <li>☐ Engagement futur clairement écrit</li>
+          <li>☐ Formulaire d'appel complété entièrement</li>
+          <li>☐ Soumission via ticket-🪪 confirmée</li>
+        </ul>
+
+        <h3>Annexe E Formulaires Numériques</h3>
+        <ul>
+          <li><strong>Signalement infraction :</strong> ticket-🪪 | Objet : « Signalement [Catégorie] »</li>
+          <li><strong>Appel sanction :</strong> ticket-🪪 | Objet : « Appel Sanction [Date] »</li>
+          <li><strong>Demande RGPD :</strong> ticket-🪪 | Objet : « Demande Droit RGPD [Type] »</li>
+          <li><strong>Notice DMCA :</strong> email | Objet : « DMCA Notice »</li>
+          <li><strong>Signalement sécurité :</strong> email | Confidentiel</li>
+        </ul>
+
+        <h3>Annexe F Protocoles d'Urgence Détaillés</h3>
+        <h4>🟡 CODE AMBRE Escalade Légère</h4>
+        <p><strong>Indicateurs :</strong> Augmentation x3 infractions (24h), raid léger, spam accru, menaces légères répétées.</p>
+        <p><strong>Activation :</strong> Modérateur senior ou Admin</p>
+        <ol>
+          <li>Slowmode +5min canaux publics</li>
+          <li>Messages de bienvenue renforcés</li>
+          <li>Vérification manuelle newcomers (2-4h)</li>
+          <li>Staff surveillance accrue</li>
+          <li>Logs augmentés</li>
+        </ol>
+        <p>Durée : 4-24h, réévaluation toutes les 4h.</p>
+
+        <h4>🔴 CODE ROUGE Menace Grave</h4>
+        <p><strong>Indicateurs :</strong> Raid massif >50 comptes, CSAM/terrorisme, menaces de mort imminentes, intrusion systèmes, leak données.</p>
+        <p><strong>Activation :</strong> Admin+ uniquement</p>
+        <ol>
+          <li>Lecture-seule GLOBALE tous canaux</li>
+          <li>Arrêt tous bots, webhooks, automatisations</li>
+          <li>Rotation liens invitation + désactivation</li>
+          <li>Verrouillage permissions par défaut</li>
+          <li>Sauvegarde complète bases de données</li>
+          <li>Notification sécurité/Archon</li>
+          <li>Coopération plateformes hôtes</li>
+          <li>Signalements autorités si E-F</li>
+        </ol>
+        <p>Durée minimum : 24h, réévaluation toutes les 12h. Sortie : approbation Archon.</p>
+
+        <h4>⚫ CODE MASTER Incident Existentiel</h4>
+        <p><strong>Indicateurs :</strong> Serveur entièrement compromis, DDoS/techniques massifs, menace de survie des Services.</p>
+        <p><strong>Activation :</strong> Archon Primordiaux SEUL</p>
+        <p>Pouvoirs exceptionnels temporaires. Durée max : 24h + 24h extension. Ratification direction requise sous 72h. Restrictions absolues : pas d'usage personnel.</p>
+
+        <h3>Annexe G Escalade des Décisions</h3>
+        <table class="tos-table">
+          <thead>
+            <tr><th>Type de décision</th><th>Niveau requis</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Décisions routine</td><td>Modérateurs (level U)</td></tr>
+            <tr><td>Décisions S5+</td><td>Approbation Admin (level A)</td></tr>
+            <tr><td>Décisions S7-S8</td><td>Consultation Archon + direction</td></tr>
+            <tr><td>Décisions policy</td><td>Santas Krypt Studio</td></tr>
+            <tr><td>Gestion staff</td><td>Archon Instructeur</td></tr>
+            <tr><td>Décisions structures</td><td>Celestia + Archon</td></tr>
+          </tbody>
+        </table>
+
+        <h3>Annexe H Audit et Transparence</h3>
+        <h4>Audit Interne Régulier</h4>
+        <ul>
+          <li><strong>Fréquence :</strong> Trimestriel</li>
+          <li><strong>Focus :</strong> Efficacité modération, respect procédures, résultat sanctions</li>
+          <li><strong>Scope :</strong> 10-20% dossiers aléatoires</li>
+          <li><strong>Rapport :</strong> Confidentiel direction + recommandations</li>
+        </ul>
+      </div>
+
+      <!-- 14. Dispositions Finales -->
+      <div class="tos-section" id="s14">
+        <h2>14. Dispositions Finales</h2>
+
+        <h3>14.1 Langage et Interprétation</h3>
+        <p><strong>Langage principal :</strong> Français (France et Suisse standard). Les traductions sont à titre informatif uniquement. En cas d'ambiguïté, interprétation favorable au standard le plus protecteur des personnes.</p>
+
+        <h3>14.2 Autonomie des Dispositions</h3>
+        <p>Si une clause est jugée invalide ou inapplicable, les autres clauses demeurent applicables. Les parties s'efforcent de restaurer un effet comparable légalement.</p>
+
+        <h3>14.3 Modifications et Mises à Jour</h3>
+        <ul>
+          <li><strong>Matérielles :</strong> Annoncées minimum 14 jours via canaux officiels</li>
+          <li><strong>Mineures :</strong> Notifications optionnelles</li>
+          <li><strong>Urgence :</strong> Modification immédiate possible (sécurité)</li>
+        </ul>
+        <p>La poursuite de l'utilisation des Services après notification vaut acceptation des mises à jour. Versions antérieures conservées en archive.</p>
+
+        <h3>14.4 Non-Renonciation</h3>
+        <p>L'absence d'application immédiate d'une clause ne vaut pas renonciation au droit de l'appliquer ultérieurement.</p>
+
+        <h3>14.5 Cession et Transfert</h3>
+        <ul>
+          <li><strong>Utilisateurs :</strong> Ne peuvent céder comptes/droits sans accord écrit</li>
+          <li><strong>Umaishi Corp :</strong> Peut céder/transférer les Services à une entité affiliée (notification obligatoire)</li>
+        </ul>
+
+        <h3>14.6 Accord Complet</h3>
+        <p>Ce document constitue l'accord complet et exclusif entre vous et Umaishi Corp. Tout accord antérieur est supercédé. Les contrats spécifiques signés séparément demeurent valides pour leur objet.</p>
+
+        <h3>14.7 Durée et Entrée en Vigueur</h3>
+        <ul>
+          <li><strong>Effectivité :</strong> Immédiate à la date de publication</li>
+          <li><strong>Rétroactivité :</strong> Application rétroactive (acceptation explicite possible requise)</li>
+          <li><strong>Nouveaux utilisateurs :</strong> Acceptation obligatoire à la création du compte</li>
+          <li><strong>Durée :</strong> Continue aussi longtemps que les Services sont opérés</li>
+        </ul>
+
+        <h3>14.8 Respect des Lois Applicables</h3>
+        <ol>
+          <li>Lois de votre juridiction d'origine (minimum)</li>
+          <li>Lois France (juridiction Umaishi)</li>
+          <li>Lois Suisse (où applicable)</li>
+          <li>Directives UE (RGPD, DSA, si applicable)</li>
+          <li>Lois Japon (si applicable)</li>
+          <li>Lois plateformes hôtes (Discord, Spotify, Steam, etc.)</li>
+        </ol>
+
+        <h3>14.9 Règlement des Litiges</h3>
+        <h4>Tentative Amiable (Obligatoire)</h4>
+        <ol class="protocol-steps">
+          <li>Description détaillée du problème via ticket</li>
+          <li>Réponse dans un délai de 14 jours</li>
+          <li>Dialogue constructif (30 jours minimum)</li>
+        </ol>
+
+        <h4>Médiation (Optionnelle)</h4>
+        <p>Si impasse amiable : médiation possible, frais partagés ou assumés, tiers neutre, délai ~60 jours.</p>
+
+        <h4>Voie Judiciaire (Dernier Recours)</h4>
+        <p><strong>Juridiction :</strong> Tribunaux compétents de France. <strong>Loi applicable :</strong> Droit Français avec respect RGPD/DSA/lois locales. <strong>Prescription :</strong> 2 ans dès connaissance du préjudice.</p>
+
+        <h3>14.10 Force Majeure</h3>
+        <p>Umaishi Corp non responsable en cas de : catastrophe naturelle, pandémie, changement législatif soudain, actions gouvernementales, attaques informatiques de force majeure, guerre, terrorisme, grève. Notification obligatoire dans un délai raisonnable.</p>
+
+        <h3>14.11 Clause de Limitation de Responsabilité</h3>
+        <p>Services fournis « en l'état », sans garanties implicites. Pas de responsabilité pour dommages indirects, interruptions, pertes de données. Plafond : montant payé (ou zéro si gratuit). Exceptions : mort/lésion, fraude intentionnelle, violations droits fondamentaux, droits impératifs consommateur.</p>
+
+        <h3>14.12 Acceptation Finale</h3>
+        <div class="alert-box danger">
+          <p>⚠️ L'utilisation des Services après publication vaut <strong>acceptation complète et intégrale</strong> de tous les termes. Les utilisateurs contestataires doivent cesser l'accès immédiatement.</p>
+        </div>
+      </div>
+
+      <!-- Notice Finale -->
+      <div class="tos-footer-notice">
+        <div class="legal-notice">
+          <p><strong>APPROUVÉ PAR :</strong> H. Umaishi Archon Primordiaux, Fondateur Umaishi Corp</p>
+          <p><strong>RESPONSABLE PUBLICATION :</strong> Direction Juridique &amp; Éthique, Umaishi Corp</p>
+          <p><strong>DATE SIGNATURE :</strong> 16 décembre 2025</p>
+          <p><strong>IDENTIFIANT :</strong> CHARTE-GÉNÉRAL-UMAISHI-2025-v2.0</p>
+          <p><strong>STATUT :</strong> Définitif, Exécutoire, Immédiatement Applicable</p>
+          <p style="margin-top: 1.5rem;">© Umaishi Corp 2016 - 2026. Tous droits réservés.</p>
+          <p style="margin-top: 0.5rem; font-size: 0.9rem; font-style: italic;">Document conforme aux standards légaux Français, Japonais, Suisses et de l'Union Européenne.</p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Outils</h4>
+        <ul>
+          <li><a href="/pip">PIP</a></li>
+          <li><a href="/sitemap">Plan du site</a></li>
+          <li><a href="https://status.ventistudio.eu/">Statut</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Entreprise</h4>
+        <ul>
+          <li><a href="/about">À propos</a></li>
+          <li><a href="/jobs">Emplois</a></li>
+          <li><a href="/logo">Marque</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Ressources</h4>
+        <ul>
+          <li><a href="/university">Université</a></li>
+          <li><a href="/lawful/support">Assistance</a></li>
+          <li><a href="/lawful/security">Sécurité</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Chartes</h4>
+        <ul>
+          <li><a href="/lawful/tos">Conditions d'utilisation</a></li>
+          <li><a href="/lawful/cookies">Confidentialité</a></li>
+          <li><a href="/lawful/dmcainfo">Information DMCA</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <iframe src="https://status.ventistudio.eu/badge?theme=dark" width="500" height="30" frameborder="0" scrolling="no" style="color-scheme: normal"></iframe>
+      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" aria-label="Retour en haut" title="Retour en haut">↑</button>
+
+  <script src="/main.js" defer></script>
+  <script>
+    // Back to top button
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      backToTop.classList.toggle('visible', window.scrollY > 500);
+    });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Smooth scroll for TOC links
+    document.querySelectorAll('.toc-section-group a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

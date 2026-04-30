@@ -1,0 +1,362 @@
+/* Diapo — Presentation Editor Styles */
+
+.diapo-sidebar {
+  width: 220px;
+  background: var(--suite-surface);
+  border-right: 1px solid var(--suite-border);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  flex-shrink: 0;
+  padding: 8px;
+  gap: 6px;
+}
+
+.diapo-thumb {
+  position: relative;
+  aspect-ratio: 16/9;
+  background: var(--suite-bg);
+  border: 2px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: var(--suite-transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .55rem;
+  color: var(--suite-text2);
+  padding: 4px;
+}
+
+.diapo-thumb.active {
+  border-color: var(--suite-accent);
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.3);
+}
+
+.diapo-thumb:hover:not(.active) {
+  border-color: var(--suite-border);
+}
+
+.diapo-thumb .thumb-number {
+  position: absolute;
+  top: 4px;
+  left: 6px;
+  font-size: .65rem;
+  font-weight: 700;
+  color: var(--suite-text2);
+}
+
+.diapo-thumb-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 2px;
+  pointer-events: none;
+}
+
+.diapo-thumb-content h3 {
+  font-size: .6rem;
+  margin: 0;
+  color: var(--suite-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 90%;
+}
+
+.diapo-thumb-content p {
+  font-size: .45rem;
+  color: var(--suite-text2);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 90%;
+  margin: 0;
+}
+
+.diapo-add-slide {
+  width: 100%;
+  aspect-ratio: 16/9;
+  border: 2px dashed var(--suite-border);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--suite-text2);
+  cursor: pointer;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--suite-transition);
+}
+
+.diapo-add-slide:hover {
+  border-color: var(--suite-accent);
+  color: var(--suite-accent);
+}
+
+/* Main slide area */
+.diapo-stage {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+  padding: 24px;
+}
+
+.diapo-slide {
+  width: 960px;
+  height: 540px;
+  background: var(--suite-surface);
+  border-radius: 8px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+[data-theme="light"] .diapo-slide {
+  background: #fff;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+}
+
+/* Slide elements */
+.diapo-element {
+  position: absolute;
+  cursor: move;
+  user-select: none;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  transition: outline-color .1s;
+}
+
+.diapo-element.selected {
+  outline-color: var(--suite-accent);
+}
+
+.diapo-element.editing {
+  cursor: text;
+  user-select: auto;
+}
+
+.diapo-element[data-type="title"] {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--suite-text);
+  padding: 8px 16px;
+  min-width: 200px;
+}
+
+.diapo-element[data-type="text"] {
+  font-size: 1.1rem;
+  color: var(--suite-text);
+  padding: 8px 16px;
+  min-width: 150px;
+  line-height: 1.6;
+}
+
+.diapo-element[data-type="image"] img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.diapo-element[data-type="shape"] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Resize handles */
+.diapo-element .resize-handle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: var(--suite-accent);
+  border-radius: 2px;
+  display: none;
+}
+
+.diapo-element.selected .resize-handle {
+  display: block;
+}
+
+.resize-handle.nw { top: -5px; left: -5px; cursor: nw-resize; }
+.resize-handle.ne { top: -5px; right: -5px; cursor: ne-resize; }
+.resize-handle.sw { bottom: -5px; left: -5px; cursor: sw-resize; }
+.resize-handle.se { bottom: -5px; right: -5px; cursor: se-resize; }
+
+/* Properties panel */
+.diapo-props {
+  width: 240px;
+  background: var(--suite-surface);
+  border-left: 1px solid var(--suite-border);
+  padding: 16px;
+  overflow-y: auto;
+  flex-shrink: 0;
+  font-size: .82rem;
+}
+
+.diapo-props h4 {
+  font-size: .75rem;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--suite-text2);
+  margin: 16px 0 8px;
+}
+
+.diapo-props h4:first-child { margin-top: 0; }
+
+.diapo-props label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  color: var(--suite-text);
+}
+
+.diapo-props input[type="text"],
+.diapo-props input[type="number"],
+.diapo-props select {
+  flex: 1;
+  background: var(--suite-surface2);
+  border: 1px solid var(--suite-border);
+  border-radius: 4px;
+  color: var(--suite-text);
+  padding: 4px 8px;
+  font-size: .8rem;
+  outline: none;
+}
+
+.diapo-props input:focus, .diapo-props select:focus {
+  border-color: var(--suite-accent);
+}
+
+/* Themes */
+.diapo-themes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+
+.diapo-theme-swatch {
+  aspect-ratio: 16/9;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: var(--suite-transition);
+}
+
+.diapo-theme-swatch.active {
+  border-color: var(--suite-accent);
+}
+
+.diapo-theme-swatch:hover:not(.active) {
+  border-color: var(--suite-border);
+}
+
+/* Presentation mode */
+.diapo-presentation-mode {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.diapo-presentation-mode .diapo-slide {
+  width: 100vw;
+  height: 100vh;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* Speaker Notes Bar */
+.diapo-notes-bar {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 16px;
+  background: var(--suite-surface);
+  border-top: 1px solid var(--suite-border);
+  flex-shrink: 0;
+}
+
+.diapo-notes-label {
+  font-size: .72rem;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--suite-text2);
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+
+.diapo-notes-input {
+  background: var(--suite-surface2);
+  border: 1px solid var(--suite-border);
+  border-radius: 6px;
+  color: var(--suite-text);
+  padding: 8px;
+  font-size: .82rem;
+  font-family: inherit;
+  resize: vertical;
+  outline: none;
+  min-height: 48px;
+  max-height: 150px;
+}
+
+.diapo-notes-input:focus {
+  border-color: var(--suite-accent);
+}
+
+/* Slide Transitions */
+@keyframes diapo-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes diapo-slide-left {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes diapo-slide-right {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes diapo-zoom {
+  from { transform: scale(0.3); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Toolbar add buttons */
+.diapo-insert-group {
+  display: flex;
+  gap: 2px;
+}
+
+@media (max-width: 900px) {
+  .diapo-sidebar { width: 160px; }
+  .diapo-props { width: 200px; }
+  .diapo-slide { width: 640px; height: 360px; }
+}
+
+@media (max-width: 600px) {
+  .diapo-sidebar { display: none; }
+  .diapo-props { display: none; }
+  .diapo-slide { width: 100%; height: auto; aspect-ratio: 16/9; }
+}
+
+@media print {
+  .suite-header, .suite-toolbar, .suite-statusbar, .diapo-sidebar, .diapo-props { display: none !important; }
+  .diapo-stage { padding: 0; }
+  .diapo-slide { box-shadow: none; border-radius: 0; }
+}

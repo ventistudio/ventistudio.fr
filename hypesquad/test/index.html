@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="Passez le Test de Répartition HypeSquad et découvrez votre Maison élémentaire !">
+  <meta name="theme-color" content="#6366f1">
+  <title>Test de Répartition | HypeSquad | VentiStudio</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    /* ═══ General ═══ */
+    .ht-container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ═══ Hero ═══ */
+    .ht-hero {
+      text-align: center;
+      padding: 4rem 2rem 2rem;
+    }
+    .ht-hero h1 {
+      font-size: 2rem;
+      margin-bottom: .5rem;
+    }
+    .ht-hero .subtitle {
+      font-size: 1rem;
+      opacity: .6;
+      max-width: 540px;
+      margin: 0 auto 1.5rem;
+    }
+
+    /* ═══ Progress bar ═══ */
+    .ht-progress-wrap {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      padding: 1rem 1.5rem;
+      margin-bottom: 2rem;
+      backdrop-filter: blur(12px);
+    }
+    .ht-progress-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: .8rem;
+      opacity: .6;
+      margin-bottom: .5rem;
+    }
+    .ht-progress-bar {
+      height: 8px;
+      background: rgba(255,255,255,.06);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .ht-progress-fill {
+      height: 100%;
+      border-radius: 4px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+      transition: width .5s cubic-bezier(.4,0,.2,1);
+    }
+
+    /* ═══ Question card ═══ */
+    .ht-question-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      backdrop-filter: blur(12px);
+      margin-bottom: 2rem;
+      animation: htFadeIn .4s ease;
+    }
+    @keyframes htFadeIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .ht-q-number {
+      font-size: .75rem;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      opacity: .4;
+      margin-bottom: .5rem;
+    }
+    .ht-q-text {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+    }
+
+    /* ═══ Options ═══ */
+    .ht-options { display: flex; flex-direction: column; gap: .7rem; }
+    .ht-option {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.3rem;
+      border-radius: 12px;
+      border: 2px solid var(--glass-border);
+      background: transparent;
+      color: inherit;
+      font-size: .95rem;
+      cursor: pointer;
+      transition: all .2s;
+      text-align: left;
+      font-family: inherit;
+      line-height: 1.5;
+    }
+    .ht-option:hover {
+      border-color: var(--accent);
+      background: rgba(99,102,241,.05);
+      transform: translateX(4px);
+    }
+    .ht-option.selected {
+      border-color: var(--accent);
+      background: rgba(99,102,241,.12);
+    }
+    .ht-option-marker {
+      min-width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid var(--glass-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: .75rem;
+      transition: all .2s;
+    }
+    .ht-option.selected .ht-option-marker {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    /* ═══ Nav buttons ═══ */
+    .ht-nav {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+    .ht-btn {
+      padding: .75rem 2rem;
+      border-radius: 12px;
+      border: 2px solid var(--glass-border);
+      background: transparent;
+      color: inherit;
+      font-weight: 700;
+      font-size: .9rem;
+      cursor: pointer;
+      transition: all .2s;
+      font-family: inherit;
+    }
+    .ht-btn:hover { border-color: var(--accent); }
+    .ht-btn.primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+      border-color: transparent;
+      color: #fff;
+    }
+    .ht-btn.primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(99,102,241,.3);
+    }
+    .ht-btn:disabled {
+      opacity: .3;
+      pointer-events: none;
+    }
+
+    /* ═══ Intro / Already done ═══ */
+    .ht-intro {
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+    .ht-intro-emoji { font-size: 4rem; display: block; margin-bottom: 1rem; }
+    .ht-intro h2 { font-size: 1.6rem; margin-bottom: .8rem; }
+    .ht-intro p { opacity: .6; max-width: 500px; margin: 0 auto .5rem; line-height: 1.6; }
+    .ht-start-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: 1rem 2.5rem;
+      border-radius: 14px;
+      border: none;
+      background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all .2s;
+      font-family: inherit;
+      margin-top: 1.5rem;
+    }
+    .ht-start-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(99,102,241,.4);
+    }
+
+    /* ═══ Tie-breaker ═══ */
+    .ht-tiebreak {
+      text-align: center;
+      padding: 2rem;
+    }
+    .ht-tiebreak h2 { margin-bottom: 1rem; }
+    .ht-tiebreak p { opacity: .6; margin-bottom: 1.5rem; }
+    .ht-tie-options {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .ht-tie-card {
+      background: var(--glass-bg);
+      border: 2px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
+      cursor: pointer;
+      transition: all .3s;
+      width: 180px;
+      text-align: center;
+      backdrop-filter: blur(12px);
+    }
+    .ht-tie-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--accent);
+    }
+    .ht-tie-card .ht-tie-emoji { font-size: 3rem; display: block; margin-bottom: .5rem; }
+    .ht-tie-card .ht-tie-name { font-weight: 700; font-size: 1.1rem; }
+    .ht-tie-card .ht-tie-elem { font-size: .75rem; opacity: .4; }
+
+    /* ═══ Result page ═══ */
+    .ht-result { animation: htFadeIn .6s ease; }
+    .ht-result-hero {
+      text-align: center;
+      padding: 3rem 2rem;
+      border-radius: 24px;
+      margin-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .ht-result-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: .12;
+      border-radius: 24px;
+    }
+    .ht-result-emoji { font-size: 5rem; display: block; margin-bottom: .5rem; position: relative; z-index: 1; }
+    .ht-result-house { font-size: 2.2rem; font-weight: 800; position: relative; z-index: 1; }
+    .ht-result-element { font-size: .9rem; opacity: .5; text-transform: uppercase; letter-spacing: .06em; position: relative; z-index: 1; margin-top: .3rem; }
+    .ht-result-desc {
+      position: relative;
+      z-index: 1;
+      max-width: 600px;
+      margin: 1.2rem auto 0;
+      font-size: .95rem;
+      line-height: 1.7;
+      opacity: .8;
+    }
+
+    /* ═══ Trait bars ═══ */
+    .ht-traits-section {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 2rem;
+      backdrop-filter: blur(12px);
+      margin-bottom: 1.5rem;
+    }
+    .ht-traits-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+    .ht-trait-row {
+      margin-bottom: 1.2rem;
+    }
+    .ht-trait-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: .8rem;
+      margin-bottom: .4rem;
+    }
+    .ht-trait-label-l { font-weight: 700; }
+    .ht-trait-label-r { opacity: .5; }
+    .ht-trait-bar-bg {
+      height: 10px;
+      background: rgba(255,255,255,.06);
+      border-radius: 5px;
+      overflow: hidden;
+      position: relative;
+    }
+    .ht-trait-bar-fill {
+      height: 100%;
+      border-radius: 5px;
+      transition: width 1.5s cubic-bezier(.4,0,.2,1);
+    }
+    .ht-trait-pct {
+      text-align: right;
+      font-size: .7rem;
+      opacity: .4;
+      margin-top: .2rem;
+    }
+
+    /* ═══ Result cards / text sections ═══ */
+    .ht-res-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 2rem;
+      backdrop-filter: blur(12px);
+      margin-bottom: 1.5rem;
+    }
+    .ht-res-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+    .ht-res-card p {
+      font-size: .92rem;
+      line-height: 1.7;
+      opacity: .8;
+      margin-bottom: .8rem;
+    }
+    .ht-res-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .ht-res-list li {
+      padding: .5rem 0;
+      border-bottom: 1px solid var(--glass-border);
+      font-size: .9rem;
+      display: flex;
+      align-items: baseline;
+      gap: .6rem;
+    }
+    .ht-res-list li:last-child { border-bottom: none; }
+    .ht-res-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    /* ═══ House-specific hero colors ═══ */
+    .ht-result-hero[data-house="anemo"]::before { background: linear-gradient(135deg, #87CEEB, #fff); }
+    .ht-result-hero[data-house="geo"]::before { background: linear-gradient(135deg, #8B6914, #654321); }
+    .ht-result-hero[data-house="electro"]::before { background: linear-gradient(135deg, #8B5CF6, #1a1a2e); }
+    .ht-result-hero[data-house="dendro"]::before { background: linear-gradient(135deg, #86efac, #FFB6C1); }
+    .ht-result-hero[data-house="hydro"]::before { background: linear-gradient(135deg, #3b82f6, #C0C0C0); }
+    .ht-result-hero[data-house="pyro"]::before { background: linear-gradient(135deg, #ef4444, #f97316); }
+    .ht-result-hero[data-house="cryo"]::before { background: linear-gradient(135deg, #93c5fd, #fff); }
+    .ht-result-hero[data-house="erudis"]::before { background: linear-gradient(135deg, #c4a747, #1a1a2e); }
+
+    /* ═══ Back / footer ═══ */
+    .ht-back {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .ht-back a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      transition: opacity .2s;
+    }
+    .ht-back a:hover { opacity: .7; }
+
+    /* ═══ Responsive ═══ */
+    @media (max-width: 600px) {
+      .ht-hero h1 { font-size: 1.5rem; }
+      .ht-question-card { padding: 1.5rem 1.2rem; }
+      .ht-res-cols { grid-template-columns: 1fr; }
+      .ht-tie-options { flex-direction: column; align-items: center; }
+    }
+  </style>
+
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+
+  <script async crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
+  <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
+
+  <meta property="og:title" content="Test de Répartition | HypeSquad | VentiStudio">
+  <meta property="og:description" content="Passez le Test de Répartition HypeSquad et découvrez votre Maison élémentaire !">
+  <meta property="og:url" content="https://ventistudio.eu/hypesquad/test/">
+  <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://ventistudio.eu/hypesquad/test/">
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="/favicon.avif" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
+      <span>VentiStudio</span>
+    </div>
+    <button class="nav-burger" id="nav-burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="main-nav" class="main-nav" aria-label="Navigation principale">
+      <a href="/" class="nav-link">Accueil</a>
+
+      <details class="nav-group">
+        <summary class="nav-link">Découvrir
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel" role="menu">
+          <a href="/evaluation">Évaluation</a>
+          <a href="/wiki">Wiki</a>
+          <a href="/glossary">Glossaire</a>
+          <a href="/news">News</a>
+          <a href="/blog">Blog</a>
+          <a href="/calendar">Calendrier</a>
+          <a href="/cookbook">Cookbook</a>
+          <a href="/gallery">Galerie</a>
+          <a href="/atlas">Atlas</a>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Univers
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel" role="menu">
+          <a href="/aokiunivers">AOKI Universe</a>
+          <a href="/allofaokiunivers">All AOKI</a>
+          <a href="/university">Université</a>
+          <a href="/history">Histoire</a>
+          <a href="/memorial">Mémorial</a>
+          <a href="/ester-eggs">Easter eggs</a>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Outils
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Applications</h4>
+            <a href="/player">Lecteur</a>
+            <a href="/music">Musique</a>
+            <a href="/pip">PIP</a>
+            <a href="/whiteboard">Whiteboard</a>
+            <a href="/portfolio">Portfolio</a>
+            <a href="/gmod">GMod</a>
+          </div>
+          <div class="nav-col">
+            <h4>Domaines</h4>
+            <a href="/domain/aina">AINA</a>
+            <a href="/domain/archive">Archive</a>
+            <a href="/domain/maps">Maps</a>
+            <a href="/domain/movie">Movie</a>
+            <a href="/domain/peer">Peer</a>
+            <a href="/domain/pro">Pro</a>
+            <a href="/domain/search">Search</a>
+            <a href="/domain/suite">Suite</a>
+          </div>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Communauté
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Équipe</h4>
+            <a href="/personnel/">Équipe</a>
+            <a href="/hierarchie-staff">Hiérarchie</a>
+            <a href="/hypesquad">Hypesquad</a>
+            <a href="/jobs">Emplois</a>
+            <a href="/birthday">Anniversaires</a>
+          </div>
+          <div class="nav-col">
+            <h4>Réseaux</h4>
+            <a href="/discord">Discord</a>
+            <a href="/teamspeak">TeamSpeak</a>
+            <a href="/steam">Steam</a>
+            <a href="/social">Réseaux sociaux</a>
+          </div>
+          <div class="nav-col">
+            <h4>Activités</h4>
+            <a href="/artist">Artistes</a>
+            <a href="/quests">Quêtes</a>
+            <a href="/suboawards">Suboawards</a>
+            <a href="/eConcert">eConcert</a>
+          </div>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Plus
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Aide</h4>
+            <a href="/contact">Contact</a>
+            <a href="/faq">FAQ</a>
+            <a href="/status">Statut</a>
+            <a href="/sitemap">Plan du site</a>
+          </div>
+          <div class="nav-col">
+            <h4>Soutien</h4>
+            <a href="/donate">Faire un don</a>
+            <a href="/gold">Gold</a>
+            <a href="/customization">Personnalisation</a>
+            <a href="/mes-donnees">Mes Données</a>
+            <a href="/newsletter">Newsletter</a>
+          </div>
+          <div class="nav-col">
+            <h4>À propos</h4>
+            <a href="/company">Entreprise</a>
+            <a href="/acknowledgements">Remerciements</a>
+            <a href="/logo">Logo</a>
+            <a href="/tags">Tags</a>
+            <a href="/memory">Mémoire</a>
+            <a href="/why-not-use-roblox">Pourquoi pas Roblox</a>
+            <a href="/lawful">Mentions légales</a>
+          </div>
+        </div>
+      </details>
+    </nav>
+    <div class="controls" role="toolbar" aria-label="Contrôles">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
+          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
+          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
+        </svg>
+      </button>
+      <div id="user-button" role="region" aria-label="Authentification"><button class="cta" id="auth-fallback-btn" onclick="window.location.href='https://accounts.ventistudio.eu/sign-in?redirect_url='+encodeURIComponent(window.location.href)" style="padding:0.5rem 1.25rem;font-size:0.9rem;margin:0"><span>Se connecter</span></button></div>
+    </div>
+  </header>
+
+  <main>
+    <div class="ht-container" id="ht-app"></div>
+
+    <div class="ht-back">
+      <a href="/hypesquad/">&larr; Retour au HypeSquad</a>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Outils</h4>
+        <ul>
+          <li><a href="/pip">PIP</a></li>
+          <li><a href="/sitemap">Plan du site</a></li>
+          <li><a href="https://status.ventistudio.eu/">Statut</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Entreprise</h4>
+        <ul>
+          <li><a href="/about">À propos</a></li>
+          <li><a href="/jobs">Emplois</a></li>
+          <li><a href="/logo">Marque</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Ressources</h4>
+        <ul>
+          <li><a href="/university">Université</a></li>
+          <li><a href="/lawful/support">Assistance</a></li>
+          <li><a href="/lawful/security">Sécurité</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Chartes</h4>
+        <ul>
+          <li><a href="/lawful/tos">Conditions d'utilisation</a></li>
+          <li><a href="/lawful/cookies">Confidentialité</a></li>
+          <li><a href="/lawful/dmcainfo">Information DMCA</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <iframe src="https://status.ventistudio.eu/badge?theme=dark" width="500" height="30" frameborder="0" scrolling="no" style="color-scheme: normal"></iframe>
+      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <script src="/main.js" defer></script>
+  <script>
+  (function() {
+    'use strict';
+
+    /* ═══════════════════════════════════════
+       HOUSES DATA
+    ═══════════════════════════════════════ */
+    var HOUSES = {
+      anemo:   { emoji: '🍃', name: 'Anémo',   element: 'Air',         colors: ['#87CEEB','#FFFFFF'], symbol: '🪶 Plume Blanche',    animal: '🦅 Aigle' },
+      geo:     { emoji: '🌍', name: 'Géo',     element: 'Terre',       colors: ['#2d5016','#8B4513'], symbol: '💎 Cristal de Dravite', animal: '🐺 Loup' },
+      electro: { emoji: '⚡', name: 'Électro', element: 'Électricité', colors: ['#8B5CF6','#1a1a2e'], symbol: '⚡ Éclair',            animal: '🦅 Faucon' },
+      dendro:  { emoji: '🌸', name: 'Dendro',  element: 'Nature',      colors: ['#86efac','#FFB6C1'], symbol: '🌸 Feuille de Sakura', animal: '🫎 Cerf' },
+      hydro:   { emoji: '💧', name: 'Hydro',   element: 'Eau',         colors: ['#1e40af','#C0C0C0'], symbol: '💧 Goutte d\'eau',     animal: '🐬 Dauphin' },
+      pyro:    { emoji: '🔥', name: 'Pyro',    element: 'Feu',         colors: ['#ef4444','#f97316'], symbol: '🔥 Flamme',            animal: '🦁 Lion' },
+      cryo:    { emoji: '❄️', name: 'Cryo',    element: 'Glace',       colors: ['#FFFFFF','#93c5fd'], symbol: '❄️ Flocon de neige',   animal: '🐻‍❄️ Ours Polaire' },
+      erudis:  { emoji: '🔮', name: 'Érudis',  element: 'Savoir',      colors: ['#c4a747','#1a1a2e'], symbol: '📜 Grimoire Ancien',   animal: '🦉 Hibou', secret: true }
+    };
+
+    /* ═══════════════════════════════════════
+       QUESTIONS  (20 questions, 4 options each)
+       Each option: { text, scores: { houseId: points } }
+    ═══════════════════════════════════════ */
+    var QUESTIONS = [
+      {
+        text: 'Face à un défi inattendu, quelle est votre première réaction ?',
+        options: [
+          { text: 'Je fonce tête baissée, l\'adrénaline me pousse à agir immédiatement.', scores: { pyro: 3, electro: 1 } },
+          { text: 'J\'analyse calmement la situation pour trouver un plan solide.', scores: { geo: 3, cryo: 1 } },
+          { text: 'Je fais confiance à mon instinct et à mes émotions pour me guider.', scores: { hydro: 3, dendro: 1 } },
+          { text: 'Je cherche un angle original que personne d\'autre n\'a envisagé.', scores: { anemo: 3, electro: 1 } },
+          { text: 'J\'observe en silence, j\'absorbe chaque détail avant de tirer mes propres conclusions.', scores: { erudis: 3 } }
+        ]
+      },
+      {
+        text: 'Dans un projet de groupe, quel rôle prenez-vous naturellement ?',
+        options: [
+          { text: 'Le leader qui motive et donne le rythme.', scores: { pyro: 3, anemo: 1 } },
+          { text: 'L\'organisateur qui planifie, structure et s\'assure que tout est en ordre.', scores: { geo: 3, cryo: 1 } },
+          { text: 'Le médiateur qui veille à ce que tout le monde se sente inclus.', scores: { dendro: 3, hydro: 1 } },
+          { text: 'Le créatif qui propose les idées les plus originales.', scores: { electro: 3, anemo: 1 } },
+          { text: 'L\'observateur silencieux qui comprend les dynamiques cachées du groupe.', scores: { erudis: 3 } }
+        ]
+      },
+      {
+        text: 'Comment préférez-vous passer votre temps libre ?',
+        options: [
+          { text: 'Lire des livres rares, explorer des archives, accumuler des connaissances oubliées.', scores: { erudis: 3 } },
+          { text: 'Partir à l\'aventure, voyager, explorer de nouveaux endroits.', scores: { anemo: 3, pyro: 1 } },
+          { text: 'Me plonger dans un puzzle, un jeu de stratégie ou apprendre quelque chose de technique.', scores: { electro: 3, geo: 1 } },
+          { text: 'Me détendre dans la nature, jardiner, méditer en plein air.', scores: { dendro: 3, cryo: 1 } },
+          { text: 'Écouter de la musique, dessiner, écrire laisser mes émotions s\'exprimer.', scores: { hydro: 3, dendro: 1 } }
+        ]
+      },
+      {
+        text: 'Quelle qualité admirez-vous le plus chez une personne ?',
+        options: [
+          { text: 'Le courage et la détermination.', scores: { pyro: 3 } },
+          { text: 'La fiabilité et l\'engagement.', scores: { geo: 3 } },
+          { text: 'L\'empathie et la gentillesse.', scores: { dendro: 3 } },
+          { text: 'L\'intelligence et l\'ingéniosité.', scores: { electro: 3 } },
+          { text: 'La discrétion et la profondeur de réflexion.', scores: { erudis: 3 } }
+        ]
+      },
+      {
+        text: 'Quand vous devez prendre une décision importante…',
+        options: [
+          { text: 'Je suis mon cœur, même si c\'est risqué.', scores: { hydro: 3, pyro: 1 } },
+          { text: 'Je pèse le pour et le contre pendant longtemps, je prends mon temps.', scores: { cryo: 3, geo: 1 } },
+          { text: 'Je choisis instinctivement, rapidement, avant de trop réfléchir.', scores: { anemo: 3, pyro: 1 } },
+          { text: 'J\'analyse toutes les données disponibles pour décider.', scores: { electro: 3, geo: 1 } }
+        ]
+      },
+      {
+        text: 'Quel type d\'environnement vous inspire le plus ?',
+        options: [
+          { text: 'Les sommets montagneux balayés par le vent, un panorama infini.', scores: { anemo: 3 } },
+          { text: 'Une forêt ancienne et mystérieuse où le temps semble suspendu.', scores: { dendro: 3 } },
+          { text: 'Un laboratoire ou un atelier rempli d\'inventions et de gadgets.', scores: { electro: 3 } },
+          { text: 'L\'océan à perte de vue, la lune se reflétant sur les vagues.', scores: { hydro: 3 } },
+          { text: 'Une bibliothèque infinie, des passages secrets, des connaissances interdites.', scores: { erudis: 3 } }
+        ]
+      },
+      {
+        text: 'Comment gérez-vous les conflits ?',
+        options: [
+          { text: 'Je confronte le problème directement, sans détour.', scores: { pyro: 3 } },
+          { text: 'J\'essaie de comprendre chaque point de vue pour trouver le juste milieu.', scores: { hydro: 3, dendro: 1 } },
+          { text: 'Je garde mon calme, je prends du recul avant de répondre.', scores: { cryo: 3, geo: 1 } },
+          { text: 'Je propose une solution créative que personne n\'avait envisagée.', scores: { anemo: 2, electro: 2 } }
+        ]
+      },
+      {
+        text: 'Qu\'est-ce qui vous motive le plus profondément ?',
+        options: [
+          { text: 'La victoire, dépasser mes limites, être le meilleur.', scores: { pyro: 3 } },
+          { text: 'Percer les mystères, comprendre comment fonctionne le monde.', scores: { electro: 3 } },
+          { text: 'Protéger les personnes que j\'aime et prendre soin de mon entourage.', scores: { dendro: 3, hydro: 1 } },
+          { text: 'La liberté et la possibilité de vivre selon mes propres règles.', scores: { anemo: 3 } },
+          { text: 'Accumuler un savoir que le monde a oublié, comprendre ce que personne ne cherche.', scores: { erudis: 3 } }
+        ]
+      },
+      {
+        text: 'Quand vous apprenez quelque chose de nouveau…',
+        options: [
+          { text: 'Je veux tout comprendre, chaque détail, jusqu\'au fonctionnement interne.', scores: { electro: 3, geo: 1 } },
+          { text: 'J\'apprends en faisant : je me lance et j\'ajuste en chemin.', scores: { pyro: 2, anemo: 2 } },
+          { text: 'J\'assimile lentement, en réfléchissant, relisant, et en prenant des notes.', scores: { cryo: 3 } },
+          { text: 'Je ressens le sujet intuitivement, mes émotions guident ma compréhension.', scores: { hydro: 3 } }
+        ]
+      },
+      {
+        text: 'Quel week-end idéal pour vous ?',
+        options: [
+          { text: 'Du sport intense, de la compétition ou un concert bouillant.', scores: { pyro: 3 } },
+          { text: 'Un road trip spontané où l\'on ne sait pas encore où on va dormir.', scores: { anemo: 3 } },
+          { text: 'Un week-end cocooning: lecture, thé, et silence paisible.', scores: { cryo: 3, dendro: 1 } },
+          { text: 'Un atelier créatif, une escape room ou un hackathon.', scores: { electro: 3 } }
+        ]
+      },
+      {
+        text: 'Quelle est votre plus grande force ?',
+        options: [
+          { text: 'Ma passion et mon énergie communicative.', scores: { pyro: 3 } },
+          { text: 'Ma logique et ma capacité d\'analyse.', scores: { electro: 2, geo: 2 } },
+          { text: 'Mon empathie et ma capacité d\'écoute.', scores: { dendro: 2, hydro: 2 } },
+          { text: 'Ma résilience et ma maîtrise de moi.', scores: { cryo: 3 } }
+        ]
+      },
+      {
+        text: 'Comment les autres vous décrivent-ils généralement ?',
+        options: [
+          { text: 'Charismatique, intense, impossible à ignorer.', scores: { pyro: 3, electro: 1 } },
+          { text: 'Fiable, solide, la personne sur qui on peut compter.', scores: { geo: 3 } },
+          { text: 'Doux, attentionné, apaisant.', scores: { dendro: 3 } },
+          { text: 'Libre, imprévisible, un peu mystérieux.', scores: { anemo: 2, cryo: 2 } }
+        ]
+      },
+      {
+        text: 'Quel genre d\'ami(e) êtes-vous ?',
+        options: [
+          { text: 'Celui/celle qui organise tout : sorties, plans, aventures.', scores: { pyro: 2, anemo: 2 } },
+          { text: 'Celui/celle qui écoute pendant des heures et aide à surmonter les épreuves.', scores: { hydro: 3, dendro: 1 } },
+          { text: 'Celui/celle sur qui on compte pour les conseils pragmatiques.', scores: { geo: 3 } },
+          { text: 'Celui/celle qui a toujours un fait insolite ou un game plan inattendu.', scores: { electro: 3 } }
+        ]
+      },
+      {
+        text: 'Quand vous êtes sous pression…',
+        options: [
+          { text: 'L\'adrénaline me fait fonctionner encore mieux.', scores: { pyro: 3 } },
+          { text: 'Je deviens très méthodique, presque clinique.', scores: { cryo: 3 } },
+          { text: 'Je ressens le stress profondément mais je persévère.', scores: { hydro: 3 } },
+          { text: 'Je cherche une échappatoire créative, un pas de côté.', scores: { anemo: 2, electro: 2 } }
+        ]
+      },
+      {
+        text: 'Quel domaine professionnel vous attire le plus ?',
+        options: [
+          { text: 'L\'entrepreneuriat, le sport, les postes de direction.', scores: { pyro: 3 } },
+          { text: 'La science, la technologie, l\'ingénierie.', scores: { electro: 3, geo: 1 } },
+          { text: 'L\'art, la littérature, la musique, la thérapie.', scores: { hydro: 2, dendro: 2 } },
+          { text: 'Le voyage, le journalisme, l\'exploration ou l\'humanitaire.', scores: { anemo: 3 } }
+        ]
+      },
+      {
+        text: 'Comment rechargez-vous vos batteries ?',
+        options: [
+          { text: 'En faisant quelque chose de physique : sport, danse, randonnée.', scores: { pyro: 2, anemo: 2 } },
+          { text: 'En étant seul(e) dans un endroit calme et ordonné.', scores: { cryo: 3 } },
+          { text: 'En étant en contact avec la nature, avec des animaux.', scores: { dendro: 3 } },
+          { text: 'En construisant ou en réparant quelque chose de concret.', scores: { geo: 3 } }
+        ]
+      },
+      {
+        text: 'Quel est votre rapport aux règles ?',
+        options: [
+          { text: 'Les règles sont faites pour être défiées quand elles n\'ont plus de sens.', scores: { anemo: 3, pyro: 1 } },
+          { text: 'Les règles existent pour une bonne raison, je les respecte.', scores: { geo: 3 } },
+          { text: 'J\'obéis aux règles mais j\'essaie de les améliorer de l\'intérieur.', scores: { electro: 2, hydro: 2 } },
+          { text: 'Je les observe de loin, je vis selon mes propres principes.', scores: { cryo: 3, anemo: 1 } }
+        ]
+      },
+      {
+        text: 'Quel symbole vous représente le mieux ?',
+        options: [
+          { text: '🔥 Une flamme vive : l\'énergie, la passion, la force.', scores: { pyro: 3 } },
+          { text: '🌊 L\'océan : la profondeur, l\'émotion, l\'infini.', scores: { hydro: 3 } },
+          { text: '🌿 Un arbre centenaire : la sagesse, la patience, la vie.', scores: { dendro: 2, geo: 2 } },
+          { text: '⚡ La foudre : la vitesse, l\'éclat, l\'innovation.', scores: { electro: 3 } },
+          { text: '🔮 Un grimoire ancien : le mystère, la connaissance, l\'éternité.', scores: { erudis: 3 } }
+        ]
+      },
+      {
+        text: 'En situation de crise, que faites-vous en premier ?',
+        options: [
+          { text: 'J\'agis : je prends les choses en main et je dirige.', scores: { pyro: 2, geo: 1 } },
+          { text: 'Je calme tout le monde et je m\'assure que chacun va bien.', scores: { dendro: 3, hydro: 1 } },
+          { text: 'J\'évalue les risques froidement avant d\'agir.', scores: { cryo: 3, electro: 1 } },
+          { text: 'J\'improvise et je m\'adapte seconde par seconde.', scores: { anemo: 3 } }
+        ]
+      },
+      {
+        text: 'Quel héritage aimeriez-vous laisser derrière vous ?',
+        options: [
+          { text: 'Des histoires épiques, des victoires légendaires.', scores: { pyro: 3 } },
+          { text: 'Un monde plus juste, plus bienveillant.', scores: { hydro: 2, dendro: 2 } },
+          { text: 'Des inventions, des découvertes qui changent les choses.', scores: { electro: 3 } },
+          { text: 'La preuve qu\'on peut vivre libre, sans compromis.', scores: { anemo: 2, cryo: 2 } },
+          { text: 'Des écrits, des vérités cachées que seuls les initiés pourront comprendre.', scores: { erudis: 3 } }
+        ]
+      }
+    ];
+
+    /* ═══════════════════════════════════════
+       DETAILED RESULTS PER HOUSE
+    ═══════════════════════════════════════ */
+    var RESULTS = {
+      anemo: {
+        title: 'L\'Esprit Libre',
+        desc: 'Vous êtes un esprit libre, porté par le vent du changement. Votre besoin fondamental est l\'indépendance pouvoir explorer, créer et vivre sans chaînes. Comme une brise qui refuse d\'être capturée, vous trouvez votre force dans le mouvement perpétuel et dans votre capacité à voir le monde sous des angles que d\'autres ne soupçonnent pas.',
+        strengths: ['Créativité débordante et vision originale', 'Adaptabilité exceptionnelle face aux situations nouvelles', 'Esprit d\'aventure et curiosité insatiable', 'Capacité à inspirer et à motiver les autres', 'Grande ouverture d\'esprit et tolérance'],
+        weaknesses: ['Difficulté à s\'ancrer dans la durée et à finir ce qui est commencé', 'Tendance à fuir les responsabilités ou l\'engagement', 'Peut sembler inconstant ou imprévisible aux yeux des autres', 'Impatience face à la routine et aux règles'],
+        career: 'Vous excellez dans les domaines qui allient exploration et créativité : journalisme, photographie, design, arts du spectacle, développement de jeux vidéo, ou encore entrepreneuriat nomade. Les postes trop rigides ou répétitifs vous étouffent.',
+        growth: 'Votre défi est d\'apprendre à rester quand ça devient difficile. La liberté est votre force, mais l\'ancrage est votre chemin de croissance. Apprenez à trouver la beauté dans la constance sans y perdre votre essence.',
+        relationships: 'En amitié comme en amour, vous avez besoin de personnes qui comprennent votre besoin d\'espace. Vous êtes un compagnon stimulant et surprenant, mais vous devez apprendre à communiquer quand vous avez besoin de partir et à revenir.'
+      },
+      geo: {
+        title: 'Le Pilier Inébranlable',
+        desc: 'Vous êtes le roc sur lequel les autres s\'appuient. Votre force réside dans votre fiabilité, votre pragmatisme et votre capacité à bâtir des structures solides qu\'elles soient matérielles, organisationnelles ou relationnelles. Comme la terre qui porte tout, vous offrez stabilité et sécurité à votre entourage.',
+        strengths: ['Fiabilité absolue : vous tenez vos promesses', 'Sens pratique et capacité d\'organisation', 'Patience et persévérance face aux obstacles', 'Vision à long terme, planification stratégique', 'Loyauté indéfectible envers vos proches'],
+        weaknesses: ['Rigidité face au changement et à l\'improvisation', 'Tendance au perfectionnisme paralysant', 'Difficulté à exprimer ses émotions', 'Peut être perçu comme trop conservateur ou inflexible'],
+        career: 'Vous excellez dans les rôles de gestion, d\'ingénierie, de finance, d\'architecture, de logistique ou de droit. Les carrières qui demandent méthode, précision et constance vous correspondent parfaitement.',
+        growth: 'Votre défi est de lâcher prise. Tout n\'a pas besoin d\'être parfait pour être bon. Apprenez à accepter l\'imprévu comme une opportunité plutôt qu\'une menace, et n\'ayez pas peur de montrer votre vulnérabilité.',
+        relationships: 'Vous êtes le pilier de vos relations. On sait qu\'on peut compter sur vous. Mais attention à ne pas étouffer vos proches par un excès de contrôle. Apprenez à faire confiance et à laisser les autres mener parfois.'
+      },
+      electro: {
+        title: 'Le Génie Foudroyant',
+        desc: 'Votre esprit est un éclair permanent rapide, brillant, imprévisible. Vous êtes animé par la soif de comprendre : les mystères, les systèmes, les énigmes. Chaque problème est un puzzle que vous brûlez de résoudre. Votre intelligence n\'est pas que logique : elle est créative, transversale, et parfois déconcertante.',
+        strengths: ['Intelligence vive et capacité d\'analyse exceptionnelle', 'Innovation et pensée hors des sentiers battus', 'Aptitude à résoudre des problèmes complexes', 'Dynamisme et énergie mentale remarquable', 'Curiosité intellectuelle sans limites'],
+        weaknesses: ['Impatience envers ceux qui "ne suivent pas"', 'Tendance à l\'arrogance intellectuelle', 'Difficulté à gérer les tâches répétitives ou "simples"', 'Peut négliger les émotions au profit de la logique'],
+        career: 'Vous brillez dans la recherche, la tech, la cybersécurité, l\'intelligence artificielle, l\'ingénierie logicielle, la physique ou les sciences de pointe. Tout domaine exigeant innovation et résolution de problèmes vous appartient.',
+        growth: 'Votre défi est d\'apprendre la patience émotionnelle. L\'intelligence du cœur est aussi importante que celle de l\'esprit. Ralentissez parfois pour écouter, pas pour comprendre, mais pour ressentir.',
+        relationships: 'Vous avez besoin de connexions intellectuellement stimulantes. Un partenaire ou ami qui vous challenge mentalement est essentiel. Mais n\'oubliez pas que l\'amour et l\'amitié ne sont pas des équations à résoudre.'
+      },
+      dendro: {
+        title: 'L\'Âme de la Forêt',
+        desc: 'Vous êtes enraciné dans la compassion et la connexion. Comme un grand arbre, vous offrez abri, écoute et réconfort à tous ceux qui croisent votre chemin. Votre force n\'est pas dans l\'éclat mais dans la profondeur : vous comprenez les gens à un niveau que peu atteignent, et vous trouvez la beauté dans la simplicité du vivant.',
+        strengths: ['Empathie profonde et intelligence émotionnelle', 'Patience inépuisable et calme apaisant', 'Connexion naturelle avec les êtres vivants', 'Sagesse et capacité de conseil', 'Résilience silencieuse face à l\'adversité'],
+        weaknesses: ['Tendance à s\'oublier au profit des autres', 'Difficulté à poser des limites', 'Peut éviter le conflit au point de suffoquer', 'Lenteur dans la prise de décision'],
+        career: 'Vous êtes fait(e) pour les soins, l\'enseignement, la psychologie, le travail social, la médecine vétérinaire, l\'écologie ou les arts thérapeutiques. Les rôles où l\'humain (ou le vivant) est au centre sont les vôtres.',
+        growth: 'Votre défi est d\'apprendre à prendre soin de vous aussi. Le dévouement envers les autres est admirable, mais vous devez apprendre que dire "non" n\'est pas un acte égoïste c\'est un acte de survie.',
+        relationships: 'Vous êtes le confident idéal, l\'ami(e) ou partenaire qui panse les blessures invisibles. Mais veillez à ne pas devenir le "thérapeute" de toutes vos relations. Vous méritez qu\'on s\'occupe de vous aussi.'
+      },
+      hydro: {
+        title: 'Le Courant Profond',
+        desc: 'Vous vivez intensément et profondément. Vos émotions sont votre boussole, votre force et parfois votre tempête. Comme l\'eau, vous êtes adaptable mais puissant. Vous ressentez le monde avec une intensité que d\'autres ne comprennent pas toujours, et cette sensibilité est votre plus grand don.',
+        strengths: ['Intuition remarquable et sens du ressenti', 'Profondeur émotionnelle et authenticité', 'Sens de la justice et de l\'équilibre', 'Créativité artistique, souvent musicale ou littéraire', 'Capacité à créer des liens profonds et durables'],
+        weaknesses: ['Hypersensibilité qui peut devenir envahissante', 'Tendance aux sautes d\'humeur', 'Risque de se laisser submerger par les émotions des autres', 'Difficulté à rationaliser dans les moments de crise'],
+        career: 'Vous excellez dans les arts (musique, écriture, peinture), la justice, la diplomatie, la psychologie, le coaching de vie, ou les ONG. Tout domaine nécessitant intuition, empathie et sens moral vous correspond.',
+        growth: 'Votre défi est de construire des digues intérieures. Ressentir est votre pouvoir, mais vous devez apprendre à ne pas vous nier. Développez des outils pour canaliser vos émotions sans les éteindre.',
+        relationships: 'Vous êtes un(e) partenaire et ami(e) d\'une profondeur rare. Vous aimez avec tout votre être. Mais attention à ne pas projeter vos émotions sur les autres ou à attendre qu\'ils ressentent aussi intensément que vous.'
+      },
+      pyro: {
+        title: 'La Flamme Indomptable',
+        desc: 'Vous êtes feu. Votre énergie est contagieuse, votre passion dévorante, votre ambition sans limites. Vous vivez chaque instant à pleine puissance, et votre présence seule suffit à transformer l\'atmosphère d\'une pièce. Vous êtes fait(e) pour briller, mener et repousser les frontières de ce qu\'on croit possible.',
+        strengths: ['Énergie et charisme magnétiques', 'Détermination et volonté de fer', 'Esprit de compétition et goût du défi', 'Leadership naturel et capacité à mobiliser', 'Courage et audace face au danger'],
+        weaknesses: ['Impulsivité et tendance à agir avant de réfléchir', 'Difficulté à gérer la frustration ou la défaite', 'Peut être dominant ou intimidant sans le vouloir', 'Tendance à l\'excès et au burnout'],
+        career: 'Vous êtes taillé(e) pour le leadership : management, coaching sportif, entrepreneuriat, politique, urgences/pompiers, arts de la scène. Partout où l\'intensité et la passion sont des atouts, vous dominez.',
+        growth: 'Votre défi est de maîtriser votre flamme sans l\'éteindre. Apprenez à écouter avant d\'agir, à accepter la défaite avec grâce, et à reconnaître que la force ne se mesure pas seulement en victoires.',
+        relationships: 'Vous êtes un(e) partenaire et ami(e) incandescent(e) : enthousiaste, protecteur/protectrice, passionné(e). Mais votre intensité peut effrayer. Apprenez à laisser les autres briller aussi, et à montrer votre vulnérabilité.'
+      },
+      cryo: {
+        title: 'Le Glacier Silencieux',
+        desc: 'Vous êtes calme, précis et insondable. Sous votre extérieur serein se cache une force phénoménale : celle de la maîtrise de soi, de la réflexion et de la persévérance silencieuse. Comme un glacier, vous êtes lent à se former mais impossible à oublier. Votre mystère fascine, et votre sang-froid inspire le respect.',
+        strengths: ['Maîtrise de soi et calme olympien', 'Capacité de réflexion et de prise de recul', 'Précision et attention aux détails', 'Indépendance et autosuffisance', 'Mystère et charme discret'],
+        weaknesses: ['Difficulté à se connecter émotionnellement aux autres', 'Tendance à l\'isolement et au retrait', 'Peut sembler froid ou distant involontairement', 'Réticence à demander de l\'aide'],
+        career: 'Vous excellez dans les domaines exigeant précision et sang-froid : chirurgie, recherche, stratégie militaire, cryptographie, astronomie, philosophie, ou tout travail solitaire d\'expertise.',
+        growth: 'Votre défi est de laisser fondre un peu de glace. La vulnérabilité n\'est pas une faiblesse c\'est la porte d\'entrée vers les connexions les plus profondes. Osez montrer ce qui se passe sous la surface.',
+        relationships: 'Vous êtes un(e) partenaire et ami(e) loyal(e) et stable, mais peu démonstratif/ve. Ceux qui prennent le temps de vous connaître découvrent une profondeur insoupçonnée. Mais vous devez faire l\'effort d\'ouvrir la porte, pas seulement d\'attendre à l\'intérieur.'
+      },
+      erudis: {
+        title: 'L\'Archiviste de l\'Ombre',
+        desc: 'Vous appartenez à une Maison que peu connaissent et que moins encore comprennent. Les Érudis sont les gardiens du savoir oublié, les archivistes de l\'invisible. Vous ne cherchez pas la lumière : vous cherchez la vérité, même quand elle se cache dans les recoins les plus sombres. Votre esprit est une bibliothèque vivante, et votre discrétion est votre armure.',
+        strengths: ['Mémoire exceptionnelle et soif de connaissance', 'Capacité à voir ce que les autres ignorent', 'Discrétion absolue et sang-froid', 'Pensée stratégique et vision à long terme', 'Indépendance intellectuelle totale'],
+        weaknesses: ['Tendance au secret excessif et à la paranoïa', 'Difficulté à faire confiance aux autres', 'Peut sembler distant, voire inaccessible', 'Risque de se perdre dans ses propres pensées'],
+        career: 'Vous excellez dans les domaines de niche : archivisme, recherche historique, cryptographie, renseignement, philosophie, archéologie, écriture spécialisée, ou tout métier où la patience et la profondeur de savoir sont des atouts décisifs.',
+        growth: 'Votre défi est de partager. Le savoir accumulé en silence perd sa valeur s\'il meurt avec vous. Apprenez à ouvrir vos archives intérieures à ceux qui le méritent, et acceptez que la vulnérabilité est aussi une forme de force.',
+        relationships: 'Vous êtes un(e) partenaire et ami(e) rare au sens propre. Peu de personnes accèdent à votre cercle intérieur, mais celles qui y parviennent découvrent une loyauté et une profondeur incomparables. Votre défi : laisser quelqu\'un entrer sans exiger qu\'il résolve d\'abord une énigme.'
+      }
+    };
+
+    /* ═══════════════════════════════════════
+       TRAIT AXES (computed from scores)
+    ═══════════════════════════════════════ */
+    var TRAIT_AXES = [
+      { left: 'Extraverti', right: 'Introverti', leftH: ['pyro','anemo'], rightH: ['cryo','dendro','erudis'], color: '#8B5CF6' },
+      { left: 'Intuitif', right: 'Observateur', leftH: ['electro','hydro'], rightH: ['geo','dendro','erudis'], color: '#f59e0b' },
+      { left: 'Rationnel', right: 'Sensible', leftH: ['geo','cryo','electro','erudis'], rightH: ['hydro','pyro','dendro'], color: '#22c55e' },
+      { left: 'Organisé', right: 'Explorateur', leftH: ['geo','cryo','erudis'], rightH: ['anemo','pyro'], color: '#3b82f6' },
+      { left: 'Confiant', right: 'Prudent', leftH: ['pyro','electro'], rightH: ['dendro','hydro','cryo','erudis'], color: '#ef4444' }
+    ];
+
+    /* ═══════════════════════════════════════
+       STATE
+    ═══════════════════════════════════════ */
+    var state = {
+      phase: 'intro', // intro | quiz | tiebreak | result
+      current: 0,
+      answers: [],       // index per question → selected option index
+      scores: { anemo:0, geo:0, electro:0, dendro:0, hydro:0, pyro:0, cryo:0, erudis:0 },
+      resultHouse: null,
+      traitValues: []
+    };
+
+    var app = document.getElementById('ht-app');
+
+    /* ═══════════════════════════════════════
+       CHECK EXISTING RESULT
+    ═══════════════════════════════════════ */
+    var existingResult = null;
+    try {
+      var stored = localStorage.getItem('vs-hypesquad-house');
+      if (stored) existingResult = JSON.parse(stored);
+    } catch(e) {}
+
+    if (existingResult && existingResult.house && RESULTS[existingResult.house]) {
+      state.phase = 'result';
+      state.resultHouse = existingResult.house;
+      state.traitValues = existingResult.traits || [];
+      state.scores = existingResult.scores || state.scores;
+    }
+
+    /* ═══════════════════════════════════════
+       RENDER ENGINE
+    ═══════════════════════════════════════ */
+    function render() {
+      switch (state.phase) {
+        case 'intro':   renderIntro(); break;
+        case 'quiz':    renderQuiz(); break;
+        case 'tiebreak': renderTiebreak(); break;
+        case 'erudis-cover': renderErudisCover(); break;
+        case 'result':  renderResult(); break;
+      }
+    }
+
+    /* ═══ INTRO ═══ */
+    function renderIntro() {
+      app.innerHTML =
+        '<div class="ht-intro">' +
+          '<span class="ht-intro-emoji">🎭</span>' +
+          '<h2>Test de Répartition HypeSquad</h2>' +
+          '<p>Répondez à 20 questions pour découvrir quelle Maison élémentaire vous correspond le mieux. Le test prend environ 5 minutes.</p>' +
+          '<p style="font-size:.8rem;opacity:.4">⚠️ Ce test ne peut être passé qu\'une seule fois. Vos réponses sont définitives.</p>' +
+          '<button class="ht-start-btn" id="ht-start">🪄 Commencer le Test</button>' +
+        '</div>';
+      document.getElementById('ht-start').addEventListener('click', function() {
+        state.phase = 'quiz';
+        state.current = 0;
+        state.answers = new Array(QUESTIONS.length).fill(-1);
+        render();
+      });
+    }
+
+    /* ═══ QUIZ ═══ */
+    function renderQuiz() {
+      var q = QUESTIONS[state.current];
+      var n = state.current + 1;
+      var total = QUESTIONS.length;
+      var pct = Math.round((n / total) * 100);
+      var selected = state.answers[state.current];
+      var markers = ['A','B','C','D','E','F'];
+
+      var html =
+        '<div class="ht-hero"><h1>🎭 Test de Répartition</h1></div>' +
+        '<div class="ht-progress-wrap">' +
+          '<div class="ht-progress-info"><span>Question ' + n + ' / ' + total + '</span><span>' + pct + '%</span></div>' +
+          '<div class="ht-progress-bar"><div class="ht-progress-fill" style="width:' + pct + '%"></div></div>' +
+        '</div>' +
+        '<div class="ht-question-card">' +
+          '<div class="ht-q-number">Question ' + n + '</div>' +
+          '<div class="ht-q-text">' + q.text + '</div>' +
+          '<div class="ht-options">';
+
+      q.options.forEach(function(opt, i) {
+        var sel = selected === i ? ' selected' : '';
+        html +=
+          '<button class="ht-option' + sel + '" data-idx="' + i + '">' +
+            '<span class="ht-option-marker">' + markers[i] + '</span>' +
+            '<span>' + opt.text + '</span>' +
+          '</button>';
+      });
+
+      html +=
+          '</div>' +
+        '</div>' +
+        '<div class="ht-nav">' +
+          '<button class="ht-btn" id="ht-prev"' + (state.current === 0 ? ' disabled' : '') + '>&larr; Précédent</button>' +
+          (state.current < total - 1
+            ? '<button class="ht-btn primary" id="ht-next"' + (selected === -1 ? ' disabled' : '') + '>Suivant &rarr;</button>'
+            : '<button class="ht-btn primary" id="ht-submit"' + (selected === -1 ? ' disabled' : '') + '>🪄 Voir mon résultat</button>') +
+        '</div>';
+
+      app.innerHTML = html;
+
+      /* Option clicks */
+      app.querySelectorAll('.ht-option').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var idx = parseInt(this.getAttribute('data-idx'));
+          state.answers[state.current] = idx;
+          render();
+        });
+      });
+
+      /* Prev */
+      var prevBtn = document.getElementById('ht-prev');
+      if (prevBtn) prevBtn.addEventListener('click', function() {
+        if (state.current > 0) { state.current--; render(); }
+      });
+
+      /* Next */
+      var nextBtn = document.getElementById('ht-next');
+      if (nextBtn) nextBtn.addEventListener('click', function() {
+        if (state.answers[state.current] !== -1) { state.current++; render(); }
+      });
+
+      /* Submit */
+      var submitBtn = document.getElementById('ht-submit');
+      if (submitBtn) submitBtn.addEventListener('click', function() {
+        if (state.answers[state.current] !== -1) computeResult();
+      });
+    }
+
+    /* ═══ COMPUTE RESULT ═══ */
+    function computeResult() {
+      /* Reset scores */
+      var scores = { anemo:0, geo:0, electro:0, dendro:0, hydro:0, pyro:0, cryo:0, erudis:0 };
+      QUESTIONS.forEach(function(q, qi) {
+        var chosen = state.answers[qi];
+        if (chosen >= 0 && q.options[chosen]) {
+          var s = q.options[chosen].scores;
+          for (var h in s) {
+            if (scores.hasOwnProperty(h)) scores[h] += s[h];
+          }
+        }
+      });
+      state.scores = scores;
+
+      /* Find max */
+      var maxScore = 0;
+      for (var h in scores) { if (scores[h] > maxScore) maxScore = scores[h]; }
+      var tied = [];
+      for (var h in scores) { if (scores[h] === maxScore) tied.push(h); }
+
+      if (tied.length > 1) {
+        state.tiedHouses = tied;
+        state.phase = 'tiebreak';
+        render();
+      } else {
+        finalizeResult(tied[0]);
+      }
+    }
+
+    function finalizeResult(houseId) {
+      state.resultHouse = houseId;
+      computeTraits();
+
+      /* Érudis : choisir une maison publique avant d'afficher le résultat */
+      if (houseId === 'erudis') {
+        state.phase = 'erudis-cover';
+        render();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+
+      state.phase = 'result';
+
+      /* Save to localStorage */
+      var toSave = {
+        house: houseId,
+        traits: state.traitValues,
+        scores: state.scores,
+        date: new Date().toISOString()
+      };
+      localStorage.setItem('vs-hypesquad-house', JSON.stringify(toSave));
+      render();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function computeTraits() {
+      state.traitValues = TRAIT_AXES.map(function(axis) {
+        var leftSum = 0, rightSum = 0;
+        axis.leftH.forEach(function(h) { leftSum += (state.scores[h] || 0); });
+        axis.rightH.forEach(function(h) { rightSum += (state.scores[h] || 0); });
+        var total = leftSum + rightSum;
+        if (total === 0) return 50;
+        return Math.round((leftSum / total) * 100);
+      });
+    }
+
+    /* ═══ TIEBREAK ═══ */
+    function renderTiebreak() {
+      var html =
+        '<div class="ht-tiebreak">' +
+          '<h2>🤔 Égalité !</h2>' +
+          '<p>Votre personnalité est partagée entre plusieurs Maisons. Laquelle vous appelle le plus ?</p>' +
+          '<div class="ht-tie-options">';
+
+      state.tiedHouses.forEach(function(hId) {
+        var h = HOUSES[hId];
+        html +=
+          '<div class="ht-tie-card" data-house="' + hId + '">' +
+            '<span class="ht-tie-emoji">' + h.emoji + '</span>' +
+            '<div class="ht-tie-name">' + h.name + '</div>' +
+            '<div class="ht-tie-elem">' + h.element + '</div>' +
+          '</div>';
+      });
+
+      html += '</div></div>';
+      app.innerHTML = html;
+
+      app.querySelectorAll('.ht-tie-card').forEach(function(card) {
+        card.addEventListener('click', function() {
+          finalizeResult(this.getAttribute('data-house'));
+        });
+      });
+    }
+
+    /* ═══ ÉRUDIS COVER SELECTION ═══ */
+    function renderErudisCover() {
+      var publicKeys = ['anemo','geo','electro','dendro','hydro','pyro','cryo'];
+      var html =
+        '<div class="ht-tiebreak">' +
+          '<h2>🔮 Bienvenue, Érudis.</h2>' +
+          '<p style="max-width:560px;margin:0 auto .8rem;opacity:.6;line-height:1.7">Votre véritable Maison est <strong style="color:#c4a747">Érudis</strong> — la Maison secrète. Personne ne doit le savoir.<br>En tant qu\'Érudis, vous avez le privilège unique de choisir n\'importe quelle Maison publique comme couverture.</p>' +
+          '<p style="font-size:.8rem;opacity:.3;margin-bottom:1.5rem">Cette Maison sera visible par les autres. Votre statut Érudis restera caché.</p>' +
+          '<div class="ht-tie-options">';
+
+      publicKeys.forEach(function(hId) {
+        var h = HOUSES[hId];
+        html +=
+          '<div class="ht-tie-card" data-house="' + hId + '">' +
+            '<span class="ht-tie-emoji">' + h.emoji + '</span>' +
+            '<div class="ht-tie-name">' + h.name + '</div>' +
+            '<div class="ht-tie-elem">' + h.element + '</div>' +
+          '</div>';
+      });
+
+      html += '</div></div>';
+      app.innerHTML = html;
+
+      app.querySelectorAll('.ht-tie-card').forEach(function(card) {
+        card.addEventListener('click', function() {
+          var publicHouse = this.getAttribute('data-house');
+          state.phase = 'result';
+
+          var toSave = {
+            house: 'erudis',
+            publicHouse: publicHouse,
+            traits: state.traitValues,
+            scores: state.scores,
+            date: new Date().toISOString()
+          };
+          localStorage.setItem('vs-hypesquad-house', JSON.stringify(toSave));
+          render();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      });
+    }
+
+    /* ═══ RESULT ═══ */
+    function renderResult() {
+      var hId = state.resultHouse;
+      var h = HOUSES[hId];
+      var r = RESULTS[hId];
+
+      /* Recompute traits if loaded from storage */
+      if (!state.traitValues || state.traitValues.length === 0) computeTraits();
+
+      var html =
+        '<div class="ht-result">' +
+          /* Hero */
+          '<div class="ht-result-hero" data-house="' + hId + '">' +
+            '<span class="ht-result-emoji">' + h.emoji + '</span>' +
+            '<div class="ht-result-house">' + h.name + ' : ' + r.title + '</div>' +
+            '<div class="ht-result-element">' + h.element + ' · ' + h.symbol + ' · ' + h.animal + '</div>' +
+            '<p class="ht-result-desc">' + r.desc + '</p>' +
+          '</div>';
+
+        /* Érudis: show public house info */
+        if (hId === 'erudis') {
+          var pubData = null;
+          try { var sd = localStorage.getItem('vs-hypesquad-house'); if (sd) pubData = JSON.parse(sd); } catch(e) {}
+          if (pubData && pubData.publicHouse && HOUSES[pubData.publicHouse]) {
+            var pubH = HOUSES[pubData.publicHouse];
+            html +=
+              '<div style="text-align:center;padding:1rem;margin-bottom:1.5rem;opacity:.5;font-size:.85rem">' +
+                '<span style="color:#c4a747">🔮 Maison secrète : Érudis</span> · ' +
+                '<span>Maison publique : ' + pubH.emoji + ' ' + pubH.name + '</span>' +
+              '</div>';
+          }
+        }
+
+        /* Traits */
+        html += '<div class="ht-traits-section"><div class="ht-traits-title">📊 Votre profil de personnalité</div>';
+        TRAIT_AXES.forEach(function(axis, i) {
+          var val = state.traitValues[i] !== undefined ? state.traitValues[i] : 50;
+          var dominant = val >= 50 ? axis.left : axis.right;
+          var pctDisplay = val >= 50 ? val : (100 - val);
+          html +=
+            '<div class="ht-trait-row">' +
+              '<div class="ht-trait-labels">' +
+                '<span class="ht-trait-label-l">' + axis.left + '</span>' +
+                '<span class="ht-trait-label-r">' + axis.right + '</span>' +
+              '</div>' +
+              '<div class="ht-trait-bar-bg">' +
+                '<div class="ht-trait-bar-fill" style="width:' + val + '%;background:' + axis.color + '"></div>' +
+              '</div>' +
+              '<div class="ht-trait-pct">' + dominant + ' : ' + pctDisplay + '%</div>' +
+            '</div>';
+        });
+        html += '</div>';
+
+        /* Strengths & Weaknesses */
+        html += '<div class="ht-res-cols">';
+
+        html += '<div class="ht-res-card"><h3>💪 Forces</h3><ul class="ht-res-list">';
+        r.strengths.forEach(function(s) { html += '<li><span>✅</span> ' + s + '</li>'; });
+        html += '</ul></div>';
+
+        html += '<div class="ht-res-card"><h3>⚠️ Faiblesses</h3><ul class="ht-res-list">';
+        r.weaknesses.forEach(function(w) { html += '<li><span>🔸</span> ' + w + '</li>'; });
+        html += '</ul></div>';
+
+        html += '</div>';
+
+        /* Career */
+        html +=
+          '<div class="ht-res-card">' +
+            '<h3>💼 Carrière & Vocation</h3>' +
+            '<p>' + r.career + '</p>' +
+          '</div>';
+
+        /* Growth */
+        html +=
+          '<div class="ht-res-card">' +
+            '<h3>🌱 Développement Personnel</h3>' +
+            '<p>' + r.growth + '</p>' +
+          '</div>';
+
+        /* Relationships */
+        html +=
+          '<div class="ht-res-card">' +
+            '<h3>❤️ Relations</h3>' +
+            '<p>' + r.relationships + '</p>' +
+          '</div>';
+
+        /* House points comparison */
+        html += '<div class="ht-res-card"><h3>📈 Répartition de vos scores</h3><div style="display:flex;flex-direction:column;gap:.5rem">';
+        var maxS = 0;
+        for (var key in state.scores) { if (state.scores[key] > maxS) maxS = state.scores[key]; }
+        var sortedHouses = Object.keys(state.scores).sort(function(a,b) { return state.scores[b] - state.scores[a]; });
+        sortedHouses.forEach(function(hKey) {
+          var house = HOUSES[hKey];
+          var pts = state.scores[hKey];
+          var pct = maxS > 0 ? Math.round((pts / maxS) * 100) : 0;
+          var isWinner = hKey === hId;
+          html +=
+            '<div style="display:flex;align-items:center;gap:.8rem;opacity:' + (isWinner ? '1' : '.6') + '">' +
+              '<span style="font-size:1.2rem;min-width:30px">' + house.emoji + '</span>' +
+              '<span style="min-width:65px;font-weight:' + (isWinner ? '800' : '400') + ';font-size:.85rem">' + house.name + '</span>' +
+              '<div style="flex:1;height:8px;background:rgba(255,255,255,.06);border-radius:4px;overflow:hidden">' +
+                '<div style="height:100%;width:' + pct + '%;background:' + house.colors[0] + ';border-radius:4px;transition:width 1s"></div>' +
+              '</div>' +
+              '<span style="font-size:.8rem;min-width:35px;text-align:right;font-weight:600">' + pts + '</span>' +
+            '</div>';
+        });
+        html += '</div></div>';
+
+        html += '</div>'; /* end ht-result */
+
+      app.innerHTML = html;
+    }
+
+    /* ═══════════════════════════════════════
+       BOOT
+    ═══════════════════════════════════════ */
+    render();
+  })();
+  </script>
+  <script>
+    (function () {
+      var nav = document.getElementById('main-nav');
+      var burger = document.getElementById('nav-burger');
+      if (!nav || !burger) return;
+
+      // Marque le lien actif d'apres l'URL courante
+      try {
+        var path = window.location.pathname.replace(/\/index\.html?$/, '/').replace(/\/$/, '') || '/';
+        var best = null, bestLen = -1;
+        nav.querySelectorAll('a[href]').forEach(function (a) {
+          var href = a.getAttribute('href').replace(/\/$/, '') || '/';
+          if (href === path || (href !== '/' && path.indexOf(href + '/') === 0) || (href !== '/' && path === href)) {
+            if (href.length > bestLen) { best = a; bestLen = href.length; }
+          }
+        });
+        if (path === '/' || path === '') {
+          best = nav.querySelector('a[href="/"]');
+        }
+        if (best) {
+          best.classList.add('active');
+          var grp = best.closest('details.nav-group');
+          if (grp) {
+            var s = grp.querySelector('summary.nav-link');
+            if (s) s.classList.add('active');
+          }
+        }
+      } catch (e) {}
+
+      function closeAllGroups(except) {
+        nav.querySelectorAll('details.nav-group[open]').forEach(function (d) {
+          if (d !== except) d.removeAttribute('open');
+        });
+      }
+
+      burger.addEventListener('click', function () {
+        var open = nav.classList.toggle('is-open');
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        burger.classList.toggle('is-active', open);
+        if (!open) closeAllGroups();
+      });
+
+      nav.querySelectorAll('details.nav-group').forEach(function (d) {
+        d.addEventListener('toggle', function () {
+          if (d.open) closeAllGroups(d);
+        });
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!nav.contains(e.target) && !burger.contains(e.target)) {
+          closeAllGroups();
+          if (nav.classList.contains('is-open')) {
+            nav.classList.remove('is-open');
+            burger.classList.remove('is-active');
+            burger.setAttribute('aria-expanded', 'false');
+          }
+        }
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          closeAllGroups();
+          if (nav.classList.contains('is-open')) {
+            nav.classList.remove('is-open');
+            burger.classList.remove('is-active');
+            burger.setAttribute('aria-expanded', 'false');
+            burger.focus();
+          }
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

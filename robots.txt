@@ -1,21 +1,25 @@
 ﻿# robots.txt for VentiStudio - https://ventistudio.eu
-# Updated: 2026-02-12
+# Updated: 2026-04-04
 # Syntax: https://www.robotstxt.org/
 
 # Default rules for all robots
 User-agent: *
 Allow: /
 Allow: /index.html
-Allow: /about/
 Allow: /player/
 Allow: /wiki/
-Allow: /staff/
 Allow: /artist/
 Allow: /pip/
 Allow: /music/
 Allow: /sitemap/
-Allow: /privacy/
-Allow: /terms/
+Allow: /lawful/
+Allow: /blog/
+Allow: /news/
+Allow: /company/
+Allow: /faq/
+Allow: /donate/
+Allow: /portfolio/
+Allow: /cookbook/
 
 # Disallow sensitive areas
 Disallow: /admin/
@@ -64,7 +68,6 @@ Disallow: /
 
 # Sitemaps
 Sitemap: https://ventistudio.eu/sitemap.xml
-Sitemap: https://ventistudio.eu/sitemap-index.xml
 
 # Contact for robots.txt issues
 # Support: support@ventistudio.eu

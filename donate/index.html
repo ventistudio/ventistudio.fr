@@ -1,141 +1,404 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="dark">
 <head>
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <meta name="description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
+  <meta name="description" content="Soutenez VentiStudio — Aidez-nous &#xE0; maintenir et am&#xE9;liorer notre plateforme cr&#xE9;ative.">
   <meta name="theme-color" content="#6366f1">
-  <title>VentiStudio v4</title>
+  <title>Dons | VentiStudio</title>
   <link rel="stylesheet" href="/style.css">
+
+  <script async crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
+  <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
+
+  <meta property="og:title" content="Dons | VentiStudio">
+  <meta property="og:description" content="Soutenez VentiStudio — Aidez-nous &#xE0; maintenir et am&#xE9;liorer notre plateforme cr&#xE9;ative.">
+  <meta property="og:url" content="https://ventistudio.eu/donate/">
+  <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://ventistudio.eu/donate/">
+
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
 </head>
 <body>
   <header>
-
     <div class="logo">
       <img src="/favicon.avif" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
       <span>VentiStudio</span>
     </div>
-    <nav aria-label="Navigation principale">
-      <a href="/">Accueil</a>
-      <a href="/evaluation">Contenu Approuvé</a>
-      <a href="/player">Lecteur</a>
-      <a href="/wiki">Wiki</a>
-      <a href="/staff">Équipe</a>
-      <a href="/news">News</a>
-      <a href="/pip">PIP</a>
-      <a href="/sitemap">Plan du site</a>
+    <button class="nav-burger" id="nav-burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="main-nav" class="main-nav" aria-label="Navigation principale">
+      <a href="/" class="nav-link">Accueil</a>
+
+      <details class="nav-group">
+        <summary class="nav-link">Découvrir
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel" role="menu">
+          <a href="/evaluation">Évaluation</a>
+          <a href="/wiki">Wiki</a>
+          <a href="/glossary">Glossaire</a>
+          <a href="/news">News</a>
+          <a href="/blog">Blog</a>
+          <a href="/calendar">Calendrier</a>
+          <a href="/cookbook">Cookbook</a>
+          <a href="/gallery">Galerie</a>
+          <a href="/atlas">Atlas</a>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Univers
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel" role="menu">
+          <a href="/aokiunivers">AOKI Universe</a>
+          <a href="/allofaokiunivers">All AOKI</a>
+          <a href="/university">Université</a>
+          <a href="/history">Histoire</a>
+          <a href="/memorial">Mémorial</a>
+          <a href="/ester-eggs">Easter eggs</a>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Outils
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Applications</h4>
+            <a href="/player">Lecteur</a>
+            <a href="/music">Musique</a>
+            <a href="/pip">PIP</a>
+            <a href="/whiteboard">Whiteboard</a>
+            <a href="/portfolio">Portfolio</a>
+            <a href="/gmod">GMod</a>
+          </div>
+          <div class="nav-col">
+            <h4>Domaines</h4>
+            <a href="/domain/aina">AINA</a>
+            <a href="/domain/archive">Archive</a>
+            <a href="/domain/maps">Maps</a>
+            <a href="/domain/movie">Movie</a>
+            <a href="/domain/peer">Peer</a>
+            <a href="/domain/pro">Pro</a>
+            <a href="/domain/search">Search</a>
+            <a href="/domain/suite">Suite</a>
+          </div>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Communauté
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Équipe</h4>
+            <a href="/personnel/">Équipe</a>
+            <a href="/hierarchie-staff">Hiérarchie</a>
+            <a href="/hypesquad">Hypesquad</a>
+            <a href="/jobs">Emplois</a>
+            <a href="/birthday">Anniversaires</a>
+          </div>
+          <div class="nav-col">
+            <h4>Réseaux</h4>
+            <a href="/discord">Discord</a>
+            <a href="/teamspeak">TeamSpeak</a>
+            <a href="/steam">Steam</a>
+            <a href="/social">Réseaux sociaux</a>
+          </div>
+          <div class="nav-col">
+            <h4>Activités</h4>
+            <a href="/artist">Artistes</a>
+            <a href="/quests">Quêtes</a>
+            <a href="/suboawards">Suboawards</a>
+            <a href="/eConcert">eConcert</a>
+          </div>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Plus
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Aide</h4>
+            <a href="/contact">Contact</a>
+            <a href="/faq">FAQ</a>
+            <a href="/status">Statut</a>
+            <a href="/sitemap">Plan du site</a>
+          </div>
+          <div class="nav-col">
+            <h4>Soutien</h4>
+            <a href="/donate">Faire un don</a>
+            <a href="/gold">Gold</a>
+            <a href="/customization">Personnalisation</a>
+            <a href="/mes-donnees">Mes Données</a>
+            <a href="/newsletter">Newsletter</a>
+          </div>
+          <div class="nav-col">
+            <h4>À propos</h4>
+            <a href="/company">Entreprise</a>
+            <a href="/acknowledgements">Remerciements</a>
+            <a href="/logo">Logo</a>
+            <a href="/tags">Tags</a>
+            <a href="/memory">Mémoire</a>
+            <a href="/why-not-use-roblox">Pourquoi pas Roblox</a>
+            <a href="/lawful">Mentions légales</a>
+          </div>
+        </div>
+      </details>
     </nav>
-    <div class="controls" role="toolbar" aria-label="Contrôles">
-      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
+    <div class="controls" role="toolbar" aria-label="Contr&#xF4;les">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le th&#xE8;me clair/sombre" title="Basculer le th&#xE8;me">
         <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
           <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
           <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
           <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
         </svg>
       </button>
-      <div id="user-button" role="region" aria-label="Authentification"></div>
+      <div id="user-button" role="region" aria-label="Authentification"><button class="cta" id="auth-fallback-btn" onclick="window.location.href='https://accounts.ventistudio.eu/sign-in?redirect_url='+encodeURIComponent(window.location.href)" style="padding:0.5rem 1.25rem;font-size:0.9rem;margin:0"><span>Se connecter</span></button></div>
     </div>
-  
   </header>
+
+  <style>
+    .donate-hero {
+      text-align: center;
+      padding: 6rem 0 4rem;
+      position: relative;
+      overflow: hidden;
+      border-radius: 2rem;
+    }
+    .donate-hero .hero-orbs { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+    .donate-hero .orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.5; animation: orbFloat 12s ease-in-out infinite; }
+    .donate-hero .orb-1 { width: 400px; height: 400px; background: rgba(99,102,241,0.3); top: -10%; left: -5%; }
+    .donate-hero .orb-2 { width: 300px; height: 300px; background: rgba(139,92,246,0.25); bottom: -5%; right: -5%; animation-delay: -4s; }
+    .donate-hero p { font-size: 1.15rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto; line-height: 1.7; }
+
+    .donate-section { margin-top: 4rem; }
+    .donate-section h2 { text-align: center; margin-bottom: 2rem; }
+
+    .donate-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .donate-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 1.25rem;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: var(--glass-shadow);
+    }
+    .donate-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--accent);
+      box-shadow: 0 12px 40px rgba(99,102,241,0.2);
+    }
+    .donate-card-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .donate-card-logo {
+      width: 48px;
+      height: 48px;
+      border-radius: 0.85rem;
+      object-fit: contain;
+      background: rgba(255,255,255,0.08);
+      padding: 6px;
+      flex-shrink: 0;
+    }
+    .donate-card-header h3 {
+      color: var(--text-primary);
+      font-weight: 600;
+      font-size: 1.15rem;
+      margin: 0;
+    }
+    .donate-card p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin: 0;
+      flex: 1;
+    }
+    .donate-amount {
+      font-size: 2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.02em;
+    }
+    .donate-card .cta {
+      text-align: center;
+      width: 100%;
+      padding: 0.85rem 1.5rem;
+      font-size: 1rem;
+    }
+    .donate-card-highlight {
+      border-color: rgba(99,102,241,0.4);
+      background: linear-gradient(135deg, rgba(99,102,241,0.08) 0%, rgba(139,92,246,0.08) 100%);
+      position: relative;
+    }
+    .donate-badge {
+      position: absolute;
+      top: -12px;
+      right: 20px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.3rem 0.9rem;
+      border-radius: 2rem;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+    .donate-note {
+      text-align: center;
+      margin-top: 4rem;
+      padding: 3rem 2rem;
+      background: linear-gradient(135deg, rgba(99,102,241,0.08) 0%, rgba(139,92,246,0.08) 100%);
+      border: 1px solid rgba(99,102,241,0.15);
+      border-radius: 1.5rem;
+      backdrop-filter: blur(10px);
+    }
+    .donate-note p {
+      color: var(--text-secondary);
+      max-width: 560px;
+      margin: 0.75rem auto 0;
+      line-height: 1.7;
+    }
+    .donate-note svg { color: var(--accent); margin-bottom: 0.75rem; }
+
+    @media (max-width: 768px) {
+      .donate-hero { padding: 3rem 0 2rem; }
+      .donate-hero p { font-size: 1rem; }
+      .donate-grid { grid-template-columns: 1fr; }
+      .donate-amount { font-size: 1.6rem; }
+      .donate-note { padding: 2rem 1.25rem; }
+    }
+  </style>
 
   <main>
 
+    <section class="donate-hero">
+      <div class="hero-orbs" aria-hidden="true">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+      </div>
+      <span class="hero-badge">
+        <span class="hero-badge-dot" aria-hidden="true"></span>
+        Soutenir le projet
+      </span>
+      <h1>Soutenez<br><span class="text-highlight">VentiStudio</span></h1>
+      <p>VentiStudio est gratuit, mais sa mise en ligne a un co&#xFB;t. Votre soutien nous aide &#xE0; maintenir et am&#xE9;liorer nos services pour toute la communaut&#xE9;.</p>
+    </section>
 
+    <section class="donate-section">
+      <h2>Faire un don &#xE0; VentiStudio</h2>
+      <div class="donate-grid">
 
-        <section class="hero">
-            <h1>Soutenez VentiStudio</h1>
-            <div class="donation-info">
-                <p>VentiStudio est gratuit mais sa mise en ligne a un coÃ»t Ã©levÃ©. Votre soutien nous aide Ã  maintenir et amÃ©liorer nos services. Vous pouvez Ã©galement soutenir d'autres projets que nous recommandons.</p>
-            </div>
-        </section>
+        <div class="donate-card">
+          <div class="donate-card-header">
+            <img src="/favicon.avif" alt="VentiStudio" class="donate-card-logo">
+            <h3>Don unique</h3>
+          </div>
+          <p>Faites un don ponctuel du montant de votre choix pour soutenir VentiStudio.</p>
+          <div class="donate-amount">10&#x202F;&#x20AC;</div>
+          <a href="https://www.patreon.com/posts/don-unique-156681946" class="cta"><span>Faire un don</span></a>
+        </div>
 
-        <section class="donation-section">
-            <h2>Faire un don Ã  VentiStudio</h2>
-            <div class="donation-grid">
-                <div class="donation-card">
-                    <div class="donation-header">
-                        <img src="https://ventistudio.eu/favicon.avif" alt="VentiStudio" class="donation-logo">
-                        <h3>Don mensuel</h3>
-                    </div>
-                    <p>Soutenez le dÃ©veloppement continu de VentiStudio</p>
-                    <div class="donation-amount">5â‚¬ / mois</div>
-                    <button class="donation-button" onclick="window.location.href='https://ventistudio.eu/donate/monthly'">
-                        Devenir membre
-                    </button>
-                </div>
+        <div class="donate-card donate-card-highlight">
+          <span class="donate-badge">Populaire</span>
+          <div class="donate-card-header">
+            <img src="/favicon.avif" alt="VentiStudio" class="donate-card-logo">
+            <h3>Don mensuel</h3>
+          </div>
+          <p>Soutenez le d&#xE9;veloppement continu de VentiStudio chaque mois et acc&#xE9;dez aux avantages membres.</p>
+          <div class="donate-amount">5&#x202F;&#x20AC; / mois</div>
+          <a href="https://www.patreon.com/checkout/ventistudio?rid=28442740" class="cta"><span>Devenir membre</span></a>
+        </div>
 
-                <div class="donation-card">
-                    <div class="donation-header">
-                        <img src="https://ventistudio.eu/favicon.avif" alt="VentiStudio" class="donation-logo">
-                        <h3>Don unique</h3>
-                    </div>
-                    <p>Faites un don ponctuel pour soutenir VentiStudio</p>
-                    <div class="donation-amount">10â‚¬</div>
-                    <button class="donation-button" onclick="window.location.href='https://ventistudio.eu/donate/once'">
-                        Faire un don
-                    </button>
-                </div>
-            </div>
-        </section>
+      </div>
+    </section>
 
-        <section class="donation-section">
-            <h2>Projets recommandÃ©s</h2>
-            <div class="donation-grid">
-                <div class="donation-card">
-                    <div class="donation-header">
-                        <img src="https://assets.eff.org/logo.svg" alt="EFF" class="donation-logo">
-                        <h3>Electronic Frontier Foundation</h3>
-                    </div>
-                    <p>DÃ©fense des droits et libertÃ©s numÃ©riques</p>
-                    <button class="donation-button" onclick="window.location.href='https://supporters.eff.org/donate'">
-                        Soutenir EFF
-                    </button>
-                </div>
+    <section class="donate-section">
+      <h2>Projets que nous recommandons</h2>
+      <div class="donate-grid">
 
-                <div class="donation-card">
-                    <div class="donation-header">
-                        <img src="https://www.mozilla.org/media/img/favicon/apple-touch-icon.png" alt="Mozilla" class="donation-logo">
-                        <h3>Mozilla Foundation</h3>
-                    </div>
-                    <p>Pour un Internet ouvert et accessible</p>
-                    <button class="donation-button" onclick="window.location.href='https://donate.mozilla.org'">
-                        Soutenir Mozilla
-                    </button>
-                </div>
+        <div class="donate-card">
+          <div class="donate-card-header">
+            <img src="https://assets.eff.org/logo.svg" alt="EFF" class="donate-card-logo">
+            <h3>Electronic Frontier Foundation</h3>
+          </div>
+          <p>D&#xE9;fense des droits et libert&#xE9;s num&#xE9;riques &#xE0; travers le monde.</p>
+          <a href="https://supporters.eff.org/donate" class="cta cta-outline" target="_blank" rel="noopener noreferrer"><span>Soutenir EFF</span></a>
+        </div>
 
-                <div class="donation-card">
-                    <div class="donation-header">
-                        <img src="https://www.blender.org/wp-content/uploads/2020/07/blender_logo.png" alt="Blender" class="donation-logo">
-                        <h3>Blender Foundation</h3>
-                    </div>
-                    <p>DÃ©veloppement du logiciel 3D libre Blender</p>
-                    <button class="donation-button" onclick="window.location.href='https://fund.blender.org'">
-                        Soutenir Blender
-                    </button>
-                </div>
-            </div>
-        </section>
-    
-  
-  
+        <div class="donate-card">
+          <div class="donate-card-header">
+            <img src="https://www.mozilla.org/media/img/favicon/apple-touch-icon.png" alt="Mozilla" class="donate-card-logo">
+            <h3>Mozilla Foundation</h3>
+          </div>
+          <p>Pour un Internet ouvert, accessible et respectueux de la vie priv&#xE9;e.</p>
+          <a href="https://donate.mozilla.org" class="cta cta-outline" target="_blank" rel="noopener noreferrer"><span>Soutenir Mozilla</span></a>
+        </div>
+
+        <div class="donate-card">
+          <div class="donate-card-header">
+            <img src="https://www.blender.org/wp-content/uploads/2020/07/blender_logo.png" alt="Blender" class="donate-card-logo">
+            <h3>Blender Foundation</h3>
+          </div>
+          <p>D&#xE9;veloppement du logiciel de cr&#xE9;ation 3D libre et open-source Blender.</p>
+          <a href="https://fund.blender.org" class="cta cta-outline" target="_blank" rel="noopener noreferrer"><span>Soutenir Blender</span></a>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="donate-note">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="currentColor"/>
+      </svg>
+      <h2>Merci pour votre soutien</h2>
+      <p>Chaque contribution, quelle que soit sa taille, nous aide &#xE0; faire vivre VentiStudio et &#xE0; proposer des outils gratuits et de qualit&#xE9; pour tous.</p>
+    </div>
+
   </main>
 
   <footer>
-
     <div class="footer-content">
       <div class="footer-section">
         <h4>Outils</h4>
         <ul>
-          <li><a href="#">Encrypt</a></li>
+          <li><a href="/pip">PIP</a></li>
           <li><a href="/sitemap">Plan du site</a></li>
-          <li><a href="/stats">Statut</a></li>
+          <li><a href="https://status.ventistudio.eu/">Statut</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Entreprise</h4>
         <ul>
-          <li><a href="/about">À propos</a></li>
+          <li><a href="/about">&#xC0; propos</a></li>
           <li><a href="/jobs">Emplois</a></li>
           <li><a href="/logo">Marque</a></li>
         </ul>
@@ -143,29 +406,98 @@
       <div class="footer-section">
         <h4>Ressources</h4>
         <ul>
-          <li><a href="/university">Université</a></li>
+          <li><a href="/university">Universit&#xE9;</a></li>
           <li><a href="/lawful/support">Assistance</a></li>
-          <li><a href="/lawful/security">Sécurité</a></li>
+          <li><a href="/lawful/security">S&#xE9;curit&#xE9;</a></li>
         </ul>
       </div>
       <div class="footer-section">
         <h4>Chartes</h4>
         <ul>
-          <li><a href="/lawful/tos">Conditions</a></li>
-          <li><a href="/lawful/cookies">Confidentialité</a></li>
+          <li><a href="/lawful/tos">Conditions d'utilisation</a></li>
+          <li><a href="/lawful/cookies">Confidentialit&#xE9;</a></li>
           <li><a href="/lawful/dmcainfo">Information DMCA</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
-      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
+      <iframe src="https://status.ventistudio.eu/badge?theme=dark" width="500" height="30" frameborder="0" scrolling="no" style="color-scheme: normal"></iframe>
+      <p class="copyright">Copyright &#xA9; 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits r&#xE9;serv&#xE9;s.</p>
     </div>
-  
   </footer>
 
-  <script src="/script.js" defer></script>
+  <script src="/main.js" defer></script>
+  <script>
+    (function () {
+      var nav = document.getElementById('main-nav');
+      var burger = document.getElementById('nav-burger');
+      if (!nav || !burger) return;
+
+      // Marque le lien actif d'apres l'URL courante
+      try {
+        var path = window.location.pathname.replace(/\/index\.html?$/, '/').replace(/\/$/, '') || '/';
+        var best = null, bestLen = -1;
+        nav.querySelectorAll('a[href]').forEach(function (a) {
+          var href = a.getAttribute('href').replace(/\/$/, '') || '/';
+          if (href === path || (href !== '/' && path.indexOf(href + '/') === 0) || (href !== '/' && path === href)) {
+            if (href.length > bestLen) { best = a; bestLen = href.length; }
+          }
+        });
+        if (path === '/' || path === '') {
+          best = nav.querySelector('a[href="/"]');
+        }
+        if (best) {
+          best.classList.add('active');
+          var grp = best.closest('details.nav-group');
+          if (grp) {
+            var s = grp.querySelector('summary.nav-link');
+            if (s) s.classList.add('active');
+          }
+        }
+      } catch (e) {}
+
+      function closeAllGroups(except) {
+        nav.querySelectorAll('details.nav-group[open]').forEach(function (d) {
+          if (d !== except) d.removeAttribute('open');
+        });
+      }
+
+      burger.addEventListener('click', function () {
+        var open = nav.classList.toggle('is-open');
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        burger.classList.toggle('is-active', open);
+        if (!open) closeAllGroups();
+      });
+
+      nav.querySelectorAll('details.nav-group').forEach(function (d) {
+        d.addEventListener('toggle', function () {
+          if (d.open) closeAllGroups(d);
+        });
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!nav.contains(e.target) && !burger.contains(e.target)) {
+          closeAllGroups();
+          if (nav.classList.contains('is-open')) {
+            nav.classList.remove('is-open');
+            burger.classList.remove('is-active');
+            burger.setAttribute('aria-expanded', 'false');
+          }
+        }
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          closeAllGroups();
+          if (nav.classList.contains('is-open')) {
+            nav.classList.remove('is-open');
+            burger.classList.remove('is-active');
+            burger.setAttribute('aria-expanded', 'false');
+            burger.focus();
+          }
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
-
-

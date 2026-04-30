@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="Chronomètre & Minuteur — Chrono précis et compte à rebours avec tours. 100% client-side.">
+  <meta name="theme-color" content="#0ea5e9">
+  <title>Chronomètre &amp; Minuteur | VentiStudio Pro</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/domain/pro/pro.css">
+  <style>
+    .panel {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      box-shadow: var(--glass-shadow);
+      margin-bottom: 1.5rem;
+    }
+    .panel h3 {
+      margin: 0 0 1rem; font-size: 1rem; color: var(--accent);
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+
+    .mode-tabs {
+      display: flex; gap: 0.5rem; margin-bottom: 1.5rem; justify-content: center;
+    }
+    .mode-tab {
+      padding: 0.6rem 1.5rem; border-radius: 0.75rem;
+      border: 1px solid var(--glass-border); background: var(--glass-bg);
+      color: var(--text-secondary); cursor: pointer; font-size: 0.9rem;
+      font-weight: 600; transition: all 0.25s;
+    }
+    .mode-tab:hover { border-color: var(--accent); color: var(--text-primary); }
+    .mode-tab.active {
+      background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+      color: #fff; border-color: transparent;
+    }
+
+    /* Main display */
+    .time-display {
+      text-align: center; padding: 2rem 0;
+    }
+    .time-digits {
+      font-family: 'Fira Code','Cascadia Code','Consolas',monospace;
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: 0.05em;
+      line-height: 1.2;
+    }
+    .time-ms {
+      font-size: 0.5em;
+      color: var(--accent);
+      opacity: 0.8;
+    }
+
+    /* Buttons */
+    .btn-row {
+      display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+    .ctrl-btn {
+      padding: 0.75rem 2rem; border: none; border-radius: 0.85rem;
+      font-weight: 600; font-size: 1rem; cursor: pointer;
+      transition: all 0.25s; min-width: 130px;
+    }
+    .ctrl-btn.start {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #fff; box-shadow: 0 4px 20px rgba(16,185,129,0.3);
+    }
+    .ctrl-btn.start:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(16,185,129,0.4); }
+    .ctrl-btn.stop {
+      background: linear-gradient(135deg, #ef4444, #dc2626);
+      color: #fff; box-shadow: 0 4px 20px rgba(239,68,68,0.3);
+    }
+    .ctrl-btn.stop:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(239,68,68,0.4); }
+    .ctrl-btn.secondary {
+      background: var(--glass-bg); color: var(--text-primary);
+      border: 1px solid var(--glass-border);
+    }
+    .ctrl-btn.secondary:hover { border-color: var(--accent); }
+    .ctrl-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none !important; }
+
+    /* Timer inputs */
+    .timer-inputs {
+      display: flex; justify-content: center; gap: 0.5rem; align-items: center;
+      margin-bottom: 1.5rem;
+    }
+    .timer-inputs input {
+      width: 70px; padding: 0.6rem; text-align: center;
+      border: 1px solid var(--glass-border); border-radius: 0.75rem;
+      background: var(--glass-bg); color: var(--text-primary);
+      font-family: 'Fira Code', monospace; font-size: 1.1rem;
+      transition: border-color 0.25s;
+    }
+    .timer-inputs input:focus {
+      outline: none; border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(14, 165, 233,0.15);
+    }
+    .timer-inputs span {
+      font-size: 0.85rem; color: var(--text-secondary);
+    }
+
+    /* Timer presets */
+    .timer-presets {
+      display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+    .timer-preset {
+      padding: 0.4rem 0.85rem; border: 1px solid var(--glass-border);
+      border-radius: 0.55rem; background: var(--glass-bg);
+      color: var(--text-secondary); font-size: 0.8rem; cursor: pointer;
+      transition: all 0.2s;
+    }
+    .timer-preset:hover { border-color: var(--accent); color: var(--text-primary); }
+
+    /* Laps */
+    .laps-list {
+      max-height: 350px; overflow-y: auto;
+    }
+    .lap-item {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.55rem 0.85rem; border-bottom: 1px solid rgba(255,255,255,0.04);
+      font-family: 'Fira Code', monospace; font-size: 0.85rem;
+    }
+    .lap-item:last-child { border-bottom: none; }
+    .lap-num { color: var(--text-secondary); min-width: 4em; }
+    .lap-time { color: var(--text-primary); font-weight: 600; }
+    .lap-diff { color: var(--accent); font-size: 0.8rem; }
+    .lap-item.best .lap-time { color: #10b981; }
+    .lap-item.worst .lap-time { color: #ef4444; }
+
+    /* Progress ring (timer) */
+    .progress-container {
+      display: flex; justify-content: center; margin-bottom: 1rem;
+    }
+    .progress-ring { transform: rotate(-90deg); }
+    .progress-ring-bg { fill: none; stroke: var(--glass-border); stroke-width: 6; }
+    .progress-ring-fg {
+      fill: none; stroke: url(#ringGrad); stroke-width: 6;
+      stroke-linecap: round; transition: stroke-dashoffset 0.3s;
+    }
+
+    .hidden { display: none; }
+
+    @media (max-width: 480px) {
+      .ctrl-btn { min-width: 100px; padding: 0.65rem 1.2rem; font-size: 0.9rem; }
+    }
+  </style>
+
+  <script async crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
+  <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
+
+  <meta property="og:title" content="Chronomètre &amp; Minuteur | VentiStudio Pro">
+  <meta property="og:description" content="Chronomètre & Minuteur — Chrono précis et compte à rebours avec tours. 100% client-side.">
+  <meta property="og:url" content="https://ventistudio.eu/domain/pro/timer/">
+  <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://ventistudio.eu/domain/pro/timer/">
+
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="/favicon.avif" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
+      <span>VentiStudio</span>
+    </div>
+    <button class="nav-burger" id="nav-burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="main-nav" class="main-nav" aria-label="Navigation principale">
+      <a href="/" class="nav-link">Accueil</a>
+
+      <details class="nav-group">
+        <summary class="nav-link">Découvrir
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel" role="menu">
+          <a href="/evaluation">Évaluation</a>
+          <a href="/wiki">Wiki</a>
+          <a href="/glossary">Glossaire</a>
+          <a href="/news">News</a>
+          <a href="/blog">Blog</a>
+          <a href="/calendar">Calendrier</a>
+          <a href="/cookbook">Cookbook</a>
+          <a href="/gallery">Galerie</a>
+          <a href="/atlas">Atlas</a>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Univers
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel" role="menu">
+          <a href="/aokiunivers">AOKI Universe</a>
+          <a href="/allofaokiunivers">All AOKI</a>
+          <a href="/university">Université</a>
+          <a href="/history">Histoire</a>
+          <a href="/memorial">Mémorial</a>
+          <a href="/ester-eggs">Easter eggs</a>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Outils
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Applications</h4>
+            <a href="/player">Lecteur</a>
+            <a href="/music">Musique</a>
+            <a href="/pip">PIP</a>
+            <a href="/whiteboard">Whiteboard</a>
+            <a href="/portfolio">Portfolio</a>
+            <a href="/gmod">GMod</a>
+          </div>
+          <div class="nav-col">
+            <h4>Domaines</h4>
+            <a href="/domain/aina">AINA</a>
+            <a href="/domain/archive">Archive</a>
+            <a href="/domain/maps">Maps</a>
+            <a href="/domain/movie">Movie</a>
+            <a href="/domain/peer">Peer</a>
+            <a href="/domain/pro">Pro</a>
+            <a href="/domain/search">Search</a>
+            <a href="/domain/suite">Suite</a>
+          </div>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Communauté
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Équipe</h4>
+            <a href="/personnel/">Équipe</a>
+            <a href="/hierarchie-staff">Hiérarchie</a>
+            <a href="/hypesquad">Hypesquad</a>
+            <a href="/jobs">Emplois</a>
+            <a href="/birthday">Anniversaires</a>
+          </div>
+          <div class="nav-col">
+            <h4>Réseaux</h4>
+            <a href="/discord">Discord</a>
+            <a href="/teamspeak">TeamSpeak</a>
+            <a href="/steam">Steam</a>
+            <a href="/social">Réseaux sociaux</a>
+          </div>
+          <div class="nav-col">
+            <h4>Activités</h4>
+            <a href="/artist">Artistes</a>
+            <a href="/quests">Quêtes</a>
+            <a href="/suboawards">Suboawards</a>
+            <a href="/eConcert">eConcert</a>
+          </div>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Plus
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Aide</h4>
+            <a href="/contact">Contact</a>
+            <a href="/faq">FAQ</a>
+            <a href="/status">Statut</a>
+            <a href="/sitemap">Plan du site</a>
+          </div>
+          <div class="nav-col">
+            <h4>Soutien</h4>
+            <a href="/donate">Faire un don</a>
+            <a href="/gold">Gold</a>
+            <a href="/customization">Personnalisation</a>
+            <a href="/mes-donnees">Mes Données</a>
+            <a href="/newsletter">Newsletter</a>
+          </div>
+          <div class="nav-col">
+            <h4>À propos</h4>
+            <a href="/company">Entreprise</a>
+            <a href="/acknowledgements">Remerciements</a>
+            <a href="/logo">Logo</a>
+            <a href="/tags">Tags</a>
+            <a href="/memory">Mémoire</a>
+            <a href="/why-not-use-roblox">Pourquoi pas Roblox</a>
+            <a href="/lawful">Mentions légales</a>
+          </div>
+        </div>
+      </details>
+    </nav>
+    <div class="controls" role="toolbar" aria-label="Contrôles">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
+          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
+          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
+        </svg>
+      </button>
+      <div id="user-button" role="region" aria-label="Authentification"><button class="cta" id="auth-fallback-btn" onclick="window.location.href='https://accounts.ventistudio.eu/sign-in?redirect_url='+encodeURIComponent(window.location.href)" style="padding:0.5rem 1.25rem;font-size:0.9rem;margin:0"><span>Se connecter</span></button></div>
+    </div>
+  </header>
+
+  <main>
+    <h1 style="margin-bottom:0.25rem">⏱️ Chronomètre & Minuteur</h1>
+    <p style="color:var(--text-secondary);margin-bottom:1.5rem">Chrono haute précision et compte à rebours — 100 % client-side</p>
+
+    <div class="mode-tabs" id="modeTabs">
+      <button class="mode-tab active" data-mode="stopwatch">⏱ Chronomètre</button>
+      <button class="mode-tab" data-mode="timer">⏳ Minuteur</button>
+    </div>
+
+    <!-- Stopwatch -->
+    <div id="stopwatchView">
+      <div class="panel">
+        <div class="time-display">
+          <div class="time-digits" id="swDisplay">00:00:00<span class="time-ms">.000</span></div>
+        </div>
+        <div class="btn-row">
+          <button class="ctrl-btn start" id="swStart">▶ Démarrer</button>
+          <button class="ctrl-btn secondary" id="swLap" disabled>🏁 Tour</button>
+          <button class="ctrl-btn secondary" id="swReset" disabled>↺ Réinitialiser</button>
+        </div>
+      </div>
+      <div class="panel" id="swLapsPanel" style="display:none">
+        <h3>🏁 Tours</h3>
+        <div class="laps-list" id="swLapsList"></div>
+      </div>
+    </div>
+
+    <!-- Timer -->
+    <div id="timerView" class="hidden">
+      <div class="panel">
+        <div class="timer-presets">
+          <button class="timer-preset" data-s="60">1 min</button>
+          <button class="timer-preset" data-s="180">3 min</button>
+          <button class="timer-preset" data-s="300">5 min</button>
+          <button class="timer-preset" data-s="600">10 min</button>
+          <button class="timer-preset" data-s="900">15 min</button>
+          <button class="timer-preset" data-s="1800">30 min</button>
+          <button class="timer-preset" data-s="3600">1 h</button>
+        </div>
+        <div class="timer-inputs" id="timerInputs">
+          <input type="number" id="tiH" min="0" max="99" value="0" placeholder="h">
+          <span>h</span>
+          <input type="number" id="tiM" min="0" max="59" value="5" placeholder="m">
+          <span>m</span>
+          <input type="number" id="tiS" min="0" max="59" value="0" placeholder="s">
+          <span>s</span>
+        </div>
+        <div class="progress-container">
+          <svg class="progress-ring" width="180" height="180" viewBox="0 0 180 180">
+            <defs>
+              <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#6366f1"/>
+                <stop offset="100%" stop-color="#8b5cf6"/>
+              </linearGradient>
+            </defs>
+            <circle class="progress-ring-bg" cx="90" cy="90" r="82"/>
+            <circle class="progress-ring-fg" id="ringFg" cx="90" cy="90" r="82"/>
+          </svg>
+        </div>
+        <div class="time-display">
+          <div class="time-digits" id="tiDisplay">00:05:00</div>
+        </div>
+        <div class="btn-row">
+          <button class="ctrl-btn start" id="tiStart">▶ Démarrer</button>
+          <button class="ctrl-btn secondary" id="tiReset">↺ Réinitialiser</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="/main.js"></script>
+  <script>
+  (() => {
+    /* === Mode switch === */
+    const $tabs = document.getElementById('modeTabs');
+    const $swView = document.getElementById('stopwatchView');
+    const $tiView = document.getElementById('timerView');
+
+    $tabs.addEventListener('click', e => {
+      const btn = e.target.closest('.mode-tab');
+      if (!btn) return;
+      $tabs.querySelectorAll('.mode-tab').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const m = btn.dataset.mode;
+      $swView.classList.toggle('hidden', m !== 'stopwatch');
+      $tiView.classList.toggle('hidden', m !== 'timer');
+    });
+
+    /* === Stopwatch === */
+    const $swDisp  = document.getElementById('swDisplay');
+    const $swStart = document.getElementById('swStart');
+    const $swLap   = document.getElementById('swLap');
+    const $swReset = document.getElementById('swReset');
+    const $swLapsP = document.getElementById('swLapsPanel');
+    const $swLapsL = document.getElementById('swLapsList');
+
+    let swRunning = false, swStart = 0, swElapsed = 0, swRaf = 0;
+    let swLaps = [];
+
+    function fmtMs(ms) {
+      const h = Math.floor(ms / 3600000);
+      const m = Math.floor((ms % 3600000) / 60000);
+      const s = Math.floor((ms % 60000) / 1000);
+      const ml = ms % 1000;
+      return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}<span class="time-ms">.${String(ml).padStart(3,'0')}</span>`;
+    }
+
+    function fmtMsPlain(ms) {
+      const h = Math.floor(ms / 3600000);
+      const m = Math.floor((ms % 3600000) / 60000);
+      const s = Math.floor((ms % 60000) / 1000);
+      const ml = ms % 1000;
+      return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}.${String(ml).padStart(3,'0')}`;
+    }
+
+    function swTick() {
+      if (!swRunning) return;
+      const now = performance.now();
+      const total = swElapsed + (now - swStart);
+      $swDisp.innerHTML = fmtMs(Math.floor(total));
+      swRaf = requestAnimationFrame(swTick);
+    }
+
+    $swStart.addEventListener('click', () => {
+      if (!swRunning) {
+        swRunning = true;
+        swStart = performance.now();
+        $swStart.textContent = '⏸ Pause';
+        $swStart.className = 'ctrl-btn stop';
+        $swLap.disabled = false;
+        $swReset.disabled = false;
+        swTick();
+      } else {
+        swRunning = false;
+        swElapsed += performance.now() - swStart;
+        cancelAnimationFrame(swRaf);
+        $swStart.textContent = '▶ Reprendre';
+        $swStart.className = 'ctrl-btn start';
+      }
+    });
+
+    $swLap.addEventListener('click', () => {
+      if (!swRunning) return;
+      const total = swElapsed + (performance.now() - swStart);
+      const prev = swLaps.length > 0 ? swLaps[swLaps.length - 1].total : 0;
+      swLaps.push({ total: Math.floor(total), diff: Math.floor(total - prev) });
+      renderLaps();
+    });
+
+    $swReset.addEventListener('click', () => {
+      swRunning = false;
+      cancelAnimationFrame(swRaf);
+      swElapsed = 0;
+      swLaps = [];
+      $swDisp.innerHTML = fmtMs(0);
+      $swStart.textContent = '▶ Démarrer';
+      $swStart.className = 'ctrl-btn start';
+      $swLap.disabled = true;
+      $swReset.disabled = true;
+      $swLapsP.style.display = 'none';
+    });
+
+    function renderLaps() {
+      if (swLaps.length === 0) { $swLapsP.style.display = 'none'; return; }
+      $swLapsP.style.display = '';
+      const diffs = swLaps.map(l => l.diff);
+      const best = Math.min(...diffs);
+      const worst = Math.max(...diffs);
+      $swLapsL.innerHTML = swLaps.map((l, i) => {
+        let cls = '';
+        if (swLaps.length > 2) {
+          if (l.diff === best) cls = ' best';
+          else if (l.diff === worst) cls = ' worst';
+        }
+        return `<div class="lap-item${cls}">
+          <span class="lap-num">#${i + 1}</span>
+          <span class="lap-diff">+${fmtMsPlain(l.diff)}</span>
+          <span class="lap-time">${fmtMsPlain(l.total)}</span>
+        </div>`;
+      }).reverse().join('');
+    }
+
+    /* === Timer === */
+    const $tiDisp  = document.getElementById('tiDisplay');
+    const $tiStart = document.getElementById('tiStart');
+    const $tiReset = document.getElementById('tiReset');
+    const $tiH     = document.getElementById('tiH');
+    const $tiM     = document.getElementById('tiM');
+    const $tiS     = document.getElementById('tiS');
+    const $ring    = document.getElementById('ringFg');
+    const $tiIn    = document.getElementById('timerInputs');
+    const CIRCUM   = 2 * Math.PI * 82;
+
+    $ring.style.strokeDasharray = CIRCUM;
+    $ring.style.strokeDashoffset = 0;
+
+    let tiRunning = false, tiTotalMs = 0, tiRemaining = 0, tiStartT = 0, tiRaf = 0;
+
+    function fmtTimer(ms) {
+      if (ms < 0) ms = 0;
+      const h = Math.floor(ms / 3600000);
+      const m = Math.floor((ms % 3600000) / 60000);
+      const s = Math.floor((ms % 60000) / 1000);
+      if (h > 0) return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+      return `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+    }
+
+    function getTotalMs() {
+      return ((parseInt($tiH.value) || 0) * 3600 + (parseInt($tiM.value) || 0) * 60 + (parseInt($tiS.value) || 0)) * 1000;
+    }
+
+    function updateTimerDisplay() {
+      $tiDisp.textContent = fmtTimer(getTotalMs());
+    }
+
+    [$tiH, $tiM, $tiS].forEach(el => el.addEventListener('input', updateTimerDisplay));
+
+    document.querySelectorAll('.timer-preset').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const sec = parseInt(btn.dataset.s);
+        $tiH.value = Math.floor(sec / 3600);
+        $tiM.value = Math.floor((sec % 3600) / 60);
+        $tiS.value = sec % 60;
+        updateTimerDisplay();
+      });
+    });
+
+    function tiTick() {
+      if (!tiRunning) return;
+      const elapsed = performance.now() - tiStartT;
+      const rem = tiRemaining - elapsed;
+      if (rem <= 0) {
+        tiRunning = false;
+        $tiDisp.textContent = '00:00';
+        $ring.style.strokeDashoffset = CIRCUM;
+        $tiStart.textContent = '▶ Démarrer';
+        $tiStart.className = 'ctrl-btn start';
+        $tiIn.querySelectorAll('input').forEach(el => el.disabled = false);
+        tiAlert();
+        return;
+      }
+      $tiDisp.textContent = fmtTimer(Math.ceil(rem));
+      const pct = 1 - (rem / tiTotalMs);
+      $ring.style.strokeDashoffset = CIRCUM * pct;
+      tiRaf = requestAnimationFrame(tiTick);
+    }
+
+    function tiAlert() {
+      $tiDisp.style.color = '#ef4444';
+      let blinks = 0;
+      const iv = setInterval(() => {
+        $tiDisp.style.opacity = $tiDisp.style.opacity === '0.3' ? '1' : '0.3';
+        blinks++;
+        if (blinks >= 10) { clearInterval(iv); $tiDisp.style.opacity = '1'; $tiDisp.style.color = ''; }
+      }, 300);
+    }
+
+    $tiStart.addEventListener('click', () => {
+      if (!tiRunning) {
+        const total = tiRemaining > 0 ? tiRemaining : getTotalMs();
+        if (total <= 0) return;
+        tiTotalMs = tiRemaining > 0 ? tiTotalMs : total;
+        tiRemaining = total;
+        tiStartT = performance.now();
+        tiRunning = true;
+        $tiStart.textContent = '⏸ Pause';
+        $tiStart.className = 'ctrl-btn stop';
+        $tiIn.querySelectorAll('input').forEach(el => el.disabled = true);
+        tiTick();
+      } else {
+        tiRunning = false;
+        tiRemaining = tiRemaining - (performance.now() - tiStartT);
+        cancelAnimationFrame(tiRaf);
+        $tiStart.textContent = '▶ Reprendre';
+        $tiStart.className = 'ctrl-btn start';
+      }
+    });
+
+    $tiReset.addEventListener('click', () => {
+      tiRunning = false;
+      cancelAnimationFrame(tiRaf);
+      tiRemaining = 0;
+      $ring.style.strokeDashoffset = 0;
+      $tiStart.textContent = '▶ Démarrer';
+      $tiStart.className = 'ctrl-btn start';
+      $tiIn.querySelectorAll('input').forEach(el => el.disabled = false);
+      $tiDisp.style.color = '';
+      $tiDisp.style.opacity = '1';
+      updateTimerDisplay();
+    });
+
+    updateTimerDisplay();
+  })();
+  </script>
+  <script>
+    (function () {
+      var nav = document.getElementById('main-nav');
+      var burger = document.getElementById('nav-burger');
+      if (!nav || !burger) return;
+
+      // Marque le lien actif d'apres l'URL courante
+      try {
+        var path = window.location.pathname.replace(/\/index\.html?$/, '/').replace(/\/$/, '') || '/';
+        var best = null, bestLen = -1;
+        nav.querySelectorAll('a[href]').forEach(function (a) {
+          var href = a.getAttribute('href').replace(/\/$/, '') || '/';
+          if (href === path || (href !== '/' && path.indexOf(href + '/') === 0) || (href !== '/' && path === href)) {
+            if (href.length > bestLen) { best = a; bestLen = href.length; }
+          }
+        });
+        if (path === '/' || path === '') {
+          best = nav.querySelector('a[href="/"]');
+        }
+        if (best) {
+          best.classList.add('active');
+          var grp = best.closest('details.nav-group');
+          if (grp) {
+            var s = grp.querySelector('summary.nav-link');
+            if (s) s.classList.add('active');
+          }
+        }
+      } catch (e) {}
+
+      function closeAllGroups(except) {
+        nav.querySelectorAll('details.nav-group[open]').forEach(function (d) {
+          if (d !== except) d.removeAttribute('open');
+        });
+      }
+
+      burger.addEventListener('click', function () {
+        var open = nav.classList.toggle('is-open');
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        burger.classList.toggle('is-active', open);
+        if (!open) closeAllGroups();
+      });
+
+      nav.querySelectorAll('details.nav-group').forEach(function (d) {
+        d.addEventListener('toggle', function () {
+          if (d.open) closeAllGroups(d);
+        });
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!nav.contains(e.target) && !burger.contains(e.target)) {
+          closeAllGroups();
+          if (nav.classList.contains('is-open')) {
+            nav.classList.remove('is-open');
+            burger.classList.remove('is-active');
+            burger.setAttribute('aria-expanded', 'false');
+          }
+        }
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          closeAllGroups();
+          if (nav.classList.contains('is-open')) {
+            nav.classList.remove('is-open');
+            burger.classList.remove('is-active');
+            burger.setAttribute('aria-expanded', 'false');
+            burger.focus();
+          }
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

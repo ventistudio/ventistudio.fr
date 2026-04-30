@@ -1,9 +1,11 @@
-<!DOCTYPE html>
-<html lang="fr">
+﻿<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VentiStudio - Dark Zone</title>
+  <meta name="description" content="Dark Zone - Espace social VentiStudio.">
+  <meta name="theme-color" content="#6366f1">
+  <title>Dark Zone | VentiStudio</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap');
 
@@ -390,6 +392,16 @@
       .dz-footer { flex-direction: column; gap: 0.3rem; text-align: center; }
     }
   </style>
+
+  <script async crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
+  <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
+
+  <meta property="og:title" content="Dark Zone | VentiStudio">
+  <meta property="og:description" content="Dark Zone - Espace social VentiStudio.">
+  <meta property="og:url" content="https://ventistudio.eu/social/darkzone/">
+  <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://ventistudio.eu/social/darkzone/">
 </head>
 <body>
   <div class="vignette"></div>
@@ -438,7 +450,7 @@
         <!-- ISAC Message -->
         <div class="isac-msg">
           <span class="isac-label">ISAC //</span>
-          <p id="isac-text">Avertissement — Vous entrez en Dark Zone. Les protocoles de communication sont limités. Les règles d'engagement habituelles ne s'appliquent plus.</p>
+          <p id="isac-text">Avertissement Vous entrez en Dark Zone. Les protocoles de communication sont limités. Les règles d'engagement habituelles ne s'appliquent plus.</p>
         </div>
 
         <!-- Status Grid -->
@@ -505,7 +517,7 @@
         { text: 'Connexion au réseau SHD...', type: 'warn' },
         { text: 'Canal chiffré établi', type: 'ok' },
         { text: 'Vérification empreinte biométrique...', type: 'warn' },
-        { text: 'Identité confirmée — Agent autorisé', type: 'ok' },
+        { text: 'Identité confirmée Agent autorisé', type: 'ok' },
         { text: 'Chargement données Dark Zone...', type: 'warn' },
         { text: 'ALERTE: Niveau de contamination élevé', type: 'crit' },
         { text: 'Désactivation protocoles de sécurité...', type: 'crit' },

@@ -1,5 +1,5 @@
 // ============================================================
-// VentiStudio Music — Complete Spotify-like App
+// VentiStudio Music Complete Spotify-like App
 // ============================================================
 
 // ---- Global State ----

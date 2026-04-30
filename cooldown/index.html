@@ -1,275 +1,29 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
   <meta name="description" content="VentiStudio Cooldown - Compte à rebours vers les prochains événements VentiStudio.">
   <meta name="theme-color" content="#6366f1">
-  <title>Cooldown - VentiStudio</title>
+  <title>Cooldown | VentiStudio</title>
   <link rel="stylesheet" href="/style.css">
-  <style>
-    /* ── Cooldown hero ── */
-    .cooldown-hero {
-      text-align: center;
-      padding: 4rem 0 2rem;
-    }
 
-    .cooldown-hero h1 {
-      font-size: 2.8rem;
-    }
+  <script async crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
+  <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
 
-    .cooldown-hero p {
-      color: var(--text-secondary);
-      font-size: 1.1rem;
-      max-width: 550px;
-      margin: 0 auto;
-    }
+  <meta property="og:title" content="Cooldown | VentiStudio">
+  <meta property="og:description" content="VentiStudio Cooldown - Compte à rebours vers les prochains événements VentiStudio.">
+  <meta property="og:url" content="https://ventistudio.eu/cooldown/">
+  <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://ventistudio.eu/cooldown/">
 
-    /* ── Main countdown ── */
-    .countdown-main {
-      background: var(--glass-bg);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid var(--glass-border);
-      border-radius: 2rem;
-      padding: 3rem 2rem;
-      text-align: center;
-      margin: 2rem 0 3rem;
-      box-shadow: var(--glass-shadow);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .countdown-main::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(99,102,241,0.1) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .countdown-event-name {
-      font-size: 1.1rem;
-      color: var(--accent);
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-      letter-spacing: 0.03em;
-    }
-
-    .countdown-event-icon {
-      font-size: 2.5rem;
-      margin-bottom: 0.75rem;
-      display: block;
-    }
-
-    .countdown-timer {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      margin: 1.5rem 0;
-      flex-wrap: wrap;
-    }
-
-    .timer-unit {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-width: 90px;
-    }
-
-    .timer-value {
-      font-size: 3.5rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      line-height: 1.1;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .timer-label {
-      font-size: 0.8rem;
-      color: var(--text-secondary);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-weight: 600;
-      margin-top: 0.25rem;
-    }
-
-    .timer-separator {
-      font-size: 2.5rem;
-      color: var(--accent);
-      font-weight: 300;
-      align-self: flex-start;
-      margin-top: 0.3rem;
-      opacity: 0.5;
-    }
-
-    .countdown-date {
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      margin-top: 0.5rem;
-    }
-
-    /* ── Event list ── */
-    .events-section {
-      padding: 2rem 0 3rem;
-    }
-
-    .events-section h2 {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-
-    .event-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .event-card {
-      background: var(--glass-bg);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid var(--glass-border);
-      border-radius: 1.25rem;
-      padding: 1.25rem 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 1.25rem;
-      transition: all 0.3s ease;
-      box-shadow: var(--glass-shadow);
-    }
-
-    .event-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-3px);
-    }
-
-    .event-card.is-next {
-      border-color: var(--accent);
-      box-shadow: 0 0 25px rgba(99,102,241,0.15);
-    }
-
-    .event-card.is-past {
-      opacity: 0.5;
-    }
-
-    .event-icon {
-      font-size: 1.8rem;
-      min-width: 48px;
-      height: 48px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, rgba(99,102,241,0.1), rgba(139,92,246,0.1));
-      border-radius: 1rem;
-    }
-
-    .event-info {
-      flex: 1;
-    }
-
-    .event-name {
-      color: var(--text-primary);
-      font-weight: 600;
-      font-size: 1.05rem;
-    }
-
-    .event-date-text {
-      color: var(--text-secondary);
-      font-size: 0.85rem;
-      margin-top: 0.15rem;
-    }
-
-    .event-countdown-small {
-      text-align: right;
-      min-width: 100px;
-    }
-
-    .event-days-left {
-      color: var(--accent);
-      font-weight: 700;
-      font-size: 1.1rem;
-    }
-
-    .event-status {
-      font-size: 0.8rem;
-      color: var(--text-secondary);
-    }
-
-    .event-badge {
-      display: inline-block;
-      background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
-      color: #fff;
-      font-size: 0.7rem;
-      font-weight: 600;
-      padding: 0.2rem 0.6rem;
-      border-radius: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-
-    /* ── Responsive ── */
-    @media (max-width: 768px) {
-      .cooldown-hero h1 {
-        font-size: 2rem;
-      }
-
-      .timer-value {
-        font-size: 2.5rem;
-      }
-
-      .timer-unit {
-        min-width: 70px;
-      }
-
-      .countdown-timer {
-        gap: 1rem;
-      }
-
-      .timer-separator {
-        font-size: 2rem;
-      }
-
-      .event-countdown-small {
-        min-width: auto;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .timer-separator {
-        display: none;
-      }
-
-      .countdown-timer {
-        gap: 0.75rem;
-      }
-
-      .timer-unit {
-        min-width: 60px;
-      }
-
-      .timer-value {
-        font-size: 2rem;
-      }
-
-      .event-card {
-        flex-wrap: wrap;
-      }
-
-      .event-countdown-small {
-        width: 100%;
-        text-align: left;
-        margin-top: 0.5rem;
-      }
-    }
-  </style>
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
 </head>
 <body>
   <header>
@@ -277,15 +31,133 @@
       <img src="/favicon.avif" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
       <span>VentiStudio</span>
     </div>
-    <nav aria-label="Navigation principale">
-      <a href="/">Accueil</a>
-      <a href="/evaluation">Contenu Approuvé</a>
-      <a href="/player">Lecteur</a>
-      <a href="/wiki">Wiki</a>
-      <a href="/staff">Équipe</a>
-      <a href="/news">News</a>
-      <a href="/pip">PIP</a>
-      <a href="/sitemap">Plan du site</a>
+    <button class="nav-burger" id="nav-burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="main-nav" class="main-nav" aria-label="Navigation principale">
+      <a href="/" class="nav-link">Accueil</a>
+
+      <details class="nav-group">
+        <summary class="nav-link">Découvrir
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel" role="menu">
+          <a href="/evaluation">Évaluation</a>
+          <a href="/wiki">Wiki</a>
+          <a href="/glossary">Glossaire</a>
+          <a href="/news">News</a>
+          <a href="/blog">Blog</a>
+          <a href="/calendar">Calendrier</a>
+          <a href="/cookbook">Cookbook</a>
+          <a href="/gallery">Galerie</a>
+          <a href="/atlas">Atlas</a>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Univers
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel" role="menu">
+          <a href="/aokiunivers">AOKI Universe</a>
+          <a href="/allofaokiunivers">All AOKI</a>
+          <a href="/university">Université</a>
+          <a href="/history">Histoire</a>
+          <a href="/memorial">Mémorial</a>
+          <a href="/ester-eggs">Easter eggs</a>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Outils
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Applications</h4>
+            <a href="/player">Lecteur</a>
+            <a href="/music">Musique</a>
+            <a href="/pip">PIP</a>
+            <a href="/whiteboard">Whiteboard</a>
+            <a href="/portfolio">Portfolio</a>
+            <a href="/gmod">GMod</a>
+          </div>
+          <div class="nav-col">
+            <h4>Domaines</h4>
+            <a href="/domain/aina">AINA</a>
+            <a href="/domain/archive">Archive</a>
+            <a href="/domain/maps">Maps</a>
+            <a href="/domain/movie">Movie</a>
+            <a href="/domain/peer">Peer</a>
+            <a href="/domain/pro">Pro</a>
+            <a href="/domain/search">Search</a>
+            <a href="/domain/suite">Suite</a>
+          </div>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Communauté
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Équipe</h4>
+            <a href="/personnel/">Équipe</a>
+            <a href="/hierarchie-staff">Hiérarchie</a>
+            <a href="/hypesquad">Hypesquad</a>
+            <a href="/jobs">Emplois</a>
+            <a href="/birthday">Anniversaires</a>
+          </div>
+          <div class="nav-col">
+            <h4>Réseaux</h4>
+            <a href="/discord">Discord</a>
+            <a href="/teamspeak">TeamSpeak</a>
+            <a href="/steam">Steam</a>
+            <a href="/social">Réseaux sociaux</a>
+          </div>
+          <div class="nav-col">
+            <h4>Activités</h4>
+            <a href="/artist">Artistes</a>
+            <a href="/quests">Quêtes</a>
+            <a href="/suboawards">Suboawards</a>
+            <a href="/eConcert">eConcert</a>
+          </div>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Plus
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Aide</h4>
+            <a href="/contact">Contact</a>
+            <a href="/faq">FAQ</a>
+            <a href="/status">Statut</a>
+            <a href="/sitemap">Plan du site</a>
+          </div>
+          <div class="nav-col">
+            <h4>Soutien</h4>
+            <a href="/donate">Faire un don</a>
+            <a href="/gold">Gold</a>
+            <a href="/customization">Personnalisation</a>
+            <a href="/mes-donnees">Mes Données</a>
+            <a href="/newsletter">Newsletter</a>
+          </div>
+          <div class="nav-col">
+            <h4>À propos</h4>
+            <a href="/company">Entreprise</a>
+            <a href="/acknowledgements">Remerciements</a>
+            <a href="/logo">Logo</a>
+            <a href="/tags">Tags</a>
+            <a href="/memory">Mémoire</a>
+            <a href="/why-not-use-roblox">Pourquoi pas Roblox</a>
+            <a href="/lawful">Mentions légales</a>
+          </div>
+        </div>
+      </details>
     </nav>
     <div class="controls" role="toolbar" aria-label="Contrôles">
       <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
@@ -295,7 +167,7 @@
           <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
         </svg>
       </button>
-      <div id="user-button" role="region" aria-label="Authentification"></div>
+      <div id="user-button" role="region" aria-label="Authentification"><button class="cta" id="auth-fallback-btn" onclick="window.location.href='https://accounts.ventistudio.eu/sign-in?redirect_url='+encodeURIComponent(window.location.href)" style="padding:0.5rem 1.25rem;font-size:0.9rem;margin:0"><span>Se connecter</span></button></div>
     </div>
   </header>
 
@@ -303,13 +175,31 @@
 
     <!-- Hero -->
     <section class="cooldown-hero">
+      <div class="hero-orbs" aria-hidden="true">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+      </div>
       <h1>Cooldown</h1>
       <p>Les prochains événements VentiStudio. Préparez-vous !</p>
     </section>
 
     <!-- Main countdown -->
     <section class="countdown-main" id="countdownMain">
-      <span class="countdown-event-icon" id="countdownIcon">⏳</span>
+      <div class="countdown-progress">
+        <svg class="progress-ring" width="100" height="100" viewBox="0 0 100 100" aria-hidden="true">
+          <defs>
+            <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="var(--accent)"/>
+              <stop offset="100%" stop-color="var(--accent-secondary)"/>
+            </linearGradient>
+          </defs>
+          <circle class="progress-ring__bg" cx="50" cy="50" r="44"/>
+          <circle class="progress-ring__fill" id="progressRing" cx="50" cy="50" r="44"
+                  stroke-dasharray="276.46" stroke-dashoffset="276.46"/>
+        </svg>
+        <span class="countdown-event-icon" id="countdownIcon">⏳</span>
+      </div>
       <div class="countdown-event-name" id="countdownName">Chargement...</div>
       <div class="countdown-timer">
         <div class="timer-unit">
@@ -348,9 +238,9 @@
       <div class="footer-section">
         <h4>Outils</h4>
         <ul>
-          <li><a href="#">Encrypt</a></li>
+          <li><a href="/pip">PIP</a></li>
           <li><a href="/sitemap">Plan du site</a></li>
-          <li><a href="/stats">Statut</a></li>
+          <li><a href="https://status.ventistudio.eu/">Statut</a></li>
         </ul>
       </div>
       <div class="footer-section">
@@ -372,21 +262,20 @@
       <div class="footer-section">
         <h4>Chartes</h4>
         <ul>
-          <li><a href="/lawful/tos">Conditions</a></li>
+          <li><a href="/lawful/tos">Conditions d'utilisation</a></li>
           <li><a href="/lawful/cookies">Confidentialité</a></li>
           <li><a href="/lawful/dmcainfo">Information DMCA</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
+      <iframe src="https://status.ventistudio.eu/badge?theme=dark" width="500" height="30" frameborder="0" scrolling="no" style="color-scheme: normal"></iframe>
       <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
     </div>
   </footer>
 
   <script>
     // ── Events data ──
-    // Les événements récurrents utilisent l'année courante ou suivante automatiquement
     const now = new Date();
     const currentYear = now.getFullYear();
 
@@ -398,51 +287,29 @@
       return date;
     }
 
-    const events = [
-      {
-        name: "Fête Nationale",
-        date: nextOccurrence(7, 14),
-        icon: "🇫🇷"
-      },
-      {
-        name: "Anniversaire VentiStudio",
-        date: nextOccurrence(9, 24),
-        icon: "🎉"
-      },
-      {
-        name: "Halloween",
-        date: nextOccurrence(10, 31, 20, 0),
-        icon: "🎃"
-      },
-      {
-        name: "Anniversaire d'Hikari",
-        date: nextOccurrence(12, 15),
-        icon: "🎂"
-      },
-      {
-        name: "Noël",
-        date: nextOccurrence(12, 25),
-        icon: "🎄"
-      },
-      {
-        name: "Nouvel An",
-        date: nextOccurrence(1, 1),
-        icon: "🎆"
-      },
-      {
-        name: "Saint-Valentin",
-        date: nextOccurrence(2, 14),
-        icon: "💕"
+    // Previous occurrence for progress calculation
+    function prevOccurrence(month, day, hour = 0, minute = 0) {
+      let date = new Date(currentYear, month - 1, day, hour, minute);
+      if (date.getTime() >= now.getTime()) {
+        date = new Date(currentYear - 1, month - 1, day, hour, minute);
       }
+      return date;
+    }
+
+    const events = [
+      { name: "Fête Nationale", date: nextOccurrence(7, 14), prev: prevOccurrence(7, 14), icon: "🇫🇷", month: 7, day: 14 },
+      { name: "Anniversaire VentiStudio", date: nextOccurrence(9, 24), prev: prevOccurrence(9, 24), icon: "🎉", month: 9, day: 24 },
+      { name: "Halloween", date: nextOccurrence(10, 31, 20, 0), prev: prevOccurrence(10, 31, 20, 0), icon: "🎃", month: 10, day: 31 },
+      { name: "Anniversaire d'Hikari", date: nextOccurrence(12, 15), prev: prevOccurrence(12, 15), icon: "🎂", month: 12, day: 15 },
+      { name: "Noël", date: nextOccurrence(12, 25), prev: prevOccurrence(12, 25), icon: "🎄", month: 12, day: 25 },
+      { name: "Nouvel An", date: nextOccurrence(1, 1), prev: prevOccurrence(1, 1), icon: "🎆", month: 1, day: 1 },
+      { name: "Saint-Valentin", date: nextOccurrence(2, 14), prev: prevOccurrence(2, 14), icon: "💕", month: 2, day: 14 }
     ];
 
     // ── Helpers ──
     function formatDate(date) {
       return date.toLocaleDateString('fr-FR', {
-        weekday: 'long',
-        day: 'numeric',
-        month: 'long',
-        year: 'numeric'
+        weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
       });
     }
 
@@ -458,16 +325,42 @@
       };
     }
 
-    function pad(n) {
-      return String(n).padStart(2, '0');
+    function pad(n) { return String(n).padStart(2, '0'); }
+
+    function getProgress(event) {
+      const total = event.date.getTime() - event.prev.getTime();
+      const elapsed = Date.now() - event.prev.getTime();
+      if (total <= 0) return 0;
+      return Math.min(1, Math.max(0, elapsed / total));
     }
 
-    // ── Sort events by date ──
+    // ── Sort & find ──
     events.sort((a, b) => a.date.getTime() - b.date.getTime());
 
-    // ── Find next upcoming event ──
     function getNextEvent() {
       return events.find(e => e.date.getTime() > Date.now()) || null;
+    }
+
+    // ── Progress ring ──
+    const RING_CIRCUMFERENCE = 2 * Math.PI * 44; // ~276.46
+    function updateProgressRing(progress) {
+      const ring = document.getElementById('progressRing');
+      if (!ring) return;
+      const offset = RING_CIRCUMFERENCE * (1 - progress);
+      ring.style.strokeDashoffset = offset;
+    }
+
+    // ── Pulse effect on timer change ──
+    const prevValues = { days: '', hours: '', minutes: '', seconds: '' };
+    function pulseIfChanged(id, newVal) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      if (prevValues[id] !== newVal) {
+        prevValues[id] = newVal;
+        el.classList.remove('pulse');
+        void el.offsetWidth; // force reflow
+        el.classList.add('pulse');
+      }
     }
 
     // ── Update main countdown ──
@@ -476,19 +369,15 @@
       const iconEl = document.getElementById('countdownIcon');
       const nameEl = document.getElementById('countdownName');
       const dateEl = document.getElementById('countdownDate');
-      const daysEl = document.getElementById('days');
-      const hoursEl = document.getElementById('hours');
-      const minutesEl = document.getElementById('minutes');
-      const secondsEl = document.getElementById('seconds');
 
       if (!next) {
         iconEl.textContent = '🎉';
         nameEl.textContent = 'Aucun événement à venir';
         dateEl.textContent = '';
-        daysEl.textContent = '00';
-        hoursEl.textContent = '00';
-        minutesEl.textContent = '00';
-        secondsEl.textContent = '00';
+        ['days','hours','minutes','seconds'].forEach(id => {
+          document.getElementById(id).textContent = '00';
+        });
+        updateProgressRing(1);
         return;
       }
 
@@ -496,17 +385,20 @@
       nameEl.textContent = next.name;
       dateEl.textContent = formatDate(next.date);
 
+      const progress = getProgress(next);
+      updateProgressRing(progress);
+
       const tl = getTimeLeft(next.date);
       if (tl) {
-        daysEl.textContent = pad(tl.days);
-        hoursEl.textContent = pad(tl.hours);
-        minutesEl.textContent = pad(tl.minutes);
-        secondsEl.textContent = pad(tl.seconds);
+        const vals = { days: pad(tl.days), hours: pad(tl.hours), minutes: pad(tl.minutes), seconds: pad(tl.seconds) };
+        Object.entries(vals).forEach(([id, val]) => {
+          document.getElementById(id).textContent = val;
+          pulseIfChanged(id, val);
+        });
       } else {
-        daysEl.textContent = '00';
-        hoursEl.textContent = '00';
-        minutesEl.textContent = '00';
-        secondsEl.textContent = '00';
+        ['days','hours','minutes','seconds'].forEach(id => {
+          document.getElementById(id).textContent = '00';
+        });
       }
     }
 
@@ -520,6 +412,7 @@
         const isPast = event.date.getTime() <= Date.now();
         const isNext = next && event === next;
         const tl = getTimeLeft(event.date);
+        const progress = getProgress(event);
 
         const card = document.createElement('div');
         card.className = 'event-card' + (isNext ? ' is-next' : '') + (isPast ? ' is-past' : '');
@@ -529,23 +422,25 @@
           countdownHtml = '<span class="event-status">Terminé</span>';
         } else if (tl) {
           if (tl.days > 0) {
-            countdownHtml = `<span class="event-days-left">${tl.days}j ${tl.hours}h</span>`;
+            countdownHtml = '<span class="event-days-left">' + tl.days + 'j ' + tl.hours + 'h</span>';
           } else {
-            countdownHtml = `<span class="event-days-left">${tl.hours}h ${tl.minutes}m</span>`;
+            countdownHtml = '<span class="event-days-left">' + tl.hours + 'h ' + tl.minutes + 'm</span>';
           }
           if (isNext) {
             countdownHtml += '<br><span class="event-badge">Prochain</span>';
           }
         }
 
-        card.innerHTML = `
-          <div class="event-icon">${event.icon}</div>
-          <div class="event-info">
-            <div class="event-name">${event.name}</div>
-            <div class="event-date-text">${formatDate(event.date)}</div>
-          </div>
-          <div class="event-countdown-small">${countdownHtml}</div>
-        `;
+        const progressPct = Math.round(progress * 100);
+
+        card.innerHTML =
+          '<div class="event-icon">' + event.icon + '</div>' +
+          '<div class="event-info">' +
+            '<div class="event-name">' + event.name + '</div>' +
+            '<div class="event-date-text">' + formatDate(event.date) + '</div>' +
+            (!isPast ? '<div class="event-progress-bar"><div class="event-progress-fill" style="width:' + progressPct + '%"></div></div>' : '') +
+          '</div>' +
+          '<div class="event-countdown-small">' + countdownHtml + '</div>';
 
         list.appendChild(card);
       });
@@ -556,10 +451,83 @@
     renderEventList();
     setInterval(() => {
       updateMainCountdown();
-      renderEventList();
+      // Re-render full list only every 60s for perf, countdown values update in main
     }, 1000);
+    setInterval(renderEventList, 60000);
   </script>
 
-  <script src="/script.js" defer></script>
+  <script src="/main.js" defer></script>
+  <script>
+    (function () {
+      var nav = document.getElementById('main-nav');
+      var burger = document.getElementById('nav-burger');
+      if (!nav || !burger) return;
+
+      // Marque le lien actif d'apres l'URL courante
+      try {
+        var path = window.location.pathname.replace(/\/index\.html?$/, '/').replace(/\/$/, '') || '/';
+        var best = null, bestLen = -1;
+        nav.querySelectorAll('a[href]').forEach(function (a) {
+          var href = a.getAttribute('href').replace(/\/$/, '') || '/';
+          if (href === path || (href !== '/' && path.indexOf(href + '/') === 0) || (href !== '/' && path === href)) {
+            if (href.length > bestLen) { best = a; bestLen = href.length; }
+          }
+        });
+        if (path === '/' || path === '') {
+          best = nav.querySelector('a[href="/"]');
+        }
+        if (best) {
+          best.classList.add('active');
+          var grp = best.closest('details.nav-group');
+          if (grp) {
+            var s = grp.querySelector('summary.nav-link');
+            if (s) s.classList.add('active');
+          }
+        }
+      } catch (e) {}
+
+      function closeAllGroups(except) {
+        nav.querySelectorAll('details.nav-group[open]').forEach(function (d) {
+          if (d !== except) d.removeAttribute('open');
+        });
+      }
+
+      burger.addEventListener('click', function () {
+        var open = nav.classList.toggle('is-open');
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        burger.classList.toggle('is-active', open);
+        if (!open) closeAllGroups();
+      });
+
+      nav.querySelectorAll('details.nav-group').forEach(function (d) {
+        d.addEventListener('toggle', function () {
+          if (d.open) closeAllGroups(d);
+        });
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!nav.contains(e.target) && !burger.contains(e.target)) {
+          closeAllGroups();
+          if (nav.classList.contains('is-open')) {
+            nav.classList.remove('is-open');
+            burger.classList.remove('is-active');
+            burger.setAttribute('aria-expanded', 'false');
+          }
+        }
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          closeAllGroups();
+          if (nav.classList.contains('is-open')) {
+            nav.classList.remove('is-open');
+            burger.classList.remove('is-active');
+            burger.setAttribute('aria-expanded', 'false');
+            burger.focus();
+          }
+        }
+      });
+    })();
+  </script>
 </body>
 </html>

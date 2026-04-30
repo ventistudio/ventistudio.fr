@@ -1,14 +1,31 @@
-<!DOCTYPE html>
-<html lang="fr">
+﻿<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
 <head>
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
   <meta name="description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
   <meta name="theme-color" content="#6366f1">
-  <title>VentiStudio - MOTD GMod</title>
+  <title>MOTD GMod | VentiStudio</title>
   <link rel="stylesheet" href="/style.css">
   <link rel="icon" type="image/png" href="/favicon.ico">
+
+  <script async crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
+  <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
+
+  <meta property="og:title" content="MOTD GMod | VentiStudio">
+  <meta property="og:description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
+  <meta property="og:url" content="https://ventistudio.eu/gmod/motd/">
+  <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://ventistudio.eu/gmod/motd/">
+
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
 </head>
 <body>
   <main>
@@ -175,6 +192,14 @@
     </div>
 
 
+    <div class="collection-section">
+      <h2>Protocoles &amp; Règles</h2>
+      <p>Consultez l'ensemble des protocoles et règlements de la Fondation SCP :</p>
+      <a href="/gmod/motd/P&R/" class="collection-button">
+        Voir les Protocoles &amp; Règles →
+      </a>
+    </div>
+
     <div class="changelog">
       <h2>Notes de mise à jour</h2>
 
@@ -221,7 +246,7 @@
       </div>
     </div>
   </main>
-  <script src="/script.js" defer></script>
+  <script src="/main.js" defer></script>
 </body>
 </html>
 

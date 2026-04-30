@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <meta name="description" content="VentiStudio - Découvrez les secrets cachés et easter eggs de la plateforme.">
+  <meta name="description" content="VentiStudio - Découvrez les secrets cachés et easter eggs de la plateforme. De vrais succès à débloquer !">
   <meta name="theme-color" content="#6366f1">
-  <title>Easter Eggs | VentiStudio</title>
+  <title>Easter Eggs & Succès | VentiStudio</title>
   <link rel="stylesheet" href="/style.css">
   <style>
     .ee-hero {
@@ -23,7 +23,7 @@
     .ee-hero .subtitle {
       font-size: 1.05rem;
       opacity: .7;
-      max-width: 550px;
+      max-width: 600px;
       margin: 0 auto;
     }
 
@@ -57,9 +57,12 @@
       margin: 0 auto 3rem;
       padding: 0 1.5rem;
     }
-    .ee-section h2 {
-      font-size: 1.4rem;
+    .ee-section-title {
+      font-size: 1.3rem;
       margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
     }
 
     .ee-grid {
@@ -90,16 +93,30 @@
     }
     .ee-card:hover {
       transform: translateY(-6px);
-      border-color: var(--accent);
       box-shadow: 0 12px 32px var(--glass-shadow), 0 0 20px rgba(99,102,241,.15);
     }
     .ee-card:hover::before { opacity: 1; }
     .ee-card:active { transform: scale(.97); }
 
-    .ee-card.discovered {
+    /* Locked card */
+    .ee-card.locked {
+      border-color: rgba(100,100,120,.3);
+    }
+    .ee-card.locked:hover {
+      border-color: rgba(245,158,11,.4);
+    }
+    .ee-card.locked .ee-emoji { filter: grayscale(1) brightness(.5); }
+    .ee-card.locked .ee-card-title { opacity: .4; }
+
+    /* Unlocked card */
+    .ee-card.unlocked {
       border-color: rgba(34,197,94,.4);
     }
-    .ee-card.discovered .ee-badge { opacity: 1; }
+    .ee-card.unlocked:hover {
+      border-color: rgba(34,197,94,.6);
+      box-shadow: 0 12px 32px rgba(34,197,94,.15), 0 0 20px rgba(34,197,94,.1);
+    }
+    .ee-card.unlocked .ee-badge { opacity: 1; }
 
     .ee-emoji {
       font-size: 3.2rem;
@@ -107,7 +124,7 @@
       margin-bottom: .6rem;
       position: relative;
       z-index: 1;
-      transition: transform .3s;
+      transition: transform .3s, filter .3s;
     }
     .ee-card:hover .ee-emoji { transform: scale(1.15) rotate(5deg); }
 
@@ -116,14 +133,15 @@
       font-size: .95rem;
       position: relative;
       z-index: 1;
+      transition: opacity .3s;
     }
 
     .ee-badge {
       position: absolute;
       top: .6rem;
       right: .6rem;
-      width: 20px;
-      height: 20px;
+      width: 22px;
+      height: 22px;
       border-radius: 50%;
       background: rgba(34,197,94,.2);
       display: flex;
@@ -132,7 +150,15 @@
       opacity: 0;
       transition: opacity .3s;
     }
-    .ee-badge svg { width: 12px; height: 12px; color: #22c55e; }
+    .ee-badge svg { width: 13px; height: 13px; color: #22c55e; }
+
+    .ee-lock-icon {
+      position: absolute;
+      top: .6rem;
+      left: .6rem;
+      font-size: .75rem;
+      opacity: .4;
+    }
 
     .ee-difficulty {
       display: inline-block;
@@ -220,6 +246,14 @@
       text-align: center;
       margin-bottom: .5rem;
     }
+    .ee-modal-status {
+      text-align: center;
+      margin-bottom: .8rem;
+      font-size: .85rem;
+      font-weight: 600;
+    }
+    .ee-modal-status.is-unlocked { color: #22c55e; }
+    .ee-modal-status.is-locked { color: #f59e0b; }
     .ee-modal-desc {
       opacity: .7;
       line-height: 1.7;
@@ -243,9 +277,9 @@
       margin: 1.5rem auto 0;
     }
     .ee-progress-bar {
-      height: 6px;
+      height: 8px;
       background: var(--glass-bg);
-      border-radius: 3px;
+      border-radius: 4px;
       overflow: hidden;
       border: 1px solid var(--glass-border);
     }
@@ -253,14 +287,52 @@
       height: 100%;
       width: 0%;
       background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
-      border-radius: 3px;
+      border-radius: 4px;
       transition: width .5s cubic-bezier(.4, 0, .2, 1);
+    }
+    .ee-progress-fill.complete {
+      background: linear-gradient(90deg, #22c55e, #4ade80);
     }
     .ee-progress-text {
       font-size: .75rem;
       opacity: .5;
       text-align: center;
       margin-top: .4rem;
+    }
+
+    /* Rank */
+    .ee-rank {
+      text-align: center;
+      margin-top: 1rem;
+      font-size: .9rem;
+      font-weight: 600;
+    }
+    .ee-rank-badge {
+      display: inline-block;
+      padding: .3rem .8rem;
+      border-radius: 8px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+    }
+
+    /* Reset */
+    .ee-reset {
+      text-align: center;
+      margin-top: 1rem;
+    }
+    .ee-reset button {
+      background: none;
+      border: 1px solid rgba(239,68,68,.3);
+      color: #ef4444;
+      padding: .4rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: .8rem;
+      transition: all .2s;
+    }
+    .ee-reset button:hover {
+      background: rgba(239,68,68,.1);
+      border-color: #ef4444;
     }
 
     /* Back link */
@@ -285,6 +357,23 @@
       .ee-stats { gap: 1.2rem; }
     }
   </style>
+
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+
+  <script async crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
+  <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
+
+  <meta property="og:title" content="Easter Eggs & Succès | VentiStudio">
+  <meta property="og:description" content="VentiStudio - Découvrez les secrets cachés et easter eggs de la plateforme. De vrais succès à débloquer !">
+  <meta property="og:url" content="https://ventistudio.eu/ester-eggs/">
+  <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://ventistudio.eu/ester-eggs/">
 </head>
 <body>
   <header>
@@ -292,15 +381,133 @@
       <img src="/favicon.avif" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
       <span>VentiStudio</span>
     </div>
-    <nav aria-label="Navigation principale">
-      <a href="/">Accueil</a>
-      <a href="/evaluation">Contenu Approuvé</a>
-      <a href="/player">Lecteur</a>
-      <a href="/wiki">Wiki</a>
-      <a href="/staff">Équipe</a>
-      <a href="/news">News</a>
-      <a href="/pip">PIP</a>
-      <a href="/sitemap">Plan du site</a>
+    <button class="nav-burger" id="nav-burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="main-nav" class="main-nav" aria-label="Navigation principale">
+      <a href="/" class="nav-link">Accueil</a>
+
+      <details class="nav-group">
+        <summary class="nav-link">Découvrir
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel" role="menu">
+          <a href="/evaluation">Évaluation</a>
+          <a href="/wiki">Wiki</a>
+          <a href="/glossary">Glossaire</a>
+          <a href="/news">News</a>
+          <a href="/blog">Blog</a>
+          <a href="/calendar">Calendrier</a>
+          <a href="/cookbook">Cookbook</a>
+          <a href="/gallery">Galerie</a>
+          <a href="/atlas">Atlas</a>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Univers
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel" role="menu">
+          <a href="/aokiunivers">AOKI Universe</a>
+          <a href="/allofaokiunivers">All AOKI</a>
+          <a href="/university">Université</a>
+          <a href="/history">Histoire</a>
+          <a href="/memorial">Mémorial</a>
+          <a href="/ester-eggs">Easter eggs</a>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Outils
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Applications</h4>
+            <a href="/player">Lecteur</a>
+            <a href="/music">Musique</a>
+            <a href="/pip">PIP</a>
+            <a href="/whiteboard">Whiteboard</a>
+            <a href="/portfolio">Portfolio</a>
+            <a href="/gmod">GMod</a>
+          </div>
+          <div class="nav-col">
+            <h4>Domaines</h4>
+            <a href="/domain/aina">AINA</a>
+            <a href="/domain/archive">Archive</a>
+            <a href="/domain/maps">Maps</a>
+            <a href="/domain/movie">Movie</a>
+            <a href="/domain/peer">Peer</a>
+            <a href="/domain/pro">Pro</a>
+            <a href="/domain/search">Search</a>
+            <a href="/domain/suite">Suite</a>
+          </div>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Communauté
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Équipe</h4>
+            <a href="/personnel/">Équipe</a>
+            <a href="/hierarchie-staff">Hiérarchie</a>
+            <a href="/hypesquad">Hypesquad</a>
+            <a href="/jobs">Emplois</a>
+            <a href="/birthday">Anniversaires</a>
+          </div>
+          <div class="nav-col">
+            <h4>Réseaux</h4>
+            <a href="/discord">Discord</a>
+            <a href="/teamspeak">TeamSpeak</a>
+            <a href="/steam">Steam</a>
+            <a href="/social">Réseaux sociaux</a>
+          </div>
+          <div class="nav-col">
+            <h4>Activités</h4>
+            <a href="/artist">Artistes</a>
+            <a href="/quests">Quêtes</a>
+            <a href="/suboawards">Suboawards</a>
+            <a href="/eConcert">eConcert</a>
+          </div>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Plus
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Aide</h4>
+            <a href="/contact">Contact</a>
+            <a href="/faq">FAQ</a>
+            <a href="/status">Statut</a>
+            <a href="/sitemap">Plan du site</a>
+          </div>
+          <div class="nav-col">
+            <h4>Soutien</h4>
+            <a href="/donate">Faire un don</a>
+            <a href="/gold">Gold</a>
+            <a href="/customization">Personnalisation</a>
+            <a href="/mes-donnees">Mes Données</a>
+            <a href="/newsletter">Newsletter</a>
+          </div>
+          <div class="nav-col">
+            <h4>À propos</h4>
+            <a href="/company">Entreprise</a>
+            <a href="/acknowledgements">Remerciements</a>
+            <a href="/logo">Logo</a>
+            <a href="/tags">Tags</a>
+            <a href="/memory">Mémoire</a>
+            <a href="/why-not-use-roblox">Pourquoi pas Roblox</a>
+            <a href="/lawful">Mentions légales</a>
+          </div>
+        </div>
+      </details>
     </nav>
     <div class="controls" role="toolbar" aria-label="Contrôles">
       <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
@@ -310,19 +517,19 @@
           <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
         </svg>
       </button>
-      <div id="user-button" role="region" aria-label="Authentification"></div>
+      <div id="user-button" role="region" aria-label="Authentification"><button class="cta" id="auth-fallback-btn" onclick="window.location.href='https://accounts.ventistudio.eu/sign-in?redirect_url='+encodeURIComponent(window.location.href)" style="padding:0.5rem 1.25rem;font-size:0.9rem;margin:0"><span>Se connecter</span></button></div>
     </div>
   </header>
 
   <main>
     <!-- Hero -->
     <section class="ee-hero">
-      <h1>Easter Eggs</h1>
-      <p class="subtitle">Découvrez les secrets cachés de VentiStudio. Cliquez sur chaque carte pour révéler son mystère.</p>
+      <h1>Succès & Easter Eggs</h1>
+      <p class="subtitle">Ces succès sont de vrais défis ! Ils se débloquent en trouvant les easter eggs cachés dans le site. Explorez, expérimentez, et prouvez que vous connaissez VentiStudio sur le bout des doigts.</p>
       <div class="ee-stats">
         <div class="ee-stat">
-          <div class="ee-stat-value" id="discovered-count">0</div>
-          <div class="ee-stat-label">Découverts</div>
+          <div class="ee-stat-value" id="unlocked-count">0</div>
+          <div class="ee-stat-label">Débloqués</div>
         </div>
         <div class="ee-stat">
           <div class="ee-stat-value" id="total-count">0</div>
@@ -331,12 +538,14 @@
       </div>
       <div class="ee-progress-wrap">
         <div class="ee-progress-bar"><div class="ee-progress-fill" id="ee-progress"></div></div>
-        <div class="ee-progress-text" id="ee-progress-text">0% découvert</div>
+        <div class="ee-progress-text" id="ee-progress-text">0% débloqué</div>
       </div>
+      <div class="ee-rank" id="ee-rank"></div>
     </section>
 
     <!-- Easter Eggs Grid -->
     <section class="ee-section">
+      <h2 class="ee-section-title">Tous les succès</h2>
       <div class="ee-grid" id="ee-grid"></div>
     </section>
 
@@ -347,15 +556,19 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         </button>
         <span class="ee-modal-emoji" id="modal-emoji"></span>
+        <div class="ee-modal-status" id="modal-status"></div>
         <h2 class="ee-modal-title" id="modal-title"></h2>
         <p class="ee-modal-desc" id="modal-desc"></p>
         <div class="ee-modal-hint" id="modal-hint"></div>
       </div>
     </div>
 
-    <!-- Back -->
+    <!-- Reset & Back -->
+    <div class="ee-reset">
+      <button id="ee-reset-btn">Réinitialiser ma progression</button>
+    </div>
     <div class="ee-back">
-      <a href="/">&larr; Retour à l'accueil</a>
+      <a href="/quests">⚔️ Voir les Quêtes</a> &nbsp;·&nbsp; <a href="/">&larr; Retour à l'accueil</a>
     </div>
   </main>
 
@@ -364,9 +577,9 @@
       <div class="footer-section">
         <h4>Outils</h4>
         <ul>
-          <li><a href="#">Encrypt</a></li>
+          <li><a href="/pip">PIP</a></li>
           <li><a href="/sitemap">Plan du site</a></li>
-          <li><a href="/stats">Statut</a></li>
+          <li><a href="https://status.ventistudio.eu/">Statut</a></li>
         </ul>
       </div>
       <div class="footer-section">
@@ -388,93 +601,273 @@
       <div class="footer-section">
         <h4>Chartes</h4>
         <ul>
-          <li><a href="/lawful/tos">Conditions</a></li>
+          <li><a href="/lawful/tos">Conditions d'utilisation</a></li>
           <li><a href="/lawful/cookies">Confidentialité</a></li>
           <li><a href="/lawful/dmcainfo">Information DMCA</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
-      <p class="copyright">Copyright  2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
+      <iframe src="https://status.ventistudio.eu/badge?theme=dark" width="500" height="30" frameborder="0" scrolling="no" style="color-scheme: normal"></iframe>
+      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
     </div>
   </footer>
 
-  <script src="/script.js" defer></script>
+  <script src="/main.js" defer></script>
   <script>
     (function() {
+      /* ═══════════════════════════════════════════
+         Registre des Easter Eggs (affichage)
+         ═══════════════════════════════════════════ */
       const eggs = [
-        { emoji: '', title: 'Mélodie cachée', desc: 'Certaines pages du site jouent une mélodie secrète si vous restez assez longtemps. Tendez l\'oreille sur la page du lecteur musical après 3 minutes d\'inactivité.', hint: 'Indice : Patience est mère de toutes les vertus.', difficulty: 'medium' },
-        { emoji: '', title: 'Konami Code', desc: 'Le célèbre code Konami fonctionne sur VentiStudio ! Entrez la séquence magique sur la page d\'accueil pour débloquer une surprise visuelle.', hint: 'Indice :         B A', difficulty: 'easy' },
-        { emoji: '', title: 'Mode Nuit Profonde', desc: 'Entre minuit et 3h du matin, le thème sombre révèle des étoiles animées en arrière-plan. Un spectacle réservé aux noctambules.', hint: 'Indice : Revenez quand la lune est haute.', difficulty: 'medium' },
-        { emoji: '', title: 'Anniversaire', desc: 'Le 24 septembre, date d\'anniversaire de VentiStudio, le site entier se pare de feux d\'artifice et d\'animations festives. Des confettis tombent sur chaque page !', hint: 'Indice : Marquez le 24/09 dans votre calendrier.', difficulty: 'easy' },
-        { emoji: '', title: 'La Prophétie', desc: 'Une page cachée contient une prophétie mystérieuse sur l\'avenir de l\'Aoki Univers. Seuls les plus curieux sauront la trouver dans les méandres du wiki.', hint: 'Indice : Explorez les profondeurs du wiki Aoki.', difficulty: 'hard' },
-        { emoji: '', title: 'Clé du Fondateur', desc: 'Ajoutez "?founder=true" à l\'URL de la page À propos pour révéler un message personnel du créateur de VentiStudio, avec une photo et une lettre de remerciement.', hint: 'Indice : La clé est dans l\'URL.', difficulty: 'medium' },
-        { emoji: '', title: 'Space Invader', desc: 'Sur la page d\'erreur 404, un mini-jeu Space Invaders se cache. Cliquez 5 fois rapidement sur le texte d\'erreur pour le lancer.', hint: 'Indice : La page que personne ne veut voir cache un trésor.', difficulty: 'hard' },
-        { emoji: '', title: 'Venti le Renard', desc: 'La mascotte secrète de VentiStudio est un petit renard nommé Venti. Il apparaît furtivement dans le coin de l\'écran sur 3 pages différentes du site.', hint: 'Indice : Gardez les yeux ouverts sur les bords de l\'écran.', difficulty: 'legendary' },
-        { emoji: '', title: 'Floraison Sakura', desc: 'Le 20 mars, pour l\'équinoxe de printemps, des pétales de cerisier tombent délicatement sur la page Marque. Un hommage aux inspirations japonaises du projet.', hint: 'Indice : Le printemps apporte ses trésors.', difficulty: 'easy' },
-        { emoji: '', title: 'Diamant Caché', desc: 'Un pixel doré est caché quelque part sur la page d\'accueil. Trouvez-le et cliquez dessus pour débloquer un badge spécial sur votre profil Discord.', hint: 'Indice : Cherchez dans les ombres du hero.', difficulty: 'legendary' },
-        { emoji: '', title: 'Double Face', desc: 'Basculez le thème clair/sombre exactement 10 fois en 5 secondes pour déclencher un mode arc-en-ciel temporaire sur la page.', hint: 'Indice : La rapidité est votre alliée.', difficulty: 'hard' },
-        { emoji: '', title: 'Radio Fantôme', desc: 'Sur la page eConcert, un lecteur audio caché diffuse une fréquence radio mystérieuse. Survolez le coin inférieur gauche pendant 2 secondes.', hint: 'Indice : Écoutez les murmures de l\'éther.', difficulty: 'medium' },
-        { emoji: '', title: 'Le Cirque', desc: 'Tapez "circus" au clavier sur n\'importe quelle page pour que tous les éléments commencent à tourner et rebondir pendant 10 secondes.', hint: 'Indice : Cinq lettres pour le chaos.', difficulty: 'easy' },
-        { emoji: '', title: 'Portail Dimensionnel', desc: 'La page Space cache un portail vers une dimension alternative du site avec un design rétro des années 90. Cliquez sur la 3ème étoile en partant de la gauche.', hint: 'Indice : L\'espace est plein de surprises.', difficulty: 'legendary' },
-        { emoji: '', title: 'Score Parfait', desc: 'Complétez le quiz d\'évaluation avec un score de 100% pour débloquer un message de félicitations secret avec un code de réduction.', hint: 'Indice : La perfection paie toujours.', difficulty: 'hard' },
-        { emoji: '', title: 'Pause Café', desc: 'Restez inactif pendant exactement 4 minutes et 18 secondes (la durée d\'une pause café idéale) pour voir apparaître un chat qui boit du café en pixel art.', hint: 'Indice : 4:18  ni plus, ni moins.', difficulty: 'medium' }
+        { id: 'konami',        emoji: '🎮', title: 'Konami Code',        desc: 'Le célèbre code Konami fonctionne sur VentiStudio ! Entrez la séquence magique sur n\'importe quelle page pour déclencher un flash arc-en-ciel.',          hint: '↑ ↑ ↓ ↓ ← → ← → B A',                       difficulty: 'easy' },
+        { id: 'circus',        emoji: '🎪', title: 'Le Cirque',          desc: 'Tout tourne, tout danse ! Vous avez déclenché le mode cirque en tapant le mot magique au clavier.',                                                                hint: 'Un mot de 6 lettres qui évoque le spectacle...', difficulty: 'easy' },
+        { id: 'anniversary',   emoji: '🎂', title: 'Anniversaire',       desc: 'Vous étiez présent le jour de l\'anniversaire de VentiStudio ! Le 24 septembre, tout le site est en fête.',                                                         hint: 'Marquez le 24/09 dans votre calendrier.',         difficulty: 'easy' },
+        { id: 'explorer',      emoji: '🧭', title: 'Explorateur',        desc: 'Vous avez visité plus de 8 pages différentes du site. Rien ne vous échappe !',                                                                                      hint: 'Naviguez partout sur le site.',                   difficulty: 'easy' },
+        { id: 'night-owl',     emoji: '🦉', title: 'Nuit Profonde',      desc: 'Vous avez navigué sur VentiStudio entre minuit et 3h du matin. Un vrai noctambule !',                                                                               hint: 'Revenez quand la lune est haute...',              difficulty: 'medium' },
+        { id: 'perfect-hour',  emoji: '⏰', title: 'Heure Parfaite',     desc: 'Vous êtes arrivé à la 42ème minute de l\'heure, la réponse à la grande question sur la vie, l\'univers et le reste !',                                               hint: 'Douglas Adams serait fier de vous.',              difficulty: 'medium' },
+        { id: 'flip',          emoji: '🙃', title: 'Le Retourné',        desc: 'Vous avez retourné le monde à l\'envers en tapant le mot magique !',                                                                                                hint: 'Un mot de 4 lettres... tout bascule.',            difficulty: 'medium' },
+        { id: 'matrix',        emoji: '💊', title: 'Matrix',             desc: 'Vous avez choisi la pilule rouge. La pluie de caractères verts déferle sur l\'écran.',                                                                               hint: 'Tapez le nom d\'un film culte de 1999...',        difficulty: 'medium' },
+        { id: 'double-face',   emoji: '🌓', title: 'Double Face',        desc: 'En basculant le thème à une vitesse folle, vous avez déclenché le mode arc-en-ciel !',                                                                              hint: '10 bascules en 5 secondes.',                      difficulty: 'hard' },
+        { id: 'gold-vip',      emoji: '👑', title: 'Gold VIP',           desc: 'Vous avez découvert l\'entrée secrète Gold cachée dans le header du site.',                                                                                         hint: 'Un petit point dans le header cache un grand secret...', difficulty: 'hard' },
+        { id: 'hidden-pixel',  emoji: '💎', title: 'Diamant Caché',      desc: 'Vous avez trouvé et cliqué sur le pixel secret caché sur la page d\'accueil. Oeil de lynx !',                                                                       hint: 'Cherchez dans les ombres du hero...',             difficulty: 'hard' },
+        { id: 'disco',         emoji: '🪩', title: 'Disco Fever',         desc: 'Vous avez déclenché la boule disco ! Lumières et couleurs envahissent l\'écran.',                                                                                   hint: 'Tapez le nom d\'un style de danse des années 70...', difficulty: 'easy' },
+        { id: 'neko',          emoji: '🐱', title: 'Neko Walk',           desc: 'Un petit chat traverse votre écran ! Vous avez invoqué le neko.',                                                                                                    hint: 'Tapez le nom d\'un félin en japonais...',        difficulty: 'easy' },
+        { id: 'gravity',       emoji: '🌍', title: 'Gravité Zéro',       desc: 'Tous les éléments flottent dans l\'espace ! Vous avez désactivé la gravité.',                                                                                       hint: 'Tapez le nom d\'une force fondamentale...',      difficulty: 'medium' },
+        { id: 'retro',         emoji: '📺', title: 'Mode Rétro',          desc: 'Comic Sans, couleurs flashy et clignotements : bienvenue en 1999 !',                                                                                                hint: 'Tapez un mot qui évoque le passé...',             difficulty: 'medium' },
+        { id: 'logo-spin',     emoji: '🌀', title: 'Logo Maniaque',       desc: 'Vous avez fait tournoyer le logo à une vitesse folle !',                                                                                                             hint: 'Cliquez très vite sur le logo...',                difficulty: 'hard' },
+        { id: 'scroll-king',   emoji: '📜', title: 'Roi du Scroll',       desc: 'Vous avez scrollé plus de 15 000 pixels sur une seule page. Quel dévouement !',                                                                                     hint: 'Scrollez, scrollez, encore et encore...',         difficulty: 'hard' },
+        { id: 'ghost',         emoji: '👻', title: 'Fantôme',             desc: 'Le site est devenu transparent et un fantôme est apparu ! Effrayant.',                                                                                               hint: 'Tapez le nom d\'un être surnaturel...',          difficulty: 'medium' },
+        { id: 'pirate',        emoji: '🏴\u200d☠️', title: 'Pirate',           desc: 'Le site s\'est transformé en galion pirate avec couleurs d\'or et drapeau noir !',                                                                                 hint: 'Tapez le nom d\'un flibustier...',               difficulty: 'medium' },        { id: 'long-press',    emoji: '🤝', title: 'Poignée Secrète',    desc: 'Vous avez maintenu un appui long sur un élément secret du site, révélant un lien caché.',                                                                             hint: 'Maintenez le clic quelque part en bas du site... 5 secondes.',  difficulty: 'hard' },
+        { id: 'speed-click',   emoji: '🎯', title: 'Clic Frénétique',    desc: 'Vous avez cliqué à une vitesse surhumaine ! 20 clics en 3 secondes, un vrai record.',                                                                                hint: 'Cliquez très très très vite, partout !',          difficulty: 'medium' },
+        { id: 'circle-draw',   emoji: '🌀', title: 'Cercle Magique',     desc: 'Vous avez tracé un cercle parfait avec votre souris, invoquant un anneau mystique.',                                                                                  hint: 'Dessinez un cercle avec votre curseur...',        difficulty: 'hard' },
+        { id: 'zen-master',    emoji: '⏳', title: 'Maître Zen',          desc: 'Vous êtes resté parfaitement immobile pendant 2 minutes. La patience est une vertu.',                                                                                 hint: 'Ne touchez à rien... vraiment rien.',             difficulty: 'hard' },
+        { id: 'double-secret', emoji: '🖱️', title: 'Double Secret',      desc: 'Un double-clic au bon endroit a déclenché un effet glitch inattendu !',                                                                                              hint: 'Double-cliquez en bas de page...',                difficulty: 'medium' },
+        { id: 'shake',         emoji: '🔀', title: 'Secousse',            desc: 'Vous avez secoué votre souris si fort que tout le site a tremblé ! Les étoiles sont tombées du ciel.',                                                                hint: 'Secouez rapidement votre souris de gauche à droite.', difficulty: 'medium' },
+        { id: 'drag-drop',     emoji: '🧲', title: 'Drag Master',         desc: 'Vous avez glissé votre souris sur plus de 500 pixels en maintenant le clic. Un geste de maître !',                                                                   hint: 'Maintenez le clic et faites un grand mouvement...',   difficulty: 'easy' },
+        { id: 'tab-switch',    emoji: '🔄', title: 'Alt-Tabeur',          desc: 'Vous avez quitté et rejoint l\'onglet VentiStudio 10 fois. Fidèle au poste !',                                                                                       hint: 'Changez d\'onglet et revenez... beaucoup.',           difficulty: 'medium' },
+        { id: 'resize-frenzy', emoji: '📐', title: 'Redimensionneur',     desc: 'Vous avez redimensionné la fenêtre 8 fois en 10 secondes. La page a pris une forme arrondie !',                                                                      hint: 'Redimensionnez la fenêtre frénétiquement.',           difficulty: 'medium' },
+        { id: 'right-click',   emoji: '🖱️', title: 'Clic Droit Fou',     desc: 'Vous avez fait un clic droit 10 fois en 10 secondes. Des yeux curieux vous observent...',                                                                             hint: 'Faites beaucoup de clics droits d\'affilée.',         difficulty: 'easy' },
+        { id: 'select-all',    emoji: '📋', title: 'Tout Sélectionner',   desc: 'Vous avez tout sélectionné avec Ctrl+A ! Un flash bleu a envahi l\'écran.',                                                                                          hint: 'Le raccourci de la sélection totale...',              difficulty: 'easy' },
+        { id: 'copy-cat',      emoji: '📎', title: 'Copieur',             desc: 'Vous avez copié du contenu 5 fois. Un vrai collectionneur de texte !',                                                                                                hint: 'Copiez, copiez, et recopiez encore...',               difficulty: 'easy' },
+        { id: 'zoom-frenzy',   emoji: '🔎', title: 'Zoom Fou',            desc: 'Vous avez zoomé et dézoomé frénétiquement avec Ctrl+Molette. Une loupe géante est apparue !',                                                                        hint: 'Ctrl + molette de souris, très vite.',                difficulty: 'medium' },
+        { id: 'scroll-bottom', emoji: '⬇️', title: 'Les Abysses',        desc: 'Vous avez atteint le fond absolu d\'une page longue. Plongée en eaux profondes !',                                                                                    hint: 'Descendez tout en bas d\'une longue page...',         difficulty: 'easy' },
+        { id: 'triple-click',  emoji: '3️⃣', title: 'Triple Clic',         desc: 'Vous avez effectué un triple clic ! Une étincelle est apparue à l\'endroit du clic.',                                                                                 hint: 'Cliquez trois fois d\'affilée au même endroit.',      difficulty: 'easy' },
+        { id: 'hover-footer',  emoji: '🫥', title: 'Le Survoleur',        desc: 'Vous avez survolé le footer pendant 30 secondes sans bouger. Le footer s\'est illuminé !',                                                                            hint: 'Restez au-dessus du footer... longtemps.',            difficulty: 'hard' },
+        { id: 'keyboard-smash',emoji: '⌨️', title: 'Pianiste Fou',        desc: 'Vous avez tapé 30 touches en 3 secondes ! Les notes de musique se sont envolées.',                                                                                   hint: 'Tapez très vite sur le clavier, n\'importe quoi !',   difficulty: 'medium' },
+        { id: 'highlight-text',emoji: '✏️', title: 'Surligneur',          desc: 'Vous avez sélectionné plus de 200 caractères de texte. Un flash doré a brillé sur la page.',                                                                          hint: 'Sélectionnez un loooong passage de texte.',           difficulty: 'easy' },
+        { id: 'devtools',      emoji: '🔧', title: 'Inspecteur',          desc: 'Vous avez ouvert les outils de développement. Un vrai détective du code !',                                                                                          hint: 'Une touche F bien connue des développeurs...',        difficulty: 'medium' },
+        { id: 'tab-navigator', emoji: '⇥', title: 'Tabulateur',           desc: 'Vous avez appuyé sur Tab 20 fois ! Tous les éléments cliquables se sont illuminés.',                                                                                  hint: 'Naviguez au clavier avec la touche Tab.',             difficulty: 'medium' },
+        { id: 'home-key',      emoji: '🚀', title: 'Retour Fusée',        desc: 'Vous avez appuyé sur Home depuis le bas de la page. Une fusée a décollé vers le haut !',                                                                              hint: 'Scrollez vers le bas puis appuyez sur Début.',        difficulty: 'medium' },
+        { id: 'orientation',   emoji: '📱', title: 'Tête en Bas',         desc: 'Vous avez retourné votre appareil 3 fois ! Le monde tourne autour de vous.',                                                                                          hint: 'Tournez votre téléphone/tablette plusieurs fois.',    difficulty: 'hard' },
+        { id: 'print-page',    emoji: '🖨️', title: 'Imprimeur',          desc: 'Vous avez tenté d\'imprimer la page. Old school !',                                                                                                                    hint: 'Le raccourci d\'impression classique...',             difficulty: 'easy' },
+        { id: 'fullscreen',    emoji: '🖥️', title: 'Plein Écran',        desc: 'Vous êtes passé en plein écran. L\'immersion totale !',                                                                                                                hint: 'Une touche F pour le mode plein écran...',            difficulty: 'easy' },
+        { id: 'offline-hero',  emoji: '📡', title: 'Hors Ligne',          desc: 'Vous avez perdu la connexion et êtes revenu en ligne. La persévérance paie !',                                                                                        hint: 'Coupez votre Wi-Fi puis reconnectez-vous.',           difficulty: 'hard' },
+        { id: 'multi-key',     emoji: '🎹', title: 'Accord Parfait',      desc: 'Vous avez maintenu 5 touches simultanément ! Un arc-en-ciel de couleurs en bordure.',                                                                                 hint: 'Appuyez sur beaucoup de touches en même temps.',      difficulty: 'medium' },
+        { id: 'corner-master', emoji: '🏁', title: 'Quatre Coins',        desc: 'Votre souris a visité les quatre coins de l\'écran. Des lueurs sont apparues à chaque coin !',                                                                        hint: 'Déplacez votre curseur dans les 4 coins.',            difficulty: 'hard' },
+        { id: 'speed-nav',     emoji: '⚡', title: 'Navigateur Rapide',   desc: 'Vous avez visité 5 pages en moins de 15 secondes. Un vrai speedrunner !',                                                                                             hint: 'Naviguez très vite entre les pages du site.',         difficulty: 'hard' },
+        { id: 'rage-click',    emoji: '😤', title: 'Rage Click',          desc: 'Vous avez cliqué 10 fois au même endroit en 2 secondes. Explosion de frustration !',                                                                                  hint: 'Cliquez frénétiquement au même endroit.',             difficulty: 'medium' },
+        { id: 'arrow-dance',   emoji: '💃', title: 'Danse des Flèches',   desc: 'Vous avez exécuté la danse des flèches : ← → ← → ↑ ↓ ↑ ↓. Les danseurs sont apparus !',                                                                             hint: 'Gauche Droite Gauche Droite Haut Bas Haut Bas.',      difficulty: 'medium' },
+        { id: 'completionist', emoji: '🏆', title: 'Complémentiste',     desc: 'Vous avez débloqué TOUS les autres easter eggs. Vous êtes un vrai maître de VentiStudio !',                                                                         hint: 'Débloquez tous les autres succès.',               difficulty: 'legendary' }
       ];
+
+      const EE_KEY = 'vs-ee-unlocked';
+      const diffLabels = { easy: 'Facile', medium: 'Moyen', hard: 'Difficile', legendary: 'Légendaire' };
+      const ranks = [
+        { min: 0,  label: '🔍 Novice' },
+        { min: 8,  label: '🕵️ Curieux' },
+        { min: 16, label: '🧩 Détective' },
+        { min: 25, label: '⭐ Expert' },
+        { min: 35, label: '💠 Vétéran' },
+        { min: 45, label: '🌟 Légende' },
+        { min: 50, label: '👑 Maître Absolu' }
+      ];
+
+      function getUnlocked() {
+        try { return JSON.parse(localStorage.getItem(EE_KEY) || '[]'); }
+        catch { return []; }
+      }
 
       const grid = document.getElementById('ee-grid');
       const overlay = document.getElementById('ee-overlay');
       const totalEl = document.getElementById('total-count');
-      const discoveredEl = document.getElementById('discovered-count');
+      const unlockedEl = document.getElementById('unlocked-count');
       const progressEl = document.getElementById('ee-progress');
       const progressText = document.getElementById('ee-progress-text');
+      const rankEl = document.getElementById('ee-rank');
 
-      const discovered = JSON.parse(localStorage.getItem('vs-ee-discovered') || '[]');
       totalEl.textContent = eggs.length;
 
-      function updateProgress() {
-        const count = discovered.length;
-        discoveredEl.textContent = count;
-        const pct = Math.round((count / eggs.length) * 100);
-        progressEl.style.width = pct + '%';
-        progressText.textContent = pct + '% découvert';
+      function getRank(count) {
+        let rank = ranks[0];
+        for (const r of ranks) { if (count >= r.min) rank = r; }
+        return rank.label;
       }
 
-      const diffLabels = { easy: 'Facile', medium: 'Moyen', hard: 'Difficile', legendary: 'Légendaire' };
+      function updateUI() {
+        const unlocked = getUnlocked();
+        const count = unlocked.length;
+        unlockedEl.textContent = count;
+        const pct = Math.round((count / eggs.length) * 100);
+        progressEl.style.width = pct + '%';
+        if (pct >= 100) progressEl.classList.add('complete');
+        else progressEl.classList.remove('complete');
+        progressText.textContent = pct + '% débloqué';
+        rankEl.innerHTML = '<span class="ee-rank-badge">' + getRank(count) + '</span>';
 
+        // Update card states
+        eggs.forEach((egg, i) => {
+          const card = grid.children[i];
+          if (!card) return;
+          const isUnlocked = unlocked.includes(egg.id);
+          card.className = 'ee-card ' + (isUnlocked ? 'unlocked' : 'locked');
+          const emojiEl = card.querySelector('.ee-emoji');
+          const titleEl = card.querySelector('.ee-card-title');
+          if (isUnlocked) {
+            emojiEl.textContent = egg.emoji;
+            titleEl.textContent = egg.title;
+          } else {
+            emojiEl.textContent = '❓';
+            titleEl.textContent = '???';
+          }
+        });
+      }
+
+      // Build grid
       eggs.forEach((egg, i) => {
         const card = document.createElement('div');
-        card.className = 'ee-card' + (discovered.includes(i) ? ' discovered' : '');
+        card.className = 'ee-card locked';
         card.innerHTML =
           '<span class="ee-badge"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>' +
-          '<span class="ee-emoji">' + egg.emoji + '</span>' +
-          '<div class="ee-card-title">' + egg.title + '</div>' +
+          '<span class="ee-lock-icon">🔒</span>' +
+          '<span class="ee-emoji">❓</span>' +
+          '<div class="ee-card-title">???</div>' +
           '<span class="ee-difficulty ' + egg.difficulty + '">' + diffLabels[egg.difficulty] + '</span>';
-        card.addEventListener('click', () => openModal(i));
+        card.addEventListener('click', function() { openModal(i); });
         grid.appendChild(card);
       });
 
       function openModal(i) {
         const egg = eggs[i];
-        document.getElementById('modal-emoji').textContent = egg.emoji;
-        document.getElementById('modal-title').textContent = egg.title;
-        document.getElementById('modal-desc').textContent = egg.desc;
-        document.getElementById('modal-hint').innerHTML = '<strong> ' + egg.hint.split(':')[0] + ' :</strong> ' + egg.hint.split(':').slice(1).join(':');
-        overlay.classList.add('active');
+        const unlocked = getUnlocked();
+        const isUnlocked = unlocked.includes(egg.id);
 
-        if (!discovered.includes(i)) {
-          discovered.push(i);
-          localStorage.setItem('vs-ee-discovered', JSON.stringify(discovered));
-          grid.children[i].classList.add('discovered');
-          updateProgress();
+        const statusEl = document.getElementById('modal-status');
+        const emojiEl = document.getElementById('modal-emoji');
+        const titleEl = document.getElementById('modal-title');
+        const descEl = document.getElementById('modal-desc');
+        const hintEl = document.getElementById('modal-hint');
+
+        if (isUnlocked) {
+          emojiEl.textContent = egg.emoji;
+          statusEl.textContent = '✅ Débloqué !';
+          statusEl.className = 'ee-modal-status is-unlocked';
+          titleEl.textContent = egg.title;
+          descEl.textContent = egg.desc;
+          hintEl.style.display = 'none';
+        } else {
+          emojiEl.textContent = '🔒';
+          statusEl.textContent = '🔒 Verrouillé';
+          statusEl.className = 'ee-modal-status is-locked';
+          titleEl.textContent = '???';
+          descEl.textContent = 'Ce succès n\'a pas encore été débloqué. Explorez le site pour le trouver !';
+          hintEl.style.display = '';
+          hintEl.innerHTML = '<strong>💡 Indice :</strong> ' + egg.hint;
         }
+
+        overlay.classList.add('active');
       }
 
-      document.getElementById('ee-close').addEventListener('click', () => overlay.classList.remove('active'));
-      overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.classList.remove('active'); });
-      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') overlay.classList.remove('active'); });
+      document.getElementById('ee-close').addEventListener('click', function() { overlay.classList.remove('active'); });
+      overlay.addEventListener('click', function(e) { if (e.target === overlay) overlay.classList.remove('active'); });
+      document.addEventListener('keydown', function(e) { if (e.key === 'Escape') overlay.classList.remove('active'); });
 
-      updateProgress();
+      // Reset button
+      document.getElementById('ee-reset-btn').addEventListener('click', function() {
+        if (confirm('Réinitialiser tous vos succès Easter Eggs ? Cette action est irréversible.')) {
+          localStorage.removeItem(EE_KEY);
+          localStorage.removeItem('vs-ee-pages');
+          updateUI();
+        }
+      });
+
+      // Listen for unlock events from the engine
+      window.addEventListener('vs-ee-unlock', function() { updateUI(); });
+
+      // Initial render
+      updateUI();
+    })();
+  </script>
+  <script>
+    (function () {
+      var nav = document.getElementById('main-nav');
+      var burger = document.getElementById('nav-burger');
+      if (!nav || !burger) return;
+
+      // Marque le lien actif d'apres l'URL courante
+      try {
+        var path = window.location.pathname.replace(/\/index\.html?$/, '/').replace(/\/$/, '') || '/';
+        var best = null, bestLen = -1;
+        nav.querySelectorAll('a[href]').forEach(function (a) {
+          var href = a.getAttribute('href').replace(/\/$/, '') || '/';
+          if (href === path || (href !== '/' && path.indexOf(href + '/') === 0) || (href !== '/' && path === href)) {
+            if (href.length > bestLen) { best = a; bestLen = href.length; }
+          }
+        });
+        if (path === '/' || path === '') {
+          best = nav.querySelector('a[href="/"]');
+        }
+        if (best) {
+          best.classList.add('active');
+          var grp = best.closest('details.nav-group');
+          if (grp) {
+            var s = grp.querySelector('summary.nav-link');
+            if (s) s.classList.add('active');
+          }
+        }
+      } catch (e) {}
+
+      function closeAllGroups(except) {
+        nav.querySelectorAll('details.nav-group[open]').forEach(function (d) {
+          if (d !== except) d.removeAttribute('open');
+        });
+      }
+
+      burger.addEventListener('click', function () {
+        var open = nav.classList.toggle('is-open');
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        burger.classList.toggle('is-active', open);
+        if (!open) closeAllGroups();
+      });
+
+      nav.querySelectorAll('details.nav-group').forEach(function (d) {
+        d.addEventListener('toggle', function () {
+          if (d.open) closeAllGroups(d);
+        });
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!nav.contains(e.target) && !burger.contains(e.target)) {
+          closeAllGroups();
+          if (nav.classList.contains('is-open')) {
+            nav.classList.remove('is-open');
+            burger.classList.remove('is-active');
+            burger.setAttribute('aria-expanded', 'false');
+          }
+        }
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          closeAllGroups();
+          if (nav.classList.contains('is-open')) {
+            nav.classList.remove('is-open');
+            burger.classList.remove('is-active');
+            burger.setAttribute('aria-expanded', 'false');
+            burger.focus();
+          }
+        }
+      });
     })();
   </script>
 </body>
