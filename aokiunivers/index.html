@@ -3,309 +3,261 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Aoki Univers - Lore complet de l'univers de science-fiction, technologie avancee et memoire interconnectee.">
-  <meta name="theme-color" content="#f39c12">
+  <meta name="description" content="Aoki Univers - Section neutralisée.">
+  <meta name="theme-color" content="#ff4400">
   <link rel="icon" type="image/avif" href="../favicon.avif">
-  <title>Aoki Univers - Lore</title>
+  <title>SYSTÈME NEUTRALISÉ // AOKI UNIVERS</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      font-family: Arial, sans-serif;
-      background: #121212;
-      color: #e0e0e0;
-      line-height: 1.6;
-      margin: 0;
-      padding: 0 20px;
-      overflow: auto;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
+      font-family: 'Share Tech Mono', 'Courier New', monospace;
+      background: #000;
+      color: #ff4400;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
     }
 
-    body::-webkit-scrollbar {
-      display: none;
+    /* Scanlines overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 2px,
+        rgba(0,0,0,0.18) 2px,
+        rgba(0,0,0,0.18) 4px
+      );
+      pointer-events: none;
+      z-index: 10;
     }
 
-    .page-header {
+    /* CRT flicker */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.55) 100%);
+      pointer-events: none;
+      z-index: 9;
+      animation: flicker 8s infinite;
+    }
+
+    @keyframes flicker {
+      0%, 100% { opacity: 1; }
+      92% { opacity: 1; }
+      93% { opacity: 0.85; }
+      94% { opacity: 1; }
+      96% { opacity: 0.9; }
+      97% { opacity: 1; }
+    }
+
+    .terminal {
+      width: min(700px, 95vw);
+      padding: 40px 36px;
+      border: 2px solid #ff4400;
+      position: relative;
+      z-index: 1;
+      animation: pulse-border 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-border {
+      0%, 100% { border-color: #ff4400; box-shadow: 0 0 12px #ff4400aa; }
+      50% { border-color: #ff2200; box-shadow: 0 0 28px #ff220066; }
+    }
+
+    .terminal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ff4400;
+      padding-bottom: 10px;
+      margin-bottom: 28px;
+      font-size: 0.72em;
+      opacity: 0.75;
+      letter-spacing: 0.1em;
+    }
+
+    .blink {
+      animation: blink 1s step-start infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .status-dot {
+      display: inline-block;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: #ff2200;
+      box-shadow: 0 0 8px #ff2200;
+      animation: blink 0.8s step-start infinite;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+
+    .main-warning {
       text-align: center;
-      padding: 40px 0;
+      margin-bottom: 32px;
     }
 
-    .page-header h1 {
-      font-size: 2.5em;
-      margin-bottom: 10px;
-      color: #f39c12;
+    .main-warning .label {
+      font-size: 0.68em;
+      letter-spacing: 0.25em;
+      color: #ff6633;
+      margin-bottom: 8px;
     }
 
-    .page-header p {
-      font-size: 1.1em;
-      color: #bdc3c7;
+    .main-warning h1 {
+      font-size: clamp(1em, 4vw, 1.55em);
+      letter-spacing: 0.12em;
+      color: #ff4400;
+      text-shadow: 0 0 14px #ff4400cc;
+      line-height: 1.35;
+      text-transform: uppercase;
     }
 
-    section {
-      margin: 40px 0;
-      border-bottom: 1px solid #333;
-      padding-bottom: 20px;
+    .divider {
+      border: none;
+      border-top: 1px solid #ff440055;
+      margin: 22px 0;
     }
 
-    h2 {
-      color: #f39c12;
-      border-left: 4px solid #f39c12;
-      padding-left: 10px;
+    .log {
+      font-size: 0.78em;
+      color: #cc3300;
+      line-height: 2;
+      letter-spacing: 0.05em;
     }
 
-    h3 {
-      color: #e67e22;
-    }
-
-    ul {
-      list-style: disc;
-      margin-left: 40px;
-    }
-
-    li {
-      margin-bottom: 10px;
-    }
-
-    .subsection {
-      margin-left: 20px;
-    }
+    .log .line::before { content: '> '; color: #ff4400; }
+    .log .line.dim { color: #882200; }
+    .log .line.warn { color: #ff6633; }
 
     .actions {
-      margin-top: 20px;
+      margin-top: 32px;
       text-align: center;
-      padding: 30px 0;
     }
 
     .actions button {
-      margin: 5px;
-      padding: 10px 20px;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
+      margin: 6px;
+      padding: 10px 22px;
+      font-family: 'Share Tech Mono', 'Courier New', monospace;
+      color: #000;
+      background: #ff4400;
+      border: 1px solid #ff4400;
       cursor: pointer;
-      font-size: 0.95em;
-    }
-
-    .actions .btn-home {
-      background-color: #f39c12;
-    }
-
-    .actions .btn-download {
-      background-color: #e67e22;
-    }
-
-    .actions .btn-chat {
-      background-color: #3498db;
+      font-size: 0.82em;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: background 0.2s, color 0.2s;
     }
 
     .actions button:hover {
-      opacity: 0.85;
+      background: #000;
+      color: #ff4400;
+    }
+
+    .actions .btn-nostromo {
+      background: #ff4400;
+      border-color: #ff4400;
+    }
+
+    .actions .btn-home {
+      background: transparent;
+      color: #ff4400;
+      border: 1px solid #ff4400;
+    }
+
+    .actions .btn-home:hover {
+      background: #ff4400;
+      color: #000;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 10px; height: 1.1em;
+      background: #ff4400;
+      vertical-align: text-bottom;
+      animation: blink 1s step-start infinite;
     }
   </style>
+
+  <meta property="og:title" content="SYSTÈME NEUTRALISÉ // AOKI UNIVERS">
+  <meta property="og:description" content="Cette partie du site a été neutralisée.">
+  <meta property="og:url" content="https://ventistudio.eu/aokiunivers/">
+  <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://ventistudio.eu/aokiunivers/">
 </head>
 <body>
 
-  <div class="page-header">
-    <h1>Aoki Univers &mdash; Timeline compl&egrave;te depuis la divergence</h1>
-    <p>Un univers de science-fiction, technologie avanc&eacute;e et m&eacute;moire interconnect&eacute;e</p>
+  <div class="terminal" role="main">
+    <div class="terminal-header">
+      <span>USCSS VENTISTUDIO // UNIT AOKI-UNIVERS</span>
+      <span><span class="status-dot"></span><span class="blink">ALERTE CRITIQUE</span></span>
+    </div>
+
+    <div class="main-warning">
+      <div class="label">// PROTOCOLE DE NEUTRALISATION ACTIVÉ //</div>
+      <h1>
+        CETTE PARTIE<br>
+        DU SITE A ÉTÉ<br>
+        NEUTRALISÉE
+      </h1>
+    </div>
+
+    <hr class="divider">
+
+    <div class="log" aria-label="Journal système">
+      <div class="line dim">INIT SÉQUENCE DE VERROUILLAGE .............. OK</div>
+      <div class="line dim">PURGE DES ACCÈS PUBLICS ..................... OK</div>
+      <div class="line">SYSTÈME AOKI-UNIVERS : <strong>HORS LIGNE</strong></div>
+      <div class="line warn">CONTENU CLASSIFIÉ — ACCÈS NON AUTORISÉ</div>
+      <div class="line">PROTOCOLE M.O.T.H.E.R. : <strong>EN ATTENTE</strong></div>
+      <div class="line dim">—————————————————————————————————</div>
+      <div class="line warn">SÉQUENCE D'AUTO-DESTRUCTION INITIÉE</div>
+      <div class="line">POUR ACCÉDER AU PROTOCOLE COMPLET :<br>&nbsp;&nbsp;&nbsp;→ CONSULTER LE TERMINAL NOSTROMO</div>
+    </div>
+
+    <div class="actions">
+      <button class="btn-nostromo" onclick="window.location.href='/aokiunivers/nostromo/'">
+        ACCÉDER AU TERMINAL NOSTROMO
+      </button>
+      <button class="btn-home" onclick="window.location.href='/'">
+        RETOUR ACCUEIL
+      </button>
+    </div>
+
+    <div style="margin-top:28px; font-size:0.62em; color:#882200; letter-spacing:0.12em; text-align:center;">
+      VENTISTUDIO CORP. // SECTION AOKI — REF. JAHAAKA-0024 // <span id="ts"></span><span class="cursor"></span>
+    </div>
   </div>
 
-  <section id="divergence">
-    <h2>1945 &mdash; Le Point de Divergence</h2>
-    <ul>
-      <li>L&rsquo;entreprise Onite d&eacute;couvre une forme de fusion nucl&eacute;aire ma&icirc;trisable.</li>
-      <li>La fission est mise de c&ocirc;t&eacute;, la fusion devient la source principale d&rsquo;&eacute;nergie.</li>
-      <li>Cette d&eacute;couverte provoque une r&eacute;volution technologique mondiale.</li>
-    </ul>
-  </section>
-
-  <section id="energie-totale">
-    <h2>1950&ndash;2000 &mdash; L&rsquo;&acirc;ge de l&rsquo;&Eacute;nergie Totale</h2>
-    <ul>
-      <li>Les Nations Unies &eacute;voluent en un gouvernement mondial populaire (NU1 &agrave; NU4).</li>
-      <li>D&eacute;veloppement des m&eacute;galopoles &eacute;nerg&eacute;tiques.</li>
-      <li>Mont&eacute;e des g&eacute;ants technologiques : Onite, AstrosLift.</li>
-    </ul>
-  </section>
-
-  <section id="crise-uranium">
-    <h2>2000&ndash;2005 &mdash; La Crise de l&rsquo;Uranium</h2>
-    <ul>
-      <li>La rar&eacute;faction des &eacute;l&eacute;ments essentiels pour la fusion entra&icirc;ne des conflits &eacute;nerg&eacute;tiques mondiaux.</li>
-      <li>D&eacute;clenchement d&rsquo;une courte guerre nucl&eacute;aire stopp&eacute;e par les Nations Unies.</li>
-      <li>Intervention militaire des NU pour la premi&egrave;re fois.</li>
-    </ul>
-  </section>
-
-  <section id="age-ia">
-    <h2>2005&ndash;2020 &mdash; L&rsquo;&acirc;ge des IA</h2>
-    <ul>
-      <li>D&eacute;veloppement des IA gouvernementales hybrides.</li>
-      <li>&Eacute;mergence d&rsquo;un d&eacute;bat &eacute;thique sur la m&eacute;moire et la vie priv&eacute;e.</li>
-      <li>&Eacute;tude et exp&eacute;rimentation des premiers prototypes d&rsquo;AO (Alternatives Organiques).</li>
-    </ul>
-  </section>
-
-  <section id="preparation-secrete">
-    <h2>2020 &mdash; La Pr&eacute;paration Secr&egrave;te</h2>
-    <ul>
-      <li>Les Nations Unies (NU6) anticipent une surpopulation mondiale d&rsquo;ici 2040.</li>
-      <li>Lancement secret du projet LifeStar, dirig&eacute; par Makina Ryou (AtlanCorp).</li>
-      <li>Alliances strat&eacute;giques &eacute;tablies :
-        <ul class="subsection">
-          <li>AtlanCorp (science &amp; projet principal)</li>
-          <li>Onite (&eacute;nergie et IA)</li>
-          <li>AstrosLift (technologies spatiales)</li>
-          <li>ONIQLO (technologie corporelle &amp; combinaisons)</li>
-        </ul>
-      </li>
-    </ul>
-  </section>
-
-  <section id="construction-tests">
-    <h2>2024 &mdash; Construction &amp; Derniers Tests</h2>
-    <ul>
-      <li>Construction acc&eacute;l&eacute;r&eacute;e de 7 stations orbitales autour des plan&egrave;tes cl&eacute;s :
-        <ul class="subsection">
-          <li>Geo (Terre)</li>
-          <li>Cryo (Lune)</li>
-          <li>Hydro (Neptune)</li>
-          <li>Pyro (Mars)</li>
-          <li>Electro (V&eacute;nus)</li>
-          <li>Dendro (Saturne)</li>
-          <li>Anemo (Jupiter)</li>
-        </ul>
-      </li>
-      <li>Utilisation du propulseur spatial AstrosLift v4.</li>
-      <li>Mise en place du module central : futur B.I.S.S. JAHAAKA.</li>
-      <li>Introduction de la ONIQLO SMARTSUIT.</li>
-    </ul>
-  </section>
-
-  <section id="age-eveil">
-    <h2>2025 &mdash; L&rsquo;&Acirc;ge de l&rsquo;&Eacute;veil</h2>
-    <ul>
-      <li>Arriv&eacute;e en orbite des 7 stations gr&acirc;ce au nouveau propulseur.</li>
-      <li>Temp&ecirc;te solaire : d&eacute;faillance des boucliers primaires, remplac&eacute;s par un bouclier &agrave; r&eacute;sine modifi&eacute;e assist&eacute; par IA Quantique (IAQ).</li>
-      <li>Mise en place du Syst&egrave;me INGRESS 002 sur JAHAAKA :
-        <ul class="subsection">
-          <li>Bleu = Destruction</li>
-          <li>Rouge = Capture</li>
-          <li>Vert = D&eacute;viation</li>
-        </ul>
-      </li>
-      <li>Lancement du programme <strong>Enfants de la Lune</strong> :
-        <ul class="subsection">
-          <li>8 humains + 8 AO</li>
-          <li>Hikari Umaishi na&icirc;tra apr&egrave;s cette p&eacute;riode</li>
-        </ul>
-      </li>
-      <li>Fondation de l&rsquo;Ordre de l&rsquo;Arche, unit&eacute; spirituelle et scientifique unissant les 7 &eacute;l&eacute;ments.</li>
-      <li>BISS JAHAAKA devient une station de transit et de recherche avec acc&egrave;s public limit&eacute;.</li>
-      <li>&Eacute;quipage total : environ 50 membres (MedOne, DI&amp;ST, s&eacute;curit&eacute;, contr&ocirc;le, etc.).</li>
-      <li>Makina Ryou devient une figure maternelle pour tous les Enfants du programme.</li>
-    </ul>
-  </section>
-
-  <section id="ere-coexistence">
-    <h2>2026&ndash;2045 &mdash; L&rsquo;&Egrave;re de la Coexistence</h2>
-    <ul>
-      <li>Expansion des colonies orbitales et des bases plan&eacute;taires.</li>
-      <li>D&eacute;veloppement du programme AO-7 : augmentation des capacit&eacute;s des AO et fusion possible avec les &eacute;l&eacute;ments.</li>
-      <li>Les Enfants de l&rsquo;Arche poursuivent leur p&eacute;riple, d&eacute;couvrant l&rsquo;essence pure des &eacute;l&eacute;ments.</li>
-      <li>Premi&egrave;re fusion &eacute;l&eacute;mentaire r&eacute;ussie par deux humains Anemo.</li>
-      <li>Construction de Neuma, cit&eacute; orbitale g&eacute;r&eacute;e par une IA gouvernementale ind&eacute;pendante.</li>
-      <li>Formation du Conseil des 7 Lunes, structure politique alternative n&eacute;e des stations.</li>
-      <li>ONIQLO &eacute;tend la production de SMARTSUITS &agrave; toutes les colonies.</li>
-      <li>Les tensions montent entre habitants de la Terre et ceux de l&rsquo;espace (id&eacute;es, &eacute;cologie, pouvoir).</li>
-      <li>En 2045, l&rsquo;humanit&eacute; entre dans une nouvelle &egrave;re d&rsquo;expansion interplan&eacute;taire, marquant la fin de l&rsquo;&acirc;ge de l&rsquo;&Eacute;veil.</li>
-    </ul>
-  </section>
-
-  <section id="ere-fractures">
-    <h2>2046&ndash;2076 &mdash; L&rsquo;&Egrave;re des Fractures</h2>
-    <ul>
-      <li>Apparition des premi&egrave;res tensions entre g&eacute;n&eacute;rations humaines et hybrides AO.</li>
-      <li>&Eacute;mergence de groupes radicaux anti-AO sur Terre et dans les colonies.</li>
-      <li>Des fragments de m&eacute;moire AO d&eacute;clenchent des visions du pass&eacute; alt&eacute;r&eacute;.</li>
-      <li>Cr&eacute;ation de la Station AOKI, laboratoire vivant de m&eacute;moire et d&rsquo;identit&eacute;.</li>
-      <li>L&rsquo;Ordre de l&rsquo;Arche d&eacute;couvre un 8e &eacute;l&eacute;ment au c&oelig;ur d&rsquo;un ast&eacute;ro&iuml;de lointain.</li>
-      <li>Le secret des origines des AO est r&eacute;v&eacute;l&eacute; : projet issu d&rsquo;un ancien protocole extraterrestre int&eacute;gr&eacute; &agrave; LifeStar.</li>
-      <li>Venti / Aoki Umaishi commence &agrave; fusionner avec son double Vayden.</li>
-      <li>Division des IA gouvernementales : certaines pr&ocirc;nent la paix, d&rsquo;autres pr&eacute;f&egrave;rent l&rsquo;isolement.</li>
-      <li>D&eacute;but de la guerre froide interplan&eacute;taire : lutte d&rsquo;influence entre les plan&egrave;tes du syst&egrave;me solaire.</li>
-      <li>Cr&eacute;ation de l&rsquo;Accord d&rsquo;&Eacute;ther, pacte entre humains, AO et IA pour &eacute;viter l&rsquo;extinction.</li>
-    </ul>
-  </section>
-
-  <section id="prequelle">
-    <h2>&#127756; Pr&eacute;quelle : L&rsquo;Ascension des Mondes &mdash; Avant 2045</h2>
-    <ul>
-      <h3>&#128220; I. L&rsquo;Antiquit&eacute; et les Premi&egrave;res Civilisations</h3>
-      <li>Il y a plusieurs mill&eacute;naires, la Terre &eacute;tait domin&eacute;e par des civilisations anciennes et myst&eacute;rieuses qui ont disparu dans les brumes du temps. Celles-ci ont laiss&eacute; des traces de technologies avanc&eacute;es qui ont profond&eacute;ment influenc&eacute; l&rsquo;humanit&eacute;, mais aussi des savoirs interdits, oubli&eacute;s &agrave; mesure que les empires se sont effondr&eacute;s.</li>
-      <li>L&rsquo;Empire d&rsquo;Atlan et les Premiers Artefacts</li>
-      <li>L&rsquo;un des plus grands empires de cette &eacute;poque antique, l&rsquo;Empire d&rsquo;Atlan, se distinguait par ses connaissances en fusionnant la magie et la science. Les Atlantes &eacute;taient capables de manipuler les forces de la nature gr&acirc;ce &agrave; des artefacts magiques puissants. Ils ont d&eacute;couvert des portails dimensionnels, permettant de voyager dans d&rsquo;autres univers et d&rsquo;explorer des dimensions parall&egrave;les.</li>
-      <li>Leurs recherches en &eacute;nergie cosmique et en &eacute;nergie noire ont permis de cr&eacute;er des artefacts capables de canaliser la puissance des &eacute;toiles et de l&rsquo;univers tout entier. Parmi ces artefacts, certains &eacute;taient de v&eacute;ritables sources d&rsquo;&eacute;nergie infinie, cach&eacute;es dans les temples profonds et les cavernes souterraines.</li>
-      <li>Ces artefacts furent abandonn&eacute;s, mais ils ont laiss&eacute; des traces qui seront retrouv&eacute;es bien plus tard par les futures g&eacute;n&eacute;rations.</li>
-
-      <h3>&#127793; II. Les Premiers Mill&eacute;naires : L&rsquo;&Eacute;volution et la Convergence des Sciences</h3>
-      <li>Apr&egrave;s la chute de l&rsquo;Empire d&rsquo;Atlan, les si&egrave;cles suivants furent marqu&eacute;s par un d&eacute;clin technologique, pendant lequel les savoirs anciens se perdirent dans les mythes et les l&eacute;gendes. Cependant, des traces de ces connaissances subsist&egrave;rent dans des soci&eacute;t&eacute;s secr&egrave;tes, tout particuli&egrave;rement en Asie, en Afrique, et dans le monde m&eacute;diterran&eacute;en.</li>
-      <li>Les Premi&egrave;res Exp&eacute;rimentations : Tesla et les D&eacute;couvertes Clandestines</li>
-      <li>Au tournant du 19e si&egrave;cle, des scientifiques comme Nikola Tesla commenc&egrave;rent &agrave; percer des myst&egrave;res que l&rsquo;humanit&eacute; n&rsquo;avait jamais imagin&eacute;s. Tesla, influenc&eacute; par des l&eacute;gendes anciennes et des &eacute;crits &eacute;sot&eacute;riques, parvint &agrave; d&eacute;couvrir la mani&egrave;re de manipuler l&rsquo;&eacute;lectricit&eacute; &agrave; une &eacute;chelle cosmique. Ses recherches, dans des laboratoires secrets, r&eacute;v&eacute;l&egrave;rent des ph&eacute;nom&egrave;nes que personne n&rsquo;avait encore compris : l&rsquo;existence d&rsquo;une &eacute;nergie libre, libre de toute contrainte physique. Il travailla notamment sur des transmissions sans fil &agrave; des distances impressionnantes, mais ce n&rsquo;&eacute;tait que le d&eacute;but.</li>
-      <li>Les connaissances de Tesla, bien que consid&eacute;r&eacute;es comme r&eacute;volutionnaires, furent gard&eacute;es secr&egrave;tes et utilis&eacute;es par des groupes &eacute;litaires pour l&rsquo;acc&eacute;l&eacute;ration de projets top secrets, tels que la cr&eacute;ation d&rsquo;un r&eacute;acteur &agrave; fusion nucl&eacute;aire.</li>
-
-      <h3>&#127793; III. Le 20e Si&egrave;cle : La Course &agrave; l&rsquo;Innovation et l&rsquo;&Eacute;mergence des Soci&eacute;t&eacute;s Secr&egrave;tes</h3>
-      <li>Les Ann&eacute;es 1920&ndash;1930 : L&rsquo;Alliance d&rsquo;&Eacute;lite et la Formation de Veil</li>
-      <li>Dans les ann&eacute;es 1920, un groupe d&rsquo;intellectuels, de scientifiques et de leaders politiques d&eacute;cida de s&rsquo;unir pour explorer les possibilit&eacute;s cach&eacute;es de la science. Ces individus, appel&eacute;s Veil, constitu&egrave;rent une soci&eacute;t&eacute; secr&egrave;te d&eacute;termin&eacute;e &agrave; percer les secrets de l&rsquo;univers, en particulier ceux li&eacute;s &agrave; l&rsquo;&eacute;nergie. Leur ambition : l&rsquo;utilisation de la fusion nucl&eacute;aire et d&rsquo;autres formes d&rsquo;&eacute;nergie inexploit&eacute;es pour changer le monde.</li>
-      <li>Les membres de Veil d&eacute;couvrirent des textes anciens li&eacute;s &agrave; l&rsquo;Empire d&rsquo;Atlan et des artefacts qui avaient &eacute;chapp&eacute; &agrave; la destruction du pass&eacute;. Cela les conduisit &agrave; d&eacute;velopper de nouvelles technologies bas&eacute;es sur des principes magiques et &eacute;nerg&eacute;tiques inconnus jusqu&rsquo;alors. Ils &eacute;taient les premiers &agrave; comprendre qu&rsquo;une fusion des sciences et des myst&egrave;res occultes pourrait produire une nouvelle &egrave;re technologique.</li>
-      <li>Les Ann&eacute;es 1930&ndash;1940 : Les Premi&egrave;res Applications Militaires et l&rsquo;Arriv&eacute;e d&rsquo;Onite</li>
-      <li>Au d&eacute;but des ann&eacute;es 1930, un acteur majeur, Onite, une organisation secr&egrave;te de scientifiques et d&rsquo;ing&eacute;nieurs, se lan&ccedil;a dans le d&eacute;veloppement de nouvelles technologies militaires, inspir&eacute;es par les recherches men&eacute;es par Veil. Leur objectif &eacute;tait de concevoir des armes &agrave; &eacute;nergie pure capables de transformer le monde et d&rsquo;affirmer leur domination sur les nations adverses. Les premi&egrave;res exp&eacute;riences eurent lieu sous des conditions extr&ecirc;mes, et la fusion nucl&eacute;aire fut l&rsquo;un des principaux axes de travail.</li>
-      <li>Onite commen&ccedil;a &agrave; d&eacute;velopper des r&eacute;acteurs capables de cr&eacute;er des portails dimensionnels permettant de voyager dans des zones inaccessibles. Ces recherches seraient la base des futures stations orbitales et des syst&egrave;mes de propulsion spatiale.</li>
-
-      <h3>&#127793; IV. 1945 : La D&eacute;couverte de la Fusion Nucl&eacute;aire et la Premi&egrave;re Divergence</h3>
-      <li>La fin de la Seconde Guerre mondiale fut le catalyseur pour l&rsquo;explosion de la technologie nucl&eacute;aire. En 1945, les &Eacute;tats-Unis et l&rsquo;Allemagne nazie firent une d&eacute;couverte capitale : la fusion nucl&eacute;aire contr&ocirc;l&eacute;e. Cependant, cette d&eacute;couverte eut un prix. En exp&eacute;rimentant avec l&rsquo;&eacute;nergie nucl&eacute;aire, les scientifiques &eacute;veill&egrave;rent quelque chose qui ne devait pas &ecirc;tre r&eacute;veill&eacute; : une dimension parall&egrave;le, plus profonde et plus ancienne que l&rsquo;univers connu.</li>
-      <li>C&rsquo;est &agrave; ce moment que le ph&eacute;nom&egrave;ne du d&eacute;doublement AO se produisit. Deux r&eacute;alit&eacute;s, jusqu&rsquo;alors s&eacute;par&eacute;es, commenc&egrave;rent &agrave; se fondre, cr&eacute;ant un ripple &agrave; travers le temps et l&rsquo;espace. Des artefacts anciens, laiss&eacute;s par l&rsquo;Empire d&rsquo;Atlan, furent d&eacute;couverts sous les d&eacute;combres de l&rsquo;Hiroshima, et d&rsquo;autres sites strat&eacute;giques furent investig&eacute;s.</li>
-      <li>Les premi&egrave;res stations spatiales furent mises en orbite gr&acirc;ce aux technologies des r&eacute;acteurs &agrave; fusion. Cependant, la v&eacute;ritable d&eacute;couverte se produisit dans le cadre des exp&eacute;rimentations sur les trous de ver et la manipulation d&rsquo;&eacute;nergie pure.</li>
-
-      <h3>&#127793; V. 1945&ndash;1960 : L&rsquo;&Egrave;re des Soci&eacute;t&eacute;s Secr&egrave;tes et l&rsquo;Expansion Spatiale</h3>
-      <li>L&rsquo;Organisation des Nations Unies (ONU), r&eacute;cemment form&eacute;e, chercha &agrave; contr&ocirc;ler les nouvelles avanc&eacute;es technologiques. Mais, dans l&rsquo;ombre, Onite et d&rsquo;autres soci&eacute;t&eacute;s secr&egrave;tes, comme AstrosLift, continu&egrave;rent &agrave; d&eacute;velopper des technologies bien au-del&agrave; de ce qui &eacute;tait connu du public.</li>
-      <li>Les stations orbitales commencent &agrave; &eacute;merger, mais ce n&rsquo;est qu&rsquo;en 1960 que la Station BISS JAHAAKA fut r&eacute;v&eacute;l&eacute;e au monde. Ce syst&egrave;me orbital de recherche combinait les sept &eacute;l&eacute;ments essentiels de l&rsquo;univers, reli&eacute;s &agrave; chaque plan&egrave;te du syst&egrave;me solaire.</li>
-
-      <h3>&#127793; VI. 1960&ndash;1980 : Le Commencement de la Construction des Stations Orbitales et de la Division des Croyances</h3>
-      <li>Dans les ann&eacute;es 1960, un autre ph&eacute;nom&egrave;ne &eacute;trange se produisit : les premiers contact&eacute;s par des entit&eacute;s venues d&rsquo;une autre dimension. Ceux-ci furent appel&eacute;s les Enfants de la Lune, des &ecirc;tres capables de percevoir des r&eacute;alit&eacute;s invisibles aux yeux humains. Ces entit&eacute;s commenc&egrave;rent &agrave; guider les projets de colonisation spatiale et &agrave; influencer les d&eacute;cisions politiques mondiales.</li>
-
-      <h3>&#127793; VII. 1990&ndash;2005 : La Technologie Fusionn&eacute;e et l&rsquo;Ascension de Deegle et AstrosLift</h3>
-      <li>Avec l&rsquo;augmentation des tensions g&eacute;opolitiques, des entreprises comme Deegle et AstrosLift devinrent des acteurs cl&eacute;s dans la conqu&ecirc;te spatiale et la manipulation de l&rsquo;&eacute;nergie. Ils cr&eacute;&egrave;rent des r&eacute;acteurs &agrave; fusion capables de propulser des vaisseaux interplan&eacute;taires et commenc&egrave;rent &agrave; b&acirc;tir des colonies sur Mars.</li>
-      <li>Les &Eacute;tats-Unis et l&rsquo;Union Sovi&eacute;tique s&rsquo;associ&egrave;rent dans des projets communs, mais la v&eacute;ritable avanc&eacute;e se fit sous l&rsquo;&eacute;gide de soci&eacute;t&eacute;s priv&eacute;es. Celles-ci avaient acc&egrave;s &agrave; des technologies bien plus avanc&eacute;es, issues des recherches secr&egrave;tes men&eacute;es par Veil et Onite.</li>
-
-      <h3>&#128220; Conclusion</h3>
-      <li>La premi&egrave;re divergence AO a marqu&eacute; la naissance d&rsquo;un nouvel ordre mondial, o&ugrave; les soci&eacute;t&eacute;s secr&egrave;tes, les d&eacute;couvertes technologiques et les enjeux cosmiques se sont entrelac&eacute;s pour cr&eacute;er un monde futur, rempli de possibilit&eacute;s et de dangers inou&iuml;s. &Agrave; partir de 2045, cette &egrave;re de chaos et d&rsquo;innovation marque l&rsquo;ascension de figures comme Venti Aoki et la r&eacute;v&eacute;lation des stations orbitales qui permettront de d&eacute;couvrir la v&eacute;rit&eacute; cach&eacute;e de l&rsquo;univers. Les Enfants de la Lune, l&rsquo;ascension d&rsquo;Onite, et la fusion des connaissances anciennes pr&eacute;parent le terrain pour un futur o&ugrave; l&rsquo;humanit&eacute; sera confront&eacute;e &agrave; sa propre &eacute;volution dans un univers interconnect&eacute;.</li>
-    </ul>
-  </section>
-
-  <section id="personnages-marques">
-    <h2>Liste des personnages et marques</h2>
-    <h3>Personnages</h3>
-    <ul>
-      <li>Makina Ryou</li>
-      <li>Venti Aoki</li>
-      <li>Hikari Umaishi</li>
-      <li>Vayden</li>
-    </ul>
-    <h3>Marques</h3>
-    <ul>
-      <li>Onite</li>
-      <li>AtlanCorp</li>
-      <li>AstrosLift</li>
-      <li>ONIQLO</li>
-      <li>Deegle</li>
-    </ul>
-  </section>
-
-  <div class="actions">
-    <button class="btn-home" onclick="window.location.href='/'">Revenir &agrave; l&rsquo;accueil</button>
-    <button class="btn-download" onclick="window.location.href='/aokiunivers/lore_aoki_univers.txt'">T&eacute;l&eacute;charger toutes les informations</button>
-    <button class="btn-chat" onclick="window.open('https://chatgpt.com/share/67fe39dc-c904-800b-b590-8c2ec794a268')">Parler avec ChatGPT</button>
-  </div>
+  <script>
+    (function tick() {
+      var d = new Date();
+      document.getElementById('ts').textContent =
+        d.getUTCFullYear() + '.' +
+        String(d.getUTCMonth()+1).padStart(2,'0') + '.' +
+        String(d.getUTCDate()).padStart(2,'0') + ' — ' +
+        String(d.getUTCHours()).padStart(2,'0') + ':' +
+        String(d.getUTCMinutes()).padStart(2,'0') + ':' +
+        String(d.getUTCSeconds()).padStart(2,'0') + ' UTC';
+      setTimeout(tick, 1000);
+    })();
+  </script>
 
 </body>
 </html>

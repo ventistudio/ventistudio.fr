@@ -1,220 +1,320 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <meta name="description" content="VentiStudio Gold - Accédez au contenu exclusif réservé aux donateurs.">
+  <meta name="description" content="VentiStudio Gold - Un espace réservé aux initiés.">
   <meta name="theme-color" content="#6366f1">
-  <title>VentiStudio Gold - Accès Donateur</title>
+  <title>Gold | VentiStudio</title>
   <link rel="stylesheet" href="/style.css">
   <style>
-    .gold-hero {
+    .gold-mystery {
       text-align: center;
-      padding: 4rem 2rem 2rem;
+      padding: 6rem 2rem 3rem;
+      min-height: 60vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
-    .gold-hero .gold-icon {
-      font-size: 4rem;
+
+    .gold-mystery .mystery-icon {
+      font-size: 5rem;
       display: block;
+      margin-bottom: 1.5rem;
+      opacity: 0.6;
+      animation: float-mystery 4s ease-in-out infinite;
+    }
+
+    @keyframes float-mystery {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      25% { transform: translateY(-8px) rotate(-2deg); }
+      75% { transform: translateY(-4px) rotate(2deg); }
+    }
+
+    .gold-mystery h1 {
+      font-size: 2.5rem;
       margin-bottom: 1rem;
-      animation: float-gold 3s ease-in-out infinite;
-    }
-    @keyframes float-gold {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-    .gold-hero h1 {
-      font-size: 2.2rem;
-      margin-bottom: .5rem;
-      background: linear-gradient(135deg, #f59e0b, #fbbf24, #f59e0b);
+      background: linear-gradient(135deg, #f59e0b, #fbbf24, #d97706);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      background-size: 200% 100%;
+      animation: gold-shimmer 3s ease-in-out infinite;
     }
-    .gold-hero .subtitle {
+
+    @keyframes gold-shimmer {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .gold-mystery .mystery-text {
       font-size: 1.1rem;
-      opacity: .75;
-      max-width: 550px;
-      margin: 0 auto;
+      color: var(--text-secondary);
+      max-width: 500px;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
     }
 
-    .gold-access {
-      max-width: 480px;
-      margin: 2.5rem auto 3rem;
-      padding: 2rem;
-      background: var(--glass-bg);
-      border: 1px solid var(--glass-border);
-      border-radius: 16px;
-      backdrop-filter: blur(12px);
-      text-align: center;
-    }
-    .gold-access h2 {
-      font-size: 1.3rem;
-      margin-bottom: .5rem;
-    }
-    .gold-access .access-desc {
-      font-size: .9rem;
-      opacity: .65;
-      margin-bottom: 1.5rem;
-    }
-
-    .gold-access .input-group {
-      display: flex;
-      flex-direction: column;
-      gap: .8rem;
-      margin-bottom: 1rem;
-    }
-    .gold-access input[type="text"] {
-      width: 100%;
-      padding: .8rem 1rem;
-      background: var(--glass-bg);
-      border: 1px solid var(--glass-border);
-      border-radius: 10px;
-      color: inherit;
-      font-size: .95rem;
-      outline: none;
-      transition: border-color .2s;
-      box-sizing: border-box;
-    }
-    .gold-access input[type="text"]:focus {
-      border-color: #f59e0b;
-    }
-    .gold-access .divider {
-      font-size: .8rem;
-      opacity: .5;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-    .gold-access .file-upload {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: .5rem;
-      padding: .8rem;
-      background: var(--glass-bg);
-      border: 2px dashed var(--glass-border);
-      border-radius: 10px;
-      cursor: pointer;
-      transition: border-color .2s;
-      font-size: .9rem;
-      opacity: .8;
-    }
-    .gold-access .file-upload:hover {
-      border-color: #f59e0b;
-    }
-    .gold-access .file-upload input[type="file"] {
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-      cursor: pointer;
-    }
-
-    .gold-access .btn-gold {
-      display: inline-flex;
-      align-items: center;
-      gap: .5rem;
-      margin-top: 1rem;
-      padding: .8rem 2rem;
-      background: linear-gradient(135deg, #f59e0b, #d97706);
-      color: #fff;
-      border: none;
-      border-radius: 10px;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: transform .2s, box-shadow .2s;
-    }
-    .gold-access .btn-gold:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(245, 158, 11, .3);
-    }
-
-    .gold-access .error-msg {
-      margin-top: .8rem;
-      padding: .6rem 1rem;
-      background: rgba(239, 68, 68, .15);
-      border: 1px solid rgba(239, 68, 68, .3);
-      border-radius: 8px;
-      color: #ef4444;
-      font-size: .85rem;
-      display: none;
-    }
-    .gold-access .error-msg.visible { display: block; }
-
-    .gold-benefits {
-      max-width: 800px;
-      margin: 0 auto 3rem;
-      padding: 0 1.5rem;
-    }
-    .gold-benefits h2 {
-      font-size: 1.4rem;
-      margin-bottom: 1rem;
-      text-align: center;
-    }
-    .gold-benefits .benefits-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.2rem;
-    }
-    .benefit-card {
+    .gold-mystery .hint-box {
       background: var(--glass-bg);
       border: 1px solid var(--glass-border);
       border-radius: 12px;
-      padding: 1.5rem;
-      backdrop-filter: blur(10px);
-      text-align: center;
-      transition: transform .2s, box-shadow .2s;
+      padding: 1.5rem 2rem;
+      backdrop-filter: blur(12px);
+      max-width: 420px;
+      margin-bottom: 2rem;
     }
-    .benefit-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 24px var(--glass-shadow);
-    }
-    .benefit-card .card-icon {
-      font-size: 2rem;
-      display: block;
-      margin-bottom: .5rem;
-    }
-    .benefit-card h3 {
-      font-size: 1rem;
-      margin-bottom: .3rem;
-    }
-    .benefit-card p {
-      font-size: .85rem;
-      opacity: .7;
+
+    .gold-mystery .hint-box p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      opacity: 0.7;
+      line-height: 1.7;
       margin: 0;
     }
 
-    .gold-donate {
-      text-align: center;
-      margin-bottom: 3rem;
+    .gold-mystery .hint-box .hint-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #f59e0b;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      display: block;
     }
-    .gold-donate p {
-      opacity: .6;
-      font-size: .9rem;
-      margin-bottom: .8rem;
+
+    .gold-mystery .hint-dots {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      margin-top: 2rem;
+      opacity: 0.3;
     }
-    .gold-donate a {
+
+    .gold-mystery .hint-dots span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #f59e0b;
+    }
+
+    .gold-mystery .hint-dots span:nth-child(1) { animation: dot-pulse 2s 0s infinite; }
+    .gold-mystery .hint-dots span:nth-child(2) { animation: dot-pulse 2s 0.3s infinite; }
+    .gold-mystery .hint-dots span:nth-child(3) { animation: dot-pulse 2s 0.6s infinite; }
+    .gold-mystery .hint-dots span:nth-child(4) { animation: dot-pulse 2s 0.9s infinite; }
+    .gold-mystery .hint-dots span:nth-child(5) { animation: dot-pulse 2s 1.2s infinite; }
+    .gold-mystery .hint-dots span:nth-child(6) { animation: dot-pulse 2s 1.5s infinite; }
+    .gold-mystery .hint-dots span:nth-child(7) { animation: dot-pulse 2s 1.8s infinite; }
+
+    @keyframes dot-pulse {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.3); }
+    }
+
+    .gold-mystery .back-link {
       display: inline-flex;
       align-items: center;
-      gap: .5rem;
-      padding: .7rem 1.8rem;
-      background: var(--accent);
-      color: #fff;
-      border-radius: 10px;
+      gap: 0.4rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.85rem;
+      margin-top: 1rem;
+      opacity: 0.5;
+      transition: opacity 0.3s;
+    }
+
+    .gold-mystery .back-link:hover {
+      opacity: 1;
+      color: var(--accent);
+    }
+
+    /* Zone de décryptage */
+    .decrypt-zone {
+      background: var(--glass-bg);
+      border: 1px solid rgba(245, 158, 11, 0.2);
+      border-radius: 16px;
+      padding: 2rem;
+      max-width: 500px;
+      width: 100%;
+      margin-top: 2.5rem;
+      backdrop-filter: blur(16px);
+      text-align: left;
+      transition: border-color 0.5s, box-shadow 0.5s, opacity 0.6s, transform 0.6s;
+      display: none;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    .decrypt-zone.revealed {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .decrypt-zone.completed {
+      border-color: rgba(245, 158, 11, 0.5);
+      box-shadow: 0 0 30px rgba(245, 158, 11, 0.08);
+    }
+    .decrypt-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #f59e0b;
+      font-weight: 600;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    .decrypt-desc {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin: 0 0 1.5rem;
+      line-height: 1.6;
+      opacity: 0.7;
+    }
+    .decrypt-display {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 1.25rem;
+      letter-spacing: 0.1em;
+      text-align: center;
+      padding: 1rem 0.6rem;
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(245, 158, 11, 0.12);
+      border-radius: 8px;
+      min-height: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .decrypt-display::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
+      pointer-events: none;
+    }
+    .dc {
+      display: inline-block;
+      min-width: 0.7ch;
+      text-align: center;
+      color: rgba(245, 158, 11, 0.3);
+      transition: color 0.3s, text-shadow 0.3s;
+    }
+    .dc.locked {
+      color: #fbbf24;
+      text-shadow: 0 0 8px rgba(251, 191, 36, 0.5);
+    }
+    .dc.active {
+      color: rgba(245, 158, 11, 0.7);
+    }
+    .decrypt-placeholder {
+      color: rgba(245, 158, 11, 0.12);
+      font-size: 1rem;
+    }
+    .decrypt-progress-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-top: 1rem;
+    }
+    .decrypt-progress-bar {
+      flex: 1;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .decrypt-progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #d97706, #f59e0b, #fbbf24);
+      border-radius: 3px;
+      transition: width 0.5s ease;
+    }
+    .decrypt-percent {
+      font-size: 0.7rem;
+      color: #f59e0b;
+      font-weight: 600;
+      font-family: 'Courier New', monospace;
+      min-width: 2.5rem;
+      text-align: right;
+    }
+    .decrypt-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1.2rem;
+      padding: 0.6rem 1.3rem;
+      background: linear-gradient(135deg, rgba(245,158,11,0.15), rgba(251,191,36,0.08));
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      color: #fbbf24;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 500;
+      font-family: inherit;
+      transition: all 0.3s;
+    }
+    .decrypt-btn:hover:not(:disabled) {
+      background: linear-gradient(135deg, rgba(245,158,11,0.25), rgba(251,191,36,0.15));
+      border-color: #f59e0b;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.12);
+    }
+    .decrypt-btn:disabled {
+      opacity: 0.5;
+      cursor: default;
+    }
+    .decrypt-access {
+      display: none;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1.2rem;
+      padding: 0.7rem 1.5rem;
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: #000;
+      border-radius: 8px;
       text-decoration: none;
       font-weight: 600;
-      transition: background .2s, transform .2s;
+      font-size: 0.9rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+      animation: decrypt-glow 2s ease-in-out infinite;
     }
-    .gold-donate a:hover {
-      background: var(--accent-secondary);
-      transform: translateY(-2px);
+    .decrypt-access.visible { display: inline-flex; }
+    .decrypt-access:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 20px rgba(245, 158, 11, 0.25);
+    }
+    @keyframes decrypt-glow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4); }
+      50% { box-shadow: 0 0 20px 4px rgba(245, 158, 11, 0.12); }
     }
 
     @media (max-width: 600px) {
-      .gold-hero h1 { font-size: 1.6rem; }
-      .gold-access { margin: 2rem 1rem; padding: 1.5rem; }
+      .gold-mystery { padding: 4rem 1.5rem 2rem; }
+      .gold-mystery h1 { font-size: 1.8rem; }
+      .gold-mystery .hint-box { padding: 1rem 1.2rem; }
+      .decrypt-zone { padding: 1.2rem; }
+      .decrypt-display { font-size: 0.95rem; letter-spacing: 0.06em; padding: 0.8rem 0.4rem; }
     }
   </style>
+
+  <script async crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
+  <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
+
+  <meta property="og:title" content="Gold | VentiStudio">
+  <meta property="og:description" content="VentiStudio Gold - Un espace réservé aux initiés.">
+  <meta property="og:url" content="https://ventistudio.eu/gold/">
+  <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://ventistudio.eu/gold/">
+
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
 </head>
 <body>
   <header>
@@ -222,15 +322,133 @@
       <img src="/favicon.avif" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
       <span>VentiStudio</span>
     </div>
-    <nav aria-label="Navigation principale">
-      <a href="/">Accueil</a>
-      <a href="/evaluation">Contenu Approuvé</a>
-      <a href="/player">Lecteur</a>
-      <a href="/wiki">Wiki</a>
-      <a href="/staff">Équipe</a>
-      <a href="/news">News</a>
-      <a href="/pip">PIP</a>
-      <a href="/sitemap">Plan du site</a>
+    <button class="nav-burger" id="nav-burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="main-nav" class="main-nav" aria-label="Navigation principale">
+      <a href="/" class="nav-link">Accueil</a>
+
+      <details class="nav-group">
+        <summary class="nav-link">Découvrir
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel" role="menu">
+          <a href="/evaluation">Évaluation</a>
+          <a href="/wiki">Wiki</a>
+          <a href="/glossary">Glossaire</a>
+          <a href="/news">News</a>
+          <a href="/blog">Blog</a>
+          <a href="/calendar">Calendrier</a>
+          <a href="/cookbook">Cookbook</a>
+          <a href="/gallery">Galerie</a>
+          <a href="/atlas">Atlas</a>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Univers
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel" role="menu">
+          <a href="/aokiunivers">AOKI Universe</a>
+          <a href="/allofaokiunivers">All AOKI</a>
+          <a href="/university">Université</a>
+          <a href="/history">Histoire</a>
+          <a href="/memorial">Mémorial</a>
+          <a href="/ester-eggs">Easter eggs</a>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Outils
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Applications</h4>
+            <a href="/player">Lecteur</a>
+            <a href="/music">Musique</a>
+            <a href="/pip">PIP</a>
+            <a href="/whiteboard">Whiteboard</a>
+            <a href="/portfolio">Portfolio</a>
+            <a href="/gmod">GMod</a>
+          </div>
+          <div class="nav-col">
+            <h4>Domaines</h4>
+            <a href="/domain/aina">AINA</a>
+            <a href="/domain/archive">Archive</a>
+            <a href="/domain/maps">Maps</a>
+            <a href="/domain/movie">Movie</a>
+            <a href="/domain/peer">Peer</a>
+            <a href="/domain/pro">Pro</a>
+            <a href="/domain/search">Search</a>
+            <a href="/domain/suite">Suite</a>
+          </div>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Communauté
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Équipe</h4>
+            <a href="/personnel/">Équipe</a>
+            <a href="/hierarchie-staff">Hiérarchie</a>
+            <a href="/hypesquad">Hypesquad</a>
+            <a href="/jobs">Emplois</a>
+            <a href="/birthday">Anniversaires</a>
+          </div>
+          <div class="nav-col">
+            <h4>Réseaux</h4>
+            <a href="/discord">Discord</a>
+            <a href="/teamspeak">TeamSpeak</a>
+            <a href="/steam">Steam</a>
+            <a href="/social">Réseaux sociaux</a>
+          </div>
+          <div class="nav-col">
+            <h4>Activités</h4>
+            <a href="/artist">Artistes</a>
+            <a href="/quests">Quêtes</a>
+            <a href="/suboawards">Suboawards</a>
+            <a href="/eConcert">eConcert</a>
+          </div>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Plus
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Aide</h4>
+            <a href="/contact">Contact</a>
+            <a href="/faq">FAQ</a>
+            <a href="/status">Statut</a>
+            <a href="/sitemap">Plan du site</a>
+          </div>
+          <div class="nav-col">
+            <h4>Soutien</h4>
+            <a href="/donate">Faire un don</a>
+            <a href="/gold">Gold</a>
+            <a href="/customization">Personnalisation</a>
+            <a href="/mes-donnees">Mes Données</a>
+            <a href="/newsletter">Newsletter</a>
+          </div>
+          <div class="nav-col">
+            <h4>À propos</h4>
+            <a href="/company">Entreprise</a>
+            <a href="/acknowledgements">Remerciements</a>
+            <a href="/logo">Logo</a>
+            <a href="/tags">Tags</a>
+            <a href="/memory">Mémoire</a>
+            <a href="/why-not-use-roblox">Pourquoi pas Roblox</a>
+            <a href="/lawful">Mentions légales</a>
+          </div>
+        </div>
+      </details>
     </nav>
     <div class="controls" role="toolbar" aria-label="Contrôles">
       <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
@@ -240,68 +458,49 @@
           <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
         </svg>
       </button>
-      <div id="user-button" role="region" aria-label="Authentification"></div>
+      <div id="user-button" role="region" aria-label="Authentification"><button class="cta" id="auth-fallback-btn" onclick="window.location.href='https://accounts.ventistudio.eu/sign-in?redirect_url='+encodeURIComponent(window.location.href)" style="padding:0.5rem 1.25rem;font-size:0.9rem;margin:0"><span>Se connecter</span></button></div>
     </div>
   </header>
 
   <main>
-    <!-- Hero -->
-    <section class="gold-hero">
-      <span class="gold-icon" aria-hidden="true">👑</span>
+    <section class="gold-mystery">
+      <span class="mystery-icon" aria-hidden="true">👑</span>
       <h1>VentiStudio Gold</h1>
-      <p class="subtitle">Accédez au contenu exclusif réservé à nos donateurs et débloquez des avantages premium.</p>
-    </section>
+      <p class="mystery-text">
+        Cet espace est réservé aux initiés.<br>
+        L'accès ne se trouve pas ici… il se mérite.
+      </p>
 
-    <!-- Formulaire d'accès -->
-    <div class="gold-access">
-      <h2>🔑 Clé d'accès</h2>
-      <p class="access-desc">Entrez votre clé Gold ou importez votre fichier de clé pour accéder au contenu exclusif.</p>
-
-      <div class="input-group">
-        <input type="text" id="gold-key" placeholder="Entrez votre clé d'accès Gold..." autocomplete="off" spellcheck="false">
-        <span class="divider">ou</span>
-        <label class="file-upload">
-          📄 Importer un fichier de clé
-          <input type="file" id="gold-file" accept=".txt,.key">
-        </label>
+      <div class="hint-box">
+        <span class="hint-label">Indice</span>
+        <p>Tout semble normal quand les services sont en ligne. Mais que se passe-t-il si vous y regardez de plus près… 7 fois ?</p>
       </div>
 
-      <button class="btn-gold" id="btn-validate">✨ Accéder</button>
-      <div class="error-msg" id="error-msg">Clé d'accès invalide. Veuillez réessayer.</div>
-    </div>
-
-    <!-- Avantages -->
-    <section class="gold-benefits">
-      <h2>Avantages Gold</h2>
-      <div class="benefits-grid">
-        <div class="benefit-card">
-          <span class="card-icon" aria-hidden="true">🛠️</span>
-          <h3>Outils Exclusifs</h3>
-          <p>Accès à des outils de développement premium</p>
-        </div>
-        <div class="benefit-card">
-          <span class="card-icon" aria-hidden="true">🎮</span>
-          <h3>Jeux VentiStudio</h3>
-          <p>Téléchargez nos créations exclusives</p>
-        </div>
-        <div class="benefit-card">
-          <span class="card-icon" aria-hidden="true">🎧</span>
-          <h3>Support Prioritaire</h3>
-          <p>Assistance technique dédiée et rapide</p>
-        </div>
-        <div class="benefit-card">
-          <span class="card-icon" aria-hidden="true">📦</span>
-          <h3>Téléchargements</h3>
-          <p>Fichiers et ressources réservés Gold</p>
-        </div>
+      <div class="hint-dots" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
       </div>
-    </section>
 
-    <!-- Devenir donateur -->
-    <div class="gold-donate">
-      <p>Pas encore de clé Gold ? Devenez donateur pour en obtenir une.</p>
-      <a href="/donate">Faire un don</a>
-    </div>
+      <div class="decrypt-zone" id="decrypt-zone">
+        <span class="decrypt-label">⚙ Décryptage du signal</span>
+        <p class="decrypt-desc">Un signal chiffré a été intercepté. Lancez le décryptage pour révéler le code d'accès Gold.</p>
+
+        <div class="decrypt-display" id="decrypt-display">
+          <span class="decrypt-placeholder">██████-████-████-████-████</span>
+        </div>
+
+        <div class="decrypt-progress-wrap">
+          <div class="decrypt-progress-bar">
+            <div class="decrypt-progress-fill" id="decrypt-progress"></div>
+          </div>
+          <span class="decrypt-percent" id="decrypt-percent">0%</span>
+        </div>
+
+        <button type="button" class="decrypt-btn" id="decrypt-btn">⚡ Lancer le décryptage</button>
+        <a href="/gold/goldforventistudiofr/" class="decrypt-access" id="decrypt-access">👑 Accéder au Dashboard Gold</a>
+      </div>
+
+      <a href="/" class="back-link">← Retour à l'accueil</a>
+    </section>
   </main>
 
   <footer>
@@ -309,9 +508,9 @@
       <div class="footer-section">
         <h4>Outils</h4>
         <ul>
-          <li><a href="#">Encrypt</a></li>
+          <li><a href="/pip">PIP</a></li>
           <li><a href="/sitemap">Plan du site</a></li>
-          <li><a href="/stats">Statut</a></li>
+          <li><a href="https://status.ventistudio.eu/">Statut</a></li>
         </ul>
       </div>
       <div class="footer-section">
@@ -333,56 +532,206 @@
       <div class="footer-section">
         <h4>Chartes</h4>
         <ul>
-          <li><a href="/lawful/tos">Conditions</a></li>
+          <li><a href="/lawful/tos">Conditions d'utilisation</a></li>
           <li><a href="/lawful/cookies">Confidentialité</a></li>
           <li><a href="/lawful/dmcainfo">Information DMCA</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
+      <iframe src="https://status.ventistudio.eu/badge?theme=dark" width="500" height="30" frameborder="0" scrolling="no" style="color-scheme: normal"></iframe>
       <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
     </div>
   </footer>
 
-  <script src="/script.js" defer></script>
   <script>
-    const VALID_KEY = 'https://ventistudio.eu/error/code?code=149';
-    const GOLD_URL = '/gold/goldforventistudiofr/';
+  (function() {
+    var _k = [86,83,71,79,76,68,45,56,70,50,75,45,88,78,52,55,45,81,87,57,82,45,74,77,80,76];
+    var REAL = _k.map(function(c) { return String.fromCharCode(c); }).join('');
+    var POOL = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%!?*░▒▓';
+    var DURATION = 90000;
 
-    const keyInput = document.getElementById('gold-key');
-    const fileInput = document.getElementById('gold-file');
-    const btnValidate = document.getElementById('btn-validate');
-    const errorMsg = document.getElementById('error-msg');
+    var zone = document.getElementById('decrypt-zone');
+    var display = document.getElementById('decrypt-display');
+    var progressFill = document.getElementById('decrypt-progress');
+    var percentEl = document.getElementById('decrypt-percent');
+    var btn = document.getElementById('decrypt-btn');
+    var accessBtn = document.getElementById('decrypt-access');
 
-    function validateKey(key) {
-      if (key.trim() === VALID_KEY) {
-        window.location.href = GOLD_URL;
-      } else {
-        errorMsg.classList.add('visible');
-        keyInput.style.borderColor = '#ef4444';
-        setTimeout(() => {
-          errorMsg.classList.remove('visible');
-          keyInput.style.borderColor = '';
-        }, 3000);
-      }
+    var crown = document.querySelector('.mystery-icon');
+
+    if (sessionStorage.getItem('gold-access') === 'true') {
+      zone.classList.add('revealed');
+      showUnlocked();
+      return;
     }
 
-    btnValidate.addEventListener('click', () => validateKey(keyInput.value));
-    keyInput.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') validateKey(keyInput.value);
-    });
+    if (crown) {
+      crown.style.cursor = 'pointer';
+      crown.addEventListener('click', function() {
+        if (!zone.classList.contains('revealed')) {
+          zone.classList.add('revealed');
+          zone.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      });
+    }
 
-    fileInput.addEventListener('change', (e) => {
-      const file = e.target.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = (ev) => {
-        const content = ev.target.result;
-        validateKey(content);
-      };
-      reader.readAsText(file);
-    });
+    btn.addEventListener('click', startDecrypt);
+
+    function showUnlocked() {
+      var html = '';
+      for (var i = 0; i < REAL.length; i++) {
+        html += '<span class="dc locked">' + REAL[i] + '</span>';
+      }
+      display.innerHTML = html;
+      progressFill.style.width = '100%';
+      percentEl.textContent = '100%';
+      btn.style.display = 'none';
+      accessBtn.classList.add('visible');
+      zone.classList.add('completed');
+    }
+
+    function startDecrypt() {
+      btn.disabled = true;
+      btn.textContent = '⏳ Décryptage en cours…';
+
+      var decryptable = [];
+      var html = '';
+      for (var i = 0; i < REAL.length; i++) {
+        if (REAL[i] === '-') {
+          html += '<span class="dc locked">-</span>';
+        } else {
+          html += '<span class="dc" id="dc' + i + '"></span>';
+          decryptable.push(i);
+        }
+      }
+      display.innerHTML = html;
+
+      var perChar = DURATION / decryptable.length;
+      var solved = 0;
+
+      var cycler = setInterval(function() {
+        for (var j = solved; j < decryptable.length; j++) {
+          var el = document.getElementById('dc' + decryptable[j]);
+          if (el && !el.classList.contains('locked')) {
+            el.textContent = POOL[Math.floor(Math.random() * POOL.length)];
+          }
+        }
+      }, 50);
+
+      function solveNext() {
+        if (solved >= decryptable.length) {
+          clearInterval(cycler);
+          progressFill.style.width = '100%';
+          percentEl.textContent = '100%';
+          btn.style.display = 'none';
+          accessBtn.classList.add('visible');
+          zone.classList.add('completed');
+          sessionStorage.setItem('gold-access', 'true');
+          return;
+        }
+
+        var idx = decryptable[solved];
+        var el = document.getElementById('dc' + idx);
+        var flicks = 0;
+
+        var flickInterval = setInterval(function() {
+          flicks++;
+          if (flicks >= 6) {
+            clearInterval(flickInterval);
+            el.textContent = REAL[idx];
+            el.classList.remove('active');
+            el.classList.add('locked');
+            solved++;
+            var pct = Math.round((solved / decryptable.length) * 100);
+            progressFill.style.width = pct + '%';
+            percentEl.textContent = pct + '%';
+          } else {
+            el.classList.add('active');
+            el.textContent = POOL[Math.floor(Math.random() * POOL.length)];
+          }
+        }, 35);
+
+        var variation = perChar * (0.8 + Math.random() * 0.4);
+        setTimeout(solveNext, variation);
+      }
+
+      setTimeout(solveNext, 2000);
+    }
+  })();
+  </script>
+  <script src="/main.js" defer></script>
+  <script>
+    (function () {
+      var nav = document.getElementById('main-nav');
+      var burger = document.getElementById('nav-burger');
+      if (!nav || !burger) return;
+
+      // Marque le lien actif d'apres l'URL courante
+      try {
+        var path = window.location.pathname.replace(/\/index\.html?$/, '/').replace(/\/$/, '') || '/';
+        var best = null, bestLen = -1;
+        nav.querySelectorAll('a[href]').forEach(function (a) {
+          var href = a.getAttribute('href').replace(/\/$/, '') || '/';
+          if (href === path || (href !== '/' && path.indexOf(href + '/') === 0) || (href !== '/' && path === href)) {
+            if (href.length > bestLen) { best = a; bestLen = href.length; }
+          }
+        });
+        if (path === '/' || path === '') {
+          best = nav.querySelector('a[href="/"]');
+        }
+        if (best) {
+          best.classList.add('active');
+          var grp = best.closest('details.nav-group');
+          if (grp) {
+            var s = grp.querySelector('summary.nav-link');
+            if (s) s.classList.add('active');
+          }
+        }
+      } catch (e) {}
+
+      function closeAllGroups(except) {
+        nav.querySelectorAll('details.nav-group[open]').forEach(function (d) {
+          if (d !== except) d.removeAttribute('open');
+        });
+      }
+
+      burger.addEventListener('click', function () {
+        var open = nav.classList.toggle('is-open');
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        burger.classList.toggle('is-active', open);
+        if (!open) closeAllGroups();
+      });
+
+      nav.querySelectorAll('details.nav-group').forEach(function (d) {
+        d.addEventListener('toggle', function () {
+          if (d.open) closeAllGroups(d);
+        });
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!nav.contains(e.target) && !burger.contains(e.target)) {
+          closeAllGroups();
+          if (nav.classList.contains('is-open')) {
+            nav.classList.remove('is-open');
+            burger.classList.remove('is-active');
+            burger.setAttribute('aria-expanded', 'false');
+          }
+        }
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          closeAllGroups();
+          if (nav.classList.contains('is-open')) {
+            nav.classList.remove('is-open');
+            burger.classList.remove('is-active');
+            burger.setAttribute('aria-expanded', 'false');
+            burger.focus();
+          }
+        }
+      });
+    })();
   </script>
 </body>
 </html>

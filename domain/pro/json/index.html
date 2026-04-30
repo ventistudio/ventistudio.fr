@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="Formateur JSON — Formatez, validez, minifiez et explorez vos données JSON. 100% client-side.">
+  <meta name="theme-color" content="#0ea5e9">
+  <title>Formateur JSON | VentiStudio Pro</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/domain/pro/pro.css">
+  <style>
+    .json-layout { margin-top: 2rem; }
+
+    .panel {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      box-shadow: var(--glass-shadow);
+      margin-bottom: 1.5rem;
+    }
+
+    .panel h3 {
+      margin: 0 0 1rem;
+      font-size: 1rem;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* Toolbar */
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .tool-btn {
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--glass-border);
+      border-radius: 0.65rem;
+      background: var(--glass-bg);
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.25s;
+      font-weight: 500;
+    }
+
+    .tool-btn:hover { border-color: var(--accent); color: var(--text-primary); }
+
+    .tool-btn.primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+      color: #fff;
+      border-color: transparent;
+    }
+
+    .tool-btn.primary:hover { box-shadow: 0 4px 20px rgba(14, 165, 233, 0.4); transform: translateY(-1px); }
+
+    /* Editors */
+    .editors {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .editor-col label {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.35rem;
+    }
+
+    .editor-col textarea {
+      width: 100%;
+      min-height: 350px;
+      padding: 0.85rem;
+      border: 1px solid var(--glass-border);
+      border-radius: 0.75rem;
+      background: var(--glass-bg);
+      color: var(--text-primary);
+      font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+      font-size: 0.85rem;
+      line-height: 1.55;
+      resize: vertical;
+      transition: border-color 0.25s;
+      tab-size: 2;
+    }
+
+    .editor-col textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15);
+    }
+
+    /* Status bar */
+    .status-bar {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-top: 0.75rem;
+    }
+
+    .status-chip {
+      padding: 0.35rem 0.75rem;
+      border-radius: 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    .status-chip.valid { background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); }
+    .status-chip.invalid { background: rgba(239, 68, 68, 0.15); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.3); }
+    .status-chip.info { background: rgba(14, 165, 233, 0.1); color: var(--text-primary); border: 1px solid var(--glass-border); }
+
+    /* Tree view */
+    .tree-container {
+      max-height: 500px;
+      overflow: auto;
+      font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+      font-size: 0.82rem;
+      line-height: 1.65;
+    }
+
+    .tree-node {
+      padding-left: 1.25rem;
+      position: relative;
+    }
+
+    .tree-key {
+      color: var(--accent);
+      cursor: default;
+    }
+
+    .tree-string { color: #10b981; }
+    .tree-number { color: #f59e0b; }
+    .tree-bool   { color: #ef4444; }
+    .tree-null   { color: var(--text-secondary); font-style: italic; }
+
+    .tree-toggle {
+      cursor: pointer;
+      user-select: none;
+      color: var(--text-secondary);
+      display: inline-block;
+      width: 1em;
+      text-align: center;
+    }
+
+    .tree-toggle:hover { color: var(--accent); }
+
+    .tree-bracket { color: var(--text-secondary); }
+    .tree-comma { color: var(--text-secondary); }
+
+    .tree-collapsed { display: none; }
+
+    /* Path breadcrumb */
+    .path-bar {
+      padding: 0.5rem 0.75rem;
+      border: 1px solid var(--glass-border);
+      border-radius: 0.5rem;
+      background: rgba(14, 165, 233, 0.05);
+      font-family: 'Fira Code', monospace;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+      min-height: 2rem;
+      word-break: break-all;
+    }
+
+    .copied-toast {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+      color: #fff;
+      padding: 0.65rem 1.5rem;
+      border-radius: 0.75rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      opacity: 0;
+      transition: all 0.35s;
+      pointer-events: none;
+      z-index: 99;
+    }
+
+    .copied-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    /* Indent select */
+    .indent-select {
+      padding: 0.5rem 0.75rem;
+      border: 1px solid var(--glass-border);
+      border-radius: 0.65rem;
+      background: var(--glass-bg);
+      color: var(--text-primary);
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 768px) {
+      .editors { grid-template-columns: 1fr; }
+    }
+  </style>
+
+  <script async crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
+  <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
+
+  <meta property="og:title" content="Formateur JSON | VentiStudio Pro">
+  <meta property="og:description" content="Formateur JSON — Formatez, validez, minifiez et explorez vos données JSON. 100% client-side.">
+  <meta property="og:url" content="https://ventistudio.eu/domain/pro/json/">
+  <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://ventistudio.eu/domain/pro/json/">
+
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="/favicon.avif" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
+      <span>VentiStudio</span>
+    </div>
+    <button class="nav-burger" id="nav-burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="main-nav" class="main-nav" aria-label="Navigation principale">
+      <a href="/" class="nav-link">Accueil</a>
+
+      <details class="nav-group">
+        <summary class="nav-link">Découvrir
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel" role="menu">
+          <a href="/evaluation">Évaluation</a>
+          <a href="/wiki">Wiki</a>
+          <a href="/glossary">Glossaire</a>
+          <a href="/news">News</a>
+          <a href="/blog">Blog</a>
+          <a href="/calendar">Calendrier</a>
+          <a href="/cookbook">Cookbook</a>
+          <a href="/gallery">Galerie</a>
+          <a href="/atlas">Atlas</a>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Univers
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel" role="menu">
+          <a href="/aokiunivers">AOKI Universe</a>
+          <a href="/allofaokiunivers">All AOKI</a>
+          <a href="/university">Université</a>
+          <a href="/history">Histoire</a>
+          <a href="/memorial">Mémorial</a>
+          <a href="/ester-eggs">Easter eggs</a>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Outils
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Applications</h4>
+            <a href="/player">Lecteur</a>
+            <a href="/music">Musique</a>
+            <a href="/pip">PIP</a>
+            <a href="/whiteboard">Whiteboard</a>
+            <a href="/portfolio">Portfolio</a>
+            <a href="/gmod">GMod</a>
+          </div>
+          <div class="nav-col">
+            <h4>Domaines</h4>
+            <a href="/domain/aina">AINA</a>
+            <a href="/domain/archive">Archive</a>
+            <a href="/domain/maps">Maps</a>
+            <a href="/domain/movie">Movie</a>
+            <a href="/domain/peer">Peer</a>
+            <a href="/domain/pro">Pro</a>
+            <a href="/domain/search">Search</a>
+            <a href="/domain/suite">Suite</a>
+          </div>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Communauté
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Équipe</h4>
+            <a href="/personnel/">Équipe</a>
+            <a href="/hierarchie-staff">Hiérarchie</a>
+            <a href="/hypesquad">Hypesquad</a>
+            <a href="/jobs">Emplois</a>
+            <a href="/birthday">Anniversaires</a>
+          </div>
+          <div class="nav-col">
+            <h4>Réseaux</h4>
+            <a href="/discord">Discord</a>
+            <a href="/teamspeak">TeamSpeak</a>
+            <a href="/steam">Steam</a>
+            <a href="/social">Réseaux sociaux</a>
+          </div>
+          <div class="nav-col">
+            <h4>Activités</h4>
+            <a href="/artist">Artistes</a>
+            <a href="/quests">Quêtes</a>
+            <a href="/suboawards">Suboawards</a>
+            <a href="/eConcert">eConcert</a>
+          </div>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Plus
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Aide</h4>
+            <a href="/contact">Contact</a>
+            <a href="/faq">FAQ</a>
+            <a href="/status">Statut</a>
+            <a href="/sitemap">Plan du site</a>
+          </div>
+          <div class="nav-col">
+            <h4>Soutien</h4>
+            <a href="/donate">Faire un don</a>
+            <a href="/gold">Gold</a>
+            <a href="/customization">Personnalisation</a>
+            <a href="/mes-donnees">Mes Données</a>
+            <a href="/newsletter">Newsletter</a>
+          </div>
+          <div class="nav-col">
+            <h4>À propos</h4>
+            <a href="/company">Entreprise</a>
+            <a href="/acknowledgements">Remerciements</a>
+            <a href="/logo">Logo</a>
+            <a href="/tags">Tags</a>
+            <a href="/memory">Mémoire</a>
+            <a href="/why-not-use-roblox">Pourquoi pas Roblox</a>
+            <a href="/lawful">Mentions légales</a>
+          </div>
+        </div>
+      </details>
+    </nav>
+    <div class="controls" role="toolbar" aria-label="Contrôles">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
+          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
+          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
+        </svg>
+      </button>
+      <div id="user-button" role="region" aria-label="Authentification"><button class="cta" id="auth-fallback-btn" onclick="window.location.href='https://accounts.ventistudio.eu/sign-in?redirect_url='+encodeURIComponent(window.location.href)" style="padding:0.5rem 1.25rem;font-size:0.9rem;margin:0"><span>Se connecter</span></button></div>
+    </div>
+  </header>
+
+  <main>
+    <h1 style="margin-bottom:0.25rem">🔧 Formateur JSON</h1>
+    <p style="color:var(--text-secondary);margin-bottom:1.5rem">Formatez, validez, minifiez et explorez vos données JSON — 100 % client-side</p>
+
+    <div class="panel">
+      <h3>⚡ Actions</h3>
+      <div class="toolbar">
+        <button class="tool-btn primary" id="btnFormat">Formater</button>
+        <button class="tool-btn" id="btnMinify">Minifier</button>
+        <button class="tool-btn" id="btnValidate">Valider</button>
+        <button class="tool-btn" id="btnCopy">Copier la sortie</button>
+        <button class="tool-btn" id="btnClear">Effacer</button>
+        <select class="indent-select" id="indentSelect">
+          <option value="2">2 espaces</option>
+          <option value="4">4 espaces</option>
+          <option value="tab">Tab</option>
+        </select>
+      </div>
+      <div class="status-bar" id="statusBar"></div>
+    </div>
+
+    <div class="editors">
+      <div class="editor-col">
+        <label for="inputArea">Entrée JSON</label>
+        <textarea id="inputArea" spellcheck="false" placeholder='{"exemple": "Collez votre JSON ici…"}'>{
+  "nom": "VentiStudio",
+  "version": 2.0,
+  "outils": ["QR Code", "VERT", "Couleurs", "JSON"],
+  "config": {
+    "clientSide": true,
+    "serveur": null,
+    "langues": ["fr", "en", "ja"]
+  },
+  "actif": true,
+  "stats": {
+    "utilisateurs": 1500,
+    "notes": [4.5, 4.8, 4.9]
+  }
+}</textarea>
+      </div>
+      <div class="editor-col">
+        <label for="outputArea">Sortie</label>
+        <textarea id="outputArea" readonly spellcheck="false" placeholder="Le résultat apparaîtra ici…"></textarea>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-top:1.5rem">
+      <h3>🌳 Arborescence</h3>
+      <div class="path-bar" id="pathBar">$</div>
+      <div class="tree-container" id="treeContainer"></div>
+    </div>
+
+    <div class="copied-toast" id="toast">Copié !</div>
+  </main>
+
+  <script src="/main.js"></script>
+  <script>
+  (() => {
+    const $input  = document.getElementById('inputArea');
+    const $output = document.getElementById('outputArea');
+    const $status = document.getElementById('statusBar');
+    const $tree   = document.getElementById('treeContainer');
+    const $path   = document.getElementById('pathBar');
+    const $indent = document.getElementById('indentSelect');
+    const $toast  = document.getElementById('toast');
+
+    function getIndent() {
+      const v = $indent.value;
+      return v === 'tab' ? '\t' : Number(v);
+    }
+
+    function toast(msg) {
+      $toast.textContent = msg || 'Copié !';
+      $toast.classList.add('show');
+      setTimeout(() => $toast.classList.remove('show'), 1200);
+    }
+
+    function setStatus(chips) {
+      $status.innerHTML = chips.map(c => `<span class="status-chip ${c.type}">${c.text}</span>`).join('');
+    }
+
+    function tryParse(str) {
+      try {
+        const obj = JSON.parse(str);
+        return { ok: true, data: obj };
+      } catch (e) {
+        return { ok: false, error: e.message };
+      }
+    }
+
+    function sizeStr(bytes) {
+      if (bytes < 1024) return bytes + ' o';
+      if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' Ko';
+      return (bytes / 1048576).toFixed(2) + ' Mo';
+    }
+
+    /* Format */
+    document.getElementById('btnFormat').addEventListener('click', () => {
+      const r = tryParse($input.value);
+      if (!r.ok) {
+        $output.value = '';
+        setStatus([{ type: 'invalid', text: '✗ Invalide : ' + r.error }]);
+        return;
+      }
+      const out = JSON.stringify(r.data, null, getIndent());
+      $output.value = out;
+      setStatus([
+        { type: 'valid', text: '✓ JSON valide' },
+        { type: 'info', text: 'Entrée : ' + sizeStr(new Blob([$input.value]).size) },
+        { type: 'info', text: 'Sortie : ' + sizeStr(new Blob([out]).size) },
+      ]);
+      buildTree(r.data);
+    });
+
+    /* Minify */
+    document.getElementById('btnMinify').addEventListener('click', () => {
+      const r = tryParse($input.value);
+      if (!r.ok) {
+        $output.value = '';
+        setStatus([{ type: 'invalid', text: '✗ Invalide : ' + r.error }]);
+        return;
+      }
+      const out = JSON.stringify(r.data);
+      $output.value = out;
+      const inputSize = new Blob([$input.value]).size;
+      const outSize = new Blob([out]).size;
+      const pct = inputSize > 0 ? ((1 - outSize / inputSize) * 100).toFixed(1) : 0;
+      setStatus([
+        { type: 'valid', text: '✓ Minifié' },
+        { type: 'info', text: 'Entrée : ' + sizeStr(inputSize) },
+        { type: 'info', text: 'Sortie : ' + sizeStr(outSize) + ' (−' + pct + ' %)' },
+      ]);
+      buildTree(r.data);
+    });
+
+    /* Validate */
+    document.getElementById('btnValidate').addEventListener('click', () => {
+      const r = tryParse($input.value);
+      if (r.ok) {
+        setStatus([
+          { type: 'valid', text: '✓ JSON valide' },
+          { type: 'info', text: 'Type : ' + (Array.isArray(r.data) ? 'Array' : typeof r.data) },
+          { type: 'info', text: 'Taille : ' + sizeStr(new Blob([$input.value]).size) },
+        ]);
+        buildTree(r.data);
+      } else {
+        setStatus([{ type: 'invalid', text: '✗ Invalide : ' + r.error }]);
+        $tree.innerHTML = '';
+      }
+    });
+
+    /* Copy */
+    document.getElementById('btnCopy').addEventListener('click', () => {
+      if ($output.value) {
+        navigator.clipboard.writeText($output.value).then(() => toast());
+      }
+    });
+
+    /* Clear */
+    document.getElementById('btnClear').addEventListener('click', () => {
+      $input.value = '';
+      $output.value = '';
+      $tree.innerHTML = '';
+      $path.textContent = '$';
+      setStatus([]);
+    });
+
+    /* Tree view */
+    function esc(s) {
+      return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    function buildTree(data) {
+      $tree.innerHTML = '';
+      $path.textContent = '$';
+      const root = renderNode(data, '$', true);
+      $tree.appendChild(root);
+    }
+
+    function renderNode(val, path, isLast) {
+      const frag = document.createDocumentFragment();
+
+      if (val === null) {
+        const span = document.createElement('span');
+        span.className = 'tree-null';
+        span.textContent = 'null';
+        span.addEventListener('mouseenter', () => { $path.textContent = path; });
+        frag.appendChild(span);
+        if (!isLast) frag.appendChild(comma());
+        return frag;
+      }
+
+      if (typeof val === 'string') {
+        const span = document.createElement('span');
+        span.className = 'tree-string';
+        span.textContent = '"' + esc(val) + '"';
+        span.addEventListener('mouseenter', () => { $path.textContent = path; });
+        frag.appendChild(span);
+        if (!isLast) frag.appendChild(comma());
+        return frag;
+      }
+
+      if (typeof val === 'number') {
+        const span = document.createElement('span');
+        span.className = 'tree-number';
+        span.textContent = String(val);
+        span.addEventListener('mouseenter', () => { $path.textContent = path; });
+        frag.appendChild(span);
+        if (!isLast) frag.appendChild(comma());
+        return frag;
+      }
+
+      if (typeof val === 'boolean') {
+        const span = document.createElement('span');
+        span.className = 'tree-bool';
+        span.textContent = String(val);
+        span.addEventListener('mouseenter', () => { $path.textContent = path; });
+        frag.appendChild(span);
+        if (!isLast) frag.appendChild(comma());
+        return frag;
+      }
+
+      const isArr = Array.isArray(val);
+      const entries = isArr ? val.map((v, i) => [i, v]) : Object.entries(val);
+      const open = isArr ? '[' : '{';
+      const close = isArr ? ']' : '}';
+
+      const wrapper = document.createElement('div');
+      const toggle = document.createElement('span');
+      toggle.className = 'tree-toggle';
+      toggle.textContent = '▼';
+      wrapper.appendChild(toggle);
+
+      const openBr = document.createElement('span');
+      openBr.className = 'tree-bracket';
+      openBr.textContent = open;
+      wrapper.appendChild(openBr);
+
+      const collapsedInfo = document.createElement('span');
+      collapsedInfo.className = 'tree-bracket';
+      collapsedInfo.textContent = ` … ${entries.length} élément${entries.length > 1 ? 's' : ''} `;
+      collapsedInfo.style.display = 'none';
+      wrapper.appendChild(collapsedInfo);
+
+      const closeBrInline = document.createElement('span');
+      closeBrInline.className = 'tree-bracket';
+      closeBrInline.textContent = close;
+      closeBrInline.style.display = 'none';
+      wrapper.appendChild(closeBrInline);
+
+      const children = document.createElement('div');
+      children.className = 'tree-node';
+
+      entries.forEach(([key, v], idx) => {
+        const line = document.createElement('div');
+        const childPath = isArr ? `${path}[${key}]` : `${path}.${key}`;
+
+        if (!isArr) {
+          const keySpan = document.createElement('span');
+          keySpan.className = 'tree-key';
+          keySpan.textContent = '"' + esc(String(key)) + '": ';
+          keySpan.addEventListener('mouseenter', () => { $path.textContent = childPath; });
+          line.appendChild(keySpan);
+        }
+
+        const childNode = renderNode(v, childPath, idx === entries.length - 1);
+        line.appendChild(childNode);
+        children.appendChild(line);
+      });
+
+      wrapper.appendChild(children);
+
+      const closeBr = document.createElement('span');
+      closeBr.className = 'tree-bracket';
+      closeBr.textContent = close;
+      wrapper.appendChild(closeBr);
+      if (!isLast) wrapper.appendChild(comma());
+
+      let collapsed = false;
+      toggle.addEventListener('click', () => {
+        collapsed = !collapsed;
+        toggle.textContent = collapsed ? '▶' : '▼';
+        children.style.display = collapsed ? 'none' : '';
+        closeBr.style.display = collapsed ? 'none' : '';
+        collapsedInfo.style.display = collapsed ? 'inline' : 'none';
+        closeBrInline.style.display = collapsed ? 'inline' : 'none';
+      });
+
+      frag.appendChild(wrapper);
+      return frag;
+    }
+
+    function comma() {
+      const s = document.createElement('span');
+      s.className = 'tree-comma';
+      s.textContent = ',';
+      return s;
+    }
+
+    /* Auto-format on load with sample */
+    document.getElementById('btnFormat').click();
+  })();
+  </script>
+  <script>
+    (function () {
+      var nav = document.getElementById('main-nav');
+      var burger = document.getElementById('nav-burger');
+      if (!nav || !burger) return;
+
+      // Marque le lien actif d'apres l'URL courante
+      try {
+        var path = window.location.pathname.replace(/\/index\.html?$/, '/').replace(/\/$/, '') || '/';
+        var best = null, bestLen = -1;
+        nav.querySelectorAll('a[href]').forEach(function (a) {
+          var href = a.getAttribute('href').replace(/\/$/, '') || '/';
+          if (href === path || (href !== '/' && path.indexOf(href + '/') === 0) || (href !== '/' && path === href)) {
+            if (href.length > bestLen) { best = a; bestLen = href.length; }
+          }
+        });
+        if (path === '/' || path === '') {
+          best = nav.querySelector('a[href="/"]');
+        }
+        if (best) {
+          best.classList.add('active');
+          var grp = best.closest('details.nav-group');
+          if (grp) {
+            var s = grp.querySelector('summary.nav-link');
+            if (s) s.classList.add('active');
+          }
+        }
+      } catch (e) {}
+
+      function closeAllGroups(except) {
+        nav.querySelectorAll('details.nav-group[open]').forEach(function (d) {
+          if (d !== except) d.removeAttribute('open');
+        });
+      }
+
+      burger.addEventListener('click', function () {
+        var open = nav.classList.toggle('is-open');
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        burger.classList.toggle('is-active', open);
+        if (!open) closeAllGroups();
+      });
+
+      nav.querySelectorAll('details.nav-group').forEach(function (d) {
+        d.addEventListener('toggle', function () {
+          if (d.open) closeAllGroups(d);
+        });
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!nav.contains(e.target) && !burger.contains(e.target)) {
+          closeAllGroups();
+          if (nav.classList.contains('is-open')) {
+            nav.classList.remove('is-open');
+            burger.classList.remove('is-active');
+            burger.setAttribute('aria-expanded', 'false');
+          }
+        }
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          closeAllGroups();
+          if (nav.classList.contains('is-open')) {
+            nav.classList.remove('is-open');
+            burger.classList.remove('is-active');
+            burger.setAttribute('aria-expanded', 'false');
+            burger.focus();
+          }
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

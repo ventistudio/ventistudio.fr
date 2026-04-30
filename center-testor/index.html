@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark" data-testor="true">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="VentiStudio Center Testor Testez les thèmes saisonniers et événementiels.">
+  <meta name="theme-color" content="#6366f1">
+  <title>Center Testor | VentiStudio</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    .testor-hero {
+      text-align: center;
+      padding: 3rem 0 1.5rem;
+    }
+
+    .testor-hero h1 {
+      font-size: 2.4rem;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .testor-hero p {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      max-width: 600px;
+      margin: 0.5rem auto 0;
+    }
+
+    .testor-section {
+      margin: 2rem 0;
+    }
+
+    .testor-section h2 {
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .testor-section p.section-desc {
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .testor-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .testor-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1.25rem 1rem;
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 2px solid var(--glass-border);
+      border-radius: 1.25rem;
+      color: var(--text-primary);
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: var(--glass-shadow);
+      font-family: inherit;
+    }
+
+    .testor-btn:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: var(--neon-glow);
+    }
+
+    .testor-btn.active {
+      border-color: var(--accent);
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.1));
+      box-shadow: 0 0 25px rgba(99, 102, 241, 0.25);
+    }
+
+    .testor-btn .btn-icon {
+      font-size: 2rem;
+    }
+
+    .testor-btn .btn-label {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      font-weight: 400;
+    }
+
+    .testor-btn-reset {
+      background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(239, 68, 68, 0.05));
+      border-color: rgba(239, 68, 68, 0.3);
+    }
+
+    .testor-btn-reset:hover {
+      border-color: #ef4444;
+      box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+    }
+
+    .testor-status {
+      text-align: center;
+      margin: 2rem 0;
+      padding: 1.25rem;
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 1.25rem;
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    .testor-status code {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .testor-preview {
+      margin: 2rem 0;
+    }
+
+    .testor-preview h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .preview-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+
+    .preview-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 1.25rem;
+      padding: 1.5rem;
+      box-shadow: var(--glass-shadow);
+      transition: all 0.3s ease;
+    }
+
+    .preview-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    .preview-card h3 {
+      margin-bottom: 0.5rem;
+    }
+
+    .preview-card p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .preview-cta-row {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 768px) {
+      .testor-hero h1 { font-size: 1.8rem; }
+      .testor-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+    }
+  </style>
+
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="/favicon.avif" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
+      <span>VentiStudio</span>
+    </div>
+    <button class="nav-burger" id="nav-burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="main-nav" class="main-nav" aria-label="Navigation principale">
+      <a href="/" class="nav-link">Accueil</a>
+
+      <details class="nav-group">
+        <summary class="nav-link">Découvrir
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel" role="menu">
+          <a href="/evaluation">Évaluation</a>
+          <a href="/wiki">Wiki</a>
+          <a href="/glossary">Glossaire</a>
+          <a href="/news">News</a>
+          <a href="/blog">Blog</a>
+          <a href="/calendar">Calendrier</a>
+          <a href="/cookbook">Cookbook</a>
+          <a href="/gallery">Galerie</a>
+          <a href="/atlas">Atlas</a>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Univers
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel" role="menu">
+          <a href="/aokiunivers">AOKI Universe</a>
+          <a href="/allofaokiunivers">All AOKI</a>
+          <a href="/university">Université</a>
+          <a href="/history">Histoire</a>
+          <a href="/memorial">Mémorial</a>
+          <a href="/ester-eggs">Easter eggs</a>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Outils
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Applications</h4>
+            <a href="/player">Lecteur</a>
+            <a href="/music">Musique</a>
+            <a href="/pip">PIP</a>
+            <a href="/whiteboard">Whiteboard</a>
+            <a href="/portfolio">Portfolio</a>
+            <a href="/gmod">GMod</a>
+          </div>
+          <div class="nav-col">
+            <h4>Domaines</h4>
+            <a href="/domain/aina">AINA</a>
+            <a href="/domain/archive">Archive</a>
+            <a href="/domain/maps">Maps</a>
+            <a href="/domain/movie">Movie</a>
+            <a href="/domain/peer">Peer</a>
+            <a href="/domain/pro">Pro</a>
+            <a href="/domain/search">Search</a>
+            <a href="/domain/suite">Suite</a>
+          </div>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Communauté
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Équipe</h4>
+            <a href="/personnel/">Équipe</a>
+            <a href="/hierarchie-staff">Hiérarchie</a>
+            <a href="/hypesquad">Hypesquad</a>
+            <a href="/jobs">Emplois</a>
+            <a href="/birthday">Anniversaires</a>
+          </div>
+          <div class="nav-col">
+            <h4>Réseaux</h4>
+            <a href="/discord">Discord</a>
+            <a href="/teamspeak">TeamSpeak</a>
+            <a href="/steam">Steam</a>
+            <a href="/social">Réseaux sociaux</a>
+          </div>
+          <div class="nav-col">
+            <h4>Activités</h4>
+            <a href="/artist">Artistes</a>
+            <a href="/quests">Quêtes</a>
+            <a href="/suboawards">Suboawards</a>
+            <a href="/eConcert">eConcert</a>
+          </div>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Plus
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Aide</h4>
+            <a href="/contact">Contact</a>
+            <a href="/faq">FAQ</a>
+            <a href="/status">Statut</a>
+            <a href="/sitemap">Plan du site</a>
+          </div>
+          <div class="nav-col">
+            <h4>Soutien</h4>
+            <a href="/donate">Faire un don</a>
+            <a href="/gold">Gold</a>
+            <a href="/customization">Personnalisation</a>
+            <a href="/mes-donnees">Mes Données</a>
+            <a href="/newsletter">Newsletter</a>
+          </div>
+          <div class="nav-col">
+            <h4>À propos</h4>
+            <a href="/company">Entreprise</a>
+            <a href="/acknowledgements">Remerciements</a>
+            <a href="/logo">Logo</a>
+            <a href="/tags">Tags</a>
+            <a href="/memory">Mémoire</a>
+            <a href="/why-not-use-roblox">Pourquoi pas Roblox</a>
+            <a href="/lawful">Mentions légales</a>
+          </div>
+        </div>
+      </details>
+    </nav>
+    <div class="controls" role="toolbar" aria-label="Contrôles">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
+          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
+          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
+        </svg>
+      </button>
+      <div id="user-button" role="region" aria-label="Authentification"><button class="cta" id="auth-fallback-btn" onclick="window.location.href='https://accounts.ventistudio.eu/sign-in?redirect_url='+encodeURIComponent(window.location.href)" style="padding:0.5rem 1.25rem;font-size:0.9rem;margin:0"><span>Se connecter</span></button></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="testor-hero">
+      <h1>Center Testor</h1>
+      <p>Prévisualisez les thèmes saisonniers et événementiels sans attendre la date. Cliquez sur un bouton pour activer un thème.</p>
+    </section>
+
+    <div class="testor-status" id="statusBar">
+      Thème actif : <code id="statusSeason">aucun</code> | Événement actif : <code id="statusEvent">aucun</code>
+    </div>
+
+    <!-- Saisons -->
+    <section class="testor-section">
+      <h2>Saisons</h2>
+      <p class="section-desc">Particules et ambiance de fond selon la période de l'année.</p>
+      <div class="testor-grid">
+        <button class="testor-btn" data-set-season="spring">
+          <span class="btn-icon">🌸</span>
+          Printemps
+          <span class="btn-label">Mars - Mai</span>
+        </button>
+        <button class="testor-btn" data-set-season="summer">
+          <span class="btn-icon">☀️</span>
+          Été
+          <span class="btn-label">Juin - Août</span>
+        </button>
+        <button class="testor-btn" data-set-season="autumn">
+          <span class="btn-icon">🍂</span>
+          Automne
+          <span class="btn-label">Sept - Nov</span>
+        </button>
+        <button class="testor-btn" data-set-season="winter">
+          <span class="btn-icon">❄️</span>
+          Hiver
+          <span class="btn-label">Déc - Fév</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Événements -->
+    <section class="testor-section">
+      <h2>Événements</h2>
+      <p class="section-desc">Effets visuels activés les jours de fête.</p>
+      <div class="testor-grid">
+        <button class="testor-btn" data-set-event="april-fools">
+          <span class="btn-icon">🐟</span>
+          Poisson d'Avril
+          <span class="btn-label">1er avril</span>
+        </button>
+        <button class="testor-btn" data-set-event="valentines">
+          <span class="btn-icon">💕</span>
+          Saint-Valentin
+          <span class="btn-label">14 février</span>
+        </button>
+        <button class="testor-btn" data-set-event="national-day">
+          <span class="btn-icon">🇫🇷</span>
+          Fête Nationale
+          <span class="btn-label">14 juillet</span>
+        </button>
+        <button class="testor-btn" data-set-event="halloween">
+          <span class="btn-icon">🎃</span>
+          Halloween
+          <span class="btn-label">31 octobre</span>
+        </button>
+        <button class="testor-btn" data-set-event="christmas">
+          <span class="btn-icon">🎄</span>
+          Noël
+          <span class="btn-label">25 décembre</span>
+        </button>
+        <button class="testor-btn" data-set-event="new-year">
+          <span class="btn-icon">🎆</span>
+          Nouvel An
+          <span class="btn-label">1er janvier</span>
+        </button>
+        <button class="testor-btn" data-set-event="fete-musique">
+          <span class="btn-icon">🎵</span>
+          Fête de la Musique
+          <span class="btn-label">21 juin</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Fêtes japonaises -->
+    <section class="testor-section">
+      <h2>Fêtes japonaises</h2>
+      <p class="section-desc">Événements traditionnels japonais.</p>
+      <div class="testor-grid">
+        <button class="testor-btn" data-set-event="hatsumode">
+          <span class="btn-icon">⛩️</span>
+          Hatsumode
+          <span class="btn-label">2-3 janvier</span>
+        </button>
+        <button class="testor-btn" data-set-event="setsubun">
+          <span class="btn-icon">👹</span>
+          Setsubun
+          <span class="btn-label">3 février</span>
+        </button>
+        <button class="testor-btn" data-set-event="hinamatsuri">
+          <span class="btn-icon">🎎</span>
+          Hinamatsuri
+          <span class="btn-label">3 mars</span>
+        </button>
+        <button class="testor-btn" data-set-event="tanabata">
+          <span class="btn-icon">🎋</span>
+          Tanabata
+          <span class="btn-label">7 juillet</span>
+        </button>
+        <button class="testor-btn" data-set-event="obon">
+          <span class="btn-icon">🏮</span>
+          Obon
+          <span class="btn-label">13-15 août</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Pop culture -->
+    <section class="testor-section">
+      <h2>Pop Culture</h2>
+      <p class="section-desc">Journées dédiées aux univers de fiction.</p>
+      <div class="testor-grid">
+        <button class="testor-btn" data-set-event="star-wars">
+          <span class="btn-icon">⚔️</span>
+          Star Wars Day
+          <span class="btn-label">4 mai</span>
+        </button>
+        <button class="testor-btn" data-set-event="star-trek">
+          <span class="btn-icon">🖖</span>
+          Star Trek
+          <span class="btn-label">5 avril</span>
+        </button>
+        <button class="testor-btn" data-set-event="towel-day">
+          <span class="btn-icon">🐬</span>
+          Towel Day
+          <span class="btn-label">25 mai</span>
+        </button>
+        <button class="testor-btn" data-set-event="back-to-future">
+          <span class="btn-icon">⚡</span>
+          Retour vers le Futur
+          <span class="btn-label">21 octobre</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Spécial -->
+    <section class="testor-section">
+      <h2>Spécial</h2>
+      <p class="section-desc">Événement propre à VentiStudio.</p>
+      <div class="testor-grid">
+        <button class="testor-btn" data-set-event="anniversary">
+          <span class="btn-icon">🎂</span>
+          Anniversaire VS
+          <span class="btn-label">24 septembre</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Reset -->
+    <section class="testor-section" style="text-align:center;">
+      <button class="testor-btn testor-btn-reset" id="resetBtn" style="display:inline-flex;min-width:220px;">
+        <span class="btn-icon">🔄</span>
+        Réinitialiser
+        <span class="btn-label">CSS de base sans thème</span>
+      </button>
+    </section>
+
+    <!-- Preview components -->
+    <section class="testor-preview">
+      <h2>Aperçu des composants</h2>
+      <div class="preview-cards">
+        <div class="preview-card feature-card">
+          <div class="feature-icon" style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(99,102,241,0.1),rgba(139,92,246,0.1));border-radius:1rem;margin-bottom:0.75rem;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 7h10M7 11h10M7 15h7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <h3>Feature Card</h3>
+          <p>Exemple de carte fonctionnalité avec les couleurs d'accent du thème actif.</p>
+        </div>
+        <div class="preview-card">
+          <h3>Card Standard</h3>
+          <p>Les bordures, ombres et hovers s'adaptent au thème sélectionné.</p>
+        </div>
+        <div class="preview-card event-card">
+          <div class="event-icon" style="font-size:1.5rem;min-width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(99,102,241,0.1),rgba(139,92,246,0.1));border-radius:0.75rem;">🎯</div>
+          <div class="event-info">
+            <div class="event-name">Event Card</div>
+            <div class="event-date-text">Aperçu de la carte événement</div>
+          </div>
+        </div>
+      </div>
+      <div class="preview-cta-row">
+        <a href="#" class="cta" onclick="return false">Bouton Principal</a>
+        <a href="#" class="cta cta-outline" onclick="return false">Bouton Outline</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Outils</h4>
+        <ul>
+          <li><a href="/pip">PIP</a></li>
+          <li><a href="/sitemap">Plan du site</a></li>
+          <li><a href="https://status.ventistudio.eu/">Statut</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Entreprise</h4>
+        <ul>
+          <li><a href="/about">À propos</a></li>
+          <li><a href="/jobs">Emplois</a></li>
+          <li><a href="/logo">Marque</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Ressources</h4>
+        <ul>
+          <li><a href="/university">Université</a></li>
+          <li><a href="/lawful/support">Assistance</a></li>
+          <li><a href="/lawful/security">Sécurité</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Chartes</h4>
+        <ul>
+          <li><a href="/lawful/tos">Conditions d'utilisation</a></li>
+          <li><a href="/lawful/cookies">Confidentialité</a></li>
+          <li><a href="/lawful/dmcainfo">Information DMCA</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <iframe src="https://status.ventistudio.eu/badge?theme=dark" width="500" height="30" frameborder="0" scrolling="no" style="color-scheme: normal"></iframe>
+      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <script>
+    // ── Center Testor Logic ──
+    // Cette page utilise data-testor="true" pour empêcher main.js d'appliquer auto les thèmes.
+    // Les boutons appliquent manuellement les attributs data-season et data-event.
+
+    (function() {
+      var root = document.documentElement;
+      var seasonBtns = document.querySelectorAll('[data-set-season]');
+      var eventBtns = document.querySelectorAll('[data-set-event]');
+      var resetBtn = document.getElementById('resetBtn');
+      var statusSeason = document.getElementById('statusSeason');
+      var statusEvent = document.getElementById('statusEvent');
+
+      function clearSeasonParticles() {
+        var old = document.getElementById('season-particles');
+        if (old) old.remove();
+      }
+
+      function clearEventParticles() {
+        var old = document.getElementById('event-particles');
+        if (old) old.remove();
+        old = document.getElementById('april-fools-fish');
+        if (old) old.remove();
+        old = document.getElementById('april-fools-banner');
+        if (old) old.remove();
+        old = document.getElementById('event-banner');
+        if (old) old.remove();
+        old = document.getElementById('event-fx-canvas');
+        if (old) old.remove();
+        document.body.classList.remove('april-fools-cursor');
+        root.style.removeProperty('--chaos-color-1');
+        root.style.removeProperty('--chaos-color-2');
+        root.style.removeProperty('--chaos-color-3');
+        root.style.removeProperty('--chaos-hue');
+        if (window._chaosInterval) { clearInterval(window._chaosInterval); window._chaosInterval = null; }
+        if (window._bttfInterval) { clearInterval(window._bttfInterval); window._bttfInterval = null; }
+        if (window._fxRAF) { cancelAnimationFrame(window._fxRAF); window._fxRAF = null; }
+        if (window._fxIntervals) {
+          window._fxIntervals.forEach(function(id) { clearInterval(id); });
+          window._fxIntervals = null;
+        }
+      }
+
+      function clearAll() {
+        clearSeasonParticles();
+        clearEventParticles();
+      }
+
+      function updateStatus() {
+        statusSeason.textContent = root.getAttribute('data-season') || 'aucun';
+        statusEvent.textContent = root.getAttribute('data-event') || 'aucun';
+      }
+
+      function setActiveBtn(group, activeBtn) {
+        group.forEach(function(b) { b.classList.remove('active'); });
+        if (activeBtn) activeBtn.classList.add('active');
+      }
+
+      // ── Generate season particles ──
+      function generateSeasonParticles(season) {
+        var container = document.createElement('div');
+        container.id = 'season-particles';
+        document.body.appendChild(container);
+
+        if (season === 'spring') {
+          for (var i = 0; i < 30; i++) {
+            var petal = document.createElement('span');
+            petal.className = 'petal';
+            petal.style.left = (Math.random() * 100) + '%';
+            petal.style.animationDelay = (Math.random() * 10) + 's';
+            petal.style.animationDuration = (8 + Math.random() * 7) + 's';
+            var size = 10 + Math.random() * 12;
+            petal.style.width = size + 'px';
+            petal.style.height = (size * 0.6) + 'px';
+            petal.style.opacity = (0.4 + Math.random() * 0.4).toString();
+            container.appendChild(petal);
+          }
+        }
+
+        if (season === 'summer') {
+          for (var i = 0; i < 20; i++) {
+            var ff = document.createElement('span');
+            ff.className = 'firefly';
+            ff.style.left = (Math.random() * 100) + '%';
+            ff.style.top = (Math.random() * 100) + '%';
+            ff.style.animationDelay = (Math.random() * 8) + 's';
+            ff.style.animationDuration = (4 + Math.random() * 6) + 's';
+            container.appendChild(ff);
+          }
+        }
+
+        if (season === 'autumn') {
+          var leafColors = ['#d4770b', '#c1440e', '#8b4513', '#cd853f', '#b8860b'];
+          for (var i = 0; i < 25; i++) {
+            var leaf = document.createElement('span');
+            leaf.className = 'leaf';
+            leaf.style.left = (Math.random() * 100) + '%';
+            leaf.style.animationDelay = (Math.random() * 10) + 's';
+            leaf.style.animationDuration = (9 + Math.random() * 8) + 's';
+            var lsize = 10 + Math.random() * 10;
+            leaf.style.width = lsize + 'px';
+            leaf.style.height = lsize + 'px';
+            leaf.style.background = leafColors[Math.floor(Math.random() * leafColors.length)];
+            leaf.style.opacity = (0.5 + Math.random() * 0.3).toString();
+            container.appendChild(leaf);
+          }
+        }
+
+        if (season === 'winter') {
+          for (var i = 0; i < 35; i++) {
+            var snow = document.createElement('span');
+            snow.className = 'snowflake';
+            snow.style.left = (Math.random() * 100) + '%';
+            snow.style.animationDelay = (Math.random() * 12) + 's';
+            snow.style.animationDuration = (6 + Math.random() * 10) + 's';
+            var ssize = 4 + Math.random() * 8;
+            snow.style.width = ssize + 'px';
+            snow.style.height = ssize + 'px';
+            snow.style.opacity = (0.4 + Math.random() * 0.5).toString();
+            container.appendChild(snow);
+          }
+        }
+      }
+
+      // ── Generate event particles ──
+      function generateEventParticles(ev) {
+        if (ev === 'april-fools') {
+          // April fools special chaos
+          var chaosColors = ['#ff006e','#fb5607','#ffbe0b','#3a86ff','#8338ec','#06d6a0','#ef476f','#ffd166'];
+          function rc() { return chaosColors[Math.floor(Math.random() * chaosColors.length)]; }
+          function rr(a,b) { return a + Math.random()*(b-a); }
+
+          function applyChaos() {
+            root.style.setProperty('--chaos-color-1', rc());
+            root.style.setProperty('--chaos-color-2', rc());
+            root.style.setProperty('--chaos-color-3', rc());
+          }
+          applyChaos();
+          window._chaosInterval = setInterval(applyChaos, 4000);
+
+          var fc = document.createElement('div');
+          fc.id = 'april-fools-fish';
+          document.body.appendChild(fc);
+          var emojis = ['🐟','🐠','🐡','🎣','🐟','🐠'];
+          for (var i = 0; i < 12; i++) {
+            var f = document.createElement('span');
+            f.className = 'chaos-fish';
+            f.textContent = emojis[i%emojis.length];
+            f.style.top = rr(5,90)+'%';
+            f.style.animationDuration = rr(8,18)+'s';
+            f.style.animationDelay = rr(0,12)+'s';
+            f.style.fontSize = rr(1.2,3)+'rem';
+            if (Math.random()>0.5) f.classList.add('chaos-fish-reverse');
+            fc.appendChild(f);
+          }
+          document.body.classList.add('april-fools-cursor');
+
+          var banner = document.createElement('div');
+          banner.id = 'april-fools-banner';
+          banner.innerHTML = '🐟 Poisson d\'Avril ! 🐠 Ne faites confiance à rien aujourd\'hui... 🎣';
+          document.body.prepend(banner);
+          return;
+        }
+
+        var configs = {
+          'halloween':       { emojis: ['🎃','👻','🦇','🕷️','💀','🕸️'], count: 20 },
+          'christmas':       { emojis: ['❄️','🎄','⭐','🎁','🔔','✨'], count: 25 },
+          'new-year':        { emojis: ['🎆','🎇','✨','🥂','🎊','🎉'], count: 25 },
+          'valentines':      { emojis: ['❤️','💕','💖','💗','💝','🌹'], count: 22 },
+          'national-day':    { emojis: ['🇫🇷','🎆','✨','🔵','⚪','🔴'], count: 20 },
+          'fete-musique':    { emojis: ['🎵','🎶','🎸','🎹','🎷','🎺'], count: 22 },
+          'hatsumode':       { emojis: ['⛩️','🎍','🌅','🎌','🔔','✨'], count: 18 },
+          'setsubun':        { emojis: ['👹','🫘','🎭','✨','🏯','🎋'], count: 18 },
+          'hinamatsuri':     { emojis: ['🎎','🌸','🎀','🍡','✨','💮'], count: 22 },
+          'tanabata':        { emojis: ['🎋','⭐','🌌','💫','✨','🎆'], count: 25 },
+          'obon':            { emojis: ['🏮','🎐','✨','🌺','🕯️','💫'], count: 20 },
+          'towel-day':       { emojis: ['🐬','🌍','42','🚀','🐋','🤖'], count: 15 },
+          'back-to-future':  { emojis: ['⚡','🕐','🚗','🔥','⏰','💥'], count: 18 },
+          'anniversary':     { emojis: ['🎉','🎂','🥳','✨','🎊','💜'], count: 25 }
+        };
+        var bannerTexts = {
+          'halloween':       '🎃 Happy Halloween ! 👻 Boo ! 🦇',
+          'christmas':       '🎄 Joyeux Noël ! 🎁 Ho Ho Ho ! ⭐',
+          'new-year':        '🎆 Bonne Année ! 🥂 Meilleurs vœux ! 🎉',
+          'valentines':      '💕 Joyeuse Saint-Valentin ! 💖 Love is in the air 🌹',
+          'national-day':    '🇫🇷 Vive la France ! 🎆 Bonne Fête Nationale ! 🇫🇷',
+          'fete-musique':    '🎵 Fête de la Musique ! 🎸 Faites du bruit ! 🎶',
+          'hatsumode':       '⛩️ あけましておめでとう！ 🎍 Hatsumode 🌅',
+          'setsubun':        '👹 鬼は外！福は内！ 🫘 Setsubun 🎭',
+          'hinamatsuri':     '🎎 ひな祭り 🌸 Hinamatsuri 🎀',
+          'tanabata':        '🎋 七夕 ⭐ Tanabata Faites un vœu ! 🌌',
+          'obon':            '🏮 お盆 🎐 Obon 🕯️',
+          'star-wars':       '⚔️ May the 4th be with you ! 🌌 Star Wars Day ✨',
+          'star-trek':       '🖖 Live long and prosper ! 🚀 First Contact Day 🌌',
+          'towel-day':       '🐬 Don\'t Panic ! 🌍 Towel Day 42 🚀',
+          'back-to-future':  '⚡ 1.21 Gigawatts ! 🚗 Back to the Future Day ⏰',
+          'anniversary':     '🎉 Joyeux Anniversaire VentiStudio ! 🥳💜'
+        };
+
+        var c = configs[ev];
+
+        var container = document.createElement('div');
+        container.id = 'event-particles';
+        document.body.appendChild(container);
+
+        // Star Wars : hyperspace stars
+        if (ev === 'star-wars') {
+          container.classList.add('star-wars-hyperspace');
+          for (var i = 0; i < 80; i++) {
+            var star = document.createElement('span');
+            star.className = 'hyperspace-star';
+            star.style.left = (Math.random() * 100) + '%';
+            star.style.top = (Math.random() * 100) + '%';
+            star.style.animationDelay = (Math.random() * 3) + 's';
+            star.style.animationDuration = (0.8 + Math.random() * 1.2) + 's';
+            container.appendChild(star);
+          }
+        }
+
+        // Star Trek : warp stars
+        if (ev === 'star-trek') {
+          container.classList.add('star-trek-warp');
+          for (var i = 0; i < 60; i++) {
+            var star = document.createElement('span');
+            star.className = 'warp-star';
+            star.style.left = (50 + (Math.random() - 0.5) * 10) + '%';
+            star.style.top = (50 + (Math.random() - 0.5) * 10) + '%';
+            star.style.animationDelay = (Math.random() * 4) + 's';
+            star.style.animationDuration = (1 + Math.random() * 2) + 's';
+            var angle = Math.random() * 360;
+            star.style.setProperty('--warp-angle', angle + 'deg');
+            container.appendChild(star);
+          }
+        }
+
+        // Back to the Future : lightning flash
+        if (ev === 'back-to-future') {
+          window._bttfInterval = setInterval(function() {
+            var flash = document.createElement('div');
+            flash.className = 'bttf-flash';
+            container.appendChild(flash);
+            setTimeout(function() { flash.remove(); }, 800);
+          }, 8000);
+        }
+
+        if (c) {
+          for (var i = 0; i < c.count; i++) {
+            var el = document.createElement('span');
+            el.className = 'event-particle';
+            el.textContent = c.emojis[i % c.emojis.length];
+            el.style.left = (Math.random() * 100) + '%';
+            el.style.animationDelay = (Math.random() * 12) + 's';
+            el.style.animationDuration = (7 + Math.random() * 8) + 's';
+            el.style.fontSize = (0.9 + Math.random() * 1.2) + 'rem';
+            container.appendChild(el);
+          }
+        }
+
+        if (bannerTexts[ev]) {
+          var banner = document.createElement('div');
+          banner.id = 'event-banner';
+          banner.setAttribute('data-event-type', ev);
+          banner.innerHTML = bannerTexts[ev];
+          document.body.prepend(banner);
+        }
+      }
+
+      // ── Generate event immersive canvas effects ──
+      function generateEventFX(ev) {
+        if (ev === 'april-fools') return;
+
+        var old = document.getElementById('event-fx-canvas');
+        if (old) old.remove();
+
+        var canvas = document.createElement('canvas');
+        canvas.id = 'event-fx-canvas';
+        document.body.appendChild(canvas);
+        var ctx = canvas.getContext('2d');
+        if (!ctx) return;
+        window._fxIntervals = [];
+        var dpr = window.devicePixelRatio || 1;
+
+        function resize() {
+          var w = window.innerWidth, h = window.innerHeight;
+          canvas.width = w * dpr;
+          canvas.height = h * dpr;
+          canvas.style.width = w + 'px';
+          canvas.style.height = h + 'px';
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        }
+        resize();
+        window.addEventListener('resize', resize);
+        var W = function() { return canvas.width / dpr; };
+        var H = function() { return canvas.height / dpr; };
+
+        // ── Fireworks (national-day, new-year) ──
+        if (ev === 'national-day' || ev === 'new-year') {
+          var palettes = {
+            'national-day': ['#002395', '#ffffff', '#ED2939'],
+            'new-year':     ['#ffd700', '#ff6b6b', '#4ecdc4', '#a855f7', '#ff69b4', '#00d4ff']
+          };
+          var colors = palettes[ev];
+          var rockets = [], sparks = [];
+
+          function launchRocket() {
+            rockets.push({
+              x: Math.random() * W(), y: H(),
+              targetY: 60 + Math.random() * (H() * 0.35),
+              speed: 4 + Math.random() * 4,
+              color: colors[Math.floor(Math.random() * colors.length)],
+              trail: []
+            });
+          }
+          function explode(r) {
+            var count = 60 + Math.floor(Math.random() * 60);
+            for (var i = 0; i < count; i++) {
+              var angle = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.3;
+              var speed = 2 + Math.random() * 5;
+              sparks.push({
+                x: r.x, y: r.y,
+                vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed,
+                life: 1, decay: 0.006 + Math.random() * 0.01,
+                color: colors[Math.floor(Math.random() * colors.length)],
+                size: 2.5 + Math.random() * 3
+              });
+            }
+          }
+          function tickFW() {
+            ctx.globalAlpha = 1;
+            ctx.clearRect(0, 0, W(), H());
+            for (var i = rockets.length - 1; i >= 0; i--) {
+              var r = rockets[i];
+              r.trail.push({ x: r.x, y: r.y });
+              if (r.trail.length > 12) r.trail.shift();
+              r.y -= r.speed; r.x += (Math.random() - 0.5) * 0.8;
+              for (var t = 0; t < r.trail.length; t++) {
+                ctx.globalAlpha = (t / r.trail.length) * 0.7;
+                ctx.beginPath(); ctx.arc(r.trail[t].x, r.trail[t].y, 2, 0, Math.PI * 2);
+                ctx.fillStyle = r.color; ctx.fill();
+              }
+              ctx.globalAlpha = 1; ctx.beginPath(); ctx.arc(r.x, r.y, 3.5, 0, Math.PI * 2);
+              ctx.fillStyle = '#fff'; ctx.fill();
+              if (r.y <= r.targetY) { explode(r); rockets.splice(i, 1); }
+            }
+            for (var i = sparks.length - 1; i >= 0; i--) {
+              var s = sparks[i];
+              s.x += s.vx; s.y += s.vy; s.vy += 0.04; s.vx *= 0.99; s.life -= s.decay;
+              if (s.life <= 0) { sparks.splice(i, 1); continue; }
+              ctx.globalAlpha = s.life;
+              ctx.beginPath(); ctx.arc(s.x, s.y, s.size * s.life, 0, Math.PI * 2);
+              ctx.fillStyle = s.color; ctx.fill();
+              ctx.beginPath(); ctx.arc(s.x, s.y, s.size * s.life * 3, 0, Math.PI * 2);
+              ctx.globalAlpha = s.life * 0.25; ctx.fillStyle = s.color; ctx.fill();
+            }
+            ctx.globalAlpha = 1;
+            window._fxRAF = requestAnimationFrame(tickFW);
+          }
+          launchRocket(); launchRocket();
+          window._fxIntervals.push(setInterval(function() {
+            var b = 1 + Math.floor(Math.random() * 3);
+            for (var i = 0; i < b; i++) setTimeout(launchRocket, i * 250);
+          }, 1800));
+          tickFW(); return;
+        }
+
+        // ── Halloween: fog ──
+        if (ev === 'halloween') {
+          var fogOff = 0;
+          function tickFog() {
+            ctx.globalAlpha = 1;
+            ctx.clearRect(0, 0, W(), H()); fogOff += 0.004;
+            for (var l = 0; l < 5; l++) {
+              var baseY = H() - 40 - l * 50;
+              ctx.beginPath(); ctx.moveTo(0, H());
+              for (var x = 0; x <= W(); x += 6) {
+                ctx.lineTo(x, baseY + Math.sin(x * 0.004 + fogOff + l * 1.5) * 40 + Math.sin(x * 0.008 + fogOff * 2) * 20);
+              }
+              ctx.lineTo(W(), H()); ctx.closePath();
+              ctx.fillStyle = 'rgba(100,60,160,' + (0.18 - l * 0.03) + ')'; ctx.fill();
+            }
+            window._fxRAF = requestAnimationFrame(tickFog);
+          }
+          tickFog(); return;
+        }
+
+        // ── Christmas: garland lights ──
+        if (ev === 'christmas') {
+          var lights = [];
+          var xC = ['#ff0000','#00cc00','#ffd700','#ff4444','#44ff44','#ff6600'];
+          var lc = Math.floor(W() / 40);
+          var baseGY = 90;
+          for (var i = 0; i < lc; i++) lights.push({ x: (i+0.5)*(W()/lc), y: baseGY+Math.sin(i*0.6)*20, color: xC[i%xC.length], phase: Math.random()*Math.PI*2 });
+          function tickLights() {
+            ctx.globalAlpha = 1;
+            ctx.clearRect(0, 0, W(), H()); var t = Date.now()*0.002;
+            ctx.beginPath(); ctx.moveTo(0, baseGY);
+            for (var i = 0; i < lights.length; i++) ctx.lineTo(lights[i].x, lights[i].y);
+            ctx.lineTo(W(), baseGY); ctx.strokeStyle = 'rgba(50,120,50,0.5)'; ctx.lineWidth = 2; ctx.stroke();
+            for (var i = 0; i < lights.length; i++) {
+              var l = lights[i], br = 0.5+Math.sin(t+l.phase)*0.5;
+              ctx.beginPath(); ctx.arc(l.x, l.y+8, 6, 0, Math.PI*2);
+              ctx.fillStyle = l.color; ctx.globalAlpha = 0.6+br*0.4; ctx.fill();
+              ctx.beginPath(); ctx.arc(l.x, l.y+8, 20, 0, Math.PI*2);
+              ctx.globalAlpha = br*0.2; ctx.fill();
+            }
+            ctx.globalAlpha = 1;
+            window._fxRAF = requestAnimationFrame(tickLights);
+          }
+          tickLights(); return;
+        }
+
+        // ── Valentine's: floating hearts ──
+        if (ev === 'valentines') {
+          var hearts = [];
+          function addHeart() { hearts.push({ x:Math.random()*W(), y:H()+20, size:12+Math.random()*22, speed:0.4+Math.random()*1.2, drift:(Math.random()-0.5)*0.6, alpha:0.3+Math.random()*0.45, color:['#ff69b4','#ff1493','#ff6b9d','#e91e63'][Math.floor(Math.random()*4)] }); }
+          for (var i = 0; i < 15; i++) { addHeart(); hearts[i].y = Math.random()*H(); }
+          function drawH(x,y,sz) { ctx.beginPath(); ctx.moveTo(x,y+sz*0.3); ctx.bezierCurveTo(x,y,x-sz,y,x-sz,y+sz*0.3); ctx.bezierCurveTo(x-sz,y+sz*0.7,x,y+sz,x,y+sz*1.2); ctx.bezierCurveTo(x,y+sz,x+sz,y+sz*0.7,x+sz,y+sz*0.3); ctx.bezierCurveTo(x+sz,y,x,y,x,y+sz*0.3); ctx.closePath(); ctx.fill(); }
+          function tickH() {
+            ctx.globalAlpha = 1;
+            ctx.clearRect(0,0,W(),H());
+            for (var i=hearts.length-1;i>=0;i--) { var h=hearts[i]; h.y-=h.speed; h.x+=h.drift+Math.sin(Date.now()*0.001+i)*0.4;
+              if(h.y<-40){hearts.splice(i,1);addHeart();continue;} ctx.globalAlpha=h.alpha; ctx.fillStyle=h.color; drawH(h.x,h.y,h.size); }
+            ctx.globalAlpha=1; window._fxRAF=requestAnimationFrame(tickH);
+          }
+          tickH(); return;
+        }
+
+        // ── Fête de la Musique: equalizer ──
+        if (ev === 'fete-musique') {
+          var bc = 40, bH = new Array(bc).fill(0), bT = new Array(bc).fill(0);
+          var eqC = ['#ec4899','#f59e0b','#6366f1','#10b981','#ef4444','#8b5cf6'];
+          function tickEQ() {
+            ctx.globalAlpha = 1;
+            ctx.clearRect(0,0,W(),H()); var bW=W()/bc, mH=120, t=Date.now()*0.001;
+            for (var i=0;i<bc;i++) {
+              bT[i]=(Math.sin(t*2.5+i*0.4)*0.5+0.5)*(Math.sin(t*4+i*0.25)*0.3+0.7)*mH;
+              bH[i]+=(bT[i]-bH[i])*0.12;
+              var g=ctx.createLinearGradient(0,H(),0,H()-bH[i]); g.addColorStop(0,eqC[i%eqC.length]); g.addColorStop(1,'transparent');
+              ctx.fillStyle=g; ctx.globalAlpha=0.45; ctx.fillRect(i*bW+1,H()-bH[i],bW-2,bH[i]);
+              ctx.globalAlpha=0.8; ctx.fillStyle=eqC[i%eqC.length]; ctx.fillRect(i*bW+1,H()-bH[i]-4,bW-2,3);
+            }
+            ctx.globalAlpha=1; window._fxRAF=requestAnimationFrame(tickEQ);
+          }
+          tickEQ(); return;
+        }
+
+        // ── Tanabata: shooting stars ──
+        if (ev === 'tanabata') {
+          var sStars = [];
+          function addSS() { sStars.push({ x:Math.random()*W()*1.5, y:-10, len:60+Math.random()*120, speed:5+Math.random()*8, angle:Math.PI*0.2+Math.random()*0.15, alpha:0.7+Math.random()*0.3, color:['#fff','#c8e6ff','#ffe4b5','#e0ccff'][Math.floor(Math.random()*4)] }); }
+          function tickSS() {
+            ctx.globalAlpha = 1;
+            ctx.clearRect(0,0,W(),H()); var t=Date.now()*0.001;
+            for (var i=0;i<60;i++) { var sx=(i*97.3+13)%W(), sy=(i*53.7+29)%(H()*0.7);
+              ctx.beginPath(); ctx.arc(sx,sy,1.5,0,Math.PI*2); ctx.fillStyle='#fff'; ctx.globalAlpha=0.25+Math.sin(t*2+i*1.5)*0.2; ctx.fill(); }
+            for (var i=sStars.length-1;i>=0;i--) { var s=sStars[i]; s.x-=Math.cos(s.angle)*s.speed; s.y+=Math.sin(s.angle)*s.speed; s.alpha-=0.004;
+              if(s.alpha<=0||s.y>H()+20){sStars.splice(i,1);continue;}
+              var tx=s.x+Math.cos(s.angle)*s.len, ty=s.y-Math.sin(s.angle)*s.len;
+              var g=ctx.createLinearGradient(s.x,s.y,tx,ty); g.addColorStop(0,s.color); g.addColorStop(1,'transparent');
+              ctx.beginPath(); ctx.moveTo(s.x,s.y); ctx.lineTo(tx,ty); ctx.strokeStyle=g; ctx.lineWidth=3; ctx.globalAlpha=s.alpha; ctx.stroke();
+              ctx.beginPath(); ctx.arc(s.x,s.y,5,0,Math.PI*2); ctx.fillStyle='#fff'; ctx.globalAlpha=s.alpha; ctx.fill(); }
+            ctx.globalAlpha=1; window._fxRAF=requestAnimationFrame(tickSS);
+          }
+          window._fxIntervals.push(setInterval(addSS, 800)); addSS(); addSS(); tickSS(); return;
+        }
+
+        // ── Obon / Hatsumode: floating lanterns ──
+        if (ev === 'obon' || ev === 'hatsumode') {
+          var lans = [], lCol = ev==='obon'?'#ff6b35':'#c41e3a';
+          function addLan() { lans.push({ x:Math.random()*W(), y:H()+30, size:10+Math.random()*14, speed:0.3+Math.random()*0.6, drift:(Math.random()-0.5)*0.4, flicker:Math.random()*Math.PI*2, alpha:0.5+Math.random()*0.4 }); }
+          for (var i=0;i<12;i++){addLan();lans[i].y=Math.random()*H();}
+          function tickLan() {
+            ctx.globalAlpha = 1;
+            ctx.clearRect(0,0,W(),H()); var t=Date.now()*0.002;
+            for (var i=lans.length-1;i>=0;i--) { var l=lans[i]; l.y-=l.speed; l.x+=l.drift+Math.sin(t+l.flicker)*0.3;
+              if(l.y<-40){lans.splice(i,1);addLan();continue;} var fl=0.7+Math.sin(t*3+l.flicker)*0.3;
+              var grd=ctx.createRadialGradient(l.x,l.y,0,l.x,l.y,l.size*5); grd.addColorStop(0,lCol); grd.addColorStop(1,'transparent');
+              ctx.beginPath(); ctx.arc(l.x,l.y,l.size*5,0,Math.PI*2); ctx.fillStyle=grd; ctx.globalAlpha=l.alpha*fl*0.35; ctx.fill();
+              ctx.beginPath(); ctx.arc(l.x,l.y,l.size,0,Math.PI*2); ctx.fillStyle=lCol; ctx.globalAlpha=l.alpha*fl; ctx.fill();
+              ctx.beginPath(); ctx.arc(l.x,l.y,l.size*0.5,0,Math.PI*2); ctx.fillStyle='#fff'; ctx.globalAlpha=l.alpha*fl*0.7; ctx.fill(); }
+            ctx.globalAlpha=1; window._fxRAF=requestAnimationFrame(tickLan);
+          }
+          tickLan(); return;
+        }
+
+        // ── Anniversary: confetti ──
+        if (ev === 'anniversary') {
+          var conf = [], cCols = ['#a855f7','#6366f1','#ec4899','#fbbf24','#34d399','#60a5fa','#f43f5e','#fcd34d'];
+          function burst() {
+            var cx=Math.random()*W();
+            for (var i=0;i<50;i++) { var a=Math.random()*Math.PI*2, sp=3+Math.random()*7;
+              conf.push({ x:cx,y:H()*0.2+Math.random()*H()*0.4,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp-3,size:6+Math.random()*10,rot:Math.random()*Math.PI*2,rotS:(Math.random()-0.5)*0.2,color:cCols[Math.floor(Math.random()*cCols.length)],life:1,decay:0.003+Math.random()*0.005,shape:Math.random()>0.5?'r':'c' }); }
+          }
+          function tickConf() {
+            ctx.globalAlpha = 1;
+            ctx.clearRect(0,0,W(),H());
+            for (var i=conf.length-1;i>=0;i--) { var c=conf[i]; c.x+=c.vx; c.y+=c.vy; c.vy+=0.05; c.vx*=0.99; c.rot+=c.rotS; c.life-=c.decay;
+              if(c.life<=0){conf.splice(i,1);continue;} ctx.save(); ctx.translate(c.x,c.y); ctx.rotate(c.rot); ctx.globalAlpha=c.life; ctx.fillStyle=c.color;
+              if(c.shape==='r') ctx.fillRect(-c.size/2,-c.size/4,c.size,c.size/2);
+              else { ctx.beginPath(); ctx.arc(0,0,c.size/2,0,Math.PI*2); ctx.fill(); }
+              ctx.restore(); }
+            ctx.globalAlpha=1; window._fxRAF=requestAnimationFrame(tickConf);
+          }
+          burst(); window._fxIntervals.push(setInterval(burst,2200)); tickConf(); return;
+        }
+
+        // ── Hinamatsuri: dense cherry blossoms ──
+        if (ev === 'hinamatsuri') {
+          var bls = [];
+          for (var i=0;i<70;i++) bls.push({ x:Math.random()*W(), y:Math.random()*H(), size:5+Math.random()*8, speed:0.5+Math.random()*1, drift:(Math.random()-0.5)*1, rot:Math.random()*Math.PI*2, rotS:(Math.random()-0.5)*0.03, alpha:0.3+Math.random()*0.4, color:['#ffb7c5','#ff69b4','#ffc0cb','#ff91a4'][Math.floor(Math.random()*4)] });
+          function tickBl() {
+            ctx.globalAlpha = 1;
+            ctx.clearRect(0,0,W(),H());
+            for (var i=0;i<bls.length;i++) { var b=bls[i]; b.y+=b.speed; b.x+=b.drift+Math.sin(Date.now()*0.001+i)*0.4; b.rot+=b.rotS;
+              if(b.y>H()+10){b.y=-10;b.x=Math.random()*W();}
+              ctx.save(); ctx.translate(b.x,b.y); ctx.rotate(b.rot); ctx.globalAlpha=b.alpha; ctx.fillStyle=b.color;
+              for (var p=0;p<5;p++) { var a=(Math.PI*2/5)*p, px=Math.cos(a)*b.size*0.5, py=Math.sin(a)*b.size*0.5;
+                ctx.beginPath(); ctx.ellipse(px,py,b.size*0.5,b.size*0.3,a,0,Math.PI*2); ctx.fill(); }
+              ctx.beginPath(); ctx.arc(0,0,b.size*0.2,0,Math.PI*2); ctx.fillStyle='#fff'; ctx.globalAlpha=b.alpha*0.9; ctx.fill();
+              ctx.restore(); }
+            ctx.globalAlpha=1; window._fxRAF=requestAnimationFrame(tickBl);
+          }
+          tickBl(); return;
+        }
+
+        // ── Setsubun: flying beans ──
+        if (ev === 'setsubun') {
+          var bns = [];
+          function throwB() {
+            var sx=Math.random()>0.5?-10:W()+10, d=sx<0?1:-1;
+            for (var i=0;i<15;i++) bns.push({ x:sx,y:H()*0.2+Math.random()*H()*0.5,vx:d*(4+Math.random()*5),vy:-3+Math.random()*6,size:5+Math.random()*5,rot:Math.random()*Math.PI*2,rotS:(Math.random()-0.5)*0.25,life:1,decay:0.004+Math.random()*0.004 });
+          }
+          function tickB() {
+            ctx.globalAlpha = 1;
+            ctx.clearRect(0,0,W(),H());
+            for (var i=bns.length-1;i>=0;i--) { var b=bns[i]; b.x+=b.vx; b.y+=b.vy; b.vy+=0.06; b.rot+=b.rotS; b.life-=b.decay;
+              if(b.life<=0){bns.splice(i,1);continue;} ctx.save(); ctx.translate(b.x,b.y); ctx.rotate(b.rot); ctx.globalAlpha=b.life*0.85;
+              ctx.fillStyle='#c4a35a'; ctx.beginPath(); ctx.ellipse(0,0,b.size,b.size*0.65,0,0,Math.PI*2); ctx.fill();
+              ctx.strokeStyle='#8b7640'; ctx.lineWidth=1; ctx.stroke(); ctx.restore(); }
+            ctx.globalAlpha=1; window._fxRAF=requestAnimationFrame(tickB);
+          }
+          throwB(); window._fxIntervals.push(setInterval(throwB,2000)); tickB(); return;
+        }
+
+        // ── Towel Day: 42 rain ──
+        if (ev === 'towel-day') {
+          var cols=Math.floor(W()/18), drp=new Array(cols).fill(0), ch='42DONTPANICdontpanic42'.split('');
+          function tickM() {
+            ctx.fillStyle='rgba(0,0,0,0.06)'; ctx.fillRect(0,0,W(),H());
+            ctx.fillStyle='#00e5a0'; ctx.font='bold 16px monospace'; ctx.globalAlpha=0.5;
+            for (var i=0;i<drp.length;i++) { ctx.fillText(ch[Math.floor(Math.random()*ch.length)],i*18,drp[i]*18);
+              if(drp[i]*18>H()&&Math.random()>0.975) drp[i]=0; drp[i]++; }
+            ctx.globalAlpha=1; window._fxRAF=requestAnimationFrame(tickM);
+          }
+          tickM(); return;
+        }
+      }
+
+      // ── Season buttons ──
+      seasonBtns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          clearSeasonParticles();
+          var season = btn.getAttribute('data-set-season');
+          var current = root.getAttribute('data-season');
+
+          if (current === season) {
+            root.removeAttribute('data-season');
+            setActiveBtn(seasonBtns, null);
+          } else {
+            root.setAttribute('data-season', season);
+            setActiveBtn(seasonBtns, btn);
+            generateSeasonParticles(season);
+          }
+          updateStatus();
+        });
+      });
+
+      // ── Event buttons ──
+      eventBtns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          clearEventParticles();
+          var ev = btn.getAttribute('data-set-event');
+          var current = root.getAttribute('data-event');
+
+          if (current === ev) {
+            root.removeAttribute('data-event');
+            setActiveBtn(eventBtns, null);
+          } else {
+            root.setAttribute('data-event', ev);
+            setActiveBtn(eventBtns, btn);
+            generateEventParticles(ev);
+            generateEventFX(ev);
+          }
+          updateStatus();
+        });
+      });
+
+      // ── Reset ──
+      resetBtn.addEventListener('click', function() {
+        clearAll();
+        root.removeAttribute('data-season');
+        root.removeAttribute('data-event');
+        setActiveBtn(seasonBtns, null);
+        setActiveBtn(eventBtns, null);
+        updateStatus();
+      });
+
+      updateStatus();
+    })();
+  </script>
+
+  <script src="/main.js" defer></script>
+  <script>
+    (function () {
+      var nav = document.getElementById('main-nav');
+      var burger = document.getElementById('nav-burger');
+      if (!nav || !burger) return;
+
+      // Marque le lien actif d'apres l'URL courante
+      try {
+        var path = window.location.pathname.replace(/\/index\.html?$/, '/').replace(/\/$/, '') || '/';
+        var best = null, bestLen = -1;
+        nav.querySelectorAll('a[href]').forEach(function (a) {
+          var href = a.getAttribute('href').replace(/\/$/, '') || '/';
+          if (href === path || (href !== '/' && path.indexOf(href + '/') === 0) || (href !== '/' && path === href)) {
+            if (href.length > bestLen) { best = a; bestLen = href.length; }
+          }
+        });
+        if (path === '/' || path === '') {
+          best = nav.querySelector('a[href="/"]');
+        }
+        if (best) {
+          best.classList.add('active');
+          var grp = best.closest('details.nav-group');
+          if (grp) {
+            var s = grp.querySelector('summary.nav-link');
+            if (s) s.classList.add('active');
+          }
+        }
+      } catch (e) {}
+
+      function closeAllGroups(except) {
+        nav.querySelectorAll('details.nav-group[open]').forEach(function (d) {
+          if (d !== except) d.removeAttribute('open');
+        });
+      }
+
+      burger.addEventListener('click', function () {
+        var open = nav.classList.toggle('is-open');
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        burger.classList.toggle('is-active', open);
+        if (!open) closeAllGroups();
+      });
+
+      nav.querySelectorAll('details.nav-group').forEach(function (d) {
+        d.addEventListener('toggle', function () {
+          if (d.open) closeAllGroups(d);
+        });
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!nav.contains(e.target) && !burger.contains(e.target)) {
+          closeAllGroups();
+          if (nav.classList.contains('is-open')) {
+            nav.classList.remove('is-open');
+            burger.classList.remove('is-active');
+            burger.setAttribute('aria-expanded', 'false');
+          }
+        }
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          closeAllGroups();
+          if (nav.classList.contains('is-open')) {
+            nav.classList.remove('is-open');
+            burger.classList.remove('is-active');
+            burger.setAttribute('aria-expanded', 'false');
+            burger.focus();
+          }
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

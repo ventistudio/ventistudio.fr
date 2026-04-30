@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="Atlas mondial VentiStudio : état du monde, horloge de la fin du monde et classement géopolitique des pays par liberté, sécurité, droits humains et stabilité.">
+  <meta name="theme-color" content="#6366f1">
+  <title>Atlas Mondial | VentiStudio</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="atlas.css">
+
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+
+  <meta property="og:title" content="Atlas Mondial | VentiStudio">
+  <meta property="og:description" content="État du monde, horloge de la fin du monde et classement géopolitique des pays par VentiStudio.">
+  <meta property="og:url" content="https://ventistudio.eu/atlas/">
+  <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://ventistudio.eu/atlas/">
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="/favicon.avif" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
+      <span>VentiStudio</span>
+    </div>
+    <button class="nav-burger" id="nav-burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="main-nav" class="main-nav" aria-label="Navigation principale">
+      <a href="/" class="nav-link">Accueil</a>
+
+      <details class="nav-group">
+        <summary class="nav-link">Découvrir
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel" role="menu">
+          <a href="/evaluation">Évaluation</a>
+          <a href="/wiki">Wiki</a>
+          <a href="/glossary">Glossaire</a>
+          <a href="/news">News</a>
+          <a href="/blog">Blog</a>
+          <a href="/calendar">Calendrier</a>
+          <a href="/cookbook">Cookbook</a>
+          <a href="/gallery">Galerie</a>
+          <a href="/atlas">Atlas</a>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Univers
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel" role="menu">
+          <a href="/aokiunivers">AOKI Universe</a>
+          <a href="/allofaokiunivers">All AOKI</a>
+          <a href="/university">Université</a>
+          <a href="/history">Histoire</a>
+          <a href="/memorial">Mémorial</a>
+          <a href="/ester-eggs">Easter eggs</a>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Outils
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Applications</h4>
+            <a href="/player">Lecteur</a>
+            <a href="/music">Musique</a>
+            <a href="/pip">PIP</a>
+            <a href="/whiteboard">Whiteboard</a>
+            <a href="/portfolio">Portfolio</a>
+            <a href="/gmod">GMod</a>
+          </div>
+          <div class="nav-col">
+            <h4>Domaines</h4>
+            <a href="/domain/aina">AINA</a>
+            <a href="/domain/archive">Archive</a>
+            <a href="/domain/maps">Maps</a>
+            <a href="/domain/movie">Movie</a>
+            <a href="/domain/peer">Peer</a>
+            <a href="/domain/pro">Pro</a>
+            <a href="/domain/search">Search</a>
+            <a href="/domain/suite">Suite</a>
+          </div>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Communauté
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Équipe</h4>
+            <a href="/personnel/">Équipe</a>
+            <a href="/hierarchie-staff">Hiérarchie</a>
+            <a href="/hypesquad">Hypesquad</a>
+            <a href="/jobs">Emplois</a>
+            <a href="/birthday">Anniversaires</a>
+          </div>
+          <div class="nav-col">
+            <h4>Réseaux</h4>
+            <a href="/discord">Discord</a>
+            <a href="/teamspeak">TeamSpeak</a>
+            <a href="/steam">Steam</a>
+            <a href="/social">Réseaux sociaux</a>
+          </div>
+          <div class="nav-col">
+            <h4>Activités</h4>
+            <a href="/artist">Artistes</a>
+            <a href="/quests">Quêtes</a>
+            <a href="/suboawards">Suboawards</a>
+            <a href="/eConcert">eConcert</a>
+          </div>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Plus
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Aide</h4>
+            <a href="/contact">Contact</a>
+            <a href="/faq">FAQ</a>
+            <a href="/status">Statut</a>
+            <a href="/sitemap">Plan du site</a>
+          </div>
+          <div class="nav-col">
+            <h4>Soutien</h4>
+            <a href="/donate">Faire un don</a>
+            <a href="/gold">Gold</a>
+            <a href="/customization">Personnalisation</a>
+            <a href="/mes-donnees">Mes Données</a>
+            <a href="/newsletter">Newsletter</a>
+          </div>
+          <div class="nav-col">
+            <h4>À propos</h4>
+            <a href="/company">Entreprise</a>
+            <a href="/acknowledgements">Remerciements</a>
+            <a href="/logo">Logo</a>
+            <a href="/tags">Tags</a>
+            <a href="/memory">Mémoire</a>
+            <a href="/why-not-use-roblox">Pourquoi pas Roblox</a>
+            <a href="/lawful">Mentions légales</a>
+          </div>
+        </div>
+      </details>
+    </nav>
+    <div class="controls" role="toolbar" aria-label="Contrôles">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
+          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
+          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
+        </svg>
+      </button>
+      <div id="user-button" role="region" aria-label="Authentification"><button class="cta" id="auth-fallback-btn" onclick="window.location.href='https://accounts.ventistudio.eu/sign-in?redirect_url='+encodeURIComponent(window.location.href)" style="padding:0.5rem 1.25rem;font-size:0.9rem;margin:0"><span>Se connecter</span></button></div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="atlas-hero" aria-label="Présentation">
+      <span class="atlas-hero-eyebrow">Atlas mondial · 2026</span>
+      <h1>État du <span class="accent">monde</span></h1>
+      <p>Une lecture géopolitique des nations : liberté, pacifisme, sécurité, droits humains et stabilité institutionnelle, complétée par l'horloge de la fin du monde.</p>
+
+      <div class="atlas-quickstats" role="list">
+        <div class="qs" role="listitem">
+          <div class="qs-value accent" id="qs-total">0</div>
+          <div class="qs-label">Pays classés</div>
+        </div>
+        <div class="qs" role="listitem">
+          <div class="qs-value good" id="qs-excellent">0</div>
+          <div class="qs-label">Excellents</div>
+        </div>
+        <div class="qs" role="listitem">
+          <div class="qs-value bad" id="qs-critical">0</div>
+          <div class="qs-label">Critiques</div>
+        </div>
+        <div class="qs" role="listitem">
+          <div class="qs-value" id="qs-avg">0/5</div>
+          <div class="qs-label">Score moyen</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Horloge de la fin du monde -->
+    <section class="doomsday-section" aria-label="Horloge de la fin du monde">
+      <div class="doomsday-card">
+        <div class="doomsday-visual">
+          <svg class="doomsday-clock-svg" viewBox="0 0 200 200" aria-hidden="true">
+            <circle cx="100" cy="100" r="95" fill="none" stroke="var(--glass-border)" stroke-width="2"/>
+            <circle cx="100" cy="100" r="90" fill="none" stroke="var(--doomsday-glow)" stroke-width="4" opacity="0.3"/>
+            <g class="clock-ticks">
+              <line x1="100" y1="12" x2="100" y2="22" stroke="var(--text-secondary)" stroke-width="2"/>
+              <line x1="145" y1="18" x2="140.7" y2="27.5" stroke="var(--text-secondary)" stroke-width="1"/>
+              <line x1="182" y1="55" x2="172.5" y2="59.3" stroke="var(--text-secondary)" stroke-width="1"/>
+              <line x1="188" y1="100" x2="178" y2="100" stroke="var(--text-secondary)" stroke-width="2"/>
+              <line x1="182" y1="145" x2="172.5" y2="140.7" stroke="var(--text-secondary)" stroke-width="1"/>
+              <line x1="145" y1="182" x2="140.7" y2="172.5" stroke="var(--text-secondary)" stroke-width="1"/>
+              <line x1="100" y1="188" x2="100" y2="178" stroke="var(--text-secondary)" stroke-width="2"/>
+              <line x1="55" y1="182" x2="59.3" y2="172.5" stroke="var(--text-secondary)" stroke-width="1"/>
+              <line x1="18" y1="145" x2="27.5" y2="140.7" stroke="var(--text-secondary)" stroke-width="1"/>
+              <line x1="12" y1="100" x2="22" y2="100" stroke="var(--text-secondary)" stroke-width="2"/>
+              <line x1="18" y1="55" x2="27.5" y2="59.3" stroke="var(--text-secondary)" stroke-width="1"/>
+              <line x1="55" y1="18" x2="59.3" y2="27.5" stroke="var(--text-secondary)" stroke-width="1"/>
+            </g>
+            <text x="100" y="36" text-anchor="middle" fill="var(--text-secondary)" font-size="12" font-weight="600">12</text>
+            <text x="170" y="104" text-anchor="middle" fill="var(--text-secondary)" font-size="12" font-weight="600">3</text>
+            <text x="100" y="174" text-anchor="middle" fill="var(--text-secondary)" font-size="12" font-weight="600">6</text>
+            <text x="30" y="104" text-anchor="middle" fill="var(--text-secondary)" font-size="12" font-weight="600">9</text>
+            <line x1="100" y1="100" x2="93" y2="42" stroke="var(--text-primary)" stroke-width="3.5" stroke-linecap="round"/>
+            <line x1="100" y1="100" x2="97.2" y2="18" stroke="var(--doomsday-color)" stroke-width="2.5" stroke-linecap="round" class="doomsday-minute-hand"/>
+            <circle cx="100" cy="100" r="4" fill="var(--doomsday-color)"/>
+            <path d="M100 18 A82 82 0 0 1 124 19.5" fill="none" stroke="var(--doomsday-color)" stroke-width="6" opacity="0.4" stroke-linecap="round"/>
+          </svg>
+          <div class="doomsday-pulse"></div>
+        </div>
+        <div class="doomsday-info">
+          <h2 class="doomsday-title">
+            <span class="doomsday-icon" aria-hidden="true">☢️</span>
+            Horloge de la fin du monde
+          </h2>
+          <div class="doomsday-time">
+            <span class="doomsday-seconds">85</span>
+            <span class="doomsday-unit">secondes avant minuit</span>
+          </div>
+          <p class="doomsday-desc">Heure actuelle : <strong>23 h 58 min 35 s</strong> — le plus proche de minuit depuis la création de l'horloge en 1947.</p>
+          <p class="doomsday-reason">Poursuite de la guerre en Ukraine, bombardements en Iran, affrontements frontaliers entre l'Inde et le Pakistan, tensions en Asie et montée des tensions dans l'hémisphère occidental.</p>
+          <div class="doomsday-meta">
+            <span>Mise à jour : 27 janvier 2026</span>
+            <span>Source : <a href="https://thebulletin.org/doomsday-clock/" target="_blank" rel="noopener noreferrer">Bulletin of the Atomic Scientists</a></span>
+          </div>
+        </div>
+      </div>
+
+      <details class="doomsday-timeline-details">
+        <summary>Chronologie de l'horloge (1947 - 2026)</summary>
+        <div class="doomsday-timeline" role="list">
+          <div class="timeline-item" role="listitem" data-level="warning"><span class="tl-year">1947</span><span class="tl-time">7 min</span><span class="tl-desc">Création de l'horloge</span></div>
+          <div class="timeline-item" role="listitem" data-level="danger"><span class="tl-year">1949</span><span class="tl-time">3 min</span><span class="tl-desc">L'URSS teste sa 1re arme nucléaire</span></div>
+          <div class="timeline-item" role="listitem" data-level="critical"><span class="tl-year">1953</span><span class="tl-time">2 min</span><span class="tl-desc">Tests thermonucléaires US et URSS</span></div>
+          <div class="timeline-item" role="listitem" data-level="warning"><span class="tl-year">1960</span><span class="tl-time">7 min</span><span class="tl-desc">Coopération scientifique accrue</span></div>
+          <div class="timeline-item" role="listitem" data-level="safe"><span class="tl-year">1963</span><span class="tl-time">12 min</span><span class="tl-desc">Traité d'interdiction partielle des essais</span></div>
+          <div class="timeline-item" role="listitem" data-level="warning"><span class="tl-year">1968</span><span class="tl-time">7 min</span><span class="tl-desc">France et Chine obtiennent l'arme nucléaire</span></div>
+          <div class="timeline-item" role="listitem" data-level="moderate"><span class="tl-year">1969</span><span class="tl-time">10 min</span><span class="tl-desc">Ratification du TNP par le Sénat US</span></div>
+          <div class="timeline-item" role="listitem" data-level="safe"><span class="tl-year">1972</span><span class="tl-time">12 min</span><span class="tl-desc">Traités SALT I et ABM signés</span></div>
+          <div class="timeline-item" role="listitem" data-level="moderate"><span class="tl-year">1974</span><span class="tl-time">9 min</span><span class="tl-desc">Test nucléaire indien, échec de SALT II</span></div>
+          <div class="timeline-item" role="listitem" data-level="warning"><span class="tl-year">1980</span><span class="tl-time">7 min</span><span class="tl-desc">Échecs de négociations, terrorisme</span></div>
+          <div class="timeline-item" role="listitem" data-level="danger"><span class="tl-year">1981</span><span class="tl-time">4 min</span><span class="tl-desc">Course à l'armement, conflits mondiaux</span></div>
+          <div class="timeline-item" role="listitem" data-level="danger"><span class="tl-year">1984</span><span class="tl-time">3 min</span><span class="tl-desc">Accélération sous Reagan</span></div>
+          <div class="timeline-item" role="listitem" data-level="warning"><span class="tl-year">1988</span><span class="tl-time">6 min</span><span class="tl-desc">Traité sur les armes de moyenne portée</span></div>
+          <div class="timeline-item" role="listitem" data-level="moderate"><span class="tl-year">1990</span><span class="tl-time">10 min</span><span class="tl-desc">Chute du Mur de Berlin</span></div>
+          <div class="timeline-item" role="listitem" data-level="best"><span class="tl-year">1991</span><span class="tl-time">17 min</span><span class="tl-desc">Dislocation de l'URSS : le plus loin de minuit</span></div>
+          <div class="timeline-item" role="listitem" data-level="safe"><span class="tl-year">1995</span><span class="tl-time">14 min</span><span class="tl-desc">Inquiétudes post-soviétiques</span></div>
+          <div class="timeline-item" role="listitem" data-level="moderate"><span class="tl-year">1998</span><span class="tl-time">9 min</span><span class="tl-desc">Tests nucléaires Inde et Pakistan</span></div>
+          <div class="timeline-item" role="listitem" data-level="warning"><span class="tl-year">2002</span><span class="tl-time">7 min</span><span class="tl-desc">Retrait du traité ABM, terrorisme nucléaire</span></div>
+          <div class="timeline-item" role="listitem" data-level="warning"><span class="tl-year">2007</span><span class="tl-time">5 min</span><span class="tl-desc">Essai nord-coréen, ajout du climat</span></div>
+          <div class="timeline-item" role="listitem" data-level="warning"><span class="tl-year">2010</span><span class="tl-time">6 min</span><span class="tl-desc">New START, COP 15</span></div>
+          <div class="timeline-item" role="listitem" data-level="warning"><span class="tl-year">2012</span><span class="tl-time">5 min</span><span class="tl-desc">Prolifération nucléaire, réchauffement</span></div>
+          <div class="timeline-item" role="listitem" data-level="danger"><span class="tl-year">2015</span><span class="tl-time">3 min</span><span class="tl-desc">Modernisation des arsenaux nucléaires</span></div>
+          <div class="timeline-item" role="listitem" data-level="danger"><span class="tl-year">2017</span><span class="tl-time">2 min 30 s</span><span class="tl-desc">Montée du nationalisme, Trump</span></div>
+          <div class="timeline-item" role="listitem" data-level="critical"><span class="tl-year">2018</span><span class="tl-time">2 min</span><span class="tl-desc">Incapacité face aux menaces</span></div>
+          <div class="timeline-item" role="listitem" data-level="critical"><span class="tl-year">2020</span><span class="tl-time">100 s</span><span class="tl-desc">Iran, Corée du Nord, infox</span></div>
+          <div class="timeline-item" role="listitem" data-level="critical"><span class="tl-year">2023</span><span class="tl-time">90 s</span><span class="tl-desc">Guerre en Ukraine, réacteurs nucléaires</span></div>
+          <div class="timeline-item" role="listitem" data-level="critical"><span class="tl-year">2025</span><span class="tl-time">89 s</span><span class="tl-desc">IA, changement climatique, conflits</span></div>
+          <div class="timeline-item current" role="listitem" data-level="critical"><span class="tl-year">2026</span><span class="tl-time">85 s</span><span class="tl-desc">Record historique : le plus proche jamais atteint</span></div>
+        </div>
+      </details>
+    </section>
+
+    <!-- Section classement -->
+    <div class="section-title">
+      <h2>Classement géopolitique</h2>
+      <span class="hint">Scores de 1 (critique) à 5 (excellent) sur 5 critères — cliquez sur un pays pour voir le détail</span>
+    </div>
+
+    <!-- Légende -->
+    <section class="levels-legend" aria-label="Légende des niveaux">
+      <div class="legend-item level-5"><span class="legend-dot"></span> Excellent</div>
+      <div class="legend-item level-4"><span class="legend-dot"></span> Bon</div>
+      <div class="legend-item level-3"><span class="legend-dot"></span> Modéré</div>
+      <div class="legend-item level-2"><span class="legend-dot"></span> Préoccupant</div>
+      <div class="legend-item level-1"><span class="legend-dot"></span> Critique</div>
+    </section>
+
+    <!-- Toolbar (filtres + vue) -->
+    <section class="atlas-toolbar" aria-label="Filtres et vue">
+      <div class="atlas-toolbar-row">
+        <label class="search-box">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/>
+            <path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <input type="text" id="search-input" placeholder="Rechercher un pays…" aria-label="Rechercher un pays" autocomplete="off">
+        </label>
+
+        <div class="view-toggle" role="group" aria-label="Type de vue">
+          <button type="button" data-view="cards" aria-pressed="true" title="Vue cartes">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="2"/>
+              <rect x="14" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="2"/>
+              <rect x="3" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="2"/>
+              <rect x="14" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="2"/>
+            </svg>
+            Cartes
+          </button>
+          <button type="button" data-view="table" aria-pressed="false" title="Vue tableau">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            Tableau
+          </button>
+        </div>
+      </div>
+
+      <div class="atlas-toolbar-row">
+        <select id="sort-select" aria-label="Trier par">
+          <option value="overall-desc">Score global ↓</option>
+          <option value="overall-asc">Score global ↑</option>
+          <option value="name">Nom (A-Z)</option>
+          <option value="name-desc">Nom (Z-A)</option>
+          <option value="freedom-desc">Liberté ↓</option>
+          <option value="freedom-asc">Liberté ↑</option>
+          <option value="hostility-desc">Pacifisme ↓</option>
+          <option value="hostility-asc">Pacifisme ↑</option>
+          <option value="security-desc">Sécurité ↓</option>
+          <option value="security-asc">Sécurité ↑</option>
+          <option value="rights-desc">Droits humains ↓</option>
+          <option value="rights-asc">Droits humains ↑</option>
+          <option value="stability-desc">Stabilité ↓</option>
+          <option value="stability-asc">Stabilité ↑</option>
+        </select>
+
+        <select id="continent-select" aria-label="Continent">
+          <option value="all">Tous les continents</option>
+          <option value="europe">Europe</option>
+          <option value="asia">Asie</option>
+          <option value="africa">Afrique</option>
+          <option value="north-america">Amérique du Nord</option>
+          <option value="south-america">Amérique du Sud</option>
+          <option value="oceania">Océanie</option>
+        </select>
+
+        <select id="level-select" aria-label="Niveau global">
+          <option value="all">Tous les niveaux</option>
+          <option value="5">Excellent</option>
+          <option value="4">Bon</option>
+          <option value="3">Modéré</option>
+          <option value="2">Préoccupant</option>
+          <option value="1">Critique</option>
+        </select>
+
+        <span class="results-count" id="results-count" aria-live="polite">0 pays</span>
+      </div>
+    </section>
+
+    <!-- Vue cartes -->
+    <section class="atlas-grid" id="atlas-grid" aria-label="Pays — vue cartes"></section>
+
+    <!-- Vue tableau -->
+    <section class="atlas-table-wrapper" id="atlas-table-wrapper" aria-label="Pays — vue tableau" hidden>
+      <table class="atlas-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Pays</th>
+            <th>Continent</th>
+            <th>Liberté</th>
+            <th>Pacifisme</th>
+            <th>Sécurité</th>
+            <th>Droits humains</th>
+            <th>Stabilité</th>
+            <th>Global</th>
+          </tr>
+        </thead>
+        <tbody id="atlas-tbody"></tbody>
+      </table>
+    </section>
+
+    <p id="no-results" class="no-results" hidden>Aucun pays ne correspond à votre recherche.</p>
+
+    <!-- Modale détails pays -->
+    <div class="atlas-modal" id="country-modal" role="dialog" aria-modal="true" aria-labelledby="country-modal-title" aria-hidden="true" hidden>
+      <div class="atlas-modal-backdrop" data-close="true"></div>
+      <div class="atlas-modal-dialog" role="document">
+        <button type="button" class="atlas-modal-close" id="country-modal-close" aria-label="Fermer">&times;</button>
+        <header class="atlas-modal-head">
+          <span class="atlas-modal-flag" id="country-modal-flag" aria-hidden="true"></span>
+          <div class="atlas-modal-title-block">
+            <h2 id="country-modal-title">Pays</h2>
+            <div class="atlas-modal-meta">
+              <span id="country-modal-continent"></span>
+              <span aria-hidden="true">·</span>
+              <span id="country-modal-overall" class="atlas-modal-overall"></span>
+            </div>
+          </div>
+        </header>
+        <p class="atlas-modal-summary" id="country-modal-summary"></p>
+        <div class="atlas-modal-criteria" id="country-modal-criteria"></div>
+        <p class="atlas-modal-footer-note">Justifications synthétiques basées sur des indicateurs publics (Freedom House, Global Peace Index, V-Dem, RSF, etc.). Voir l'avertissement ci-dessous.</p>
+      </div>
+    </div>
+
+    <!-- Avertissement -->
+    <section class="disclaimer" aria-label="Avertissement">
+      <p><strong>Avertissement :</strong> Cet atlas est établi par VentiStudio à des fins informatives et éducatives. Les scores s'inspirent de données publiques et d'indicateurs internationaux (Freedom House, Global Peace Index, etc.) mais ne représentent pas une évaluation officielle. Dernière mise à jour : avril 2026.</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Outils</h4>
+        <ul>
+          <li><a href="/pip">PIP</a></li>
+          <li><a href="/sitemap">Plan du site</a></li>
+          <li><a href="https://status.ventistudio.eu/">Statut</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Entreprise</h4>
+        <ul>
+          <li><a href="/about">À propos</a></li>
+          <li><a href="/jobs">Emplois</a></li>
+          <li><a href="/logo">Marque</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Ressources</h4>
+        <ul>
+          <li><a href="/university">Université</a></li>
+          <li><a href="/lawful/support">Assistance</a></li>
+          <li><a href="/lawful/security">Sécurité</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Chartes</h4>
+        <ul>
+          <li><a href="/lawful/tos">Conditions d'utilisation</a></li>
+          <li><a href="/lawful/cookies">Confidentialité</a></li>
+          <li><a href="/lawful/dmcainfo">Information DMCA</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <a href="https://status.ventistudio.eu/" class="status" target="_blank" rel="noopener noreferrer">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span>Statut des services</span>
+      </a>
+      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <script src="atlas-data.js" defer></script>
+  <script src="atlas.js" defer></script>
+  <script src="/main.js" defer></script>
+  <script>
+    (function () {
+      var nav = document.getElementById('main-nav');
+      var burger = document.getElementById('nav-burger');
+      if (!nav || !burger) return;
+
+      try {
+        var path = window.location.pathname.replace(/\/index\.html?$/, '/').replace(/\/$/, '') || '/';
+        var best = null, bestLen = -1;
+        nav.querySelectorAll('a[href]').forEach(function (a) {
+          var href = a.getAttribute('href').replace(/\/$/, '') || '/';
+          if (href === path || (href !== '/' && path.indexOf(href + '/') === 0) || (href !== '/' && path === href)) {
+            if (href.length > bestLen) { best = a; bestLen = href.length; }
+          }
+        });
+        if (path === '/' || path === '') {
+          best = nav.querySelector('a[href="/"]');
+        }
+        if (best) {
+          best.classList.add('active');
+          var grp = best.closest('details.nav-group');
+          if (grp) {
+            var s = grp.querySelector('summary.nav-link');
+            if (s) s.classList.add('active');
+          }
+        }
+      } catch (e) {}
+
+      function closeAllGroups(except) {
+        nav.querySelectorAll('details.nav-group[open]').forEach(function (d) {
+          if (d !== except) d.removeAttribute('open');
+        });
+      }
+
+      burger.addEventListener('click', function () {
+        var open = nav.classList.toggle('is-open');
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        burger.classList.toggle('is-active', open);
+        if (!open) closeAllGroups();
+      });
+
+      nav.querySelectorAll('details.nav-group').forEach(function (d) {
+        d.addEventListener('toggle', function () {
+          if (d.open) closeAllGroups(d);
+        });
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!nav.contains(e.target) && !burger.contains(e.target)) {
+          closeAllGroups();
+          if (nav.classList.contains('is-open')) {
+            nav.classList.remove('is-open');
+            burger.classList.remove('is-active');
+            burger.setAttribute('aria-expanded', 'false');
+          }
+        }
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          closeAllGroups();
+          if (nav.classList.contains('is-open')) {
+            nav.classList.remove('is-open');
+            burger.classList.remove('is-active');
+            burger.setAttribute('aria-expanded', 'false');
+            burger.focus();
+          }
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

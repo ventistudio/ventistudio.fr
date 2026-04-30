@@ -1,0 +1,1639 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="VentiStudio Search : Moteur de recherche open source, 100% client-side via DuckDuckGo. Recherchez le web en toute confidentialité.">
+  <meta name="theme-color" content="#6366f1">
+  <title>Search | VentiStudio</title>
+  <link rel="stylesheet" href="/style.css">
+
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+
+  <meta property="og:title" content="VentiStudio Search">
+  <meta property="og:description" content="Moteur de recherche open source, 100% client-side via DuckDuckGo.">
+  <meta property="og:url" content="https://ventistudio.eu/domain/search/">
+  <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://ventistudio.eu/domain/search/">
+
+  <style>
+    /* ═══ Layout ═══ */
+    .search-wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; min-height: calc(100vh - 80px); }
+
+    /* ═══ HOME VIEW ═══ */
+    .home-view {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: calc(100vh - 200px);
+      text-align: center;
+      padding-top: 2rem;
+    }
+    .home-view .search-logo {
+      font-size: 3.2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--accent, #6366f1), var(--accent-secondary, #8b5cf6), #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: .5rem;
+      user-select: none;
+    }
+    .home-view .search-tagline {
+      color: var(--text-secondary, #a0a0a0);
+      font-size: 1rem;
+      margin-bottom: 2rem;
+    }
+    .home-badges {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+    .home-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 99px;
+      font-size: .75rem;
+      font-weight: 600;
+      background: rgba(99, 102, 241, 0.12);
+      color: var(--accent, #6366f1);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+    }
+    .home-badge svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+    /* ═══ SEARCH BAR ═══ */
+    .search-bar-wrap {
+      width: 100%;
+      max-width: 680px;
+      position: relative;
+    }
+    .search-bar {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      background: var(--glass-bg, rgba(255,255,255,0.05));
+      border: 1.5px solid var(--glass-border, rgba(255,255,255,0.1));
+      border-radius: 99px;
+      padding: 4px 6px 4px 20px;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .search-bar:focus-within {
+      border-color: var(--accent, #6366f1);
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+    }
+    .search-bar svg.search-icon {
+      width: 20px;
+      height: 20px;
+      color: var(--text-secondary, #a0a0a0);
+      flex-shrink: 0;
+    }
+    .search-bar input {
+      flex: 1;
+      background: none;
+      border: none;
+      outline: none;
+      color: var(--text-primary, #e0e0e0);
+      font-size: 1rem;
+      padding: 12px 12px;
+      font-family: inherit;
+    }
+    .search-bar input::placeholder { color: var(--text-secondary, #a0a0a0); opacity: .6; }
+    .search-bar .clear-btn {
+      background: none;
+      border: none;
+      color: var(--text-secondary, #a0a0a0);
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 50%;
+      display: none;
+      transition: color .15s;
+    }
+    .search-bar .clear-btn:hover { color: var(--text-primary); }
+    .search-bar .clear-btn.visible { display: flex; }
+    .search-bar .clear-btn svg { width: 18px; height: 18px; }
+    .search-bar .submit-btn {
+      background: var(--accent, #6366f1);
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      padding: 10px 20px;
+      border-radius: 99px;
+      font-size: .9rem;
+      font-weight: 600;
+      font-family: inherit;
+      transition: background .15s, transform .1s;
+      flex-shrink: 0;
+    }
+    .search-bar .submit-btn:hover { background: var(--accent-secondary, #8b5cf6); }
+    .search-bar .submit-btn:active { transform: scale(.97); }
+
+    /* Suggestions dropdown */
+    .suggestions {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0; right: 0;
+      background: var(--glass-bg, rgba(255,255,255,0.05));
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border, rgba(255,255,255,0.1));
+      border-radius: 16px;
+      overflow: hidden;
+      display: none;
+      z-index: 50;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+    }
+    .suggestions.open { display: block; }
+    .suggestions .sug-item {
+      padding: 10px 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--text-primary, #e0e0e0);
+      font-size: .9rem;
+      transition: background .1s;
+    }
+    .suggestions .sug-item:hover, .suggestions .sug-item.active {
+      background: rgba(99, 102, 241, 0.12);
+    }
+    .suggestions .sug-item svg { width: 16px; height: 16px; color: var(--text-secondary); flex-shrink: 0; }
+    .suggestions .sug-section {
+      padding: 8px 20px 4px;
+      font-size: .7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--text-secondary, #a0a0a0);
+    }
+
+    /* ═══ RESULTS VIEW ═══ */
+    .results-view { display: none; padding-top: 1.5rem; padding-bottom: 4rem; }
+    .results-view.active { display: block; }
+    .results-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: .5rem;
+    }
+    .results-header .back-home {
+      background: none;
+      border: none;
+      color: var(--accent, #6366f1);
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 50%;
+      transition: background .15s;
+      flex-shrink: 0;
+      display: flex;
+    }
+    .results-header .back-home:hover { background: rgba(99,102,241,.12); }
+    .results-header .back-home svg { width: 22px; height: 22px; }
+    .results-header .search-bar-wrap { max-width: 600px; }
+    .results-meta {
+      font-size: .8rem;
+      color: var(--text-secondary, #a0a0a0);
+      margin-bottom: 1rem;
+    }
+
+    /* Results layout */
+    .results-layout {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 32px;
+      align-items: start;
+    }
+    @media (max-width: 900px) {
+      .results-layout { grid-template-columns: 1fr; }
+      .results-sidebar { order: -1; }
+    }
+
+    /* Instant answer box */
+    .instant-answer {
+      background: var(--glass-bg, rgba(255,255,255,0.05));
+      border: 1px solid var(--glass-border, rgba(255,255,255,0.1));
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+    .instant-answer .ia-type {
+      font-size: .7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--accent, #6366f1);
+      margin-bottom: 8px;
+    }
+    .instant-answer h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .instant-answer .ia-text {
+      font-size: .92rem;
+      color: var(--text-secondary, #a0a0a0);
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+    .instant-answer .ia-text a { color: var(--accent); }
+    .instant-answer .ia-source {
+      font-size: .78rem;
+      color: var(--text-secondary);
+    }
+    .instant-answer .ia-source a { color: var(--accent); text-decoration: none; }
+    .instant-answer .ia-source a:hover { text-decoration: underline; }
+    .instant-answer .ia-image {
+      width: 100%;
+      max-height: 250px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 16px;
+    }
+
+    /* Result items */
+    .result-item {
+      margin-bottom: 20px;
+    }
+    .result-item .result-url {
+      font-size: .8rem;
+      color: var(--text-secondary, #a0a0a0);
+      margin-bottom: 2px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      word-break: break-all;
+    }
+    .result-item .result-url img {
+      width: 16px; height: 16px; border-radius: 3px;
+    }
+    .result-item .result-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .result-item .result-title a {
+      color: var(--accent, #6366f1);
+      text-decoration: none;
+      transition: color .15s;
+    }
+    .result-item .result-title a:hover { color: var(--accent-secondary, #8b5cf6); text-decoration: underline; }
+    .result-item .result-snippet {
+      font-size: .88rem;
+      color: var(--text-secondary, #a0a0a0);
+      line-height: 1.6;
+    }
+
+    /* "More results" CTA */
+    .more-results {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-start;
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid var(--glass-border, rgba(255,255,255,0.1));
+    }
+    .more-results .more-label {
+      font-size: .85rem;
+      color: var(--text-secondary);
+    }
+    .more-results .more-btns {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .more-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 99px;
+      font-size: .85rem;
+      font-weight: 600;
+      font-family: inherit;
+      text-decoration: none;
+      transition: all .15s;
+      cursor: pointer;
+      border: none;
+    }
+    .more-btn-primary {
+      background: var(--accent, #6366f1);
+      color: #fff;
+    }
+    .more-btn-primary:hover { background: var(--accent-secondary, #8b5cf6); }
+    .more-btn-secondary {
+      background: var(--glass-bg, rgba(255,255,255,0.05));
+      color: var(--text-primary);
+      border: 1px solid var(--glass-border);
+    }
+    .more-btn-secondary:hover { border-color: var(--accent); }
+    .more-btn svg { width: 16px; height: 16px; }
+
+    /* Knowledge panel (sidebar) */
+    .knowledge-panel {
+      background: var(--glass-bg, rgba(255,255,255,0.05));
+      border: 1px solid var(--glass-border, rgba(255,255,255,0.1));
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+    .knowledge-panel .kp-image {
+      width: 100%;
+      max-height: 200px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 16px;
+    }
+    .knowledge-panel h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .knowledge-panel .kp-type {
+      font-size: .8rem;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+    }
+    .knowledge-panel .kp-extract {
+      font-size: .88rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+    .knowledge-panel .kp-link {
+      font-size: .8rem;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .knowledge-panel .kp-link:hover { text-decoration: underline; }
+
+    /* Infobox in sidebar */
+    .infobox {
+      background: var(--glass-bg, rgba(255,255,255,0.05));
+      border: 1px solid var(--glass-border, rgba(255,255,255,0.1));
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    .infobox h4 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+    .infobox .ib-content { font-size: .85rem; color: var(--text-secondary); line-height: 1.6; }
+    .infobox .ib-content a { color: var(--accent); text-decoration: none; }
+    .infobox .ib-content a:hover { text-decoration: underline; }
+    .infobox .ib-urls { margin-top: 10px; display: flex; flex-direction: column; gap: 4px; }
+    .infobox .ib-urls a { font-size: .8rem; color: var(--accent); text-decoration: none; }
+    .infobox .ib-urls a:hover { text-decoration: underline; }
+
+    /* Loading */
+    .search-loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 0;
+      gap: 12px;
+      color: var(--text-secondary);
+    }
+    .search-loading .spinner {
+      width: 24px; height: 24px;
+      border: 3px solid var(--glass-border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Error / empty */
+    .search-empty {
+      text-align: center;
+      padding: 4rem 0;
+      color: var(--text-secondary);
+    }
+    .search-empty svg { width: 48px; height: 48px; margin-bottom: 12px; opacity: .5; }
+    .search-empty h3 { font-size: 1.2rem; color: var(--text-primary); margin-bottom: 6px; }
+    .search-empty p { font-size: .9rem; }
+
+    /* Settings panel */
+    .settings-panel {
+      position: fixed;
+      top: 0; right: -440px;
+      width: 420px;
+      max-width: 100vw;
+      height: 100vh;
+      background: var(--glass-bg, rgba(255,255,255,0.05));
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+      border-left: 1px solid var(--glass-border);
+      z-index: 200;
+      transition: right .3s cubic-bezier(.4,0,.2,1);
+      overflow-y: auto;
+      padding: 2rem;
+    }
+    .settings-panel.open { right: 0; }
+    .settings-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 199;
+    }
+    .settings-overlay.open { display: block; }
+    .settings-panel h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .settings-panel h2 button {
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      cursor: pointer;
+      padding: 4px;
+    }
+    .settings-panel h2 button:hover { color: var(--text-primary); }
+    .setting-group {
+      margin-bottom: 1.5rem;
+    }
+    .setting-group label {
+      display: block;
+      font-size: .85rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--text-primary);
+    }
+    .setting-group .setting-desc {
+      font-size: .75rem;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+    .setting-group select {
+      width: 100%;
+      padding: 10px 14px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--glass-border);
+      border-radius: 10px;
+      color: var(--text-primary);
+      font-size: .9rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color .15s;
+    }
+    .setting-group select:focus { border-color: var(--accent); }
+    .setting-group select option { background: #1a1a2e; }
+
+    /* Quick links (home) */
+    .quick-links {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+    .quick-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: .75rem;
+      transition: color .15s;
+      padding: 12px;
+      border-radius: 12px;
+    }
+    .quick-link:hover { color: var(--text-primary); background: var(--glass-bg); }
+    .quick-link .ql-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .quick-link .ql-icon svg { width: 20px; height: 20px; }
+
+    /* History section on home */
+    .home-history {
+      margin-top: 2.5rem;
+      width: 100%;
+      max-width: 680px;
+    }
+    .home-history h3 {
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: .75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .home-history h3 button {
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      font-size: .75rem;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .home-history h3 button:hover { color: var(--accent); }
+    .history-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .history-item {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 99px;
+      padding: 6px 14px;
+      font-size: .8rem;
+      color: var(--text-primary);
+      cursor: pointer;
+      transition: all .15s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .history-item:hover {
+      border-color: var(--accent);
+      background: rgba(99,102,241,.08);
+    }
+    .history-item svg { width: 14px; height: 14px; color: var(--text-secondary); }
+
+    /* Bang info */
+    .bang-info {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-top: 1.5rem;
+      max-width: 680px;
+      width: 100%;
+    }
+    .bang-info summary {
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      cursor: pointer;
+      user-select: none;
+    }
+    .bang-info summary:hover { color: var(--text-primary); }
+    .bang-info .bang-list {
+      margin-top: 10px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 6px;
+    }
+    .bang-info .bang-entry {
+      font-size: .8rem;
+      color: var(--text-secondary);
+    }
+    .bang-info .bang-entry code {
+      color: var(--accent);
+      font-weight: 600;
+      background: rgba(99,102,241,.1);
+      padding: 1px 6px;
+      border-radius: 4px;
+    }
+
+    /* Settings cog in header */
+    .settings-toggle {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      color: var(--text-primary);
+      cursor: pointer;
+      padding: .75rem;
+      border-radius: 50%;
+      transition: all .3s cubic-bezier(.4,0,.2,1);
+      outline: none;
+      display: flex;
+    }
+    .settings-toggle:hover { border-color: var(--accent); transform: scale(1.1); }
+    .settings-toggle svg { width: 20px; height: 20px; }
+
+    /* Powered by */
+    .powered-by {
+      text-align: center;
+      padding: 2rem 0;
+      font-size: .75rem;
+      color: var(--text-secondary);
+      opacity: .6;
+    }
+    .powered-by a { color: var(--accent); text-decoration: none; }
+    .powered-by a:hover { text-decoration: underline; }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .home-view .search-logo { font-size: 2.2rem; }
+      .search-bar { padding: 3px 4px 3px 14px; }
+      .search-bar input { font-size: .9rem; padding: 10px 8px; }
+      .submit-btn { padding: 8px 14px !important; font-size: .8rem !important; }
+      .results-header { flex-direction: column; gap: 8px; }
+      .results-header .search-bar-wrap { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="/favicon.avif" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
+      <span>VentiStudio</span>
+    </div>
+    <button class="nav-burger" id="nav-burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="main-nav" class="main-nav" aria-label="Navigation principale">
+      <a href="/" class="nav-link">Accueil</a>
+
+      <details class="nav-group">
+        <summary class="nav-link">Découvrir
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel" role="menu">
+          <a href="/evaluation">Évaluation</a>
+          <a href="/wiki">Wiki</a>
+          <a href="/glossary">Glossaire</a>
+          <a href="/news">News</a>
+          <a href="/blog">Blog</a>
+          <a href="/calendar">Calendrier</a>
+          <a href="/cookbook">Cookbook</a>
+          <a href="/gallery">Galerie</a>
+          <a href="/atlas">Atlas</a>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Univers
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel" role="menu">
+          <a href="/aokiunivers">AOKI Universe</a>
+          <a href="/allofaokiunivers">All AOKI</a>
+          <a href="/university">Université</a>
+          <a href="/history">Histoire</a>
+          <a href="/memorial">Mémorial</a>
+          <a href="/ester-eggs">Easter eggs</a>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Outils
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Applications</h4>
+            <a href="/player">Lecteur</a>
+            <a href="/music">Musique</a>
+            <a href="/pip">PIP</a>
+            <a href="/whiteboard">Whiteboard</a>
+            <a href="/portfolio">Portfolio</a>
+            <a href="/gmod">GMod</a>
+          </div>
+          <div class="nav-col">
+            <h4>Domaines</h4>
+            <a href="/domain/aina">AINA</a>
+            <a href="/domain/archive">Archive</a>
+            <a href="/domain/maps">Maps</a>
+            <a href="/domain/movie">Movie</a>
+            <a href="/domain/peer">Peer</a>
+            <a href="/domain/pro">Pro</a>
+            <a href="/domain/search">Search</a>
+            <a href="/domain/suite">Suite</a>
+          </div>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Communauté
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Équipe</h4>
+            <a href="/personnel/">Équipe</a>
+            <a href="/hierarchie-staff">Hiérarchie</a>
+            <a href="/hypesquad">Hypesquad</a>
+            <a href="/jobs">Emplois</a>
+            <a href="/birthday">Anniversaires</a>
+          </div>
+          <div class="nav-col">
+            <h4>Réseaux</h4>
+            <a href="/discord">Discord</a>
+            <a href="/teamspeak">TeamSpeak</a>
+            <a href="/steam">Steam</a>
+            <a href="/social">Réseaux sociaux</a>
+          </div>
+          <div class="nav-col">
+            <h4>Activités</h4>
+            <a href="/artist">Artistes</a>
+            <a href="/quests">Quêtes</a>
+            <a href="/suboawards">Suboawards</a>
+            <a href="/eConcert">eConcert</a>
+          </div>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Plus
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Aide</h4>
+            <a href="/contact">Contact</a>
+            <a href="/faq">FAQ</a>
+            <a href="/status">Statut</a>
+            <a href="/sitemap">Plan du site</a>
+          </div>
+          <div class="nav-col">
+            <h4>Soutien</h4>
+            <a href="/donate">Faire un don</a>
+            <a href="/gold">Gold</a>
+            <a href="/customization">Personnalisation</a>
+            <a href="/mes-donnees">Mes Données</a>
+            <a href="/newsletter">Newsletter</a>
+          </div>
+          <div class="nav-col">
+            <h4>À propos</h4>
+            <a href="/company">Entreprise</a>
+            <a href="/acknowledgements">Remerciements</a>
+            <a href="/logo">Logo</a>
+            <a href="/tags">Tags</a>
+            <a href="/memory">Mémoire</a>
+            <a href="/why-not-use-roblox">Pourquoi pas Roblox</a>
+            <a href="/lawful">Mentions légales</a>
+          </div>
+        </div>
+      </details>
+    </nav>
+    <div class="controls" role="toolbar" aria-label="Contrôles">
+      <button class="settings-toggle" id="open-settings" aria-label="Paramètres du moteur" title="Paramètres">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/>
+        </svg>
+      </button>
+      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
+          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
+          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
+        </svg>
+      </button>
+      <div id="user-button"></div>
+    </div>
+  </header>
+
+  <!-- ═══ HOME ═══ -->
+  <main class="search-wrap">
+    <div class="home-view" id="home-view">
+      <div class="search-logo">VentiStudio Search</div>
+      <p class="search-tagline">Recherchez le web en toute confidentialité, 100% côté client via DuckDuckGo.</p>
+
+      <div class="home-badges">
+        <span class="home-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+          Privé
+        </span>
+        <span class="home-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Open Source
+        </span>
+        <span class="home-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          Client-Side
+        </span>
+        <span class="home-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+          Sans pub
+        </span>
+        <span class="home-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+          Sans CORS
+        </span>
+      </div>
+
+      <div class="search-bar-wrap">
+        <form class="search-bar" id="home-search-form" autocomplete="off">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" id="home-input" placeholder="Rechercher sur le web…" aria-label="Recherche" autofocus>
+          <button type="button" class="clear-btn" id="home-clear" aria-label="Effacer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+          <button type="submit" class="submit-btn">Rechercher</button>
+        </form>
+        <div class="suggestions" id="home-suggestions"></div>
+      </div>
+
+      <details class="bang-info">
+        <summary>Raccourcis « ! » (bangs)</summary>
+        <div class="bang-list" id="bang-list"></div>
+      </details>
+
+      <div class="home-history" id="home-history" style="display:none">
+        <h3>
+          Recherches récentes
+          <button id="clear-history">Effacer</button>
+        </h3>
+        <div class="history-items" id="history-items"></div>
+      </div>
+
+      <div class="quick-links">
+        <a href="/wiki" class="quick-link">
+          <span class="ql-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></span>
+          Wiki
+        </a>
+        <a href="/news" class="quick-link">
+          <span class="ql-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2"/></svg></span>
+          News
+        </a>
+        <a href="/evaluation" class="quick-link">
+          <span class="ql-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>
+          Évaluation
+        </a>
+        <a href="/music" class="quick-link">
+          <span class="ql-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></span>
+          Musique
+        </a>
+      </div>
+    </div>
+
+    <!-- ═══ RESULTS ═══ -->
+    <div class="results-view" id="results-view">
+      <div class="results-header">
+        <button class="back-home" id="back-home" aria-label="Retour à l'accueil">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        </button>
+        <div class="search-bar-wrap">
+          <form class="search-bar" id="results-search-form" autocomplete="off">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" id="results-input" placeholder="Rechercher sur le web…" aria-label="Recherche">
+            <button type="button" class="clear-btn" id="results-clear" aria-label="Effacer">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+            <button type="submit" class="submit-btn">Rechercher</button>
+          </form>
+          <div class="suggestions" id="results-suggestions"></div>
+        </div>
+      </div>
+
+      <div class="results-meta" id="results-meta"></div>
+
+      <div class="results-layout">
+        <div id="results-main"></div>
+        <aside class="results-sidebar" id="results-sidebar"></aside>
+      </div>
+
+      <div class="powered-by">Propulsé par <a href="https://duckduckgo.com" target="_blank" rel="noopener noreferrer">DuckDuckGo</a> Instant Answers &amp; <a href="https://www.wikipedia.org" target="_blank" rel="noopener noreferrer">Wikipédia</a></div>
+    </div>
+  </main>
+
+  <!-- ═══ SETTINGS PANEL ═══ -->
+  <div class="settings-overlay" id="settings-overlay"></div>
+  <div class="settings-panel" id="settings-panel">
+    <h2>
+      Paramètres
+      <button id="close-settings" aria-label="Fermer">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </h2>
+
+    <div class="setting-group">
+      <label for="setting-lang">Langue Wikipédia</label>
+      <p class="setting-desc">Langue utilisée pour les panneaux de connaissance Wikipédia.</p>
+      <select id="setting-lang">
+        <option value="fr" selected>Français</option>
+        <option value="en">English</option>
+        <option value="de">Deutsch</option>
+        <option value="es">Español</option>
+        <option value="it">Italiano</option>
+        <option value="pt">Português</option>
+        <option value="ja">日本語</option>
+        <option value="zh">中文</option>
+        <option value="ko">한국어</option>
+        <option value="ru">Русский</option>
+      </select>
+    </div>
+
+    <div class="setting-group">
+      <label for="setting-newtab">Ouvrir les liens dans un nouvel onglet</label>
+      <select id="setting-newtab">
+        <option value="true" selected>Oui</option>
+        <option value="false">Non</option>
+      </select>
+    </div>
+
+    <div class="setting-group">
+      <label for="setting-fullresults">Moteur pour les résultats complets</label>
+      <p class="setting-desc">Quand vous cliquez « Voir tous les résultats », quel moteur ouvrir.</p>
+      <select id="setting-fullresults">
+        <option value="duckduckgo" selected>DuckDuckGo</option>
+        <option value="google">Google</option>
+        <option value="bing">Bing</option>
+        <option value="brave">Brave Search</option>
+        <option value="startpage">Startpage</option>
+        <option value="ecosia">Ecosia</option>
+        <option value="qwant">Qwant</option>
+      </select>
+    </div>
+
+    <div class="setting-group">
+      <label>À propos</label>
+      <p class="setting-desc">
+        VentiStudio Search utilise l'<strong>API Instant Answers de DuckDuckGo</strong> (gratuite, CORS activé) pour les réponses instantanées et les sujets liés, ainsi que l'<strong>API Wikipédia</strong> pour les panneaux de connaissance.<br><br>
+        Cette approche est 100% client-side : aucune donnée ne passe par nos serveurs. Les résultats complets sont ouverts directement sur le moteur de votre choix.
+      </p>
+    </div>
+  </div>
+
+  <script src="/main.js"></script>
+  <script>
+  (function() {
+    'use strict';
+
+    // ═══ Bangs ═══
+    const BANGS = {
+      '!g':       { name: 'Google',       url: 'https://www.google.com/search?q=' },
+      '!ddg':     { name: 'DuckDuckGo',   url: 'https://duckduckgo.com/?q=' },
+      '!b':       { name: 'Bing',         url: 'https://www.bing.com/search?q=' },
+      '!w':       { name: 'Wikipédia FR', url: 'https://fr.wikipedia.org/w/index.php?search=' },
+      '!wen':     { name: 'Wikipedia EN', url: 'https://en.wikipedia.org/w/index.php?search=' },
+      '!yt':      { name: 'YouTube',      url: 'https://www.youtube.com/results?search_query=' },
+      '!gh':      { name: 'GitHub',       url: 'https://github.com/search?q=' },
+      '!r':       { name: 'Reddit',       url: 'https://www.reddit.com/search/?q=' },
+      '!so':      { name: 'StackOverflow',url: 'https://stackoverflow.com/search?q=' },
+      '!maps':    { name: 'Maps',         url: 'https://www.openstreetmap.org/search?query=' },
+      '!npm':     { name: 'npm',          url: 'https://www.npmjs.com/search?q=' },
+      '!mdn':     { name: 'MDN',          url: 'https://developer.mozilla.org/search?q=' },
+      '!imdb':    { name: 'IMDb',         url: 'https://www.imdb.com/find/?q=' },
+      '!twitch':  { name: 'Twitch',       url: 'https://www.twitch.tv/search?term=' },
+    };
+
+    // ═══ Full results engines ═══
+    const ENGINES = {
+      duckduckgo: q => 'https://duckduckgo.com/?q=' + encodeURIComponent(q),
+      google:     q => 'https://www.google.com/search?q=' + encodeURIComponent(q),
+      bing:       q => 'https://www.bing.com/search?q=' + encodeURIComponent(q),
+      brave:      q => 'https://search.brave.com/search?q=' + encodeURIComponent(q),
+      startpage:  q => 'https://www.startpage.com/do/dsearch?query=' + encodeURIComponent(q),
+      ecosia:     q => 'https://www.ecosia.org/search?q=' + encodeURIComponent(q),
+      qwant:      q => 'https://www.qwant.com/?q=' + encodeURIComponent(q),
+    };
+
+    // ═══ Settings ═══
+    const SETTINGS_KEY = 'vs-search-settings';
+    const HISTORY_KEY  = 'vs-search-history';
+    const MAX_HISTORY  = 30;
+
+    function loadSettings() {
+      try { return JSON.parse(localStorage.getItem(SETTINGS_KEY)) || {}; }
+      catch { return {}; }
+    }
+    function saveSettings(s) { localStorage.setItem(SETTINGS_KEY, JSON.stringify(s)); }
+    function getSetting(key, def) { return loadSettings()[key] ?? def; }
+    function setSetting(key, val) {
+      const s = loadSettings();
+      s[key] = val;
+      saveSettings(s);
+    }
+
+    // ═══ History ═══
+    function loadHistory() {
+      try { return JSON.parse(localStorage.getItem(HISTORY_KEY)) || []; }
+      catch { return []; }
+    }
+    function addHistory(query) {
+      if (!query || query.startsWith('!')) return;
+      let h = loadHistory().filter(e => e !== query);
+      h.unshift(query);
+      if (h.length > MAX_HISTORY) h = h.slice(0, MAX_HISTORY);
+      localStorage.setItem(HISTORY_KEY, JSON.stringify(h));
+    }
+    function clearHistory() {
+      localStorage.removeItem(HISTORY_KEY);
+      renderHistory();
+    }
+
+    // ═══ DOM refs ═══
+    const homeView       = document.getElementById('home-view');
+    const resultsView    = document.getElementById('results-view');
+    const homeInput      = document.getElementById('home-input');
+    const resultsInput   = document.getElementById('results-input');
+    const homeClear      = document.getElementById('home-clear');
+    const resultsClear   = document.getElementById('results-clear');
+    const homeForm       = document.getElementById('home-search-form');
+    const resultsForm    = document.getElementById('results-search-form');
+    const homeSuggestions= document.getElementById('home-suggestions');
+    const resultsSuggestions = document.getElementById('results-suggestions');
+    const resultsMain    = document.getElementById('results-main');
+    const resultsSidebar = document.getElementById('results-sidebar');
+    const resultsMeta    = document.getElementById('results-meta');
+    const settingsPanel  = document.getElementById('settings-panel');
+    const settingsOverlay= document.getElementById('settings-overlay');
+    const historySection = document.getElementById('home-history');
+    const historyItems   = document.getElementById('history-items');
+    const bangList       = document.getElementById('bang-list');
+
+    const settingLang        = document.getElementById('setting-lang');
+    const settingNewTab      = document.getElementById('setting-newtab');
+    const settingFullResults = document.getElementById('setting-fullresults');
+
+    // ═══ State ═══
+    let currentQuery = '';
+    let sugActive    = -1;
+
+    // ═══ Init ═══
+    function init() {
+      loadSettingsUI();
+      renderBangs();
+      renderHistory();
+
+      const params = new URLSearchParams(window.location.search);
+      const q = params.get('q');
+      if (q) {
+        currentQuery = q;
+        showResults();
+        resultsInput.value = q;
+        doSearch();
+      }
+
+      homeForm.addEventListener('submit', onHomeSearch);
+      resultsForm.addEventListener('submit', onResultsSearch);
+      document.getElementById('back-home').addEventListener('click', goHome);
+      document.getElementById('open-settings').addEventListener('click', openSettings);
+      document.getElementById('close-settings').addEventListener('click', closeSettings);
+      settingsOverlay.addEventListener('click', closeSettings);
+      document.getElementById('clear-history').addEventListener('click', clearHistory);
+
+      setupClear(homeInput, homeClear);
+      setupClear(resultsInput, resultsClear);
+
+      homeInput.addEventListener('input', () => showSuggestions(homeInput, homeSuggestions));
+      resultsInput.addEventListener('input', () => showSuggestions(resultsInput, resultsSuggestions));
+      homeInput.addEventListener('keydown', (e) => navSuggestions(e, homeSuggestions, homeInput));
+      resultsInput.addEventListener('keydown', (e) => navSuggestions(e, resultsSuggestions, resultsInput));
+      document.addEventListener('click', () => { closeSuggestions(homeSuggestions); closeSuggestions(resultsSuggestions); });
+
+      [settingLang, settingNewTab, settingFullResults].forEach(el => {
+        el.addEventListener('change', saveSettingsUI);
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === '/' && !['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName)) {
+          e.preventDefault();
+          (resultsView.classList.contains('active') ? resultsInput : homeInput).focus();
+        }
+      });
+    }
+
+    // ═══ Search ═══
+    function onHomeSearch(e) {
+      e.preventDefault();
+      const q = homeInput.value.trim();
+      if (!q) return;
+      currentQuery = q;
+      if (handleBang(q)) return;
+      addHistory(q);
+      showResults();
+      resultsInput.value = q;
+      updateURL();
+      doSearch();
+    }
+
+    function onResultsSearch(e) {
+      e.preventDefault();
+      const q = resultsInput.value.trim();
+      if (!q) return;
+      currentQuery = q;
+      if (handleBang(q)) return;
+      addHistory(q);
+      updateURL();
+      doSearch();
+    }
+
+    function handleBang(q) {
+      const match = q.match(/^(![\w]+)\s*(.*)/);
+      if (match && BANGS[match[1]]) {
+        const bang = BANGS[match[1]];
+        const query = match[2] || '';
+        window.open(bang.url + encodeURIComponent(query), '_blank', 'noopener');
+        return true;
+      }
+      return false;
+    }
+
+    // ═══ DuckDuckGo Instant Answer API ═══
+    async function doSearch() {
+      if (!currentQuery) return;
+
+      closeSuggestions(homeSuggestions);
+      closeSuggestions(resultsSuggestions);
+      resultsMain.innerHTML = '<div class="search-loading"><div class="spinner"></div>Recherche en cours…</div>';
+      resultsSidebar.innerHTML = '';
+      resultsMeta.textContent = '';
+
+      const startTime = performance.now();
+
+      try {
+        const [ddgData, wikiData] = await Promise.all([
+          fetchDDG(currentQuery),
+          fetchWikipedia(currentQuery),
+        ]);
+
+        const elapsed = ((performance.now() - startTime) / 1000).toFixed(2);
+
+        let mainHTML = '';
+        let hasContent = false;
+
+        // Instant Answer (Abstract)
+        if (ddgData.Abstract) {
+          hasContent = true;
+          mainHTML += buildInstantAnswer(ddgData);
+        }
+
+        // Computed answer (calculator, etc.)
+        if (ddgData.Answer) {
+          hasContent = true;
+          mainHTML += '<div class="instant-answer">'
+            + '<div class="ia-type">Réponse instantanée</div>'
+            + '<h2>' + escapeHTML(String(ddgData.Answer)) + '</h2>'
+            + (ddgData.AnswerType ? '<div class="ia-source">Type : ' + escapeHTML(ddgData.AnswerType) + '</div>' : '')
+            + '</div>';
+        }
+
+        // Definition
+        if (ddgData.Definition) {
+          hasContent = true;
+          mainHTML += '<div class="instant-answer">'
+            + '<div class="ia-type">Définition</div>'
+            + '<div class="ia-text">' + escapeHTML(ddgData.Definition) + '</div>'
+            + (ddgData.DefinitionSource ? '<div class="ia-source">Source : <a href="' + escapeAttr(ddgData.DefinitionURL || '#') + '" target="_blank" rel="noopener noreferrer">' + escapeHTML(ddgData.DefinitionSource) + '</a></div>' : '')
+            + '</div>';
+        }
+
+        // Related Topics
+        const topics = extractTopics(ddgData);
+        if (topics.length > 0) {
+          hasContent = true;
+          const newTab = getSetting('newtab', 'true') === 'true';
+          const target = newTab ? ' target="_blank" rel="noopener noreferrer"' : '';
+
+          mainHTML += topics.map(function(t) {
+            var domain = getDomain(t.url);
+            var favicon = 'https://www.google.com/s2/favicons?domain=' + encodeURIComponent(domain) + '&sz=32';
+            return '<div class="result-item">'
+              + '<div class="result-url"><img src="' + escapeAttr(favicon) + '" alt="" width="16" height="16" loading="lazy"> ' + escapeHTML(domain) + '</div>'
+              + '<div class="result-title"><a href="' + escapeAttr(t.url) + '"' + target + '>' + escapeHTML(t.title) + '</a></div>'
+              + '<div class="result-snippet">' + escapeHTML(t.text) + '</div>'
+              + '</div>';
+          }).join('');
+        }
+
+        // Results (external links)
+        if (ddgData.Results && ddgData.Results.length > 0) {
+          hasContent = true;
+          var newTab2 = getSetting('newtab', 'true') === 'true';
+          var target2 = newTab2 ? ' target="_blank" rel="noopener noreferrer"' : '';
+
+          mainHTML += ddgData.Results.map(function(r) {
+            var url = r.FirstURL || '';
+            var domain = getDomain(url);
+            var favicon = 'https://www.google.com/s2/favicons?domain=' + encodeURIComponent(domain) + '&sz=32';
+            return '<div class="result-item">'
+              + '<div class="result-url"><img src="' + escapeAttr(favicon) + '" alt="" width="16" height="16" loading="lazy"> ' + escapeHTML(domain) + '</div>'
+              + '<div class="result-title"><a href="' + escapeAttr(url) + '"' + target2 + '>' + escapeHTML(r.Text || 'Lien') + '</a></div>'
+              + '</div>';
+          }).join('');
+        }
+
+        // "See full results" always
+        mainHTML += buildMoreResults(currentQuery);
+
+        if (!hasContent) {
+          resultsMeta.textContent = 'Aucune réponse instantanée (' + elapsed + 's) : recherchez via un moteur complet ci-dessous';
+        } else {
+          var count = topics.length + (ddgData.Results ? ddgData.Results.length : 0) + (ddgData.Abstract ? 1 : 0) + (ddgData.Answer ? 1 : 0) + (ddgData.Definition ? 1 : 0);
+          resultsMeta.textContent = count + ' résultat' + (count > 1 ? 's' : '') + ' instantané' + (count > 1 ? 's' : '') + ' (' + elapsed + 's)';
+        }
+
+        resultsMain.innerHTML = mainHTML;
+
+        // Sidebar
+        var sideHTML = '';
+        if (wikiData) sideHTML += buildWikiPanel(wikiData);
+        if (ddgData.Infobox && ddgData.Infobox.content && ddgData.Infobox.content.length > 0) {
+          sideHTML += buildInfobox(ddgData.Infobox);
+        }
+        resultsSidebar.innerHTML = sideHTML;
+
+      } catch (err) {
+        resultsMain.innerHTML = '<div class="search-empty">'
+          + '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>'
+          + '<h3>Erreur</h3>'
+          + '<p>' + escapeHTML(err.message) + '</p>'
+          + '</div>'
+          + buildMoreResults(currentQuery);
+      }
+    }
+
+    // ═══ DDG API (JSONP → proxy fallback) ═══
+    async function fetchDDG(query) {
+      var params = 'q=' + encodeURIComponent(query) + '&format=json&no_html=1&skip_disambig=1&t=ventisearch';
+
+      // 1) Try direct fetch (works when CORS headers are present)
+      try {
+        var res = await fetch('https://api.duckduckgo.com/?' + params);
+        if (res.ok) return await res.json();
+      } catch(e) { /* CORS or network error, continue */ }
+
+      // 2) Try JSONP (bypasses CORS via <script> tag)
+      try {
+        return await fetchDDGJsonp(params);
+      } catch(e) { /* JSONP failed, continue */ }
+
+      // 3) Fallback: public CORS proxy
+      var apiUrl = 'https://api.duckduckgo.com/?' + params;
+      var proxyRes = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent(apiUrl));
+      if (!proxyRes.ok) throw new Error('DuckDuckGo API : HTTP ' + proxyRes.status);
+      return await proxyRes.json();
+    }
+
+    function fetchDDGJsonp(params) {
+      return new Promise(function(resolve, reject) {
+        var cbName = 'ddgCb' + Date.now();
+        var script = document.createElement('script');
+        var timer = setTimeout(function() { done(new Error('timeout')); }, 6000);
+
+        function done(err, data) {
+          clearTimeout(timer);
+          delete window[cbName];
+          if (script.parentNode) script.parentNode.removeChild(script);
+          if (err) reject(err); else resolve(data);
+        }
+
+        window[cbName] = function(d) { done(null, d); };
+        script.onerror = function() { done(new Error('script error')); };
+        script.src = 'https://api.duckduckgo.com/?' + params + '&callback=' + cbName;
+        document.head.appendChild(script);
+      });
+    }
+
+    // ═══ Wikipedia API ═══
+    async function fetchWikipedia(query) {
+      try {
+        var lang = getSetting('lang', 'fr');
+        var validLangs = ['fr','en','de','es','it','pt','ja','zh','ko','ru'];
+        if (!validLangs.includes(lang)) lang = 'fr';
+        var apiUrl = 'https://' + encodeURIComponent(lang) + '.wikipedia.org/api/rest_v1/page/summary/' + encodeURIComponent(query);
+        var res = await fetch(apiUrl);
+        if (!res.ok) return null;
+        var data = await res.json();
+        if (data.type === 'disambiguation' || !data.extract) return null;
+        return data;
+      } catch (e) {
+        return null;
+      }
+    }
+
+    // ═══ Extract topics ═══
+    function extractTopics(data) {
+      var topics = [];
+      if (!data.RelatedTopics) return topics;
+      for (var i = 0; i < data.RelatedTopics.length; i++) {
+        var item = data.RelatedTopics[i];
+        if (item.FirstURL && item.Text) {
+          topics.push({ url: item.FirstURL, title: extractTitle(item.Text), text: item.Text });
+        }
+        if (item.Topics && Array.isArray(item.Topics)) {
+          for (var j = 0; j < item.Topics.length; j++) {
+            var sub = item.Topics[j];
+            if (sub.FirstURL && sub.Text) {
+              topics.push({ url: sub.FirstURL, title: extractTitle(sub.Text), text: sub.Text });
+            }
+          }
+        }
+      }
+      return topics;
+    }
+
+    function extractTitle(text) {
+      var dash = text.indexOf(' - ');
+      return dash > 0 ? text.substring(0, dash) : text.substring(0, 60);
+    }
+
+    // ═══ Build HTML ═══
+    function buildInstantAnswer(data) {
+      var html = '<div class="instant-answer">';
+      html += '<div class="ia-type">' + escapeHTML(data.AbstractSource || 'Réponse instantanée') + '</div>';
+      if (data.Image) {
+        var imgSrc = data.Image.startsWith('http') ? data.Image : 'https://duckduckgo.com' + data.Image;
+        html += '<img class="ia-image" src="' + escapeAttr(imgSrc) + '" alt="' + escapeAttr(data.Heading || '') + '" loading="lazy">';
+      }
+      if (data.Heading) html += '<h2>' + escapeHTML(data.Heading) + '</h2>';
+      if (data.Abstract) html += '<div class="ia-text">' + (data.AbstractText || escapeHTML(data.Abstract)) + '</div>';
+      if (data.AbstractURL) {
+        html += '<div class="ia-source">Source : <a href="' + escapeAttr(data.AbstractURL) + '" target="_blank" rel="noopener noreferrer">' + escapeHTML(data.AbstractSource || data.AbstractURL) + '</a></div>';
+      }
+      html += '</div>';
+      return html;
+    }
+
+    function buildWikiPanel(data) {
+      var html = '<div class="knowledge-panel">';
+      if (data.thumbnail && data.thumbnail.source) {
+        html += '<img class="kp-image" src="' + escapeAttr(data.thumbnail.source) + '" alt="' + escapeAttr(data.title) + '" loading="lazy">';
+      }
+      html += '<h3>' + escapeHTML(data.title) + '</h3>';
+      if (data.description) html += '<div class="kp-type">' + escapeHTML(data.description) + '</div>';
+      html += '<div class="kp-extract">' + escapeHTML(data.extract) + '</div>';
+      var wikiUrl = (data.content_urls && data.content_urls.desktop && data.content_urls.desktop.page) || '#';
+      html += '<a class="kp-link" href="' + escapeAttr(wikiUrl) + '" target="_blank" rel="noopener noreferrer">Lire sur Wikipédia →</a>';
+      html += '</div>';
+      return html;
+    }
+
+    function buildInfobox(infobox) {
+      var html = '<div class="infobox"><h4>Informations</h4><div class="ib-content">';
+      for (var i = 0; i < infobox.content.length; i++) {
+        var item = infobox.content[i];
+        if (item.data_type === 'string' && item.value) {
+          html += '<div style="margin-bottom:6px"><strong>' + escapeHTML(item.label || '') + (item.label ? ' :' : '') + '</strong> ' + escapeHTML(item.value) + '</div>';
+        }
+      }
+      if (infobox.meta && infobox.meta.length) {
+        html += '<div class="ib-urls">';
+        for (var j = 0; j < infobox.meta.length; j++) {
+          var m = infobox.meta[j];
+          if (m.data_type === 'string' && m.value) {
+            html += '<a href="' + escapeAttr(m.value) + '" target="_blank" rel="noopener noreferrer">' + escapeHTML(m.label || m.value) + '</a>';
+          }
+        }
+        html += '</div>';
+      }
+      html += '</div></div>';
+      return html;
+    }
+
+    function buildMoreResults(query) {
+      var engine = getSetting('fullresults', 'duckduckgo');
+      var names = { duckduckgo:'DuckDuckGo', google:'Google', bing:'Bing', brave:'Brave Search', startpage:'Startpage', ecosia:'Ecosia', qwant:'Qwant' };
+      var engineName = names[engine] || engine;
+      var mainUrl = (ENGINES[engine] || ENGINES.duckduckgo)(query);
+
+      var secondaryHTML = '';
+      if (engine !== 'duckduckgo') {
+        secondaryHTML = '<a class="more-btn more-btn-secondary" href="' + escapeAttr(ENGINES.duckduckgo(query)) + '" target="_blank" rel="noopener noreferrer">'
+          + '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>'
+          + ' DuckDuckGo</a>';
+      }
+
+      return '<div class="more-results">'
+        + '<div class="more-label">Voir tous les résultats web :</div>'
+        + '<div class="more-btns">'
+        + '<a class="more-btn more-btn-primary" href="' + escapeAttr(mainUrl) + '" target="_blank" rel="noopener noreferrer">'
+        + '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"/><path d="M10 14L21 3"/><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/></svg>'
+        + ' Rechercher sur ' + escapeHTML(engineName) + '</a>'
+        + secondaryHTML
+        + '<a class="more-btn more-btn-secondary" href="' + escapeAttr('https://www.google.com/search?q=' + encodeURIComponent(query)) + '" target="_blank" rel="noopener noreferrer">Google</a>'
+        + '</div></div>';
+    }
+
+    // ═══ Suggestions ═══
+    function showSuggestions(input, container) {
+      var q = input.value.trim().toLowerCase();
+      if (!q) { closeSuggestions(container); return; }
+
+      var items = [];
+      var hist = loadHistory().filter(function(h) { return h.toLowerCase().includes(q); }).slice(0, 5);
+      if (hist.length) {
+        items.push({ type: 'section', text: 'Récent' });
+        hist.forEach(function(h) { items.push({ type: 'history', text: h }); });
+      }
+      if (q.startsWith('!')) {
+        var bangMatches = Object.entries(BANGS)
+          .filter(function(e) { return e[0].includes(q) || e[1].name.toLowerCase().includes(q.replace('!', '')); })
+          .slice(0, 6);
+        if (bangMatches.length) {
+          items.push({ type: 'section', text: 'Raccourcis' });
+          bangMatches.forEach(function(e) { items.push({ type: 'bang', text: e[0] + ' : ' + e[1].name, bang: e[0] }); });
+        }
+      }
+      if (!items.length) { closeSuggestions(container); return; }
+
+      sugActive = -1;
+      container.innerHTML = items.map(function(it, i) {
+        if (it.type === 'section') return '<div class="sug-section">' + escapeHTML(it.text) + '</div>';
+        var icon = it.type === 'history'
+          ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>'
+          : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="13 17 18 12 13 7"/><polyline points="6 17 11 12 6 7"/></svg>';
+        return '<div class="sug-item" data-index="' + i + '" data-text="' + escapeAttr(it.bang || it.text) + '">' + icon + '<span>' + escapeHTML(it.text) + '</span></div>';
+      }).join('');
+      container.classList.add('open');
+
+      container.querySelectorAll('.sug-item').forEach(function(el) {
+        el.addEventListener('mousedown', function(e) {
+          e.preventDefault();
+          input.value = el.dataset.text + ' ';
+          closeSuggestions(container);
+          input.focus();
+        });
+      });
+    }
+
+    function navSuggestions(e, container, input) {
+      var items = container.querySelectorAll('.sug-item');
+      if (!items.length || !container.classList.contains('open')) return;
+      if (e.key === 'ArrowDown') { e.preventDefault(); sugActive = Math.min(sugActive + 1, items.length - 1); updateSugActive(items); }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); sugActive = Math.max(sugActive - 1, 0); updateSugActive(items); }
+      else if (e.key === 'Enter' && sugActive >= 0) { e.preventDefault(); input.value = items[sugActive].dataset.text + ' '; closeSuggestions(container); }
+      else if (e.key === 'Escape') { closeSuggestions(container); }
+    }
+
+    function updateSugActive(items) { items.forEach(function(el, i) { el.classList.toggle('active', i === sugActive); }); }
+    function closeSuggestions(container) { container.classList.remove('open'); sugActive = -1; }
+
+    // ═══ Views ═══
+    function showResults() {
+      homeView.style.display = 'none';
+      resultsView.classList.add('active');
+      document.title = currentQuery + ' : VentiStudio Search';
+    }
+    function goHome() {
+      resultsView.classList.remove('active');
+      homeView.style.display = '';
+      homeInput.value = '';
+      resultsInput.value = '';
+      document.title = 'Search | VentiStudio';
+      window.history.pushState({}, '', '/domain/search/');
+      renderHistory();
+    }
+    function updateURL() {
+      var params = new URLSearchParams({ q: currentQuery });
+      window.history.pushState({}, '', '?' + params.toString());
+    }
+
+    // ═══ Clear buttons ═══
+    function setupClear(input, btn) {
+      input.addEventListener('input', function() { btn.classList.toggle('visible', input.value.length > 0); });
+      btn.addEventListener('click', function() { input.value = ''; btn.classList.remove('visible'); input.focus(); });
+    }
+
+    // ═══ Settings UI ═══
+    function loadSettingsUI() {
+      settingLang.value        = getSetting('lang', 'fr');
+      settingNewTab.value      = getSetting('newtab', 'true');
+      settingFullResults.value = getSetting('fullresults', 'duckduckgo');
+    }
+    function saveSettingsUI() {
+      setSetting('lang',        settingLang.value);
+      setSetting('newtab',      settingNewTab.value);
+      setSetting('fullresults', settingFullResults.value);
+    }
+    function openSettings() { settingsPanel.classList.add('open'); settingsOverlay.classList.add('open'); }
+    function closeSettings() { settingsPanel.classList.remove('open'); settingsOverlay.classList.remove('open'); }
+
+    // ═══ Render bangs ═══
+    function renderBangs() {
+      bangList.innerHTML = Object.entries(BANGS).map(function(e) {
+        return '<div class="bang-entry"><code>' + escapeHTML(e[0]) + '</code> ' + escapeHTML(e[1].name) + '</div>';
+      }).join('');
+    }
+
+    // ═══ Render history ═══
+    function renderHistory() {
+      var h = loadHistory();
+      if (!h.length) { historySection.style.display = 'none'; return; }
+      historySection.style.display = '';
+      historyItems.innerHTML = h.slice(0, 12).map(function(q) {
+        return '<div class="history-item" data-q="' + escapeAttr(q) + '">'
+          + '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>'
+          + ' ' + escapeHTML(q) + '</div>';
+      }).join('');
+
+      historyItems.querySelectorAll('.history-item').forEach(function(el) {
+        el.addEventListener('click', function() {
+          homeInput.value = el.dataset.q;
+          homeForm.dispatchEvent(new Event('submit'));
+        });
+      });
+    }
+
+    // ═══ Utilities ═══
+    function escapeHTML(str) {
+      var div = document.createElement('div');
+      div.textContent = str || '';
+      return div.innerHTML;
+    }
+    function escapeAttr(str) {
+      return (str || '').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/'/g,'&#39;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+    function getDomain(url) {
+      try { return new URL(url).hostname; }
+      catch (e) { return url; }
+    }
+
+    // ═══ Back/forward ═══
+    window.addEventListener('popstate', function() {
+      var params = new URLSearchParams(window.location.search);
+      var q = params.get('q');
+      if (q) {
+        currentQuery = q;
+        showResults();
+        resultsInput.value = q;
+        doSearch();
+      } else {
+        goHome();
+      }
+    });
+
+    // Start
+    init();
+  })();
+  </script>
+  <script>
+    (function () {
+      var nav = document.getElementById('main-nav');
+      var burger = document.getElementById('nav-burger');
+      if (!nav || !burger) return;
+
+      // Marque le lien actif d'apres l'URL courante
+      try {
+        var path = window.location.pathname.replace(/\/index\.html?$/, '/').replace(/\/$/, '') || '/';
+        var best = null, bestLen = -1;
+        nav.querySelectorAll('a[href]').forEach(function (a) {
+          var href = a.getAttribute('href').replace(/\/$/, '') || '/';
+          if (href === path || (href !== '/' && path.indexOf(href + '/') === 0) || (href !== '/' && path === href)) {
+            if (href.length > bestLen) { best = a; bestLen = href.length; }
+          }
+        });
+        if (path === '/' || path === '') {
+          best = nav.querySelector('a[href="/"]');
+        }
+        if (best) {
+          best.classList.add('active');
+          var grp = best.closest('details.nav-group');
+          if (grp) {
+            var s = grp.querySelector('summary.nav-link');
+            if (s) s.classList.add('active');
+          }
+        }
+      } catch (e) {}
+
+      function closeAllGroups(except) {
+        nav.querySelectorAll('details.nav-group[open]').forEach(function (d) {
+          if (d !== except) d.removeAttribute('open');
+        });
+      }
+
+      burger.addEventListener('click', function () {
+        var open = nav.classList.toggle('is-open');
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        burger.classList.toggle('is-active', open);
+        if (!open) closeAllGroups();
+      });
+
+      nav.querySelectorAll('details.nav-group').forEach(function (d) {
+        d.addEventListener('toggle', function () {
+          if (d.open) closeAllGroups(d);
+        });
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!nav.contains(e.target) && !burger.contains(e.target)) {
+          closeAllGroups();
+          if (nav.classList.contains('is-open')) {
+            nav.classList.remove('is-open');
+            burger.classList.remove('is-active');
+            burger.setAttribute('aria-expanded', 'false');
+          }
+        }
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          closeAllGroups();
+          if (nav.classList.contains('is-open')) {
+            nav.classList.remove('is-open');
+            burger.classList.remove('is-active');
+            burger.setAttribute('aria-expanded', 'false');
+            burger.focus();
+          }
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

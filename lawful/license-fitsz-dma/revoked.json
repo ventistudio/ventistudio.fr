@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "license": "FiTsZ-DMA-1.0",
+  "issuer": "Umaishi H. <umaishi.h@ventistudio.eu>",
+  "lastUpdated": "2026-04-30",
+  "notice": "Liste publique des révocations prononcées au titre des articles 7 et 8 de la licence FiTsZ-DMA. Toute entité, identifiant ou empreinte présente ici n'est plus autorisée à utiliser l'Œuvre. Les révocations pour motif éthique sont d'effet immédiat ; les autres laissent un délai de 90 jours.",
+  "revocations": [
+    {
+      "id": "EXAMPLE-0000",
+      "type": "example",
+      "target": "Exemple — aucune révocation réelle pour le moment",
+      "reason": "Entrée d'exemple, à supprimer dès la première vraie révocation.",
+      "article": "demo",
+      "effectiveDate": "2026-04-30",
+      "graceDays": 0,
+      "active": false
+    }
+  ]
+}

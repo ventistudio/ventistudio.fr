@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="VentiStudio - Vérificateur de validité d'une licence SPDX (FiTsZ-DMA et toutes les licences SPDX standards).">
+  <meta name="theme-color" content="#6366f1">
+  <title>Vérifier une licence SPDX | FiTsZ-DMA | VentiStudio</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="../../lawful.css">
+
+  <meta property="og:title" content="Vérifier une licence SPDX | FiTsZ-DMA">
+  <meta property="og:description" content="Validez un en-tête SPDX, un identifiant ou un fichier source contre la liste officielle SPDX et la licence FiTsZ-DMA.">
+  <meta property="og:url" content="https://ventistudio.eu/lawful/license-fitsz-dma/verify/">
+  <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://ventistudio.eu/lawful/license-fitsz-dma/verify/">
+
+  <style>
+    .vrf-container { max-width: 1100px; margin: 0 auto; padding: 2rem; }
+
+    .vrf-tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; margin-bottom: 1rem; }
+    .vrf-tabs button {
+      padding: 0.55rem 1.1rem;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      color: var(--text-secondary);
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    .vrf-tabs button.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+    .vrf-panel {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 1rem;
+      padding: 1.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .vrf-panel:not(.active) { display: none; }
+    .vrf-panel label { display: block; color: var(--text-primary); font-weight: 600; margin-bottom: 0.5rem; }
+    .vrf-panel small { color: var(--text-secondary); display: block; margin-bottom: 0.75rem; }
+
+    .vrf-input, .vrf-textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--glass-border);
+      border-radius: 0.5rem;
+      color: var(--text-primary);
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.9rem;
+      box-sizing: border-box;
+    }
+    .vrf-textarea { min-height: 180px; resize: vertical; }
+    .vrf-input:focus, .vrf-textarea:focus { outline: none; border-color: var(--accent); }
+
+    .vrf-drop {
+      border: 2px dashed var(--glass-border);
+      border-radius: 0.75rem;
+      padding: 2rem;
+      text-align: center;
+      color: var(--text-secondary);
+      transition: border-color .15s, background .15s;
+      cursor: pointer;
+    }
+    .vrf-drop.is-drag { border-color: var(--accent); background: rgba(99,102,241,0.06); }
+    .vrf-drop input[type=file] { display: none; }
+    .vrf-drop strong { display: block; color: var(--text-primary); margin-bottom: 0.4rem; }
+
+    .vrf-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; margin-top: 1.25rem; }
+    .vrf-actions button {
+      background: var(--accent);
+      color: #fff;
+      padding: 0.7rem 1.5rem;
+      border-radius: 0.6rem;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: filter .15s, transform .15s;
+    }
+    .vrf-actions button:hover { filter: brightness(1.1); transform: translateY(-1px); }
+    .vrf-actions button.alt { background: transparent; border: 1px solid var(--accent); color: var(--accent); }
+    .vrf-actions button:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    .vrf-result {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 1rem;
+      padding: 1.75rem;
+      margin-top: 1.5rem;
+    }
+    .vrf-result.empty { text-align: center; color: var(--text-secondary); font-style: italic; }
+
+    .vrf-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+    .vrf-status.ok { background: rgba(34,197,94,0.15); color: #22c55e; border: 1px solid rgba(34,197,94,0.4); }
+    .vrf-status.warn { background: rgba(245,158,11,0.15); color: #f59e0b; border: 1px solid rgba(245,158,11,0.4); }
+    .vrf-status.err { background: rgba(239,68,68,0.15); color: #ef4444; border: 1px solid rgba(239,68,68,0.4); }
+    .vrf-status::before { content: ''; width: 10px; height: 10px; border-radius: 50%; background: currentColor; box-shadow: 0 0 8px currentColor; }
+
+    .vrf-detected {
+      background: #0b0f1a;
+      color: #e2e8f0;
+      padding: 1rem 1.25rem;
+      border-radius: 0.6rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.85rem;
+      overflow-x: auto;
+      border: 1px solid var(--glass-border);
+      margin: 0.75rem 0 1.25rem;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .vrf-checks { list-style: none; padding: 0; margin: 1rem 0 0; }
+    .vrf-checks li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.65rem 0.85rem;
+      border-radius: 0.5rem;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--glass-border);
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+      font-size: 0.93rem;
+    }
+    .vrf-checks .ico { flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.8rem; color: #fff; }
+    .vrf-checks .ico.ok { background: #22c55e; }
+    .vrf-checks .ico.warn { background: #f59e0b; }
+    .vrf-checks .ico.err { background: #ef4444; }
+    .vrf-checks .ico.info { background: #6366f1; }
+    .vrf-checks .label { color: var(--text-primary); font-weight: 600; }
+    .vrf-checks .desc { display: block; color: var(--text-secondary); font-size: 0.85rem; margin-top: 0.15rem; }
+    .vrf-checks code { background: rgba(255,255,255,0.06); padding: 0.05rem 0.35rem; border-radius: 0.3rem; color: var(--accent); font-size: 0.85em; }
+
+    .vrf-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 0.6rem;
+      margin: 1rem 0;
+    }
+    .vrf-meta-item {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--glass-border);
+      border-radius: 0.5rem;
+      padding: 0.65rem 0.85rem;
+    }
+    .vrf-meta-item strong { display: block; color: var(--accent); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem; }
+    .vrf-meta-item span { color: var(--text-primary); font-size: 0.9rem; word-break: break-word; }
+
+    .vrf-info-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.75rem;
+      align-items: center;
+      background: rgba(99,102,241,0.06);
+      border: 1px solid rgba(99,102,241,0.25);
+      border-radius: 0.6rem;
+      padding: 0.75rem 1rem;
+      margin-bottom: 1.25rem;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+    .vrf-info-bar .src-status { font-weight: 600; }
+    .vrf-info-bar .src-status.ok { color: #22c55e; }
+    .vrf-info-bar .src-status.warn { color: #f59e0b; }
+    .vrf-info-bar .src-status.err { color: #ef4444; }
+  </style>
+
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="/favicon.avif" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
+      <span>VentiStudio</span>
+    </div>
+    <button class="nav-burger" id="nav-burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="main-nav" class="main-nav" aria-label="Navigation principale">
+      <a href="/" class="nav-link">Accueil</a>
+      <a href="/lawful" class="nav-link">Mentions légales</a>
+      <a href="/lawful/license-fitsz-dma" class="nav-link">Licence FiTsZ-DMA</a>
+      <a href="/contact" class="nav-link">Contact</a>
+    </nav>
+    <div class="controls" role="toolbar" aria-label="Contrôles">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
+          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
+          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-section">
+      <h1>Vérifier une licence</h1>
+      <p>Validation d'un identifiant <strong>SPDX</strong> ou d'un en-tête de licence — incluant la licence <strong>FiTsZ-DMA</strong> et la liste officielle de révocations.</p>
+    </section>
+
+    <div class="vrf-container">
+
+      <div class="vrf-info-bar">
+        <span><strong>Source SPDX :</strong> liste officielle <code>spdx.org/licenses/licenses.json</code> chargée à la volée.</span>
+        <span class="src-status" id="src-status">⏳ Chargement…</span>
+      </div>
+
+      <div class="vrf-tabs" role="tablist">
+        <button type="button" class="active" data-tab="header">📄 En-tête SPDX</button>
+        <button type="button" data-tab="id">🔖 Identifiant seul</button>
+        <button type="button" data-tab="file">📎 Fichier source</button>
+        <button type="button" data-tab="url">🔗 URL distante</button>
+      </div>
+
+      <!-- Header -->
+      <div class="vrf-panel active" data-panel="header">
+        <label for="hdr-input">Coller un en-tête de fichier source</label>
+        <small>Le champ peut contenir tout le début d'un fichier ; la ligne <code>SPDX-License-Identifier: …</code> sera détectée automatiquement.</small>
+        <textarea id="hdr-input" class="vrf-textarea" placeholder="// SPDX-License-Identifier: LicenseRef-FiTsZ-DMA-1.0&#10;// Copyright (c) 2026 Umaishi H. <umaishi.h@ventistudio.eu>&#10;// Distributed under the FiTsZ Digital Media Agreement v1.0"></textarea>
+        <div class="vrf-actions">
+          <button type="button" id="btn-hdr">Vérifier</button>
+          <button type="button" class="alt" id="btn-hdr-clear">Effacer</button>
+        </div>
+      </div>
+
+      <!-- ID -->
+      <div class="vrf-panel" data-panel="id">
+        <label for="id-input">Identifiant SPDX seul</label>
+        <small>Expressions composées acceptées : <code>MIT</code>, <code>Apache-2.0 OR MIT</code>, <code>(GPL-2.0-or-later AND BSD-3-Clause) WITH Classpath-exception-2.0</code>, <code>LicenseRef-FiTsZ-DMA-1.0</code>.</small>
+        <input id="id-input" class="vrf-input" type="text" placeholder="LicenseRef-FiTsZ-DMA-1.0" autocomplete="off" spellcheck="false">
+        <div class="vrf-actions">
+          <button type="button" id="btn-id">Vérifier</button>
+          <button type="button" class="alt" id="btn-id-clear">Effacer</button>
+        </div>
+      </div>
+
+      <!-- File -->
+      <div class="vrf-panel" data-panel="file">
+        <label>Téléverser un fichier source</label>
+        <small>Le fichier reste <strong>local à votre navigateur</strong> — aucune donnée n'est envoyée à un serveur.</small>
+        <label class="vrf-drop" id="drop-zone">
+          <strong>📎 Glissez-déposez ou cliquez</strong>
+          <span>Limite : 2 Mio · uniquement les premières 200 lignes sont analysées</span>
+          <input type="file" id="file-input" accept=".js,.ts,.jsx,.tsx,.py,.rb,.go,.rs,.java,.kt,.swift,.c,.h,.cpp,.hpp,.cs,.php,.html,.css,.scss,.lua,.sh,.ps1,.md,.txt,.json,.yml,.yaml,.toml,.xml">
+        </label>
+        <p id="file-info" style="margin-top:0.75rem; color: var(--text-secondary); font-size: 0.85rem;"></p>
+      </div>
+
+      <!-- URL -->
+      <div class="vrf-panel" data-panel="url">
+        <label for="url-input">URL d'un fichier source brut</label>
+        <small>Idéalement <code>raw.githubusercontent.com</code>, <code>gitlab.com/.../raw/...</code> ou autre hébergement supportant CORS.</small>
+        <input id="url-input" class="vrf-input" type="url" placeholder="https://raw.githubusercontent.com/user/repo/main/src/index.js" autocomplete="off">
+        <div class="vrf-actions">
+          <button type="button" id="btn-url">Récupérer &amp; vérifier</button>
+          <button type="button" class="alt" id="btn-url-clear">Effacer</button>
+        </div>
+        <p id="url-info" style="margin-top:0.75rem; color: var(--text-secondary); font-size: 0.85rem;"></p>
+      </div>
+
+      <!-- Result -->
+      <section class="vrf-result empty" id="result" aria-live="polite">
+        Aucune vérification effectuée. Saisissez un identifiant ou collez un en-tête, puis cliquez sur <em>Vérifier</em>.
+      </section>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Outils</h4>
+        <ul>
+          <li><a href="/pip">PIP</a></li>
+          <li><a href="/sitemap">Plan du site</a></li>
+          <li><a href="https://status.ventistudio.eu/">Statut</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Entreprise</h4>
+        <ul>
+          <li><a href="/about">À propos</a></li>
+          <li><a href="/jobs">Emplois</a></li>
+          <li><a href="/logo">Marque</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Licence</h4>
+        <ul>
+          <li><a href="/lawful/license-fitsz-dma">FiTsZ-DMA</a></li>
+          <li><a href="/lawful/license-fitsz-dma/verify">Vérifier</a></li>
+          <li><a href="/lawful/license-fitsz-dma/revoked.json">Révocations</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Chartes</h4>
+        <ul>
+          <li><a href="/lawful/tos">Conditions d'utilisation</a></li>
+          <li><a href="/lawful/cookies">Confidentialité</a></li>
+          <li><a href="/lawful/dmcainfo">Information DMCA</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <iframe src="https://status.ventistudio.eu/badge?theme=dark" width="500" height="30" frameborder="0" scrolling="no" style="color-scheme: normal"></iframe>
+      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <script src="/main.js" defer></script>
+  <script>
+  (function () {
+    'use strict';
+
+    // ---------- State ----------
+    var state = {
+      spdx: null,        // { licenseIds: Set, licenses: Map, exceptions: Set }
+      revoked: null,
+      loading: { spdx: true, revoked: true }
+    };
+
+    var SPDX_URL = 'https://spdx.org/licenses/licenses.json';
+    var SPDX_EXC_URL = 'https://spdx.org/licenses/exceptions.json';
+    var REVOKED_URL = '/lawful/license-fitsz-dma/revoked.json';
+
+    // Embedded fallback (top licenses) used if SPDX fetch fails (offline/CORS)
+    var FALLBACK_SPDX = [
+      'MIT','Apache-2.0','BSD-2-Clause','BSD-3-Clause','BSD-4-Clause','ISC',
+      'GPL-2.0-only','GPL-2.0-or-later','GPL-3.0-only','GPL-3.0-or-later',
+      'LGPL-2.0-only','LGPL-2.0-or-later','LGPL-2.1-only','LGPL-2.1-or-later',
+      'LGPL-3.0-only','LGPL-3.0-or-later','AGPL-3.0-only','AGPL-3.0-or-later',
+      'MPL-1.1','MPL-2.0','EPL-1.0','EPL-2.0','CDDL-1.0','CDDL-1.1',
+      'Unlicense','CC0-1.0','CC-BY-4.0','CC-BY-SA-4.0','CC-BY-NC-4.0','CC-BY-ND-4.0','CC-BY-NC-SA-4.0','CC-BY-NC-ND-4.0',
+      'WTFPL','Zlib','Artistic-1.0','Artistic-2.0','BSL-1.0','OFL-1.1',
+      'Python-2.0','PostgreSQL','PHP-3.01','Ruby','Vim','X11','NCSA','OSL-3.0','EUPL-1.1','EUPL-1.2'
+    ];
+    var FALLBACK_EXC = ['Classpath-exception-2.0','GCC-exception-2.0','GCC-exception-3.1','LLVM-exception','OpenSSL-exception','Autoconf-exception-2.0','Autoconf-exception-3.0'];
+
+    // ---------- Loaders ----------
+    function loadSpdx() {
+      var srcEl = document.getElementById('src-status');
+      Promise.all([
+        fetch(SPDX_URL).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }),
+        fetch(SPDX_EXC_URL).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }).catch(function () { return { exceptions: [] }; })
+      ]).then(function (data) {
+        var licenses = data[0].licenses || [];
+        var exceptions = (data[1] && data[1].exceptions) || [];
+        var map = new Map();
+        var ids = new Set();
+        licenses.forEach(function (l) { ids.add(l.licenseId); map.set(l.licenseId.toLowerCase(), l); });
+        var excSet = new Set();
+        exceptions.forEach(function (e) { excSet.add(e.licenseExceptionId); });
+        state.spdx = { licenseIds: ids, licenses: map, exceptions: excSet, version: data[0].licenseListVersion || '?', count: licenses.length };
+        srcEl.className = 'src-status ok';
+        srcEl.textContent = '✓ Liste SPDX v' + state.spdx.version + ' chargée (' + state.spdx.count + ' licences)';
+      }).catch(function (err) {
+        var ids = new Set(FALLBACK_SPDX);
+        var map = new Map();
+        FALLBACK_SPDX.forEach(function (id) { map.set(id.toLowerCase(), { licenseId: id, name: id, isOsiApproved: null, isFsfLibre: null, reference: 'https://spdx.org/licenses/' + id + '.html' }); });
+        state.spdx = { licenseIds: ids, licenses: map, exceptions: new Set(FALLBACK_EXC), version: 'fallback', count: FALLBACK_SPDX.length, offline: true };
+        var srcEl2 = document.getElementById('src-status');
+        srcEl2.className = 'src-status warn';
+        srcEl2.textContent = '⚠ SPDX hors-ligne — liste de secours (' + FALLBACK_SPDX.length + ' licences communes)';
+        console.warn('SPDX fetch failed:', err);
+      }).finally(function () { state.loading.spdx = false; });
+    }
+
+    function loadRevoked() {
+      fetch(REVOKED_URL, { cache: 'no-cache' })
+        .then(function (r) { return r.json(); })
+        .then(function (json) { state.revoked = json; })
+        .catch(function () { state.revoked = { revocations: [] }; })
+        .finally(function () { state.loading.revoked = false; });
+    }
+
+    // ---------- SPDX expression parser ----------
+    // Grammar (simplified): expr := term (('AND'|'OR') term)*
+    //                       term := '(' expr ')' | id ['+'] [WITH exception]
+    function parseExpression(expr) {
+      var tokens = tokenize(expr);
+      var pos = 0;
+      function peek() { return tokens[pos]; }
+      function eat() { return tokens[pos++]; }
+      function parseExpr() {
+        var nodes = [parseTerm()];
+        var ops = [];
+        while (peek() && (peek().type === 'OP')) {
+          ops.push(eat().value);
+          nodes.push(parseTerm());
+        }
+        return { kind: 'expr', nodes: nodes, ops: ops };
+      }
+      function parseTerm() {
+        var t = peek();
+        if (!t) throw new Error('Expression vide');
+        if (t.type === 'LPAREN') {
+          eat();
+          var inner = parseExpr();
+          var c = eat();
+          if (!c || c.type !== 'RPAREN') throw new Error('Parenthèse fermante manquante');
+          return { kind: 'group', expr: inner };
+        }
+        if (t.type === 'ID') {
+          eat();
+          var id = t.value;
+          var orLater = false;
+          if (peek() && peek().type === 'PLUS') { eat(); orLater = true; }
+          var withExc = null;
+          if (peek() && peek().type === 'WITH') {
+            eat();
+            var e = eat();
+            if (!e || e.type !== 'ID') throw new Error('Exception attendue après WITH');
+            withExc = e.value;
+          }
+          return { kind: 'lic', id: id, orLater: orLater, withException: withExc };
+        }
+        throw new Error('Jeton inattendu : ' + t.value);
+      }
+      var ast = parseExpr();
+      if (pos < tokens.length) throw new Error('Jeton restant : ' + tokens[pos].value);
+      return ast;
+    }
+    function tokenize(s) {
+      var out = [];
+      var i = 0;
+      while (i < s.length) {
+        var c = s[i];
+        if (/\s/.test(c)) { i++; continue; }
+        if (c === '(') { out.push({ type: 'LPAREN', value: '(' }); i++; continue; }
+        if (c === ')') { out.push({ type: 'RPAREN', value: ')' }); i++; continue; }
+        if (c === '+') { out.push({ type: 'PLUS', value: '+' }); i++; continue; }
+        var m = s.slice(i).match(/^[A-Za-z0-9.\-+]+/);
+        if (!m) throw new Error('Caractère invalide : "' + c + '"');
+        var w = m[0];
+        // strip trailing + handled separately, but match already includes it; pull it back
+        if (w.length > 1 && w.endsWith('+')) {
+          out.push({ type: 'ID', value: w.slice(0, -1) });
+          out.push({ type: 'PLUS', value: '+' });
+        } else {
+          var up = w.toUpperCase();
+          if (up === 'AND' || up === 'OR') out.push({ type: 'OP', value: up });
+          else if (up === 'WITH') out.push({ type: 'WITH', value: 'WITH' });
+          else out.push({ type: 'ID', value: w });
+        }
+        i += w.length;
+      }
+      return out;
+    }
+    function collectIds(node, ids, excs) {
+      if (node.kind === 'expr') node.nodes.forEach(function (n) { collectIds(n, ids, excs); });
+      else if (node.kind === 'group') collectIds(node.expr, ids, excs);
+      else if (node.kind === 'lic') {
+        ids.push(node);
+        if (node.withException) excs.push(node.withException);
+      }
+    }
+
+    // ---------- Validation ----------
+    function validateId(licNode) {
+      var id = licNode.id;
+      var lower = id.toLowerCase();
+      var info = { id: id };
+      if (id.startsWith('LicenseRef-') || id.startsWith('DocumentRef-')) {
+        info.kind = 'ref';
+        if (lower === 'licenseref-fitsz-dma-1.0') {
+          info.knownAs = 'FiTsZ Digital Media Agreement v1.0';
+          info.url = '/lawful/license-fitsz-dma/';
+          info.fitsz = true;
+        }
+        return info;
+      }
+      if (state.spdx && state.spdx.licenses.has(lower)) {
+        var l = state.spdx.licenses.get(lower);
+        info.kind = 'spdx';
+        info.canonical = l.licenseId;
+        info.name = l.name;
+        info.osi = l.isOsiApproved;
+        info.fsf = l.isFsfLibre;
+        info.deprecated = l.isDeprecatedLicenseId;
+        info.url = l.reference || ('https://spdx.org/licenses/' + l.licenseId + '.html');
+        return info;
+      }
+      info.kind = 'unknown';
+      // suggestion
+      if (state.spdx) {
+        var sugg = null, best = 99;
+        state.spdx.licenseIds.forEach(function (sid) {
+          var d = levenshtein(lower, sid.toLowerCase());
+          if (d < best) { best = d; sugg = sid; }
+        });
+        if (best <= 3) info.suggestion = sugg;
+      }
+      return info;
+    }
+    function levenshtein(a, b) {
+      if (a === b) return 0;
+      if (!a.length) return b.length; if (!b.length) return a.length;
+      var v0 = new Array(b.length + 1), v1 = new Array(b.length + 1);
+      for (var i = 0; i <= b.length; i++) v0[i] = i;
+      for (var i2 = 0; i2 < a.length; i2++) {
+        v1[0] = i2 + 1;
+        for (var j = 0; j < b.length; j++) {
+          var cost = a[i2] === b[j] ? 0 : 1;
+          v1[j + 1] = Math.min(v1[j] + 1, v0[j + 1] + 1, v0[j] + cost);
+        }
+        for (var k = 0; k <= b.length; k++) v0[k] = v1[k];
+      }
+      return v1[b.length];
+    }
+
+    // ---------- Header parsing ----------
+    function extractHeader(text) {
+      var out = { spdx: null, copyright: [], fitszNotice: false };
+      var firstLines = text.split(/\r?\n/).slice(0, 200).join('\n');
+      var m = firstLines.match(/SPDX-License-Identifier\s*:\s*([^\n\r*\/<]+)/i);
+      if (m) out.spdx = m[1].trim().replace(/[\s*\/]+$/, '');
+      var copyRe = /(?:Copyright|©|\(c\))\s*(?:\(c\))?\s*([0-9]{4}(?:[\s\-,–]+[0-9]{4})?)?\s*([^\n\r*\/<]+)/gi;
+      var cm; var safety = 0;
+      while ((cm = copyRe.exec(firstLines)) && safety++ < 20) {
+        out.copyright.push((cm[1] || '').trim() + ' ' + (cm[2] || '').trim());
+      }
+      if (/FiTsZ[\s-]?DMA/i.test(firstLines)) out.fitszNotice = true;
+      return out;
+    }
+
+    // ---------- Revocation check ----------
+    function checkRevocation(parsed, header) {
+      if (!state.revoked || !state.revoked.revocations) return [];
+      var hits = [];
+      var blob = ((header && header.copyright) ? header.copyright.join(' ') : '') + ' ' + (parsed && parsed.expression || '');
+      blob = blob.toLowerCase();
+      state.revoked.revocations.forEach(function (r) {
+        if (r.active === false) return;
+        var t = (r.target || '').toLowerCase();
+        if (!t) return;
+        if (blob.indexOf(t) !== -1 || (r.id && blob.indexOf(r.id.toLowerCase()) !== -1)) hits.push(r);
+      });
+      return hits;
+    }
+
+    // ---------- Render ----------
+    function render(input) {
+      var el = document.getElementById('result');
+      el.classList.remove('empty');
+      var html = '';
+
+      if (!input || (!input.expression && !input.header)) {
+        el.classList.add('empty');
+        el.innerHTML = 'Aucun identifiant SPDX trouvé.';
+        return;
+      }
+
+      var expr = input.expression;
+      var header = input.header || null;
+      var parseError = null;
+      var ast = null;
+      var ids = [];
+      var excs = [];
+
+      if (expr) {
+        try {
+          ast = parseExpression(expr);
+          collectIds(ast, ids, excs);
+        } catch (e) { parseError = e.message; }
+      }
+
+      var checks = [];
+      var topStatus = 'ok';
+      var topMsg = 'Licence valide';
+
+      // Source meta
+      if (header) {
+        if (header.spdx) {
+          checks.push({ ok: 'ok', label: 'En-tête SPDX détecté', desc: '<code>' + escapeHtml(header.spdx) + '</code>' });
+        } else {
+          checks.push({ ok: 'err', label: 'Aucun en-tête SPDX trouvé', desc: 'Ajoutez : <code>SPDX-License-Identifier: …</code>' });
+          topStatus = 'err'; topMsg = 'Pas de licence déclarée';
+        }
+        if (header.copyright.length) {
+          checks.push({ ok: 'info', label: 'Mentions de copyright détectées', desc: header.copyright.slice(0, 4).map(escapeHtml).join(' · ') });
+        } else {
+          checks.push({ ok: 'warn', label: 'Aucune mention de copyright', desc: 'Recommandé : <code>Copyright (c) 2026 Auteur &lt;email&gt;</code>' });
+        }
+      }
+
+      // Expression validity
+      if (parseError) {
+        checks.push({ ok: 'err', label: 'Expression SPDX invalide', desc: escapeHtml(parseError) });
+        topStatus = 'err'; topMsg = 'Expression mal formée';
+      } else if (ids.length) {
+        var hasUnknown = false, hasDeprecated = false, hasFitsz = false;
+        ids.forEach(function (n) {
+          var v = validateId(n);
+          if (v.kind === 'spdx') {
+            var badges = [];
+            if (v.osi) badges.push('OSI');
+            if (v.fsf) badges.push('FSF');
+            if (v.deprecated) badges.push('⚠ déprécié');
+            checks.push({
+              ok: v.deprecated ? 'warn' : 'ok',
+              label: 'SPDX reconnu : <code>' + escapeHtml(v.canonical) + '</code>' + (n.orLater ? ' <code>+</code>' : ''),
+              desc: escapeHtml(v.name) + (badges.length ? ' · ' + badges.join(' · ') : '') + ' · <a href="' + v.url + '" target="_blank" rel="noopener">référence</a>'
+            });
+            if (v.deprecated) { hasDeprecated = true; }
+          } else if (v.kind === 'ref') {
+            if (v.fitsz) {
+              hasFitsz = true;
+              checks.push({ ok: 'ok', label: 'Licence FiTsZ-DMA reconnue', desc: '<a href="' + v.url + '">' + escapeHtml(v.knownAs) + '</a>' });
+            } else {
+              checks.push({ ok: 'info', label: 'Référence personnalisée : <code>' + escapeHtml(v.id) + '</code>', desc: 'Identifiant <code>LicenseRef-*</code> non standard SPDX — vérifiez le fichier <code>LICENSE</code> du projet.' });
+            }
+          } else {
+            hasUnknown = true;
+            checks.push({
+              ok: 'err',
+              label: 'Identifiant inconnu : <code>' + escapeHtml(v.id) + '</code>',
+              desc: v.suggestion ? 'Vouliez-vous dire <code>' + escapeHtml(v.suggestion) + '</code> ?' : 'Aucun équivalent trouvé dans la liste SPDX.'
+            });
+          }
+          if (n.withException) {
+            var okExc = state.spdx && state.spdx.exceptions.has(n.withException);
+            checks.push({
+              ok: okExc ? 'ok' : 'warn',
+              label: (okExc ? 'Exception SPDX' : 'Exception inconnue') + ' : <code>' + escapeHtml(n.withException) + '</code>',
+              desc: okExc ? 'Reconnue par SPDX.' : 'Non listée dans la base SPDX des exceptions.'
+            });
+          }
+        });
+        if (hasUnknown) { topStatus = 'err'; topMsg = 'Identifiant(s) non reconnu(s)'; }
+        else if (hasDeprecated && topStatus !== 'err') { topStatus = 'warn'; topMsg = 'Licence dépréciée'; }
+        if (hasFitsz && topStatus === 'ok') { topMsg = 'Licence FiTsZ-DMA valide'; }
+      } else if (!header) {
+        checks.push({ ok: 'err', label: 'Aucune entrée à analyser', desc: '' });
+        topStatus = 'err'; topMsg = 'Vide';
+      }
+
+      // Revocations
+      var revHits = checkRevocation({ expression: expr }, header);
+      if (revHits.length) {
+        topStatus = 'err'; topMsg = 'Licence RÉVOQUÉE';
+        revHits.forEach(function (r) {
+          checks.push({
+            ok: 'err',
+            label: 'Révocation active : <code>' + escapeHtml(r.id || r.target) + '</code>',
+            desc: escapeHtml(r.reason || '') + ' — depuis le ' + escapeHtml(r.effectiveDate || '?') + ' (article ' + escapeHtml(r.article || '?') + ', délai ' + (r.graceDays != null ? r.graceDays + ' j' : 'immédiat') + ').'
+          });
+        });
+      } else if (state.revoked) {
+        checks.push({ ok: 'ok', label: 'Aucune révocation correspondante', desc: 'Vérifié contre <a href="/lawful/license-fitsz-dma/revoked.json" target="_blank" rel="noopener">la liste publique</a> (mise à jour : ' + escapeHtml(state.revoked.lastUpdated || '?') + ').' });
+      }
+
+      html += '<div class="vrf-status ' + topStatus + '">' + escapeHtml(topMsg) + '</div>';
+      if (expr) {
+        html += '<div class="vrf-meta-grid">';
+        html += '<div class="vrf-meta-item"><strong>Expression</strong><span><code>' + escapeHtml(expr) + '</code></span></div>';
+        html += '<div class="vrf-meta-item"><strong>Identifiants</strong><span>' + ids.length + '</span></div>';
+        if (excs.length) html += '<div class="vrf-meta-item"><strong>Exceptions</strong><span>' + excs.length + '</span></div>';
+        if (state.spdx) html += '<div class="vrf-meta-item"><strong>Base SPDX</strong><span>v' + escapeHtml(String(state.spdx.version)) + (state.spdx.offline ? ' (offline)' : '') + '</span></div>';
+        html += '</div>';
+        if (header && header.spdx) {
+          html += '<div class="vrf-detected">' + escapeHtml('SPDX-License-Identifier: ' + header.spdx) + '</div>';
+        }
+      }
+      html += '<ul class="vrf-checks">';
+      checks.forEach(function (c) {
+        var sym = c.ok === 'ok' ? '✓' : c.ok === 'err' ? '✕' : c.ok === 'warn' ? '!' : 'i';
+        html += '<li><span class="ico ' + c.ok + '">' + sym + '</span><div><span class="label">' + c.label + '</span>' + (c.desc ? '<span class="desc">' + c.desc + '</span>' : '') + '</div></li>';
+      });
+      html += '</ul>';
+      el.innerHTML = html;
+    }
+
+    function escapeHtml(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]; }); }
+
+    // ---------- Tabs ----------
+    var tabBtns = document.querySelectorAll('.vrf-tabs button');
+    tabBtns.forEach(function (b) {
+      b.addEventListener('click', function () {
+        var tab = b.dataset.tab;
+        tabBtns.forEach(function (x) { x.classList.toggle('active', x === b); });
+        document.querySelectorAll('.vrf-panel').forEach(function (p) { p.classList.toggle('active', p.dataset.panel === tab); });
+      });
+    });
+
+    // ---------- Handlers ----------
+    document.getElementById('btn-hdr').addEventListener('click', function () {
+      var txt = document.getElementById('hdr-input').value || '';
+      if (!txt.trim()) { render(null); return; }
+      var header = extractHeader(txt);
+      render({ expression: header.spdx, header: header });
+    });
+    document.getElementById('btn-hdr-clear').addEventListener('click', function () {
+      document.getElementById('hdr-input').value = ''; render(null);
+    });
+
+    document.getElementById('btn-id').addEventListener('click', function () {
+      var v = (document.getElementById('id-input').value || '').trim();
+      if (!v) { render(null); return; }
+      render({ expression: v, header: null });
+    });
+    document.getElementById('btn-id-clear').addEventListener('click', function () {
+      document.getElementById('id-input').value = ''; render(null);
+    });
+
+    // File
+    var drop = document.getElementById('drop-zone');
+    var fileInput = document.getElementById('file-input');
+    var fileInfo = document.getElementById('file-info');
+    function handleFile(file) {
+      if (!file) return;
+      if (file.size > 2 * 1024 * 1024) { fileInfo.textContent = '⚠ Fichier trop volumineux (>2 Mio).'; return; }
+      var reader = new FileReader();
+      reader.onload = function () {
+        var txt = String(reader.result || '');
+        var header = extractHeader(txt);
+        fileInfo.textContent = '✓ ' + file.name + ' (' + Math.round(file.size / 1024) + ' Kio) analysé.';
+        render({ expression: header.spdx, header: header });
+      };
+      reader.onerror = function () { fileInfo.textContent = '✕ Erreur de lecture.'; };
+      reader.readAsText(file.slice(0, 256 * 1024)); // first 256 Kio is plenty for header
+    }
+    fileInput.addEventListener('change', function () { handleFile(fileInput.files[0]); });
+    ['dragover', 'dragenter'].forEach(function (ev) {
+      drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.add('is-drag'); });
+    });
+    ['dragleave', 'drop'].forEach(function (ev) {
+      drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.remove('is-drag'); });
+    });
+    drop.addEventListener('drop', function (e) {
+      var f = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+      if (f) handleFile(f);
+    });
+
+    // URL
+    document.getElementById('btn-url').addEventListener('click', function () {
+      var url = (document.getElementById('url-input').value || '').trim();
+      var info = document.getElementById('url-info');
+      if (!url) { render(null); return; }
+      info.textContent = '⏳ Récupération…';
+      fetch(url, { mode: 'cors' })
+        .then(function (r) {
+          if (!r.ok) throw new Error('HTTP ' + r.status);
+          var ct = r.headers.get('content-type') || '';
+          if (/^(image|video|audio|application\/octet)/i.test(ct)) throw new Error('Type binaire (' + ct + ')');
+          return r.text();
+        })
+        .then(function (txt) {
+          info.textContent = '✓ ' + (txt.length > 1024 ? Math.round(txt.length / 1024) + ' Kio' : txt.length + ' o') + ' récupérés.';
+          var header = extractHeader(txt);
+          render({ expression: header.spdx, header: header });
+        })
+        .catch(function (err) {
+          info.textContent = '✕ Échec : ' + err.message + ' (CORS ou indisponible). Copiez/collez le contenu dans l\'onglet « En-tête SPDX ».';
+        });
+    });
+    document.getElementById('btn-url-clear').addEventListener('click', function () {
+      document.getElementById('url-input').value = ''; document.getElementById('url-info').textContent = ''; render(null);
+    });
+
+    // Burger
+    var nav = document.getElementById('main-nav');
+    var burger = document.getElementById('nav-burger');
+    if (nav && burger) {
+      burger.addEventListener('click', function () {
+        var open = nav.classList.toggle('is-open');
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        burger.classList.toggle('is-active', open);
+      });
+    }
+
+    // Init
+    loadSpdx();
+    loadRevoked();
+
+    // Auto-validate from ?id=… in URL
+    var params = new URLSearchParams(window.location.search);
+    if (params.get('id')) {
+      document.getElementById('id-input').value = params.get('id');
+      document.querySelector('.vrf-tabs button[data-tab="id"]').click();
+      setTimeout(function () { document.getElementById('btn-id').click(); }, 300);
+    }
+  })();
+  </script>
+</body>
+</html>

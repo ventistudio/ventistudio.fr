@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="VentiStudio HypeSquad : Découvrez les 7 Maisons élémentaires, suivez le classement et participez aux événements !">
+  <meta name="theme-color" content="#6366f1">
+  <title>HypeSquad | VentiStudio</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    /* ═══ Hero ═══ */
+    .hs-hero {
+      text-align: center;
+      padding: 4rem 2rem 2rem;
+      position: relative;
+    }
+    .hs-hero h1 {
+      font-size: 2.6rem;
+      margin-bottom: .5rem;
+      background: linear-gradient(135deg, #ef4444, #f59e0b, #22c55e, #3b82f6, #8b5cf6);
+      background-size: 200% 200%;
+      animation: hsGradient 6s ease infinite;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    @keyframes hsGradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .hs-hero .subtitle {
+      font-size: 1.05rem;
+      opacity: .7;
+      max-width: 700px;
+      margin: 0 auto 1.5rem;
+    }
+    .hs-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .8rem 2rem;
+      border-radius: 12px;
+      border: none;
+      background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+      color: #fff;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all .2s;
+      text-decoration: none;
+    }
+    .hs-cta-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(99,102,241,.4);
+    }
+
+    /* ═══ Section ═══ */
+    .hs-section {
+      max-width: 1100px;
+      margin: 0 auto 4rem;
+      padding: 0 1.5rem;
+    }
+    .hs-section-title {
+      font-size: 1.6rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      text-align: center;
+      justify-content: center;
+    }
+
+    /* ═══ Houses Grid ═══ */
+    .hs-houses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .hs-house-card {
+      background: var(--glass-bg);
+      border: 2px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 2rem 1.5rem;
+      backdrop-filter: blur(12px);
+      transition: all .3s cubic-bezier(.4,0,.2,1);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    .hs-house-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity .3s;
+      border-radius: 20px;
+    }
+    .hs-house-card:hover {
+      transform: translateY(-8px);
+    }
+    .hs-house-card:hover::before { opacity: 1; }
+
+    /* Colors per house */
+    .hs-house-card[data-house="anemo"] { border-color: rgba(135,206,235,.3); }
+    .hs-house-card[data-house="anemo"]::before { background: linear-gradient(135deg, rgba(135,206,235,.08), rgba(255,255,255,.04)); }
+    .hs-house-card[data-house="anemo"]:hover { box-shadow: 0 12px 32px rgba(135,206,235,.2); border-color: rgba(135,206,235,.5); }
+
+    .hs-house-card[data-house="geo"] { border-color: rgba(139,119,42,.3); }
+    .hs-house-card[data-house="geo"]::before { background: linear-gradient(135deg, rgba(139,119,42,.08), rgba(101,67,33,.04)); }
+    .hs-house-card[data-house="geo"]:hover { box-shadow: 0 12px 32px rgba(139,119,42,.2); border-color: rgba(139,119,42,.5); }
+
+    .hs-house-card[data-house="electro"] { border-color: rgba(139,92,246,.3); }
+    .hs-house-card[data-house="electro"]::before { background: linear-gradient(135deg, rgba(139,92,246,.08), rgba(0,0,0,.04)); }
+    .hs-house-card[data-house="electro"]:hover { box-shadow: 0 12px 32px rgba(139,92,246,.2); border-color: rgba(139,92,246,.5); }
+
+    .hs-house-card[data-house="dendro"] { border-color: rgba(134,239,172,.3); }
+    .hs-house-card[data-house="dendro"]::before { background: linear-gradient(135deg, rgba(134,239,172,.08), rgba(255,182,193,.04)); }
+    .hs-house-card[data-house="dendro"]:hover { box-shadow: 0 12px 32px rgba(134,239,172,.2); border-color: rgba(134,239,172,.5); }
+
+    .hs-house-card[data-house="hydro"] { border-color: rgba(59,130,246,.3); }
+    .hs-house-card[data-house="hydro"]::before { background: linear-gradient(135deg, rgba(59,130,246,.08), rgba(192,192,192,.04)); }
+    .hs-house-card[data-house="hydro"]:hover { box-shadow: 0 12px 32px rgba(59,130,246,.2); border-color: rgba(59,130,246,.5); }
+
+    .hs-house-card[data-house="pyro"] { border-color: rgba(239,68,68,.3); }
+    .hs-house-card[data-house="pyro"]::before { background: linear-gradient(135deg, rgba(239,68,68,.08), rgba(249,115,22,.04)); }
+    .hs-house-card[data-house="pyro"]:hover { box-shadow: 0 12px 32px rgba(239,68,68,.2); border-color: rgba(239,68,68,.5); }
+
+    .hs-house-card[data-house="cryo"] { border-color: rgba(186,230,253,.3); }
+    .hs-house-card[data-house="cryo"]::before { background: linear-gradient(135deg, rgba(186,230,253,.08), rgba(255,255,255,.04)); }
+    .hs-house-card[data-house="cryo"]:hover { box-shadow: 0 12px 32px rgba(186,230,253,.2); border-color: rgba(186,230,253,.5); }
+
+    .hs-house-card[data-house="erudis"] { border-color: rgba(196,167,71,.3); }
+    .hs-house-card[data-house="erudis"]::before { background: linear-gradient(135deg, rgba(196,167,71,.08), rgba(26,26,46,.04)); }
+    .hs-house-card[data-house="erudis"]:hover { box-shadow: 0 12px 32px rgba(196,167,71,.2); border-color: rgba(196,167,71,.5); }
+
+    .hs-house-emoji {
+      font-size: 3.5rem;
+      display: block;
+      margin-bottom: .5rem;
+      position: relative;
+      z-index: 1;
+      transition: transform .3s;
+    }
+    .hs-house-card:hover .hs-house-emoji { transform: scale(1.15) rotate(5deg); }
+    .hs-house-name {
+      font-size: 1.3rem;
+      font-weight: 800;
+      position: relative;
+      z-index: 1;
+      margin-bottom: .2rem;
+    }
+    .hs-house-element {
+      font-size: .8rem;
+      opacity: .5;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: .8rem;
+      position: relative;
+      z-index: 1;
+    }
+    .hs-house-info {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      font-size: .78rem;
+      opacity: .6;
+      margin-bottom: .8rem;
+      position: relative;
+      z-index: 1;
+    }
+    .hs-house-desc {
+      font-size: .88rem;
+      opacity: .7;
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+    }
+    .hs-house-colors {
+      display: flex;
+      justify-content: center;
+      gap: .4rem;
+      margin-top: .8rem;
+      position: relative;
+      z-index: 1;
+    }
+    .hs-color-dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 2px solid var(--glass-border);
+    }
+
+    /* ═══ Leaderboard ═══ */
+    .hs-leaderboard {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .hs-lb-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.5rem;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 14px;
+      margin-bottom: .6rem;
+      backdrop-filter: blur(12px);
+      transition: all .2s;
+    }
+    .hs-lb-row:hover {
+      transform: translateX(4px);
+    }
+    .hs-lb-rank {
+      font-size: 1.3rem;
+      font-weight: 800;
+      min-width: 36px;
+      text-align: center;
+    }
+    .hs-lb-rank.gold { color: #f59e0b; }
+    .hs-lb-rank.silver { color: #94a3b8; }
+    .hs-lb-rank.bronze { color: #d97706; }
+    .hs-lb-emoji {
+      font-size: 1.8rem;
+    }
+    .hs-lb-name {
+      flex: 1;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+    .hs-lb-bar-wrap {
+      flex: 2;
+      height: 10px;
+      background: rgba(255,255,255,.06);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    .hs-lb-bar {
+      height: 100%;
+      border-radius: 5px;
+      transition: width 1s cubic-bezier(.4,0,.2,1);
+    }
+    .hs-lb-points {
+      font-weight: 800;
+      font-size: 1rem;
+      min-width: 70px;
+      text-align: right;
+    }
+
+    /* ═══ Events ═══ */
+    .hs-events-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.2rem;
+    }
+    .hs-event-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 1.8rem 1.5rem;
+      backdrop-filter: blur(12px);
+      transition: all .3s;
+    }
+    .hs-event-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px var(--glass-shadow);
+    }
+    .hs-event-header {
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+      margin-bottom: .8rem;
+    }
+    .hs-event-emoji { font-size: 2rem; }
+    .hs-event-title { font-weight: 700; font-size: 1.1rem; }
+    .hs-event-desc {
+      font-size: .88rem;
+      opacity: .7;
+      line-height: 1.6;
+      margin-bottom: .8rem;
+    }
+    .hs-event-meta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      font-size: .75rem;
+      opacity: .5;
+    }
+    .hs-event-badge {
+      display: inline-block;
+      padding: .2rem .6rem;
+      border-radius: 6px;
+      font-size: .7rem;
+      font-weight: 700;
+    }
+    .hs-event-badge.active { background: rgba(34,197,94,.15); color: #22c55e; }
+    .hs-event-badge.upcoming { background: rgba(59,130,246,.15); color: #3b82f6; }
+    .hs-event-badge.ended { background: rgba(100,100,120,.15); color: #94a3b8; }
+
+    /* ═══ Your house banner ═══ */
+    .hs-your-house {
+      text-align: center;
+      padding: 2rem;
+      background: var(--glass-bg);
+      border: 2px solid var(--glass-border);
+      border-radius: 20px;
+      backdrop-filter: blur(12px);
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+    .hs-your-house-label {
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      opacity: .5;
+      margin-bottom: .5rem;
+    }
+    .hs-your-house-emoji { font-size: 4rem; display: block; margin-bottom: .5rem; }
+    .hs-your-house-name {
+      font-size: 1.8rem;
+      font-weight: 800;
+    }
+    .hs-your-house-element {
+      font-size: .85rem;
+      opacity: .5;
+      margin-bottom: 1rem;
+    }
+    .hs-no-house {
+      opacity: .5;
+      font-size: .95rem;
+    }
+
+    /* ═══ Back ═══ */
+    .hs-back {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .hs-back a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      transition: opacity .2s;
+    }
+    .hs-back a:hover { opacity: .7; }
+
+    /* ═══ Sanction Panel (Érudis) ═══ */
+    .hs-sanction-panel {
+      background: var(--glass-bg);
+      border: 2px solid rgba(196,167,71,.3);
+      border-radius: 20px;
+      padding: 2rem;
+      backdrop-filter: blur(12px);
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .hs-sanction-panel h3 {
+      font-size: 1.2rem;
+      color: #c4a747;
+      margin-bottom: .5rem;
+    }
+    .hs-sanction-desc {
+      font-size: .85rem;
+      opacity: .5;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+    .hs-sanction-discord {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .75rem 2rem;
+      border-radius: 12px;
+      border: 2px solid rgba(196,167,71,.4);
+      background: transparent;
+      color: #c4a747;
+      font-weight: 700;
+      font-size: .9rem;
+      text-decoration: none;
+      transition: all .2s;
+    }
+    .hs-sanction-discord:hover {
+      background: rgba(196,167,71,.1);
+      transform: translateY(-2px);
+    }
+
+    /* ═══ Responsive ═══ */
+    @media (max-width: 600px) {
+      .hs-hero h1 { font-size: 1.8rem; }
+      .hs-houses-grid { grid-template-columns: 1fr; }
+      .hs-lb-bar-wrap { display: none; }
+      .hs-events-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+
+  <script async crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
+  <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
+
+  <meta property="og:title" content="HypeSquad | VentiStudio">
+  <meta property="og:description" content="VentiStudio HypeSquad : Découvrez les 7 Maisons élémentaires, suivez le classement et participez aux événements !">
+  <meta property="og:url" content="https://ventistudio.eu/hypesquad/">
+  <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://ventistudio.eu/hypesquad/">
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="/favicon.avif" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
+      <span>VentiStudio</span>
+    </div>
+    <button class="nav-burger" id="nav-burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="main-nav" class="main-nav" aria-label="Navigation principale">
+      <a href="/" class="nav-link">Accueil</a>
+
+      <details class="nav-group">
+        <summary class="nav-link">Découvrir
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel" role="menu">
+          <a href="/evaluation">Évaluation</a>
+          <a href="/wiki">Wiki</a>
+          <a href="/glossary">Glossaire</a>
+          <a href="/news">News</a>
+          <a href="/blog">Blog</a>
+          <a href="/calendar">Calendrier</a>
+          <a href="/cookbook">Cookbook</a>
+          <a href="/gallery">Galerie</a>
+          <a href="/atlas">Atlas</a>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Univers
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel" role="menu">
+          <a href="/aokiunivers">AOKI Universe</a>
+          <a href="/allofaokiunivers">All AOKI</a>
+          <a href="/university">Université</a>
+          <a href="/history">Histoire</a>
+          <a href="/memorial">Mémorial</a>
+          <a href="/ester-eggs">Easter eggs</a>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Outils
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Applications</h4>
+            <a href="/player">Lecteur</a>
+            <a href="/music">Musique</a>
+            <a href="/pip">PIP</a>
+            <a href="/whiteboard">Whiteboard</a>
+            <a href="/portfolio">Portfolio</a>
+            <a href="/gmod">GMod</a>
+          </div>
+          <div class="nav-col">
+            <h4>Domaines</h4>
+            <a href="/domain/aina">AINA</a>
+            <a href="/domain/archive">Archive</a>
+            <a href="/domain/maps">Maps</a>
+            <a href="/domain/movie">Movie</a>
+            <a href="/domain/peer">Peer</a>
+            <a href="/domain/pro">Pro</a>
+            <a href="/domain/search">Search</a>
+            <a href="/domain/suite">Suite</a>
+          </div>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Communauté
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Équipe</h4>
+            <a href="/personnel/">Équipe</a>
+            <a href="/hierarchie-staff">Hiérarchie</a>
+            <a href="/hypesquad">Hypesquad</a>
+            <a href="/jobs">Emplois</a>
+            <a href="/birthday">Anniversaires</a>
+          </div>
+          <div class="nav-col">
+            <h4>Réseaux</h4>
+            <a href="/discord">Discord</a>
+            <a href="/teamspeak">TeamSpeak</a>
+            <a href="/steam">Steam</a>
+            <a href="/social">Réseaux sociaux</a>
+          </div>
+          <div class="nav-col">
+            <h4>Activités</h4>
+            <a href="/artist">Artistes</a>
+            <a href="/quests">Quêtes</a>
+            <a href="/suboawards">Suboawards</a>
+            <a href="/eConcert">eConcert</a>
+          </div>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Plus
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Aide</h4>
+            <a href="/contact">Contact</a>
+            <a href="/faq">FAQ</a>
+            <a href="/status">Statut</a>
+            <a href="/sitemap">Plan du site</a>
+          </div>
+          <div class="nav-col">
+            <h4>Soutien</h4>
+            <a href="/donate">Faire un don</a>
+            <a href="/gold">Gold</a>
+            <a href="/customization">Personnalisation</a>
+            <a href="/mes-donnees">Mes Données</a>
+            <a href="/newsletter">Newsletter</a>
+          </div>
+          <div class="nav-col">
+            <h4>À propos</h4>
+            <a href="/company">Entreprise</a>
+            <a href="/acknowledgements">Remerciements</a>
+            <a href="/logo">Logo</a>
+            <a href="/tags">Tags</a>
+            <a href="/memory">Mémoire</a>
+            <a href="/why-not-use-roblox">Pourquoi pas Roblox</a>
+            <a href="/lawful">Mentions légales</a>
+          </div>
+        </div>
+      </details>
+    </nav>
+    <div class="controls" role="toolbar" aria-label="Contrôles">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
+          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
+          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
+        </svg>
+      </button>
+      <div id="user-button" role="region" aria-label="Authentification"><button class="cta" id="auth-fallback-btn" onclick="window.location.href='https://accounts.ventistudio.eu/sign-in?redirect_url='+encodeURIComponent(window.location.href)" style="padding:0.5rem 1.25rem;font-size:0.9rem;margin:0"><span>Se connecter</span></button></div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Your House -->
+    <section class="hs-section" style="margin-top:2rem">
+      <div class="hs-your-house" id="hs-your-house">
+        <div class="hs-your-house-label">Votre Maison</div>
+        <div id="hs-user-house-content">
+          <p class="hs-no-house">Vous n'avez pas encore passé le test de répartition.</p>
+          <a href="/hypesquad/test/" class="hs-cta-btn" style="margin-top:1rem">🎭 Passer le Test</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sanction Panel (Érudis only, hidden by default) -->
+    <section class="hs-section" id="hs-sanction-section" style="display:none">
+      <div class="hs-sanction-panel" id="hs-sanction-panel"></div>
+    </section>
+
+    <!-- Hero -->
+    <section class="hs-hero">
+      <h1>⚔️ HypeSquad</h1>
+      <p class="subtitle">7 Maisons élémentaires, 7 identités. Découvrez votre affinité, rejoignez votre Maison et représentez-la dans les événements de la communauté VentiStudio.</p>
+    </section>
+
+    <!-- Houses -->
+    <section class="hs-section">
+      <h2 class="hs-section-title">🏠 Les 7 Maisons</h2>
+      <div class="hs-houses-grid" id="hs-houses-grid"></div>
+    </section>
+
+    <!-- Leaderboard -->
+    <section class="hs-section">
+      <h2 class="hs-section-title">🏆 Classement des Maisons</h2>
+      <div class="hs-leaderboard" id="hs-leaderboard"></div>
+    </section>
+
+    <!-- Events -->
+    <section class="hs-section">
+      <h2 class="hs-section-title">📅 Événements</h2>
+      <div class="hs-events-grid" id="hs-events-grid"></div>
+    </section>
+
+    <!-- CTA -->
+    <section class="hs-section" style="text-align:center;padding:2rem 0 0">
+      <a href="/hypesquad/test/" class="hs-cta-btn" id="hs-cta-bottom">🎭 Découvrir ma Maison</a>
+    </section>
+
+    <div class="hs-back">
+      <a href="/">&larr; Retour à l'accueil</a>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Outils</h4>
+        <ul>
+          <li><a href="/pip">PIP</a></li>
+          <li><a href="/sitemap">Plan du site</a></li>
+          <li><a href="https://status.ventistudio.eu/">Statut</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Entreprise</h4>
+        <ul>
+          <li><a href="/about">À propos</a></li>
+          <li><a href="/jobs">Emplois</a></li>
+          <li><a href="/logo">Marque</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Ressources</h4>
+        <ul>
+          <li><a href="/university">Université</a></li>
+          <li><a href="/lawful/support">Assistance</a></li>
+          <li><a href="/lawful/security">Sécurité</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Chartes</h4>
+        <ul>
+          <li><a href="/lawful/tos">Conditions d'utilisation</a></li>
+          <li><a href="/lawful/cookies">Confidentialité</a></li>
+          <li><a href="/lawful/dmcainfo">Information DMCA</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <iframe src="https://status.ventistudio.eu/badge?theme=dark" width="500" height="30" frameborder="0" scrolling="no" style="color-scheme: normal"></iframe>
+      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <script src="/main.js" defer></script>
+  <script>
+    (function() {
+      /* ═══ Houses Data ═══ */
+      var houses = [
+        { id: 'anemo',   emoji: '🍃', name: 'Anémo',   element: 'Air',         symbol: '🪶 Plume Blanche',    animal: '🦅 Aigle',         colors: ['#87CEEB','#FFFFFF'], desc: 'Les membres d\'Anémo valorisent l\'indépendance, la créativité et la capacité d\'explorer de nouveaux horizons. Ils sont comme le vent, toujours en mouvement et cherchant à s\'affranchir des limites.' },
+        { id: 'geo',     emoji: '🌍', name: 'Géo',     element: 'Terre',       symbol: '💎 Cristal de Dravite', animal: '🐺 Loup',          colors: ['#2d5016','#8B4513'], desc: 'Les membres de Géo sont pragmatiques et fiables. Ils comprennent l\'importance des accords et des engagements, et ils sont souvent les gardiens des ressources naturelles et des terres.' },
+        { id: 'electro', emoji: '⚡', name: 'Électro', element: 'Électricité', symbol: '⚡ Éclair',            animal: '🦅 Faucon',        colors: ['#8B5CF6','#1a1a2e'], desc: 'Les membres d\'Électro sont ingénieux et dynamiques. Ils aiment résoudre des énigmes et cherchent à comprendre les mystères du monde. Leur quête d\'éternité les pousse à explorer de nouvelles voies.' },
+        { id: 'dendro',  emoji: '🌸', name: 'Dendro',  element: 'Nature',      symbol: '🌸 Feuille de Sakura', animal: '🫎 Cerf',          colors: ['#86efac','#FFB6C1'], desc: 'Les membres de Dendro sont empathiques et connectés à la nature. Ils sont souvent calmes et réfléchis, cherchant à comprendre les secrets cachés dans les arbres et les plantes.' },
+        { id: 'hydro',   emoji: '💧', name: 'Hydro',   element: 'Eau',         symbol: '💧 Goutte d\'eau',     animal: '🐬 Dauphin',       colors: ['#1e40af','#C0C0C0'], desc: 'Les membres d\'Hydro sont émotionnels et intuitifs. Ils ont un lien fort avec leurs émotions et cherchent à rétablir l\'équilibre et la justice dans le monde.' },
+        { id: 'pyro',    emoji: '🔥', name: 'Pyro',    element: 'Feu',         symbol: '🔥 Flamme',            animal: '🦁 Lion',          colors: ['#ef4444','#f97316'], desc: 'Les membres de Pyro sont passionnés et impulsifs. Ils aiment l\'action et sont souvent compétitifs. Leur feu intérieur les pousse à se battre pour leurs convictions.' },
+        { id: 'cryo',    emoji: '❄️', name: 'Cryo',    element: 'Glace',       symbol: '❄️ Flocon de neige',   animal: '🐻‍❄️ Ours Polaire', colors: ['#FFFFFF','#93c5fd'], desc: 'Les membres de Cryo sont calmes, réfléchis et discrets. Ils ont un côté mystérieux, une grande maîtrise d\'eux-mêmes et aiment la précision.' },
+        { id: 'erudis',  emoji: '🔮', name: 'Érudis',  element: 'Savoir',      symbol: '📜 Grimoire Ancien',   animal: '🦉 Hibou',          colors: ['#c4a747','#1a1a2e'], desc: 'Les membres d\'Érudis sont les gardiens du savoir oublié. Discrets, insondables, ils accumulent les connaissances que le monde a cessé de chercher. Leur existence même est un secret.', secret: true }
+      ];
+
+      /* ═══ Points (simulated in production, fetched from server) ═══ */
+      var housePoints = [
+        { id: 'anemo',   points: 0 },
+        { id: 'geo', points: 0 },
+        { id: 'electro',   points: 0 },
+        { id: 'dendro',   points: 0 },
+        { id: 'cryo',    points: 0 },
+        { id: 'hydro',  points: 0 },
+        { id: 'pyro',     points: 0 }
+      ];
+
+      var barColors = {
+        pyro: '#ef4444', electro: '#8b5cf6', hydro: '#3b82f6',
+        anemo: '#87ceeb', cryo: '#93c5fd', dendro: '#86efac', geo: '#8B6914',
+        erudis: '#c4a747'
+      };
+
+      /* ═══ Events ═══ */
+      var events = [
+        { emoji: '🎮', title: 'Tournoi Inter-Maisons : Rocket League', desc: 'Les 7 Maisons s\'affrontent dans un tournoi Rocket League ! Les 3 meilleurs joueurs de chaque Maison participent. Points doublés pour la Maison gagnante.', date: '12 avril 2026', status: 'upcoming', points: '+500 pts' },
+        { emoji: '🧠', title: 'Quiz Culture Générale', desc: 'Testez vos connaissances ! Chaque bonne réponse rapporte des points à votre Maison. Thème : Jeux vidéo, Cinéma, Sciences.', date: '5 avril 2026', status: 'upcoming', points: '+200 pts' },
+        { emoji: '🎨', title: 'Concours de Fan Art', desc: 'Créez une œuvre représentant votre Maison. Les plus belles créations seront exposées et rapporteront des points.', date: '20 mars - 30 mars 2026', status: 'active', points: '+300 pts' },
+        { emoji: '📖', title: 'Défi Lore : Écriture Collaborative', desc: 'Écrivez une histoire pour l\'univers de votre Maison. La communauté vote pour la meilleure.', date: '1 mars - 15 mars 2026', status: 'ended', points: '+250 pts' },
+        { emoji: '🏃', title: 'Course aux Easter Eggs', desc: 'Débloquez un maximum d\'Easter Eggs du site en une semaine. Chaque EE rapporte des points à votre Maison !', date: '15 avril 2026', status: 'upcoming', points: '+150 pts par EE' },
+        { emoji: '🎵', title: 'Battle Musicale', desc: 'Proposez une playlist pour votre Maison. Le vote de la communauté décide du meilleur goût musical !', date: '10 février - 20 février 2026', status: 'ended', points: '+200 pts' }
+      ];
+
+      var statusLabels = { active: 'En cours', upcoming: 'À venir', ended: 'Terminé' };
+
+      /* ═══ Detect if user is Érudis ═══ */
+      var isErudis = false;
+      try {
+        var hsData = localStorage.getItem('vs-hypesquad-house');
+        if (hsData) { isErudis = JSON.parse(hsData).house === 'erudis'; }
+      } catch(e) {}
+
+      /* ═══ Build Houses Grid ═══ */
+      var gridEl = document.getElementById('hs-houses-grid');
+      houses.forEach(function(h) {
+        if (h.secret && !isErudis) return;
+        var card = document.createElement('div');
+        card.className = 'hs-house-card';
+        card.setAttribute('data-house', h.id);
+        card.innerHTML =
+          '<span class="hs-house-emoji">' + h.emoji + '</span>' +
+          '<div class="hs-house-name">' + h.name + '</div>' +
+          '<div class="hs-house-element">' + h.element + '</div>' +
+          '<div class="hs-house-info">' +
+            '<span>' + h.symbol + '</span>' +
+            '<span>' + h.animal + '</span>' +
+          '</div>' +
+          '<p class="hs-house-desc">' + h.desc + '</p>' +
+          '<div class="hs-house-colors">' +
+            '<span class="hs-color-dot" style="background:' + h.colors[0] + '"></span>' +
+            '<span class="hs-color-dot" style="background:' + h.colors[1] + '"></span>' +
+          '</div>';
+        gridEl.appendChild(card);
+      });
+
+      /* ═══ Build Leaderboard ═══ */
+      housePoints.sort(function(a, b) { return b.points - a.points; });
+      var lbEl = document.getElementById('hs-leaderboard');
+      var maxPts = housePoints[0].points;
+      housePoints.forEach(function(hp, i) {
+        var house = houses.find(function(h) { return h.id === hp.id; });
+        if (house.secret && !isErudis) return;
+        var rankClass = i === 0 ? 'gold' : i === 1 ? 'silver' : i === 2 ? 'bronze' : '';
+        var rankLabel = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : '#' + (i + 1);
+        var pct = Math.round((hp.points / maxPts) * 100);
+        var row = document.createElement('div');
+        row.className = 'hs-lb-row';
+        row.innerHTML =
+          '<span class="hs-lb-rank ' + rankClass + '">' + rankLabel + '</span>' +
+          '<span class="hs-lb-emoji">' + house.emoji + '</span>' +
+          '<span class="hs-lb-name">' + house.name + '</span>' +
+          '<div class="hs-lb-bar-wrap"><div class="hs-lb-bar" style="width:' + pct + '%;background:' + barColors[hp.id] + '"></div></div>' +
+          '<span class="hs-lb-points">' + hp.points.toLocaleString('fr-FR') + ' pts</span>';
+        lbEl.appendChild(row);
+      });
+
+      /* ═══ Build Events ═══ */
+      var eventsEl = document.getElementById('hs-events-grid');
+      events.forEach(function(ev) {
+        var card = document.createElement('div');
+        card.className = 'hs-event-card';
+        card.innerHTML =
+          '<div class="hs-event-header">' +
+            '<span class="hs-event-emoji">' + ev.emoji + '</span>' +
+            '<span class="hs-event-title">' + ev.title + '</span>' +
+          '</div>' +
+          '<p class="hs-event-desc">' + ev.desc + '</p>' +
+          '<div class="hs-event-meta">' +
+            '<span class="hs-event-badge ' + ev.status + '">' + statusLabels[ev.status] + '</span>' +
+            '<span>📅 ' + ev.date + '</span>' +
+            '<span>🎯 ' + ev.points + '</span>' +
+          '</div>';
+        eventsEl.appendChild(card);
+      });
+
+      /* ═══ User house display ═══ */
+      var userHouse = null;
+      try {
+        var stored = localStorage.getItem('vs-hypesquad-house');
+        if (stored) userHouse = JSON.parse(stored);
+      } catch(e) {}
+
+      if (userHouse && userHouse.house) {
+        /* Érudis: show public cover house, not the secret house */
+        var displayId = (isErudis && userHouse.publicHouse) ? userHouse.publicHouse : userHouse.house;
+        var h = houses.find(function(house) { return house.id === displayId; });
+        if (h) {
+          var el = document.getElementById('hs-user-house-content');
+          el.innerHTML =
+            '<span class="hs-your-house-emoji">' + h.emoji + '</span>' +
+            '<div class="hs-your-house-name">' + h.name + '</div>' +
+            '<div class="hs-your-house-element">' + h.element + '</div>' +
+            '<a href="/hypesquad/test/" style="font-size:.8rem;opacity:.5;color:var(--accent);text-decoration:none">Voir mes résultats</a>';
+          if (isErudis) {
+            el.innerHTML += '<div style="margin-top:.6rem;font-size:.75rem;opacity:.35;color:#c4a747">🔮 Secrètement Érudis — Maison publique : ' + h.name + '</div>';
+            el.innerHTML += '<a href="/hypesquad/erudis/" style="font-size:.8rem;opacity:.4;color:#c4a747;text-decoration:none;margin-top:.5rem;display:inline-block">📜 Accéder aux Archives Érudis</a>';
+          }
+          document.getElementById('hs-cta-bottom').textContent = '📊 Revoir mes résultats';
+        }
+      }
+
+      /* ═══ Sanction Panel (Érudis only) ═══ */
+      if (isErudis) {
+        var sanctionSection = document.getElementById('hs-sanction-section');
+        sanctionSection.style.display = '';
+        document.getElementById('hs-sanction-panel').innerHTML =
+          '<h3>🔮 Pouvoir de Sanction</h3>' +
+          '<p class="hs-sanction-desc">En tant qu\'Érudis, vous surveillez les Maisons depuis l\'ombre. Vous avez le pouvoir de demander à sanctionner ou bénir une Maison — mais cette demande doit passer par le Discord officiel.</p>' +
+          '<a href="/discord/" class="hs-sanction-discord">💬 Faire une demande sur Discord</a>' +
+          '<p style="font-size:.75rem;opacity:.3;margin-top:1rem">Les sanctions sont appliquées par le staff après examen de votre demande.</p>';
+      }
+    })();
+  </script>
+  <script>
+    (function () {
+      var nav = document.getElementById('main-nav');
+      var burger = document.getElementById('nav-burger');
+      if (!nav || !burger) return;
+
+      // Marque le lien actif d'apres l'URL courante
+      try {
+        var path = window.location.pathname.replace(/\/index\.html?$/, '/').replace(/\/$/, '') || '/';
+        var best = null, bestLen = -1;
+        nav.querySelectorAll('a[href]').forEach(function (a) {
+          var href = a.getAttribute('href').replace(/\/$/, '') || '/';
+          if (href === path || (href !== '/' && path.indexOf(href + '/') === 0) || (href !== '/' && path === href)) {
+            if (href.length > bestLen) { best = a; bestLen = href.length; }
+          }
+        });
+        if (path === '/' || path === '') {
+          best = nav.querySelector('a[href="/"]');
+        }
+        if (best) {
+          best.classList.add('active');
+          var grp = best.closest('details.nav-group');
+          if (grp) {
+            var s = grp.querySelector('summary.nav-link');
+            if (s) s.classList.add('active');
+          }
+        }
+      } catch (e) {}
+
+      function closeAllGroups(except) {
+        nav.querySelectorAll('details.nav-group[open]').forEach(function (d) {
+          if (d !== except) d.removeAttribute('open');
+        });
+      }
+
+      burger.addEventListener('click', function () {
+        var open = nav.classList.toggle('is-open');
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        burger.classList.toggle('is-active', open);
+        if (!open) closeAllGroups();
+      });
+
+      nav.querySelectorAll('details.nav-group').forEach(function (d) {
+        d.addEventListener('toggle', function () {
+          if (d.open) closeAllGroups(d);
+        });
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!nav.contains(e.target) && !burger.contains(e.target)) {
+          closeAllGroups();
+          if (nav.classList.contains('is-open')) {
+            nav.classList.remove('is-open');
+            burger.classList.remove('is-active');
+            burger.setAttribute('aria-expanded', 'false');
+          }
+        }
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          closeAllGroups();
+          if (nav.classList.contains('is-open')) {
+            nav.classList.remove('is-open');
+            burger.classList.remove('is-active');
+            burger.setAttribute('aria-expanded', 'false');
+            burger.focus();
+          }
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,1673 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="VentiStudio - Complétez des quêtes : regardez des bandes-annonces, visitez des pages partenaires et explorez le site pour gagner des récompenses !">
+  <meta name="theme-color" content="#6366f1">
+  <title>Quêtes | VentiStudio</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    /* ═══ Hero ═══ */
+    .q-hero {
+      text-align: center;
+      padding: 4rem 2rem 2rem;
+    }
+    .q-hero h1 {
+      font-size: 2.2rem;
+      margin-bottom: .5rem;
+      background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .q-hero .subtitle {
+      font-size: 1.05rem;
+      opacity: .7;
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
+    /* ═══ Stats ═══ */
+    .q-stats {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 2rem auto 0;
+      flex-wrap: wrap;
+    }
+    .q-stat { text-align: center; }
+    .q-stat-value {
+      font-size: 1.6rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .q-stat-label {
+      font-size: .8rem;
+      opacity: .5;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+
+    /* ═══ Progress ═══ */
+    .q-progress-wrap {
+      max-width: 400px;
+      margin: 1.5rem auto 0;
+    }
+    .q-progress-bar {
+      height: 8px;
+      background: var(--glass-bg);
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid var(--glass-border);
+    }
+    .q-progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+      border-radius: 4px;
+      transition: width .5s cubic-bezier(.4, 0, .2, 1);
+    }
+    .q-progress-fill.complete {
+      background: linear-gradient(90deg, #22c55e, #4ade80);
+    }
+    .q-progress-text {
+      font-size: .75rem;
+      opacity: .5;
+      text-align: center;
+      margin-top: .4rem;
+    }
+
+    /* ═══ Rank ═══ */
+    .q-rank {
+      text-align: center;
+      margin-top: 1rem;
+      font-size: .9rem;
+      font-weight: 600;
+    }
+    .q-rank-badge {
+      display: inline-block;
+      padding: .3rem .8rem;
+      border-radius: 8px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+    }
+
+    /* ═══ Tabs ═══ */
+    .q-tabs {
+      display: flex;
+      justify-content: center;
+      gap: .3rem;
+      margin: 2rem auto 0;
+      max-width: 600px;
+      padding: 0 1.5rem;
+    }
+    .q-tab {
+      padding: .6rem 1.4rem;
+      border-radius: 10px;
+      border: 1px solid var(--glass-border);
+      background: var(--glass-bg);
+      color: inherit;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: .88rem;
+      transition: all .2s;
+      opacity: .6;
+      white-space: nowrap;
+    }
+    .q-tab:hover { opacity: .85; border-color: var(--accent); }
+    .q-tab.active {
+      opacity: 1;
+      background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+      color: #fff;
+      border-color: transparent;
+    }
+    .q-tab .q-tab-count {
+      display: inline-block;
+      margin-left: .35rem;
+      font-size: .72rem;
+      padding: .1rem .4rem;
+      border-radius: 6px;
+      background: rgba(255,255,255,.15);
+    }
+    .q-tab.active .q-tab-count { background: rgba(255,255,255,.25); }
+
+    /* ═══ Section ═══ */
+    .q-section {
+      max-width: 900px;
+      margin: 0 auto 3rem;
+      padding: 0 1.5rem;
+    }
+    .q-section-title {
+      font-size: 1.3rem;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+    .q-section[hidden] { display: none; }
+    .q-empty {
+      text-align: center;
+      opacity: .4;
+      padding: 3rem 1rem;
+      font-size: .95rem;
+    }
+
+    /* ═══ Grid ═══ */
+    .q-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.2rem;
+    }
+
+    /* ═══ Card ═══ */
+    .q-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 1.8rem 1.2rem;
+      text-align: center;
+      cursor: pointer;
+      backdrop-filter: blur(12px);
+      transition: all .3s cubic-bezier(.4, 0, .2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    .q-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(99,102,241,.08), rgba(139,92,246,.04));
+      opacity: 0;
+      transition: opacity .3s;
+    }
+    .q-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 32px var(--glass-shadow), 0 0 20px rgba(99,102,241,.15);
+    }
+    .q-card:hover::before { opacity: 1; }
+    .q-card:active { transform: scale(.97); }
+
+    /* Locked */
+    .q-card.locked { border-color: rgba(100,100,120,.3); }
+    .q-card.locked:hover { border-color: rgba(59,130,246,.4); }
+    .q-card.locked .q-emoji { filter: none; }
+    .q-card.locked .q-card-title { opacity: .9; }
+
+    /* Completed */
+    .q-card.completed { border-color: rgba(34,197,94,.4); }
+    .q-card.completed:hover {
+      border-color: rgba(34,197,94,.6);
+      box-shadow: 0 12px 32px rgba(34,197,94,.15), 0 0 20px rgba(34,197,94,.1);
+    }
+    .q-card.completed .q-badge-check { opacity: 1; }
+    .q-card.completed .q-emoji { filter: none; }
+
+    /* Expired */
+    .q-card.expired {
+      border-color: rgba(100,100,120,.25);
+      opacity: .55;
+    }
+    .q-card.expired:hover {
+      opacity: .75;
+      border-color: rgba(100,100,120,.4);
+    }
+    .q-card.expired .q-emoji { filter: grayscale(.6); }
+    .q-card.expired.obtained { border-color: rgba(34,197,94,.3); opacity: .7; }
+    .q-card.expired.obtained .q-badge-check { opacity: 1; }
+    .q-card.expired.obtained .q-emoji { filter: none; }
+    .q-badge-expired {
+      position: absolute;
+      top: .6rem;
+      left: .6rem;
+      font-size: .6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      padding: .15rem .45rem;
+      border-radius: 6px;
+      background: rgba(239,68,68,.15);
+      color: #ef4444;
+      z-index: 1;
+    }
+    .q-badge-obtained {
+      position: absolute;
+      top: .6rem;
+      left: .6rem;
+      font-size: .6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      padding: .15rem .45rem;
+      border-radius: 6px;
+      background: rgba(34,197,94,.15);
+      color: #22c55e;
+      z-index: 1;
+    }
+
+    .q-emoji {
+      font-size: 3rem;
+      display: block;
+      margin-bottom: .6rem;
+      position: relative;
+      z-index: 1;
+      transition: transform .3s;
+    }
+    .q-card:hover .q-emoji { transform: scale(1.15) rotate(3deg); }
+
+    .q-card-title {
+      font-weight: 600;
+      font-size: .92rem;
+      position: relative;
+      z-index: 1;
+      line-height: 1.3;
+      margin-bottom: .3rem;
+    }
+
+    .q-card-type {
+      font-size: .7rem;
+      opacity: .5;
+      position: relative;
+      z-index: 1;
+    }
+
+    .q-badge-check {
+      position: absolute;
+      top: .6rem;
+      right: .6rem;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(34,197,94,.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity .3s;
+    }
+    .q-badge-check svg { width: 13px; height: 13px; color: #22c55e; }
+
+    .q-badge-new {
+      position: absolute;
+      top: .6rem;
+      left: .6rem;
+      font-size: .6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      padding: .15rem .45rem;
+      border-radius: 6px;
+      background: rgba(59,130,246,.2);
+      color: #3b82f6;
+      animation: qPulse 2s ease-in-out infinite;
+      z-index: 1;
+    }
+    @keyframes qPulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: .5; }
+    }
+
+    .q-difficulty {
+      display: inline-block;
+      font-size: .7rem;
+      padding: .15rem .5rem;
+      border-radius: 6px;
+      margin-top: .5rem;
+      font-weight: 600;
+      position: relative;
+      z-index: 1;
+    }
+    .q-difficulty.easy { background: rgba(34,197,94,.15); color: #22c55e; }
+    .q-difficulty.medium { background: rgba(245,158,11,.15); color: #f59e0b; }
+    .q-difficulty.hard { background: rgba(239,68,68,.15); color: #ef4444; }
+    .q-difficulty.legendary { background: rgba(139,92,246,.15); color: #8b5cf6; }
+
+    /* ═══ Modal ═══ */
+    .q-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.7);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+    .q-modal-overlay.active { display: flex; }
+
+    .q-modal {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      backdrop-filter: blur(20px);
+      padding: 2.5rem;
+      max-width: 560px;
+      width: 100%;
+      position: relative;
+      animation: qModalIn .35s cubic-bezier(.4, 0, .2, 1);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    @keyframes qModalIn {
+      from { opacity: 0; transform: translateY(20px) scale(.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .q-modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid var(--glass-border);
+      background: var(--glass-bg);
+      color: inherit;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all .2s;
+      z-index: 2;
+    }
+    .q-modal-close:hover {
+      border-color: var(--accent);
+      transform: rotate(90deg);
+    }
+
+    .q-modal-emoji {
+      font-size: 4rem;
+      text-align: center;
+      display: block;
+      margin-bottom: 1rem;
+      animation: qBounce .5s ease;
+    }
+    @keyframes qBounce {
+      0% { transform: scale(.3); opacity: 0; }
+      50% { transform: scale(1.1); }
+      70% { transform: scale(.95); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .q-modal-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: .5rem;
+    }
+    .q-modal-status {
+      text-align: center;
+      margin-bottom: .8rem;
+      font-size: .85rem;
+      font-weight: 600;
+    }
+    .q-modal-status.is-completed { color: #22c55e; }
+    .q-modal-status.is-pending { color: #3b82f6; }
+    .q-modal-desc {
+      opacity: .7;
+      line-height: 1.7;
+      text-align: center;
+      font-size: .95rem;
+      margin-bottom: 1rem;
+    }
+
+    .q-modal-reward {
+      margin-top: .8rem;
+      padding: .8rem 1rem;
+      background: rgba(139,92,246,.08);
+      border: 1px solid rgba(139,92,246,.2);
+      border-radius: 10px;
+      font-size: .85rem;
+      text-align: center;
+    }
+    .q-modal-reward strong { color: #8b5cf6; }
+
+    .q-modal-meta {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+      margin: .8rem 0;
+      font-size: .78rem;
+      opacity: .6;
+    }
+    .q-modal-meta span { display: flex; align-items: center; gap: .3rem; }
+
+    /* ═══ Video embed ═══ */
+    .q-video-wrap {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      border-radius: 12px;
+      overflow: hidden;
+      margin: 1rem 0;
+      background: #000;
+    }
+    .q-video-wrap iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    .q-video-progress {
+      height: 4px;
+      background: rgba(255,255,255,.1);
+      border-radius: 2px;
+      overflow: hidden;
+      margin-top: .5rem;
+    }
+    .q-video-progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+      border-radius: 2px;
+      transition: width .3s linear;
+    }
+
+    /* ═══ Action button ═══ */
+    .q-action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .7rem 1.6rem;
+      border-radius: 10px;
+      border: none;
+      background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+      color: #fff;
+      font-weight: 700;
+      font-size: .95rem;
+      cursor: pointer;
+      transition: all .2s;
+      margin-top: .5rem;
+    }
+    .q-action-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(99,102,241,.35);
+    }
+    .q-action-btn:active { transform: scale(.97); }
+    .q-action-btn:disabled {
+      opacity: .5;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+    .q-action-btn.completed-btn {
+      background: linear-gradient(135deg, #22c55e, #4ade80);
+    }
+
+    .q-modal-actions {
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    /* ═══ Anti-skip warning ═══ */
+    .q-antiskip-warn {
+      margin-top: .5rem;
+      padding: .6rem .8rem;
+      background: rgba(239,68,68,.08);
+      border: 1px solid rgba(239,68,68,.2);
+      border-radius: 8px;
+      font-size: .78rem;
+      text-align: center;
+      color: #ef4444;
+      display: none;
+    }
+    .q-antiskip-warn.visible { display: block; }
+
+    /* ═══ Reset & Back ═══ */
+    .q-reset {
+      text-align: center;
+      margin-top: 1rem;
+    }
+    .q-reset button {
+      background: none;
+      border: 1px solid rgba(239,68,68,.3);
+      color: #ef4444;
+      padding: .4rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: .8rem;
+      transition: all .2s;
+    }
+    .q-reset button:hover {
+      background: rgba(239,68,68,.1);
+      border-color: #ef4444;
+    }
+    .q-back {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .q-back a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      transition: opacity .2s;
+    }
+    .q-back a:hover { opacity: .7; }
+
+    /* ═══ Responsive ═══ */
+    @media (max-width: 600px) {
+      .q-hero h1 { font-size: 1.6rem; }
+      .q-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: .8rem; }
+      .q-card { padding: 1.4rem 1rem; }
+      .q-emoji { font-size: 2.5rem; }
+      .q-modal { padding: 2rem 1.5rem; }
+      .q-stats { gap: 1.2rem; }
+      .q-tabs { gap: .2rem; }
+      .q-tab { padding: .5rem .8rem; font-size: .78rem; }
+    }
+  </style>
+
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+
+  <script async crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
+  <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
+
+  <meta property="og:title" content="Quêtes | VentiStudio">
+  <meta property="og:description" content="Complétez des quêtes : regardez des bandes-annonces, visitez des pages partenaires et explorez le site pour gagner des récompenses !">
+  <meta property="og:url" content="https://ventistudio.eu/quests/">
+  <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://ventistudio.eu/quests/">
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="/favicon.avif" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
+      <span>VentiStudio</span>
+    </div>
+    <button class="nav-burger" id="nav-burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="main-nav" class="main-nav" aria-label="Navigation principale">
+      <a href="/" class="nav-link">Accueil</a>
+
+      <details class="nav-group">
+        <summary class="nav-link">Découvrir
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel" role="menu">
+          <a href="/evaluation">Évaluation</a>
+          <a href="/wiki">Wiki</a>
+          <a href="/glossary">Glossaire</a>
+          <a href="/news">News</a>
+          <a href="/blog">Blog</a>
+          <a href="/calendar">Calendrier</a>
+          <a href="/cookbook">Cookbook</a>
+          <a href="/gallery">Galerie</a>
+          <a href="/atlas">Atlas</a>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Univers
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel" role="menu">
+          <a href="/aokiunivers">AOKI Universe</a>
+          <a href="/allofaokiunivers">All AOKI</a>
+          <a href="/university">Université</a>
+          <a href="/history">Histoire</a>
+          <a href="/memorial">Mémorial</a>
+          <a href="/ester-eggs">Easter eggs</a>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Outils
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Applications</h4>
+            <a href="/player">Lecteur</a>
+            <a href="/music">Musique</a>
+            <a href="/pip">PIP</a>
+            <a href="/whiteboard">Whiteboard</a>
+            <a href="/portfolio">Portfolio</a>
+            <a href="/gmod">GMod</a>
+          </div>
+          <div class="nav-col">
+            <h4>Domaines</h4>
+            <a href="/domain/aina">AINA</a>
+            <a href="/domain/archive">Archive</a>
+            <a href="/domain/maps">Maps</a>
+            <a href="/domain/movie">Movie</a>
+            <a href="/domain/peer">Peer</a>
+            <a href="/domain/pro">Pro</a>
+            <a href="/domain/search">Search</a>
+            <a href="/domain/suite">Suite</a>
+          </div>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Communauté
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Équipe</h4>
+            <a href="/personnel/">Équipe</a>
+            <a href="/hierarchie-staff">Hiérarchie</a>
+            <a href="/hypesquad">Hypesquad</a>
+            <a href="/jobs">Emplois</a>
+            <a href="/birthday">Anniversaires</a>
+          </div>
+          <div class="nav-col">
+            <h4>Réseaux</h4>
+            <a href="/discord">Discord</a>
+            <a href="/teamspeak">TeamSpeak</a>
+            <a href="/steam">Steam</a>
+            <a href="/social">Réseaux sociaux</a>
+          </div>
+          <div class="nav-col">
+            <h4>Activités</h4>
+            <a href="/artist">Artistes</a>
+            <a href="/quests">Quêtes</a>
+            <a href="/suboawards">Suboawards</a>
+            <a href="/eConcert">eConcert</a>
+          </div>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Plus
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Aide</h4>
+            <a href="/contact">Contact</a>
+            <a href="/faq">FAQ</a>
+            <a href="/status">Statut</a>
+            <a href="/sitemap">Plan du site</a>
+          </div>
+          <div class="nav-col">
+            <h4>Soutien</h4>
+            <a href="/donate">Faire un don</a>
+            <a href="/gold">Gold</a>
+            <a href="/customization">Personnalisation</a>
+            <a href="/mes-donnees">Mes Données</a>
+            <a href="/newsletter">Newsletter</a>
+          </div>
+          <div class="nav-col">
+            <h4>À propos</h4>
+            <a href="/company">Entreprise</a>
+            <a href="/acknowledgements">Remerciements</a>
+            <a href="/logo">Logo</a>
+            <a href="/tags">Tags</a>
+            <a href="/memory">Mémoire</a>
+            <a href="/why-not-use-roblox">Pourquoi pas Roblox</a>
+            <a href="/lawful">Mentions légales</a>
+          </div>
+        </div>
+      </details>
+    </nav>
+    <div class="controls" role="toolbar" aria-label="Contrôles">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
+          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
+          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
+        </svg>
+      </button>
+      <div id="user-button" role="region" aria-label="Authentification"><button class="cta" id="auth-fallback-btn" onclick="window.location.href='https://accounts.ventistudio.eu/sign-in?redirect_url='+encodeURIComponent(window.location.href)" style="padding:0.5rem 1.25rem;font-size:0.9rem;margin:0"><span>Se connecter</span></button></div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="q-hero">
+      <h1>⚔️ Quêtes</h1>
+      <p class="subtitle">Complétez des quêtes pour gagner des récompenses ! Regardez des bandes-annonces de A à Z, visitez des pages partenaires, explorez le site et accomplissez des défis.</p>
+      <div class="q-stats">
+        <div class="q-stat">
+          <div class="q-stat-value" id="q-completed-count">0</div>
+          <div class="q-stat-label">Complétées</div>
+        </div>
+        <div class="q-stat">
+          <div class="q-stat-value" id="q-total-count">0</div>
+          <div class="q-stat-label">Total</div>
+        </div>
+      </div>
+      <div class="q-progress-wrap">
+        <div class="q-progress-bar"><div class="q-progress-fill" id="q-progress"></div></div>
+        <div class="q-progress-text" id="q-progress-text">0% complété</div>
+      </div>
+      <div class="q-rank" id="q-rank"></div>
+
+      <!-- Tabs -->
+      <div class="q-tabs">
+        <button class="q-tab active" data-tab="all">Toutes les quêtes <span class="q-tab-count" id="tab-all-count">0</span></button>
+        <button class="q-tab" data-tab="claimed">Quêtes récupérées <span class="q-tab-count" id="tab-claimed-count">0</span></button>
+        <button class="q-tab" data-tab="ended">Quêtes terminées <span class="q-tab-count" id="tab-ended-count">0</span></button>
+      </div>
+    </section>
+
+    <!-- All Quests -->
+    <section class="q-section" id="section-all">
+      <h2 class="q-section-title">📋 Toutes les quêtes</h2>
+      <div class="q-grid" id="q-grid"></div>
+    </section>
+
+    <!-- Claimed Quests -->
+    <section class="q-section" id="section-claimed" hidden>
+      <h2 class="q-section-title">✅ Quêtes récupérées</h2>
+      <div class="q-grid" id="q-grid-claimed"></div>
+      <div class="q-empty" id="claimed-empty" hidden>Vous n'avez pas encore complété de quêtes.</div>
+    </section>
+
+    <!-- Ended Quests -->
+    <section class="q-section" id="section-ended" hidden>
+      <h2 class="q-section-title">⏰ Quêtes terminées</h2>
+      <div class="q-grid" id="q-grid-ended"></div>
+      <div class="q-empty" id="ended-empty" hidden>Aucune quête terminée pour le moment.</div>
+    </section>
+
+    <!-- Modal -->
+    <div class="q-modal-overlay" id="q-overlay">
+      <div class="q-modal" id="q-modal">
+        <button class="q-modal-close" id="q-close" aria-label="Fermer">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+        <span class="q-modal-emoji" id="qm-emoji"></span>
+        <div class="q-modal-status" id="qm-status"></div>
+        <h2 class="q-modal-title" id="qm-title"></h2>
+        <div class="q-modal-meta" id="qm-meta"></div>
+        <p class="q-modal-desc" id="qm-desc"></p>
+        <div id="qm-content"></div>
+        <div class="q-modal-reward" id="qm-reward"></div>
+        <div class="q-modal-actions" id="qm-actions"></div>
+      </div>
+    </div>
+
+    <!-- Reset & Back -->
+    <div class="q-reset">
+      <button id="q-reset-btn">Réinitialiser ma progression</button>
+    </div>
+    <div class="q-back">
+      <a href="/ester-eggs">🥚 Voir les Easter Eggs</a> &nbsp;·&nbsp; <a href="/">&larr; Retour à l'accueil</a>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Outils</h4>
+        <ul>
+          <li><a href="/pip">PIP</a></li>
+          <li><a href="/sitemap">Plan du site</a></li>
+          <li><a href="https://status.ventistudio.eu/">Statut</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Entreprise</h4>
+        <ul>
+          <li><a href="/about">À propos</a></li>
+          <li><a href="/jobs">Emplois</a></li>
+          <li><a href="/logo">Marque</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Ressources</h4>
+        <ul>
+          <li><a href="/university">Université</a></li>
+          <li><a href="/lawful/support">Assistance</a></li>
+          <li><a href="/lawful/security">Sécurité</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Chartes</h4>
+        <ul>
+          <li><a href="/lawful/tos">Conditions d'utilisation</a></li>
+          <li><a href="/lawful/cookies">Confidentialité</a></li>
+          <li><a href="/lawful/dmcainfo">Information DMCA</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <iframe src="https://status.ventistudio.eu/badge?theme=dark" width="500" height="30" frameborder="0" scrolling="no" style="color-scheme: normal"></iframe>
+      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <script src="/main.js" defer></script>
+
+  <!-- YouTube IFrame API -->
+  <script>
+    var tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    var ytReady = false;
+    var ytReadyCallbacks = [];
+    function onYouTubeIframeAPIReady() {
+      ytReady = true;
+      ytReadyCallbacks.forEach(function(cb) { cb(); });
+      ytReadyCallbacks = [];
+    }
+    function whenYTReady(cb) {
+      if (ytReady) cb();
+      else ytReadyCallbacks.push(cb);
+    }
+  </script>
+
+  <script>
+    (function() {
+      /* ═══════════════════════════════════════════
+         Registre des Quêtes actives
+         ═══════════════════════════════════════════ */
+      var quests = [
+        {
+          id: 'trailer-gta6',
+          emoji: '🚗',
+          title: 'Grand Theft Auto VI',
+          desc: 'Regardez la bande-annonce officielle de GTA VI de A à Z pour compléter cette quête.',
+          type: 'video',
+          videoId: 'QdBZY2fkU-0',
+          videoDuration: 91,
+          reward: 'Badge « Cinéphile GTA »',
+          difficulty: 'easy',
+          duration: '~1 min 30',
+          isNew: false
+        },
+        {
+          id: 'trailer-elder-scrolls-6',
+          emoji: '⚔️',
+          title: 'The Elder Scrolls VI',
+          desc: 'Regardez le teaser officiel de The Elder Scrolls VI en entier.',
+          type: 'video',
+          videoId: 'OkFdqqyI8y4',
+          videoDuration: 36,
+          reward: 'Badge « Dovahkiin »',
+          difficulty: 'easy',
+          duration: '~36 sec',
+          isNew: false
+        },
+        {
+          id: 'trailer-silksong',
+          emoji: '🦋',
+          title: 'Hollow Knight: Silksong',
+          desc: 'Regardez la bande-annonce de Hollow Knight: Silksong de A à Z.',
+          type: 'video',
+          videoId: 'pFAknD_9U7c',
+          videoDuration: 157,
+          reward: 'Badge « Chasseur de Soie »',
+          difficulty: 'easy',
+          duration: '~2 min 37',
+          isNew: false
+        },
+        {
+          id: 'trailer-botw2',
+          emoji: '🗡️',
+          title: 'Zelda: Tears of the Kingdom',
+          desc: 'Regardez le trailer final de The Legend of Zelda: Tears of the Kingdom.',
+          type: 'video',
+          videoId: 'uHGShqcAHlQ',
+          videoDuration: 183,
+          reward: 'Badge « Héros d\'Hyrule »',
+          difficulty: 'medium',
+          duration: '~3 min',
+          isNew: false
+        },
+        {
+          id: 'visit-ig-gta6',
+          emoji: '🛒',
+          title: 'GTA VI sur Instant Gaming',
+          desc: 'Visitez la page de GTA VI sur Instant Gaming pour découvrir les offres disponibles.',
+          type: 'visit-external',
+          target: 'https://www.instant-gaming.com/fr/rechercher/?q=gta+vi',
+          targetLabel: 'Instant Gaming',
+          reward: 'Badge « Bon Plan »',
+          difficulty: 'easy',
+          duration: '~30 sec',
+          isNew: false
+        },
+        {
+          id: 'visit-steam-silksong',
+          emoji: '🎮',
+          title: 'Silksong sur Steam',
+          desc: 'Visitez la page Steam de Hollow Knight: Silksong et ajoutez-le à votre liste de souhaits !',
+          type: 'visit-external',
+          target: 'https://store.steampowered.com/app/1030300/Hollow_Knight_Silksong/',
+          targetLabel: 'Steam',
+          reward: 'Badge « Wishlisteur »',
+          difficulty: 'easy',
+          duration: '~30 sec',
+          isNew: false
+        },
+        {
+          id: 'visit-wiki',
+          emoji: '📖',
+          title: 'Rat de Bibliothèque',
+          desc: 'Visitez le Wiki de VentiStudio et explorez les connaissances de la communauté.',
+          type: 'visit-internal',
+          target: '/wiki',
+          reward: 'Badge « Érudit »',
+          difficulty: 'easy',
+          duration: '~1 min',
+          isNew: false
+        },
+        {
+          id: 'visit-news',
+          emoji: '📰',
+          title: 'Au Courant',
+          desc: 'Visitez la section News pour rester informé des dernières actualités VentiStudio.',
+          type: 'visit-internal',
+          target: '/news',
+          reward: 'Badge « Informé »',
+          difficulty: 'easy',
+          duration: '~1 min',
+          isNew: false
+        },
+        {
+          id: 'visit-evaluation',
+          emoji: '⭐',
+          title: 'Critique en Herbe',
+          desc: 'Visitez la page Évaluation et découvrez les avis de la communauté.',
+          type: 'visit-internal',
+          target: '/evaluation',
+          reward: 'Badge « Critique »',
+          difficulty: 'easy',
+          duration: '~1 min',
+          isNew: false
+        },
+        {
+          id: 'visit-music',
+          emoji: '🎵',
+          title: 'Mélomane',
+          desc: 'Visitez le lecteur musique de VentiStudio et écoutez un morceau.',
+          type: 'visit-internal',
+          target: '/music',
+          reward: 'Badge « Mélomane »',
+          difficulty: 'easy',
+          duration: '~2 min',
+          isNew: false
+        },
+        {
+          id: 'visit-easter-eggs',
+          emoji: '🥚',
+          title: 'Chasseur de Secrets',
+          desc: 'Visitez la page des Easter Eggs et découvrez les succès cachés du site.',
+          type: 'visit-internal',
+          target: '/ester-eggs',
+          reward: 'Badge « Chasseur »',
+          difficulty: 'easy',
+          duration: '~1 min',
+          isNew: false
+        },
+        {
+          id: 'marathon-trailers',
+          emoji: '🍿',
+          title: 'Marathon Cinéma',
+          desc: 'Complétez toutes les quêtes de type bande-annonce pour prouver que vous êtes un vrai cinéphile du jeu vidéo !',
+          type: 'action',
+          actionCheck: 'all-videos',
+          reward: 'Badge « Marathonien »',
+          difficulty: 'hard',
+          duration: '~10 min',
+          isNew: false
+        },
+        {
+          id: 'completionist-quests',
+          emoji: '🏆',
+          title: 'Maître des Quêtes',
+          desc: 'Complétez TOUTES les autres quêtes. Vous êtes un véritable héros de VentiStudio !',
+          type: 'action',
+          actionCheck: 'all-quests',
+          reward: 'Titre « 👑 Maître des Quêtes »',
+          difficulty: 'legendary',
+          duration: '~30 min',
+          isNew: false
+        }
+      ];
+
+      /* ═══════════════════════════════════════════
+         Quêtes terminées (expirées, plus disponibles)
+         ═══════════════════════════════════════════ */
+      var endedQuests = [
+        {
+          id: 'ended-trailer-starfield',
+          emoji: '🚀',
+          title: 'Starfield - Lancement',
+          desc: 'Regardez la bande-annonce de lancement de Starfield. Cette quête était disponible du 01/09/2024 au 30/09/2024.',
+          type: 'video',
+          reward: 'Badge « Explorateur Stellaire »',
+          difficulty: 'easy',
+          duration: '~3 min',
+          endedDate: '30/09/2024'
+        },
+        {
+          id: 'ended-visit-ig-starfield',
+          emoji: '🛒',
+          title: 'Starfield sur Instant Gaming',
+          desc: 'Offre limitée sur Starfield. Cette quête était disponible du 01/09/2024 au 30/09/2024.',
+          type: 'visit-external',
+          reward: 'Badge « BargainHunter »',
+          difficulty: 'easy',
+          duration: '~30 sec',
+          endedDate: '30/09/2024'
+        },
+        {
+          id: 'ended-trailer-cyberpunk-dlc',
+          emoji: '🌃',
+          title: 'Cyberpunk 2077: Phantom Liberty',
+          desc: 'Regardez la bande-annonce de Phantom Liberty. Cette quête était disponible du 15/06/2024 au 15/07/2024.',
+          type: 'video',
+          reward: 'Badge « Night City »',
+          difficulty: 'medium',
+          duration: '~2 min',
+          endedDate: '15/07/2024'
+        },
+        {
+          id: 'ended-trailer-elden-ring-dlc',
+          emoji: '🔥',
+          title: 'Elden Ring: Shadow of the Erdtree',
+          desc: 'Regardez le trailer du DLC Elden Ring. Cette quête était disponible du 01/06/2024 au 20/06/2024.',
+          type: 'video',
+          reward: 'Badge « Terni »',
+          difficulty: 'medium',
+          duration: '~2 min 30',
+          endedDate: '20/06/2024'
+        },
+        {
+          id: 'ended-visit-steam-summer',
+          emoji: '☀️',
+          title: 'Soldes d\'Été Steam 2025',
+          desc: 'Visitez les soldes d\'été Steam. Cette quête était disponible du 26/06/2025 au 10/07/2025.',
+          type: 'visit-external',
+          reward: 'Badge « Soldes Addict »',
+          difficulty: 'easy',
+          duration: '~30 sec',
+          endedDate: '10/07/2025'
+        }
+      ];
+
+      var Q_KEY = 'vs-quests-completed';
+      var diffLabels = { easy: 'Facile', medium: 'Moyen', hard: 'Difficile', legendary: 'Légendaire' };
+      var typeLabels = { video: '🎬 Bande-annonce', 'visit-external': '🔗 Visite externe', 'visit-internal': '🧭 Visite interne', action: '⚡ Défi spécial' };
+      var ranks = [
+        { min: 0,  label: '🗺️ Débutant' },
+        { min: 3,  label: '⚔️ Aventurier' },
+        { min: 6,  label: '🛡️ Héros' },
+        { min: 9,  label: '🏅 Champion' },
+        { min: 12, label: '🌟 Légende' },
+        { min: 13, label: '👑 Maître des Quêtes' }
+      ];
+
+      function getCompleted() {
+        try { return JSON.parse(localStorage.getItem(Q_KEY) || '[]'); }
+        catch(e) { return []; }
+      }
+      function setCompleted(arr) {
+        localStorage.setItem(Q_KEY, JSON.stringify(arr));
+      }
+      function markComplete(questId) {
+        var arr = getCompleted();
+        if (arr.indexOf(questId) === -1) {
+          arr.push(questId);
+          setCompleted(arr);
+          updateUI();
+          updateTabs();
+          checkAutoComplete();
+        }
+      }
+      function isComplete(questId) {
+        return getCompleted().indexOf(questId) !== -1;
+      }
+
+      // Auto-check meta quests
+      function checkAutoComplete() {
+        var completed = getCompleted();
+        var videoQuests = quests.filter(function(q) { return q.type === 'video'; });
+        var allVideos = videoQuests.every(function(q) { return completed.indexOf(q.id) !== -1; });
+        if (allVideos && completed.indexOf('marathon-trailers') === -1) {
+          markComplete('marathon-trailers');
+        }
+        var others = quests.filter(function(q) { return q.id !== 'completionist-quests'; });
+        var allDone = others.every(function(q) { return completed.indexOf(q.id) !== -1; });
+        if (allDone && completed.indexOf('completionist-quests') === -1) {
+          markComplete('completionist-quests');
+        }
+      }
+
+      /* ═══ DOM refs ═══ */
+      var grid = document.getElementById('q-grid');
+      var gridClaimed = document.getElementById('q-grid-claimed');
+      var gridEnded = document.getElementById('q-grid-ended');
+      var overlay = document.getElementById('q-overlay');
+      var totalEl = document.getElementById('q-total-count');
+      var completedEl = document.getElementById('q-completed-count');
+      var progressEl = document.getElementById('q-progress');
+      var progressText = document.getElementById('q-progress-text');
+      var rankEl = document.getElementById('q-rank');
+      var currentYTPlayer = null;
+      var currentVideoTimer = null;
+      var currentQuestIndex = null;
+      var currentQuestSource = null; // 'active' | 'ended'
+
+      totalEl.textContent = quests.length;
+
+      /* ═══ Tabs ═══ */
+      var tabs = document.querySelectorAll('.q-tab');
+      var sections = {
+        all: document.getElementById('section-all'),
+        claimed: document.getElementById('section-claimed'),
+        ended: document.getElementById('section-ended')
+      };
+      var currentTab = 'all';
+
+      tabs.forEach(function(tab) {
+        tab.addEventListener('click', function() {
+          var t = this.getAttribute('data-tab');
+          switchTab(t);
+        });
+      });
+
+      function switchTab(t) {
+        currentTab = t;
+        tabs.forEach(function(tab) {
+          tab.classList.toggle('active', tab.getAttribute('data-tab') === t);
+        });
+        Object.keys(sections).forEach(function(key) {
+          sections[key].hidden = (key !== t);
+        });
+        if (t === 'claimed') buildClaimedGrid();
+        if (t === 'ended') buildEndedGrid();
+      }
+
+      function updateTabs() {
+        var completed = getCompleted();
+        var activeCompleted = quests.filter(function(q) { return completed.indexOf(q.id) !== -1; });
+        document.getElementById('tab-all-count').textContent = quests.length;
+        document.getElementById('tab-claimed-count').textContent = activeCompleted.length;
+        document.getElementById('tab-ended-count').textContent = endedQuests.length;
+      }
+
+      function getRank(count) {
+        var rank = ranks[0];
+        for (var i = 0; i < ranks.length; i++) {
+          if (count >= ranks[i].min) rank = ranks[i];
+        }
+        return rank.label;
+      }
+
+      function updateUI() {
+        var completed = getCompleted();
+        var count = completed.filter(function(id) {
+          return quests.some(function(q) { return q.id === id; });
+        }).length;
+        completedEl.textContent = count;
+        var pct = Math.round((count / quests.length) * 100);
+        progressEl.style.width = pct + '%';
+        if (pct >= 100) progressEl.classList.add('complete');
+        else progressEl.classList.remove('complete');
+        progressText.textContent = pct + '% complété';
+        rankEl.innerHTML = '<span class="q-rank-badge">' + getRank(count) + '</span>';
+
+        quests.forEach(function(quest, i) {
+          var card = grid.children[i];
+          if (!card) return;
+          var done = completed.indexOf(quest.id) !== -1;
+          card.className = 'q-card ' + (done ? 'completed' : 'locked');
+        });
+      }
+
+      /* ═══ Build main grid ═══ */
+      quests.forEach(function(quest, i) {
+        var card = document.createElement('div');
+        card.className = 'q-card locked';
+        card.innerHTML =
+          '<span class="q-badge-check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>' +
+          (quest.isNew ? '<span class="q-badge-new">Nouveau</span>' : '') +
+          '<span class="q-emoji">' + quest.emoji + '</span>' +
+          '<div class="q-card-title">' + quest.title + '</div>' +
+          '<div class="q-card-type">' + typeLabels[quest.type] + '</div>' +
+          '<span class="q-difficulty ' + quest.difficulty + '">' + diffLabels[quest.difficulty] + '</span>';
+        card.addEventListener('click', function() { openModal(i, 'active'); });
+        grid.appendChild(card);
+      });
+
+      /* ═══ Build claimed grid (dynamic) ═══ */
+      function buildClaimedGrid() {
+        gridClaimed.innerHTML = '';
+        var completed = getCompleted();
+        var claimedQuests = quests.filter(function(q) { return completed.indexOf(q.id) !== -1; });
+        var claimedEnded = endedQuests.filter(function(q) { return completed.indexOf(q.id) !== -1; });
+        var all = claimedQuests.concat(claimedEnded);
+
+        document.getElementById('claimed-empty').hidden = all.length > 0;
+
+        claimedQuests.forEach(function(quest) {
+          var idx = quests.indexOf(quest);
+          var card = buildCard(quest, true, false);
+          card.addEventListener('click', function() { openModal(idx, 'active'); });
+          gridClaimed.appendChild(card);
+        });
+        claimedEnded.forEach(function(quest) {
+          var idx = endedQuests.indexOf(quest);
+          var card = buildCard(quest, true, true);
+          card.addEventListener('click', function() { openModal(idx, 'ended'); });
+          gridClaimed.appendChild(card);
+        });
+      }
+
+      /* ═══ Build ended grid (dynamic) ═══ */
+      function buildEndedGrid() {
+        gridEnded.innerHTML = '';
+        var completed = getCompleted();
+
+        document.getElementById('ended-empty').hidden = endedQuests.length > 0;
+
+        endedQuests.forEach(function(quest, i) {
+          var obtained = completed.indexOf(quest.id) !== -1;
+          var card = buildCard(quest, obtained, true);
+          card.addEventListener('click', function() { openModal(i, 'ended'); });
+          gridEnded.appendChild(card);
+        });
+      }
+
+      function buildCard(quest, obtained, isEnded) {
+        var card = document.createElement('div');
+        var cls = 'q-card';
+        if (isEnded) {
+          cls += ' expired';
+          if (obtained) cls += ' obtained';
+        } else if (obtained) {
+          cls += ' completed';
+        } else {
+          cls += ' locked';
+        }
+        card.className = cls;
+
+        var badgeHtml = '';
+        if (obtained) {
+          badgeHtml = '<span class="q-badge-check"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
+        }
+        var tagHtml = '';
+        if (isEnded && obtained) {
+          tagHtml = '<span class="q-badge-obtained">Obtenue</span>';
+        } else if (isEnded && !obtained) {
+          tagHtml = '<span class="q-badge-expired">Expirée</span>';
+        } else if (quest.isNew) {
+          tagHtml = '<span class="q-badge-new">Nouveau</span>';
+        }
+
+        card.innerHTML =
+          badgeHtml + tagHtml +
+          '<span class="q-emoji">' + quest.emoji + '</span>' +
+          '<div class="q-card-title">' + quest.title + '</div>' +
+          '<div class="q-card-type">' + (typeLabels[quest.type] || '') + '</div>' +
+          '<span class="q-difficulty ' + quest.difficulty + '">' + diffLabels[quest.difficulty] + '</span>';
+        return card;
+      }
+
+      /* ═══ Player cleanup ═══ */
+      function destroyPlayer() {
+        if (currentVideoTimer) { clearInterval(currentVideoTimer); currentVideoTimer = null; }
+        if (currentYTPlayer) {
+          try { currentYTPlayer.destroy(); } catch(e) {}
+          currentYTPlayer = null;
+        }
+      }
+
+      /* ═══ Modal ═══ */
+      function openModal(i, source) {
+        destroyPlayer();
+        currentQuestIndex = i;
+        currentQuestSource = source;
+        var quest = (source === 'ended') ? endedQuests[i] : quests[i];
+        var done = isComplete(quest.id);
+        var isEnded = (source === 'ended');
+
+        document.getElementById('qm-emoji').textContent = quest.emoji;
+        document.getElementById('qm-title').textContent = quest.title;
+
+        var statusEl = document.getElementById('qm-status');
+        if (isEnded && done) {
+          statusEl.textContent = '✅ Obtenue';
+          statusEl.className = 'q-modal-status is-completed';
+        } else if (isEnded && !done) {
+          statusEl.textContent = '⏰ Expirée (Non obtenue)';
+          statusEl.className = 'q-modal-status is-pending';
+        } else if (done) {
+          statusEl.textContent = '✅ Complétée !';
+          statusEl.className = 'q-modal-status is-completed';
+        } else {
+          statusEl.textContent = '🔵 En cours';
+          statusEl.className = 'q-modal-status is-pending';
+        }
+
+        var metaHtml = '<span>' + (typeLabels[quest.type] || '') + '</span>' +
+          '<span>⏱ ' + quest.duration + '</span>' +
+          '<span class="q-difficulty ' + quest.difficulty + '">' + diffLabels[quest.difficulty] + '</span>';
+        if (isEnded) {
+          metaHtml += '<span>📅 Terminée le ' + quest.endedDate + '</span>';
+        }
+        document.getElementById('qm-meta').innerHTML = metaHtml;
+
+        document.getElementById('qm-desc').textContent = quest.desc;
+        document.getElementById('qm-reward').innerHTML = '<strong>🎁 Récompense :</strong> ' + quest.reward;
+
+        var contentEl = document.getElementById('qm-content');
+        var actionsEl = document.getElementById('qm-actions');
+        contentEl.innerHTML = '';
+        actionsEl.innerHTML = '';
+
+        if (isEnded) {
+          if (done) {
+            actionsEl.innerHTML = '<button class="q-action-btn completed-btn" disabled>✅ Obtenue</button>';
+          } else {
+            actionsEl.innerHTML = '<button class="q-action-btn" disabled style="opacity:.4">⏰ Quête expirée</button>';
+          }
+        } else if (quest.type === 'video') {
+          buildVideoQuest(quest, done, contentEl, actionsEl);
+        } else if (quest.type === 'visit-external') {
+          buildExternalQuest(quest, done, actionsEl);
+        } else if (quest.type === 'visit-internal') {
+          buildInternalQuest(quest, done, actionsEl);
+        } else if (quest.type === 'action') {
+          buildActionQuest(quest, done, actionsEl);
+        }
+
+        overlay.classList.add('active');
+      }
+
+      /* ═══════════════════════════════════════════
+         Video Quest ANTI-SKIP protection
+         Le temps accumulé est tracké en temps réel.
+         Si l'utilisateur saute en avant (seek), le
+         temps accumulé ne progresse pas. Seul le
+         temps de lecture réel compte.
+         ═══════════════════════════════════════════ */
+      var videoWatchedTime = 0;
+      var lastPlayerTime = 0;
+      var videoStartRealTime = 0;
+      var seekWarnings = 0;
+
+      function buildVideoQuest(quest, done, contentEl, actionsEl) {
+        if (done) {
+          actionsEl.innerHTML = '<button class="q-action-btn completed-btn" disabled>✅ Quête complétée</button>';
+          return;
+        }
+
+        contentEl.innerHTML =
+          '<div class="q-video-wrap"><div id="yt-player-container"></div></div>' +
+          '<div class="q-video-progress"><div class="q-video-progress-fill" id="q-vid-progress"></div></div>' +
+          '<p style="font-size:.75rem;opacity:.5;text-align:center;margin-top:.3rem" id="q-vid-timer">Regardez la vidéo en entier pour compléter la quête</p>' +
+          '<div class="q-antiskip-warn" id="q-antiskip-warn">⚠️ Vous avez avancé la vidéo. Seul le temps de lecture réel est comptabilisé.</div>';
+
+        actionsEl.innerHTML = '<button class="q-action-btn" id="q-start-video">▶️ Lancer la vidéo</button>';
+
+        document.getElementById('q-start-video').addEventListener('click', function() {
+          this.disabled = true;
+          this.textContent = '⏳ Chargement...';
+
+          // Reset anti-skip state
+          videoWatchedTime = 0;
+          lastPlayerTime = 0;
+          videoStartRealTime = 0;
+          seekWarnings = 0;
+
+          whenYTReady(function() {
+            currentYTPlayer = new YT.Player('yt-player-container', {
+              videoId: quest.videoId,
+              playerVars: {
+                autoplay: 1,
+                rel: 0,
+                modestbranding: 1,
+                disablekb: 1,
+                fs: 0
+              },
+              events: {
+                onReady: function() {
+                  videoStartRealTime = Date.now();
+                  lastPlayerTime = 0;
+                  startVideoTracking(quest);
+                },
+                onStateChange: function(e) {
+                  if (e.data === YT.PlayerState.ENDED) {
+                    var totalDuration = currentYTPlayer.getDuration() || quest.videoDuration;
+                    if (videoWatchedTime >= totalDuration * 0.9) {
+                      onVideoComplete(quest);
+                    }
+                  }
+                }
+              }
+            });
+          });
+        });
+      }
+
+      function startVideoTracking(quest) {
+        var progressFill = document.getElementById('q-vid-progress');
+        var timerEl = document.getElementById('q-vid-timer');
+        var warnEl = document.getElementById('q-antiskip-warn');
+        if (!progressFill || !timerEl) return;
+
+        currentVideoTimer = setInterval(function() {
+          if (!currentYTPlayer || typeof currentYTPlayer.getCurrentTime !== 'function') return;
+
+          var playerTime = currentYTPlayer.getCurrentTime();
+          var totalDuration = currentYTPlayer.getDuration() || quest.videoDuration;
+          var playerState = currentYTPlayer.getPlayerState();
+
+          // Only count time if the video is actively playing (state 1)
+          if (playerState === YT.PlayerState.PLAYING) {
+            var delta = playerTime - lastPlayerTime;
+
+            // Normal playback: delta should be ~0.5s (our interval)
+            // If delta > 2s, the user seeked forward don't count the jump
+            if (delta > 0 && delta < 2) {
+              videoWatchedTime += delta;
+            } else if (delta > 2) {
+              // Seek detected show warning
+              seekWarnings++;
+              if (warnEl) warnEl.classList.add('visible');
+            }
+            // Negative delta means seek backward, which is ok (generous)
+          }
+
+          lastPlayerTime = playerTime;
+
+          // Progress based on REAL watched time, not player position
+          var pct = Math.min(100, Math.round((videoWatchedTime / totalDuration) * 100));
+          progressFill.style.width = pct + '%';
+          var remaining = Math.max(0, Math.ceil(totalDuration - videoWatchedTime));
+          timerEl.textContent = remaining > 0 ? remaining + 's restantes (temps réel)' : 'Terminé !';
+
+          // Complete if 90% watched via real time
+          if (videoWatchedTime >= totalDuration * 0.9) {
+            onVideoComplete(quest);
+          }
+        }, 500);
+      }
+
+      function onVideoComplete(quest) {
+        if (currentVideoTimer) { clearInterval(currentVideoTimer); currentVideoTimer = null; }
+        var progressFill = document.getElementById('q-vid-progress');
+        if (progressFill) progressFill.style.width = '100%';
+        var timerEl = document.getElementById('q-vid-timer');
+        if (timerEl) timerEl.textContent = '✅ Vidéo terminée !';
+        var warnEl = document.getElementById('q-antiskip-warn');
+        if (warnEl) warnEl.classList.remove('visible');
+        markComplete(quest.id);
+
+        var actionsEl = document.getElementById('qm-actions');
+        actionsEl.innerHTML = '<button class="q-action-btn completed-btn" disabled>✅ Quête complétée !</button>';
+
+        var statusEl = document.getElementById('qm-status');
+        statusEl.textContent = '✅ Complétée !';
+        statusEl.className = 'q-modal-status is-completed';
+      }
+
+      function buildExternalQuest(quest, done, actionsEl) {
+        if (done) {
+          actionsEl.innerHTML = '<button class="q-action-btn completed-btn" disabled>✅ Quête complétée</button>';
+          return;
+        }
+        actionsEl.innerHTML = '<button class="q-action-btn" id="q-visit-ext">🔗 Visiter ' + quest.targetLabel + '</button>';
+        document.getElementById('q-visit-ext').addEventListener('click', function() {
+          window.open(quest.target, '_blank', 'noopener,noreferrer');
+          markComplete(quest.id);
+          this.className = 'q-action-btn completed-btn';
+          this.disabled = true;
+          this.textContent = '✅ Quête complétée !';
+          var statusEl = document.getElementById('qm-status');
+          statusEl.textContent = '✅ Complétée !';
+          statusEl.className = 'q-modal-status is-completed';
+        });
+      }
+
+      function buildInternalQuest(quest, done, actionsEl) {
+        if (done) {
+          actionsEl.innerHTML = '<button class="q-action-btn completed-btn" disabled>✅ Quête complétée</button>';
+          return;
+        }
+        actionsEl.innerHTML = '<button class="q-action-btn" id="q-visit-int">🧭 Aller à la page</button>';
+        document.getElementById('q-visit-int').addEventListener('click', function() {
+          markComplete(quest.id);
+          window.location.href = quest.target;
+        });
+      }
+
+      function buildActionQuest(quest, done, actionsEl) {
+        if (done) {
+          actionsEl.innerHTML = '<button class="q-action-btn completed-btn" disabled>✅ Quête complétée</button>';
+          return;
+        }
+        if (quest.actionCheck === 'all-videos') {
+          var videoQuests = quests.filter(function(q) { return q.type === 'video'; });
+          var completed = getCompleted();
+          var doneCount = videoQuests.filter(function(q) { return completed.indexOf(q.id) !== -1; }).length;
+          actionsEl.innerHTML =
+            '<p style="font-size:.85rem;opacity:.7;margin-bottom:.5rem">Progression : ' + doneCount + ' / ' + videoQuests.length + ' bandes-annonces</p>' +
+            '<button class="q-action-btn" disabled>Complétez toutes les bandes-annonces</button>';
+        } else if (quest.actionCheck === 'all-quests') {
+          var others = quests.filter(function(q) { return q.id !== 'completionist-quests'; });
+          var completed2 = getCompleted();
+          var doneCount2 = others.filter(function(q) { return completed2.indexOf(q.id) !== -1; }).length;
+          actionsEl.innerHTML =
+            '<p style="font-size:.85rem;opacity:.7;margin-bottom:.5rem">Progression : ' + doneCount2 + ' / ' + others.length + ' quêtes</p>' +
+            '<button class="q-action-btn" disabled>Complétez toutes les autres quêtes</button>';
+        }
+      }
+
+      /* ═══ Close modal ═══ */
+      function closeModal() {
+        overlay.classList.remove('active');
+        destroyPlayer();
+        currentQuestIndex = null;
+        currentQuestSource = null;
+      }
+      document.getElementById('q-close').addEventListener('click', closeModal);
+      overlay.addEventListener('click', function(e) { if (e.target === overlay) closeModal(); });
+      document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
+
+      /* ═══ Reset ═══ */
+      document.getElementById('q-reset-btn').addEventListener('click', function() {
+        if (confirm('Réinitialiser toutes vos quêtes ? Cette action est irréversible.')) {
+          localStorage.removeItem(Q_KEY);
+          updateUI();
+          updateTabs();
+          if (currentTab === 'claimed') buildClaimedGrid();
+          if (currentTab === 'ended') buildEndedGrid();
+        }
+      });
+
+      // Listen for external quest completion events
+      window.addEventListener('vs-quest-complete', function(e) {
+        if (e.detail && e.detail.id) markComplete(e.detail.id);
+      });
+
+      // Initial render
+      updateUI();
+      updateTabs();
+      checkAutoComplete();
+    })();
+  </script>
+  <script>
+    (function () {
+      var nav = document.getElementById('main-nav');
+      var burger = document.getElementById('nav-burger');
+      if (!nav || !burger) return;
+
+      // Marque le lien actif d'apres l'URL courante
+      try {
+        var path = window.location.pathname.replace(/\/index\.html?$/, '/').replace(/\/$/, '') || '/';
+        var best = null, bestLen = -1;
+        nav.querySelectorAll('a[href]').forEach(function (a) {
+          var href = a.getAttribute('href').replace(/\/$/, '') || '/';
+          if (href === path || (href !== '/' && path.indexOf(href + '/') === 0) || (href !== '/' && path === href)) {
+            if (href.length > bestLen) { best = a; bestLen = href.length; }
+          }
+        });
+        if (path === '/' || path === '') {
+          best = nav.querySelector('a[href="/"]');
+        }
+        if (best) {
+          best.classList.add('active');
+          var grp = best.closest('details.nav-group');
+          if (grp) {
+            var s = grp.querySelector('summary.nav-link');
+            if (s) s.classList.add('active');
+          }
+        }
+      } catch (e) {}
+
+      function closeAllGroups(except) {
+        nav.querySelectorAll('details.nav-group[open]').forEach(function (d) {
+          if (d !== except) d.removeAttribute('open');
+        });
+      }
+
+      burger.addEventListener('click', function () {
+        var open = nav.classList.toggle('is-open');
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        burger.classList.toggle('is-active', open);
+        if (!open) closeAllGroups();
+      });
+
+      nav.querySelectorAll('details.nav-group').forEach(function (d) {
+        d.addEventListener('toggle', function () {
+          if (d.open) closeAllGroups(d);
+        });
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!nav.contains(e.target) && !burger.contains(e.target)) {
+          closeAllGroups();
+          if (nav.classList.contains('is-open')) {
+            nav.classList.remove('is-open');
+            burger.classList.remove('is-active');
+            burger.setAttribute('aria-expanded', 'false');
+          }
+        }
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          closeAllGroups();
+          if (nav.classList.contains('is-open')) {
+            nav.classList.remove('is-open');
+            burger.classList.remove('is-active');
+            burger.setAttribute('aria-expanded', 'false');
+            burger.focus();
+          }
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

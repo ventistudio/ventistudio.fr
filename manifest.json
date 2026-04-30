@@ -82,6 +82,36 @@
           "type": "image/avif"
         }
       ]
+    },
+    {
+      "name": "Status",
+      "short_name": "Status",
+      "description": "État des services VentiStudio",
+      "url": "/status/"
+    },
+    {
+      "name": "Glossaire",
+      "short_name": "Glossaire",
+      "description": "Glossaire de l'univers VentiStudio",
+      "url": "/glossary/"
+    },
+    {
+      "name": "Calendrier",
+      "short_name": "Calendrier",
+      "description": "Calendrier des événements",
+      "url": "/calendar/"
+    },
+    {
+      "name": "Galerie",
+      "short_name": "Galerie",
+      "description": "Galerie communautaire",
+      "url": "/gallery/"
+    },
+    {
+      "name": "Tableau Blanc",
+      "short_name": "Whiteboard",
+      "description": "Tableau blanc collaboratif P2P",
+      "url": "/whiteboard/"
     }
   ],
   "related_applications": [],

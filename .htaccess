@@ -5,7 +5,7 @@
 # BEGIN: Security Headers
 <IfModule mod_headers.c>
     # Content Security Policy
-    Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https:; frame-ancestors 'none'; base-uri 'self';"
+    Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://clerk.ventistudio.eu https://*.clerk.accounts.dev; style-src 'self' 'unsafe-inline' https://clerk.ventistudio.eu https://*.clerk.accounts.dev; img-src 'self' data: https:; font-src 'self' data: https://clerk.ventistudio.eu https://*.clerk.accounts.dev; connect-src 'self' https: https://clerk.ventistudio.eu https://*.clerk.accounts.dev https://*.clerk.com; frame-src https://clerk.ventistudio.eu https://*.clerk.accounts.dev https://status.ventistudio.eu; worker-src 'self' blob:; frame-ancestors 'none'; base-uri 'self';"
     
     # X-Frame-Options (Clickjacking Protection)
     Header set X-Frame-Options "SAMEORIGIN"

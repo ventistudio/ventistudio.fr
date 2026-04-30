@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html lang="fr">
+﻿<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <meta name="theme-color" content="#6366f1">
     <meta name="description" content="Accès non autorisé. Authentification requise sur le réseau Lyoko.">
-    <title>401 - Non Autorisé</title>
+    <title>401 Non Autorisé | VentiStudio</title>
     
     <!-- Preload resources -->
     <link rel="preload" href="/style.css" as="style">
@@ -269,6 +269,23 @@
             }
         }
     </style>
+
+  <script async crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
+  <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
+
+  <meta property="og:title" content="401 Non Autorisé | VentiStudio">
+  <meta property="og:description" content="Accès non autorisé. Authentification requise sur le réseau Lyoko.">
+  <meta property="og:url" content="https://ventistudio.eu/401/">
+  <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://ventistudio.eu/401/">
+
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
 </head>
 <body>
     <!-- Écran de chargement animé -->
@@ -418,6 +435,6 @@
     </script>
     
     <!-- JavaScript -->
-    <script defer src="/script.js"></script>
+    <script defer src="/main.js"></script>
 </body>
 </html>

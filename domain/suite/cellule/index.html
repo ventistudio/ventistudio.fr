@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="Cellule — Tableur VentiStudio Suite. Créez des feuilles de calcul avec formules, 100% client-side.">
+  <meta name="theme-color" content="#6366f1">
+  <link rel="icon" href="/favicon.avif" type="image/avif">
+  <title>Cellule — Tableur | VentiStudio Suite</title>
+  <link rel="stylesheet" href="/domain/suite/suite.css">
+  <link rel="stylesheet" href="/domain/suite/cellule/cellule.css">
+  <script>
+    (function(){var t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t)})();
+  </script>
+</head>
+<body class="suite-app">
+
+  <!-- Header -->
+  <div class="suite-header">
+    <a href="/domain/suite/" class="suite-logo">
+      <img src="/favicon.avif" alt="VentiStudio" width="24" height="24">
+      <span>Suite</span>
+    </a>
+    <span class="suite-app-name" style="background:rgba(16,185,129,0.12);color:#10b981">Cellule</span>
+    <div class="suite-doc-name">
+      <input type="text" id="doc-name" value="Sans titre" aria-label="Nom du document" spellcheck="false">
+    </div>
+    <div class="suite-actions">
+      <div style="position:relative">
+        <button class="tb-btn" onclick="toggleDropdown('menu-file')">Fichier ▾</button>
+        <div class="suite-dropdown" id="menu-file">
+          <button class="suite-dropdown-item" onclick="celluleNew()">Nouveau <span class="shortcut">Ctrl+N</span></button>
+          <button class="suite-dropdown-item" onclick="celluleOpen()">Ouvrir .vcal <span class="shortcut">Ctrl+O</span></button>
+          <button class="suite-dropdown-item" onclick="celluleSave()">Enregistrer .vcal <span class="shortcut">Ctrl+S</span></button>
+          <div class="suite-dropdown-sep"></div>
+          <button class="suite-dropdown-item" onclick="celluleExportPDF()">Exporter en PDF</button>
+          <button class="suite-dropdown-item" onclick="celluleExportCSV()">Exporter en CSV</button>
+          <button class="suite-dropdown-item" onclick="celluleExportHTML()">Exporter en HTML</button>
+        </div>
+      </div>
+      <button class="tb-btn" onclick="VSSuite.toggleTheme()" title="Thème">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Formula Bar -->
+  <div class="cellule-formula-bar">
+    <span class="cell-ref" id="cell-ref">A1</span>
+    <span class="fx-label">fx</span>
+    <input type="text" id="fx-input" placeholder="Entrez une valeur ou formule (ex: =SUM(A1:A10))" aria-label="Barre de formule">
+  </div>
+
+  <!-- Formatting Toolbar -->
+  <div class="cellule-format-bar">
+    <div class="tb-group">
+      <button class="tb-btn" onclick="celluleToggleStyle('bold')" id="fmt-bold" title="Gras"><svg viewBox="0 0 24 24"><path d="M6 4h8a4 4 0 014 4 4 4 0 01-4 4H6z"/><path d="M6 12h9a4 4 0 014 4 4 4 0 01-4 4H6z"/></svg></button>
+      <button class="tb-btn" onclick="celluleToggleStyle('italic')" id="fmt-italic" title="Italique"><svg viewBox="0 0 24 24"><line x1="19" y1="4" x2="10" y2="4"/><line x1="14" y1="20" x2="5" y2="20"/><line x1="15" y1="4" x2="9" y2="20"/></svg></button>
+      <button class="tb-btn" onclick="celluleToggleStyle('underline')" id="fmt-underline" title="Souligné"><svg viewBox="0 0 24 24"><path d="M6 3v7a6 6 0 006 6 6 6 0 006-6V3"/><line x1="4" y1="21" x2="20" y2="21"/></svg></button>
+    </div>
+    <div class="tb-sep"></div>
+    <div class="tb-group">
+      <label class="tb-btn" title="Couleur du texte" style="padding:0"><input type="color" id="fmt-color" value="#e0e0e0" style="width:24px;height:24px;border:none;background:none;cursor:pointer;padding:0"></label>
+      <label class="tb-btn" title="Couleur de fond" style="padding:0"><input type="color" id="fmt-bg" value="#16161f" style="width:24px;height:24px;border:none;background:none;cursor:pointer;padding:0"></label>
+    </div>
+    <div class="tb-sep"></div>
+    <div class="tb-group">
+      <button class="tb-btn" onclick="celluleSetAlign('left')" title="Gauche"><svg viewBox="0 0 24 24"><line x1="17" y1="10" x2="3" y2="10"/><line x1="21" y1="6" x2="3" y2="6"/><line x1="21" y1="14" x2="3" y2="14"/><line x1="17" y1="18" x2="3" y2="18"/></svg></button>
+      <button class="tb-btn" onclick="celluleSetAlign('center')" title="Centre"><svg viewBox="0 0 24 24"><line x1="18" y1="10" x2="6" y2="10"/><line x1="21" y1="6" x2="3" y2="6"/><line x1="21" y1="14" x2="3" y2="14"/><line x1="18" y1="18" x2="6" y2="18"/></svg></button>
+      <button class="tb-btn" onclick="celluleSetAlign('right')" title="Droite"><svg viewBox="0 0 24 24"><line x1="21" y1="10" x2="7" y2="10"/><line x1="21" y1="6" x2="3" y2="6"/><line x1="21" y1="14" x2="3" y2="14"/><line x1="21" y1="18" x2="7" y2="18"/></svg></button>
+    </div>
+    <div class="tb-sep"></div>
+    <div class="tb-group">
+      <select class="tb-select" id="fmt-numformat" title="Format de nombre" style="width:100px" onchange="celluleSetFormat(this.value)">
+        <option value="general">Général</option>
+        <option value="number">Nombre</option>
+        <option value="currency">Monnaie €</option>
+        <option value="percent">Pourcentage %</option>
+        <option value="date">Date</option>
+      </select>
+    </div>
+    <div class="tb-sep"></div>
+    <div class="tb-group">
+      <button class="tb-btn" onclick="celluleSort(true)" title="Trier A → Z">A↓</button>
+      <button class="tb-btn" onclick="celluleSort(false)" title="Trier Z → A">Z↓</button>
+    </div>
+    <div class="tb-sep"></div>
+    <div class="tb-group">
+      <button class="tb-btn" onclick="celluleToggleWrap()" title="Retour à la ligne"><svg viewBox="0 0 24 24"><path d="M3 6h18"/><path d="M3 12h15a3 3 0 010 6H9"/><polyline points="12 15 9 18 12 21"/></svg></button>
+    </div>
+  </div>
+
+  <!-- Spreadsheet Body -->
+  <div class="suite-body" style="flex-direction:column">
+    <div class="cellule-container" id="cellule-container"></div>
+
+    <!-- Sheet Tabs -->
+    <div class="cellule-tabs" id="cellule-tabs"></div>
+  </div>
+
+  <!-- Status Bar -->
+  <div class="suite-statusbar">
+    <span id="status-sel">A1</span>
+    <span id="status-sum"></span>
+    <span style="margin-left:auto">Cellule — VentiStudio Suite</span>
+  </div>
+
+  <script src="/domain/suite/suite.js"></script>
+  <script src="/domain/suite/cellule/cellule.js"></script>
+</body>
+</html>

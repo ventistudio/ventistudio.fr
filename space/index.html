@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
   <meta name="description" content="VentiStudio Space - Explorez l'univers créatif de VentiStudio à travers une expérience spatiale immersive.">
   <meta name="theme-color" content="#0b0d1a">
-  <meta property="og:title" content="VentiStudio — Space">
+  <meta property="og:title" content="VentiStudio Space">
   <meta property="og:site_name" content="VentiStudio Komiyuniti">
   <meta property="og:url" content="https://ventistudio.eu/space">
-  <meta property="og:description" content="Explorez la galaxie VentiStudio — un voyage interstellaire au cœur de notre univers créatif.">
+  <meta property="og:description" content="Explorez la galaxie VentiStudio un voyage interstellaire au cœur de notre univers créatif.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
   <link rel="icon" type="image/avif" href="/favicon.avif">
-  <title>VentiStudio — Space</title>
+  <title>Space | VentiStudio</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap');
 
@@ -765,6 +765,11 @@
       transform: translateY(0);
     }
   </style>
+
+  <script async crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
+  <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
+
+  <link rel="canonical" href="https://ventistudio.eu/space/">
 </head>
 <body>
 
@@ -772,23 +777,149 @@
   <div class="nebula-layer" aria-hidden="true"></div>
 
   <!-- Header -->
-  <header class="space-header">
-    <a href="/" class="logo">
-      <img src="/favicon.avif" alt="Logo VentiStudio" width="32" height="32">
+  <header>
+    <div class="logo">
+      <img src="/favicon.avif" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
       <span>VentiStudio</span>
-    </a>
-    <nav aria-label="Navigation principale">
-      <a href="/">Accueil</a>
-      <a href="/evaluation">Contenu</a>
-      <a href="/player">Lecteur</a>
-      <a href="/wiki">Wiki</a>
-      <a href="/news">News</a>
-      <a href="/sitemap">Explorer</a>
+    </div>
+    <button class="nav-burger" id="nav-burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="main-nav" class="main-nav" aria-label="Navigation principale">
+      <a href="/" class="nav-link">Accueil</a>
+
+      <details class="nav-group">
+        <summary class="nav-link">Découvrir
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel" role="menu">
+          <a href="/evaluation">Évaluation</a>
+          <a href="/wiki">Wiki</a>
+          <a href="/glossary">Glossaire</a>
+          <a href="/news">News</a>
+          <a href="/blog">Blog</a>
+          <a href="/calendar">Calendrier</a>
+          <a href="/cookbook">Cookbook</a>
+          <a href="/gallery">Galerie</a>
+          <a href="/atlas">Atlas</a>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Univers
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel" role="menu">
+          <a href="/aokiunivers">AOKI Universe</a>
+          <a href="/allofaokiunivers">All AOKI</a>
+          <a href="/university">Université</a>
+          <a href="/history">Histoire</a>
+          <a href="/memorial">Mémorial</a>
+          <a href="/ester-eggs">Easter eggs</a>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Outils
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Applications</h4>
+            <a href="/player">Lecteur</a>
+            <a href="/music">Musique</a>
+            <a href="/pip">PIP</a>
+            <a href="/whiteboard">Whiteboard</a>
+            <a href="/portfolio">Portfolio</a>
+            <a href="/gmod">GMod</a>
+          </div>
+          <div class="nav-col">
+            <h4>Domaines</h4>
+            <a href="/domain/aina">AINA</a>
+            <a href="/domain/archive">Archive</a>
+            <a href="/domain/maps">Maps</a>
+            <a href="/domain/movie">Movie</a>
+            <a href="/domain/peer">Peer</a>
+            <a href="/domain/pro">Pro</a>
+            <a href="/domain/search">Search</a>
+            <a href="/domain/suite">Suite</a>
+          </div>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Communauté
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Équipe</h4>
+            <a href="/personnel/">Équipe</a>
+            <a href="/hierarchie-staff">Hiérarchie</a>
+            <a href="/hypesquad">Hypesquad</a>
+            <a href="/jobs">Emplois</a>
+            <a href="/birthday">Anniversaires</a>
+          </div>
+          <div class="nav-col">
+            <h4>Réseaux</h4>
+            <a href="/discord">Discord</a>
+            <a href="/teamspeak">TeamSpeak</a>
+            <a href="/steam">Steam</a>
+            <a href="/social">Réseaux sociaux</a>
+          </div>
+          <div class="nav-col">
+            <h4>Activités</h4>
+            <a href="/artist">Artistes</a>
+            <a href="/quests">Quêtes</a>
+            <a href="/suboawards">Suboawards</a>
+            <a href="/eConcert">eConcert</a>
+          </div>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Plus
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Aide</h4>
+            <a href="/contact">Contact</a>
+            <a href="/faq">FAQ</a>
+            <a href="/status">Statut</a>
+            <a href="/sitemap">Plan du site</a>
+          </div>
+          <div class="nav-col">
+            <h4>Soutien</h4>
+            <a href="/donate">Faire un don</a>
+            <a href="/gold">Gold</a>
+            <a href="/customization">Personnalisation</a>
+            <a href="/mes-donnees">Mes Données</a>
+            <a href="/newsletter">Newsletter</a>
+          </div>
+          <div class="nav-col">
+            <h4>À propos</h4>
+            <a href="/company">Entreprise</a>
+            <a href="/acknowledgements">Remerciements</a>
+            <a href="/logo">Logo</a>
+            <a href="/tags">Tags</a>
+            <a href="/memory">Mémoire</a>
+            <a href="/why-not-use-roblox">Pourquoi pas Roblox</a>
+            <a href="/lawful">Mentions légales</a>
+          </div>
+        </div>
+      </details>
     </nav>
-    <a href="/" class="back-btn" aria-label="Retour à l'accueil">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-      Retour
-    </a>
+    <div class="controls" role="toolbar" aria-label="Contrôles">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
+          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
+          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
+        </svg>
+      </button>
+      <div id="user-button" role="region" aria-label="Authentification"><button class="cta" id="auth-fallback-btn" onclick="window.location.href='https://accounts.ventistudio.eu/sign-in?redirect_url='+encodeURIComponent(window.location.href)" style="padding:0.5rem 1.25rem;font-size:0.9rem;margin:0"><span>Se connecter</span></button></div>
+    </div>
   </header>
 
   <div class="space-content">
@@ -848,7 +979,7 @@
             </svg>
           </div>
           <h3>Lecteurs Multimédias</h3>
-          <p>Vidéo, musique et livres — tous vos contenus accessibles depuis une seule station.</p>
+          <p>Vidéo, musique et livres tous vos contenus accessibles depuis une seule station.</p>
           <span class="card-tag">Streaming</span>
         </a>
 
@@ -872,7 +1003,7 @@
             </svg>
           </div>
           <h3>Archives Stellaires</h3>
-          <p>Le wiki complet de l'univers VentiStudio — encyclopédie, lore et documentation.</p>
+          <p>Le wiki complet de l'univers VentiStudio encyclopédie, lore et documentation.</p>
           <span class="card-tag">Wiki</span>
         </a>
 
@@ -909,7 +1040,7 @@
             </svg>
           </div>
           <h3>Zone de Jeux</h3>
-          <p>Jeux, interactions et divertissement — la station récréative de la galaxie.</p>
+          <p>Jeux, interactions et divertissement la station récréative de la galaxie.</p>
           <span class="card-tag">Gaming</span>
         </a>
 
@@ -965,22 +1096,22 @@
 
       <div class="timeline reveal">
         <div class="timeline-item">
-          <span class="timeline-date">2023 — Lancement</span>
+          <span class="timeline-date">2023 Lancement</span>
           <h3>Première ignition</h3>
           <p>Naissance de VentiStudio. Les fondations de la station principale sont posées dans le cyberespace.</p>
         </div>
         <div class="timeline-item">
-          <span class="timeline-date">2024 — Expansion</span>
+          <span class="timeline-date">2024 Expansion</span>
           <h3>Déploiement des modules</h3>
-          <p>Lecteur multimédia, wiki, gazette — les stations orbitales prennent forme une à une.</p>
+          <p>Lecteur multimédia, wiki, gazette les stations orbitales prennent forme une à une.</p>
         </div>
         <div class="timeline-item">
-          <span class="timeline-date">2025 — Consolidation</span>
+          <span class="timeline-date">2025 Consolidation</span>
           <h3>Signal reçu</h3>
           <p>Le Terminal Signal entre en service. La communauté grandit et les archives s'enrichissent.</p>
         </div>
         <div class="timeline-item">
-          <span class="timeline-date">2026 — Présent</span>
+          <span class="timeline-date">2026 Présent</span>
           <h3>Nouvelle frontière</h3>
           <p>VentiStudio v4 est en ligne. L'univers continue de s'étendre vers de nouvelles étoiles.</p>
         </div>
@@ -1006,17 +1137,17 @@
   </div>
 
   <!-- Footer -->
-  <footer class="space-footer">
-    <div class="footer-grid">
-      <div class="footer-col">
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
         <h4>Outils</h4>
         <ul>
-          <li><a href="#">Encrypt</a></li>
+          <li><a href="/pip">PIP</a></li>
           <li><a href="/sitemap">Plan du site</a></li>
-          <li><a href="/stats">Statut</a></li>
+          <li><a href="https://status.ventistudio.eu/">Statut</a></li>
         </ul>
       </div>
-      <div class="footer-col">
+      <div class="footer-section">
         <h4>Entreprise</h4>
         <ul>
           <li><a href="/about">À propos</a></li>
@@ -1024,7 +1155,7 @@
           <li><a href="/logo">Marque</a></li>
         </ul>
       </div>
-      <div class="footer-col">
+      <div class="footer-section">
         <h4>Ressources</h4>
         <ul>
           <li><a href="/university">Université</a></li>
@@ -1032,21 +1163,18 @@
           <li><a href="/lawful/security">Sécurité</a></li>
         </ul>
       </div>
-      <div class="footer-col">
+      <div class="footer-section">
         <h4>Chartes</h4>
         <ul>
-          <li><a href="/lawful/tos">Conditions</a></li>
+          <li><a href="/lawful/tos">Conditions d'utilisation</a></li>
           <li><a href="/lawful/cookies">Confidentialité</a></li>
           <li><a href="/lawful/dmcainfo">Information DMCA</a></li>
         </ul>
       </div>
     </div>
-    <div class="footer-bottom-bar">
-      <div class="footer-status">
-        <span class="dot" aria-label="Statut: En ligne"></span>
-        Tous les systèmes sont opérationnels
-      </div>
-      <p>Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
+    <div class="footer-bottom">
+      <iframe src="https://status.ventistudio.eu/badge?theme=dark" width="500" height="30" frameborder="0" scrolling="no" style="color-scheme: normal"></iframe>
+      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
     </div>
   </footer>
 
@@ -1198,6 +1326,78 @@
           hidden = true;
         }
       }, { passive: true });
+    })();
+  </script>
+  <script>
+    (function () {
+      var nav = document.getElementById('main-nav');
+      var burger = document.getElementById('nav-burger');
+      if (!nav || !burger) return;
+
+      // Marque le lien actif d'apres l'URL courante
+      try {
+        var path = window.location.pathname.replace(/\/index\.html?$/, '/').replace(/\/$/, '') || '/';
+        var best = null, bestLen = -1;
+        nav.querySelectorAll('a[href]').forEach(function (a) {
+          var href = a.getAttribute('href').replace(/\/$/, '') || '/';
+          if (href === path || (href !== '/' && path.indexOf(href + '/') === 0) || (href !== '/' && path === href)) {
+            if (href.length > bestLen) { best = a; bestLen = href.length; }
+          }
+        });
+        if (path === '/' || path === '') {
+          best = nav.querySelector('a[href="/"]');
+        }
+        if (best) {
+          best.classList.add('active');
+          var grp = best.closest('details.nav-group');
+          if (grp) {
+            var s = grp.querySelector('summary.nav-link');
+            if (s) s.classList.add('active');
+          }
+        }
+      } catch (e) {}
+
+      function closeAllGroups(except) {
+        nav.querySelectorAll('details.nav-group[open]').forEach(function (d) {
+          if (d !== except) d.removeAttribute('open');
+        });
+      }
+
+      burger.addEventListener('click', function () {
+        var open = nav.classList.toggle('is-open');
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        burger.classList.toggle('is-active', open);
+        if (!open) closeAllGroups();
+      });
+
+      nav.querySelectorAll('details.nav-group').forEach(function (d) {
+        d.addEventListener('toggle', function () {
+          if (d.open) closeAllGroups(d);
+        });
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!nav.contains(e.target) && !burger.contains(e.target)) {
+          closeAllGroups();
+          if (nav.classList.contains('is-open')) {
+            nav.classList.remove('is-open');
+            burger.classList.remove('is-active');
+            burger.setAttribute('aria-expanded', 'false');
+          }
+        }
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          closeAllGroups();
+          if (nav.classList.contains('is-open')) {
+            nav.classList.remove('is-open');
+            burger.classList.remove('is-active');
+            burger.setAttribute('aria-expanded', 'false');
+            burger.focus();
+          }
+        }
+      });
     })();
   </script>
 </body>

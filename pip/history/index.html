@@ -1,31 +1,327 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="dark">
 <head>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <meta name="description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
+  <meta name="description" content="Historique des protections QR Code - Lecteur PIP VentiStudio">
   <meta name="theme-color" content="#6366f1">
-  <title>VentiStudio v4</title>
+  <title>Historique Protection | VentiStudio</title>
   <link rel="stylesheet" href="/style.css">
-  Historique des vidÃ©os</title>
+
+  <script async crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
+  <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
+
+  <meta property="og:title" content="Historique Protection | VentiStudio">
+  <meta property="og:description" content="Historique des protections QR Code - Lecteur PIP VentiStudio">
+  <meta property="og:url" content="https://ventistudio.eu/pip/history/">
+  <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://ventistudio.eu/pip/history/">
+
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+
+  <style>
+    .history-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .history-count {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+    .history-actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .history-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--glass-border, rgba(255,255,255,0.1));
+      border-radius: 8px;
+      background: var(--glass-bg, rgba(255,255,255,0.05));
+      color: var(--text-primary);
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .history-btn:hover {
+      background: rgba(99,102,241,0.15);
+      border-color: var(--accent, #6366f1);
+    }
+    .history-btn.danger:hover {
+      background: rgba(239,68,68,0.15);
+      border-color: #ef4444;
+    }
+    .history-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1rem;
+    }
+    .history-card {
+      display: flex;
+      gap: 0.85rem;
+      padding: 0.85rem;
+      border-radius: 12px;
+      background: var(--glass-bg, rgba(255,255,255,0.05));
+      border: 1px solid var(--glass-border, rgba(255,255,255,0.1));
+      transition: border-color 0.2s;
+    }
+    .history-card:hover {
+      border-color: var(--accent, #6366f1);
+    }
+    .history-thumb {
+      flex-shrink: 0;
+      width: 128px;
+      height: 72px;
+      border-radius: 8px;
+      overflow: hidden;
+      background: rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .history-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .history-thumb .thumb-placeholder {
+      color: var(--text-secondary);
+      opacity: 0.4;
+    }
+    .history-info {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+    .history-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .history-id {
+      font-family: monospace;
+      font-size: 0.78rem;
+      color: var(--accent, #6366f1);
+      opacity: 0.85;
+    }
+    .history-meta {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+    }
+    .history-link {
+      font-size: 0.75rem;
+      color: var(--accent, #6366f1);
+      text-decoration: none;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: block;
+    }
+    .history-link:hover {
+      text-decoration: underline;
+    }
+    .history-date {
+      font-size: 0.72rem;
+      color: var(--text-secondary);
+      opacity: 0.7;
+    }
+    .history-card-actions {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.3rem;
+      flex-shrink: 0;
+    }
+    .history-card-btn {
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      cursor: pointer;
+      padding: 0.3rem;
+      border-radius: 6px;
+      transition: color 0.2s, background 0.2s;
+    }
+    .history-card-btn:hover {
+      color: var(--text-primary);
+      background: rgba(255,255,255,0.08);
+    }
+    .history-card-btn.delete:hover {
+      color: #ef4444;
+      background: rgba(239,68,68,0.1);
+    }
+    .history-empty {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: var(--text-secondary);
+    }
+    .history-empty svg {
+      opacity: 0.3;
+      margin-bottom: 1rem;
+    }
+    .history-empty p {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    .history-empty small {
+      font-size: 0.85rem;
+      opacity: 0.7;
+    }
+    @media (max-width: 500px) {
+      .history-grid { grid-template-columns: 1fr; }
+      .history-card { flex-direction: column; }
+      .history-thumb { width: 100%; height: 120px; }
+    }
+  </style>
 </head>
 <body>
   <header>
-
     <div class="logo">
       <img src="/favicon.avif" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
       <span>VentiStudio</span>
     </div>
-    <nav aria-label="Navigation principale">
-      <a href="/">Accueil</a>
-      <a href="/evaluation">Contenu Approuvé</a>
-      <a href="/player">Lecteur</a>
-      <a href="/wiki">Wiki</a>
-      <a href="/staff">Équipe</a>
-      <a href="/news">News</a>
-      <a href="/pip">PIP</a>
-      <a href="/sitemap">Plan du site</a>
+    <button class="nav-burger" id="nav-burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="main-nav" class="main-nav" aria-label="Navigation principale">
+      <a href="/" class="nav-link">Accueil</a>
+
+      <details class="nav-group">
+        <summary class="nav-link">Découvrir
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel" role="menu">
+          <a href="/evaluation">Évaluation</a>
+          <a href="/wiki">Wiki</a>
+          <a href="/glossary">Glossaire</a>
+          <a href="/news">News</a>
+          <a href="/blog">Blog</a>
+          <a href="/calendar">Calendrier</a>
+          <a href="/cookbook">Cookbook</a>
+          <a href="/gallery">Galerie</a>
+          <a href="/atlas">Atlas</a>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Univers
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel" role="menu">
+          <a href="/aokiunivers">AOKI Universe</a>
+          <a href="/allofaokiunivers">All AOKI</a>
+          <a href="/university">Université</a>
+          <a href="/history">Histoire</a>
+          <a href="/memorial">Mémorial</a>
+          <a href="/ester-eggs">Easter eggs</a>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Outils
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Applications</h4>
+            <a href="/player">Lecteur</a>
+            <a href="/music">Musique</a>
+            <a href="/pip">PIP</a>
+            <a href="/whiteboard">Whiteboard</a>
+            <a href="/portfolio">Portfolio</a>
+            <a href="/gmod">GMod</a>
+          </div>
+          <div class="nav-col">
+            <h4>Domaines</h4>
+            <a href="/domain/aina">AINA</a>
+            <a href="/domain/archive">Archive</a>
+            <a href="/domain/maps">Maps</a>
+            <a href="/domain/movie">Movie</a>
+            <a href="/domain/peer">Peer</a>
+            <a href="/domain/pro">Pro</a>
+            <a href="/domain/search">Search</a>
+            <a href="/domain/suite">Suite</a>
+          </div>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Communauté
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Équipe</h4>
+            <a href="/personnel/">Équipe</a>
+            <a href="/hierarchie-staff">Hiérarchie</a>
+            <a href="/hypesquad">Hypesquad</a>
+            <a href="/jobs">Emplois</a>
+            <a href="/birthday">Anniversaires</a>
+          </div>
+          <div class="nav-col">
+            <h4>Réseaux</h4>
+            <a href="/discord">Discord</a>
+            <a href="/teamspeak">TeamSpeak</a>
+            <a href="/steam">Steam</a>
+            <a href="/social">Réseaux sociaux</a>
+          </div>
+          <div class="nav-col">
+            <h4>Activités</h4>
+            <a href="/artist">Artistes</a>
+            <a href="/quests">Quêtes</a>
+            <a href="/suboawards">Suboawards</a>
+            <a href="/eConcert">eConcert</a>
+          </div>
+        </div>
+      </details>
+
+      <details class="nav-group">
+        <summary class="nav-link">Plus
+          <svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="nav-panel nav-panel-wide" role="menu">
+          <div class="nav-col">
+            <h4>Aide</h4>
+            <a href="/contact">Contact</a>
+            <a href="/faq">FAQ</a>
+            <a href="/status">Statut</a>
+            <a href="/sitemap">Plan du site</a>
+          </div>
+          <div class="nav-col">
+            <h4>Soutien</h4>
+            <a href="/donate">Faire un don</a>
+            <a href="/gold">Gold</a>
+            <a href="/customization">Personnalisation</a>
+            <a href="/mes-donnees">Mes Données</a>
+            <a href="/newsletter">Newsletter</a>
+          </div>
+          <div class="nav-col">
+            <h4>À propos</h4>
+            <a href="/company">Entreprise</a>
+            <a href="/acknowledgements">Remerciements</a>
+            <a href="/logo">Logo</a>
+            <a href="/tags">Tags</a>
+            <a href="/memory">Mémoire</a>
+            <a href="/why-not-use-roblox">Pourquoi pas Roblox</a>
+            <a href="/lawful">Mentions légales</a>
+          </div>
+        </div>
+      </details>
     </nav>
     <div class="controls" role="toolbar" aria-label="Contrôles">
       <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
@@ -35,41 +331,43 @@
           <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
         </svg>
       </button>
-      <div id="user-button" role="region" aria-label="Authentification"></div>
+      <div id="user-button" role="region" aria-label="Authentification"><button class="cta" id="auth-fallback-btn" onclick="window.location.href='https://accounts.ventistudio.eu/sign-in?redirect_url='+encodeURIComponent(window.location.href)" style="padding:0.5rem 1.25rem;font-size:0.9rem;margin:0"><span>Se connecter</span></button></div>
     </div>
-  
   </header>
 
   <main>
+    <section class="page-header">
+      <h1>Historique des protections</h1>
+      <p>Consultez tous les QR codes de protection générés pour vos médias.</p>
+    </section>
 
+    <section style="max-width:1100px;margin:0 auto;padding:0 1rem 3rem">
+      <div class="history-toolbar">
+        <span class="history-count" id="history-count"></span>
+        <div class="history-actions">
+          <a href="/pip" class="history-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+            Retour au lecteur
+          </a>
+          <button class="history-btn danger" id="clear-all-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg>
+            Tout effacer
+          </button>
+        </div>
+      </div>
 
-
-        <section class="hero">
-            <h1>VentiStudio History PIP</h1>
-            <p>DÃ©couvrez votre historique pip et revivez vos moments prÃ©fÃ©rÃ©s.</p>
-        </section>
-        <section id="historySection">
-            <ul id="historyList">
-                <!-- Les vidÃ©os seront ajoutÃ©es ici dynamiquement -->
-            </ul>
-            <div class="btn-container">
-                <button class="btn" onclick="clearHistory()">Effacer l'historique</button>
-              </div>
-        </section>
-    
-  
-  
+      <div id="history-container"></div>
+    </section>
   </main>
 
   <footer>
-
     <div class="footer-content">
       <div class="footer-section">
         <h4>Outils</h4>
         <ul>
-          <li><a href="#">Encrypt</a></li>
+          <li><a href="/pip">PIP</a></li>
           <li><a href="/sitemap">Plan du site</a></li>
-          <li><a href="/stats">Statut</a></li>
+          <li><a href="https://status.ventistudio.eu/">Statut</a></li>
         </ul>
       </div>
       <div class="footer-section">
@@ -91,20 +389,218 @@
       <div class="footer-section">
         <h4>Chartes</h4>
         <ul>
-          <li><a href="/lawful/tos">Conditions</a></li>
+          <li><a href="/lawful/tos">Conditions d'utilisation</a></li>
           <li><a href="/lawful/cookies">Confidentialité</a></li>
           <li><a href="/lawful/dmcainfo">Information DMCA</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p class="status"><span class="status-dot" aria-label="Statut: En ligne"></span> Tous les services sont en ligne</p>
+      <iframe src="https://status.ventistudio.eu/badge?theme=dark" width="500" height="30" frameborder="0" scrolling="no" style="color-scheme: normal"></iframe>
       <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
     </div>
-  
   </footer>
 
-  <script src="/script.js" defer></script>
+  <script src="/main.js" defer></script>
+  <script>
+    const STORAGE_KEY = 'pip-protection-history';
+
+    const getHistory = () => {
+      try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); }
+      catch { return []; }
+    };
+
+    const formatDate = (ts) => {
+      const d = new Date(ts);
+      return d.toLocaleDateString('fr-FR', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+    };
+
+    const formatDuration = (seconds) => {
+      if (!seconds || seconds === '0') return null;
+      const s = parseInt(seconds);
+      const m = Math.floor(s / 60);
+      const sec = s % 60;
+      return `${m}:${String(sec).padStart(2, '0')}`;
+    };
+
+    const escapeHtml = (str) => {
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    };
+
+    const renderHistory = () => {
+      const history = getHistory();
+      const container = document.getElementById('history-container');
+      const countEl = document.getElementById('history-count');
+
+      countEl.textContent = history.length
+        ? `${history.length} protection${history.length > 1 ? 's' : ''} enregistrée${history.length > 1 ? 's' : ''}`
+        : '';
+
+      if (!history.length) {
+        container.innerHTML = `
+          <div class="history-empty">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <path d="M9 9h6M9 13h4"/>
+            </svg>
+            <p>Aucune protection enregistrée</p>
+            <small>Les QR codes générés depuis le lecteur PIP apparaîtront ici avec leur miniature.</small>
+          </div>`;
+        return;
+      }
+
+      let html = '<div class="history-grid">';
+      for (const entry of history) {
+        const title = entry.params && entry.params.t ? escapeHtml(entry.params.t) : 'Sans titre';
+        const type = entry.params && entry.params.type ? entry.params.type : '—';
+        const res = entry.params && entry.params.res ? entry.params.res : null;
+        const dur = entry.params && entry.params.d ? formatDuration(entry.params.d) : null;
+
+        const meta = [type === 'video' ? 'Vidéo' : type === 'audio' ? 'Audio' : type];
+        if (dur) meta.push(dur);
+        if (res) meta.push(res);
+
+        const thumbHtml = entry.thumbnail
+          ? `<img src="${entry.thumbnail}" alt="Miniature" loading="lazy">`
+          : `<svg class="thumb-placeholder" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="2"/><path d="M10 8l6 4-6 4V8z"/></svg>`;
+
+        html += `
+          <div class="history-card" data-id="${escapeHtml(entry.id)}">
+            <div class="history-thumb">${thumbHtml}</div>
+            <div class="history-info">
+              <span class="history-title">${title}</span>
+              <span class="history-id">${escapeHtml(entry.id)}</span>
+              <span class="history-meta">${meta.join(' · ')}</span>
+              <a class="history-link" href="${escapeHtml(entry.url)}" target="_blank" rel="noopener">${escapeHtml(entry.url)}</a>
+              <span class="history-date">${formatDate(entry.timestamp)}</span>
+            </div>
+            <div class="history-card-actions">
+              <button class="history-card-btn copy-btn" title="Copier le lien">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+              </button>
+              <button class="history-card-btn delete" title="Supprimer">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/></svg>
+              </button>
+            </div>
+          </div>`;
+      }
+      html += '</div>';
+      container.innerHTML = html;
+
+      // Copy buttons
+      container.querySelectorAll('.copy-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const card = btn.closest('.history-card');
+          const link = card.querySelector('.history-link');
+          if (link) {
+            navigator.clipboard.writeText(link.href).then(() => {
+              btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>';
+              setTimeout(() => {
+                btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>';
+              }, 1500);
+            });
+          }
+        });
+      });
+
+      // Delete buttons
+      container.querySelectorAll('.history-card-btn.delete').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const card = btn.closest('.history-card');
+          const id = card.dataset.id;
+          const history = getHistory().filter(e => e.id !== id);
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
+          card.style.opacity = '0';
+          card.style.transform = 'scale(0.95)';
+          card.style.transition = 'opacity 0.25s, transform 0.25s';
+          setTimeout(() => renderHistory(), 280);
+        });
+      });
+    };
+
+    // Clear all
+    document.getElementById('clear-all-btn').addEventListener('click', () => {
+      if (!confirm('Supprimer tout l\'historique des protections ?')) return;
+      localStorage.removeItem(STORAGE_KEY);
+      renderHistory();
+    });
+
+    renderHistory();
+  </script>
+  <script>
+    (function () {
+      var nav = document.getElementById('main-nav');
+      var burger = document.getElementById('nav-burger');
+      if (!nav || !burger) return;
+
+      // Marque le lien actif d'apres l'URL courante
+      try {
+        var path = window.location.pathname.replace(/\/index\.html?$/, '/').replace(/\/$/, '') || '/';
+        var best = null, bestLen = -1;
+        nav.querySelectorAll('a[href]').forEach(function (a) {
+          var href = a.getAttribute('href').replace(/\/$/, '') || '/';
+          if (href === path || (href !== '/' && path.indexOf(href + '/') === 0) || (href !== '/' && path === href)) {
+            if (href.length > bestLen) { best = a; bestLen = href.length; }
+          }
+        });
+        if (path === '/' || path === '') {
+          best = nav.querySelector('a[href="/"]');
+        }
+        if (best) {
+          best.classList.add('active');
+          var grp = best.closest('details.nav-group');
+          if (grp) {
+            var s = grp.querySelector('summary.nav-link');
+            if (s) s.classList.add('active');
+          }
+        }
+      } catch (e) {}
+
+      function closeAllGroups(except) {
+        nav.querySelectorAll('details.nav-group[open]').forEach(function (d) {
+          if (d !== except) d.removeAttribute('open');
+        });
+      }
+
+      burger.addEventListener('click', function () {
+        var open = nav.classList.toggle('is-open');
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        burger.classList.toggle('is-active', open);
+        if (!open) closeAllGroups();
+      });
+
+      nav.querySelectorAll('details.nav-group').forEach(function (d) {
+        d.addEventListener('toggle', function () {
+          if (d.open) closeAllGroups(d);
+        });
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!nav.contains(e.target) && !burger.contains(e.target)) {
+          closeAllGroups();
+          if (nav.classList.contains('is-open')) {
+            nav.classList.remove('is-open');
+            burger.classList.remove('is-active');
+            burger.setAttribute('aria-expanded', 'false');
+          }
+        }
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          closeAllGroups();
+          if (nav.classList.contains('is-open')) {
+            nav.classList.remove('is-open');
+            burger.classList.remove('is-active');
+            burger.setAttribute('aria-expanded', 'false');
+            burger.focus();
+          }
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
 

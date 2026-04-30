@@ -1,0 +1,222 @@
+/* Toile — Drawing / Whiteboard Styles */
+
+.toile-body {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+.toile-tools {
+  width: 56px;
+  background: var(--suite-surface);
+  border-right: 1px solid var(--suite-border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 0;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.toile-tool {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--suite-text);
+  cursor: pointer;
+  transition: var(--suite-transition);
+}
+
+.toile-tool:hover {
+  background: var(--suite-surface2);
+}
+
+.toile-tool.active {
+  background: rgba(99, 102, 241, 0.15);
+  color: var(--suite-accent);
+}
+
+.toile-tool svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.toile-tool-sep {
+  width: 32px;
+  height: 1px;
+  background: var(--suite-border);
+  margin: 4px 0;
+}
+
+/* Canvas area */
+.toile-canvas-wrap {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  cursor: crosshair;
+  background: var(--suite-bg);
+}
+
+.toile-canvas-wrap canvas {
+  display: block;
+  touch-action: none;
+}
+
+/* Grid background (optional) */
+.toile-canvas-wrap.grid-bg {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+[data-theme="light"] .toile-canvas-wrap.grid-bg {
+  background-image:
+    linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px);
+  background-color: #f8f8fc;
+}
+
+/* Properties panel */
+.toile-props {
+  width: 200px;
+  background: var(--suite-surface);
+  border-left: 1px solid var(--suite-border);
+  padding: 12px;
+  flex-shrink: 0;
+  overflow-y: auto;
+}
+
+.toile-props h4 {
+  font-size: .72rem;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--suite-text2);
+  margin: 12px 0 6px;
+}
+
+.toile-props h4:first-child { margin-top: 0; }
+
+.toile-props label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: .8rem;
+  color: var(--suite-text);
+}
+
+.toile-props input[type="range"] {
+  flex: 1;
+  accent-color: var(--suite-accent);
+}
+
+.toile-props input[type="color"] {
+  width: 36px;
+  height: 28px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background: none;
+  padding: 0;
+}
+
+.toile-props input[type="number"] {
+  width: 60px;
+  background: var(--suite-surface2);
+  border: 1px solid var(--suite-border);
+  border-radius: 4px;
+  color: var(--suite-text);
+  padding: 3px 6px;
+  font-size: .78rem;
+  outline: none;
+}
+
+.toile-color-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.toile-color-preset {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: .1s;
+}
+
+.toile-color-preset:hover {
+  transform: scale(1.15);
+}
+
+.toile-color-preset.active {
+  border-color: var(--suite-accent);
+}
+
+/* Zoom display */
+.toile-zoom {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.toile-zoom button {
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--suite-border);
+  border-radius: 4px;
+  background: var(--suite-surface2);
+  color: var(--suite-text);
+  cursor: pointer;
+  font-size: .85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toile-zoom span {
+  font-size: .75rem;
+  min-width: 40px;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .toile-props { display: none; }
+  .toile-tools { width: 44px; }
+}
+
+/* Zoom buttons in status bar */
+.toile-zoom-btn {
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--suite-border);
+  border-radius: 4px;
+  background: var(--suite-surface2);
+  color: var(--suite-text);
+  cursor: pointer;
+  font-size: .85rem;
+  font-weight: 600;
+}
+.toile-zoom-btn:hover {
+  background: var(--suite-surface);
+  color: var(--suite-accent);
+}
+
+@media print {
+  .suite-header, .suite-toolbar, .suite-statusbar, .toile-tools, .toile-props { display: none !important; }
+}

@@ -27,16 +27,21 @@ class CommentSystem {
   }
 
   addComment(newsId, author, email, content, rating = 5) {
-    if (!author || !email || !content) {
-      return { success: false, message: '❌ Tous les champs sont requis' };
-    }
-
-    if (!this.isValidEmail(email)) {
-      return { success: false, message: '❌ Email invalide' };
-    }
-
-    if (content.length < 5) {
+    if (!content || content.length < 5) {
       return { success: false, message: '❌ Le commentaire doit faire au moins 5 caractères' };
+    }
+
+    // Vérifier si connecté via Clerk
+    const clerkUser = window.Clerk?.user;
+
+    if (!clerkUser) {
+      // Mode anonyme : tous les champs requis
+      if (!author || !email) {
+        return { success: false, message: '❌ Tous les champs sont requis' };
+      }
+      if (!this.isValidEmail(email)) {
+        return { success: false, message: '❌ Email invalide' };
+      }
     }
 
     if (!this.comments[newsId]) {
