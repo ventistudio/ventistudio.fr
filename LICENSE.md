@@ -1,8 +1,8 @@
 # FiTsZ Digital Media Agreement (FiTsZ-DMA)
 
-**Version 1.0 — Publiée le 30 avril 2026**
+**Version 1.0  Publiée le 30 avril 2026**
 
-**Auteur d'origine / Original author :** Umaishi H. — `umaishi.h@ventistudio.eu`
+**Auteur d'origine / Original author :** Umaishi H.  `umaishi.h@ventistudio.eu`
 **Identifiant court / Short ID :** `FiTsZ-DMA-1.0`
 **Type :** Licence propriétaire éthique avec copyleft conditionnel et redevance / Ethical proprietary license with conditional copyleft and royalty.
 
@@ -57,7 +57,7 @@ L'Œuvre demeure la **propriété pleine et entière de l'Auteur d'origine**. Au
 
 ### 5. Redevance commerciale
 
-5.1. Toute **Exploitation commerciale** d'un produit, service ou contenu incluant tout ou partie de l'Œuvre — même de manière minoritaire — donne lieu au versement d'une **redevance forfaitaire de cinq pour cent (5 %) du chiffre d'affaires brut** généré par ledit produit, service ou contenu, à l'Auteur d'origine.
+5.1. Toute **Exploitation commerciale** d'un produit, service ou contenu incluant tout ou partie de l'Œuvre  même de manière minoritaire  donne lieu au versement d'une **redevance forfaitaire de cinq pour cent (5 %) du chiffre d'affaires brut** généré par ledit produit, service ou contenu, à l'Auteur d'origine.
 
 5.2. Aucun seuil de minimis n'est appliqué : la redevance est due **dès le premier euro (1 €)** de revenu généré.
 
@@ -72,7 +72,7 @@ L'Œuvre demeure la **propriété pleine et entière de l'Auteur d'origine**. Au
 - (a) dans le **code source** ou les fichiers source de l'Œuvre dérivée (en-tête ou fichier `NOTICE`/`CREDITS`) ;
 - (b) dans la **documentation visible** par l'utilisateur final (à propos, générique, mentions légales, page d'accueil ou équivalent).
 
-6.2. La mention minimale est : *« Basé sur l'Œuvre de Umaishi H., distribuée sous licence FiTsZ-DMA 1.0 — https://ventistudio.eu/lawful/license-fitsz-dma/ »*.
+6.2. La mention minimale est : *« Basé sur l'Œuvre de Umaishi H., distribuée sous licence FiTsZ-DMA 1.0  https://ventistudio.eu/lawful/license-fitsz-dma/ »*.
 
 ### 7. Clause éthique (essentielle)
 
@@ -166,7 +166,7 @@ The Work remains the **full and exclusive property** of the Original Author. Thi
 
 4.1. Any **Substantial Reuse** (≥ 50 %) triggers cumulative obligations:
 
-- (a) The Derivative Work **must be released under this same FiTsZ-DMA License** (or a later compatible version) — strict copyleft.
+- (a) The Derivative Work **must be released under this same FiTsZ-DMA License** (or a later compatible version)  strict copyleft.
 - (b) The full source code, assets, graphic elements, and documentation must be made **accessible to the Original Author free of charge**, on simple request, within fifteen (15) days.
 - (c) The Original Author is granted a **right of modification** over the Derivative Work and a **non-exclusive right to commercially exploit it** for their own benefit, free of any royalty owed to the User.
 
@@ -174,7 +174,7 @@ The Work remains the **full and exclusive property** of the Original Author. Thi
 
 ### 5. Commercial Royalty
 
-5.1. Any **Commercial Exploitation** of a product, service, or content including all or part of the Work — even minimally — triggers a **flat royalty of five percent (5 %) of the gross revenue** generated, payable to the Original Author.
+5.1. Any **Commercial Exploitation** of a product, service, or content including all or part of the Work  even minimally  triggers a **flat royalty of five percent (5 %) of the gross revenue** generated, payable to the Original Author.
 
 5.2. **No de minimis threshold** applies: the royalty is due **from the first euro (€1)** of revenue.
 
@@ -184,7 +184,7 @@ The Work remains the **full and exclusive property** of the Original Author. Thi
 
 ### 6. Attribution
 
-Attribution of the Original Author is **mandatory**, both in the source code (header or `NOTICE`/`CREDITS` file) and in the user-visible documentation (about screen, credits, legal notice, homepage, or equivalent). Minimum wording: *"Based on the Work of Umaishi H., distributed under the FiTsZ-DMA 1.0 license — https://ventistudio.eu/lawful/license-fitsz-dma/"*.
+Attribution of the Original Author is **mandatory**, both in the source code (header or `NOTICE`/`CREDITS` file) and in the user-visible documentation (about screen, credits, legal notice, homepage, or equivalent). Minimum wording: *"Based on the Work of Umaishi H., distributed under the FiTsZ-DMA 1.0 license  https://ventistudio.eu/lawful/license-fitsz-dma/"*.
 
 ### 7. Ethical Clause (essential)
 
@@ -249,4 +249,4 @@ Use, download, copy, modification, or distribution of the Work constitutes **ful
 
 *Texte officiel : https://ventistudio.eu/lawful/license-fitsz-dma/*
 *Contact : `umaishi.h@ventistudio.eu`*
-*© 2026 Umaishi H. — Tous droits réservés / All rights reserved.*
+*© 2026 Umaishi H.  Tous droits réservés / All rights reserved.*

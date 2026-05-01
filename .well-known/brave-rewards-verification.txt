@@ -1,4 +1,0 @@
-﻿This is a Brave Creators publisher verification file.
-
-Domain: ventistudio.eu
-Token: 975a279b895b0bb9737b3f9ee30c1ec1f266e5cf83680bdb72718024706cd5db
