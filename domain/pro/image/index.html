@@ -1,9 +1,10 @@
 <!DOCTYPE html>
+
 <html lang="fr" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <meta name="description" content="Redimensionneur d'images — Redimensionnez, compressez et recadrez vos images. 100% client-side.">
+  <meta name="description" content="Redimensionneur d'images  Redimensionnez, compressez et recadrez vos images. 100% client-side.">
   <meta name="theme-color" content="#0ea5e9">
   <title>Redimensionneur d'Images | VentiStudio Pro</title>
   <link rel="stylesheet" href="/style.css">
@@ -280,7 +281,7 @@
   <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
 
   <meta property="og:title" content="Redimensionneur d'Images | VentiStudio Pro">
-  <meta property="og:description" content="Redimensionneur d'images — Redimensionnez, compressez et recadrez vos images. 100% client-side.">
+  <meta property="og:description" content="Redimensionneur d'images  Redimensionnez, compressez et recadrez vos images. 100% client-side.">
   <meta property="og:url" content="https://ventistudio.eu/domain/pro/image/">
   <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
   <meta property="og:type" content="website">
@@ -288,7 +289,7 @@
 
   <script>
     (function() {
-      var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      var t; try { t = localStorage.getItem('theme'); } catch (_) {} if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
@@ -442,14 +443,14 @@
 
   <main>
     <h1 style="margin-bottom:0.25rem">🖼️ Redimensionneur d'Images</h1>
-    <p style="color:var(--text-secondary);margin-bottom:1.5rem">Redimensionnez, compressez et exportez vos images — 100 % client-side</p>
+    <p style="color:var(--text-secondary);margin-bottom:1.5rem">Redimensionnez, compressez et exportez vos images  100 % client-side</p>
 
     <div class="panel">
       <h3>📁 Importer</h3>
       <div class="drop-zone" id="dropZone">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
         <p>Glissez-déposez vos images ici</p>
-        <small>ou cliquez pour sélectionner — PNG, JPEG, WebP, AVIF, GIF, BMP</small>
+        <small>ou cliquez pour sélectionner  PNG, JPEG, WebP, AVIF, GIF, BMP</small>
         <input type="file" id="fileInput" accept="image/*" multiple hidden>
       </div>
     </div>
@@ -577,7 +578,7 @@
           $width.value = origW;
           $height.value = origH;
           $origPrev.src = e.target.result;
-          $origInfo.textContent = `${origW} × ${origH} — ${sizeStr(files[idx].size)}`;
+          $origInfo.textContent = `${origW} × ${origH}  ${sizeStr(files[idx].size)}`;
           $preview.classList.remove('hidden');
           if (!keepResult) {
             $resultCvs.width = 0;
@@ -665,7 +666,7 @@
       $resultCvs.width = r.cvs.width;
       $resultCvs.height = r.cvs.height;
       $resultCvs.getContext('2d').drawImage(r.cvs, 0, 0);
-      $resultInfo.textContent = `${r.w} × ${r.h} — ${sizeStr(r.blob.size)}`;
+      $resultInfo.textContent = `${r.w} × ${r.h}  ${sizeStr(r.blob.size)}`;
       $dlBtn.disabled = false;
       loadImage(idx, true);
     }
@@ -818,5 +819,6 @@
       });
     })();
   </script>
+<script defer src="/antibot.js"></script>
 </body>
 </html>

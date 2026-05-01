@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="fr" data-theme="dark">
+
+<html data-theme="dark" lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Dark Zone - Espace social VentiStudio.">
-  <meta name="theme-color" content="#6366f1">
-  <title>Dark Zone | VentiStudio</title>
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Dark Zone - Espace social VentiStudio." name="description"/>
+<meta content="#6366f1" name="theme-color"/>
+<title>Dark Zone | VentiStudio</title>
+<style>
     @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap');
 
     :root {
@@ -392,113 +393,91 @@
       .dz-footer { flex-direction: column; gap: 0.3rem; text-align: center; }
     }
   </style>
-
-  <script async crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
-  <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
-
-  <meta property="og:title" content="Dark Zone | VentiStudio">
-  <meta property="og:description" content="Dark Zone - Espace social VentiStudio.">
-  <meta property="og:url" content="https://ventistudio.eu/social/darkzone/">
-  <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
-  <meta property="og:type" content="website">
-  <link rel="canonical" href="https://ventistudio.eu/social/darkzone/">
-  <script src="/i18n.js" defer></script>
+<script async="" crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
+<script async="" crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
+<meta content="Dark Zone | VentiStudio" property="og:title"/>
+<meta content="Dark Zone - Espace social VentiStudio." property="og:description"/>
+<meta content="https://ventistudio.eu/social/darkzone/" property="og:url"/>
+<meta content="https://ventistudio.eu/favicon.avif" property="og:image"/>
+<meta content="website" property="og:type"/>
+<link href="https://ventistudio.eu/social/darkzone/" rel="canonical"/>
+<script defer="" src="/i18n.js"></script>
 </head>
 <body>
-  <div class="vignette"></div>
-
-  <div class="dz-container">
-    <div class="hazard-bar"></div>
-    <div class="dz-panel">
-      <div class="scanner-beam"></div>
-      <div class="corner-tl"></div>
-      <div class="corner-tr"></div>
-      <div class="corner-bl"></div>
-      <div class="corner-br"></div>
-
-
-      <div class="dz-header">
-        <div class="dz-icon">
-          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-
-            <circle cx="50" cy="50" r="46" stroke="#FF6A00" stroke-width="2" opacity="0.4"/>
-            <circle cx="50" cy="50" r="42" stroke="#FF6A00" stroke-width="1" opacity="0.2"/>
-
-            <path d="M50 18 L50 82 M30 35 L70 35 M26 50 L74 50 M30 65 L70 65" stroke="#FF6A00" stroke-width="1.5" opacity="0.15"/>
-
-            <path d="M50 22 C65 22 78 35 78 50" stroke="#FF6A00" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-            <path d="M78 50 C78 65 65 78 50 78" stroke="#FF6A00" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-            <path d="M50 78 C35 78 22 65 22 50" stroke="#FF6A00" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-            <path d="M22 50 C22 35 35 22 50 22" stroke="#FF6A00" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.5"/>
-
-            <circle cx="50" cy="50" r="14" stroke="#FF6A00" stroke-width="2" opacity="0.7"/>
-            <circle cx="50" cy="50" r="5" fill="#FF6A00" opacity="0.9"/>
-
-            <line x1="50" y1="8" x2="50" y2="14" stroke="#FF6A00" stroke-width="2" opacity="0.6"/>
-            <line x1="50" y1="86" x2="50" y2="92" stroke="#FF6A00" stroke-width="2" opacity="0.6"/>
-            <line x1="8" y1="50" x2="14" y2="50" stroke="#FF6A00" stroke-width="2" opacity="0.6"/>
-            <line x1="86" y1="50" x2="92" y2="50" stroke="#FF6A00" stroke-width="2" opacity="0.6"/>
-          </svg>
-        </div>
-        <div class="dz-header-text">
-          <h1 class="glitch-text">DARK ZONE</h1>
-          <div class="subtitle">Strategic Homeland Division // Accès restreint</div>
-        </div>
-      </div>
-
-
-      <div class="dz-content">
-
-        <div class="isac-msg">
-          <span class="isac-label">ISAC //</span>
-          <p id="isac-text">Avertissement Vous entrez en Dark Zone. Les protocoles de communication sont limités. Les règles d'engagement habituelles ne s'appliquent plus.</p>
-        </div>
-
-
-        <div class="status-grid">
-          <div class="status-item">
-            <span class="status-label">Niveau menace</span>
-            <span class="status-value danger" id="threat-level">CRITIQUE</span>
-          </div>
-          <div class="status-item">
-            <span class="status-label">Contamination</span>
-            <span class="status-value" id="contam-level">██████ 78%</span>
-          </div>
-          <div class="status-item">
-            <span class="status-label">Agents actifs</span>
-            <span class="status-value" id="agent-count">---</span>
-          </div>
-          <div class="status-item">
-            <span class="status-label">Renégats détectés</span>
-            <span class="status-value danger" id="rogue-count">---</span>
-          </div>
-        </div>
-
-
-        <div class="progress-section">
-          <div class="progress-header">
-            <span>Authentification agent</span>
-            <span id="progress-pct">0%</span>
-          </div>
-          <div class="progress-track">
-            <div class="progress-fill" id="progress-bar"></div>
-          </div>
-        </div>
-
-
-        <div class="log-feed" id="log-feed"></div>
-      </div>
-
-
-      <div class="dz-footer">
-        <span>SHD Network // Canal sécurisé</span>
-        <span class="redirect-countdown" id="countdown">Redirection dans 8s</span>
-      </div>
-    </div>
-    <div class="hazard-bar"></div>
-  </div>
-
-  <script>
+<div class="vignette"></div>
+<div class="dz-container">
+<div class="hazard-bar"></div>
+<div class="dz-panel">
+<div class="scanner-beam"></div>
+<div class="corner-tl"></div>
+<div class="corner-tr"></div>
+<div class="corner-bl"></div>
+<div class="corner-br"></div>
+<div class="dz-header">
+<div class="dz-icon">
+<svg fill="none" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+<circle cx="50" cy="50" opacity="0.4" r="46" stroke="#FF6A00" stroke-width="2"></circle>
+<circle cx="50" cy="50" opacity="0.2" r="42" stroke="#FF6A00" stroke-width="1"></circle>
+<path d="M50 18 L50 82 M30 35 L70 35 M26 50 L74 50 M30 65 L70 65" opacity="0.15" stroke="#FF6A00" stroke-width="1.5"></path>
+<path d="M50 22 C65 22 78 35 78 50" fill="none" stroke="#FF6A00" stroke-linecap="round" stroke-width="2.5"></path>
+<path d="M78 50 C78 65 65 78 50 78" fill="none" stroke="#FF6A00" stroke-linecap="round" stroke-width="2.5"></path>
+<path d="M50 78 C35 78 22 65 22 50" fill="none" stroke="#FF6A00" stroke-linecap="round" stroke-width="2.5"></path>
+<path d="M22 50 C22 35 35 22 50 22" fill="none" opacity="0.5" stroke="#FF6A00" stroke-linecap="round" stroke-width="2.5"></path>
+<circle cx="50" cy="50" opacity="0.7" r="14" stroke="#FF6A00" stroke-width="2"></circle>
+<circle cx="50" cy="50" fill="#FF6A00" opacity="0.9" r="5"></circle>
+<line opacity="0.6" stroke="#FF6A00" stroke-width="2" x1="50" x2="50" y1="8" y2="14"></line>
+<line opacity="0.6" stroke="#FF6A00" stroke-width="2" x1="50" x2="50" y1="86" y2="92"></line>
+<line opacity="0.6" stroke="#FF6A00" stroke-width="2" x1="8" x2="14" y1="50" y2="50"></line>
+<line opacity="0.6" stroke="#FF6A00" stroke-width="2" x1="86" x2="92" y1="50" y2="50"></line>
+</svg>
+</div>
+<div class="dz-header-text">
+<h1 class="glitch-text" data-i18n="social.darkzone.dz_header_dz_header_text.h1">DARK ZONE</h1>
+<div class="subtitle">Strategic Homeland Division // Accès restreint</div>
+</div>
+</div>
+<div class="dz-content">
+<div class="isac-msg">
+<span class="isac-label">ISAC //</span>
+<p data-i18n="social.darkzone.dz_content_isac_msg.p" id="isac-text">Avertissement Vous entrez en Dark Zone. Les protocoles de communication sont limités. Les règles d'engagement habituelles ne s'appliquent plus.</p>
+</div>
+<div class="status-grid">
+<div class="status-item">
+<span class="status-label">Niveau menace</span>
+<span class="status-value danger" id="threat-level">CRITIQUE</span>
+</div>
+<div class="status-item">
+<span class="status-label">Contamination</span>
+<span class="status-value" id="contam-level">██████ 78%</span>
+</div>
+<div class="status-item">
+<span class="status-label">Agents actifs</span>
+<span class="status-value" id="agent-count">---</span>
+</div>
+<div class="status-item">
+<span class="status-label">Renégats détectés</span>
+<span class="status-value danger" id="rogue-count">---</span>
+</div>
+</div>
+<div class="progress-section">
+<div class="progress-header">
+<span>Authentification agent</span>
+<span id="progress-pct">0%</span>
+</div>
+<div class="progress-track">
+<div class="progress-fill" id="progress-bar"></div>
+</div>
+</div>
+<div class="log-feed" id="log-feed"></div>
+</div>
+<div class="dz-footer">
+<span>SHD Network // Canal sécurisé</span>
+<span class="redirect-countdown" id="countdown">Redirection dans 8s</span>
+</div>
+</div>
+<div class="hazard-bar"></div>
+</div>
+<script>
     document.addEventListener('DOMContentLoaded', function() {
       const urlParams = new URLSearchParams(window.location.search);
       const darkzoneDest = urlParams.get('darkzone');
@@ -577,6 +556,6 @@
       }, 3000);
     });
   </script>
+<script defer src="/antibot.js"></script>
 </body>
 </html>
-

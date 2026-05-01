@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="fr" data-theme="dark">
 <head>
   <meta charset="UTF-8">
@@ -340,7 +341,7 @@
 
   <script>
     (function() {
-      var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      var t; try { t = localStorage.getItem('theme'); } catch (_) {} if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
@@ -503,7 +504,6 @@
       <span><strong>Vie privée :</strong> Tous les fichiers sont traités dans votre navigateur. Aucune donnée n'est envoyée à un serveur.</span>
     </div>
 
-
     <section class="vert-section">
       <h2>1. Sélectionner des fichiers</h2>
       <div class="drop-zone" id="dropZone">
@@ -514,7 +514,6 @@
       </div>
       <div class="file-list" id="fileList"></div>
     </section>
-
 
     <section class="vert-section" id="configSection" hidden>
       <h2>2. Configurer la conversion</h2>
@@ -531,9 +530,8 @@
         </div>
       </div>
 
-
       <div class="profile-bar">
-        <select id="profileSelect"><option value="">Profil personnalisé —</option></select>
+        <select id="profileSelect"><option value="">Profil personnalisé </option></select>
         <button class="btn-sm btn-accent" id="btnSaveProfile">💾 Sauvegarder</button>
         <button class="btn-sm btn-muted" id="btnDeleteProfile">🗑️ Supprimer</button>
       </div>
@@ -543,7 +541,6 @@
         <button class="btn-action btn-convert" id="btnConvert" disabled>🚀 Convertir</button>
       </div>
     </section>
-
 
     <section class="vert-section" id="resultsSection" hidden>
       <h2>3. Résultats</h2>
@@ -708,7 +705,7 @@
     function refreshProfileList() {
       const sel = $('profileSelect');
       const profiles = loadProfiles();
-      sel.innerHTML = '<option value="">Profil personnalisé —</option>';
+      sel.innerHTML = '<option value="">Profil personnalisé </option>';
       Object.keys(profiles).forEach(name => {
         const opt = document.createElement('option');
         opt.value = name;
@@ -1237,5 +1234,6 @@
       });
     })();
   </script>
+<script defer src="/antibot.js"></script>
 </body>
 </html>

@@ -19,7 +19,7 @@
 <link href="https://ventistudio.eu/lawful/security/" rel="canonical"/>
 <script>
     (function() {
-      var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      var t; try { t = localStorage.getItem('theme'); } catch (_) {} if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
@@ -237,10 +237,10 @@
 <label data-i18n="lawful.security.securityform_form_group.label2" for="severity">Niveau de Gravité</label>
 <select id="severity" required="">
 <option value="">Sélectionner un niveau</option>
-<option value="low">Faible — Impact limité, aucune donnée sensible exposée</option>
-<option value="medium">Moyen — Impact modéré, données partiellement exposées</option>
-<option value="high">Élevé — Impact important, accès non autorisé possible</option>
-<option value="critical">Critique — Impact majeur, données sensibles compromises</option>
+<option value="low">Faible  Impact limité, aucune donnée sensible exposée</option>
+<option value="medium">Moyen  Impact modéré, données partiellement exposées</option>
+<option value="high">Élevé  Impact important, accès non autorisé possible</option>
+<option value="critical">Critique  Impact majeur, données sensibles compromises</option>
 </select>
 </div>
 <div class="form-group">
@@ -435,5 +435,6 @@
       });
     })();
   </script>
+<script defer src="/antibot.js"></script>
 </body>
 </html>

@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="fr" data-theme="dark">
+
+<html data-theme="dark" lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <meta name="description" content="Classification des Amnésiques de la Fondation SCP | VentiStudio GMod">
-  <meta name="theme-color" content="#6366f1">
-  <title>Classification des Amnésiques | VentiStudio GMod</title>
-  <link rel="icon" type="image/png" href="/favicon.ico">
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport"/>
+<meta content="Classification des Amnésiques de la Fondation SCP | VentiStudio GMod" name="description"/>
+<meta content="#6366f1" name="theme-color"/>
+<title>Classification des Amnésiques | VentiStudio GMod</title>
+<link href="/favicon.ico" rel="icon" type="image/png"/>
+<style>
     :root { --primary:#7B66FF; --secondary:#2A2D3A; --background:#1A1B26; --text:#FFFFFF; --hover:#9F86FF; --accent1:#414868; --accent2:#565f89; }
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap');
     body { margin:0; padding:2rem; font-family:'Inter',sans-serif; background:var(--background); color:var(--text); line-height:1.6; }
@@ -38,145 +39,130 @@
     .amnesia-description { margin-top:1rem; color:#c0caf5; font-size:0.95rem; }
     @media (max-width:768px) { body{padding:1rem;} .container{padding:1rem;} .header h1{font-size:1.8rem;} .amnesia-detail{grid-template-columns:1fr;} }
   </style>
-  <script src="/i18n.js" defer></script>
+<script defer="" src="/i18n.js"></script>
 </head>
 <body>
-  <div class="container">
-    <a href="/gmod/motd/P&R/" class="back-link">&larr; Retour à l'accueil</a>
-    <div class="header">
-      <h1>Classification des Amnésiques</h1>
-      <p>Document de référence : Fondation SCP : The Lost Site</p>
+<div class="container">
+<a class="back-link" href="/gmod/motd/P&amp;R/">← Retour à l'accueil</a>
+<div class="header">
+<h1 data-i18n="gmod.motd.pandr.general.amnesique.header.h1">Classification des Amnésiques</h1>
+<p data-i18n="gmod.motd.pandr.general.amnesique.header.p">Document de référence : Fondation SCP : The Lost Site</p>
+</div>
+<div class="important">
+<strong>⚠️ Notice :</strong> L'utilisation de tout amnésique nécessite une formation préalable et une autorisation du niveau requis. Toute utilisation non autorisée constitue une infraction au Code Pénal de la Fondation.
     </div>
-
-    <div class="important">
-      <strong>⚠️ Notice :</strong> L'utilisation de tout amnésique nécessite une formation préalable et une autorisation du niveau requis. Toute utilisation non autorisée constitue une infraction au Code Pénal de la Fondation.
-    </div>
-
-
-    <div class="amnesia-card">
-      <h3>Classe A</h3>
-      <span class="badge badge-accred">Accréditation Niveau 1+</span>
-      <dl class="amnesia-detail">
-        <dt>Code Visuel</dt><dd>Unique bande noire</dd>
-        <dt>Forme Galénique</dt><dd>Aérosol</dd>
-        <dt>Efficacité</dt><dd>6 à 12 heures</dd>
-        <dt>Procédure</dt><dd>Approuvé pour l'utilisation générale sur le terrain</dd>
-        <dt>Effets Secondaires</dt><dd>Endormissement, maux de tête, nausée</dd>
-      </dl>
-      <div class="amnesia-description">
-        <p>Le gaz de Classe-A est l'amnésique le plus couramment utilisé sur le terrain. Son avantage principal réside dans le fait qu'il peut être utilisé sur plusieurs personnes à la fois. Dans certains cas documentés, l'amnésique a été utilisé sur des populations entières par pulvérisation aérienne. D'autres procédures impliquent l'utilisation de cartouches de 40 mm pouvant être lancées pour administrer l'amnésique dans des espaces clos ou encore de petits sprays à aérosol à usage unique.</p>
-        <p>En raison de sa composition chimique, une overdose accidentelle a très peu de chance de se produire tant que l'amnésique est utilisé par une personne disposant d'une formation basique à son administration. Cette spécificité permet au Classe-A d'être utilisé sans restriction en tant qu'inhalant. De plus, le Classe-A ne demande que très peu de surveillance sur les individus ayant reçu ses effets, son taux de succès s'élevant à <strong>98,7 %</strong>.</p>
-        <p>Le seul risque encouru lors de l'utilisation du Classe-A est l'auto-application accidentelle. Les dispositifs d'application et les conditions ambiantes susceptibles de causer ce type d'incident sont enseignées au personnel formé à l'utilisation de l'amnésique. Il est recommandé qu'au moins un autre membre du personnel soit présent lors de l'administration du Classe-A afin de faciliter le retour aux fonctions de l'utilisateur en cas d'auto-application accidentelle.</p>
-      </div>
-    </div>
-
-
-    <div class="amnesia-card">
-      <h3>Classe B</h3>
-      <span class="badge badge-accred">Accréditation Niveau 2+</span>
-      <dl class="amnesia-detail">
-        <dt>Code Visuel</dt><dd>Double bande turquoise</dd>
-        <dt>Forme Galénique</dt><dd>Voie orale ou injection</dd>
-        <dt>Efficacité</dt><dd>20 à 72 heures</dd>
-        <dt>Procédure</dt><dd>Approuvé pour l'utilisation générale sur le terrain</dd>
-        <dt>Effets Secondaires</dt><dd>Endormissement, paresthésie prolongée, migraines et vision floue</dd>
-      </dl>
-      <div class="amnesia-description">
-        <p>Chimiquement parlant, il y a peu de différence entre les Classes A et B. Leur différence principale relève de leur mode d'administration : le Classe-A est inhalé tandis que le Classe-B est soit ingéré soit injecté directement dans la circulation sanguine. Le Classe-B se trouve généralement sous forme de cachets effervescents ou de liquide.</p>
-        <p>Le mode d'administration le plus courant du Classe-B est la dissolution du cachet dans de l'eau, permettant à l'individu de l'ingérer. L'emploi de cet amnésique est également fait au moyen de seringues balistiques où il est projeté via du gaz comprimé. Le Classe-B est aussi sûr d'utilisation que le Classe-A, ce qui le rend idéal pour l'utilisation dans divers départements. On notera également que beaucoup moins d'incidents d'auto-application d'amnésique ont été signalés par rapport au Classe-A.</p>
-      </div>
-    </div>
-
-
-    <div class="amnesia-card">
-      <h3>Classe C</h3>
-      <span class="badge badge-accred">Accréditation Niveau 3+</span>
-      <dl class="amnesia-detail">
-        <dt>Code Visuel</dt><dd>Triple bande dorée</dd>
-        <dt>Forme Galénique</dt><dd>Injection</dd>
-        <dt>Efficacité</dt><dd>4 à 9 jours</dd>
-        <dt>Procédure</dt><dd>Utilisé lors des interrogatoires/arrestations dans les Sites surveillés</dd>
-        <dt>Effets Secondaires</dt><dd>Endormissement, légère paralysie (assistance médicale requise)</dd>
-      </dl>
-      <div class="amnesia-description">
-        <p>Contrairement aux Classes A et B, le Classe-C est une variante nettement plus puissante. L'administration du Classe-C requiert l'assistance du personnel médical compte tenu des effets secondaires et des risques qu'elle engendre. Afin d'injecter le Classe-C directement dans la circulation sanguine, le personnel doit posséder une formation médicale.</p>
-        <p>Le Classe-C est majoritairement utilisé sur les détenus de façon à ce que son emploi reste dans un cadre contrôlé. Une fois l'amnésique administré, les détenus peuvent être relâchés avec l'accord du personnel médical. L'usage du Classe-C sur le terrain est interdit sauf autorisation contraire d'un investigateur/interrogateur ou de tout autre personnel de Niveau 3. Le Classe-C a un taux de réussite de <strong>92,8 %</strong>. Le personnel a l'interdiction d'utiliser le Classe-C sur une même personne plus de quatre fois.</p>
-      </div>
-    </div>
-
-
-    <div class="amnesia-card">
-      <h3>Classe D</h3>
-      <span class="badge badge-restricted">Accès Niveau 3 requis</span>
-      <dl class="amnesia-detail">
-        <dt>Code Visuel</dt><dd>Bande en damier couleur olive</dd>
-        <dt>Forme Galénique</dt><dd>Injection (2 doses par voie intraveineuse)</dd>
-        <dt>Efficacité</dt><dd>Plus de 3 semaines</dd>
-        <dt>Procédure</dt><dd>Contrer les psychoses anormales et/ou incursions mémétiques</dd>
-        <dt>Effets Secondaires</dt><dd>Endormissement, paralysie (rééducation post-traumatique requise), possibles dommages cérébraux</dd>
-      </dl>
-      <div class="amnesia-description">
-        <p>Auparavant, le Classe-D était couramment utilisé en dépit de son taux de réussite mitigé, jugé inadmissible par le Comité d'Éthique puisqu'il causait des effets néfastes sur le cerveau. Le Classe-D a été réexaminé et son usage jugé plus approprié dans les situations où les individus sont déjà atteints de lésions cérébrales ou d'un déséquilibre chimique chronique majeur.</p>
-        <p>Ces situations sont généralement occasionnées par des effets mentaux anormaux ou des incursions mémétiques affectant l'esprit. Personne n'est autorisé à administrer le Classe-D, si ce n'est le personnel médical dans un cadre contrôlé. À des fins de protection, le personnel médical peut être supervisé par une autorité de Niveau 3 si le patient présente un danger.</p>
-      </div>
-    </div>
-
-
-    <div class="amnesia-card">
-      <h3>Classe E</h3>
-      <span class="badge badge-restricted">Accès Niveau 4 requis</span>
-      <dl class="amnesia-detail">
-        <dt>Code Visuel</dt><dd>Plusieurs barres verticales couleur saumon</dd>
-        <dt>Forme Galénique</dt><dd>Injection (plusieurs doses par voie IV)</dd>
-        <dt>Efficacité</dt><dd>Élimination de la mémoire</dd>
-        <dt>Procédure</dt><dd>Utilisé lorsque l'identité de l'individu est considérée comme une menace</dd>
-        <dt>Effets Secondaires</dt><dd>Endormissement, paralysie à long terme, possibles dommages cérébraux ou symptômes catatoniques</dd>
-      </dl>
-      <div class="amnesia-description">
-        <p>Le Classe-E ne peut être prescrit que par le personnel médical, et ce dans un cadre contrôlé après la présentation d'une requête officielle à un personnel de Niveau 4 et l'approbation du Comité d'Éthique. Au moment de l'application, le personnel médical sera chargé de surveiller l'individu jusqu'à son rétablissement.</p>
-        <p>Seulement <strong>0,02 %</strong> des personnes ayant subi les effets du Classe-E entrent dans un état végétatif permanent. Dans de telles situations, l'individu sera transféré dans un hôpital civil pour une durée indéterminée.</p>
-      </div>
-    </div>
-
-
-    <div class="amnesia-card">
-      <h3>Classe F</h3>
-      <span class="badge badge-restricted">Accès Niveau 4 requis : Expérimental</span>
-      <dl class="amnesia-detail">
-        <dt>Code Visuel</dt><dd>Épaisse barre argentée</dd>
-        <dt>Forme Galénique</dt><dd>Injection + stimuli visuels/sonores + thérapie par électrochocs</dd>
-        <dt>Efficacité</dt><dd>Élimination de la mémoire et reconditionnement de l'identité</dd>
-        <dt>Procédure</dt><dd>Utilisation expérimentale seulement : en attente d'examen officiel</dd>
-        <dt>Effets Secondaires</dt><dd>Endormissement, paralysie à court terme, sensibilité accrue aux stimuli</dd>
-      </dl>
-      <div class="amnesia-description">
-        <p>Le Classe-F est actuellement en phase de test alpha. Lors des <strong>83,9 %</strong> des essais effectués, le sujet a réussi à conserver entièrement l'identité qui lui a été créée. L'ensemble du processus dure environ cinq jours, des traitements et thérapies doivent être constamment effectués sur toute sa durée.</p>
-        <p>Le Classe-F peut uniquement être administré sous la direction du corps psychiatrique et médical. L'amnésique est administré concurremment avec d'autres substances psychotropes pour réduire la résistance du subconscient. Les stimuli visuels et sonores doivent être basés sur la psyché originelle de l'individu et l'identité fabriquée pour maximiser les chances de réussite.</p>
-        <p>Une fois le reconditionnement effectué, les individus traités peuvent être relâchés dans la population sous surveillance minimale. Il a été débattu que le Classe-F pourrait être une alternative au confinement physique pour certaines PCS.</p>
-      </div>
-    </div>
-
-
-    <div class="amnesia-card" style="border:1px solid rgba(160,50,255,0.3);">
-      <h3 style="color:#c864ff; border-color:#c864ff;">Classifié : Protocole Ennui</h3>
-      <span class="badge badge-classified">Accès Niveau 5 requis : Décision unanime du Conseil O5</span>
-      <dl class="amnesia-detail">
-        <dt>Code Visuel</dt><dd>Icône violacée</dd>
-        <dt>Forme Galénique</dt><dd>Inconnue</dd>
-        <dt>Efficacité</dt><dd>Inconnue</dd>
-        <dt>Procédure</dt><dd>Utilisation en cas d'urgence seulement</dd>
-        <dt>Effets Secondaires</dt><dd>Inconnus</dd>
-      </dl>
-      <div class="amnesia-description" style="font-style:italic; color:#a9b1d6;">
-        <p>Madame, Monsieur,</p>
-        <p>Si vous lisez ceci, alors quelque chose d'horrible s'est produit et malgré tous vos efforts, il s'agit là de votre dernière option. Pour être tout à fait honnête, il n'y a aucun moyen de savoir ce qui va arriver. Quelle que soit la personne qui, dans sa grande sagesse, a imaginé ce protocole, elle s'est contentée de griffonner à la hâte les instructions sur un bloc-notes il y a très longtemps.</p>
-        <p>Ces instructions pour le prétendu Protocole Ennui expliquent la nécessité d'obtenir l'unanimité de ce conseil pour l'appliquer. Jadis, un long code constitué de tous les numéros d'employés confidentiels des O5 en ordre inverse avait été tapé sur notre terminal de travail, ce code devrait être référencé ailleurs afin que nous puissions toujours le retrouver.</p>
-        <p>Visiblement, il est des choses qui même à nous, O5, nous sont cachées. Tout ce que nous savons, c'est qu'il a déjà fonctionné. Bonne chance et que Dieu soit loué.</p>
-        <p><strong>Sécuriser. Contenir. Protéger.</strong><br>: O5</p>
-      </div>
-    </div>
-
-  </div>
-  <script src="/main.js" defer></script>
+<div class="amnesia-card">
+<h3 data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card.h3">Classe A</h3>
+<span class="badge badge-accred">Accréditation Niveau 1+</span>
+<dl class="amnesia-detail">
+<dt data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dt">Code Visuel</dt><dd data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dd">Unique bande noire</dd>
+<dt data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dt2">Forme Galénique</dt><dd data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dd2">Aérosol</dd>
+<dt data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dt3">Efficacité</dt><dd data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dd3">6 à 12 heures</dd>
+<dt data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dt4">Procédure</dt><dd data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dd4">Approuvé pour l'utilisation générale sur le terrain</dd>
+<dt data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dt5">Effets Secondaires</dt><dd data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dd5">Endormissement, maux de tête, nausée</dd>
+</dl>
+<div class="amnesia-description">
+<p data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_description.p">Le gaz de Classe-A est l'amnésique le plus couramment utilisé sur le terrain. Son avantage principal réside dans le fait qu'il peut être utilisé sur plusieurs personnes à la fois. Dans certains cas documentés, l'amnésique a été utilisé sur des populations entières par pulvérisation aérienne. D'autres procédures impliquent l'utilisation de cartouches de 40 mm pouvant être lancées pour administrer l'amnésique dans des espaces clos ou encore de petits sprays à aérosol à usage unique.</p>
+<p data-i18n-html="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_description.p2">En raison de sa composition chimique, une overdose accidentelle a très peu de chance de se produire tant que l'amnésique est utilisé par une personne disposant d'une formation basique à son administration. Cette spécificité permet au Classe-A d'être utilisé sans restriction en tant qu'inhalant. De plus, le Classe-A ne demande que très peu de surveillance sur les individus ayant reçu ses effets, son taux de succès s'élevant à <strong>98,7 %</strong>.</p>
+<p data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_description.p3">Le seul risque encouru lors de l'utilisation du Classe-A est l'auto-application accidentelle. Les dispositifs d'application et les conditions ambiantes susceptibles de causer ce type d'incident sont enseignées au personnel formé à l'utilisation de l'amnésique. Il est recommandé qu'au moins un autre membre du personnel soit présent lors de l'administration du Classe-A afin de faciliter le retour aux fonctions de l'utilisateur en cas d'auto-application accidentelle.</p>
+</div>
+</div>
+<div class="amnesia-card">
+<h3 data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card.h32">Classe B</h3>
+<span class="badge badge-accred">Accréditation Niveau 2+</span>
+<dl class="amnesia-detail">
+<dt data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dt6">Code Visuel</dt><dd data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dd6">Double bande turquoise</dd>
+<dt data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dt7">Forme Galénique</dt><dd data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dd7">Voie orale ou injection</dd>
+<dt data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dt8">Efficacité</dt><dd data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dd8">20 à 72 heures</dd>
+<dt data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dt9">Procédure</dt><dd data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dd9">Approuvé pour l'utilisation générale sur le terrain</dd>
+<dt data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dt10">Effets Secondaires</dt><dd data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dd10">Endormissement, paresthésie prolongée, migraines et vision floue</dd>
+</dl>
+<div class="amnesia-description">
+<p data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_description.p4">Chimiquement parlant, il y a peu de différence entre les Classes A et B. Leur différence principale relève de leur mode d'administration : le Classe-A est inhalé tandis que le Classe-B est soit ingéré soit injecté directement dans la circulation sanguine. Le Classe-B se trouve généralement sous forme de cachets effervescents ou de liquide.</p>
+<p data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_description.p5">Le mode d'administration le plus courant du Classe-B est la dissolution du cachet dans de l'eau, permettant à l'individu de l'ingérer. L'emploi de cet amnésique est également fait au moyen de seringues balistiques où il est projeté via du gaz comprimé. Le Classe-B est aussi sûr d'utilisation que le Classe-A, ce qui le rend idéal pour l'utilisation dans divers départements. On notera également que beaucoup moins d'incidents d'auto-application d'amnésique ont été signalés par rapport au Classe-A.</p>
+</div>
+</div>
+<div class="amnesia-card">
+<h3 data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card.h33">Classe C</h3>
+<span class="badge badge-accred">Accréditation Niveau 3+</span>
+<dl class="amnesia-detail">
+<dt data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dt11">Code Visuel</dt><dd data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dd11">Triple bande dorée</dd>
+<dt data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dt12">Forme Galénique</dt><dd data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dd12">Injection</dd>
+<dt data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dt13">Efficacité</dt><dd data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dd13">4 à 9 jours</dd>
+<dt data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dt14">Procédure</dt><dd data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dd14">Utilisé lors des interrogatoires/arrestations dans les Sites surveillés</dd>
+<dt data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dt15">Effets Secondaires</dt><dd data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dd15">Endormissement, légère paralysie (assistance médicale requise)</dd>
+</dl>
+<div class="amnesia-description">
+<p data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_description.p6">Contrairement aux Classes A et B, le Classe-C est une variante nettement plus puissante. L'administration du Classe-C requiert l'assistance du personnel médical compte tenu des effets secondaires et des risques qu'elle engendre. Afin d'injecter le Classe-C directement dans la circulation sanguine, le personnel doit posséder une formation médicale.</p>
+<p data-i18n-html="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_description.p7">Le Classe-C est majoritairement utilisé sur les détenus de façon à ce que son emploi reste dans un cadre contrôlé. Une fois l'amnésique administré, les détenus peuvent être relâchés avec l'accord du personnel médical. L'usage du Classe-C sur le terrain est interdit sauf autorisation contraire d'un investigateur/interrogateur ou de tout autre personnel de Niveau 3. Le Classe-C a un taux de réussite de <strong>92,8 %</strong>. Le personnel a l'interdiction d'utiliser le Classe-C sur une même personne plus de quatre fois.</p>
+</div>
+</div>
+<div class="amnesia-card">
+<h3 data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card.h34">Classe D</h3>
+<span class="badge badge-restricted">Accès Niveau 3 requis</span>
+<dl class="amnesia-detail">
+<dt data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dt16">Code Visuel</dt><dd data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dd16">Bande en damier couleur olive</dd>
+<dt data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dt17">Forme Galénique</dt><dd data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dd17">Injection (2 doses par voie intraveineuse)</dd>
+<dt data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dt18">Efficacité</dt><dd data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dd18">Plus de 3 semaines</dd>
+<dt data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dt19">Procédure</dt><dd data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dd19">Contrer les psychoses anormales et/ou incursions mémétiques</dd>
+<dt data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dt20">Effets Secondaires</dt><dd data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dd20">Endormissement, paralysie (rééducation post-traumatique requise), possibles dommages cérébraux</dd>
+</dl>
+<div class="amnesia-description">
+<p data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_description.p8">Auparavant, le Classe-D était couramment utilisé en dépit de son taux de réussite mitigé, jugé inadmissible par le Comité d'Éthique puisqu'il causait des effets néfastes sur le cerveau. Le Classe-D a été réexaminé et son usage jugé plus approprié dans les situations où les individus sont déjà atteints de lésions cérébrales ou d'un déséquilibre chimique chronique majeur.</p>
+<p data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_description.p9">Ces situations sont généralement occasionnées par des effets mentaux anormaux ou des incursions mémétiques affectant l'esprit. Personne n'est autorisé à administrer le Classe-D, si ce n'est le personnel médical dans un cadre contrôlé. À des fins de protection, le personnel médical peut être supervisé par une autorité de Niveau 3 si le patient présente un danger.</p>
+</div>
+</div>
+<div class="amnesia-card">
+<h3 data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card.h35">Classe E</h3>
+<span class="badge badge-restricted">Accès Niveau 4 requis</span>
+<dl class="amnesia-detail">
+<dt data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dt21">Code Visuel</dt><dd data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dd21">Plusieurs barres verticales couleur saumon</dd>
+<dt data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dt22">Forme Galénique</dt><dd data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dd22">Injection (plusieurs doses par voie IV)</dd>
+<dt data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dt23">Efficacité</dt><dd data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dd23">Élimination de la mémoire</dd>
+<dt data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dt24">Procédure</dt><dd data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dd24">Utilisé lorsque l'identité de l'individu est considérée comme une menace</dd>
+<dt data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dt25">Effets Secondaires</dt><dd data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dd25">Endormissement, paralysie à long terme, possibles dommages cérébraux ou symptômes catatoniques</dd>
+</dl>
+<div class="amnesia-description">
+<p data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_description.p10">Le Classe-E ne peut être prescrit que par le personnel médical, et ce dans un cadre contrôlé après la présentation d'une requête officielle à un personnel de Niveau 4 et l'approbation du Comité d'Éthique. Au moment de l'application, le personnel médical sera chargé de surveiller l'individu jusqu'à son rétablissement.</p>
+<p data-i18n-html="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_description.p11">Seulement <strong>0,02 %</strong> des personnes ayant subi les effets du Classe-E entrent dans un état végétatif permanent. Dans de telles situations, l'individu sera transféré dans un hôpital civil pour une durée indéterminée.</p>
+</div>
+</div>
+<div class="amnesia-card">
+<h3 data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card.h36">Classe F</h3>
+<span class="badge badge-restricted">Accès Niveau 4 requis : Expérimental</span>
+<dl class="amnesia-detail">
+<dt data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dt26">Code Visuel</dt><dd data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dd26">Épaisse barre argentée</dd>
+<dt data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dt27">Forme Galénique</dt><dd data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dd27">Injection + stimuli visuels/sonores + thérapie par électrochocs</dd>
+<dt data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dt28">Efficacité</dt><dd data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dd28">Élimination de la mémoire et reconditionnement de l'identité</dd>
+<dt data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dt29">Procédure</dt><dd data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dd29">Utilisation expérimentale seulement : en attente d'examen officiel</dd>
+<dt data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dt30">Effets Secondaires</dt><dd data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dd30">Endormissement, paralysie à court terme, sensibilité accrue aux stimuli</dd>
+</dl>
+<div class="amnesia-description">
+<p data-i18n-html="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_description.p12">Le Classe-F est actuellement en phase de test alpha. Lors des <strong>83,9 %</strong> des essais effectués, le sujet a réussi à conserver entièrement l'identité qui lui a été créée. L'ensemble du processus dure environ cinq jours, des traitements et thérapies doivent être constamment effectués sur toute sa durée.</p>
+<p data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_description.p13">Le Classe-F peut uniquement être administré sous la direction du corps psychiatrique et médical. L'amnésique est administré concurremment avec d'autres substances psychotropes pour réduire la résistance du subconscient. Les stimuli visuels et sonores doivent être basés sur la psyché originelle de l'individu et l'identité fabriquée pour maximiser les chances de réussite.</p>
+<p data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_description.p14">Une fois le reconditionnement effectué, les individus traités peuvent être relâchés dans la population sous surveillance minimale. Il a été débattu que le Classe-F pourrait être une alternative au confinement physique pour certaines PCS.</p>
+</div>
+</div>
+<div class="amnesia-card" style="border:1px solid rgba(160,50,255,0.3);">
+<h3 data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card.h37" style="color:#c864ff; border-color:#c864ff;">Classifié : Protocole Ennui</h3>
+<span class="badge badge-classified">Accès Niveau 5 requis : Décision unanime du Conseil O5</span>
+<dl class="amnesia-detail">
+<dt data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dt31">Code Visuel</dt><dd data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dd31">Icône violacée</dd>
+<dt data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dt32">Forme Galénique</dt><dd data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dd32">Inconnue</dd>
+<dt data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dt33">Efficacité</dt><dd data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dd33">Inconnue</dd>
+<dt data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dt34">Procédure</dt><dd data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dd34">Utilisation en cas d'urgence seulement</dd>
+<dt data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dt35">Effets Secondaires</dt><dd data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_detail.dd35">Inconnus</dd>
+</dl>
+<div class="amnesia-description" style="font-style:italic; color:#a9b1d6;">
+<p data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_description.p15">Madame, Monsieur,</p>
+<p data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_description.p16">Si vous lisez ceci, alors quelque chose d'horrible s'est produit et malgré tous vos efforts, il s'agit là de votre dernière option. Pour être tout à fait honnête, il n'y a aucun moyen de savoir ce qui va arriver. Quelle que soit la personne qui, dans sa grande sagesse, a imaginé ce protocole, elle s'est contentée de griffonner à la hâte les instructions sur un bloc-notes il y a très longtemps.</p>
+<p data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_description.p17">Ces instructions pour le prétendu Protocole Ennui expliquent la nécessité d'obtenir l'unanimité de ce conseil pour l'appliquer. Jadis, un long code constitué de tous les numéros d'employés confidentiels des O5 en ordre inverse avait été tapé sur notre terminal de travail, ce code devrait être référencé ailleurs afin que nous puissions toujours le retrouver.</p>
+<p data-i18n="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_description.p18">Visiblement, il est des choses qui même à nous, O5, nous sont cachées. Tout ce que nous savons, c'est qu'il a déjà fonctionné. Bonne chance et que Dieu soit loué.</p>
+<p data-i18n-html="gmod.motd.pandr.general.amnesique.amnesia_card_amnesia_description.p19"><strong>Sécuriser. Contenir. Protéger.</strong><br/>: O5</p>
+</div>
+</div>
+</div>
+<script defer="" src="/main.js"></script>
+<script defer src="/antibot.js"></script>
 </body>
 </html>

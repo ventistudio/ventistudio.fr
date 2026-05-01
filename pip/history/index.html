@@ -18,7 +18,7 @@
 <link href="https://ventistudio.eu/pip/history/" rel="canonical"/>
 <script>
     (function() {
-      var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      var t; try { t = localStorage.getItem('theme'); } catch (_) {} if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
@@ -443,7 +443,7 @@
       let html = '<div class="history-grid">';
       for (const entry of history) {
         const title = entry.params && entry.params.t ? escapeHtml(entry.params.t) : 'Sans titre';
-        const type = entry.params && entry.params.type ? entry.params.type : '—';
+        const type = entry.params && entry.params.type ? entry.params.type : '';
         const res = entry.params && entry.params.res ? entry.params.res : null;
         const dur = entry.params && entry.params.d ? formatDuration(entry.params.d) : null;
 
@@ -590,5 +590,6 @@
       });
     })();
   </script>
+<script defer src="/antibot.js"></script>
 </body>
 </html>

@@ -1,7 +1,6 @@
 (function () {
   'use strict';
 
-
   const TILES = {
     standard: {
       url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -27,7 +26,6 @@
   const STORAGE_FAVORITES = 'vs-maps-favorites';
   const MAX_HISTORY = 10;
 
-
   let map, currentLayer, searchMarkers = [], routeLayer = null;
   let routeStartMarker = null, routeEndMarker = null;
   let routeStartCoords = null, routeEndCoords = null;
@@ -38,7 +36,6 @@
   let pinMode = false, pinMarkers = [];
   const STORAGE_TRACKS = 'vs-maps-tracks';
   const STORAGE_PINS = 'vs-maps-pins';
-
 
   const $ = (sel) => document.querySelector(sel);
   const $$ = (sel) => document.querySelectorAll(sel);
@@ -98,7 +95,6 @@
   const coordZoom = $('#coord-zoom');
   const toast = $('#toast');
 
-
   function initMap() {
     map = L.map('map', {
       center: [46.6034, 1.8883],
@@ -121,7 +117,6 @@
     map.on('moveend', updateHash);
   }
 
-
   function onMapMouseMove(e) {
     coordLat.textContent = `Lat: ${e.latlng.lat.toFixed(5)}`;
     coordLng.textContent = `Lng: ${e.latlng.lng.toFixed(5)}`;
@@ -130,7 +125,6 @@
   function updateCoordBar() {
     coordZoom.textContent = `Zoom: ${map.getZoom()}`;
   }
-
 
   function updateHash() {
     const c = map.getCenter();
@@ -155,7 +149,6 @@
       }
     }
   }
-
 
   function toggleSidebar(show) {
     const isCollapsed = sidebar.classList.contains('collapsed');
@@ -189,7 +182,6 @@
     }
   }
 
-
   $('#quick-locate').addEventListener('click', () => doLocate());
   $('#quick-route').addEventListener('click', () => {
     showPanel('route');
@@ -214,7 +206,6 @@
     toggleSidebar(true);
     enterPinMode();
   });
-
 
   function performSearch(query) {
     if (!query || query.length < 2) {
@@ -313,7 +304,6 @@
     }
   });
 
-
   document.addEventListener('keydown', (e) => {
     if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
       e.preventDefault();
@@ -338,7 +328,6 @@
     clearSearchMarkers();
     if (currentPanel === 'place') showPanel('home');
   });
-
 
   function getHistory() {
     try { return JSON.parse(localStorage.getItem(STORAGE_HISTORY)) || []; }
@@ -405,7 +394,6 @@
     renderHistory();
     showToast('Historique effacé');
   });
-
 
   function getFavorites() {
     try { return JSON.parse(localStorage.getItem(STORAGE_FAVORITES)) || []; }
@@ -485,7 +473,6 @@
     });
   }
 
-
   function createMarker(lat, lon, title, type) {
     const css = type === 'start' ? 'marker-start' : type === 'end' ? 'marker-end' : '';
     const icon = L.divIcon({
@@ -505,7 +492,6 @@
     searchMarkers.forEach(m => map.removeLayer(m));
     searchMarkers = [];
   }
-
 
   function showPlaceInfo(displayName, lat, lon, type) {
     const parts = displayName.split(',');
@@ -551,7 +537,6 @@
   });
 
   placeClose.addEventListener('click', () => showPanel('home'));
-
 
   function onMapClick(e) {
     searchResults.classList.add('hidden');
@@ -603,7 +588,6 @@
       });
   }
 
-
   routeToggleBtn.addEventListener('click', () => {
     if (currentPanel === 'route') {
       showPanel('home');
@@ -639,7 +623,6 @@
       if (routeStartCoords && routeEndCoords) calculateRoute();
     });
   });
-
 
   document.querySelector('.route-field-locate').addEventListener('click', () => {
     doLocate((lat, lon) => {
@@ -753,7 +736,6 @@
       }
     }).addTo(map);
 
-
     L.geoJSON(route.geometry, {
       style: {
         color: '#4338ca',
@@ -793,11 +775,10 @@
           const dist = s.distance >= 1000
             ? `${(s.distance / 1000).toFixed(1)} km`
             : `${Math.round(s.distance)} m`;
-          return `<div class="route-step"><span class="route-step-num">${i + 1}</span><span>${escapeHtml(s.name || 'Continuer')} — ${dist}</span></div>`;
+          return `<div class="route-step"><span class="route-step-num">${i + 1}</span><span>${escapeHtml(s.name || 'Continuer')}  ${dist}</span></div>`;
         }).join('');
     }
   }
-
 
   measureToggleBtn.addEventListener('click', () => {
     if (currentPanel === 'measure') {
@@ -841,7 +822,6 @@
   function addMeasurePoint(latlng) {
     measurePoints.push(latlng);
 
-
     const circleMarker = L.circleMarker(latlng, {
       radius: 5,
       color: '#f59e0b',
@@ -875,7 +855,6 @@
       measureDistance.textContent = `${Math.round(total)} m`;
     }
   }
-
 
   function doLocate(callback) {
     if (!navigator.geolocation) {
@@ -913,7 +892,6 @@
 
   locateBtn.addEventListener('click', () => doLocate());
 
-
   layersBtn.addEventListener('click', (e) => {
     e.stopPropagation();
     layersPanel.classList.toggle('hidden');
@@ -934,7 +912,6 @@
     });
   });
 
-
   fullscreenBtn.addEventListener('click', () => {
     const el = document.querySelector('.maps-main');
     if (!document.fullscreenElement) {
@@ -949,7 +926,6 @@
     setTimeout(() => map.invalidateSize(), 100);
   });
 
-
   let toastTimer = null;
   function showToast(message) {
     toast.textContent = message;
@@ -958,14 +934,12 @@
     toastTimer = setTimeout(() => toast.classList.add('hidden'), 2500);
   }
 
-
   document.addEventListener('click', (e) => {
     if (!layersPanel.contains(e.target) && e.target !== layersBtn && !layersBtn.contains(e.target)) {
       layersPanel.classList.add('hidden');
       layersBtn.classList.remove('active');
     }
   });
-
 
   trackToggleBtn.addEventListener('click', () => {
     if (currentPanel === 'track') {
@@ -992,7 +966,6 @@
       showToast('Enregistrement repris');
       return;
     }
-
 
     trackPoints = [];
     if (trackLine) { map.removeLayer(trackLine); trackLine = null; }
@@ -1202,7 +1175,6 @@
     showPanel('home');
   }
 
-
   function toGpxString(points, name) {
     const pts = points.map(p =>
       `      <trkpt lat="${p.lat}" lon="${p.lng}"><time>${new Date(p.ts).toISOString()}</time></trkpt>`
@@ -1264,7 +1236,6 @@ ${pts}
       showToast('GeoJSON téléchargé');
     }
   });
-
 
   pinClose.addEventListener('click', () => showPanel('home'));
 
@@ -1362,7 +1333,6 @@ ${pts}
     renderPins();
   }
 
-
   function escapeHtml(str) {
     const div = document.createElement('div');
     div.textContent = str;
@@ -1372,7 +1342,6 @@ ${pts}
   function escapeAttr(str) {
     return str.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, '&#39;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   }
-
 
   initMap();
   parseHash();

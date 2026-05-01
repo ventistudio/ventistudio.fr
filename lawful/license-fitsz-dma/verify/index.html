@@ -1,21 +1,22 @@
 <!DOCTYPE html>
-
-<html data-theme="dark" lang="fr">
+<html lang="fr" data-theme="dark">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport"/>
-<meta content="VentiStudio - Vérificateur de validité d'une licence SPDX (FiTsZ-DMA et toutes les licences SPDX standards)." name="description"/>
-<meta content="#6366f1" name="theme-color"/>
-<title>Vérifier une licence SPDX | FiTsZ-DMA | VentiStudio</title>
-<link href="/style.css" rel="stylesheet"/>
-<link href="../../lawful.css" rel="stylesheet"/>
-<meta content="Vérifier une licence SPDX | FiTsZ-DMA" property="og:title"/>
-<meta content="Validez un en-tête SPDX, un identifiant ou un fichier source contre la liste officielle SPDX et la licence FiTsZ-DMA." property="og:description"/>
-<meta content="https://ventistudio.eu/lawful/license-fitsz-dma/verify/" property="og:url"/>
-<meta content="https://ventistudio.eu/favicon.avif" property="og:image"/>
-<meta content="website" property="og:type"/>
-<link href="https://ventistudio.eu/lawful/license-fitsz-dma/verify/" rel="canonical"/>
-<style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="VentiStudio - Vérificateur de validité d'une licence SPDX (FiTsZ-DMA et toutes les licences SPDX standards).">
+  <meta name="theme-color" content="#6366f1">
+  <title>Vérifier une licence SPDX | FiTsZ-DMA | VentiStudio</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="../../lawful.css">
+
+  <meta property="og:title" content="Vérifier une licence SPDX | FiTsZ-DMA">
+  <meta property="og:description" content="Validez un en-tête SPDX, un identifiant ou un fichier source contre la liste officielle SPDX et la licence FiTsZ-DMA.">
+  <meta property="og:url" content="https://ventistudio.eu/lawful/license-fitsz-dma/verify/">
+  <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://ventistudio.eu/lawful/license-fitsz-dma/verify/">
+
+  <style>
     .vrf-container { max-width: 1100px; margin: 0 auto; padding: 2rem; }
 
     .vrf-tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; margin-bottom: 1rem; }
@@ -182,148 +183,157 @@
     .vrf-info-bar .src-status.warn { color: #f59e0b; }
     .vrf-info-bar .src-status.err { color: #ef4444; }
   </style>
-<script>
+
+  <script>
     (function() {
       var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
       document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
-<script defer="" src="/i18n.js"></script>
 </head>
 <body>
-<header>
-<div class="logo">
-<img alt="Logo VentiStudio" class="site-logo" height="32" src="/favicon.avif" width="32"/>
-<span>VentiStudio</span>
-</div>
-<button aria-controls="main-nav" aria-expanded="false" aria-label="Ouvrir le menu" class="nav-burger" data-i18n-attr="aria-label:aria.open_menu" id="nav-burger">
-<span></span><span></span><span></span>
-</button>
-<nav aria-label="Navigation principale" class="main-nav" data-i18n-attr="aria-label:nav.aria" id="main-nav">
-<a class="nav-link" data-i18n="nav.home" href="/">Accueil</a>
-<a class="nav-link" data-i18n="nav.legal" href="/lawful">Mentions légales</a>
-<a class="nav-link" href="/lawful/license-fitsz-dma">Licence FiTsZ-DMA</a>
-<a class="nav-link" data-i18n="nav.contact" href="/contact">Contact</a>
-</nav>
-<div aria-label="Contrôles" class="controls" data-i18n-attr="aria-label:aria.controls" role="toolbar">
-<button aria-label="Basculer le thème clair/sombre" class="theme-toggle" data-i18n-attr="aria-label:aria.toggle_theme,title:aria.toggle_theme" id="theme-toggle" title="Basculer le thème">
-<svg aria-hidden="true" height="24" viewbox="0 0 24 24" width="24">
-<path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" fill="none" stroke="currentColor"></path>
-<circle class="sun" cx="12" cy="12" fill="none" r="4" stroke="currentColor"></circle>
-<path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" fill="none" stroke="currentColor"></path>
-</svg>
-</button>
-</div>
-</header>
-<main>
-<section class="hero-section">
-<h1 data-i18n="lawful.license_fitsz_dma.verify.hero_section.h1">Vérifier une licence</h1>
-<p>Validation d'un identifiant <strong>SPDX</strong> ou d'un en-tête de licence — incluant la licence <strong>FiTsZ-DMA</strong> et la liste officielle de révocations.</p>
-</section>
-<div class="vrf-container">
-<div class="vrf-info-bar">
-<span><strong>Source SPDX :</strong> liste officielle <code>spdx.org/licenses/licenses.json</code> chargée à la volée.</span>
-<span class="src-status" id="src-status">⏳ Chargement…</span>
-</div>
-<div class="vrf-tabs" role="tablist">
-<button class="active" data-i18n="lawful.license_fitsz_dma.verify.vrf_container_vrf_tabs.button" data-tab="header" type="button">📄 En-tête SPDX</button>
-<button data-i18n="lawful.license_fitsz_dma.verify.vrf_container_vrf_tabs.button2" data-tab="id" type="button">🔖 Identifiant seul</button>
-<button data-i18n="lawful.license_fitsz_dma.verify.vrf_container_vrf_tabs.button3" data-tab="file" type="button">📎 Fichier source</button>
-<button data-i18n="lawful.license_fitsz_dma.verify.vrf_container_vrf_tabs.button4" data-tab="url" type="button">🔗 URL distante</button>
-</div>
+  <header>
+    <div class="logo">
+      <img src="/favicon.avif" alt="Logo VentiStudio" class="site-logo" width="32" height="32">
+      <span>VentiStudio</span>
+    </div>
+    <button class="nav-burger" id="nav-burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="main-nav" class="main-nav" aria-label="Navigation principale">
+      <a href="/" class="nav-link">Accueil</a>
+      <a href="/lawful" class="nav-link">Mentions légales</a>
+      <a href="/lawful/license-fitsz-dma" class="nav-link">Licence FiTsZ-DMA</a>
+      <a href="/contact" class="nav-link">Contact</a>
+    </nav>
+    <div class="controls" role="toolbar" aria-label="Contrôles">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Basculer le thème clair/sombre" title="Basculer le thème">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+          <path class="sun" d="M12 3v2M12 19v2M5 12H3M21 12h-2M6 6l1.4 1.4M16.6 16.6L18 18M6 18l1.4-1.4M16.6 7.4L18 6" stroke="currentColor" fill="none"/>
+          <circle class="sun" cx="12" cy="12" r="4" stroke="currentColor" fill="none"/>
+          <path class="moon" d="M12 3a9 9 0 109 9c0-5-4-9-9-9z" stroke="currentColor" fill="none"/>
+        </svg>
+      </button>
+    </div>
+  </header>
 
-<div class="vrf-panel active" data-panel="header">
-<label for="hdr-input">Coller un en-tête de fichier source</label>
-<small>Le champ peut contenir tout le début d'un fichier ; la ligne <code>SPDX-License-Identifier: …</code> sera détectée automatiquement.</small>
-<textarea class="vrf-textarea" data-i18n-attr="placeholder:lawful.license_fitsz_dma.verify.vrf_container_vrf_panel.textarea_placeholder" id="hdr-input" placeholder="// SPDX-License-Identifier: LicenseRef-FiTsZ-DMA-1.0
-// Copyright (c) 2026 Umaishi H. &lt;umaishi.h@ventistudio.eu&gt;
-// Distributed under the FiTsZ Digital Media Agreement v1.0"></textarea>
-<div class="vrf-actions">
-<button data-i18n="lawful.license_fitsz_dma.verify.vrf_container_vrf_panel.button" id="btn-hdr" type="button">Vérifier</button>
-<button class="alt" data-i18n="lawful.license_fitsz_dma.verify.vrf_container_vrf_panel.button2" id="btn-hdr-clear" type="button">Effacer</button>
-</div>
-</div>
+  <main>
+    <section class="hero-section">
+      <h1>Vérifier une licence</h1>
+      <p>Validation d'un identifiant <strong>SPDX</strong> ou d'un en-tête de licence — incluant la licence <strong>FiTsZ-DMA</strong> et la liste officielle de révocations.</p>
+    </section>
 
-<div class="vrf-panel" data-panel="id">
-<label for="id-input">Identifiant SPDX seul</label>
-<small>Expressions composées acceptées : <code>MIT</code>, <code>Apache-2.0 OR MIT</code>, <code>(GPL-2.0-or-later AND BSD-3-Clause) WITH Classpath-exception-2.0</code>, <code>LicenseRef-FiTsZ-DMA-1.0</code>.</small>
-<input autocomplete="off" class="vrf-input" data-i18n-attr="placeholder:lawful.license_fitsz_dma.verify.vrf_container_vrf_panel.input_placeholder" id="id-input" placeholder="LicenseRef-FiTsZ-DMA-1.0" spellcheck="false" type="text"/>
-<div class="vrf-actions">
-<button data-i18n="lawful.license_fitsz_dma.verify.vrf_container_vrf_panel.button3" id="btn-id" type="button">Vérifier</button>
-<button class="alt" data-i18n="lawful.license_fitsz_dma.verify.vrf_container_vrf_panel.button4" id="btn-id-clear" type="button">Effacer</button>
-</div>
-</div>
+    <div class="vrf-container">
 
-<div class="vrf-panel" data-panel="file">
-<label>Téléverser un fichier source</label>
-<small>Le fichier reste <strong>local à votre navigateur</strong> — aucune donnée n'est envoyée à un serveur.</small>
-<label class="vrf-drop" id="drop-zone">
-<strong>📎 Glissez-déposez ou cliquez</strong>
-<span>Limite : 2 Mio · uniquement les premières 200 lignes sont analysées</span>
-<input accept=".js,.ts,.jsx,.tsx,.py,.rb,.go,.rs,.java,.kt,.swift,.c,.h,.cpp,.hpp,.cs,.php,.html,.css,.scss,.lua,.sh,.ps1,.md,.txt,.json,.yml,.yaml,.toml,.xml" id="file-input" type="file"/>
-</label>
-<p id="file-info" style="margin-top:0.75rem; color: var(--text-secondary); font-size: 0.85rem;"></p>
-</div>
+      <div class="vrf-info-bar">
+        <span><strong>Source SPDX :</strong> liste officielle <code>spdx.org/licenses/licenses.json</code> chargée à la volée.</span>
+        <span class="src-status" id="src-status">⏳ Chargement…</span>
+      </div>
 
-<div class="vrf-panel" data-panel="url">
-<label for="url-input">URL d'un fichier source brut</label>
-<small>Idéalement <code>raw.githubusercontent.com</code>, <code>gitlab.com/.../raw/...</code> ou autre hébergement supportant CORS.</small>
-<input autocomplete="off" class="vrf-input" id="url-input" placeholder="https://raw.githubusercontent.com/user/repo/main/src/index.js" type="url"/>
-<div class="vrf-actions">
-<button data-i18n="lawful.license_fitsz_dma.verify.vrf_container_vrf_panel.button5" id="btn-url" type="button">Récupérer &amp; vérifier</button>
-<button class="alt" data-i18n="lawful.license_fitsz_dma.verify.vrf_container_vrf_panel.button6" id="btn-url-clear" type="button">Effacer</button>
-</div>
-<p id="url-info" style="margin-top:0.75rem; color: var(--text-secondary); font-size: 0.85rem;"></p>
-</div>
+      <div class="vrf-tabs" role="tablist">
+        <button type="button" class="active" data-tab="header">📄 En-tête SPDX</button>
+        <button type="button" data-tab="id">🔖 Identifiant seul</button>
+        <button type="button" data-tab="file">📎 Fichier source</button>
+        <button type="button" data-tab="url">🔗 URL distante</button>
+      </div>
 
-<section aria-live="polite" class="vrf-result empty" id="result">
+      <!-- Header -->
+      <div class="vrf-panel active" data-panel="header">
+        <label for="hdr-input">Coller un en-tête de fichier source</label>
+        <small>Le champ peut contenir tout le début d'un fichier ; la ligne <code>SPDX-License-Identifier: …</code> sera détectée automatiquement.</small>
+        <textarea id="hdr-input" class="vrf-textarea" placeholder="// SPDX-License-Identifier: LicenseRef-FiTsZ-DMA-1.0&#10;// Copyright (c) 2026 Umaishi H. <umaishi.h@ventistudio.eu>&#10;// Distributed under the FiTsZ Digital Media Agreement v1.0"></textarea>
+        <div class="vrf-actions">
+          <button type="button" id="btn-hdr">Vérifier</button>
+          <button type="button" class="alt" id="btn-hdr-clear">Effacer</button>
+        </div>
+      </div>
+
+      <!-- ID -->
+      <div class="vrf-panel" data-panel="id">
+        <label for="id-input">Identifiant SPDX seul</label>
+        <small>Expressions composées acceptées : <code>MIT</code>, <code>Apache-2.0 OR MIT</code>, <code>(GPL-2.0-or-later AND BSD-3-Clause) WITH Classpath-exception-2.0</code>, <code>LicenseRef-FiTsZ-DMA-1.0</code>.</small>
+        <input id="id-input" class="vrf-input" type="text" placeholder="LicenseRef-FiTsZ-DMA-1.0" autocomplete="off" spellcheck="false">
+        <div class="vrf-actions">
+          <button type="button" id="btn-id">Vérifier</button>
+          <button type="button" class="alt" id="btn-id-clear">Effacer</button>
+        </div>
+      </div>
+
+      <!-- File -->
+      <div class="vrf-panel" data-panel="file">
+        <label>Téléverser un fichier source</label>
+        <small>Le fichier reste <strong>local à votre navigateur</strong> — aucune donnée n'est envoyée à un serveur.</small>
+        <label class="vrf-drop" id="drop-zone">
+          <strong>📎 Glissez-déposez ou cliquez</strong>
+          <span>Limite : 2 Mio · uniquement les premières 200 lignes sont analysées</span>
+          <input type="file" id="file-input" accept=".js,.ts,.jsx,.tsx,.py,.rb,.go,.rs,.java,.kt,.swift,.c,.h,.cpp,.hpp,.cs,.php,.html,.css,.scss,.lua,.sh,.ps1,.md,.txt,.json,.yml,.yaml,.toml,.xml">
+        </label>
+        <p id="file-info" style="margin-top:0.75rem; color: var(--text-secondary); font-size: 0.85rem;"></p>
+      </div>
+
+      <!-- URL -->
+      <div class="vrf-panel" data-panel="url">
+        <label for="url-input">URL d'un fichier source brut</label>
+        <small>Idéalement <code>raw.githubusercontent.com</code>, <code>gitlab.com/.../raw/...</code> ou autre hébergement supportant CORS.</small>
+        <input id="url-input" class="vrf-input" type="url" placeholder="https://raw.githubusercontent.com/user/repo/main/src/index.js" autocomplete="off">
+        <div class="vrf-actions">
+          <button type="button" id="btn-url">Récupérer &amp; vérifier</button>
+          <button type="button" class="alt" id="btn-url-clear">Effacer</button>
+        </div>
+        <p id="url-info" style="margin-top:0.75rem; color: var(--text-secondary); font-size: 0.85rem;"></p>
+      </div>
+
+      <!-- Result -->
+      <section class="vrf-result empty" id="result" aria-live="polite">
         Aucune vérification effectuée. Saisissez un identifiant ou collez un en-tête, puis cliquez sur <em>Vérifier</em>.
       </section>
-</div>
-</main>
-<footer>
-<div class="footer-content">
-<div class="footer-section">
-<h4 data-i18n="footer.col.tools">Outils</h4>
-<ul>
-<li><a href="/pip">PIP</a></li>
-<li><a data-i18n="footer.tools.sitemap" href="/sitemap">Plan du site</a></li>
-<li><a data-i18n="footer.tools.status" href="https://status.ventistudio.eu/">Statut</a></li>
-</ul>
-</div>
-<div class="footer-section">
-<h4 data-i18n="footer.col.company">Entreprise</h4>
-<ul>
-<li><a data-i18n="footer.company.about" href="/about">À propos</a></li>
-<li><a data-i18n="footer.company.jobs" href="/jobs">Emplois</a></li>
-<li><a data-i18n="footer.company.brand" href="/logo">Marque</a></li>
-</ul>
-</div>
-<div class="footer-section">
-<h4>Licence</h4>
-<ul>
-<li><a href="/lawful/license-fitsz-dma">FiTsZ-DMA</a></li>
-<li><a href="/lawful/license-fitsz-dma/verify">Vérifier</a></li>
-<li><a href="/lawful/license-fitsz-dma/revoked.json">Révocations</a></li>
-</ul>
-</div>
-<div class="footer-section">
-<h4 data-i18n="footer.col.legal">Chartes</h4>
-<ul>
-<li><a data-i18n="footer.legal.tos" href="/lawful/tos">Conditions d'utilisation</a></li>
-<li><a data-i18n="footer.legal.privacy" href="/lawful/cookies">Confidentialité</a></li>
-<li><a data-i18n="footer.legal.dmca" href="/lawful/dmcainfo">Information DMCA</a></li>
-</ul>
-</div>
-</div>
-<div class="footer-bottom">
-<iframe frameborder="0" height="30" scrolling="no" src="https://status.ventistudio.eu/badge?theme=dark" style="color-scheme: normal" width="500"></iframe>
-<div id="lang-switcher"></div>
-<p class="copyright" data-i18n="footer.copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
-</div>
-</footer>
-<script defer="" src="/main.js"></script>
-<script>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Outils</h4>
+        <ul>
+          <li><a href="/pip">PIP</a></li>
+          <li><a href="/sitemap">Plan du site</a></li>
+          <li><a href="https://status.ventistudio.eu/">Statut</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Entreprise</h4>
+        <ul>
+          <li><a href="/about">À propos</a></li>
+          <li><a href="/jobs">Emplois</a></li>
+          <li><a href="/logo">Marque</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Licence</h4>
+        <ul>
+          <li><a href="/lawful/license-fitsz-dma">FiTsZ-DMA</a></li>
+          <li><a href="/lawful/license-fitsz-dma/verify">Vérifier</a></li>
+          <li><a href="/lawful/license-fitsz-dma/revoked.json">Révocations</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Chartes</h4>
+        <ul>
+          <li><a href="/lawful/tos">Conditions d'utilisation</a></li>
+          <li><a href="/lawful/cookies">Confidentialité</a></li>
+          <li><a href="/lawful/dmcainfo">Information DMCA</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <iframe src="https://status.ventistudio.eu/badge?theme=dark" width="500" height="30" frameborder="0" scrolling="no" style="color-scheme: normal"></iframe>
+      <p class="copyright">Copyright © 2023 - 2026 P-Line, VentiStudio FiTsZ Company. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <script src="/main.js" defer></script>
+  <script>
   (function () {
     'use strict';
 

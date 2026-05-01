@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="fr" data-theme="dark">
+
+<html data-theme="dark" lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <meta name="description" content="Autorisations d'Intervention : Fondation SCP | VentiStudio GMod">
-  <meta name="theme-color" content="#6366f1">
-  <title>Autorisations d'Intervention | VentiStudio GMod</title>
-  <link rel="icon" type="image/png" href="/favicon.ico">
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport"/>
+<meta content="Autorisations d'Intervention : Fondation SCP | VentiStudio GMod" name="description"/>
+<meta content="#6366f1" name="theme-color"/>
+<title>Autorisations d'Intervention | VentiStudio GMod</title>
+<link href="/favicon.ico" rel="icon" type="image/png"/>
+<style>
     :root { --primary:#7B66FF; --secondary:#2A2D3A; --background:#1A1B26; --text:#FFFFFF; --hover:#9F86FF; --accent1:#414868; --accent2:#565f89; }
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap');
     body { margin:0; padding:2rem; font-family:'Inter',sans-serif; background:var(--background); color:var(--text); line-height:1.6; }
@@ -33,126 +34,106 @@
     ul { margin:0.5rem 0; padding-left:1.5rem; }
     @media (max-width:768px) { body{padding:1rem;} .container{padding:1rem;} .header h1{font-size:1.8rem;} }
   </style>
-  <script src="/i18n.js" defer></script>
+<script defer="" src="/i18n.js"></script>
 </head>
 <body>
-  <div class="container">
-    <a href="/gmod/motd/P&R/" class="back-link">&larr; Retour à l'accueil</a>
-    <div class="header">
-      <h1>Autorisations d'Intervention</h1>
-      <p>Conditions d'accès et d'intervention sur l'installation : Fondation SCP : The Lost Site</p>
+<div class="container">
+<a class="back-link" href="/gmod/motd/P&amp;R/">← Retour à l'accueil</a>
+<div class="header">
+<h1 data-i18n="gmod.motd.pandr.dext.intervention.header.h1">Autorisations d'Intervention</h1>
+<p data-i18n="gmod.motd.pandr.dext.intervention.header.p">Conditions d'accès et d'intervention sur l'installation : Fondation SCP : The Lost Site</p>
+</div>
+<div class="important">
+<strong>⚠️ Notice :</strong> Toute intervention non autorisée sur l'installation constitue une infraction grave au règlement de la Fondation. Consultez les conditions spécifiques à votre rôle avant toute action.
     </div>
-
-    <div class="important">
-      <strong>⚠️ Notice :</strong> Toute intervention non autorisée sur l'installation constitue une infraction grave au règlement de la Fondation. Consultez les conditions spécifiques à votre rôle avant toute action.
-    </div>
-
-
-    <h2 class="section-title">Forces d'Intervention Mobiles</h2>
-
-    <div class="auth-card">
-      <h3>F.I.M. : Intervention Générale</h3>
-      <span class="auth-type auth-conditionnel">Conditionnel</span>
-      <p>Vous avez le droit d'intervenir sous la demande du personnel de l'installation de niveau 3+.</p>
-      <p><strong>Ou pour les raisons suivantes :</strong></p>
-      <ul class="conditions">
-        <li>Attaque du site par un Groupe d'Intérêt</li>
-        <li>Brèche générale du site</li>
-        <li>Rébellion générale / Prise d'otage d'un haut gradé par une Classe Delta</li>
-        <li>Si un « VIP » est envoyé sur l'installation</li>
-        <li>Sous la demande du Responsable de la sécurité ou de l'état-major</li>
-      </ul>
-      <p class="warning">⚠ Uniquement si l'intervention est de votre ressort.</p>
-    </div>
-
-    <div class="auth-card">
-      <h3>FIR Pandora : Intervention</h3>
-      <span class="auth-type auth-restreint">Restreint</span>
-      <p>Vous avez le droit d'intervenir sous la demande de l'administrateur.</p>
-      <p><strong>Ou pour les raisons suivantes :</strong></p>
-      <ul class="conditions">
-        <li>Attaque du site par le Groupe d'Intérêt Boîte de Pandore</li>
-        <li>Si SCP-682 est déconfiné et qu'aucune équipe d'intervention est disponible ou qu'elle a été décimée</li>
-        <li>Si SCP-008 se propage dans plus de 90% du site et qu'aucune équipe d'intervention est disponible ou qu'elle a été décimée</li>
-        <li>Si l'unité FIM a été décimée</li>
-      </ul>
-      <p class="warning">⚠ Project Pandora ne peut pas intervenir sans autorisation, cela mènerait à sa désactivation immédiate.</p>
-    </div>
-
-    <div class="auth-card">
-      <h3>FIA Oméga-98 : Intervention</h3>
-      <span class="auth-type auth-restreint">Restreint</span>
-      <p>Vous avez le droit d'intervenir sous la demande du directeur des UIA <strong>uniquement</strong>.</p>
-    </div>
-
-
-    <h2 class="section-title">Haut Commandement</h2>
-
-    <div class="auth-card">
-      <h3>Overseer O5 : Intervention</h3>
-      <span class="auth-type auth-interdit">Interdit sans escorte</span>
-      <p>Interdiction formelle d'entrer sur site sans la F.I.M. Alpha-1 et raisons valides.</p>
-      <p class="warning">⚠ Veuillez contacter l'administrateur avant toute intervention.</p>
-    </div>
-
-    <div class="auth-card">
-      <h3>L'Administrateur : Intervention</h3>
-      <span class="auth-type auth-interdit">Interdit sans escorte</span>
-      <p>Interdiction formelle d'entrer sur site sans la F.I.M. Rēsh-1 et raisons valides.</p>
-    </div>
-
-    <div class="auth-card">
-      <h3>Délégation O5 : Intervention</h3>
-      <span class="auth-type auth-conditionnel">Conditionnel</span>
-      <p>Vous avez le droit d'intervenir sous la demande de votre Overseer 5 avec l'accord de l'administrateur.</p>
-    </div>
-
-
-    <h2 class="section-title">État-Major &amp; Administration</h2>
-
-    <div class="auth-card">
-      <h3>Overseer O4 : Intervention</h3>
-      <span class="auth-type auth-libre">Libre</span>
-      <p>Vous avez le droit d'intervenir sur l'installation sans raison ou justificatif.</p>
-    </div>
-
-    <div class="auth-card">
-      <h3>Overseer O3 : Intervention</h3>
-      <span class="auth-type auth-libre">Libre</span>
-      <p>Vous avez le droit d'intervenir sur l'installation sans raison ou justificatif.</p>
-    </div>
-
-    <div class="auth-card">
-      <h3>Chef d'État-Major : Intervention</h3>
-      <span class="auth-type auth-conditionnel">Conditionnel</span>
-      <p>Vous avez le droit d'intervenir uniquement sous l'accord des Overseer 5.</p>
-    </div>
-
-    <div class="auth-card">
-      <h3>Représentant de l'État-Major : Intervention</h3>
-      <span class="auth-type auth-conditionnel">Conditionnel</span>
-      <p>Vous avez le droit d'intervenir sous la demande des Overseer 3+ ou sous l'autorisation du Chef d'état-major.</p>
-    </div>
-
-    <div class="auth-card">
-      <h3>Architecte : Intervention</h3>
-      <span class="auth-type auth-libre">Libre</span>
-      <p>Vous avez le droit d'intervenir sur l'installation sans raison ou justificatif.</p>
-    </div>
-
-    <div class="auth-card">
-      <h3>Secrétaire Général : Intervention</h3>
-      <span class="auth-type auth-libre">Libre</span>
-      <p>Vous avez le droit d'intervenir sur l'installation sans raison ou justificatif.</p>
-    </div>
-
-    <div class="auth-card">
-      <h3>Superviseur Général (Sécurité / Médical / Scientifique / DIST) : Intervention</h3>
-      <span class="auth-type auth-libre">Libre</span>
-      <p>Vous avez le droit d'intervenir sur l'installation sans raison ou justificatif. Vous êtes sous l'autorité du Secrétaire Général si il est présent.</p>
-    </div>
-
-  </div>
-  <script src="/main.js" defer></script>
+<h2 class="section-title" data-i18n="gmod.motd.pandr.dext.intervention.page.h2">Forces d'Intervention Mobiles</h2>
+<div class="auth-card">
+<h3 data-i18n="gmod.motd.pandr.dext.intervention.auth_card.h3">F.I.M. : Intervention Générale</h3>
+<span class="auth-type auth-conditionnel">Conditionnel</span>
+<p data-i18n="gmod.motd.pandr.dext.intervention.auth_card.p">Vous avez le droit d'intervenir sous la demande du personnel de l'installation de niveau 3+.</p>
+<p data-i18n-html="gmod.motd.pandr.dext.intervention.auth_card.p2"><strong>Ou pour les raisons suivantes :</strong></p>
+<ul class="conditions">
+<li data-i18n="gmod.motd.pandr.dext.intervention.auth_card_conditions.li">Attaque du site par un Groupe d'Intérêt</li>
+<li data-i18n="gmod.motd.pandr.dext.intervention.auth_card_conditions.li2">Brèche générale du site</li>
+<li data-i18n="gmod.motd.pandr.dext.intervention.auth_card_conditions.li3">Rébellion générale / Prise d'otage d'un haut gradé par une Classe Delta</li>
+<li data-i18n="gmod.motd.pandr.dext.intervention.auth_card_conditions.li4">Si un « VIP » est envoyé sur l'installation</li>
+<li data-i18n="gmod.motd.pandr.dext.intervention.auth_card_conditions.li5">Sous la demande du Responsable de la sécurité ou de l'état-major</li>
+</ul>
+<p class="warning" data-i18n="gmod.motd.pandr.dext.intervention.auth_card.p3">⚠ Uniquement si l'intervention est de votre ressort.</p>
+</div>
+<div class="auth-card">
+<h3 data-i18n="gmod.motd.pandr.dext.intervention.auth_card.h32">FIR Pandora : Intervention</h3>
+<span class="auth-type auth-restreint">Restreint</span>
+<p data-i18n="gmod.motd.pandr.dext.intervention.auth_card.p4">Vous avez le droit d'intervenir sous la demande de l'administrateur.</p>
+<p data-i18n-html="gmod.motd.pandr.dext.intervention.auth_card.p5"><strong>Ou pour les raisons suivantes :</strong></p>
+<ul class="conditions">
+<li data-i18n="gmod.motd.pandr.dext.intervention.auth_card_conditions.li6">Attaque du site par le Groupe d'Intérêt Boîte de Pandore</li>
+<li data-i18n="gmod.motd.pandr.dext.intervention.auth_card_conditions.li7">Si SCP-682 est déconfiné et qu'aucune équipe d'intervention est disponible ou qu'elle a été décimée</li>
+<li data-i18n="gmod.motd.pandr.dext.intervention.auth_card_conditions.li8">Si SCP-008 se propage dans plus de 90% du site et qu'aucune équipe d'intervention est disponible ou qu'elle a été décimée</li>
+<li data-i18n="gmod.motd.pandr.dext.intervention.auth_card_conditions.li9">Si l'unité FIM a été décimée</li>
+</ul>
+<p class="warning" data-i18n="gmod.motd.pandr.dext.intervention.auth_card.p6">⚠ Project Pandora ne peut pas intervenir sans autorisation, cela mènerait à sa désactivation immédiate.</p>
+</div>
+<div class="auth-card">
+<h3 data-i18n="gmod.motd.pandr.dext.intervention.auth_card.h33">FIA Oméga-98 : Intervention</h3>
+<span class="auth-type auth-restreint">Restreint</span>
+<p data-i18n-html="gmod.motd.pandr.dext.intervention.auth_card.p7">Vous avez le droit d'intervenir sous la demande du directeur des UIA <strong>uniquement</strong>.</p>
+</div>
+<h2 class="section-title" data-i18n="gmod.motd.pandr.dext.intervention.page.h22">Haut Commandement</h2>
+<div class="auth-card">
+<h3 data-i18n="gmod.motd.pandr.dext.intervention.auth_card.h34">Overseer O5 : Intervention</h3>
+<span class="auth-type auth-interdit">Interdit sans escorte</span>
+<p data-i18n="gmod.motd.pandr.dext.intervention.auth_card.p8">Interdiction formelle d'entrer sur site sans la F.I.M. Alpha-1 et raisons valides.</p>
+<p class="warning" data-i18n="gmod.motd.pandr.dext.intervention.auth_card.p9">⚠ Veuillez contacter l'administrateur avant toute intervention.</p>
+</div>
+<div class="auth-card">
+<h3 data-i18n="gmod.motd.pandr.dext.intervention.auth_card.h35">L'Administrateur : Intervention</h3>
+<span class="auth-type auth-interdit">Interdit sans escorte</span>
+<p data-i18n="gmod.motd.pandr.dext.intervention.auth_card.p10">Interdiction formelle d'entrer sur site sans la F.I.M. Rēsh-1 et raisons valides.</p>
+</div>
+<div class="auth-card">
+<h3 data-i18n="gmod.motd.pandr.dext.intervention.auth_card.h36">Délégation O5 : Intervention</h3>
+<span class="auth-type auth-conditionnel">Conditionnel</span>
+<p data-i18n="gmod.motd.pandr.dext.intervention.auth_card.p11">Vous avez le droit d'intervenir sous la demande de votre Overseer 5 avec l'accord de l'administrateur.</p>
+</div>
+<h2 class="section-title" data-i18n="gmod.motd.pandr.dext.intervention.page.h23">État-Major &amp; Administration</h2>
+<div class="auth-card">
+<h3 data-i18n="gmod.motd.pandr.dext.intervention.auth_card.h37">Overseer O4 : Intervention</h3>
+<span class="auth-type auth-libre">Libre</span>
+<p data-i18n="gmod.motd.pandr.dext.intervention.auth_card.p12">Vous avez le droit d'intervenir sur l'installation sans raison ou justificatif.</p>
+</div>
+<div class="auth-card">
+<h3 data-i18n="gmod.motd.pandr.dext.intervention.auth_card.h38">Overseer O3 : Intervention</h3>
+<span class="auth-type auth-libre">Libre</span>
+<p data-i18n="gmod.motd.pandr.dext.intervention.auth_card.p13">Vous avez le droit d'intervenir sur l'installation sans raison ou justificatif.</p>
+</div>
+<div class="auth-card">
+<h3 data-i18n="gmod.motd.pandr.dext.intervention.auth_card.h39">Chef d'État-Major : Intervention</h3>
+<span class="auth-type auth-conditionnel">Conditionnel</span>
+<p data-i18n="gmod.motd.pandr.dext.intervention.auth_card.p14">Vous avez le droit d'intervenir uniquement sous l'accord des Overseer 5.</p>
+</div>
+<div class="auth-card">
+<h3 data-i18n="gmod.motd.pandr.dext.intervention.auth_card.h310">Représentant de l'État-Major : Intervention</h3>
+<span class="auth-type auth-conditionnel">Conditionnel</span>
+<p data-i18n="gmod.motd.pandr.dext.intervention.auth_card.p15">Vous avez le droit d'intervenir sous la demande des Overseer 3+ ou sous l'autorisation du Chef d'état-major.</p>
+</div>
+<div class="auth-card">
+<h3 data-i18n="gmod.motd.pandr.dext.intervention.auth_card.h311">Architecte : Intervention</h3>
+<span class="auth-type auth-libre">Libre</span>
+<p data-i18n="gmod.motd.pandr.dext.intervention.auth_card.p16">Vous avez le droit d'intervenir sur l'installation sans raison ou justificatif.</p>
+</div>
+<div class="auth-card">
+<h3 data-i18n="gmod.motd.pandr.dext.intervention.auth_card.h312">Secrétaire Général : Intervention</h3>
+<span class="auth-type auth-libre">Libre</span>
+<p data-i18n="gmod.motd.pandr.dext.intervention.auth_card.p17">Vous avez le droit d'intervenir sur l'installation sans raison ou justificatif.</p>
+</div>
+<div class="auth-card">
+<h3 data-i18n="gmod.motd.pandr.dext.intervention.auth_card.h313">Superviseur Général (Sécurité / Médical / Scientifique / DIST) : Intervention</h3>
+<span class="auth-type auth-libre">Libre</span>
+<p data-i18n="gmod.motd.pandr.dext.intervention.auth_card.p18">Vous avez le droit d'intervenir sur l'installation sans raison ou justificatif. Vous êtes sous l'autorité du Secrétaire Général si il est présent.</p>
+</div>
+</div>
+<script defer="" src="/main.js"></script>
+<script defer src="/antibot.js"></script>
 </body>
 </html>

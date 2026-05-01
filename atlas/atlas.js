@@ -36,7 +36,6 @@
   var CRITERIA_REASONS = (typeof atlasCriteriaReasons !== 'undefined') ? atlasCriteriaReasons : {};
   var CRITERIA_KEYS = ['freedom', 'hostility', 'security', 'rights', 'stability'];
 
-
   var currentView = (function () {
     try { return localStorage.getItem('atlas-view') || 'cards'; }
     catch (e) { return 'cards'; }
@@ -72,7 +71,6 @@
     return s;
   }
 
-
   function updateQuickStats() {
     var total = atlasData.length;
     var excellent = atlasData.filter(function (c) { return getOverallLevel(c) === 5; }).length;
@@ -89,7 +87,6 @@
     var el = document.getElementById(id);
     if (el) el.textContent = value;
   }
-
 
   function renderTable(data) {
     tbody.innerHTML = '';
@@ -122,7 +119,7 @@
 
       tr.tabIndex = 0;
       tr.setAttribute('role', 'button');
-      tr.setAttribute('aria-label', 'Voir les détails — ' + c.name);
+      tr.setAttribute('aria-label', 'Voir les détails  ' + c.name);
       tr.addEventListener('click', function () { openCountryModal(c); });
       tr.addEventListener('keydown', function (e) {
         if (e.key === 'Enter' || e.key === ' ') {
@@ -136,7 +133,6 @@
 
     tbody.appendChild(frag);
   }
-
 
   function renderCards(data) {
     grid.innerHTML = '';
@@ -181,7 +177,7 @@
 
       card.tabIndex = 0;
       card.setAttribute('role', 'button');
-      card.setAttribute('aria-label', 'Voir les détails — ' + c.name);
+      card.setAttribute('aria-label', 'Voir les détails  ' + c.name);
       card.addEventListener('click', function () { openCountryModal(c); });
       card.addEventListener('keydown', function (e) {
         if (e.key === 'Enter' || e.key === ' ') {
@@ -195,7 +191,6 @@
 
     grid.appendChild(frag);
   }
-
 
   function getFilteredAndSorted() {
     var search = (searchInput.value || '').trim().toLowerCase();
@@ -234,7 +229,6 @@
     return filtered;
   }
 
-
   function applyView() {
     viewButtons.forEach(function (b) {
       b.classList.toggle('active', b.dataset.view === currentView);
@@ -272,7 +266,6 @@
     else renderTable(data);
   }
 
-
   searchInput.addEventListener('input', refresh);
   sortSelect.addEventListener('change', refresh);
   continentSelect.addEventListener('change', refresh);
@@ -285,7 +278,6 @@
       refresh();
     });
   });
-
 
   var modal = document.getElementById('country-modal');
   var modalClose = document.getElementById('country-modal-close');
@@ -321,7 +313,7 @@
     modalFlag.textContent = getFlagEmoji(c.code);
     modalTitle.textContent = c.name;
     modalContinent.textContent = continentLabels[c.continent] || c.continent;
-    modalOverall.textContent = overall.toFixed(1) + '/5 — ' + (levelLabels[overallLevel] || '');
+    modalOverall.textContent = overall.toFixed(1) + '/5  ' + (levelLabels[overallLevel] || '');
     modalOverall.className = 'atlas-modal-overall level-badge level-' + overallLevel;
 
     modalSummary.textContent = (specific && specific.summary)

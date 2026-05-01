@@ -1,9 +1,10 @@
 <!DOCTYPE html>
+
 <html lang="fr" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <meta name="description" content="Palette de couleurs — Explorez, convertissez et générez des palettes harmonieuses. 100% client-side.">
+  <meta name="description" content="Palette de couleurs  Explorez, convertissez et générez des palettes harmonieuses. 100% client-side.">
   <meta name="theme-color" content="#0ea5e9">
   <title>Palette de Couleurs | VentiStudio Pro</title>
   <link rel="stylesheet" href="/style.css">
@@ -233,7 +234,7 @@
   <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
 
   <meta property="og:title" content="Palette de Couleurs | VentiStudio Pro">
-  <meta property="og:description" content="Palette de couleurs — Explorez, convertissez et générez des palettes harmonieuses. 100% client-side.">
+  <meta property="og:description" content="Palette de couleurs  Explorez, convertissez et générez des palettes harmonieuses. 100% client-side.">
   <meta property="og:url" content="https://ventistudio.eu/domain/pro/colors/">
   <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
   <meta property="og:type" content="website">
@@ -241,7 +242,7 @@
 
   <script>
     (function() {
-      var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      var t; try { t = localStorage.getItem('theme'); } catch (_) {} if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
@@ -411,7 +412,6 @@
         <div class="conv-grid" id="convGrid"></div>
       </div>
 
-
       <div class="panel">
         <h3>🌈 Harmonies</h3>
         <div class="harmony-btns" id="harmonyBtns">
@@ -424,7 +424,6 @@
         </div>
         <div class="palette-bar" id="paletteBar"></div>
       </div>
-
 
       <div class="panel">
         <h3>🔍 Vérificateur de Contraste (WCAG)</h3>
@@ -440,11 +439,11 @@
             <div class="small">Petit texte d'exemple pour vérifier la lisibilité.</div>
           </div>
           <div class="contrast-result">
-            <div>Ratio : <span class="contrast-ratio" id="contrastRatio">—</span></div>
-            <div>AA Normal : <span class="wcag-badge" id="wcagAANormal">—</span></div>
-            <div>AA Large : <span class="wcag-badge" id="wcagAALarge">—</span></div>
-            <div>AAA Normal : <span class="wcag-badge" id="wcagAAANormal">—</span></div>
-            <div>AAA Large : <span class="wcag-badge" id="wcagAAALarge">—</span></div>
+            <div>Ratio : <span class="contrast-ratio" id="contrastRatio"></span></div>
+            <div>AA Normal : <span class="wcag-badge" id="wcagAANormal"></span></div>
+            <div>AA Large : <span class="wcag-badge" id="wcagAALarge"></span></div>
+            <div>AAA Normal : <span class="wcag-badge" id="wcagAAANormal"></span></div>
+            <div>AAA Large : <span class="wcag-badge" id="wcagAAALarge"></span></div>
           </div>
         </div>
       </div>
@@ -754,5 +753,6 @@
       });
     })();
   </script>
+<script defer src="/antibot.js"></script>
 </body>
 </html>

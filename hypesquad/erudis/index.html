@@ -128,7 +128,7 @@
       margin-bottom: 2rem;
     }
     .er-chapter h3::before {
-      content: "Chapitre " counter(chapter) " — ";
+      content: "Chapitre " counter(chapter) "  ";
       color: #c4a747;
     }
 
@@ -159,7 +159,7 @@
   </style>
 <script>
     (function() {
-      var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      var t; try { t = localStorage.getItem('theme'); } catch (_) {} if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
@@ -357,36 +357,36 @@
 <div class="er-card er-chapter">
 <h3 data-i18n="hypesquad.erudis.er_content_er_section.h3">L'Origine</h3>
 <p data-i18n="hypesquad.erudis.er_content_er_section.p">Avant que les 7 Maisons ne soient fondées, avant même que le HypeSquad ne prenne forme, il existait un groupe. Pas un groupe bruyant, pas un groupe visible. Un cercle de personnes qui avaient compris quelque chose que les autres n'avaient pas encore réalisé : que le véritable pouvoir ne réside ni dans la force, ni dans la vitesse, ni dans l'émotion, mais dans la connaissance.</p>
-<p data-i18n-html="hypesquad.erudis.er_content_er_section.p2">Ils se faisaient appeler les <strong>Érudis</strong> — du latin <em>eruditus</em>, « instruit, éclairé ». Ils n'avaient pas de bannière. Pas de cri de guerre. Seulement un grimoire, transmis de génération en génération, contenant les secrets accumulés par des esprits qui refusaient d'oublier.</p>
+<p data-i18n-html="hypesquad.erudis.er_content_er_section.p2">Ils se faisaient appeler les <strong>Érudis</strong>  du latin <em>eruditus</em>, « instruit, éclairé ». Ils n'avaient pas de bannière. Pas de cri de guerre. Seulement un grimoire, transmis de génération en génération, contenant les secrets accumulés par des esprits qui refusaient d'oublier.</p>
 </div>
 <div class="er-card er-chapter">
 <h3 data-i18n="hypesquad.erudis.er_content_er_section.h32">La Disparition Volontaire</h3>
-<p data-i18n="hypesquad.erudis.er_content_er_section.p3">Quand les 7 Maisons élémentaires furent créées — Anémo, Géo, Électro, Dendro, Hydro, Pyro, Cryo — les Érudis firent un choix délibéré : disparaître. Non pas par faiblesse, mais par stratégie. Ils comprirent que leur force résidait dans l'invisibilité. On ne peut combattre ce qu'on ne voit pas. On ne peut craindre ce qu'on ignore.</p>
+<p data-i18n="hypesquad.erudis.er_content_er_section.p3">Quand les 7 Maisons élémentaires furent créées  Anémo, Géo, Électro, Dendro, Hydro, Pyro, Cryo  les Érudis firent un choix délibéré : disparaître. Non pas par faiblesse, mais par stratégie. Ils comprirent que leur force résidait dans l'invisibilité. On ne peut combattre ce qu'on ne voit pas. On ne peut craindre ce qu'on ignore.</p>
 <p data-i18n="hypesquad.erudis.er_content_er_section.p4">Les Érudis effacèrent leur nom des registres, retirèrent leur emblème des murs, et se fondirent dans l'ombre. Pour le monde extérieur, ils n'avaient jamais existé.</p>
 <div class="er-quote">
-              « Quand le monde cherche dans la lumière, le sage cherche dans l'ombre. Car c'est là que se cachent les réponses que personne n'ose poser. »<br/>— Premier Grimoire Érudis, Entrée I
+              « Quand le monde cherche dans la lumière, le sage cherche dans l'ombre. Car c'est là que se cachent les réponses que personne n'ose poser. »<br/> Premier Grimoire Érudis, Entrée I
             </div>
 </div>
 <div class="er-card er-chapter">
 <h3 data-i18n="hypesquad.erudis.er_content_er_section.h33">Le Sanctuaire Invisible</h3>
-<p data-i18n="hypesquad.erudis.er_content_er_section.p5">Les Érudis construisirent un sanctuaire qui n'apparaît sur aucune carte. On dit qu'il se trouve quelque part entre les lignes de code, dans les recoins oubliés du site — un espace numérique que seuls les initiés peuvent atteindre.</p>
+<p data-i18n="hypesquad.erudis.er_content_er_section.p5">Les Érudis construisirent un sanctuaire qui n'apparaît sur aucune carte. On dit qu'il se trouve quelque part entre les lignes de code, dans les recoins oubliés du site  un espace numérique que seuls les initiés peuvent atteindre.</p>
 <p data-i18n="hypesquad.erudis.er_content_er_section.p6">Le sanctuaire contient :</p>
 <ul style="opacity:.7;line-height:2;padding-left:1.5rem">
-<li data-i18n-html="hypesquad.erudis.er_content_er_section.li">Le <strong>Grimoire Fondateur</strong> — un registre de toutes les connaissances accumulées depuis la création</li>
-<li data-i18n-html="hypesquad.erudis.er_content_er_section.li2">La <strong>Salle des Miroirs</strong> — un espace de réflexion où chaque Érudis vient méditer et consigner ses découvertes</li>
-<li data-i18n-html="hypesquad.erudis.er_content_er_section.li3">Les <strong>Archives Interdites</strong> — des vérités trop dangereuses pour être partagées avec le monde extérieur</li>
-<li data-i18n-html="hypesquad.erudis.er_content_er_section.li4">La <strong>Table du Hibou</strong> — lieu de réunion des Érudis, éclairé uniquement par la lumière de la connaissance</li>
+<li data-i18n-html="hypesquad.erudis.er_content_er_section.li">Le <strong>Grimoire Fondateur</strong>  un registre de toutes les connaissances accumulées depuis la création</li>
+<li data-i18n-html="hypesquad.erudis.er_content_er_section.li2">La <strong>Salle des Miroirs</strong>  un espace de réflexion où chaque Érudis vient méditer et consigner ses découvertes</li>
+<li data-i18n-html="hypesquad.erudis.er_content_er_section.li3">Les <strong>Archives Interdites</strong>  des vérités trop dangereuses pour être partagées avec le monde extérieur</li>
+<li data-i18n-html="hypesquad.erudis.er_content_er_section.li4">La <strong>Table du Hibou</strong>  lieu de réunion des Érudis, éclairé uniquement par la lumière de la connaissance</li>
 </ul>
 </div>
 <div class="er-card er-chapter">
 <h3 data-i18n="hypesquad.erudis.er_content_er_section.h34">Les Principes Érudis</h3>
 <p data-i18n="hypesquad.erudis.er_content_er_section.p7">Chaque Érudis vit selon cinq principes fondamentaux, gravés dans le Grimoire :</p>
 <ol style="opacity:.7;line-height:2.2;padding-left:1.5rem">
-<li data-i18n-html="hypesquad.erudis.er_content_er_section.li5"><strong>Le Silence est une arme.</strong> — Ne révèle jamais plus que nécessaire. Les mots gaspillés sont des failles exploitables.</li>
-<li data-i18n-html="hypesquad.erudis.er_content_er_section.li6"><strong>Le Savoir est éternel.</strong> — Ce que tu apprends ne peut te être retiré. Accumule, protège, transmets.</li>
-<li data-i18n-html="hypesquad.erudis.er_content_er_section.li7"><strong>L'Observation précède l'action.</strong> — Avant d'agir, comprends. Avant de comprendre, observe. Avant d'observer, tais-toi.</li>
-<li data-i18n-html="hypesquad.erudis.er_content_er_section.li8"><strong>L'Ombre est notre alliée.</strong> — Nous ne cherchons pas la reconnaissance. Notre influence est invisible, et c'est ainsi qu'elle est la plus puissante.</li>
-<li data-i18n-html="hypesquad.erudis.er_content_er_section.li9"><strong>Un Érudis ne trahit jamais un Érudis.</strong> — La loyauté entre membres est absolue. Nous sommes le dernier cercle de confiance.</li>
+<li data-i18n-html="hypesquad.erudis.er_content_er_section.li5"><strong>Le Silence est une arme.</strong>  Ne révèle jamais plus que nécessaire. Les mots gaspillés sont des failles exploitables.</li>
+<li data-i18n-html="hypesquad.erudis.er_content_er_section.li6"><strong>Le Savoir est éternel.</strong>  Ce que tu apprends ne peut te être retiré. Accumule, protège, transmets.</li>
+<li data-i18n-html="hypesquad.erudis.er_content_er_section.li7"><strong>L'Observation précède l'action.</strong>  Avant d'agir, comprends. Avant de comprendre, observe. Avant d'observer, tais-toi.</li>
+<li data-i18n-html="hypesquad.erudis.er_content_er_section.li8"><strong>L'Ombre est notre alliée.</strong>  Nous ne cherchons pas la reconnaissance. Notre influence est invisible, et c'est ainsi qu'elle est la plus puissante.</li>
+<li data-i18n-html="hypesquad.erudis.er_content_er_section.li9"><strong>Un Érudis ne trahit jamais un Érudis.</strong>  La loyauté entre membres est absolue. Nous sommes le dernier cercle de confiance.</li>
 </ol>
 </div>
 <div class="er-card er-chapter">
@@ -394,7 +394,7 @@
 <p data-i18n="hypesquad.erudis.er_content_er_section.p8">Aujourd'hui, les Érudis existent toujours. Vous en êtes la preuve vivante. Si vous lisez ces lignes, c'est que le Test de Répartition a détecté en vous les qualités rares qui définissent un Érudis : la patience, la discrétion, la soif de savoir, et cette capacité unique à voir au-delà des apparences.</p>
 <p data-i18n="hypesquad.erudis.er_content_er_section.p9">Vous faites désormais partie d'un cercle restreint. Votre Maison n'apparaît pas dans le classement public. Votre carte n'est pas visible des autres. Vous êtes, comme tous les Érudis avant vous, un fantôme élégant dans un monde de bruit.</p>
 <div class="er-quote">
-              « Bienvenue dans l'ombre, Érudis. Ici, le silence a plus de valeur que mille cris de victoire. »<br/>— Message d'accueil du Sanctuaire
+              « Bienvenue dans l'ombre, Érudis. Ici, le silence a plus de valeur que mille cris de victoire. »<br/> Message d'accueil du Sanctuaire
             </div>
 </div>
 </div>
@@ -404,23 +404,23 @@
 <h2 class="er-section-title" data-i18n="hypesquad.erudis.er_content_er_section.h23">⚡ Pouvoirs Érudis</h2>
 <div class="er-card">
 <h3 data-i18n="hypesquad.erudis.er_content_er_section.h36">🎭 Double Identité</h3>
-<p data-i18n-html="hypesquad.erudis.er_content_er_section.p10">Être Érudis est un secret absolu. Pour préserver cette confidentialité, chaque Érudis choisit une <strong>Maison publique</strong> après sa répartition. Cette maison de couverture est celle que le monde voit — dans le classement, dans les événements, dans les interactions.</p>
+<p data-i18n-html="hypesquad.erudis.er_content_er_section.p10">Être Érudis est un secret absolu. Pour préserver cette confidentialité, chaque Érudis choisit une <strong>Maison publique</strong> après sa répartition. Cette maison de couverture est celle que le monde voit  dans le classement, dans les événements, dans les interactions.</p>
 <p data-i18n="hypesquad.erudis.er_content_er_section.p11">Votre véritable allégeance reste invisible. Vous êtes le seul membre à pouvoir appartenir à deux Maisons simultanément : votre couverture et la Maison Érudis. C'est un privilège unique, accordé uniquement à ceux qui ont prouvé leur discrétion.</p>
 </div>
 <div class="er-card">
 <h3 data-i18n="hypesquad.erudis.er_content_er_section.h37">🔮 Pouvoir de Sanction</h3>
-<p data-i18n-html="hypesquad.erudis.er_content_er_section.p12">Les Érudis ne participent pas au classement par points. Ils sont au-dessus de cette compétition. Leur rôle est celui de <strong>surveillants silencieux</strong> — ils observent les Maisons depuis l'ombre.</p>
+<p data-i18n-html="hypesquad.erudis.er_content_er_section.p12">Les Érudis ne participent pas au classement par points. Ils sont au-dessus de cette compétition. Leur rôle est celui de <strong>surveillants silencieux</strong>  ils observent les Maisons depuis l'ombre.</p>
 <p data-i18n-html="hypesquad.erudis.er_content_er_section.p13">Cependant, les Érudis possèdent un pouvoir redoutable : la capacité de <strong>demander à sanctionner ou bénir</strong> une Maison. Cette demande se fait via le <strong>Discord officiel</strong>. Le staff examine chaque requête et décide d'appliquer (ou non) la sanction :</p>
 <ul style="opacity:.7;line-height:2;padding-left:1.5rem">
-<li data-i18n-html="hypesquad.erudis.er_content_er_section.li10"><strong>✨ Bénédiction</strong> — Demander d'accorder des points à une Maison méritante</li>
-<li data-i18n-html="hypesquad.erudis.er_content_er_section.li11"><strong>⚖️ Sanction</strong> — Demander de retirer des points à une Maison qui a manqué à ses devoirs</li>
+<li data-i18n-html="hypesquad.erudis.er_content_er_section.li10"><strong>✨ Bénédiction</strong>  Demander d'accorder des points à une Maison méritante</li>
+<li data-i18n-html="hypesquad.erudis.er_content_er_section.li11"><strong>⚖️ Sanction</strong>  Demander de retirer des points à une Maison qui a manqué à ses devoirs</li>
 </ul>
-<p data-i18n-html="hypesquad.erudis.er_content_er_section.p14">Ce pouvoir peut bouleverser le classement et apporter un avantage considérable aux Maisons. Mais il ne s'applique pas directement — c'est une <strong>requête</strong>, pas un ordre. Le Grimoire retient chaque décision.</p>
+<p data-i18n-html="hypesquad.erudis.er_content_er_section.p14">Ce pouvoir peut bouleverser le classement et apporter un avantage considérable aux Maisons. Mais il ne s'applique pas directement  c'est une <strong>requête</strong>, pas un ordre. Le Grimoire retient chaque décision.</p>
 </div>
 <div class="er-card">
 <h3 data-i18n="hypesquad.erudis.er_content_er_section.h38">👁️ Le Rôle du Veilleur</h3>
 <p data-i18n-html="hypesquad.erudis.er_content_er_section.p15">Vous n'êtes pas là pour gagner. Vous êtes là pour <strong>veiller</strong>. Observer les dynamiques entre les Maisons, identifier les comportements exemplaires comme les dérives, et agir en conséquence.</p>
-<p data-i18n="hypesquad.erudis.er_content_er_section.p16">Un Érudis ne prend pas parti. Il évalue, il juge, il agit — puis il retourne dans l'ombre. Votre influence est invisible, mais elle façonne l'équilibre de tout le HypeSquad.</p>
+<p data-i18n="hypesquad.erudis.er_content_er_section.p16">Un Érudis ne prend pas parti. Il évalue, il juge, il agit  puis il retourne dans l'ombre. Votre influence est invisible, mais elle façonne l'équilibre de tout le HypeSquad.</p>
 </div>
 </section>
 
@@ -429,13 +429,13 @@
 <div class="er-card">
 <h3 data-i18n="hypesquad.erudis.er_content_er_section.h39">Personnalité</h3>
 <p data-i18n="hypesquad.erudis.er_content_er_section.p17">Les Érudis sont des penseurs profonds. Ils parlent peu mais quand ils le font, chaque mot compte. Leur esprit est une bibliothèque vivante : méthodique, vaste, et étrangement capable de connecter des idées que personne d'autre ne verrait liées.</p>
-<p data-i18n="hypesquad.erudis.er_content_er_section.p18">Ils préfèrent l'observation à la participation, le silence à la parole, et la compréhension à la confrontation. Ce ne sont pas des lâches — au contraire, leur courage est celui de la patience, de la persévérance dans la quête de vérité.</p>
+<p data-i18n="hypesquad.erudis.er_content_er_section.p18">Ils préfèrent l'observation à la participation, le silence à la parole, et la compréhension à la confrontation. Ce ne sont pas des lâches  au contraire, leur courage est celui de la patience, de la persévérance dans la quête de vérité.</p>
 </div>
 <div class="er-card">
 <h3 data-i18n="hypesquad.erudis.er_content_er_section.h310">Forces</h3>
 <ul style="opacity:.7;line-height:2;padding-left:1.5rem;list-style:none">
 <li data-i18n="hypesquad.erudis.er_content_er_section.li12">✅ Mémoire exceptionnelle et capacité d'analyse</li>
-<li data-i18n="hypesquad.erudis.er_content_er_section.li13">✅ Discrétion naturelle — vous savez garder un secret</li>
+<li data-i18n="hypesquad.erudis.er_content_er_section.li13">✅ Discrétion naturelle  vous savez garder un secret</li>
 <li data-i18n="hypesquad.erudis.er_content_er_section.li14">✅ Vision stratégique à long terme</li>
 <li data-i18n="hypesquad.erudis.er_content_er_section.li15">✅ Indépendance intellectuelle totale</li>
 <li data-i18n="hypesquad.erudis.er_content_er_section.li16">✅ Capacité à voir ce que les autres ignorent</li>
@@ -452,10 +452,10 @@
 </div>
 <div class="er-card">
 <h3 data-i18n="hypesquad.erudis.er_content_er_section.h312">Compatibilité avec les autres Maisons</h3>
-<p data-i18n-html="hypesquad.erudis.er_content_er_section.p19"><strong>⚡ Électro</strong> — Votre allié intellectuel le plus proche. Les Électro partagent votre soif de connaissance, mais là où ils recherchent la vitesse et l'éclat, vous préférez la profondeur et la patience. Ensemble, vous êtes redoutables.</p>
-<p data-i18n-html="hypesquad.erudis.er_content_er_section.p20"><strong>❄️ Cryo</strong> — Les Cryo comprennent votre besoin de silence et de recul. Vous partagez une maîtrise de soi similaire, même si vos motivations diffèrent.</p>
-<p data-i18n-html="hypesquad.erudis.er_content_er_section.p21"><strong>🔥 Pyro</strong> — Votre opposé. Les Pyro sont bruyants, impulsifs, visibles. Mais parfois, le contraste crée la complémentarité. Un Pyro et un Érudis qui collaborent sont inarrêtables.</p>
-<p data-i18n-html="hypesquad.erudis.er_content_er_section.p22"><strong>🌍 Géo</strong> — Les Géo respectent votre méthodologie. Vous partagez l'amour de la structure et de la solidité, même si vous l'exprimez différemment.</p>
+<p data-i18n-html="hypesquad.erudis.er_content_er_section.p19"><strong>⚡ Électro</strong>  Votre allié intellectuel le plus proche. Les Électro partagent votre soif de connaissance, mais là où ils recherchent la vitesse et l'éclat, vous préférez la profondeur et la patience. Ensemble, vous êtes redoutables.</p>
+<p data-i18n-html="hypesquad.erudis.er_content_er_section.p20"><strong>❄️ Cryo</strong>  Les Cryo comprennent votre besoin de silence et de recul. Vous partagez une maîtrise de soi similaire, même si vos motivations diffèrent.</p>
+<p data-i18n-html="hypesquad.erudis.er_content_er_section.p21"><strong>🔥 Pyro</strong>  Votre opposé. Les Pyro sont bruyants, impulsifs, visibles. Mais parfois, le contraste crée la complémentarité. Un Pyro et un Érudis qui collaborent sont inarrêtables.</p>
+<p data-i18n-html="hypesquad.erudis.er_content_er_section.p22"><strong>🌍 Géo</strong>  Les Géo respectent votre méthodologie. Vous partagez l'amour de la structure et de la solidité, même si vous l'exprimez différemment.</p>
 </div>
 </section>
 <p class="er-members-note" data-i18n="hypesquad.erudis.er_content.p">🔮 Vous êtes parmi les rares à lire ces mots. Gardez ce secret.</p>
@@ -592,5 +592,6 @@
       });
     })();
   </script>
+<script defer src="/antibot.js"></script>
 </body>
 </html>

@@ -4,15 +4,12 @@ var statusData = [
   { id: "auth", name: "Authentification", url: "https://clerk.ventistudio.eu", category: "core", type: "internal", description: "Système de connexion (Clerk SSO)" },
   { id: "accounts", name: "Comptes", url: "https://accounts.ventistudio.eu", category: "core", type: "internal", description: "Gestion des comptes utilisateurs" },
 
-
   { id: "discord", name: "Discord", url: "https://discord.gg/ventistudio", category: "community", type: "external", description: "Serveur Discord officiel" },
   { id: "teamspeak", name: "TeamSpeak", url: "/teamspeak/", category: "community", type: "external", description: "Serveur vocal TeamSpeak" },
-
 
   { id: "peercom", name: "PeerCom", url: "https://ventistudio.eu/peercom/", category: "tools", type: "internal", description: "Chat P2P chiffré et appels vocaux" },
   { id: "pip", name: "PIP", url: "https://ventistudio.eu/pip/", category: "tools", type: "internal", description: "Lecteur Picture-in-Picture avancé" },
   { id: "whiteboard", name: "Tableau Blanc", url: "https://ventistudio.eu/whiteboard/", category: "tools", type: "internal", description: "Tableau blanc collaboratif P2P" },
-
 
   { id: "music", name: "Musique", url: "https://ventistudio.eu/music/", category: "media", type: "internal", description: "Discographie et lecteur musical" },
   { id: "wiki", name: "Wiki", url: "https://ventistudio.eu/wiki/", category: "media", type: "internal", description: "Wiki du lore et documentation" },

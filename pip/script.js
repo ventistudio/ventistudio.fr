@@ -86,15 +86,11 @@ const ScreenProtection = (() => {
   let autoMode = true;
   const overlay = document.getElementById('screen-capture-overlay');
 
-
-
   const QRMatrix = (() => {
-
 
     const generate = (text) => {
       const size = 25;
       const matrix = Array.from({ length: size }, () => Array(size).fill(false));
-
 
       const drawFinder = (row, col) => {
         for (let r = 0; r < 7; r++) {
@@ -109,18 +105,15 @@ const ScreenProtection = (() => {
       drawFinder(0, size - 7);
       drawFinder(size - 7, 0);
 
-
       for (let i = 8; i < size - 8; i++) {
         matrix[6][i] = i % 2 === 0;
         matrix[i][6] = i % 2 === 0;
       }
 
-
       let hash = 0;
       for (let i = 0; i < text.length; i++) {
         hash = ((hash << 5) - hash + text.charCodeAt(i)) | 0;
       }
-
 
       let bitIndex = 0;
       const textBytes = new TextEncoder().encode(text);
@@ -153,7 +146,6 @@ const ScreenProtection = (() => {
     return { generate };
   })();
 
-
   const generateCode = (mediaData) => {
     const timestamp = Date.now().toString(36);
     const random = Math.random().toString(36).substring(2, 8);
@@ -174,7 +166,6 @@ const ScreenProtection = (() => {
     return currentCode;
   };
 
-
   const getMediaData = () => {
     const media = document.getElementById('active-media');
     if (!media) return null;
@@ -188,11 +179,9 @@ const ScreenProtection = (() => {
     };
   };
 
-
   const renderQR = (code) => {
     const player = document.getElementById('player-container');
     if (!player) return;
-
 
     const oldCanvas = player.querySelector('.qr-watermark');
     if (oldCanvas) oldCanvas.remove();
@@ -233,7 +222,6 @@ const ScreenProtection = (() => {
     player.appendChild(canvas);
   };
 
-
   const removeQR = () => {
     const qr = document.querySelector('.qr-watermark');
     if (qr) qr.remove();
@@ -256,7 +244,6 @@ const ScreenProtection = (() => {
     const btn = document.getElementById('protection-toggle');
     if (btn) btn.classList.toggle('active', isProtected);
 
-
     const panel = document.getElementById('protection-panel');
     if (panel) panel.classList.toggle('hidden', !isProtected);
 
@@ -266,7 +253,6 @@ const ScreenProtection = (() => {
   const applyProtection = () => {
     const player = document.getElementById('player-container');
     if (!player) return;
-
 
     if (!player.querySelector('.watermark-pattern')) {
       const watermark = document.createElement('div');
@@ -279,7 +265,6 @@ const ScreenProtection = (() => {
       player.style.position = 'relative';
       player.appendChild(watermark);
     }
-
 
     if (autoMode || !currentCode) {
       regenerateCode();
@@ -395,7 +380,6 @@ const ScreenProtection = (() => {
     autoMode = localStorage.getItem('pip-protection-auto') !== 'false';
     updateUI();
 
-
     let lastMediaSrc = null;
     let debounceTimer = null;
     const obs = new MutationObserver(() => {
@@ -449,7 +433,6 @@ const AudioVisualizer = (() => {
       const ctx = getAudioContext();
       if (!ctx) return false;
 
-
       if (currentAudio && currentAudio !== audio) {
         stop();
         analyser = null;
@@ -458,7 +441,6 @@ const AudioVisualizer = (() => {
       }
 
       currentAudio = audio;
-
 
       if (!analyser) {
         analyser = ctx.createAnalyser();
@@ -469,7 +451,6 @@ const AudioVisualizer = (() => {
         analyser2 = ctx.createAnalyser();
         analyser2.fftSize = 2048;
       }
-
 
       if (!source) {
         try {
@@ -564,7 +545,6 @@ const AudioVisualizer = (() => {
 
       ctx.lineTo(width, centerY);
       ctx.stroke();
-
 
       ctx.strokeStyle = 'rgba(99, 102, 241, 0.3)';
       x = 0;
@@ -722,15 +702,12 @@ const NvidiaEnhance = (() => {
   const applyEnhancements = (videoElement) => {
     if (!videoElement || videoElement.tagName !== 'VIDEO') return false;
 
-
     videoElement.style.willChange = 'transform';
     videoElement.style.transform = 'translateZ(0)';
-
 
     if ('requestVideoFrameCallback' in HTMLVideoElement.prototype) {
       videoElement.setAttribute('disablePictureInPicture', 'false');
     }
-
 
     if (isActive) {
       videoElement.dataset.nvidiaFilter = 'contrast(1.05) saturate(1.1) brightness(1.02)';
@@ -760,7 +737,6 @@ const NvidiaEnhance = (() => {
       if (media) removeEnhancements(media);
     }
 
-
     const btn = document.getElementById('nvidia-enhance');
     if (btn) btn.classList.toggle('active', isActive);
 
@@ -785,7 +761,6 @@ const NvidiaEnhance = (() => {
     } else {
       btn.title = 'Accélération GPU non disponible';
     }
-
 
     const saved = localStorage.getItem('pip-nvidia-enhance') === 'true';
     if (saved && gpu.supported) {
@@ -835,7 +810,6 @@ const AudioEqualizer = (() => {
     const ctx = getContext();
     if (!ctx) return;
 
-
     if (source) {
       try { source.disconnect(); } catch (_) {}
     }
@@ -845,7 +819,6 @@ const AudioEqualizer = (() => {
     try {
       source = ctx.createMediaElementSource(mediaElement);
     } catch (e) {
-
 
       console.warn('EQ: source already connected, skipping');
       return;
@@ -1045,7 +1018,6 @@ const MediaManager = (() => {
       `;
       titleDiv.textContent = media.title;
 
-
       const visContainer = document.createElement('div');
       visContainer.style.cssText = `
         display: flex;
@@ -1232,7 +1204,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   ScreenProtection.init();
   await MediaManager.init();
 
-
   const fileInput = document.getElementById('file-input');
   const fileBtn = document.getElementById('file-input-btn');
   const dropZone = document.getElementById('drop-zone');
@@ -1253,7 +1224,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     Array.from(e.dataTransfer.files).forEach(file => MediaManager.addLocalFile(file));
   });
 
-
   document.getElementById('url-form').addEventListener('submit', async (e) => {
     e.preventDefault();
     const url = document.getElementById('url-input').value;
@@ -1261,7 +1231,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     await MediaManager.addURL(url, title);
     e.target.reset();
   });
-
 
   document.querySelectorAll('.upload-tab').forEach(tab => {
     tab.addEventListener('click', () => {
@@ -1272,7 +1241,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   });
 
-
   document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -1280,7 +1248,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       MediaManager.renderPlaylist();
     });
   });
-
 
   document.getElementById('pip-toggle').addEventListener('click', async () => {
     try {
@@ -1325,7 +1292,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   });
 
-
   const volumeSlider = document.getElementById('volume-slider');
   const volumeToggle = document.getElementById('volume-toggle');
   const volumeValue = document.getElementById('volume-value');
@@ -1364,7 +1330,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   });
 
-
   const observer = new MutationObserver(() => {
     const media = document.getElementById('active-media');
     if (media) {
@@ -1373,11 +1338,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
   observer.observe(document.getElementById('player-container'), { childList: true, subtree: true });
 
-
   document.getElementById('protection-toggle').addEventListener('click', () => {
     ScreenProtection.toggle();
   });
-
 
   const protAutoBtn = document.getElementById('protection-auto-btn');
   const protManualBtn = document.getElementById('protection-manual-btn');
@@ -1389,7 +1352,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     protManualBtn.classList.toggle('active', !auto);
     protManualGroup.classList.toggle('hidden', auto);
   };
-
 
   setProtectionMode(ScreenProtection.getAutoMode());
 
@@ -1418,23 +1380,19 @@ document.addEventListener('DOMContentLoaded', async () => {
     ScreenProtection.regenerateCode();
   });
 
-
   NvidiaEnhance.init();
   document.getElementById('nvidia-enhance').addEventListener('click', () => {
     NvidiaEnhance.toggle();
   });
 
-
   const nvidiaObserver = new MutationObserver(() => NvidiaEnhance.onMediaLoaded());
   nvidiaObserver.observe(document.getElementById('player-container'), { childList: true, subtree: true });
-
 
   document.getElementById('enhance-toggle').addEventListener('click', () => {
     const panel = document.getElementById('enhance-panel');
     panel.classList.toggle('hidden');
     document.getElementById('enhance-toggle').classList.toggle('active', !panel.classList.contains('hidden'));
   });
-
 
   document.querySelectorAll('.speed-btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -1444,7 +1402,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       btn.classList.add('active');
     });
   });
-
 
   const filterIds = ['brightness', 'contrast', 'saturate', 'hue', 'blur'];
   const buildUserFilter = () => {
@@ -1477,7 +1434,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   });
 
-
   let loopMode = 'none';
   let abPointA = null;
   let abPointB = null;
@@ -1491,7 +1447,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       const media = document.getElementById('active-media');
       const abInfo = document.getElementById('ab-loop-info');
-
 
       if (abCheckInterval) { clearInterval(abCheckInterval); abCheckInterval = null; }
       abPointA = null;
@@ -1522,7 +1477,6 @@ document.addEventListener('DOMContentLoaded', async () => {
           }
         };
 
-
         if (media) {
           media._abHandler = setPoint;
           media.addEventListener('click', setPoint);
@@ -1531,7 +1485,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (media) media.loop = false;
         abInfo.classList.add('hidden');
       }
-
 
       if (loopMode !== 'ab' && media && media._abHandler) {
         media.removeEventListener('click', media._abHandler);
@@ -1547,7 +1500,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('ab-loop-status').textContent = 'Cliquez pour définir le point A';
   });
 
-
   document.getElementById('screenshot-btn').addEventListener('click', () => {
     const media = document.getElementById('active-media');
     if (!media || media.tagName !== 'VIDEO') return;
@@ -1560,7 +1512,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     link.href = canvas.toDataURL('image/png');
     link.click();
   });
-
 
   let currentRotation = 0;
   document.getElementById('rotate-btn').addEventListener('click', () => {
@@ -1577,7 +1528,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   });
 
-
   let isFlipped = false;
   document.getElementById('flip-h-btn').addEventListener('click', () => {
     const media = document.getElementById('active-media');
@@ -1588,12 +1538,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('flip-h-btn').classList.toggle('active', isFlipped);
   });
 
-
   document.getElementById('enhance-reset').addEventListener('click', () => {
 
     document.querySelectorAll('.speed-btn').forEach(b => b.classList.remove('active'));
     document.querySelector('.speed-btn[data-speed="1"]').classList.add('active');
-
 
     filterIds.forEach(id => {
       const slider = document.getElementById('filter-' + id);
@@ -1603,7 +1551,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       else { slider.value = 100; valEl.textContent = '100%'; }
     });
 
-
     loopMode = 'none';
     document.querySelectorAll('.loop-btn').forEach(b => b.classList.remove('active'));
     document.querySelector('.loop-btn[data-loop="none"]').classList.add('active');
@@ -1612,11 +1559,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     abPointA = null;
     abPointB = null;
 
-
     currentRotation = 0;
     isFlipped = false;
     document.getElementById('flip-h-btn').classList.remove('active');
-
 
     const media = document.getElementById('active-media');
     if (media) {
@@ -1629,23 +1574,19 @@ document.addEventListener('DOMContentLoaded', async () => {
       applyCompositeFilter(media);
     }
 
-
     AudioEqualizer.reset();
     ['eq-bass', 'eq-mid', 'eq-treble'].forEach(id => {
       document.getElementById(id).value = 0;
       document.getElementById('val-' + id).textContent = '0 dB';
     });
 
-
     SleepTimer.stop();
-
 
     autoNextEnabled = false;
     shuffleEnabled = false;
     document.getElementById('auto-next-btn').classList.remove('active');
     document.getElementById('shuffle-btn').classList.remove('active');
   });
-
 
   const enhanceObserver = new MutationObserver(() => {
     const media = document.getElementById('active-media');
@@ -1666,11 +1607,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (media && media.tagName !== 'VIDEO') {
 
-
     }
   });
   enhanceObserver.observe(document.getElementById('player-container'), { childList: true, subtree: true });
-
 
   document.getElementById('eq-bass').addEventListener('input', (e) => {
     AudioEqualizer.setBass(parseFloat(e.target.value));
@@ -1685,7 +1624,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('val-eq-treble').textContent = e.target.value + ' dB';
   });
 
-
   document.querySelectorAll('.sleep-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.sleep-btn').forEach(b => b.classList.remove('active'));
@@ -1695,7 +1633,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       else SleepTimer.start(minutes);
     });
   });
-
 
   let autoNextEnabled = false;
   let shuffleEnabled = false;
@@ -1710,7 +1647,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('shuffle-btn').classList.toggle('active', shuffleEnabled);
   });
 
-
   document.getElementById('player-container').addEventListener('ended', (e) => {
     if (e.target.id !== 'active-media') return;
     if (loopMode !== 'none') return;
@@ -1720,7 +1656,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       MediaManager.playNext();
     }
   }, true);
-
 
   const formatDuration = (s) => {
     if (!s || !isFinite(s)) return ':';
@@ -1757,7 +1692,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       ).join('');
     };
 
-
     if (media.readyState >= 1) {
       populate();
     } else {
@@ -1767,7 +1701,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     media.addEventListener('play', () => { const el = container.querySelector('.media-detail-row:last-child span:last-child'); if (el) el.textContent = '▶ Lecture'; });
     media.addEventListener('pause', () => { const el = container.querySelector('.media-detail-row:last-child span:last-child'); if (el) el.textContent = '⏸ En pause'; });
   };
-
 
   const speedValues = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 2, 3];
 
@@ -1843,7 +1776,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
     }
   });
-
 
   document.addEventListener('enterpictureinpicture', () => {
     document.getElementById('pip-toggle').classList.add('active');

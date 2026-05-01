@@ -1,7 +1,6 @@
 const VSSuite = (() => {
   'use strict';
 
-
   const FILE_TYPES = {
     vdoc:  { name: 'Plume Document',   mime: 'application/vnd.ventistudio.vdoc+json',  ext: '.vdoc'  },
     vcal:  { name: 'Cellule Spreadsheet', mime: 'application/vnd.ventistudio.vcal+json', ext: '.vcal'  },
@@ -9,7 +8,6 @@ const VSSuite = (() => {
     vnote: { name: 'Note Notebook',     mime: 'application/vnd.ventistudio.vnote+json', ext: '.vnote' },
     vdraw: { name: 'Toile Drawing',     mime: 'application/vnd.ventistudio.vdraw+json', ext: '.vdraw' },
   };
-
 
   function createFile(type, data = {}) {
     return {
@@ -25,7 +23,6 @@ const VSSuite = (() => {
     };
   }
 
-
   function saveFile(fileObj) {
     const ft = FILE_TYPES[fileObj.type];
     if (!ft) return;
@@ -37,7 +34,6 @@ const VSSuite = (() => {
     a.click();
     URL.revokeObjectURL(a.href);
   }
-
 
   function openFile(accept) {
     return new Promise((resolve, reject) => {
@@ -63,9 +59,6 @@ const VSSuite = (() => {
     });
   }
 
-
-
-
   function exportPDF(element, title) {
     const win = window.open('', '_blank');
     win.document.write(`<!DOCTYPE html><html><head><title>${esc(title)}</title>
@@ -81,7 +74,6 @@ const VSSuite = (() => {
     win.print();
   }
 
-
   function exportHTML(element, title) {
     const html = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>${esc(title)}</title>
       <style>body{font-family:sans-serif;padding:40px;max-width:800px;margin:auto}table{border-collapse:collapse;width:100%}th,td{border:1px solid #ccc;padding:6px 10px}</style>
@@ -89,11 +81,9 @@ const VSSuite = (() => {
     download(html, title + '.html', 'text/html');
   }
 
-
   function exportText(element, title) {
     download(element.innerText, title + '.txt', 'text/plain');
   }
-
 
   function exportDOCX(element, title) {
     const header = `<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40"><head><meta charset="utf-8"><title>${esc(title)}</title></head><body>`;
@@ -107,7 +97,6 @@ const VSSuite = (() => {
     URL.revokeObjectURL(a.href);
   }
 
-
   function exportCSV(data2D, title) {
     const csv = data2D.map(row =>
       row.map(cell => {
@@ -119,8 +108,6 @@ const VSSuite = (() => {
     ).join('\n');
     download(csv, title + '.csv', 'text/csv');
   }
-
-
 
   function autoSave(key, data) {
     try {
@@ -139,8 +126,6 @@ const VSSuite = (() => {
     localStorage.removeItem('vs_suite_' + key);
   }
 
-
-
   function download(content, filename, mime) {
     const blob = new Blob([content], { type: mime });
     const a = document.createElement('a');
@@ -156,7 +141,6 @@ const VSSuite = (() => {
     return d.innerHTML;
   }
 
-
   function registerShortcuts(map) {
     document.addEventListener('keydown', (e) => {
       const key = [];
@@ -171,7 +155,6 @@ const VSSuite = (() => {
       }
     });
   }
-
 
   class UndoStack {
     constructor(maxSize = 100) {
@@ -196,7 +179,6 @@ const VSSuite = (() => {
     current() { return this._stack[this._index] ?? null; }
   }
 
-
   function initTheme() {
     const t = localStorage.getItem('theme') ||
       (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
@@ -209,7 +191,6 @@ const VSSuite = (() => {
     document.documentElement.setAttribute('data-theme', next);
     localStorage.setItem('theme', next);
   }
-
 
   return {
     FILE_TYPES,

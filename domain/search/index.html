@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="fr" data-theme="dark">
 <head>
   <meta charset="UTF-8">
@@ -10,7 +11,7 @@
 
   <script>
     (function() {
-      var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      var t; try { t = localStorage.getItem('theme'); } catch (_) {} if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
@@ -798,7 +799,6 @@
     </div>
   </header>
 
-
   <main class="search-wrap">
     <div class="home-view" id="home-view">
       <div class="search-logo">VentiStudio Search</div>
@@ -872,7 +872,6 @@
       </div>
     </div>
 
-
     <div class="results-view" id="results-view">
       <div class="results-header">
         <button class="back-home" id="back-home" aria-label="Retour à l'accueil">
@@ -901,7 +900,6 @@
       <div class="powered-by">Propulsé par <a href="https://duckduckgo.com" target="_blank" rel="noopener noreferrer">DuckDuckGo</a> Instant Answers &amp; <a href="https://www.wikipedia.org" target="_blank" rel="noopener noreferrer">Wikipédia</a></div>
     </div>
   </main>
-
 
   <div class="settings-overlay" id="settings-overlay"></div>
   <div class="settings-panel" id="settings-panel">
@@ -1636,5 +1634,6 @@
       });
     })();
   </script>
+<script defer src="/antibot.js"></script>
 </body>
 </html>

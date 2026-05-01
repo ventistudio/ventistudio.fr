@@ -30,13 +30,11 @@
     return { r: parseInt(m[2], 10) - 1, c: m[1].charCodeAt(0) - 65 };
   }
 
-
   function render() {
     const container = document.getElementById('cellule-container');
     container.innerHTML = '';
 
     const sheet = sheets[activeSheet];
-
 
     const colRow = document.createElement('div');
     colRow.className = 'cellule-col-header';
@@ -50,7 +48,6 @@
       colRow.appendChild(ch);
     }
     container.appendChild(colRow);
-
 
     for (let r = 0; r < ROWS; r++) {
       const row = document.createElement('div');
@@ -76,7 +73,6 @@
         if (typeof val === 'number' || (raw && raw.startsWith('=') && !isNaN(val))) {
           cell.classList.add('type-number');
         }
-
 
         const cs = (sheet.styles || {})[r + ',' + c];
         if (cs) {
@@ -126,7 +122,6 @@
     return r >= minR && r <= maxR && c >= minC && c <= maxC;
   }
 
-
   function onCellMouseDown(e, r, c) {
     selectedCell = { r, c };
     if (e.shiftKey) {
@@ -146,7 +141,6 @@
 
   document.addEventListener('mouseup', () => { isSelecting = false; });
 
-
   function startEditing(r, c) {
     const cellEl = document.querySelector(`.cellule-cell[data-r="${r}"][data-c="${c}"]`);
     if (!cellEl) return;
@@ -155,7 +149,6 @@
     cellEl.textContent = raw;
     cellEl.contentEditable = true;
     cellEl.focus();
-
 
     const range = document.createRange();
     range.selectNodeContents(cellEl);
@@ -196,14 +189,12 @@
     render();
   }
 
-
   function updateFormulaBar() {
     const refEl = document.getElementById('cell-ref');
     const fxInput = document.getElementById('fx-input');
     if (refEl) refEl.textContent = cellRef(selectedCell.r, selectedCell.c);
     if (fxInput) fxInput.value = sheets[activeSheet].data[selectedCell.r][selectedCell.c];
   }
-
 
   const fxInput = document.getElementById('fx-input');
   if (fxInput) {
@@ -216,7 +207,6 @@
       }
     });
   }
-
 
   document.addEventListener('keydown', (e) => {
     if (e.target.contentEditable === 'true' || e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
@@ -252,7 +242,6 @@
     }
   });
 
-
   function evaluate(raw, data, depth) {
     depth = depth || 0;
     if (depth > 10) return '#ERREUR';
@@ -271,14 +260,12 @@
         return isNaN(v) ? '0' : v || '0';
       });
 
-
       const withFunctions = resolved
         .replace(/SUM\(([A-Z])(\d+):([A-Z])(\d+)\)/gi, (_, c1, r1, c2, r2) => rangeOp(data, c1, r1, c2, r2, 'sum'))
         .replace(/AVERAGE\(([A-Z])(\d+):([A-Z])(\d+)\)/gi, (_, c1, r1, c2, r2) => rangeOp(data, c1, r1, c2, r2, 'avg'))
         .replace(/MIN\(([A-Z])(\d+):([A-Z])(\d+)\)/gi, (_, c1, r1, c2, r2) => rangeOp(data, c1, r1, c2, r2, 'min'))
         .replace(/MAX\(([A-Z])(\d+):([A-Z])(\d+)\)/gi, (_, c1, r1, c2, r2) => rangeOp(data, c1, r1, c2, r2, 'max'))
         .replace(/COUNT\(([A-Z])(\d+):([A-Z])(\d+)\)/gi, (_, c1, r1, c2, r2) => rangeOp(data, c1, r1, c2, r2, 'count'));
-
 
       let processed = withFunctions;
       processed = processed.replace(/PI\(\)/gi, String(Math.PI));
@@ -299,7 +286,6 @@
           return condResult ? tVal.trim() : fVal.trim();
         } catch { return '#ERREUR'; }
       });
-
 
       if (/^[\d\s+\-*/%().]+$/.test(processed)) {
         const result = Function('"use strict"; return (' + processed + ')')();
@@ -340,7 +326,6 @@
     }
   }
 
-
   function renderTabs() {
     const tabsEl = document.getElementById('cellule-tabs');
     if (!tabsEl) return;
@@ -368,12 +353,10 @@
     tabsEl.appendChild(addBtn);
   }
 
-
   function updateStatus() {
     const selInfo = document.getElementById('status-sel');
     const sumInfo = document.getElementById('status-sum');
     if (selInfo) selInfo.textContent = cellRef(selectedCell.r, selectedCell.c);
-
 
     if (selectionRange && sumInfo) {
       const data = sheets[activeSheet].data;
@@ -394,7 +377,6 @@
     }
   }
 
-
   function scheduleAutoSave() {
     clearTimeout(autoSaveTimer);
     autoSaveTimer = setTimeout(() => {
@@ -409,7 +391,6 @@
       if (data.sheets) sheets = data.sheets;
     }
   }
-
 
   window.celluleNew = function () {
     if (!confirm('Créer un nouveau tableur ?')) return;
@@ -465,7 +446,6 @@
     VSSuite.exportHTML(document.getElementById('cellule-container'), docNameInput.value);
   };
 
-
   window.toggleDropdown = function (id) {
     const dd = document.getElementById(id);
     if (!dd) return;
@@ -481,7 +461,6 @@
     }
   });
 
-
   VSSuite.registerShortcuts({
     'ctrl+s': () => celluleSave(),
     'ctrl+o': () => celluleOpen(),
@@ -491,7 +470,6 @@
     'ctrl+i': (e) => { e.preventDefault(); celluleToggleStyle('italic'); },
     'ctrl+u': (e) => { e.preventDefault(); celluleToggleStyle('underline'); },
   });
-
 
   function getSelectedCells() {
     const cells = [];
@@ -578,7 +556,6 @@
     render();
   };
 
-
   const fmtColor = document.getElementById('fmt-color');
   const fmtBg = document.getElementById('fmt-bg');
   if (fmtColor) fmtColor.addEventListener('input', () => {
@@ -589,7 +566,6 @@
     getSelectedCells().forEach(([r, c]) => { getCellStyle(r, c).bg = fmtBg.value; });
     scheduleAutoSave(); render();
   });
-
 
   function init() {
     VSSuite.initTheme();

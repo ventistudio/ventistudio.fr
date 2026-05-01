@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="fr" data-theme="dark">
+
+<html data-theme="dark" lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <meta name="description" content="VentiStudio - Redirection d'urgence en cours.">
-  <meta name="theme-color" content="#6366f1">
-  <title>Redirection | VentiStudio</title>
-  <link rel="stylesheet" href="/style.css">
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport"/>
+<meta content="VentiStudio - Redirection d'urgence en cours." name="description"/>
+<meta content="#6366f1" name="theme-color"/>
+<title>Redirection | VentiStudio</title>
+<link href="/style.css" rel="stylesheet"/>
+<style>
     body {
       display: flex;
       align-items: center;
@@ -87,33 +88,30 @@
       transform: translateY(-2px);
     }
   </style>
-
-  <script async crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
-  <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
-
-  <meta property="og:title" content="Redirection | VentiStudio">
-  <meta property="og:description" content="VentiStudio - Redirection d'urgence en cours.">
-  <meta property="og:url" content="https://ventistudio.eu/social/">
-  <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
-  <meta property="og:type" content="website">
-  <link rel="canonical" href="https://ventistudio.eu/social/">
-  <script src="/i18n.js" defer></script>
+<script async="" crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
+<script async="" crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
+<meta content="Redirection | VentiStudio" property="og:title"/>
+<meta content="VentiStudio - Redirection d'urgence en cours." property="og:description"/>
+<meta content="https://ventistudio.eu/social/" property="og:url"/>
+<meta content="https://ventistudio.eu/favicon.avif" property="og:image"/>
+<meta content="website" property="og:type"/>
+<link href="https://ventistudio.eu/social/" rel="canonical"/>
+<script defer="" src="/i18n.js"></script>
 </head>
 <body>
-  <div class="redirect-container">
-    <span class="redirect-icon" aria-hidden="true">⚠️</span>
-    <h1>Redirection d'urgence</h1>
-    <p class="desc">Une erreur critique s'est produite. Pour votre sécurité, vous allez être redirigé automatiquement vers la page d'accueil.</p>
-    <div class="countdown-bar">
-      <div class="bar-fill"></div>
-    </div>
-    <p class="countdown-text">Redirection dans <span id="countdown">3</span> secondes…</p>
-    <div class="redirect-manual">
-      <a href="/">Redirection immédiate</a>
-    </div>
-  </div>
-
-  <script>
+<div class="redirect-container">
+<span aria-hidden="true" class="redirect-icon">⚠️</span>
+<h1 data-i18n="social.page.h1">Redirection d'urgence</h1>
+<p class="desc" data-i18n="social.page.p">Une erreur critique s'est produite. Pour votre sécurité, vous allez être redirigé automatiquement vers la page d'accueil.</p>
+<div class="countdown-bar">
+<div class="bar-fill"></div>
+</div>
+<p class="countdown-text">Redirection dans <span id="countdown">3</span> secondes…</p>
+<div class="redirect-manual">
+<a href="/">Redirection immédiate</a>
+</div>
+</div>
+<script>
     let seconds = 3;
     const countdownEl = document.getElementById('countdown');
     const timer = setInterval(() => {
@@ -125,5 +123,6 @@
       }
     }, 1000);
   </script>
+<script defer src="/antibot.js"></script>
 </body>
 </html>

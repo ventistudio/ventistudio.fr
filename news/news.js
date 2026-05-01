@@ -25,14 +25,12 @@ function displayNews() {
   const newsList = document.getElementById('newsList');
   newsList.innerHTML = '';
 
-
   const sortedNews = newsData.sort((a, b) => new Date(b.date) - new Date(a.date));
 
   sortedNews.forEach(news => {
     const newsItem = createNewsElement(news);
     newsList.appendChild(newsItem);
   });
-
 
   const emptyState = document.getElementById('emptyState');
   if (emptyState) {

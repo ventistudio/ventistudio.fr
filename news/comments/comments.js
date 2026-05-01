@@ -30,7 +30,6 @@ class CommentSystem {
       return { success: false, message: '❌ Le commentaire doit faire au moins 5 caractères' };
     }
 
-
     const clerkUser = window.Clerk?.user;
 
     if (!clerkUser) {
@@ -58,7 +57,6 @@ class CommentSystem {
       likes: 0,
       replies: []
     };
-
 
     if (!this.pendingComments[newsId]) {
       this.pendingComments[newsId] = [];

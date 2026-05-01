@@ -5,7 +5,6 @@
   const params = new URLSearchParams(window.location.search);
   const cookId = params.get('cook');
 
-
   if (!window.cookbookSystem) {
     container.innerHTML = errorHTML('Erreur système', 'Les données du livre de cuisine ne sont pas disponibles.');
     return;
@@ -21,17 +20,14 @@
     return;
   }
 
-
   document.title = `${recipe.title} | Le Livre de Cuisine`;
   const ogTitle = document.querySelector('meta[property="og:title"]');
   if (ogTitle) ogTitle.content = `${recipe.title} Le Livre de Cuisine VentiStudio`;
-
 
   let servings = recipe.defaultServings;
   const stepsDone = new Array(recipe.steps.length).fill(false);
   let semiAuto = false;
   const timers = {};
-
 
   render();
 
@@ -121,7 +117,6 @@
       </nav>
     `;
 
-
     if (!document.getElementById('timer-float')) {
       const float = document.createElement('div');
       float.className = 'book-timer-float';
@@ -145,7 +140,6 @@
     updateProgress();
   }
 
-
   function renderIngredients() {
     const ratio = servings / recipe.defaultServings;
     return recipe.ingredients.map(ing => {
@@ -154,7 +148,6 @@
       return `<li><span class="ingredient-qty">${display}</span><span class="ingredient-unit">${ing.unit}</span> ${sanitize(ing.name)}</li>`;
     }).join('');
   }
-
 
   function renderStep(step, idx) {
     const timerHTML = step.timer ? `
@@ -177,7 +170,6 @@
     `;
   }
 
-
   function bindEvents() {
 
     document.getElementById('srv-minus').addEventListener('click', () => {
@@ -187,11 +179,9 @@
       if (servings < 50) { servings++; updateServings(); }
     });
 
-
     document.getElementById('semiauto-toggle').addEventListener('change', function () {
       semiAuto = this.checked;
     });
-
 
     document.querySelectorAll('.step-card').forEach(card => {
       card.addEventListener('click', function (e) {
@@ -209,7 +199,6 @@
       });
     });
 
-
     document.querySelectorAll('.step-timer-btn').forEach(btn => {
       btn.addEventListener('click', function (e) {
         e.stopPropagation();
@@ -218,7 +207,6 @@
         toggleTimer(idx, time, this);
       });
     });
-
 
     const tfClose = document.getElementById('tf-close');
     const tfPause = document.getElementById('tf-pause');
@@ -260,7 +248,6 @@
     });
   }
 
-
   function updateServings() {
     document.getElementById('srv-value').textContent = servings;
     document.getElementById('srv-minus').disabled = servings <= 1;
@@ -268,15 +255,13 @@
     document.getElementById('ingredient-list').innerHTML = renderIngredients();
   }
 
-
   function updateProgress() {
     const done = stepsDone.filter(Boolean).length;
     const total = stepsDone.length;
     const pct = Math.round((done / total) * 100);
     document.getElementById('progress-fill').style.width = pct + '%';
-    document.getElementById('progress-label').textContent = `${done} / ${total} étapes — ${pct}%`;
+    document.getElementById('progress-label').textContent = `${done} / ${total} étapes  ${pct}%`;
   }
-
 
   function toggleTimer(idx, time, btn) {
     if (timers[idx]) {
@@ -347,7 +332,6 @@
     }
     delete timers[idx];
 
-
     try {
       const ctx = new (window.AudioContext || window.webkitAudioContext)();
       const osc = ctx.createOscillator();
@@ -373,7 +357,6 @@
     if (getActiveTimer() === null) {
       document.getElementById('timer-float').classList.remove('visible');
     }
-
 
     if (semiAuto) {
       stepsDone[idx] = true;
@@ -430,7 +413,6 @@
       delete timers[idx];
     });
   }
-
 
   function formatTime(s) {
     if (s < 0) s = 0;

@@ -20,7 +20,6 @@
   let activePage = 0;
   let autoSaveTimer;
 
-
   function render() {
     renderPageList();
     renderEditor();
@@ -90,7 +89,6 @@
     page.modified = new Date().toISOString();
   }
 
-
   titleInput.addEventListener('input', () => {
     pages[activePage].title = titleInput.value;
     renderPageList();
@@ -106,7 +104,6 @@
   if (searchInput) {
     searchInput.addEventListener('input', () => renderPageList());
   }
-
 
   function exec(cmd, value) {
     document.execCommand(cmd, false, value || null);
@@ -155,7 +152,6 @@
     titleInput.select();
   };
 
-
   function scheduleAutoSave() {
     clearTimeout(autoSaveTimer);
     autoSaveTimer = setTimeout(() => {
@@ -171,7 +167,6 @@
       if (data.pages && data.pages.length) pages = data.pages;
     }
   }
-
 
   window.noteNew = function () {
     if (!confirm('Créer un nouveau carnet ?')) return;
@@ -229,7 +224,6 @@
     VSSuite.exportText(editorEl, (docNameInput.value || 'note') + ' - ' + (pages[activePage]?.title || ''));
   };
 
-
   window.toggleDropdown = function (id) {
     const dd = document.getElementById(id);
     if (!dd) return;
@@ -242,7 +236,6 @@
     }
   });
 
-
   function updateStatus() {
     const s = document.getElementById('status-pages');
     if (s) s.textContent = `Page ${activePage + 1} / ${pages.length}`;
@@ -253,14 +246,12 @@
     }
   }
 
-
   VSSuite.registerShortcuts({
     'ctrl+s': () => noteSave(),
     'ctrl+o': () => noteOpen(),
     'ctrl+n': () => noteNew(),
     'ctrl+p': () => noteExportPDF(),
   });
-
 
   function init() {
     VSSuite.initTheme();

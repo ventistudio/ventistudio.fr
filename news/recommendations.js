@@ -21,7 +21,6 @@ class RecommendationEngine {
     this.saveViewTracking();
   }
 
-
   getRelated(currentNewsId, limit = 3) {
     const current = this.newsData.find(n => n.id === currentNewsId);
     if (!current) return [];
@@ -31,7 +30,6 @@ class RecommendationEngine {
       .sort((a, b) => new Date(b.date) - new Date(a.date))
       .slice(0, limit);
   }
-
 
   getPopular(limit = 5) {
     return this.newsData
@@ -43,7 +41,6 @@ class RecommendationEngine {
       .slice(0, limit);
   }
 
-
   getLatest(limit = 5, exclude = null) {
     return this.newsData
       .filter(n => n.id !== exclude)
@@ -51,18 +48,15 @@ class RecommendationEngine {
       .slice(0, limit);
   }
 
-
   getSmart(currentNewsId, limit = 4) {
     const current = this.newsData.find(n => n.id === currentNewsId);
     if (!current) return [];
-
 
     const sameCat = this.getRelated(currentNewsId, Math.ceil(limit * 0.6));
     const popular = this.getPopular(Math.ceil(limit * 0.4)).filter(n => n.id !== currentNewsId);
 
     return [...sameCat, ...popular].slice(0, limit);
   }
-
 
   getByTags(tags, limit = 5, exclude = null) {
     return this.newsData
@@ -74,7 +68,6 @@ class RecommendationEngine {
       })
       .slice(0, limit);
   }
-
 
   getPersonalized(userPreferences = {}, limit = 5) {
     const preferences = {
@@ -111,7 +104,6 @@ class RecommendationEngine {
       score += matches * 2;
     }
 
-
     const daysSince = Math.floor((Date.now() - new Date(news.date)) / (1000 * 60 * 60 * 24));
     if (daysSince < 7) {
       score += 1.5 * preferences.recency_weight;
@@ -122,7 +114,6 @@ class RecommendationEngine {
 
     return score;
   }
-
 
   getTrending(limit = 5) {
     const monthAgo = new Date();

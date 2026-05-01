@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="fr" data-theme="dark">
+
+<html data-theme="dark" lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <meta name="description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
-  <meta name="theme-color" content="#6366f1">
-  <title>Chargement GMod | VentiStudio</title>
-  <link rel="stylesheet" href="/style.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport"/>
+<meta content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée." name="description"/>
+<meta content="#6366f1" name="theme-color"/>
+<title>Chargement GMod | VentiStudio</title>
+<link href="/style.css" rel="stylesheet"/>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap');
 
@@ -488,111 +489,100 @@
     box-shadow: 0 0 0 2px var(--primary), 0 0 0 4px rgba(123,102,255,0.2);
   }
 </style>
-
-  <script async crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
-  <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
-
-  <meta property="og:title" content="Chargement GMod | VentiStudio">
-  <meta property="og:description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
-  <meta property="og:url" content="https://ventistudio.eu/gmod/load/">
-  <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
-  <meta property="og:type" content="website">
-  <link rel="canonical" href="https://ventistudio.eu/gmod/load/">
-
-  <script>
+<script async="" crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
+<script async="" crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
+<meta content="Chargement GMod | VentiStudio" property="og:title"/>
+<meta content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée." property="og:description"/>
+<meta content="https://ventistudio.eu/gmod/load/" property="og:url"/>
+<meta content="https://ventistudio.eu/favicon.avif" property="og:image"/>
+<meta content="website" property="og:type"/>
+<link href="https://ventistudio.eu/gmod/load/" rel="canonical"/>
+<script>
     (function() {
-      var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      var t; try { t = localStorage.getItem('theme'); } catch (_) {} if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
-  <script src="/i18n.js" defer></script>
+<script defer="" src="/i18n.js"></script>
 </head>
 <body>
-  <audio id="bgMusic">
-    <source src="" type="audio/mpeg">
-  </audio>
-
-
-  <div class="consent-overlay" id="consentOverlay">
-    <div class="consent-card">
-      <div class="consent-header">
-        <p class="consent-title">Notification : Collecte de donn&eacute;es</p>
-      </div>
-      <p class="consent-body">
-        En rejoignant ce serveur, vous acceptez que <strong>Retribution Studio</strong> collecte les donn&eacute;es suivantes&nbsp;:
-        <span class="highlight">nom d&apos;utilisateur, Steam ID et adresse IP</span>.<br><br>
-        Vous acceptez &eacute;galement et comprenez que nous avons la possibilit&eacute; d&apos;acc&eacute;der aux <strong>fichiers Garry&apos;s Mod</strong>
-        (via <em>GAS</em> et <em>Nova Defender</em>).<br>
-        Un <strong>r&eacute;gisseur humain</strong> peut avoir acc&egrave;s &agrave; ces fichiers
-        en <span class="highlight">mode lecture uniquement</span>, tout au long de votre session de jeu sur ce serveur.<br><br>
-        Si c&apos;est votre premi&egrave;re connexion, il est recommand&eacute; d&apos;installer les addons du Workshop.<br>
-        Apr&egrave;s installation, la deuxi&egrave;me connexion peut &ecirc;tre plus lente&nbsp;apr&egrave;s cette deuxi&egrave;me connexion, les connexions suivantes
-        devraient &ecirc;tre nettement plus rapides.<br><br>
-        Pour plus d&apos;informations, veuillez vous rendre sur notre <strong>Discord</strong>.
+<audio id="bgMusic">
+<source src="" type="audio/mpeg"/>
+</audio>
+<div class="consent-overlay" id="consentOverlay">
+<div class="consent-card">
+<div class="consent-header">
+<p class="consent-title" data-i18n="gmod.load.consent_card_consent_header.p">Notification : Collecte de données</p>
+</div>
+<p class="consent-body" data-i18n-html="gmod.load.consent_card.p">
+        En rejoignant ce serveur, vous acceptez que <strong>Retribution Studio</strong> collecte les données suivantes :
+        <span class="highlight">nom d'utilisateur, Steam ID et adresse IP</span>.<br/><br/>
+        Vous acceptez également et comprenez que nous avons la possibilité d'accéder aux <strong>fichiers Garry's Mod</strong>
+        (via <em>GAS</em> et <em>Nova Defender</em>).<br/>
+        Un <strong>régisseur humain</strong> peut avoir accès à ces fichiers
+        en <span class="highlight">mode lecture uniquement</span>, tout au long de votre session de jeu sur ce serveur.<br/><br/>
+        Si c'est votre première connexion, il est recommandé d'installer les addons du Workshop.<br/>
+        Après installation, la deuxième connexion peut être plus lente après cette deuxième connexion, les connexions suivantes
+        devraient être nettement plus rapides.<br/><br/>
+        Pour plus d'informations, veuillez vous rendre sur notre <strong>Discord</strong>.
       </p>
-      <div class="consent-footer">
-        <span class="consent-timer">Fermeture automatique dans <span id="consentCountdown">60</span>s</span>
-        <div class="consent-bar-wrap">
-          <div class="consent-bar" style="--consent-duration:60s"></div>
-        </div>
-      </div>
-    </div>
+<div class="consent-footer">
+<span class="consent-timer">Fermeture automatique dans <span id="consentCountdown">60</span>s</span>
+<div class="consent-bar-wrap">
+<div class="consent-bar" style="--consent-duration:60s"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="qr-overlay" id="qrOverlay"></div>
+<div class="qr-code-container" id="qrContainer">
+<img alt="QR Code - Steam Workshop" src="../files/qrcollection.avif"/>
+<div class="qr-code-label">Steam Workshop Collection</div>
+</div>
+<div class="audio-controls">
+<button id="toggleMusic">🔈 Muet</button>
+<input id="volumeSlider" max="100" min="0" title="Volume" type="range" value="15"/>
+<button id="skipTrack">▶▶ Skip</button>
+<span class="now-playing" id="nowPlaying"></span>
+</div>
+<div class="loading-container">
+<section class="section">
+<h2 class="section-title">Règles</h2>
+<div class="rules-category-badge" id="rules-category-badge"></div>
+<div class="rules-page" id="rules-page"></div>
+<div class="rules-page-dots" id="rules-page-dots"></div>
+</section>
+<section class="section">
+<h2 class="section-title">Notre Équipe</h2>
+<div class="staff-card">
+<div class="staff-avatar">
+<img alt="FR - Hiuma" src="https://avatars.fastly.steamstatic.com/8a78a24d3ae3031caf2695bc4dede2d6eb7af7cf_full.jpg"/>
+</div>
+<div class="staff-info">
+<h3>Hikari Umaishi</h3>
+<div class="staff-role">Fondateur</div>
+<p>Propriétaire</p>
+</div>
+</div>
+<div class="staff-card">
+<div class="staff-avatar">
+<img alt="FR - Cailloux77" src="https://avatars.fastly.steamstatic.com/7495cddd1f4fb4ded4782d3f1742d035f796790a_full.jpg"/>
+</div>
+<div class="staff-info">
+<h3>Cailloux</h3>
+<div class="staff-role">Directeur Juridique</div>
+<p>Responsable Juridique</p>
+</div>
+</div>
+</section>
+</div>
+<div class="progress-bar">
+<div class="progress"></div>
+</div>
+<div class="tip-container" id="tip-display">
+<span class="tip-icon">💡</span>Chargement des assets du serveur...
   </div>
-
-  <div class="qr-overlay" id="qrOverlay"></div>
-  <div class="qr-code-container" id="qrContainer">
-    <img src="../files/qrcollection.avif" alt="QR Code - Steam Workshop" />
-    <div class="qr-code-label">Steam Workshop Collection</div>
-  </div>
-
-  <div class="audio-controls">
-    <button id="toggleMusic">&#128264; Muet</button>
-    <input type="range" id="volumeSlider" min="0" max="100" value="15" title="Volume">
-    <button id="skipTrack">&#9654;&#9654; Skip</button>
-    <span class="now-playing" id="nowPlaying"></span>
-  </div>
-  <div class="loading-container">
-    <section class="section">
-      <h2 class="section-title">Règles</h2>
-      <div id="rules-category-badge" class="rules-category-badge"></div>
-      <div class="rules-page" id="rules-page"></div>
-      <div class="rules-page-dots" id="rules-page-dots"></div>
-    </section>
-
-    <section class="section">
-      <h2 class="section-title">Notre Équipe</h2>
-      <div class="staff-card">
-        <div class="staff-avatar">
-          <img src="https://avatars.fastly.steamstatic.com/8a78a24d3ae3031caf2695bc4dede2d6eb7af7cf_full.jpg" alt="FR - Hiuma">
-        </div>
-        <div class="staff-info">
-          <h3>Hikari Umaishi</h3>
-          <div class="staff-role">Fondateur</div>
-          <p>Propriétaire</p>
-        </div>
-      </div>
-      <div class="staff-card">
-        <div class="staff-avatar">
-          <img src="https://avatars.fastly.steamstatic.com/7495cddd1f4fb4ded4782d3f1742d035f796790a_full.jpg" alt="FR - Cailloux77">
-        </div>
-        <div class="staff-info">
-          <h3>Cailloux</h3>
-          <div class="staff-role">Directeur Juridique</div>
-          <p>Responsable Juridique</p>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <div class="progress-bar">
-    <div class="progress"></div>
-  </div>
-
-  <div class="tip-container" id="tip-display">
-    <span class="tip-icon">&#128161;</span>Chargement des assets du serveur...
-  </div>
-
-  <script>
+<script>
     const tips = [
       "Appuyez sur F3 pour passe de première personne à troisième personne",
       "N'oubliez pas de rejoindre notre Discord !",
@@ -800,9 +790,8 @@
       });
     });
 
-
   </script>
-  <script>
+<script>
     // Animation d'entrée des cartes au chargement
     document.querySelectorAll('.staff-card').forEach((card, i) => {
       setTimeout(() => card.classList.add('visible'), 120 + i * 90);
@@ -921,7 +910,7 @@
       showPage(pageIdx);
     }, 12000);
   </script>
-  <script src="/main.js" defer></script>
+<script defer="" src="/main.js"></script>
+<script defer src="/antibot.js"></script>
 </body>
 </html>
-

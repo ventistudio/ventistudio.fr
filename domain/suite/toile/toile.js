@@ -23,7 +23,6 @@
 
   const COLORS = ['#e0e0e0', '#000000', '#ef4444', '#f59e0b', '#10b981', '#3b82f6', '#8b5cf6', '#ec4899', '#6366f1', '#14b8a6', '#f97316', '#a3e635'];
 
-
   function resizeCanvas() {
     const rect = canvasWrap.getBoundingClientRect();
     canvas.width = rect.width;
@@ -32,7 +31,6 @@
   }
 
   window.addEventListener('resize', resizeCanvas);
-
 
   function snapGrid(v) { return gridSnap ? Math.round(v / 20) * 20 : v; }
 
@@ -187,7 +185,6 @@
     c.stroke();
   }
 
-
   function drawStar(c, x1, y1, x2, y2, fill) {
     const cx = (x1 + x2) / 2, cy = (y1 + y2) / 2;
     const outerR = Math.min(Math.abs(x2 - x1), Math.abs(y2 - y1)) / 2;
@@ -275,7 +272,6 @@
     });
   }
 
-
   document.querySelectorAll('.toile-tool[data-tool]').forEach(btn => {
     btn.addEventListener('click', () => {
       tool = btn.dataset.tool;
@@ -284,7 +280,6 @@
       canvasWrap.style.cursor = tool === 'eraser' ? 'crosshair' : (tool === 'text' ? 'text' : 'crosshair');
     });
   });
-
 
   const colorInput = document.getElementById('prop-color');
   const fillInput = document.getElementById('prop-fill');
@@ -304,7 +299,6 @@
     });
   }
 
-
   const opacityInput = document.getElementById('prop-opacity');
   const opacityVal = document.getElementById('prop-opacity-val');
   if (opacityInput) {
@@ -314,12 +308,10 @@
     });
   }
 
-
   const gridSnapInput = document.getElementById('prop-grid-snap');
   if (gridSnapInput) {
     gridSnapInput.addEventListener('change', () => { gridSnap = gridSnapInput.checked; });
   }
-
 
   function renderColorPresets() {
     const container = document.getElementById('color-presets');
@@ -350,7 +342,6 @@
     if (!m || m.length < 3) return rgb;
     return '#' + m.slice(0, 3).map(n => parseInt(n).toString(16).padStart(2, '0')).join('');
   }
-
 
   window.toileUndo = function () {
     if (layers.length === 0) return;
@@ -388,12 +379,10 @@
     if (lbl) lbl.textContent = zoomLevel + '%';
   };
 
-
   function updateStatus() {
     const el = document.getElementById('status-objects');
     if (el) el.textContent = layers.length + ' objet' + (layers.length !== 1 ? 's' : '');
   }
-
 
   function scheduleAutoSave() {
     clearTimeout(autoSaveTimer);
@@ -409,7 +398,6 @@
       if (data.layers) layers = data.layers;
     }
   }
-
 
   window.toileNew = function () {
     if (!confirm('Nouveau dessin ?')) return;
@@ -458,7 +446,6 @@
     win.print();
   };
 
-
   window.toggleDropdown = function (id) {
     const dd = document.getElementById(id);
     if (!dd) return;
@@ -471,7 +458,6 @@
     }
   });
 
-
   VSSuite.registerShortcuts({
     'ctrl+s': () => toileSave(),
     'ctrl+o': () => toileOpen(),
@@ -481,7 +467,6 @@
     'ctrl+shift+z': () => toileRedo(),
     'ctrl+p': () => toileExportPDF(),
   });
-
 
   function init() {
     VSSuite.initTheme();

@@ -1,12 +1,13 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="USCSS Nostromo — Self Destruct Sequence Terminal">
+  <meta name="description" content="USCSS Nostromo  Self Destruct Sequence Terminal">
   <meta name="theme-color" content="#ff6600">
   <link rel="icon" type="image/avif" href="../../favicon.avif">
-  <title>NOSTROMO — DESTRUCT SEQUENCE</title>
+  <title>NOSTROMO  DESTRUCT SEQUENCE</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
 
@@ -332,19 +333,16 @@
 
 <div class="screen">
 
-
   <header class="top-bar">
     <span class="vessel">USCSS NOSTROMO</span>
     <span class="reg">REG. 180924609&nbsp;&nbsp;|&nbsp;&nbsp;WEYLAND-YUTANI CORP.</span>
     <span id="utc-clock">--:--:-- UTC</span>
   </header>
 
-
   <main class="center">
 
-
     <section class="panel" aria-label="Statut MOTHER">
-      <div class="panel-title">M.O.T.H.E.R. — SYSTÈME AOKI</div>
+      <div class="panel-title">M.O.T.H.E.R.  SYSTÈME AOKI</div>
 
       <div class="status-row"><span class="key">LIAISON VAISSEAU</span><span class="val err">COUPÉE</span></div>
       <div class="status-row"><span class="key">ÉQUIPAGE</span><span class="val err">NON DÉTECTÉ</span></div>
@@ -371,7 +369,6 @@
         </div>
       </div>
 
-
       <div class="panel-title" style="margin-top:4px">JOURNAL SYSTÈME</div>
       <div class="log-terminal" id="log" aria-live="polite" aria-label="Journal système">
         <div class="log-line ok">SÉQUENCE D'AUTO-DESTRUCTION INITIÉE</div>
@@ -383,7 +380,6 @@
     </section>
 
     <div class="divider-v" aria-hidden="true"></div>
-
 
     <section class="countdown-panel" aria-label="Compte à rebours autodestruction">
 
@@ -397,7 +393,7 @@
         <div class="alarm-light on"></div>
       </div>
 
-      <div class="warning-strip">DANGER — CETTE SECTION A ÉTÉ NEUTRALISÉE</div>
+      <div class="warning-strip">DANGER  CETTE SECTION A ÉTÉ NEUTRALISÉE</div>
 
       <div class="countdown-display" id="countdown" aria-live="assertive" aria-label="Compte à rebours">
         --:--:--
@@ -406,26 +402,25 @@
       <div class="warning-strip">YOU NOW HAVE T-MINUS <span id="tmin">--</span> TO REACH MINIMUM SAFE DISTANCE</div>
 
       <div class="destruct-steps" aria-label="Étapes de la séquence">
-        <div class="step done" id="step1">DESTRUCT SEQUENCE 1 — COMPLETE</div>
-        <div class="step done" id="step2">DESTRUCT SEQUENCE 2 — COMPLETE</div>
-        <div class="step done" id="step3">DESTRUCT SEQUENCE 3 — COMPLETE</div>
-        <div class="step active" id="step4">CORE OVERLOAD — IN PROGRESS</div>
+        <div class="step done" id="step1">DESTRUCT SEQUENCE 1  COMPLETE</div>
+        <div class="step done" id="step2">DESTRUCT SEQUENCE 2  COMPLETE</div>
+        <div class="step done" id="step3">DESTRUCT SEQUENCE 3  COMPLETE</div>
+        <div class="step active" id="step4">CORE OVERLOAD  IN PROGRESS</div>
         <div class="step" id="step5">TERMINAL DETONATION</div>
       </div>
 
       <div class="min-safe">
         CREW COMPLEMENT&nbsp;&nbsp;<span>0</span>&nbsp;&nbsp;|&nbsp;&nbsp;
         SCIENCE OFFICER&nbsp;&nbsp;<span>OFFLINE</span><br>
-        LAST OVERRIDE&nbsp;&nbsp;<span>MAKINA RYOU — ORDER 937</span><br>
+        LAST OVERRIDE&nbsp;&nbsp;<span>MAKINA RYOU  ORDER 937</span><br>
         AOKI-UNIVERS UNIT&nbsp;&nbsp;<span class="val err" style="animation:blink-text 0.7s step-start infinite">ERASED</span>
       </div>
 
     </section>
   </main>
 
-
   <footer class="bottom-bar">
-    <span>MU/TH/UR 6000 — HYPERDYNE SYSTEMS — CLASS. A2</span>
+    <span>MU/TH/UR 6000  HYPERDYNE SYSTEMS  CLASS. A2</span>
     <a href="/aokiunivers/">← TERMINAL AOKI</a>
     <a href="/">ACCUEIL</a>
   </footer>
@@ -506,11 +501,11 @@
     { cls: 'err', txt: 'ALERTE : RÉACTEUR INSTABLE T-' + remaining + 's' },
     { cls: '',    txt: 'STATION JAHAAKA : AUCUN SIGNAL' },
     { cls: 'ok',  txt: 'DONNÉES PURGE SÉQUENCE 3 ........ OK' },
-    { cls: 'err', txt: 'ACCÈS REFUSÉ — NIVEAU OMEGA' },
+    { cls: 'err', txt: 'ACCÈS REFUSÉ  NIVEAU OMEGA' },
     { cls: '',    txt: 'PROTOCOLE MAKINA RYOU ACTIF' },
     { cls: 'err', txt: 'ENTITÉ VAYDEN NON LOCALISÉE' },
     { cls: '',    txt: 'TRANSFERT MÉMOIRE AO ÉCHOUÉ' },
-    { cls: 'err', txt: 'CONNEXION PERDUE — BISS JAHAAKA' },
+    { cls: 'err', txt: 'CONNEXION PERDUE  BISS JAHAAKA' },
     { cls: 'ok',  txt: 'NETTOYAGE NIVEAU 4 ............. OK' },
     { cls: 'err', txt: 'ORDRE 937 : NON RÉVERSIBLE' },
     { cls: '',    txt: 'VENTI AOKI : STATUT INCONNU' },
@@ -545,5 +540,6 @@
 })();
 </script>
 
+<script defer src="/antibot.js"></script>
 </body>
 </html>

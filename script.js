@@ -1,5 +1,35 @@
+function getSafeStorage(storageName) {
+  try {
+    return window[storageName] || null;
+  } catch (_) {
+    return null;
+  }
+}
+
+function safeStorageGet(storageName, key, fallbackValue) {
+  var storage = getSafeStorage(storageName);
+  if (!storage) return fallbackValue;
+  try {
+    var value = storage.getItem(key);
+    return value === null ? fallbackValue : value;
+  } catch (_) {
+    return fallbackValue;
+  }
+}
+
+function safeStorageSet(storageName, key, value) {
+  var storage = getSafeStorage(storageName);
+  if (!storage) return false;
+  try {
+    storage.setItem(key, value);
+    return true;
+  } catch (_) {
+    return false;
+  }
+}
+
 (function initTheme() {
-  var saved = localStorage.getItem('theme');
+  var saved = safeStorageGet('localStorage', 'theme', null);
   if (saved) {
     document.documentElement.setAttribute('data-theme', saved);
   } else if (!document.documentElement.getAttribute('data-theme')) {
@@ -13,13 +43,12 @@
       var current = document.documentElement.getAttribute('data-theme');
       var next = current === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', next);
-      localStorage.setItem('theme', next);
+      safeStorageSet('localStorage', 'theme', next);
     });
   }
 })();
 
 document.addEventListener('DOMContentLoaded', () => {
-
 
   (function initGoldEasterEgg() {
     const statusDot = document.querySelector('.status-dot');
@@ -38,7 +67,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const now = Date.now();
       clicks.push(now);
       clicks = clicks.filter(t => now - t < CLICK_WINDOW);
-
 
       statusDot.style.boxShadow = '0 0 8px #f59e0b';
       statusDot.style.background = '#f59e0b';
@@ -73,7 +101,6 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
       document.body.appendChild(overlay);
 
-
       requestAnimationFrame(() => overlay.classList.add('visible'));
 
       const keyInput = document.getElementById('gold-secret-key');
@@ -84,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
       function tryValidate() {
         const val = keyInput.value.trim();
         if (val === VALID_KEY) {
-          sessionStorage.setItem('gold-access', 'true');
+          safeStorageSet('sessionStorage', 'gold-access', 'true');
           overlay.classList.add('gold-success');
           setTimeout(() => { window.location.href = GOLD_URL; }, 600);
         } else {
@@ -116,17 +143,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   })();
 
-
   const nav = document.querySelector('nav');
   const header = document.querySelector('header');
-
 
   window.addEventListener('resize', () => {
     if (window.innerWidth > 768 && nav) {
       nav.style.display = 'flex';
     }
   });
-
 
   const cards = document.querySelectorAll('.card');
   cards.forEach(card => {
@@ -139,7 +163,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-
   document.querySelectorAll('.cta').forEach(cta => {
     cta.addEventListener('click', () => {
       cta.style.transform = 'scale(0.95)';
@@ -148,7 +171,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 150);
     });
   });
-
 
   const recoContainer = document.getElementById('recommendations-container');
   if (recoContainer && typeof evaluationData !== 'undefined') {
@@ -163,7 +185,6 @@ document.addEventListener('DOMContentLoaded', () => {
       'applications': '💻 Applications',
     };
 
-
     const featured = evaluationData.filter(item => item.featured);
     const grouped = {};
     featured.forEach(item => {
@@ -171,12 +192,10 @@ document.addEventListener('DOMContentLoaded', () => {
       grouped[item.type].push(item);
     });
 
-
     Object.keys(grouped).forEach(type => {
       grouped[type].sort((a, b) => b.rating - a.rating);
       grouped[type] = grouped[type].slice(0, 3);
     });
-
 
     const types = Object.keys(grouped).filter(t => grouped[t].length > 0);
 
@@ -223,14 +242,12 @@ document.addEventListener('DOMContentLoaded', () => {
         recoContainer.appendChild(section);
       });
 
-
       const seeAll = document.createElement('div');
       seeAll.style.cssText = 'grid-column: 1 / -1; text-align: center; margin-top: 1rem;';
       seeAll.innerHTML = '<a href="/evaluation" class="cta" style="display:inline-block;padding:0.6rem 1.5rem;font-size:0.9rem;">Voir tout le catalogue évalué</a>';
       recoContainer.appendChild(seeAll);
     }
   }
-
 
   const newsContainer = document.getElementById('latest-news-container');
   if (newsContainer && typeof newsData !== 'undefined' && newsData.length > 0) {
@@ -249,9 +266,6 @@ document.addEventListener('DOMContentLoaded', () => {
       newsContainer.appendChild(card);
     });
   }
-
-
-
 
   (function initEasterEggEngine() {
     var EE_KEY = 'vs-ee-unlocked';
@@ -281,7 +295,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     function getUnlocked() {
-      try { return JSON.parse(localStorage.getItem(EE_KEY) || '[]'); }
+      try { return JSON.parse(safeStorageGet('localStorage', EE_KEY, '[]') || '[]'); }
       catch (e) { return []; }
     }
 
@@ -293,7 +307,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (isUnlocked(id)) return false;
       var unlocked = getUnlocked();
       unlocked.push(id);
-      localStorage.setItem(EE_KEY, JSON.stringify(unlocked));
+      safeStorageSet('localStorage', EE_KEY, JSON.stringify(unlocked));
       showToast(id);
       window.dispatchEvent(new CustomEvent('vs-ee-unlock', { detail: { id: id } }));
 
@@ -308,7 +322,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.vsUnlockEgg = unlockEgg;
     window.vsIsEggUnlocked = isUnlocked;
-
 
     function showToast(id) {
       var toast = document.createElement('div');
@@ -329,7 +342,6 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(function() { toast.remove(); }, 400);
       }, 3500);
     }
-
 
     (function() {
       var sequence = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
@@ -356,14 +368,12 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     })();
 
-
     (function() {
       var typed = '';
       document.addEventListener('keydown', function(e) {
         if (e.key.length !== 1 || e.ctrlKey || e.altKey || e.metaKey) return;
         typed += e.key.toLowerCase();
         if (typed.length > 30) typed = typed.slice(-30);
-
 
         if (typed.endsWith('circus')) {
           typed = '';
@@ -375,7 +385,6 @@ document.addEventListener('DOMContentLoaded', () => {
           setTimeout(function() { document.body.style.animation = ''; s.remove(); }, 5000);
         }
 
-
         if (typed.endsWith('flip')) {
           typed = '';
           unlockEgg('flip');
@@ -386,7 +395,6 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(function() { document.body.style.transition = ''; }, 1000);
           }, 3000);
         }
-
 
         if (typed.endsWith('disco')) {
           typed = '';
@@ -402,7 +410,6 @@ document.addEventListener('DOMContentLoaded', () => {
           document.body.appendChild(ball); document.body.appendChild(light);
           setTimeout(function() { ball.remove(); light.remove(); sDisco.remove(); }, 6000);
         }
-
 
         if (typed.endsWith('neko') || typed.endsWith('cat')) {
           typed = '';
@@ -420,7 +427,6 @@ document.addEventListener('DOMContentLoaded', () => {
           }, 20);
         }
 
-
         if (typed.endsWith('gravity')) {
           typed = '';
           unlockEgg('gravity');
@@ -437,7 +443,6 @@ document.addEventListener('DOMContentLoaded', () => {
             sGrav.remove();
           }, 8000);
         }
-
 
         if (typed.endsWith('retro')) {
           typed = '';
@@ -457,7 +462,6 @@ document.addEventListener('DOMContentLoaded', () => {
           }, 7000);
         }
 
-
         if (typed.endsWith('ghost')) {
           typed = '';
           unlockEgg('ghost');
@@ -473,7 +477,6 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(function() { document.body.style.transition = ''; }, 1000);
           }, 4000);
         }
-
 
         if (typed.endsWith('pirate')) {
           typed = '';
@@ -492,7 +495,6 @@ document.addEventListener('DOMContentLoaded', () => {
             sPirate.remove();
           }, 7000);
         }
-
 
         if (typed.endsWith('matrix')) {
           typed = '';
@@ -531,7 +533,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     })();
 
-
     (function() {
       var toggle = document.getElementById('theme-toggle');
       if (!toggle) return;
@@ -551,14 +552,12 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     })();
 
-
     (function() {
       var hour = new Date().getHours();
       if (hour >= 0 && hour < 3) {
         unlockEgg('night-owl');
       }
     })();
-
 
     (function() {
       var now = new Date();
@@ -567,13 +566,11 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     })();
 
-
     (function() {
       if (new Date().getMinutes() === 42) {
         unlockEgg('perfect-hour');
       }
     })();
-
 
     (function() {
       var PAGES_KEY = 'vs-ee-pages';
@@ -589,7 +586,6 @@ document.addEventListener('DOMContentLoaded', () => {
         unlockEgg('explorer');
       }
     })();
-
 
     (function() {
       var path = location.pathname.replace(/\/+$/, '') || '/';
@@ -610,7 +606,6 @@ document.addEventListener('DOMContentLoaded', () => {
         pixel.style.borderRadius = '50%';
       });
     })();
-
 
     (function() {
       var logoEl = document.querySelector('.logo');
@@ -636,7 +631,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     })();
 
-
     (function() {
       var totalScroll = 0;
       var lastY = window.scrollY;
@@ -660,6 +654,11 @@ const userButtonContainer = document.getElementById('user-button');
 (async function initClerk() {
   if (!userButtonContainer) return;
 
+  var _host = window.location.hostname;
+  if (_host === '127.0.0.1' || _host === 'localhost') {
+    showFallbackButton();
+    return;
+  }
 
   if (typeof window.Clerk === 'undefined') {
 
@@ -673,7 +672,7 @@ const userButtonContainer = document.getElementById('user-button');
         }
       }, 100);
     }).catch(() => {
-      console.warn('Clerk SDK non disponible — affichage du bouton de fallback');
+      console.warn('Clerk SDK non disponible  affichage du bouton de fallback');
       showFallbackButton();
     });
 
@@ -694,7 +693,6 @@ const userButtonContainer = document.getElementById('user-button');
         },
       },
     });
-
 
     renderAuthUI(clerk);
     clerk.addListener(() => renderAuthUI(clerk));

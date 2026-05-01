@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-
   const code = localStorage.getItem('detectedCountryCode');
   if (code) {
     const card = document.querySelector(`.country-card[data-country="${code.toUpperCase()}"]`);

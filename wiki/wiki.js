@@ -3,7 +3,6 @@
 
   const articles = (typeof wikiArticles !== 'undefined') ? wikiArticles : [];
 
-
   function normalize(s) {
     return (s || '').toString().toLowerCase()
       .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
@@ -16,7 +15,6 @@
   function slugify(s) {
     return normalize(s).replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 80);
   }
-
 
   function scoreArticle(article, q) {
     const nq = normalize(q);
@@ -99,7 +97,6 @@
       });
     });
   }
-
 
   function initArticle() {
     const content = document.querySelector('.wiki-content');

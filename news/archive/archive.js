@@ -37,13 +37,11 @@ function applyFilters() {
 
     if (category && news.category !== category) return false;
 
-
     if (year || month) {
       const newsDate = news.date.split('-');
       if (year && newsDate[0] !== year) return false;
       if (month && newsDate[1] !== month) return false;
     }
-
 
     if (search && !news.title.toLowerCase().includes(search) && !news.excerpt.toLowerCase().includes(search)) {
       return false;
@@ -51,7 +49,6 @@ function applyFilters() {
 
     return true;
   });
-
 
   filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
 
@@ -83,7 +80,6 @@ function displayArchive(newsToDisplay) {
   emptyArchive.style.display = 'none';
   archiveList.innerHTML = '';
 
-
   const grouped = {};
 
   newsToDisplay.forEach(news => {
@@ -94,7 +90,6 @@ function displayArchive(newsToDisplay) {
     }
     grouped[key].push(news);
   });
-
 
   Object.keys(grouped).sort().reverse().forEach(key => {
     const [year, month] = key.split('-');
@@ -111,7 +106,6 @@ function displayArchive(newsToDisplay) {
       archiveList.appendChild(item);
     });
   });
-
 
   archiveList.style.display = 'grid';
   archiveList.style.gridTemplateColumns = '1fr';
@@ -179,7 +173,6 @@ function updateStats(newsToShow) {
   if (shown !== totalNews) {
     statsHTML += ` (sur ${totalNews} au total)`;
   }
-
 
   const categoryCounts = {};
   newsToShow.forEach(news => {

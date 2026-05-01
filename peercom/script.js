@@ -2,23 +2,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const $ = id => document.getElementById(id);
 
-
   const setupModal = $('pc-setup-modal');
   const setupPseudoInput = $('pc-setup-pseudo');
   const setupConfirmBtn = $('pc-setup-confirm');
-
 
   const pseudoModal = $('pc-pseudo-modal');
   const pseudoInput = $('pc-pseudo-input');
   const pseudoSaveBtn = $('pc-pseudo-save');
   const pseudoCancelBtn = $('pc-pseudo-cancel');
 
-
   const myAvatarEl = $('pc-my-avatar');
   const myPseudoEl = $('pc-my-pseudo');
   const myPermanentIdEl = $('pc-my-permanent-id');
   const anonToggle = $('pc-anon-toggle');
-
 
   const landing = $('pc-landing');
   const statusDot = $('pc-status-dot');
@@ -31,19 +27,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const featuresSection = $('pc-features');
   const howSection = $('pc-how');
 
-
   const contactsCountEl = $('pc-contacts-count');
   const contactsListEl = $('pc-contacts-list');
   const contactsEmptyEl = $('pc-contacts-empty');
   const pendingSection = $('pc-pending-section');
   const pendingListEl = $('pc-pending-list');
 
-
   const contactModal = $('pc-contact-modal');
   const contactRequestText = $('pc-contact-request-text');
   const contactAcceptBtn = $('pc-contact-accept');
   const contactRejectBtn = $('pc-contact-reject');
-
 
   const groupModal = $('pc-group-modal');
   const groupNameInput = $('pc-group-name-input');
@@ -53,7 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const groupJoinInput = $('pc-group-join-input');
   const groupJoinBtn = $('pc-group-join-btn');
 
-
   const serverModal = $('pc-server-modal');
   const serverNameInput = $('pc-server-name-input');
   const serverCreateBtn = $('pc-server-create-btn');
@@ -61,7 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const openServerModalBtn = $('pc-open-server-modal');
   const serverJoinInput = $('pc-server-join-input');
   const serverJoinBtn = $('pc-server-join-btn');
-
 
   const chatSection = $('pc-chat-section');
   const chatPeerName = $('pc-chat-peer-name');
@@ -81,12 +72,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const fileInput = $('pc-file-input');
   const toastContainer = $('toast-container');
 
-
   const membersDrawer = $('pc-members-drawer');
   const membersCountEl = $('pc-members-count');
   const membersListEl = $('pc-members-list');
   const membersCloseBtn = $('pc-members-close-btn');
-
 
   const callBanner = $('pc-call-banner');
   const callTimerEl = $('pc-call-timer');
@@ -95,19 +84,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const screenBanner = $('pc-screen-banner');
   const screenStopBtn = $('pc-screen-stop-btn');
 
-
   const screenOverlay = $('pc-screen-overlay');
   const screenVideo = $('pc-screen-video');
   const screenCloseBtn = $('pc-screen-close-btn');
   const remoteAudio = $('pc-remote-audio');
-
 
   const incomingModal = $('pc-incoming-modal');
   const incomingName = $('pc-incoming-name');
   const incomingType = $('pc-incoming-type');
   const incomingAcceptBtn = $('pc-incoming-accept');
   const incomingRejectBtn = $('pc-incoming-reject');
-
 
   const profilePopup = $('pc-profile-popup');
   const profileBanner = $('pc-profile-banner');
@@ -124,7 +110,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const profileCloseBtn = $('pc-profile-close');
   const myAvatarImg = $('pc-my-avatar-img');
 
-
   const profileEditModal = $('pc-profile-edit-modal');
   const editAvatar = $('pc-edit-avatar');
   const editAvatarImg = $('pc-edit-avatar-img');
@@ -139,7 +124,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const editProfileBtn = $('pc-edit-profile-btn');
   const upLeft = $('pc-up-left');
 
-
   const emojiPickerEl = $('pc-emoji-picker');
   const emojiGridEl = $('pc-emoji-grid');
   const replyBarEl = $('pc-reply-bar');
@@ -148,7 +132,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const settingsModal = $('pc-settings-modal');
   const statusSelector = $('pc-status-selector');
   const statusDotUser = $('pc-user-status-dot');
-
 
   const STORAGE_IDENTITY = 'peercom_identity';
   const STORAGE_CONTACTS = 'peercom_contacts';
@@ -161,15 +144,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const STORAGE_USER_STATUS = 'peercom_status';
   const COMMON_EMOJIS = ['😀','😂','😍','🥺','😎','🤔','👍','👎','❤️','🔥','🎉','💯','😢','😡','👀','🙏','✅','❌','⭐','💀','🤡','😭','🥰','😏','🫡','💔','😱','🤝','🫠','👏'];
 
-
   let peer = null;
   let myKeyPair = null;
   let reconnectAttempts = 0;
   const MAX_RECONNECT = 5;
 
-
   let chatMode = 'dm';
-
 
   let connection = null;
   let sharedKey = null;
@@ -177,14 +157,11 @@ document.addEventListener('DOMContentLoaded', () => {
   let isTyping = false;
   let peerIdentity = null;
 
-
   let identity = null;
   let isAnonymous = false;
 
-
   let contacts = [];
   let pendingContactRequest = null;
-
 
   let currentCall = null;
   let localStream = null;
@@ -193,12 +170,10 @@ document.addEventListener('DOMContentLoaded', () => {
   let callStartTime = null;
   let pendingIncomingCall = null;
 
-
   let screenCall = null;
   let screenStream = null;
   let isScreenSharing = false;
   let pendingIncomingScreen = null;
-
 
   let msgIdCounter = 0;
   let replyingTo = null;
@@ -208,20 +183,12 @@ document.addEventListener('DOMContentLoaded', () => {
   let notifSound = null;
   let peerLocalStorageEnabled = false;
 
-
   const activeTransfers = new Map();
-
-
-
-
 
   let groupConnections = new Map();
   let groupSharedKeys = new Map();
   let groupMembers = new Map();
   let groupInfo = null;
-
-
-
 
   let serverInfo = null;
   let isServerHost = false;
@@ -229,7 +196,6 @@ document.addEventListener('DOMContentLoaded', () => {
   let serverConn = null;
   let serverSharedKey = null;
   let serverMembers = new Map();
-
 
   const subtle = window.crypto.subtle;
 
@@ -297,7 +263,6 @@ document.addEventListener('DOMContentLoaded', () => {
   function b64Encode(bytes) { return btoa(String.fromCharCode(...bytes)); }
   function b64Decode(str) { return Uint8Array.from(atob(str), c => c.charCodeAt(0)); }
 
-
   function loadIdentity() {
     try {
       const raw = localStorage.getItem(STORAGE_IDENTITY);
@@ -319,7 +284,6 @@ document.addEventListener('DOMContentLoaded', () => {
   function saveContacts(list) {
     localStorage.setItem(STORAGE_CONTACTS, JSON.stringify(list));
   }
-
 
   const HYPESQUAD_HOUSES = {
     anemo:   { name: 'Anémo',   emoji: '🍃', color: '#87ceeb' },
@@ -384,13 +348,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-
   function loadSettings() {
     try { const r = localStorage.getItem(STORAGE_SETTINGS); return r ? JSON.parse(r) : { sounds: true, desktopNotif: false, theme: 'dark', localStorageEnabled: false, shareStatus: true, fontSize: 15 }; }
     catch { return { sounds: true, desktopNotif: false, theme: 'dark', localStorageEnabled: false, shareStatus: true, fontSize: 15 }; }
   }
   function saveSettings(s) { localStorage.setItem(STORAGE_SETTINGS, JSON.stringify(s)); }
-
 
   const STORAGE_MESSAGES_PREFIX = 'peercom_msgs_';
   function canSaveMessages() {
@@ -468,7 +430,6 @@ document.addEventListener('DOMContentLoaded', () => {
     return h;
   }
 
-
   function generatePeerId() {
     const c = 'abcdefghijklmnopqrstuvwxyz0123456789';
     const seg = () => { let s = ''; for (let i = 0; i < 4; i++) s += c[Math.floor(Math.random() * c.length)]; return s; };
@@ -502,7 +463,6 @@ document.addEventListener('DOMContentLoaded', () => {
     peer.on('connection', (conn) => {
       const meta = conn.metadata || {};
 
-
       if (meta.mode === 'group' && meta.groupId) {
         if (groupInfo && groupInfo.id === meta.groupId) {
           handleGroupIncoming(conn, meta);
@@ -512,7 +472,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-
       if (meta.mode === 'server' && meta.serverId) {
         if (isServerHost && serverInfo && serverInfo.id === meta.serverId) {
           handleServerClientJoin(conn, meta);
@@ -521,7 +480,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         return;
       }
-
 
       if (chatMode !== 'dm' || connection) { conn.close(); return; }
       handleConnection(conn);
@@ -576,10 +534,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
-
-
-
-
 
   async function handleConnection(conn) {
     connection = conn;
@@ -839,10 +793,6 @@ document.addEventListener('DOMContentLoaded', () => {
     activeTransfers.clear();
   }
 
-
-
-
-
   function createGroup(name) {
     const gId = 'grp-' + generatePeerId().slice(3);
     groupInfo = { id: gId, name: name || 'Groupe', creatorId: peer.id };
@@ -863,14 +813,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!gId) { toast('Entrez l\'ID du groupe.', 'error'); return; }
     if (!peer || peer.destroyed) { toast('P2P non initialisé.', 'error'); return; }
 
-
     chatMode = 'group';
     groupInfo = { id: gId, name: 'Groupe', creatorId: null };
     const myPseudo = isAnonymous ? 'Anonyme' : (identity?.pseudo || 'Pair');
     groupMembers.set(peer.id, { pseudo: myPseudo, peerId: peer.id });
-
-
-
 
     const creatorId = 'pc-' + gId.slice(4);
     if (creatorId === peer.id) { toast('Vous ne pouvez pas rejoindre votre propre groupe.', 'error'); chatMode = 'dm'; groupInfo = null; return; }
@@ -896,7 +842,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     setupGroupConnection(conn, conn.peer);
-
 
     conn.on('open', () => {
       const members = [];
@@ -1049,7 +994,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (howSection) howSection.hidden = true;
     chatPeerName.textContent = groupInfo?.name || 'Groupe';
 
-
     const avatar = $('pc-peer-avatar');
     if (avatar) avatar.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" stroke="currentColor" stroke-width="2"/><circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke="currentColor" stroke-width="2"/></svg>';
 
@@ -1082,10 +1026,6 @@ document.addEventListener('DOMContentLoaded', () => {
     membersBtn.hidden = true;
     membersDrawer.hidden = true;
   }
-
-
-
-
 
   function createServer(name) {
     const sId = 'srv-' + generatePeerId().slice(3);
@@ -1151,7 +1091,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-
   function handleServerClientJoin(conn, meta) {
     const remotePeerId = conn.peer;
     const clientState = { conn, sharedKey: null, pseudo: meta.pseudo || remotePeerId, keyPair: null };
@@ -1191,7 +1130,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
-
 
   async function handleServerHostData(data, conn, remotePeerId) {
     const client = serverClients.get(remotePeerId);
@@ -1256,7 +1194,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   }
-
 
   async function handleServerClientData(data, conn) {
     switch (data.type) {
@@ -1410,10 +1347,6 @@ document.addEventListener('DOMContentLoaded', () => {
     membersDrawer.hidden = true;
   }
 
-
-
-
-
   async function startCall() {
     if (!connection || currentCall) return;
     try {
@@ -1501,7 +1434,6 @@ document.addEventListener('DOMContentLoaded', () => {
     callTimerEl.textContent = m + ':' + s;
   }
 
-
   async function startScreenShare() {
     if (!connection || screenCall) return;
     try {
@@ -1562,7 +1494,6 @@ document.addEventListener('DOMContentLoaded', () => {
     screenshareBtn.classList.remove('active');
     screenshareBtn.disabled = false;
   }
-
 
   async function initiateFileTransfer(file) {
     if (chatMode !== 'dm' || !connection || !sharedKey) { toast('Transfert de fichiers disponible en DM uniquement.', 'error'); return; }
@@ -1706,7 +1637,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (meta) meta.textContent += ' · Envoyé ✓';
   }
 
-
   function renderContacts() {
     contactsListEl.querySelectorAll('.pc-contact-item').forEach(e => e.remove());
     contactsCountEl.textContent = contacts.length;
@@ -1792,7 +1722,6 @@ document.addEventListener('DOMContentLoaded', () => {
     toast('Demande refusée.', 'info');
   }
 
-
   function showIncomingModal(name, typeText) {
     incomingName.textContent = name;
     incomingType.textContent = typeText;
@@ -1804,7 +1733,6 @@ document.addEventListener('DOMContentLoaded', () => {
     pendingIncomingCall = null;
     pendingIncomingScreen = null;
   }
-
 
   function renderMembers() {
     membersListEl.innerHTML = '';
@@ -1831,7 +1759,6 @@ document.addEventListener('DOMContentLoaded', () => {
       membersListEl.appendChild(el);
     }
   }
-
 
   function initIdentity() {
     identity = loadIdentity();
@@ -1873,7 +1800,6 @@ document.addEventListener('DOMContentLoaded', () => {
     toast(isAnonymous ? 'Mode anonyme activé.' : 'Mode normal activé.', 'info');
   }
 
-
   function setLandingStatus(status, text) {
     statusDot.className = 'pc-status-dot';
     if (status === 'online') statusDot.classList.add('online');
@@ -1906,11 +1832,10 @@ document.addEventListener('DOMContentLoaded', () => {
     _lastMsgTimestamp = 0;
     msgInput.focus();
 
-
     if (settings.localStorageEnabled && peerId) {
       const saved = loadMessagesFromLocal(peerId);
       if (saved.length > 0) {
-        addSystemMessage('— Historique restauré (' + saved.length + ' messages) —');
+        addSystemMessage(' Historique restauré (' + saved.length + ' messages) ');
         saved.forEach(m => addChatMessage(m.text, m.sender, m.ts, { msgId: m.msgId, skipSave: true }));
       }
     }
@@ -1947,8 +1872,6 @@ document.addEventListener('DOMContentLoaded', () => {
     chatMode = 'dm';
   }
 
-
-
   let _lastMsgDate = null;
   function _maybeDateSep(ts) {
     const d = new Date(ts || Date.now());
@@ -1961,7 +1884,6 @@ document.addEventListener('DOMContentLoaded', () => {
       messagesEl.appendChild(sep);
     }
   }
-
 
   let _lastMsgSender = null;
   let _lastMsgTimestamp = 0;
@@ -1990,7 +1912,6 @@ document.addEventListener('DOMContentLoaded', () => {
     el.dataset.sender = sender;
     el.dataset.rawText = text;
     el.dataset.ts = ts;
-
 
     if (opts.replyTo) {
       const refDiv = document.createElement('div');
@@ -2041,7 +1962,6 @@ document.addEventListener('DOMContentLoaded', () => {
       msgP.innerHTML = formatMsgText(text);
       body.appendChild(msgP);
 
-
       const reactionsDiv = document.createElement('div');
       reactionsDiv.className = 'pc-msg-reactions';
       body.appendChild(reactionsDiv);
@@ -2066,7 +1986,6 @@ document.addEventListener('DOMContentLoaded', () => {
       el.appendChild(reactionsDiv);
     }
 
-
     const actions = document.createElement('div');
     actions.className = 'pc-msg-actions';
     actions.innerHTML = '<button class="pc-msg-act-btn" data-action="react" title="Réaction">😀</button>'
@@ -2078,12 +1997,10 @@ document.addEventListener('DOMContentLoaded', () => {
     messagesEl.appendChild(el);
     messagesEl.scrollTop = messagesEl.scrollHeight;
 
-
     if (sender !== 'me' && !opts.skipSave) {
       playNotifSound();
       sendDesktopNotif(peerIdentity?.pseudo || 'Nouveau message', text.slice(0, 100));
     }
-
 
     if (connection?.peer && !opts.skipSave) {
       saveMessageToLocal(connection.peer, { text, sender, ts, msgId });
@@ -2176,7 +2093,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!text) return;
     const truncated = text.slice(0, 5000);
 
-
     if (editingMsgId) {
       const el = messagesEl.querySelector('[data-msg-id="' + editingMsgId + '"]');
       if (el) {
@@ -2210,7 +2126,6 @@ document.addEventListener('DOMContentLoaded', () => {
       connection.send({ type: 'encrypted-msg', payload, timestamp: Date.now() });
       addChatMessage(truncated, 'me', Date.now(), { msgId, replyTo: replyData });
     }
-
 
     if (replyingTo) {
       replyingTo = null;
@@ -2267,7 +2182,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typing) messagesEl.scrollTop = messagesEl.scrollHeight;
   }
 
-
   function toast(message, type = 'info') {
     const icons = { success: '✓', error: '✗', info: 'ℹ' };
     const el = document.createElement('div');
@@ -2287,14 +2201,10 @@ document.addEventListener('DOMContentLoaded', () => {
     return div.innerHTML;
   }
 
-
-
-
   setupConfirmBtn.addEventListener('click', () => createIdentity(setupPseudoInput.value));
   setupPseudoInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') { e.preventDefault(); createIdentity(setupPseudoInput.value); }
   });
-
 
   myPseudoEl.addEventListener('click', () => {
     if (isAnonymous) { toast('Désactivez le mode anonyme d\'abord.', 'info'); return; }
@@ -2314,9 +2224,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   pseudoCancelBtn.addEventListener('click', () => { pseudoModal.hidden = true; });
 
-
   anonToggle.addEventListener('change', toggleAnonymousMode);
-
 
   copyIdBtn.addEventListener('click', async () => {
     const id = myIdEl.textContent;
@@ -2324,7 +2232,6 @@ document.addEventListener('DOMContentLoaded', () => {
     try { await navigator.clipboard.writeText(id); toast('Identifiant copié !', 'success'); }
     catch { toast('Impossible de copier.', 'error'); }
   });
-
 
   refreshIdBtn.addEventListener('click', () => {
     if (connection || chatMode !== 'dm') { toast('Déconnectez-vous d\'abord.', 'info'); return; }
@@ -2340,19 +2247,15 @@ document.addEventListener('DOMContentLoaded', () => {
     toast('Nouvel identifiant généré.', 'success');
   });
 
-
   connectBtn.addEventListener('click', () => connectToPeer());
   peerInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') { e.preventDefault(); connectToPeer(); }
   });
 
-
   disconnectBtn.addEventListener('click', disconnectPeer);
-
 
   chatForm.addEventListener('submit', (e) => { e.preventDefault(); sendMessage(); });
   msgInput.addEventListener('input', handleTypingInput);
-
 
   attachBtn.addEventListener('click', () => fileInput.click());
   fileInput.addEventListener('change', () => {
@@ -2362,23 +2265,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-
   callBtn.addEventListener('click', startCall);
   callHangupBtn.addEventListener('click', () => { endCall(); addSystemMessage('Appel terminé.'); });
   muteBtn.addEventListener('click', toggleMute);
-
 
   screenshareBtn.addEventListener('click', startScreenShare);
   screenStopBtn.addEventListener('click', () => { endScreenShare(); addSystemMessage('Partage d\'écran arrêté.'); });
   screenCloseBtn.addEventListener('click', closeScreenViewer);
 
-
   addContactBtn.addEventListener('click', sendContactRequest);
-
 
   contactAcceptBtn.addEventListener('click', acceptContactRequest);
   contactRejectBtn.addEventListener('click', rejectContactRequest);
-
 
   incomingAcceptBtn.addEventListener('click', () => {
     if (pendingIncomingCall) {
@@ -2396,13 +2294,11 @@ document.addEventListener('DOMContentLoaded', () => {
     hideIncomingModal();
   });
 
-
   membersBtn.addEventListener('click', () => {
     membersDrawer.hidden = !membersDrawer.hidden;
     if (!membersDrawer.hidden) renderMembers();
   });
   membersCloseBtn.addEventListener('click', () => { membersDrawer.hidden = true; });
-
 
   openGroupModalBtn.addEventListener('click', () => {
     groupNameInput.value = '';
@@ -2428,7 +2324,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Enter') { e.preventDefault(); groupJoinBtn.click(); }
   });
 
-
   openServerModalBtn.addEventListener('click', () => {
     serverNameInput.value = '';
     serverModal.hidden = false;
@@ -2453,7 +2348,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Enter') { e.preventDefault(); serverJoinBtn.click(); }
   });
 
-
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       if (!profilePopup.hidden) { hideProfilePopup(); return; }
@@ -2467,8 +2361,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!chatSection.hidden) { disconnectPeer(); return; }
     }
   });
-
-
 
   function addReactionToMsg(msgId, emoji, who) {
     const el = messagesEl.querySelector('[data-msg-id="' + msgId + '"]');
@@ -2523,7 +2415,7 @@ document.addEventListener('DOMContentLoaded', () => {
     replyingTo = { id: msgId, author, text: raw };
     if (replyBarEl) {
       replyBarEl.hidden = false;
-      if (replyBarText) replyBarText.textContent = 'Répondre à ' + author + ' — ' + raw.slice(0, 60);
+      if (replyBarText) replyBarText.textContent = 'Répondre à ' + author + '  ' + raw.slice(0, 60);
     }
     msgInput.focus();
   }
@@ -2534,7 +2426,7 @@ document.addEventListener('DOMContentLoaded', () => {
     editingMsgId = msgId;
     msgInput.dataset.origPlaceholder = msgInput.placeholder;
     msgInput.value = el.dataset.rawText || '';
-    msgInput.placeholder = 'Modifier le message — Échap pour annuler';
+    msgInput.placeholder = 'Modifier le message  Échap pour annuler';
     msgInput.classList.add('pc-editing');
     msgInput.focus();
   }
@@ -2546,7 +2438,6 @@ document.addEventListener('DOMContentLoaded', () => {
     msgInput.placeholder = msgInput.dataset.origPlaceholder || 'Envoyer un message';
     msgInput.classList.remove('pc-editing');
   }
-
 
   let emojiTarget = null;
 
@@ -2580,7 +2471,6 @@ document.addEventListener('DOMContentLoaded', () => {
     hideEmojiPicker();
   }
 
-
   function openSettings() {
     if (!settingsModal) return;
     settings = loadSettings();
@@ -2598,7 +2488,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (shareStatusCb) shareStatusCb.checked = settings.shareStatus !== false;
     if (fontSizeSel) fontSizeSel.value = String(settings.fontSize || 15);
 
-
     const cardName = $('pc-set-card-name');
     const cardAvatar = $('pc-set-card-avatar');
     const cardAvatarImg = $('pc-set-card-avatar-img');
@@ -2606,21 +2495,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const peerId = $('pc-set-peer-id');
     if (cardName) cardName.textContent = identity?.pseudo || 'Anonyme';
     if (displayName) displayName.textContent = identity?.pseudo || 'Anonyme';
-    if (peerId) peerId.textContent = (peer && peer.id) || '—';
+    if (peerId) peerId.textContent = (peer && peer.id) || '';
     if (cardAvatar && identity?.pseudo) cardAvatar.textContent = identity.pseudo.charAt(0).toUpperCase();
     if (cardAvatarImg && identity?.avatar) { cardAvatarImg.src = identity.avatar; cardAvatarImg.hidden = false; }
     else if (cardAvatarImg) cardAvatarImg.hidden = true;
-
 
     settingsModal.querySelectorAll('.pc-theme-btn').forEach(b => {
       b.classList.toggle('active', b.dataset.theme === (settings.theme || 'dark'));
     });
 
-
     if (statusSelector) {
       statusSelector.querySelectorAll('[data-status]').forEach(b => b.classList.toggle('active', b.dataset.status === userStatus));
     }
-
 
     switchSettingsSection('account');
     settingsModal.classList.add('open');
@@ -2657,7 +2543,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   }
-
 
   let transferPeer = null;
   let transferConn = null;
@@ -2711,7 +2596,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (genBtn) genBtn.disabled = true;
     if (resultEl) resultEl.hidden = true;
 
-
     let remaining = 120;
     const timerEl = $('pc-transfer-key-timer');
     if (timerEl) timerEl.textContent = remaining;
@@ -2726,7 +2610,6 @@ document.addEventListener('DOMContentLoaded', () => {
         toast('Clé de transfert expirée.', 'info');
       }
     }, 1000);
-
 
     transferPeer = new Peer(transferId, {
       host: location.hostname === '127.0.0.1' || location.hostname === 'localhost' ? '127.0.0.1' : 'peer.ventistudio.eu',
@@ -2762,7 +2645,6 @@ document.addEventListener('DOMContentLoaded', () => {
           timestamp: Date.now()
         };
         conn.send(payload);
-
 
         conn.on('data', (resp) => {
           if (resp && resp.type === 'transfer-ack') {
@@ -2853,7 +2735,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-
   function setUserStatus(status) {
     userStatus = status;
     saveUserStatus(status);
@@ -2871,7 +2752,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (dot) dot.className = 'pc-peer-status-dot pc-status-' + (status || 'online');
   }
 
-
   messagesEl.addEventListener('click', (e) => {
     const btn = e.target.closest('.pc-msg-act-btn');
     if (!btn) return;
@@ -2886,12 +2766,10 @@ document.addEventListener('DOMContentLoaded', () => {
     else if (action === 'react') showEmojiPicker(msgId, btn);
   });
 
-
   if (replyBarClose) replyBarClose.addEventListener('click', () => {
     replyingTo = null;
     if (replyBarEl) replyBarEl.hidden = true;
   });
-
 
   const emojiBtnChat = $('pc-emoji-btn');
   if (emojiBtnChat) emojiBtnChat.addEventListener('click', () => {
@@ -2899,12 +2777,10 @@ document.addEventListener('DOMContentLoaded', () => {
     showEmojiPicker('input', emojiBtnChat);
   });
 
-
   if (emojiGridEl) emojiGridEl.addEventListener('click', (e) => {
     const btn = e.target.closest('.pc-emoji-item');
     if (btn) handleEmojiSelect(btn.textContent.trim());
   });
-
 
   document.addEventListener('mousedown', (e) => {
     if (emojiPickerEl && !emojiPickerEl.hidden && !emojiPickerEl.contains(e.target) && e.target.id !== 'pc-emoji-btn' && !e.target.closest('.pc-msg-act-btn[data-action="react"]')) {
@@ -2912,19 +2788,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-
   msgInput.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && editingMsgId) { e.stopPropagation(); cancelEdit(); }
   });
 
-
   const settingsBtn = $('pc-settings-btn');
   if (settingsBtn) settingsBtn.addEventListener('click', openSettings);
 
-
   const settingsCloseBtn = $('pc-settings-close');
   if (settingsCloseBtn) settingsCloseBtn.addEventListener('click', closeSettings);
-
 
   if (settingsModal) {
     settingsModal.addEventListener('click', (e) => {
@@ -2943,7 +2815,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-
     settingsModal.addEventListener('change', (e) => {
       const t = e.target;
       if (t.id === 'pc-set-sounds') applySetting('sounds', t.checked);
@@ -2954,7 +2825,6 @@ document.addEventListener('DOMContentLoaded', () => {
       else if (t.id === 'pc-set-font-size') applySetting('fontSize', parseInt(t.value, 10));
     });
 
-
     settingsModal.addEventListener('click', (e) => {
       const themeBtn = e.target.closest('.pc-theme-btn');
       if (themeBtn && themeBtn.dataset.theme) {
@@ -2963,14 +2833,12 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-
     const setEditProfile = $('pc-set-edit-profile');
     if (setEditProfile) setEditProfile.addEventListener('click', () => { closeSettings(); if (profileEditModal) profileEditModal.hidden = false; });
     const setEditPseudo = $('pc-set-edit-pseudo');
     if (setEditPseudo) setEditPseudo.addEventListener('click', () => { closeSettings(); const m = $('pc-pseudo-modal'); if (m) m.hidden = false; });
     const setCopyId = $('pc-set-copy-id');
     if (setCopyId) setCopyId.addEventListener('click', () => { if (peer && peer.id) { navigator.clipboard.writeText(peer.id); toast('ID copié !', 'success'); } });
-
 
     const setClearData = $('pc-set-clear-data');
     if (setClearData) setClearData.addEventListener('click', () => {
@@ -2983,7 +2851,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-
     const setLogout = $('pc-set-logout');
     if (setLogout) setLogout.addEventListener('click', () => {
       if (confirm('Êtes-vous sûr de vouloir vous déconnecter ?')) {
@@ -2993,12 +2860,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-
     const transferGenBtn = $('pc-transfer-generate');
     if (transferGenBtn) transferGenBtn.addEventListener('click', startTransferSend);
     const transferRecvBtn = $('pc-transfer-receive');
     if (transferRecvBtn) transferRecvBtn.addEventListener('click', startTransferReceive);
-
 
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && settingsModal && settingsModal.classList.contains('open')) {
@@ -3008,18 +2873,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-
   if (statusSelector) statusSelector.addEventListener('click', (e) => {
     const btn = e.target.closest('[data-status]');
     if (!btn) return;
     setUserStatus(btn.dataset.status);
     statusSelector.querySelectorAll('[data-status]').forEach(b => b.classList.toggle('active', b === btn));
   });
-
-
-
-
-
 
   function buildBadgesHTML(profileData, hsData) {
     let html = '';
@@ -3048,7 +2907,6 @@ document.addEventListener('DOMContentLoaded', () => {
     profileName.textContent = data.pseudo || 'Utilisateur';
     profilePseudoId.textContent = data.peerId || '';
 
-
     if (data.avatar) {
       profileAvatarImg.src = data.avatar;
       profileAvatarImg.hidden = false;
@@ -3059,7 +2917,6 @@ document.addEventListener('DOMContentLoaded', () => {
       profileAvatar.textContent = (data.pseudo || '?')[0].toUpperCase();
     }
 
-
     if (data.avatarFrame && data.avatarFrame !== 'none') {
       profileFrame.hidden = false;
       profileFrame.setAttribute('data-frame', data.avatarFrame);
@@ -3068,13 +2925,10 @@ document.addEventListener('DOMContentLoaded', () => {
       profileFrame.removeAttribute('data-frame');
     }
 
-
     const hsData = data.hypesquad || (data.isSelf ? getHypesquadData() : null);
     profileBadges.innerHTML = buildBadgesHTML(data, hsData);
 
-
     profileBio.textContent = data.bio || 'Aucune bio définie.';
-
 
     if (hsData && hsData.house && HYPESQUAD_HOUSES[hsData.house]) {
       const h = HYPESQUAD_HOUSES[hsData.house];
@@ -3086,11 +2940,10 @@ document.addEventListener('DOMContentLoaded', () => {
       profileHsSection.hidden = true;
     }
 
-
     if (data.created) {
       profileMemberSince.textContent = new Date(data.created).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
     } else {
-      profileMemberSince.textContent = '—';
+      profileMemberSince.textContent = '';
     }
 
     profilePopup.hidden = false;
@@ -3132,14 +2985,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-
   let editAvatarData = null;
   let editFrameChoice = 'none';
 
   function openProfileEdit() {
     if (!identity) return;
     const profile = loadProfile();
-
 
     editAvatarData = profile.avatar || null;
     if (editAvatarData) {
@@ -3154,10 +3005,8 @@ document.addEventListener('DOMContentLoaded', () => {
       editAvatarRemove.hidden = true;
     }
 
-
     editBio.value = profile.bio || '';
     editBioCount.textContent = editBio.value.length;
-
 
     editFrameChoice = profile.avatarFrame || 'none';
     framePicker.querySelectorAll('.pc-frame-option').forEach(btn => {
@@ -3183,7 +3032,6 @@ document.addEventListener('DOMContentLoaded', () => {
     toast('Profil mis à jour !', 'success');
   }
 
-
   function updateAvatarUI() {
     const profile = loadProfile();
     if (profile.avatar) {
@@ -3193,7 +3041,6 @@ document.addEventListener('DOMContentLoaded', () => {
       myAvatarImg.hidden = true;
     }
   }
-
 
   function buildIdentityPayload() {
     if (isAnonymous || !identity) return null;
@@ -3211,7 +3058,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (identity.created) payload.created = identity.created;
     return payload;
   }
-
 
   if (profileCloseBtn) profileCloseBtn.addEventListener('click', hideProfilePopup);
   if (upLeft) upLeft.addEventListener('click', showMyProfile);
@@ -3254,10 +3100,8 @@ document.addEventListener('DOMContentLoaded', () => {
     framePicker.querySelectorAll('.pc-frame-option').forEach(b => b.classList.toggle('active', b === btn));
   });
 
-
   const peerAvatarEl = $('pc-peer-avatar');
   if (peerAvatarEl) peerAvatarEl.addEventListener('click', showPeerProfile);
-
 
   const mobileToggle = $('pc-mobile-toggle');
   const sidebarBackdrop = $('pc-sidebar-backdrop');
@@ -3277,14 +3121,12 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   if (sidebarBackdrop) sidebarBackdrop.addEventListener('click', closeSidebar);
 
-
   const dmListEl = document.getElementById('pc-dm-list');
   if (dmListEl) dmListEl.addEventListener('click', (e) => {
     if (e.target.closest('.pc-dm-item') && window.innerWidth <= 768) {
       closeSidebar();
     }
   });
-
 
   settings = loadSettings();
   userStatus = loadUserStatus();

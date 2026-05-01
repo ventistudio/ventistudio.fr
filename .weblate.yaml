@@ -1,3 +1,8 @@
+# SPDX-License-Identifier: LicenseRef-FiTsZ-DMA-1.0
+# Copyright (c) 2026 Umaishi H. <umaishi.h@ventistudio.eu>
+# Distributed under the FiTsZ Digital Media Agreement v1.0
+# See https://ventistudio.eu/lawful/license-fitsz-dma/ for the full terms.
+
 component:
   name: Website Frontend
   slug: website-frontend

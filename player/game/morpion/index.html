@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="Morpion - Affrontez un ami ou l'ordinateur dans ce grand classique. Alignez trois symboles pour gagner !">
+  <meta name="theme-color" content="#6366f1">
+  <title>Morpion | VentiStudio</title>
+
+  <script async crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
+  <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
+
+  <meta property="og:title" content="Morpion | VentiStudio">
+  <meta property="og:description" content="Morpion - Affrontez un ami ou l'ordinateur dans ce grand classique.">
+  <meta property="og:url" content="https://ventistudio.eu/player/game/morpion/">
+  <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://ventistudio.eu/player/game/morpion/">
+
+  <script>
+    (function() {
+      var t; try { t = localStorage.getItem('theme'); } catch (_) {} if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+  <script src="/i18n.js" defer></script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #1A1B26;
+      color: #e0e0e0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1rem 3rem;
+    }
+
+    .back-btn {
+      align-self: flex-start;
+      background: transparent;
+      border: 1px solid rgba(99,102,241,0.35);
+      color: #6366f1;
+      border-radius: 8px;
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
+      font-family: inherit;
+      cursor: pointer;
+      margin-bottom: 1.5rem;
+      transition: all 0.2s;
+    }
+    .back-btn:hover {
+      background: rgba(99,102,241,0.12);
+      border-color: #6366f1;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #6366f1;
+      text-shadow: 0 0 20px rgba(99,102,241,0.4);
+      margin-bottom: 0.4rem;
+      text-align: center;
+    }
+
+    .subtitle {
+      color: #a0a0a0;
+      font-size: 0.9rem;
+      text-align: center;
+      margin-bottom: 1.75rem;
+    }
+
+    /* Mode selector */
+    .mode-select {
+      display: flex;
+      gap: 0.6rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .mode-btn {
+      background: #2A2D3A;
+      color: #e0e0e0;
+      border: 2px solid rgba(99,102,241,0.25);
+      border-radius: 8px;
+      padding: 0.5rem 1.25rem;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+
+    .mode-btn:hover,
+    .mode-btn.active {
+      border-color: #6366f1;
+      background: rgba(99,102,241,0.14);
+      color: #6366f1;
+    }
+
+    /* Status bar */
+    .status-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+      min-height: 2.2rem;
+    }
+
+    .status-text {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #e0e0e0;
+      transition: color 0.2s;
+    }
+
+    .status-text.x-turn  { color: #6366f1; }
+    .status-text.o-turn  { color: #f59e0b; }
+    .status-text.x-win   { color: #22c55e; }
+    .status-text.o-win   { color: #22c55e; }
+    .status-text.draw    { color: #a0a0a0; }
+
+    /* Board */
+    .board {
+      display: grid;
+      grid-template-columns: repeat(3, 110px);
+      grid-template-rows: repeat(3, 110px);
+      gap: 8px;
+      margin-bottom: 1.75rem;
+    }
+
+    .cell {
+      width: 110px;
+      height: 110px;
+      background: #2A2D3A;
+      border: 2px solid rgba(99,102,241,0.25);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s, transform 0.1s;
+      user-select: none;
+    }
+
+    .cell:hover:not(.taken):not(.disabled) {
+      background: rgba(99,102,241,0.1);
+      border-color: #6366f1;
+      transform: scale(1.04);
+    }
+
+    .cell.taken { cursor: default; }
+    .cell.disabled { cursor: default; }
+
+    .cell.x { color: #6366f1; }
+    .cell.o { color: #f59e0b; }
+
+    .cell.win-cell {
+      background: rgba(34,197,94,0.12);
+      border-color: #22c55e;
+      animation: winPulse 0.6s ease;
+    }
+
+    @keyframes winPulse {
+      0%   { transform: scale(1); }
+      40%  { transform: scale(1.08); }
+      100% { transform: scale(1); }
+    }
+
+    /* Score board */
+    .scoreboard {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .score-box {
+      background: #2A2D3A;
+      border: 2px solid rgba(99,102,241,0.25);
+      border-radius: 10px;
+      padding: 0.6rem 1.2rem;
+      text-align: center;
+      min-width: 80px;
+    }
+
+    .score-box label {
+      display: block;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #a0a0a0;
+      margin-bottom: 0.2rem;
+    }
+
+    .score-box span {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .score-box.x-score { border-color: rgba(99,102,241,0.5); }
+    .score-box.x-score span { color: #6366f1; }
+    .score-box.o-score { border-color: rgba(245,158,11,0.4); }
+    .score-box.o-score span { color: #f59e0b; }
+    .score-box.draw-score span { color: #a0a0a0; }
+
+    /* Buttons */
+    .btn-group {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn {
+      background: #6366f1;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 0.7rem 1.75rem;
+      font-size: 0.95rem;
+      font-family: inherit;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .btn:hover {
+      opacity: 0.85;
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid #6366f1;
+      color: #6366f1;
+    }
+
+    .btn-outline:hover {
+      background: rgba(99,102,241,0.12);
+      opacity: 1;
+    }
+
+    /* CPU thinking indicator */
+    .thinking {
+      display: none;
+      font-size: 0.8rem;
+      color: #a0a0a0;
+      margin-bottom: 0.5rem;
+    }
+
+    .thinking.visible { display: block; }
+
+    @media (max-width: 420px) {
+      .board { grid-template-columns: repeat(3, 90px); grid-template-rows: repeat(3, 90px); }
+      .cell { width: 90px; height: 90px; font-size: 2.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <button class="back-btn" onclick="history.back()" data-i18n="games.morpion.btn.back">← Retour</button>
+
+  <h1 data-i18n="games.morpion.page.title">⭕ Morpion</h1>
+  <p class="subtitle" data-i18n="games.morpion.subtitle">Le jeu de morpion classique</p>
+
+  <div class="mode-select">
+    <button class="mode-btn active" data-mode="pvp" id="mode-pvp" data-i18n="games.morpion.mode.pvp">2 Joueurs</button>
+    <button class="mode-btn" data-mode="cpu" id="mode-cpu" data-i18n="games.morpion.mode.cpu">vs Ordinateur</button>
+  </div>
+
+  <div class="scoreboard">
+    <div class="score-box x-score">
+      <label data-i18n="games.morpion.score.x">Joueur X</label>
+      <span id="score-x">0</span>
+    </div>
+    <div class="score-box draw-score">
+      <label data-i18n="games.morpion.score.draws">Égalités</label>
+      <span id="score-d">0</span>
+    </div>
+    <div class="score-box o-score">
+      <label id="score-o-label" data-i18n="games.morpion.score.o">Joueur O</label>
+      <span id="score-o">0</span>
+    </div>
+  </div>
+
+  <div class="status-bar">
+    <span class="status-text x-turn" id="status-text" data-i18n="games.morpion.status.turn_x">Tour du joueur X</span>
+  </div>
+
+  <p class="thinking" id="cpu-thinking" data-i18n="games.morpion.cpu.thinking">L'ordinateur réfléchit…</p>
+
+  <div class="board" id="board" role="grid" aria-label="Plateau de morpion">
+    <div class="cell" role="gridcell" aria-label="Case 1" data-index="0" tabindex="0"></div>
+    <div class="cell" role="gridcell" aria-label="Case 2" data-index="1" tabindex="0"></div>
+    <div class="cell" role="gridcell" aria-label="Case 3" data-index="2" tabindex="0"></div>
+    <div class="cell" role="gridcell" aria-label="Case 4" data-index="3" tabindex="0"></div>
+    <div class="cell" role="gridcell" aria-label="Case 5" data-index="4" tabindex="0"></div>
+    <div class="cell" role="gridcell" aria-label="Case 6" data-index="5" tabindex="0"></div>
+    <div class="cell" role="gridcell" aria-label="Case 7" data-index="6" tabindex="0"></div>
+    <div class="cell" role="gridcell" aria-label="Case 8" data-index="7" tabindex="0"></div>
+    <div class="cell" role="gridcell" aria-label="Case 9" data-index="8" tabindex="0"></div>
+  </div>
+
+  <div class="btn-group">
+    <button class="btn" id="restart-btn" data-i18n="games.morpion.btn.restart">Nouvelle partie</button>
+    <button class="btn btn-outline" onclick="history.back()" data-i18n="games.morpion.btn.back">← Retour</button>
+  </div>
+
+  <script>
+  (function () {
+    'use strict';
+
+    var WIN_LINES = [
+      [0,1,2],[3,4,5],[6,7,8],  // lignes
+      [0,3,6],[1,4,7],[2,5,8],  // colonnes
+      [0,4,8],[2,4,6]           // diagonales
+    ];
+
+    var board        = Array(9).fill(null);
+    var currentTurn  = 'X';
+    var gameOver     = false;
+    var mode         = 'pvp';   // 'pvp' | 'cpu'
+    var cpuPlayer    = 'O';
+    var scores       = { X: 0, O: 0, D: 0 };
+    var i18nData     = {};
+
+    var cells        = document.querySelectorAll('.cell');
+    var statusEl     = document.getElementById('status-text');
+    var scoreXEl     = document.getElementById('score-x');
+    var scoreOEl     = document.getElementById('score-o');
+    var scoreDEl     = document.getElementById('score-d');
+    var scoreLabelO  = document.getElementById('score-o-label');
+    var cpuThinkEl   = document.getElementById('cpu-thinking');
+
+    function t(key, fallback) {
+      return i18nData[key] || fallback;
+    }
+
+    function updateStatus(cls, text) {
+      statusEl.className = 'status-text ' + cls;
+      statusEl.textContent = text;
+    }
+
+    function updateScoreLabel() {
+      if (mode === 'cpu') {
+        scoreLabelO.textContent = t('games.morpion.score.cpu', 'Ordinateur');
+        scoreLabelO.setAttribute('data-i18n', 'games.morpion.score.cpu');
+      } else {
+        scoreLabelO.textContent = t('games.morpion.score.o', 'Joueur O');
+        scoreLabelO.setAttribute('data-i18n', 'games.morpion.score.o');
+      }
+    }
+
+    function checkWinner() {
+      for (var i = 0; i < WIN_LINES.length; i++) {
+        var line = WIN_LINES[i];
+        var a = board[line[0]], b = board[line[1]], c = board[line[2]];
+        if (a && a === b && b === c) {
+          return { winner: a, line: line };
+        }
+      }
+      if (board.every(function (v) { return v !== null; })) {
+        return { winner: null, line: null, draw: true };
+      }
+      return null;
+    }
+
+    function highlightWin(line) {
+      line.forEach(function (idx) {
+        cells[idx].classList.add('win-cell');
+      });
+    }
+
+    function disableBoard() {
+      cells.forEach(function (c) {
+        c.classList.add('disabled');
+        c.setAttribute('tabindex', '-1');
+      });
+    }
+
+    function playCell(index) {
+      if (board[index] !== null || gameOver) return false;
+
+      board[index] = currentTurn;
+      var cell = cells[index];
+      cell.textContent = currentTurn === 'X' ? '✕' : '○';
+      cell.classList.add('taken', currentTurn === 'X' ? 'x' : 'o');
+      cell.setAttribute('aria-label', currentTurn === 'X' ? '✕' : '○');
+      return true;
+    }
+
+    function resolveResult() {
+      var result = checkWinner();
+      if (!result) {
+        // Continue
+        currentTurn = currentTurn === 'X' ? 'O' : 'X';
+        updateStatus(
+          currentTurn === 'X' ? 'x-turn' : 'o-turn',
+          currentTurn === 'X'
+            ? t('games.morpion.status.turn_x', 'Tour du joueur X')
+            : (mode === 'cpu' && currentTurn === cpuPlayer
+                ? t('games.morpion.status.turn_cpu', 'Tour de l\'ordinateur')
+                : t('games.morpion.status.turn_o', 'Tour du joueur O'))
+        );
+        if (mode === 'cpu' && currentTurn === cpuPlayer) {
+          scheduleCpuMove();
+        }
+        return;
+      }
+
+      gameOver = true;
+      disableBoard();
+
+      if (result.draw) {
+        scores.D++;
+        scoreDEl.textContent = scores.D;
+        updateStatus('draw', t('games.morpion.result.draw', 'Égalité !'));
+      } else {
+        highlightWin(result.line);
+        scores[result.winner]++;
+        (result.winner === 'X' ? scoreXEl : scoreOEl).textContent = scores[result.winner];
+        var winLabel;
+        if (result.winner === 'X') {
+          winLabel = t('games.morpion.score.x', 'Joueur X');
+        } else if (mode === 'cpu' && result.winner === cpuPlayer) {
+          winLabel = t('games.morpion.score.cpu', 'Ordinateur');
+        } else {
+          winLabel = t('games.morpion.score.o', 'Joueur O');
+        }
+        updateStatus(
+          result.winner === 'X' ? 'x-win' : 'o-win',
+          winLabel + ' ' + t('games.morpion.result.win', 'gagne !')
+        );
+      }
+    }
+
+    function handleCellClick(index) {
+      if (gameOver) return;
+      if (mode === 'cpu' && currentTurn === cpuPlayer) return;
+      if (!playCell(index)) return;
+      resolveResult();
+    }
+
+    /* ── CPU AI ── */
+
+    function cpuBestMove() {
+      var empty = board.map(function (v, i) { return v === null ? i : -1; }).filter(function (i) { return i >= 0; });
+      if (!empty.length) return -1;
+
+      // 1. Can CPU win?
+      var win = findWinMove(cpuPlayer, empty);
+      if (win !== -1) return win;
+
+      // 2. Block human from winning
+      var humanPlayer = cpuPlayer === 'O' ? 'X' : 'O';
+      var block = findWinMove(humanPlayer, empty);
+      if (block !== -1) return block;
+
+      // 3. Take center
+      if (board[4] === null) return 4;
+
+      // 4. Take a corner
+      var corners = [0, 2, 6, 8].filter(function (i) { return board[i] === null; });
+      if (corners.length) return corners[Math.floor(Math.random() * corners.length)];
+
+      // 5. Random
+      return empty[Math.floor(Math.random() * empty.length)];
+    }
+
+    function findWinMove(player, empty) {
+      for (var i = 0; i < WIN_LINES.length; i++) {
+        var line = WIN_LINES[i];
+        var vals = line.map(function (idx) { return board[idx]; });
+        var playerCount = vals.filter(function (v) { return v === player; }).length;
+        var emptyCount  = vals.filter(function (v) { return v === null; }).length;
+        if (playerCount === 2 && emptyCount === 1) {
+          var freeIdx = line[vals.indexOf(null)];
+          if (empty.indexOf(freeIdx) !== -1) return freeIdx;
+        }
+      }
+      return -1;
+    }
+
+    function scheduleCpuMove() {
+      cpuThinkEl.classList.add('visible');
+      setTimeout(function () {
+        cpuThinkEl.classList.remove('visible');
+        if (gameOver) return;
+        var move = cpuBestMove();
+        if (move === -1) return;
+        playCell(move);
+        resolveResult();
+      }, 500 + Math.random() * 400);
+    }
+
+    /* ── Events ── */
+
+    cells.forEach(function (cell) {
+      cell.addEventListener('click', function () {
+        handleCellClick(parseInt(cell.dataset.index, 10));
+      });
+      cell.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          handleCellClick(parseInt(cell.dataset.index, 10));
+        }
+      });
+    });
+
+    document.getElementById('restart-btn').addEventListener('click', resetGame);
+
+    document.querySelectorAll('.mode-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        document.querySelectorAll('.mode-btn').forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        mode = btn.dataset.mode;
+        updateScoreLabel();
+        scores = { X: 0, O: 0, D: 0 };
+        scoreXEl.textContent = '0';
+        scoreOEl.textContent = '0';
+        scoreDEl.textContent = '0';
+        resetGame();
+      });
+    });
+
+    function resetGame() {
+      board = Array(9).fill(null);
+      currentTurn = 'X';
+      gameOver = false;
+      cpuThinkEl.classList.remove('visible');
+
+      cells.forEach(function (cell) {
+        cell.textContent = '';
+        cell.className = 'cell';
+        cell.setAttribute('tabindex', '0');
+        cell.setAttribute('aria-label', 'Case ' + (parseInt(cell.dataset.index, 10) + 1));
+      });
+
+      updateStatus('x-turn', t('games.morpion.status.turn_x', 'Tour du joueur X'));
+    }
+
+    document.addEventListener('i18n:ready', function (e) {
+      i18nData = e.detail.data || {};
+      updateScoreLabel();
+      if (!gameOver) {
+        updateStatus(
+          currentTurn === 'X' ? 'x-turn' : 'o-turn',
+          currentTurn === 'X'
+            ? t('games.morpion.status.turn_x', 'Tour du joueur X')
+            : (mode === 'cpu' && currentTurn === cpuPlayer
+                ? t('games.morpion.status.turn_cpu', 'Tour de l\'ordinateur')
+                : t('games.morpion.status.turn_o', 'Tour du joueur O'))
+        );
+      }
+    });
+
+    resetGame();
+  })();
+  </script>
+<script defer src="/antibot.js"></script>
+</body>
+</html>

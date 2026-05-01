@@ -10,12 +10,10 @@ function handleSubscribe(e) {
   const email = document.getElementById('subscribeEmail').value;
   const messageDiv = document.getElementById('newsletterMessage');
 
-
   if (!isValidEmail(email)) {
     showMessage('❌ Adresse email invalide', 'error', messageDiv);
     return;
   }
-
 
   const subscribers = getSubscribers();
   if (subscribers.find(s => s.email === email)) {
@@ -23,7 +21,6 @@ function handleSubscribe(e) {
     document.getElementById('subscribeEmail').value = '';
     return;
   }
-
 
   const newSubscriber = {
     email: email,
@@ -38,9 +35,7 @@ function handleSubscribe(e) {
   showMessage('✅ Merci! Vous êtes maintenant abonné à notre infolettre', 'success', messageDiv);
   document.getElementById('subscribeEmail').value = '';
 
-
   loadSubscribers();
-
 
   simulateSendEmail(email, 'confirmation');
 }
@@ -190,7 +185,6 @@ function escapeHtml(text) {
 function sendNewsletterEmail(chronique) {
   const subscribers = getSubscribers();
 
-
   const testSubscribers = subscribers.slice(0, 5);
 
   const emailTemplate = `
@@ -205,11 +199,6 @@ function sendNewsletterEmail(chronique) {
     subject: `📰 Nouvelle chronique: ${chronique.title}`,
     content: emailTemplate
   });
-
-
-
-
-
 
 }
 

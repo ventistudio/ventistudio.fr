@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport"/>
-<meta content="Recette — Le Livre de Cuisine VentiStudio" name="description"/>
+<meta content="Recette  Le Livre de Cuisine VentiStudio" name="description"/>
 <meta content="#e07a3a" name="theme-color"/>
 <title>Recette | Le Livre de Cuisine</title>
 <link href="/style.css" rel="stylesheet"/>
@@ -12,7 +12,7 @@
 <link href="book.css" rel="stylesheet"/>
 <script>
     (function() {
-      var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      var t; try { t = localStorage.getItem('theme'); } catch (_) {} if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
@@ -289,5 +289,6 @@
       });
     })();
   </script>
+<script defer src="/antibot.js"></script>
 </body>
 </html>

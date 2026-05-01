@@ -2116,7 +2116,6 @@
     position: relative;
   }
 
-
   .pc-sidebar {
     position: fixed;
     top: 0;
@@ -2134,12 +2133,9 @@
   }
   .pc-sidebar.open { transform: translateX(0); }
 
-
   .pc-mobile-toggle { display: flex; }
 
-
   .pc-main { width: 100%; }
-
 
   .pc-toolbar { padding: 0 8px; gap: 6px; height: 42px; min-height: 42px; }
   .pc-tb-title { font-size: .85rem; }
@@ -2147,7 +2143,6 @@
   .pc-tb-id { display: none; }
   .pc-tb-count { font-size: .6rem; padding: 1px 5px; }
   .pc-tb-status { font-size: .7rem; }
-
 
   .pc-chat-header { padding: 0 8px; height: 42px; min-height: 42px; }
   .pc-ch-at { display: none; }
@@ -2159,13 +2154,11 @@
   .pc-ch-right .pc-ch-sep { display: none; }
   .pc-conn-badge { font-size: .6rem; padding: 2px 6px; }
 
-
   .pc-msg { padding: 2px 12px 2px 56px; }
   .pc-msg-avatar { left: 10px; width: 34px; height: 34px; font-size: .72rem; }
   .pc-msg-author { font-size: .82rem; }
   .pc-msg-text { font-size: .82rem; }
   .pc-date-sep { margin: 12px 10px 6px; }
-
 
   .pc-input-bar { padding: 0 8px 12px; }
   .pc-msg-field { font-size: .82rem; padding: 8px 6px; }
@@ -2174,20 +2167,16 @@
   .pc-input-action-btn { padding: 4px; }
   .pc-gif-label { font-size: .6rem; }
 
-
   .pc-members-drawer {
     width: 100%;
     top: 42px;
   }
 
-
   .pc-empty-friends svg { width: 140px; height: 100px; }
   .pc-empty-title { font-size: .85rem; }
   .pc-empty-hint { font-size: .72rem; }
 
-
   .pc-typing { padding: 4px 10px 6px; font-size: .7rem; }
-
 
   .pc-banner { padding: 6px 10px; font-size: .72rem; }
 }
@@ -2208,14 +2197,11 @@
 
   .pc-gs-block { display: none; }
 
-
   .pc-toolbar { height: 38px; min-height: 38px; padding: 0 6px; }
   .pc-tb-left > svg { display: none; }
   .pc-tb-count { display: none; }
 
-
   .pc-chat-header { height: 38px; min-height: 38px; }
-
 
   .pc-msg { padding-left: 48px; padding-right: 8px; }
   .pc-msg-avatar { left: 8px; width: 30px; height: 30px; font-size: .65rem; }
@@ -2225,7 +2211,6 @@
   .pc-msg-time { font-size: .58rem; }
   .pc-msg-text { font-size: .78rem; }
 
-
   .pc-input-bar { padding: 0 6px 8px; }
   .pc-attach-circle { width: 24px; height: 24px; margin-left: 4px; }
   .pc-attach-circle svg { width: 16px; height: 16px; }
@@ -2233,14 +2218,12 @@
   .pc-input-actions { gap: 0; }
   .pc-input-action-btn:not(#pc-emoji-btn) { display: none; }
 
-
   .pc-user-panel { padding: 4px 6px; min-height: 44px; }
   .pc-avatar-badge { width: 28px; height: 28px; font-size: .72rem; }
   .pc-up-name { font-size: .72rem; }
   .pc-up-id { font-size: .58rem; }
 
   .pc-empty-friends svg { width: 100px; height: 70px; }
-
 
   .pc-modal { padding: 16px; max-width: calc(100vw - 32px); }
   .pc-modal h2 { font-size: 1rem; }

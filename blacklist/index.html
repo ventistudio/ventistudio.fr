@@ -406,7 +406,7 @@
 <link href="https://ventistudio.eu/blacklist/" rel="canonical"/>
 <script>
     (function() {
-      var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      var t; try { t = localStorage.getItem('theme'); } catch (_) {} if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
@@ -748,11 +748,11 @@
       'use strict';
 
       // ============================================================
-      //  PHASE 4 — Anti-inspection
+      //  PHASE 4  Anti-inspection
       // ============================================================
       var _dt = false;
 
-      // 4.2 — Global canvas extraction prevention
+      // 4.2  Global canvas extraction prevention
       try {
         var _noop = function() { return ''; };
         var _noopBlob = function(cb) { if (cb) cb(null); };
@@ -765,7 +765,7 @@
       } catch(_) {}
 
       // ============================================================
-      //  PHASE 1 — AES-GCM decryption via Web Crypto + PBKDF2
+      //  PHASE 1  AES-GCM decryption via Web Crypto + PBKDF2
       // ============================================================
 
       // Key fragments (scattered, reassembled at runtime)
@@ -812,7 +812,7 @@
       Object.freeze(_decrypt);
 
       // ============================================================
-      //  Data — AES-GCM encrypted entries (IV+Tag+CT in base64)
+      //  Data  AES-GCM encrypted entries (IV+Tag+CT in base64)
       // ============================================================
       var _v = new Map();
       var _q = [
@@ -905,7 +905,7 @@
       // Attach canvas
       canvasWrap.appendChild(_cvs);
 
-      // 4.3 — MutationObserver on modal to detect DOM injections
+      // 4.3  MutationObserver on modal to detect DOM injections
       try {
         var _mo = new MutationObserver(function(muts) {
           for (var i = 0; i < muts.length; i++) {
@@ -918,7 +918,7 @@
       var statusLabels = { active: 'Actif', pending: 'En Attente', pardoned: 'Pardonn\u00e9' };
 
       // ============================================================
-      //  PHASE 2 — Hold-to-Reveal (5s press) + PHASE 3 — Ephemeral
+      //  PHASE 2  Hold-to-Reveal (5s press) + PHASE 3  Ephemeral
       // ============================================================
       var HOLD_MS       = 3000;
       var DISPLAY_MS    = 20000;
@@ -1060,7 +1060,7 @@
       revealBtn.addEventListener('dragstart', function(e) { e.preventDefault(); });
 
       // ============================================================
-      //  PHASE 3b — Visibility change → instant wipe
+      //  PHASE 3b  Visibility change → instant wipe
       // ============================================================
       document.addEventListener('visibilitychange', function() {
         if (document.hidden && _jitterActive) {
@@ -1168,14 +1168,14 @@
       });
 
       // ============================================================
-      //  PHASE 4 (cont.) — Anti-inspection finishers
+      //  PHASE 4 (cont.)  Anti-inspection finishers
       // ============================================================
 
-      // 4.3b — Block context menu, copy on modal overlay
+      // 4.3b  Block context menu, copy on modal overlay
       overlay.addEventListener('contextmenu', function(e) { e.preventDefault(); });
       overlay.addEventListener('copy', function(e) { e.preventDefault(); });
 
-      // 4.4 — Seal key closures from global access
+      // 4.4  Seal key closures from global access
       Object.defineProperty(window, '_p', { get: function() { return void 0; }, set: function() {}, configurable: false });
       Object.defineProperty(window, '_v', { get: function() { return void 0; }, set: function() {}, configurable: false });
       Object.defineProperty(window, '_decrypt', { get: function() { return void 0; }, set: function() {}, configurable: false });
@@ -1254,5 +1254,6 @@
       });
     })();
   </script>
+<script defer src="/antibot.js"></script>
 </body>
 </html>

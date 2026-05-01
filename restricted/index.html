@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="fr" data-theme="dark">
 <head>
   <meta charset="UTF-8">
@@ -196,7 +197,7 @@
 
   <script>
     (function() {
-      var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      var t; try { t = localStorage.getItem('theme'); } catch (_) {} if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
@@ -356,12 +357,10 @@
       <p class="subtitle">L'accès à VentiStudio est limité à certaines régions géographiques pour des raisons légales et de conformité.</p>
     </section>
 
-
     <div class="geo-detected" id="geo-detected">
       <span class="detected-label">Pays détecté :</span>
       <span class="detected-value" id="detected-country"></span>
     </div>
-
 
     <div class="geo-notice">
       <span class="notice-icon" aria-hidden="true">ℹ️</span>
@@ -369,7 +368,6 @@
         <p>Vous voyez cette page car <strong>votre localisation géographique</strong> ne fait pas partie des régions autorisées par VentiStudio. Il est possible de contourner cette restriction en utilisant un <strong>VPN</strong> ou un <strong>proxy</strong> situé dans l'un des pays listés ci-dessous.</p>
       </div>
     </div>
-
 
     <section class="geo-section">
       <h2><span class="section-icon" aria-hidden="true">✅</span> Régions autorisées</h2>
@@ -441,7 +439,6 @@
       </div>
     </section>
 
-
     <section class="geo-section">
       <h2><span class="section-icon" aria-hidden="true">📋</span> Pourquoi cette restriction ?</h2>
       <div class="geo-info-cards">
@@ -462,7 +459,6 @@
         </div>
       </div>
     </section>
-
 
     <div class="geo-cta">
       <a href="/">← Retour à l'accueil</a>
@@ -585,5 +581,6 @@
       });
     })();
   </script>
+<script defer src="/antibot.js"></script>
 </body>
 </html>

@@ -314,7 +314,7 @@
       -webkit-mask-image: linear-gradient(to right, transparent 0, #000 16%, #000 84%, transparent 100%);
               mask-image: linear-gradient(to right, transparent 0, #000 16%, #000 84%, transparent 100%);
     }
-    /* Edge blur overlays — flou marqué sur les bords pour donner un effet « brouillard » */
+    /* Edge blur overlays  flou marqué sur les bords pour donner un effet « brouillard » */
     .rail-wrap::before,
     .rail-wrap::after {
       content: '';
@@ -567,7 +567,7 @@
 <link href="https://ventistudio.eu/evaluation/" rel="canonical"/>
 <script>
     (function() {
-      var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      var t; try { t = localStorage.getItem('theme'); } catch (_) {} if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
@@ -980,7 +980,7 @@
             <img src="${escapeHtml(it.image)}" alt="${escapeHtml(it.title)}" loading="lazy" onerror="this.src='${FALLBACK_IMG}'">
           </div>
           <h4>${escapeHtml(it.title)}</h4>
-          <div class="sub">★ ${it.rating} · ${escapeHtml(it.creator || '—')}</div>
+          <div class="sub">★ ${it.rating} · ${escapeHtml(it.creator || '')}</div>
         </div>`;
       // Duplicate the list so the marquee loops seamlessly
       const single = top.map(cardHtml).join('');
@@ -1109,7 +1109,7 @@
           <div class="info">
             <div class="type">${escapeHtml(TYPE_LABELS[it.type] || it.type)}</div>
             <h3 class="title">${escapeHtml(it.title)}</h3>
-            <div class="creator">${escapeHtml(it.creator || '—')}</div>
+            <div class="creator">${escapeHtml(it.creator || '')}</div>
           </div>
         </article>`;
     }
@@ -1120,7 +1120,7 @@
           <div class="thumb"><img src="${escapeHtml(it.image)}" alt="${escapeHtml(it.title)}" loading="lazy" onerror="this.src='${FALLBACK_IMG}'"></div>
           <div class="meta">
             <h3>${escapeHtml(it.title)} ${it.featured ? '<span class="ev-badge feat" style="margin-left:.4rem">⭐</span>' : ''}</h3>
-            <div class="sub">${escapeHtml(TYPE_LABELS[it.type] || it.type)} · ${escapeHtml(it.creator || '—')}</div>
+            <div class="sub">${escapeHtml(TYPE_LABELS[it.type] || it.type)} · ${escapeHtml(it.creator || '')}</div>
             <div class="desc">${escapeHtml(it.description || '')}</div>
           </div>
           <div class="stars-col">${it.rating}/5<small>${'★'.repeat(Math.round(it.rating))}</small></div>
@@ -1231,5 +1231,6 @@
       });
     })();
   </script>
+<script defer src="/antibot.js"></script>
 </body>
 </html>

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="fr" data-theme="dark">
 <head>
 
@@ -162,7 +163,7 @@
 
   <script>
     (function() {
-      var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      var t; try { t = localStorage.getItem('theme'); } catch (_) {} if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
@@ -317,13 +318,13 @@
   <main>
 
     <div class="content-header">
-      <h1>Game</h1>
-      <p>Découvrez nos jeux et amusez-vous !</p>
+      <h1 data-i18n="player.game.header.h1">Jeux</h1>
+      <p data-i18n="player.game.header.p">Découvrez nos jeux et amusez-vous !</p>
     </div>
 
     <div class="content-filters">
       <div class="search-bar">
-        <input type="text" class="search-input" placeholder="Rechercher du contenu...">
+        <input type="text" class="search-input" data-i18n-attr="placeholder:player.game.search.placeholder" placeholder="Rechercher un jeu...">
       </div>
     </div>
 
@@ -353,9 +354,23 @@
         </div>
       </div>
 
+      <div class="content-card" data-type="player" data-id="memory">
+        <img src="/a-files/image/game-image.avif" alt="Mémori" class="content-image">
+        <div class="content-info">
+          <h3 class="content-title" data-i18n="player.game.card.memory.title">MÉMORI</h3>
+          <p class="content-description" data-i18n="player.game.card.memory.desc">Retournez les cartes et trouvez toutes les paires identiques. Mémorisez leur position pour gagner !</p>
+        </div>
+      </div>
+
+      <div class="content-card" data-type="player" data-id="morpion">
+        <img src="/a-files/image/game-image.avif" alt="Morpion" class="content-image">
+        <div class="content-info">
+          <h3 class="content-title" data-i18n="player.game.card.morpion.title">MORPION</h3>
+          <p class="content-description" data-i18n="player.game.card.morpion.desc">Affrontez un ami ou l'ordinateur dans ce grand classique. Alignez trois symboles pour gagner !</p>
+        </div>
+      </div>
+
     </div>
-
-
 
   </main>
 
@@ -497,6 +512,7 @@
       });
     })();
   </script>
+<script defer src="/antibot.js"></script>
 </body>
 </html>
 

@@ -1,4 +1,9 @@
-﻿# These are supported funding model platforms
+﻿# SPDX-License-Identifier: LicenseRef-FiTsZ-DMA-1.0
+# Copyright (c) 2026 Umaishi H. <umaishi.h@ventistudio.eu>
+# Distributed under the FiTsZ Digital Media Agreement v1.0
+# See https://ventistudio.eu/lawful/license-fitsz-dma/ for the full terms.
+
+# These are supported funding model platforms
 
 github: [ventistudio] # Replace with up to 4 GitHub Sponsors-enabled usernames e.g., [user1, user2]
 patreon: ventistudio # Replace with a single Patreon username

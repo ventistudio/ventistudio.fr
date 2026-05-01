@@ -4,7 +4,6 @@
   if (!canvas || !wrapper) return;
   var ctx = canvas.getContext('2d');
 
-
   var toolBtns = document.querySelectorAll('.wb-tool-btn');
   var colorSwatches = document.querySelectorAll('.wb-color-swatch');
   var colorCustom = document.getElementById('wb-color-custom');
@@ -21,18 +20,15 @@
   var modalOverlay = document.getElementById('wb-modal');
   var participantsEl = document.getElementById('wb-participants');
 
-
   var tool = 'pen';
   var color = '#e0e0e0';
   var size = 3;
   var drawing = false;
   var lx = 0, ly = 0, sx = 0, sy = 0;
 
-
   var states = [];
   var redoStack = [];
   var MAX_HIST = 40;
-
 
   var peer = null;
   var conns = [];
@@ -41,7 +37,6 @@
   var peers = {};
   var myName = 'Utilisateur';
   var COLORS = ['#6366f1', '#22c55e', '#f59e0b', '#ef4444', '#ec4899', '#8b5cf6', '#3b82f6', '#14b8a6'];
-
 
   function resize() {
     var r = wrapper.getBoundingClientRect();
@@ -59,13 +54,11 @@
   window.addEventListener('resize', resize);
   snap();
 
-
   function pos(e) {
     var r = canvas.getBoundingClientRect();
     if (e.touches) return { x: e.touches[0].clientX - r.left, y: e.touches[0].clientY - r.top };
     return { x: e.clientX - r.left, y: e.clientY - r.top };
   }
-
 
   function onDown(e) {
     e.preventDefault();
@@ -169,7 +162,6 @@
   canvas.addEventListener('touchmove', onMove, { passive: false });
   canvas.addEventListener('touchend', onUp);
 
-
   toolBtns.forEach(function (btn) {
     btn.addEventListener('click', function () {
       tool = btn.dataset.tool;
@@ -178,7 +170,6 @@
       canvas.style.cursor = tool === 'eraser' ? 'cell' : 'crosshair';
     });
   });
-
 
   colorSwatches.forEach(function (s) {
     s.addEventListener('click', function () {
@@ -194,12 +185,10 @@
     });
   }
 
-
   sizeSlider.addEventListener('input', function () {
     size = parseInt(sizeSlider.value);
     sizeLabel.textContent = size + 'px';
   });
-
 
   function snap() {
     if (states.length >= MAX_HIST) states.shift();
@@ -258,10 +247,6 @@
     if (e.ctrlKey && e.key === 'z') { e.preventDefault(); undo(); }
     if (e.ctrlKey && e.key === 'y') { e.preventDefault(); redo(); }
   });
-
-
-
-
 
   function initPeer(cb) {
     if (typeof Peer === 'undefined') {
@@ -389,7 +374,6 @@
       participantsEl.appendChild(dot);
     });
   }
-
 
   function showModal(html) {
     modalOverlay.innerHTML = '<div class="wb-modal">' + html + '</div>';

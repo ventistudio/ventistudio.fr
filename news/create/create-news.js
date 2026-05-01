@@ -10,7 +10,6 @@ document.getElementById('newsForm').addEventListener('submit', function(e) {
     content: document.getElementById('newsContent').value
   };
 
-
   const htmlCode = `{
     id: '${Date.now()}',
     title: '${formData.title.replace(/'/g, "\\'")}',
@@ -20,7 +19,6 @@ document.getElementById('newsForm').addEventListener('submit', function(e) {
     excerpt: '${formData.excerpt.replace(/'/g, "\\'")}',
     content: \`${formData.content.replace(/`/g, '\\`')}\`
   },`;
-
 
   document.getElementById('generatedCode').textContent = htmlCode;
   document.getElementById('outputSection').style.display = 'block';

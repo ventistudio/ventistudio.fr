@@ -11,7 +11,7 @@
 <link href="atlas.css" rel="stylesheet"/>
 <script>
     (function() {
-      var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      var t; try { t = localStorage.getItem('theme'); } catch (_) {} if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
@@ -229,7 +229,7 @@
 <span class="doomsday-seconds">85</span>
 <span class="doomsday-unit">secondes avant minuit</span>
 </div>
-<p class="doomsday-desc" data-i18n-html="atlas.doomsday_section_doomsday_card.p">Heure actuelle : <strong>23 h 58 min 35 s</strong> — le plus proche de minuit depuis la création de l'horloge en 1947.</p>
+<p class="doomsday-desc" data-i18n-html="atlas.doomsday_section_doomsday_card.p">Heure actuelle : <strong>23 h 58 min 35 s</strong>  le plus proche de minuit depuis la création de l'horloge en 1947.</p>
 <p class="doomsday-reason" data-i18n="atlas.doomsday_section_doomsday_card.p2">Poursuite de la guerre en Ukraine, bombardements en Iran, affrontements frontaliers entre l'Inde et le Pakistan, tensions en Asie et montée des tensions dans l'hémisphère occidental.</p>
 <div class="doomsday-meta">
 <span>Mise à jour : 27 janvier 2026</span>
@@ -274,7 +274,7 @@
 
 <div class="section-title">
 <h2 data-i18n="atlas.section_title.h2">Classement géopolitique</h2>
-<span class="hint">Scores de 1 (critique) à 5 (excellent) sur 5 critères — cliquez sur un pays pour voir le détail</span>
+<span class="hint">Scores de 1 (critique) à 5 (excellent) sur 5 critères  cliquez sur un pays pour voir le détail</span>
 </div>
 
 <section aria-label="Légende des niveaux" class="levels-legend" data-i18n-attr="aria-label:atlas.page.aria3">
@@ -350,9 +350,9 @@
 </div>
 </section>
 
-<section aria-label="Pays — vue cartes" class="atlas-grid" data-i18n-attr="aria-label:atlas.page.aria5" id="atlas-grid"></section>
+<section aria-label="Pays  vue cartes" class="atlas-grid" data-i18n-attr="aria-label:atlas.page.aria5" id="atlas-grid"></section>
 
-<section aria-label="Pays — vue tableau" class="atlas-table-wrapper" data-i18n-attr="aria-label:atlas.page.aria6" hidden="" id="atlas-table-wrapper">
+<section aria-label="Pays  vue tableau" class="atlas-table-wrapper" data-i18n-attr="aria-label:atlas.page.aria6" hidden="" id="atlas-table-wrapper">
 <table class="atlas-table">
 <thead>
 <tr>
@@ -515,5 +515,6 @@
       });
     })();
   </script>
+<script defer src="/antibot.js"></script>
 </body>
 </html>

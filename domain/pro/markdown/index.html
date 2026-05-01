@@ -1,9 +1,10 @@
 <!DOCTYPE html>
+
 <html lang="fr" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <meta name="description" content="Markdown Preview — Éditeur Markdown live avec rendu en temps réel. 100% client-side.">
+  <meta name="description" content="Markdown Preview  Éditeur Markdown live avec rendu en temps réel. 100% client-side.">
   <meta name="theme-color" content="#0ea5e9">
   <title>Markdown Preview | VentiStudio Pro</title>
   <link rel="stylesheet" href="/style.css">
@@ -125,7 +126,7 @@
   <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
 
   <meta property="og:title" content="Markdown Preview | VentiStudio Pro">
-  <meta property="og:description" content="Markdown Preview — Éditeur Markdown live avec rendu en temps réel. 100% client-side.">
+  <meta property="og:description" content="Markdown Preview  Éditeur Markdown live avec rendu en temps réel. 100% client-side.">
   <meta property="og:url" content="https://ventistudio.eu/domain/pro/markdown/">
   <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
   <meta property="og:type" content="website">
@@ -133,7 +134,7 @@
 
   <script>
     (function() {
-      var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      var t; try { t = localStorage.getItem('theme'); } catch (_) {} if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
@@ -287,7 +288,7 @@
 
   <main>
     <h1 style="margin-bottom:0.25rem">📝 Markdown Preview</h1>
-    <p style="color:var(--text-secondary);margin-bottom:1rem">Éditeur Markdown en temps réel avec rendu instantané — 100 % client-side</p>
+    <p style="color:var(--text-secondary);margin-bottom:1rem">Éditeur Markdown en temps réel avec rendu instantané  100 % client-side</p>
 
     <div class="panel">
       <div class="toolbar" id="toolbar">
@@ -550,7 +551,7 @@ const greet = name => {
 greet('VentiStudio');
 \`\`\`
 
-> « La simplicité est la sophistication suprême. » — Léonard de Vinci
+> « La simplicité est la sophistication suprême. »  Léonard de Vinci
 
 ### Tableau
 
@@ -638,5 +639,6 @@ greet('VentiStudio');
       });
     })();
   </script>
+<script defer src="/antibot.js"></script>
 </body>
 </html>

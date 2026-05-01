@@ -1,8 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-
-
-
   const staffMembers = {
     direction: [
       {
@@ -97,9 +94,6 @@ document.addEventListener('DOMContentLoaded', () => {
     ]
   };
 
-
-
-
   const artists = [
     {
       id: "artist1",
@@ -162,9 +156,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   ];
 
-
-
-
   function createMemberCard(member) {
     return `
       <div class="member-card">
@@ -210,9 +201,6 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
   }
 
-
-
-
   function createArtistCard(artist) {
     return `
       <div class="artist-card" data-artist="${artist.id}">
@@ -240,11 +228,6 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
   }
 
-
-
-
-
-
   Object.entries(staffMembers).forEach(([team, members]) => {
     const container = document.querySelector(`#${team}-team .team-members`);
     if (container) {
@@ -252,16 +235,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-
   const artistGrid = document.getElementById('artist-grid');
   const modalContainer = document.getElementById('artist-modals');
   if (artistGrid && modalContainer) {
     artistGrid.innerHTML = artists.map(createArtistCard).join('');
     modalContainer.innerHTML = artists.map(createArtistModal).join('');
   }
-
-
-
 
   const tabButtons = document.querySelectorAll('.tab-btn');
   const tabContents = document.querySelectorAll('.tab-content');
@@ -276,9 +255,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-
-
-
   const filterButtons = document.querySelectorAll('.filter-btn');
   const teamCategories = document.querySelectorAll('.team-category');
 
@@ -292,9 +268,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   });
-
-
-
 
   const overlay = document.getElementById('artistOverlay');
 
@@ -314,14 +287,11 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.style.overflow = '';
   }
 
-
   document.querySelectorAll('.artist-card').forEach(card => {
     card.addEventListener('click', () => openArtistModal(card.dataset.artist));
   });
 
-
   if (overlay) overlay.addEventListener('click', closeArtistModal);
-
 
   document.querySelectorAll('.close-modal').forEach(btn => {
     btn.addEventListener('click', (e) => {
@@ -329,7 +299,6 @@ document.addEventListener('DOMContentLoaded', () => {
       closeArtistModal();
     });
   });
-
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeArtistModal();

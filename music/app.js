@@ -178,7 +178,6 @@ function showView(view, param, extraData) {
   const backBtn = document.getElementById('backBtn');
   const sortWrap = document.getElementById('sortSelectWrap');
 
-
   const subViews = ['artist', 'album', 'allTracks', 'search'];
   if (backBtn) backBtn.style.display = subViews.includes(view) ? 'flex' : 'none';
   if (sortWrap) sortWrap.style.display = (view === 'allTracks' || view === 'search') ? '' : 'none';
@@ -203,14 +202,12 @@ function renderHome(container) {
 
   let html = '';
 
-
   html += `
     <div class="home-welcome">
       <h1>Bienvenue sur VentiStudio Music</h1>
       <p>${musicData.length} titres · ${albums.length} albums · ${artists.length} artistes</p>
     </div>
   `;
-
 
   if (recent.length > 0) {
     html += `
@@ -239,7 +236,6 @@ function renderHome(container) {
     `;
   }
 
-
   html += `
     <section class="home-section">
       <div class="section-header">
@@ -260,7 +256,6 @@ function renderHome(container) {
     </section>
   `;
 
-
   html += `
     <section class="home-section">
       <div class="section-header">
@@ -278,7 +273,6 @@ function renderHome(container) {
       </div>
     </section>
   `;
-
 
   html += `
     <section class="home-section">
@@ -405,7 +399,6 @@ function renderArtistPage(container, artistName) {
     return;
   }
 
-
   const artistAlbums = getAlbums().filter(a => a.artist === artistName);
 
   const history = JSON.parse(localStorage.getItem('musicHistory') || '[]');
@@ -456,7 +449,7 @@ function renderArtistPage(container, artistName) {
                 <span class="track-row-title">${t.title}</span>
                 <span class="track-row-album">${t.album}</span>
               </div>
-              <span class="track-row-plays">${t.playCount > 0 ? t.playCount + '×' : '—'}</span>
+              <span class="track-row-plays">${t.playCount > 0 ? t.playCount + '×' : ''}</span>
             </div>
           `;
         }).join('')}
@@ -514,7 +507,7 @@ function renderAlbumPage(container, key) {
     return;
   }
 
-  const totalDuration = '—';
+  const totalDuration = '';
   const history = JSON.parse(localStorage.getItem('musicHistory') || '[]');
 
   container.innerHTML = `
@@ -688,7 +681,6 @@ function playTrack(index, autoPlay = true) {
     if (pmArtist) pmArtist.textContent = musicData[index].artist;
     if (pmCover) pmCover.src = '/' + musicData[index].cover;
 
-
     if (nowPlayingArtist) {
       nowPlayingArtist.style.cursor = 'pointer';
       nowPlayingArtist.onclick = () => showView('artist', musicData[currentIndex].artist);
@@ -696,7 +688,6 @@ function playTrack(index, autoPlay = true) {
 
     const artEl = document.querySelector('.player-album-art');
     if (artEl) artEl.classList.add('playing-glow');
-
 
     document.querySelectorAll('.track.playing, .track-row.playing').forEach(el => el.classList.remove('playing'));
     document.querySelectorAll(`[data-index="${index}"]`).forEach(el => el.classList.add('playing'));
@@ -713,7 +704,6 @@ function playTrack(index, autoPlay = true) {
       updatePlayPauseButton(true);
     }
   };
-
 
   if (wasPlaying) {
     _fadeOut(() => {
@@ -984,7 +974,6 @@ async function fetchMusic() {
     const res = await fetch('/music/metadata.json');
     musicData = await res.json();
     musicData = musicData.filter(track => !track.paid || track.accessible);
-
 
     if (sharedTrack) {
       showView('home');

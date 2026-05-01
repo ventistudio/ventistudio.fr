@@ -370,7 +370,7 @@
 <link href="https://ventistudio.eu/lawful/tos/" rel="canonical"/>
 <script>
     (function() {
-      var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      var t; try { t = localStorage.getItem('theme'); } catch (_) {} if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
@@ -2404,5 +2404,6 @@ Délai : 14 jours (A-C) ou 7 jours (D-F). Juge : personne accréditée, jamais l
       });
     })();
   </script>
+<script defer src="/antibot.js"></script>
 </body>
 </html>

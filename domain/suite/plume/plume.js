@@ -6,7 +6,6 @@
   const undoStack = new VSSuite.UndoStack(80);
   let autoSaveTimer;
 
-
   function init() {
     VSSuite.initTheme();
     editor.focus();
@@ -27,7 +26,6 @@
     });
   }
 
-
   function exec(cmd, value) {
     document.execCommand(cmd, false, value || null);
     editor.focus();
@@ -39,7 +37,6 @@
         exec(btn.dataset.cmd, btn.dataset.value || null);
       });
     });
-
 
     const headingSel = document.getElementById('tb-heading');
     if (headingSel) {
@@ -53,14 +50,12 @@
       });
     }
 
-
     const fontSel = document.getElementById('tb-font');
     if (fontSel) {
       fontSel.addEventListener('change', () => {
         exec('fontName', fontSel.value);
       });
     }
-
 
     const sizeSel = document.getElementById('tb-fontsize');
     if (sizeSel) {
@@ -69,14 +64,12 @@
       });
     }
 
-
     const colorInput = document.getElementById('tb-color');
     if (colorInput) {
       colorInput.addEventListener('input', () => {
         exec('foreColor', colorInput.value);
       });
     }
-
 
     const hlInput = document.getElementById('tb-highlight');
     if (hlInput) {
@@ -85,24 +78,20 @@
       });
     }
 
-
     const imgBtn = document.getElementById('tb-image');
     if (imgBtn) {
       imgBtn.addEventListener('click', insertImage);
     }
-
 
     const tableBtn = document.getElementById('tb-table');
     if (tableBtn) {
       tableBtn.addEventListener('click', insertTable);
     }
 
-
     const linkBtn = document.getElementById('tb-link');
     if (linkBtn) {
       linkBtn.addEventListener('click', insertLink);
     }
-
 
     const lineSpacing = document.getElementById('tb-linespacing');
     if (lineSpacing) {
@@ -150,7 +139,6 @@
     pushUndo();
   };
 
-
   function pushUndo() {
     undoStack.push({ html: editor.innerHTML });
   }
@@ -165,7 +153,6 @@
     if (s) editor.innerHTML = s.html;
   };
 
-
   function updateStatus() {
     const text = editor.innerText || '';
     const words = text.trim() ? text.trim().split(/\s+/).length : 0;
@@ -178,7 +165,6 @@
       const pageBreaks = editor.querySelectorAll('.plume-page-break').length;
       pEl.textContent = (pageBreaks + 1) + ' page' + (pageBreaks > 0 ? 's' : '');
     }  }
-
 
   function doAutoSave() {
     VSSuite.autoSave('plume_current', {
@@ -196,7 +182,6 @@
       updateStatus();
     }
   }
-
 
   window.plumeNew = function () {
     if (!confirm('Créer un nouveau document ? Les modifications non sauvegardées seront perdues.')) return;
@@ -246,7 +231,6 @@
     VSSuite.exportText(editor, docNameInput.value);
   };
 
-
   window.plumeClearFormat = function () {
     exec('removeFormat');
   };
@@ -290,7 +274,6 @@
     }
   }
 
-
   function setupShortcuts() {
     VSSuite.registerShortcuts({
       'ctrl+s': (e) => { e.preventDefault(); plumeSave(); },
@@ -304,7 +287,6 @@
       'ctrl+p': (e) => { e.preventDefault(); plumeExportPDF(); },
     });
   }
-
 
   window.toggleDropdown = function (id) {
     const dd = document.getElementById(id);
@@ -320,7 +302,6 @@
       document.querySelectorAll('.suite-dropdown.open').forEach(d => d.classList.remove('open'));
     }
   });
-
 
   document.addEventListener('DOMContentLoaded', init);
 })();

@@ -1,146 +1,132 @@
 <!DOCTYPE html>
-<html lang="fr" data-theme="dark">
+
+<html data-theme="dark" lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <meta name="description" content="Toile — Tableau blanc et dessin VentiStudio Suite. Dessinez, annotez, créez des schémas, 100% client-side.">
-  <meta name="theme-color" content="#6366f1">
-  <link rel="icon" href="/favicon.avif" type="image/avif">
-  <title>Toile — Dessin | VentiStudio Suite</title>
-  <link rel="stylesheet" href="/domain/suite/suite.css">
-  <link rel="stylesheet" href="/domain/suite/toile/toile.css">
-  <script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport"/>
+<meta content="Toile  Tableau blanc et dessin VentiStudio Suite. Dessinez, annotez, créez des schémas, 100% client-side." name="description"/>
+<meta content="#6366f1" name="theme-color"/>
+<link href="/favicon.avif" rel="icon" type="image/avif"/>
+<title>Toile  Dessin | VentiStudio Suite</title>
+<link href="/domain/suite/suite.css" rel="stylesheet"/>
+<link href="/domain/suite/toile/toile.css" rel="stylesheet"/>
+<script>
     (function(){var t=localStorage.getItem('theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t)})();
   </script>
-  <script src="/i18n.js" defer></script>
+<script defer="" src="/i18n.js"></script>
 </head>
 <body class="suite-app">
-
-
-  <div class="suite-header">
-    <a href="/domain/suite/" class="suite-logo">
-      <img src="/favicon.avif" alt="VentiStudio" width="24" height="24">
-      <span>Suite</span>
-    </a>
-    <span class="suite-app-name" style="background:rgba(236,72,153,0.12);color:#ec4899">Toile</span>
-    <div class="suite-doc-name">
-      <input type="text" id="doc-name" value="Sans titre" aria-label="Nom du dessin" spellcheck="false">
-    </div>
-    <div class="suite-actions">
-      <div style="position:relative">
-        <button class="tb-btn" onclick="toggleDropdown('menu-file')">Fichier ▾</button>
-        <div class="suite-dropdown" id="menu-file">
-          <button class="suite-dropdown-item" onclick="toileNew()">Nouveau <span class="shortcut">Ctrl+N</span></button>
-          <button class="suite-dropdown-item" onclick="toileOpen()">Ouvrir .vdraw <span class="shortcut">Ctrl+O</span></button>
-          <button class="suite-dropdown-item" onclick="toileSave()">Enregistrer .vdraw <span class="shortcut">Ctrl+S</span></button>
-          <div class="suite-dropdown-sep"></div>
-          <button class="suite-dropdown-item" onclick="toileExportPNG()">Exporter en PNG</button>
-          <button class="suite-dropdown-item" onclick="toileExportPDF()">Exporter en PDF</button>
-        </div>
-      </div>
-      <button class="tb-btn" onclick="toileUndo()" title="Annuler (Ctrl+Z)">
-        <svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>
-      </button>
-      <button class="tb-btn" onclick="toileRedo()" title="Rétablir (Ctrl+Y)">
-        <svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.13-9.36L23 10"/></svg>
-      </button>
-      <button class="tb-btn" onclick="toileClear()" title="Tout effacer">
-        <svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-2 14H7L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg>
-      </button>
-      <button class="tb-btn" onclick="VSSuite.toggleTheme()" title="Thème">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-      </button>
-    </div>
-  </div>
-
-
-  <div class="toile-body">
-
-    <div class="toile-tools">
-      <button class="toile-tool active" data-tool="pen" title="Crayon">
-        <svg viewBox="0 0 24 24"><path d="M17 3a2.828 2.828 0 114 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
-      </button>
-      <button class="toile-tool" data-tool="eraser" title="Gomme">
-        <svg viewBox="0 0 24 24"><path d="M20 20H7L3 16c-.8-.8-.8-2 0-2.8L14.8 1.4c.8-.8 2-.8 2.8 0l5 5c.8.8.8 2 0 2.8L12.5 19.5"/></svg>
-      </button>
-      <div class="toile-tool-sep"></div>
-      <button class="toile-tool" data-tool="line" title="Ligne">
-        <svg viewBox="0 0 24 24"><line x1="5" y1="19" x2="19" y2="5"/></svg>
-      </button>
-      <button class="toile-tool" data-tool="arrow" title="Flèche">
-        <svg viewBox="0 0 24 24"><line x1="5" y1="19" x2="19" y2="5"/><polyline points="13 5 19 5 19 11"/></svg>
-      </button>
-      <button class="toile-tool" data-tool="rect" title="Rectangle">
-        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
-      </button>
-      <button class="toile-tool" data-tool="ellipse" title="Ellipse">
-        <svg viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="10" ry="7"/></svg>
-      </button>
-      <button class="toile-tool" data-tool="triangle" title="Triangle">
-        <svg viewBox="0 0 24 24"><polygon points="12,3 22,21 2,21"/></svg>
-      </button>
-      <button class="toile-tool" data-tool="diamond" title="Losange">
-        <svg viewBox="0 0 24 24"><polygon points="12,2 22,12 12,22 2,12"/></svg>
-      </button>
-      <button class="toile-tool" data-tool="star" title="Étoile">
-        <svg viewBox="0 0 24 24"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"/></svg>
-      </button>
-      <div class="toile-tool-sep"></div>
-      <button class="toile-tool" data-tool="text" title="Texte">
-        <svg viewBox="0 0 24 24"><path d="M4 7V4h16v3"/><path d="M9 20h6"/><path d="M12 4v16"/></svg>
-      </button>
-    </div>
-
-
-    <div class="toile-canvas-wrap grid-bg" id="toile-canvas-wrap">
-      <canvas id="toile-canvas"></canvas>
-    </div>
-
-
-    <div class="toile-props">
-      <h4>Couleur du trait</h4>
-      <label>
-        <input type="color" id="prop-color" value="#e0e0e0">
+<div class="suite-header">
+<a class="suite-logo" href="/domain/suite/">
+<img alt="VentiStudio" data-i18n-attr="alt:domain.suite.toile.suite_header_suite_logo.img_alt" height="24" src="/favicon.avif" width="24"/>
+<span>Suite</span>
+</a>
+<span class="suite-app-name" style="background:rgba(236,72,153,0.12);color:#ec4899">Toile</span>
+<div class="suite-doc-name">
+<input aria-label="Nom du dessin" id="doc-name" spellcheck="false" type="text" value="Sans titre"/>
+</div>
+<div class="suite-actions">
+<div style="position:relative">
+<button class="tb-btn" data-i18n="domain.suite.toile.suite_header_suite_actions.button" onclick="toggleDropdown('menu-file')">Fichier ▾</button>
+<div class="suite-dropdown" id="menu-file">
+<button class="suite-dropdown-item" data-i18n-html="domain.suite.toile.menu_file.button" onclick="toileNew()">Nouveau <span class="shortcut">Ctrl+N</span></button>
+<button class="suite-dropdown-item" data-i18n-html="domain.suite.toile.menu_file.button2" onclick="toileOpen()">Ouvrir .vdraw <span class="shortcut">Ctrl+O</span></button>
+<button class="suite-dropdown-item" data-i18n-html="domain.suite.toile.menu_file.button3" onclick="toileSave()">Enregistrer .vdraw <span class="shortcut">Ctrl+S</span></button>
+<div class="suite-dropdown-sep"></div>
+<button class="suite-dropdown-item" data-i18n="domain.suite.toile.menu_file.button4" onclick="toileExportPNG()">Exporter en PNG</button>
+<button class="suite-dropdown-item" data-i18n="domain.suite.toile.menu_file.button5" onclick="toileExportPDF()">Exporter en PDF</button>
+</div>
+</div>
+<button class="tb-btn" onclick="toileUndo()" title="Annuler (Ctrl+Z)">
+<svg viewbox="0 0 24 24"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 102.13-9.36L1 10"></path></svg>
+</button>
+<button class="tb-btn" onclick="toileRedo()" title="Rétablir (Ctrl+Y)">
+<svg viewbox="0 0 24 24"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 11-2.13-9.36L23 10"></path></svg>
+</button>
+<button class="tb-btn" onclick="toileClear()" title="Tout effacer">
+<svg viewbox="0 0 24 24"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6l-2 14H7L5 6"></path><path d="M10 11v6"></path><path d="M14 11v6"></path><path d="M9 6V4h6v2"></path></svg>
+</button>
+<button class="tb-btn" onclick="VSSuite.toggleTheme()" title="Thème">
+<svg viewbox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>
+</button>
+</div>
+</div>
+<div class="toile-body">
+<div class="toile-tools">
+<button class="toile-tool active" data-tool="pen" title="Crayon">
+<svg viewbox="0 0 24 24"><path d="M17 3a2.828 2.828 0 114 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
+</button>
+<button class="toile-tool" data-tool="eraser" title="Gomme">
+<svg viewbox="0 0 24 24"><path d="M20 20H7L3 16c-.8-.8-.8-2 0-2.8L14.8 1.4c.8-.8 2-.8 2.8 0l5 5c.8.8.8 2 0 2.8L12.5 19.5"></path></svg>
+</button>
+<div class="toile-tool-sep"></div>
+<button class="toile-tool" data-tool="line" title="Ligne">
+<svg viewbox="0 0 24 24"><line x1="5" x2="19" y1="19" y2="5"></line></svg>
+</button>
+<button class="toile-tool" data-tool="arrow" title="Flèche">
+<svg viewbox="0 0 24 24"><line x1="5" x2="19" y1="19" y2="5"></line><polyline points="13 5 19 5 19 11"></polyline></svg>
+</button>
+<button class="toile-tool" data-tool="rect" title="Rectangle">
+<svg viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect></svg>
+</button>
+<button class="toile-tool" data-tool="ellipse" title="Ellipse">
+<svg viewbox="0 0 24 24"><ellipse cx="12" cy="12" rx="10" ry="7"></ellipse></svg>
+</button>
+<button class="toile-tool" data-tool="triangle" title="Triangle">
+<svg viewbox="0 0 24 24"><polygon points="12,3 22,21 2,21"></polygon></svg>
+</button>
+<button class="toile-tool" data-tool="diamond" title="Losange">
+<svg viewbox="0 0 24 24"><polygon points="12,2 22,12 12,22 2,12"></polygon></svg>
+</button>
+<button class="toile-tool" data-tool="star" title="Étoile">
+<svg viewbox="0 0 24 24"><polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9"></polygon></svg>
+</button>
+<div class="toile-tool-sep"></div>
+<button class="toile-tool" data-tool="text" title="Texte">
+<svg viewbox="0 0 24 24"><path d="M4 7V4h16v3"></path><path d="M9 20h6"></path><path d="M12 4v16"></path></svg>
+</button>
+</div>
+<div class="toile-canvas-wrap grid-bg" id="toile-canvas-wrap">
+<canvas id="toile-canvas"></canvas>
+</div>
+<div class="toile-props">
+<h4 data-i18n="domain.suite.toile.toile_body_toile_props.h4">Couleur du trait</h4>
+<label data-i18n="domain.suite.toile.toile_body_toile_props.label">
+<input id="prop-color" type="color" value="#e0e0e0"/>
         Trait
       </label>
-      <div class="toile-color-presets" id="color-presets"></div>
-
-      <h4>Remplissage</h4>
-      <label>
-        <input type="color" id="prop-fill" value="#6366f1">
+<div class="toile-color-presets" id="color-presets"></div>
+<h4 data-i18n="domain.suite.toile.toile_body_toile_props.h42">Remplissage</h4>
+<label data-i18n="domain.suite.toile.toile_body_toile_props.label2">
+<input id="prop-fill" type="color" value="#6366f1"/>
         Fond
       </label>
-
-      <h4>Épaisseur</h4>
-      <label>
-        <input type="range" id="prop-size" min="1" max="20" value="3">
-        <span id="prop-size-val">3px</span>
+<h4 data-i18n="domain.suite.toile.toile_body_toile_props.h43">Épaisseur</h4>
+<label data-i18n-html="domain.suite.toile.toile_body_toile_props.label3">
+<input id="prop-size" max="20" min="1" type="range" value="3"/>
+<span id="prop-size-val">3px</span>
+</label>
+<h4 data-i18n="domain.suite.toile.toile_body_toile_props.h44">Opacité</h4>
+<label>
+<input id="prop-opacity" max="100" min="10" step="5" type="range" value="100"/>
+<span id="prop-opacity-val">100%</span>
+</label>
+<h4 data-i18n="domain.suite.toile.toile_body_toile_props.h45">Grille</h4>
+<label data-i18n="domain.suite.toile.toile_body_toile_props.label4">
+<input id="prop-grid-snap" type="checkbox"/> Aimanter à la grille
       </label>
-
-      <h4>Opacité</h4>
-      <label>
-        <input type="range" id="prop-opacity" min="10" max="100" value="100" step="5">
-        <span id="prop-opacity-val">100%</span>
-      </label>
-
-      <h4>Grille</h4>
-      <label>
-        <input type="checkbox" id="prop-grid-snap"> Aimanter à la grille
-      </label>
-    </div>
-  </div>
-
-
-  <div class="suite-statusbar">
-    <span id="status-objects">0 objet</span>
-    <span style="margin-left:auto;display:flex;align-items:center;gap:6px">
-      <button class="toile-zoom-btn" onclick="toileZoom(-10)" title="Zoom arrière">−</button>
-      <span id="zoom-level" style="min-width:36px;text-align:center;font-size:.75rem">100%</span>
-      <button class="toile-zoom-btn" onclick="toileZoom(10)" title="Zoom avant">+</button>
-    </span>
-  </div>
-
-  <script src="/domain/suite/suite.js"></script>
-  <script src="/domain/suite/toile/toile.js"></script>
+</div>
+</div>
+<div class="suite-statusbar">
+<span id="status-objects">0 objet</span>
+<span style="margin-left:auto;display:flex;align-items:center;gap:6px">
+<button class="toile-zoom-btn" onclick="toileZoom(-10)" title="Zoom arrière">−</button>
+<span id="zoom-level" style="min-width:36px;text-align:center;font-size:.75rem">100%</span>
+<button class="toile-zoom-btn" onclick="toileZoom(10)" title="Zoom avant">+</button>
+</span>
+</div>
+<script src="/domain/suite/suite.js"></script>
+<script src="/domain/suite/toile/toile.js"></script>
+<script defer src="/antibot.js"></script>
 </body>
 </html>

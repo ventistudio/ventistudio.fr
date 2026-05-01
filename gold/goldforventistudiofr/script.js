@@ -1,14 +1,12 @@
 (function () {
   'use strict';
 
-
   const gate = document.getElementById('access-gate');
   if (sessionStorage.getItem('gold-access') !== 'true') {
     if (gate) gate.style.display = 'flex';
     return;
   }
   if (gate) gate.remove();
-
 
   const canvas = document.getElementById('gold-particles');
   if (canvas) {
@@ -82,7 +80,6 @@
     animate();
   }
 
-
   const statNumbers = document.querySelectorAll('.stat-number[data-count]');
   if (statNumbers.length) {
     const countObserver = new IntersectionObserver((entries) => {
@@ -113,7 +110,6 @@
     requestAnimationFrame(step);
   }
 
-
   const filterBtns = document.querySelectorAll('.filter-btn');
   const searchInput = document.getElementById('gold-search');
   const contentGrid = document.getElementById('content-grid');
@@ -129,7 +125,6 @@
     });
   });
 
-
   let searchTimeout;
   if (searchInput) {
     searchInput.addEventListener('input', () => {
@@ -140,7 +135,6 @@
       }, 250);
     });
   }
-
 
   function renderContent() {
     if (!contentGrid) return;
@@ -197,7 +191,6 @@
     observeCards();
   }
 
-
   function observeCards() {
     const cards = contentGrid.querySelectorAll('.content-card');
     const observer = new IntersectionObserver((entries) => {
@@ -213,7 +206,6 @@
 
     cards.forEach(card => observer.observe(card));
   }
-
 
   const timelineContainer = document.getElementById('timeline');
   if (timelineContainer && typeof goldChangelog !== 'undefined') {
@@ -239,7 +231,6 @@
     tlItems.forEach(item => tlObserver.observe(item));
   }
 
-
   document.querySelectorAll('.gold-nav .nav-links a[href^="#"]').forEach(link => {
     link.addEventListener('click', (e) => {
       const target = document.querySelector(link.getAttribute('href'));
@@ -249,7 +240,6 @@
       }
     });
   });
-
 
   function isRecent(dateStr, days) {
     const itemDate = new Date(dateStr);
@@ -269,13 +259,7 @@
     return div.innerHTML;
   }
 
-
   renderContent();
-
-
-
-
-
 
   (function initEncoder() {
     const mode = document.getElementById('enc-mode');
@@ -316,7 +300,6 @@
     btnCopy.addEventListener('click', () => copyText(output.value, btnCopy));
   })();
 
-
   (function initPwdGen() {
     const lenRange = document.getElementById('pwd-length');
     const lenVal = document.getElementById('pwd-len-val');
@@ -349,7 +332,6 @@
       const pwd = Array.from(arr, v => pool[v % pool.length]).join('');
       result.textContent = pwd;
 
-
       let score = 0;
       if (len >= 12) score++;
       if (len >= 20) score++;
@@ -362,7 +344,6 @@
 
     btnCopy.addEventListener('click', () => copyText(result.textContent, btnCopy));
   })();
-
 
   (function initWordCount() {
     const input = document.getElementById('count-input');
@@ -382,7 +363,6 @@
       reading.textContent = sec >= 60 ? Math.floor(sec / 60) + 'm' + (sec % 60 ? (sec % 60) + 's' : '') : sec + 's';
     });
   })();
-
 
   (function initColorConvert() {
     const preview = document.getElementById('color-preview');
@@ -437,7 +417,6 @@
       updateFromHex(picker.value);
     });
   })();
-
 
   (function initTimer() {
     const display = document.getElementById('timer-display');
@@ -509,9 +488,8 @@
     render();
   })();
 
-
   function copyText(text, btn) {
-    if (!text || text === '—') return;
+    if (!text || text === '') return;
     navigator.clipboard.writeText(text).then(() => {
       const orig = btn.textContent;
       btn.textContent = '✅ Copié !';

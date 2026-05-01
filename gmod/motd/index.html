@@ -1,36 +1,33 @@
 <!DOCTYPE html>
-<html lang="fr" data-theme="dark">
+
+<html data-theme="dark" lang="fr">
 <head>
-
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <meta name="description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
-  <meta name="theme-color" content="#6366f1">
-  <title>MOTD GMod | VentiStudio</title>
-  <link rel="stylesheet" href="/style.css">
-  <link rel="icon" type="image/png" href="/favicon.ico">
-
-  <script async crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
-  <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
-
-  <meta property="og:title" content="MOTD GMod | VentiStudio">
-  <meta property="og:description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
-  <meta property="og:url" content="https://ventistudio.eu/gmod/motd/">
-  <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
-  <meta property="og:type" content="website">
-  <link rel="canonical" href="https://ventistudio.eu/gmod/motd/">
-
-  <script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport"/>
+<meta content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée." name="description"/>
+<meta content="#6366f1" name="theme-color"/>
+<title>MOTD GMod | VentiStudio</title>
+<link href="/style.css" rel="stylesheet"/>
+<link href="/favicon.ico" rel="icon" type="image/png"/>
+<script async="" crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
+<script async="" crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
+<meta content="MOTD GMod | VentiStudio" property="og:title"/>
+<meta content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée." property="og:description"/>
+<meta content="https://ventistudio.eu/gmod/motd/" property="og:url"/>
+<meta content="https://ventistudio.eu/favicon.avif" property="og:image"/>
+<meta content="website" property="og:type"/>
+<link href="https://ventistudio.eu/gmod/motd/" rel="canonical"/>
+<script>
     (function() {
-      var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      var t; try { t = localStorage.getItem('theme'); } catch (_) {} if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
-  <script src="/i18n.js" defer></script>
+<script defer="" src="/i18n.js"></script>
 </head>
 <body>
-  <main>
-    <style>
+<main>
+<style>
     :root {
       --primary: #7B66FF;
       --secondary: #2A2D3A;
@@ -163,90 +160,80 @@
       }
     }
   </style>
-
-    <div class="motd-container">
-    <div class="header">
-      <h1>Bienvenue sur le serveur GMod VentiStudio</h1>
-      <h2>SCP:LS Site 45 (Serveur 1 sur 2)</h2>
-      <p>Retrouvez ici toutes les informations importantes concernant le serveur</p>
-    </div>
-
-    <div class="important">
-      <strong>⚠️ Important :</strong> L'installation de la collection est obligatoire pour évité les erreur.
-      <p>Assurez-vous que tous les addons sont téléchargés avant de vous connecter.</p>
-    </div>
-
-    <div class="collection-section">
-      <h2>Collection d'addons</h2>
-      <p>Pour une expérience optimale, assurez-vous d'être abonné à notre collection d'addons officielle :</p>
-      <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3628033819" class="collection-button" target="_blank">
+<div class="motd-container">
+<div class="header">
+<h1 data-i18n="gmod.motd.motd_container_header.h1">Bienvenue sur le serveur GMod VentiStudio</h1>
+<h2 data-i18n="gmod.motd.motd_container_header.h2">SCP:LS Site 45 (Serveur 1 sur 2)</h2>
+<p data-i18n="gmod.motd.motd_container_header.p">Retrouvez ici toutes les informations importantes concernant le serveur</p>
+</div>
+<div class="important">
+<strong>⚠️ Important :</strong> L'installation de la collection est obligatoire pour évité les erreur.
+      <p data-i18n="gmod.motd.motd_container_important.p">Assurez-vous que tous les addons sont téléchargés avant de vous connecter.</p>
+</div>
+<div class="collection-section">
+<h2 data-i18n="gmod.motd.motd_container_collection_section.h2">Collection d'addons</h2>
+<p data-i18n="gmod.motd.motd_container_collection_section.p">Pour une expérience optimale, assurez-vous d'être abonné à notre collection d'addons officielle :</p>
+<a class="collection-button" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3628033819" target="_blank">
         Téléchargé la collection Steam →
       </a>
-    </div>
-
-    <div class="collection-section">
-      <h2>Serveur Discord</h2>
-      <p>Pour une expérience optimale et débloquer d'autre jobs, assurez-vous d'avoir rejoind le serveur disocrd officielle :</p>
-      <a href="https://discord.gg/ZeeBTvkbVJ" class="collection-button" target="_blank">
+</div>
+<div class="collection-section">
+<h2 data-i18n="gmod.motd.motd_container_collection_section.h22">Serveur Discord</h2>
+<p data-i18n="gmod.motd.motd_container_collection_section.p2">Pour une expérience optimale et débloquer d'autre jobs, assurez-vous d'avoir rejoind le serveur disocrd officielle :</p>
+<a class="collection-button" href="https://discord.gg/ZeeBTvkbVJ" target="_blank">
         Rejoindre la communauté Discord →
       </a>
-    </div>
-
-    <div class="collection-section">
-      <h2>Protocoles &amp; Règles</h2>
-      <p>Consultez l'ensemble des protocoles et règlements de la Fondation SCP :</p>
-      <a href="/gmod/motd/P&R/" class="collection-button">
+</div>
+<div class="collection-section">
+<h2 data-i18n="gmod.motd.motd_container_collection_section.h23">Protocoles &amp; Règles</h2>
+<p data-i18n="gmod.motd.motd_container_collection_section.p3">Consultez l'ensemble des protocoles et règlements de la Fondation SCP :</p>
+<a class="collection-button" href="/gmod/motd/P&amp;R/">
         Voir les Protocoles &amp; Règles →
       </a>
-    </div>
-
-    <div class="changelog">
-      <h2>Notes de mise à jour</h2>
-
-            <div class="update-entry">
-        <div class="update-date">14 Février 2026</div>
-        <ul class="update-list">
-          <li>Ouverture de Lost Site</li>
-        </ul>
-      </div>
-      <div class="update-entry">
-        <div class="update-date">20 Janvier 2025</div>
-        <ul class="update-list">
-          <li>Fermeture de Zone Retribution</li>
-          <li>Fin de collaboration avec Zone Retribution</li>
-        </ul>
-      </div>
-
-      <div class="update-entry">
-        <div class="update-date">15 Janvier 2025</div>
-        <ul class="update-list">
-          <li>Ajout du nouveau système de personnalisation</li>
-          <li>Création du loading et du motd</li>
-          <li>Mise à jour de la collection</li>
-        </ul>
-      </div>
-
-      <div class="update-entry">
-        <div class="update-date">14 Janvier 2025</div>
-        <ul class="update-list">
-          <li>Modification des lieu de spawn</li>
-          <li>Ajout des grade VIP, VSP, MVP</li>
-          <li>Mise à jour de la collection</li>
-        </ul>
-      </div>
-
-      <div class="update-entry">
-        <div class="update-date">13 Janvier 2025</div>
-        <ul class="update-list">
-          <li>Nouveau système d'experience</li>
-          <li>Modification de l'ensemble des teams</li>
-          <li>Mise à jour de la collection</li>
-          <li>Correction de divert bug</li>
-        </ul>
-      </div>
-    </div>
-  </main>
-  <script src="/main.js" defer></script>
+</div>
+<div class="changelog">
+<h2 data-i18n="gmod.motd.motd_container_changelog.h2">Notes de mise à jour</h2>
+<div class="update-entry">
+<div class="update-date">14 Février 2026</div>
+<ul class="update-list">
+<li data-i18n="gmod.motd.motd_container_changelog.li">Ouverture de Lost Site</li>
+</ul>
+</div>
+<div class="update-entry">
+<div class="update-date">20 Janvier 2025</div>
+<ul class="update-list">
+<li data-i18n="gmod.motd.motd_container_changelog.li2">Fermeture de Zone Retribution</li>
+<li data-i18n="gmod.motd.motd_container_changelog.li3">Fin de collaboration avec Zone Retribution</li>
+</ul>
+</div>
+<div class="update-entry">
+<div class="update-date">15 Janvier 2025</div>
+<ul class="update-list">
+<li data-i18n="gmod.motd.motd_container_changelog.li4">Ajout du nouveau système de personnalisation</li>
+<li data-i18n="gmod.motd.motd_container_changelog.li5">Création du loading et du motd</li>
+<li data-i18n="gmod.motd.motd_container_changelog.li6">Mise à jour de la collection</li>
+</ul>
+</div>
+<div class="update-entry">
+<div class="update-date">14 Janvier 2025</div>
+<ul class="update-list">
+<li data-i18n="gmod.motd.motd_container_changelog.li7">Modification des lieu de spawn</li>
+<li data-i18n="gmod.motd.motd_container_changelog.li8">Ajout des grade VIP, VSP, MVP</li>
+<li data-i18n="gmod.motd.motd_container_changelog.li9">Mise à jour de la collection</li>
+</ul>
+</div>
+<div class="update-entry">
+<div class="update-date">13 Janvier 2025</div>
+<ul class="update-list">
+<li data-i18n="gmod.motd.motd_container_changelog.li10">Nouveau système d'experience</li>
+<li data-i18n="gmod.motd.motd_container_changelog.li11">Modification de l'ensemble des teams</li>
+<li data-i18n="gmod.motd.motd_container_changelog.li12">Mise à jour de la collection</li>
+<li data-i18n="gmod.motd.motd_container_changelog.li13">Correction de divert bug</li>
+</ul>
+</div>
+</div>
+</div></main>
+<script defer="" src="/main.js"></script>
+<script defer src="/antibot.js"></script>
 </body>
 </html>
-

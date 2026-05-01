@@ -1,9 +1,10 @@
 <!DOCTYPE html>
+
 <html lang="fr" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <meta name="description" content="Encodeur / Décodeur Base64, URL, HTML — Outils d'encodage multi-format. 100% client-side.">
+  <meta name="description" content="Encodeur / Décodeur Base64, URL, HTML  Outils d'encodage multi-format. 100% client-side.">
   <meta name="theme-color" content="#0ea5e9">
   <title>Encodeur / Décodeur | VentiStudio Pro</title>
   <link rel="stylesheet" href="/style.css">
@@ -220,7 +221,7 @@
   <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
 
   <meta property="og:title" content="Encodeur / Décodeur | VentiStudio Pro">
-  <meta property="og:description" content="Encodeur / Décodeur Base64, URL, HTML — Outils d'encodage multi-format. 100% client-side.">
+  <meta property="og:description" content="Encodeur / Décodeur Base64, URL, HTML  Outils d'encodage multi-format. 100% client-side.">
   <meta property="og:url" content="https://ventistudio.eu/domain/pro/encode/">
   <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
   <meta property="og:type" content="website">
@@ -228,7 +229,7 @@
 
   <script>
     (function() {
-      var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      var t; try { t = localStorage.getItem('theme'); } catch (_) {} if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
@@ -383,7 +384,7 @@
   <main>
     <section class="hero" style="padding: 3rem 0 1rem;">
       <h1 style="font-size: 2.5rem;">Encodeur / Décodeur</h1>
-      <p style="color: var(--text-secondary);">Base64, URL, HTML, Hex, JWT — 100% dans votre navigateur</p>
+      <p style="color: var(--text-secondary);">Base64, URL, HTML, Hex, JWT  100% dans votre navigateur</p>
     </section>
 
     <div class="enc-layout">
@@ -426,7 +427,6 @@
 
         <div class="error-msg" id="errorMsg"></div>
       </div>
-
 
       <div class="panel">
         <h3>🔒 Calcul de Hash</h3>
@@ -681,5 +681,6 @@
       });
     })();
   </script>
+<script defer src="/antibot.js"></script>
 </body>
 </html>

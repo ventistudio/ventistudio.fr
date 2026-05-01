@@ -1,16 +1,17 @@
 <!DOCTYPE html>
+
 <html lang="fr" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <meta name="description" content="VentiStudio Movie — Retrouvez toutes nos vidéos YouTube, Odysee, TikTok, Instagram, Kick, Twitch et plus encore, réunies en un seul endroit.">
+  <meta name="description" content="VentiStudio Movie  Retrouvez toutes nos vidéos YouTube, Odysee, TikTok, Instagram, Kick, Twitch et plus encore, réunies en un seul endroit.">
   <meta name="theme-color" content="#6366f1">
   <title>Movie | VentiStudio</title>
   <link rel="stylesheet" href="/style.css">
 
   <script>
     (function() {
-      var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      var t; try { t = localStorage.getItem('theme'); } catch (_) {} if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
@@ -19,7 +20,7 @@
   <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
 
   <meta property="og:title" content="Movie | VentiStudio">
-  <meta property="og:description" content="VentiStudio Movie — Toutes nos vidéos réunies en un seul endroit.">
+  <meta property="og:description" content="VentiStudio Movie  Toutes nos vidéos réunies en un seul endroit.">
   <meta property="og:url" content="https://ventistudio.eu/domain/movie/">
   <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
   <meta property="og:type" content="website">
@@ -432,15 +433,13 @@
 
     <section class="movie-hero" aria-label="Présentation">
       <h1>VentiStudio Movie</h1>
-      <p>Toutes nos vidéos réunies ici — YouTube, Odysee, TikTok, Instagram, Kick, Twitch et plus encore.</p>
+      <p>Toutes nos vidéos réunies ici  YouTube, Odysee, TikTok, Instagram, Kick, Twitch et plus encore.</p>
     </section>
-
 
     <div class="movie-info-banner">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
       <span>Les vidéos sont chargées depuis leurs plateformes d'origine. Cliquez sur un placeholder pour charger l'embed.</span>
     </div>
-
 
     <div class="platform-filters" role="toolbar" aria-label="Filtrer par plateforme">
       <button class="platform-filter active" data-platform="all">Tout</button>
@@ -470,9 +469,7 @@
       </button>
     </div>
 
-
     <div id="video-container"></div>
-
 
     <div id="empty-state" class="empty-state" style="display:none;">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M10 9l6 3-6 3V9z"/></svg>
@@ -528,7 +525,7 @@
   <script src="/main.js" defer></script>
   <script>
     /**
-     * VentiStudio Movie — Données des vidéos
+     * VentiStudio Movie  Données des vidéos
      * Pour ajouter une vidéo, ajoutez un objet dans le tableau VIDEOS ci-dessous.
      *
      * Plateformes supportées : youtube, odysee, tiktok, instagram, kick, twitch
@@ -544,57 +541,57 @@
      */
     const VIDEOS = [
       // ══════════════════════════════════════════
-      //  YOUTUBE — chaîne : @ventiopastudien
+      //  YOUTUBE  chaîne : @ventiopastudien
       //  Pour ajouter : copiez l'ID de la vidéo depuis l'URL
       //  https://www.youtube.com/watch?v=XXXXXX → id: "XXXXXX"
       // ══════════════════════════════════════════
       {
         platform: "youtube",
         id: "ChZs8KGK55w",
-        title: "VentiStudio — Live Stream",
+        title: "VentiStudio  Live Stream",
         date: "2025-06-01",
         live: false
       },
       {
         platform: "youtube",
         id: "videoseries?list=PLWe7p3Dcu1dnk1Kc2HfpO0rM-RqYX5IAU",
-        title: "VentiStudio — Playlist Musique",
+        title: "VentiStudio  Playlist Musique",
         date: "2025-05-01",
         live: false
       },
 
       // ══════════════════════════════════════════
-      //  ODYSEE — chaîne : @ventiopastudien (à confirmer)
+      //  ODYSEE  chaîne : @ventiopastudien (à confirmer)
       //  Pour ajouter : copiez le chemin après odysee.com/
       //  https://odysee.com/@channel/video → id: "@channel/video"
       // ══════════════════════════════════════════
 
       // ══════════════════════════════════════════
-      //  TIKTOK — compte : @ventiopastudien
+      //  TIKTOK  compte : @ventiopastudien
       //  Pour ajouter : copiez l'ID numérique depuis l'URL
       //  https://www.tiktok.com/@user/video/7123456789 → id: "7123456789"
       // ══════════════════════════════════════════
 
       // ══════════════════════════════════════════
-      //  INSTAGRAM — compte : ventiopastudien
+      //  INSTAGRAM  compte : ventiopastudien
       //  Pour ajouter : copiez le code du post
       //  https://www.instagram.com/p/CXXXX → id: "CXXXX"
       // ══════════════════════════════════════════
 
       // ══════════════════════════════════════════
-      //  KICK — chaîne : ventistudio (à confirmer)
+      //  KICK  chaîne : ventistudio (à confirmer)
       //  Pour ajouter : id = nom de la chaîne ou ID du clip
       // ══════════════════════════════════════════
 
       // ══════════════════════════════════════════
-      //  TWITCH — chaîne : ventistudio
+      //  TWITCH  chaîne : ventistudio
       //  Pour un live : live: true, id: "ventistudio"
       //  Pour une VOD : live: false, id: "2000000000" (ID numérique)
       // ══════════════════════════════════════════
       {
         platform: "twitch",
         id: "ventistudio",
-        title: "VentiStudio — Stream en direct",
+        title: "VentiStudio  Stream en direct",
         date: "2026-03-29",
         live: true
       }
@@ -826,5 +823,6 @@
       });
     })();
   </script>
+<script defer src="/antibot.js"></script>
 </body>
 </html>

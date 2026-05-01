@@ -1,34 +1,31 @@
 <!DOCTYPE html>
-<html lang="fr" data-theme="dark">
+
+<html data-theme="dark" lang="fr">
 <head>
-
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <meta name="description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
-  <meta name="theme-color" content="#6366f1">
-  <title>Tetris | VentiStudio</title>
-  <link rel="stylesheet" href="/style.css">
-
-  <script async crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
-  <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
-
-  <meta property="og:title" content="Tetris | VentiStudio">
-  <meta property="og:description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
-  <meta property="og:url" content="https://ventistudio.eu/player/game/tetris/">
-  <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
-  <meta property="og:type" content="website">
-  <link rel="canonical" href="https://ventistudio.eu/player/game/tetris/">
-
-  <script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport"/>
+<meta content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée." name="description"/>
+<meta content="#6366f1" name="theme-color"/>
+<title>Tetris | VentiStudio</title>
+<link href="/style.css" rel="stylesheet"/>
+<script async="" crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
+<script async="" crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
+<meta content="Tetris | VentiStudio" property="og:title"/>
+<meta content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée." property="og:description"/>
+<meta content="https://ventistudio.eu/player/game/tetris/" property="og:url"/>
+<meta content="https://ventistudio.eu/favicon.avif" property="og:image"/>
+<meta content="website" property="og:type"/>
+<link href="https://ventistudio.eu/player/game/tetris/" rel="canonical"/>
+<script>
     (function() {
-      var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      var t; try { t = localStorage.getItem('theme'); } catch (_) {} if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
-  <script src="/i18n.js" defer></script>
+<script defer="" src="/i18n.js"></script>
 </head>
 <body>
-  <main>
+<main>
 <style>
         :root {
             --primary: #7B66FF;
@@ -144,60 +141,54 @@
             border: 1px solid rgba(255,255,255,0.3);
         }
     </style>
-
-  <script async crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
-  <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
-
-  <meta property="og:title" content="Tetris | VentiStudio">
-  <meta property="og:description" content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée.">
-  <meta property="og:url" content="https://ventistudio.eu/player/game/tetris/">
-  <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
-  <meta property="og:type" content="website">
-  <link rel="canonical" href="https://ventistudio.eu/player/game/tetris/">
-
-  <script>
+<script async="" crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
+<script async="" crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
+<meta content="Tetris | VentiStudio" property="og:title"/>
+<meta content="VentiStudio - Plateforme créative avec outils innovants, contenus originaux et communauté passionnée." property="og:description"/>
+<meta content="https://ventistudio.eu/player/game/tetris/" property="og:url"/>
+<meta content="https://ventistudio.eu/favicon.avif" property="og:image"/>
+<meta content="website" property="og:type"/>
+<link href="https://ventistudio.eu/player/game/tetris/" rel="canonical"/>
+<script>
     (function() {
-      var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      var t; try { t = localStorage.getItem('theme'); } catch (_) {} if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
-  <script src="/i18n.js" defer></script>
-</head>
+<script defer="" src="/i18n.js"></script>
+
 <body>
-    <div class="game-container">
-        <div class="game-board" id="board"></div>
-        <div class="sidebar">
-            <div>
-                <h3>Score: <span id="score">0</span></h3>
-                <h3>Level: <span id="level">1</span></h3>
-            </div>
-            <div>
-                <h3>Next Piece:</h3>
-                <div class="next-piece" id="next-piece"></div>
-            </div>
-            <div class="button-group">
-                <button id="start-btn">Start Game</button>
-                <button id="pause-btn">Pause</button>
-                <button id="reset-btn">Reset</button>
-            </div>
-        </div>
-
-        <div class="overlay" id="game-over">
-            <div class="overlay-content">
-                <h2>Game Over!</h2>
-                <p>Final Score: <span id="final-score">0</span></p>
-                <button id="restart-btn">Play Again</button>
-            </div>
-        </div>
-
-        <div class="overlay" id="pause-screen">
-            <div class="overlay-content">
-                <h2>Game Paused</h2>
-                <button id="resume-btn">Resume</button>
-            </div>
-        </div>
-    </div>
-
+<div class="game-container">
+<div class="game-board" id="board"></div>
+<div class="sidebar">
+<div>
+<h3>Score: <span id="score">0</span></h3>
+<h3>Level: <span id="level">1</span></h3>
+</div>
+<div>
+<h3 data-i18n="player.game.tetris.game_container_sidebar.h3">Next Piece:</h3>
+<div class="next-piece" id="next-piece"></div>
+</div>
+<div class="button-group">
+<button data-i18n="player.game.tetris.game_container_sidebar.button" id="start-btn">Start Game</button>
+<button data-i18n="player.game.tetris.game_container_sidebar.button2" id="pause-btn">Pause</button>
+<button data-i18n="player.game.tetris.game_container_sidebar.button3" id="reset-btn">Reset</button>
+</div>
+</div>
+<div class="overlay" id="game-over">
+<div class="overlay-content">
+<h2 data-i18n="player.game.tetris.game_over_overlay_content.h2">Game Over!</h2>
+<p data-i18n-html="player.game.tetris.game_over_overlay_content.p">Final Score: <span id="final-score">0</span></p>
+<button data-i18n="player.game.tetris.game_over_overlay_content.button" id="restart-btn">Play Again</button>
+</div>
+</div>
+<div class="overlay" id="pause-screen">
+<div class="overlay-content">
+<h2 data-i18n="player.game.tetris.pause_screen_overlay_content.h2">Game Paused</h2>
+<button data-i18n="player.game.tetris.pause_screen_overlay_content.button" id="resume-btn">Resume</button>
+</div>
+</div>
+</div>
 <script>class Tetris {
   constructor() {
     this.BOARD_WIDTH = 10;
@@ -491,8 +482,8 @@
   }
 }
 const game = new Tetris();</script>
-  </main>
-  <script src="/main.js" defer></script>
+<script defer src="/antibot.js"></script>
+</body></main>
+<script defer="" src="/main.js"></script>
 </body>
 </html>
-

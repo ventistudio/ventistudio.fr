@@ -1,0 +1,10 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: ventistudio.eu
+Upstream-Contact: Umaishi H. <umaishi.h@ventistudio.eu>
+Source: https://ventistudio.eu/
+
+Files: *
+Copyright: 2026 Umaishi H. <umaishi.h@ventistudio.eu>
+License: LicenseRef-FiTsZ-DMA-1.0
+ Voir LICENSES/LicenseRef-FiTsZ-DMA-1.0.txt pour le texte complet,
+ ou https://ventistudio.eu/lawful/license-fitsz-dma/ en ligne.

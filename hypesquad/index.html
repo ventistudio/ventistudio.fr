@@ -396,7 +396,7 @@
   </style>
 <script>
     (function() {
-      var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      var t; try { t = localStorage.getItem('theme'); } catch (_) {} if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
@@ -767,7 +767,7 @@
             '<div class="hs-your-house-element">' + h.element + '</div>' +
             '<a href="/hypesquad/test/" style="font-size:.8rem;opacity:.5;color:var(--accent);text-decoration:none">Voir mes résultats</a>';
           if (isErudis) {
-            el.innerHTML += '<div style="margin-top:.6rem;font-size:.75rem;opacity:.35;color:#c4a747">🔮 Secrètement Érudis — Maison publique : ' + h.name + '</div>';
+            el.innerHTML += '<div style="margin-top:.6rem;font-size:.75rem;opacity:.35;color:#c4a747">🔮 Secrètement Érudis  Maison publique : ' + h.name + '</div>';
             el.innerHTML += '<a href="/hypesquad/erudis/" style="font-size:.8rem;opacity:.4;color:#c4a747;text-decoration:none;margin-top:.5rem;display:inline-block">📜 Accéder aux Archives Érudis</a>';
           }
           document.getElementById('hs-cta-bottom').textContent = '📊 Revoir mes résultats';
@@ -780,7 +780,7 @@
         sanctionSection.style.display = '';
         document.getElementById('hs-sanction-panel').innerHTML =
           '<h3>🔮 Pouvoir de Sanction</h3>' +
-          '<p class="hs-sanction-desc">En tant qu\'Érudis, vous surveillez les Maisons depuis l\'ombre. Vous avez le pouvoir de demander à sanctionner ou bénir une Maison — mais cette demande doit passer par le Discord officiel.</p>' +
+          '<p class="hs-sanction-desc">En tant qu\'Érudis, vous surveillez les Maisons depuis l\'ombre. Vous avez le pouvoir de demander à sanctionner ou bénir une Maison  mais cette demande doit passer par le Discord officiel.</p>' +
           '<a href="/discord/" class="hs-sanction-discord">💬 Faire une demande sur Discord</a>' +
           '<p style="font-size:.75rem;opacity:.3;margin-top:1rem">Les sanctions sont appliquées par le staff après examen de votre demande.</p>';
       }
@@ -858,5 +858,6 @@
       });
     })();
   </script>
+<script defer src="/antibot.js"></script>
 </body>
 </html>

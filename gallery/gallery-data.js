@@ -49,7 +49,7 @@ var galleryData = [
   },
   {
     id: "art-005",
-    title: "Makina Ryou — Portrait",
+    title: "Makina Ryou  Portrait",
     artist: "PixelMaster",
     type: "illustration",
     tags: ["portrait", "aoki-universe", "personnage", "digital"],
@@ -61,7 +61,7 @@ var galleryData = [
   },
   {
     id: "art-006",
-    title: "VentiStudio HQ — Concept Art",
+    title: "VentiStudio HQ  Concept Art",
     artist: "ArchViz",
     type: "illustration",
     tags: ["concept-art", "ventistudio", "architecture"],
@@ -85,7 +85,7 @@ var galleryData = [
   },
   {
     id: "art-008",
-    title: "Les Sept Clés — Infographie",
+    title: "Les Sept Clés  Infographie",
     artist: "InfoDesigner",
     type: "illustration",
     tags: ["infographie", "aoki-universe", "artefacts", "éducatif"],
@@ -121,7 +121,7 @@ var galleryData = [
   },
   {
     id: "art-011",
-    title: "AINA — Éveil",
+    title: "AINA  Éveil",
     artist: "LunaArtist",
     type: "illustration",
     tags: ["fanart", "aoki-universe", "IA", "digital"],

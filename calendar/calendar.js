@@ -73,19 +73,16 @@
 
     grid.innerHTML = '';
 
-
     for (var i = firstDay - 1; i >= 0; i--) {
       var day = prevMonthDays - i;
       var cell = createDayCell(viewYear, viewMonth - 1, day, true);
       grid.appendChild(cell);
     }
 
-
     for (var d = 1; d <= daysInMonth; d++) {
       var cell = createDayCell(viewYear, viewMonth, d, false);
       grid.appendChild(cell);
     }
-
 
     var totalCells = firstDay + daysInMonth;
     var remaining = totalCells % 7 === 0 ? 0 : 7 - (totalCells % 7);
@@ -240,7 +237,6 @@
     renderUpcoming();
   }
 
-
   prevBtn.addEventListener('click', function() {
     viewMonth--;
     if (viewMonth < 0) { viewMonth = 11; viewYear--; }
@@ -260,11 +256,9 @@
     render();
   });
 
-
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') closeModal();
   });
-
 
   render();
 })();

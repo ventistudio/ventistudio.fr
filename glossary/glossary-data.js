@@ -31,7 +31,6 @@ var glossaryData = [
     tags: ["enfant-de-la-lune"]
   },
 
-
   {
     id: "jahaaka",
     term: "JAHAAKA",
@@ -52,7 +51,6 @@ var glossaryData = [
     related: ["sept-cles", "artefacts-atlantes", "codex-atlanticus"],
     tags: ["civilisation-ancienne", "mystère"]
   },
-
 
   {
     id: "onite",
@@ -105,7 +103,6 @@ var glossaryData = [
     tags: ["formation", "sélection"]
   },
 
-
   {
     id: "nucleonite",
     term: "Nucléonite",
@@ -136,7 +133,6 @@ var glossaryData = [
     related: ["jahaaka", "projet-lifestar"],
     tags: ["intelligence-artificielle", "conscience"]
   },
-
 
   {
     id: "sept-cles",
@@ -179,7 +175,6 @@ var glossaryData = [
     tags: ["spatial", "stabilisation"]
   },
 
-
   {
     id: "dedoublement-ao",
     term: "Dédoublement AO",
@@ -200,7 +195,6 @@ var glossaryData = [
     related: ["makina-ryou", "jahaaka", "sept-points-ancrage", "enfants-de-la-lune"],
     tags: ["projet-majeur", "2020"]
   },
-
 
   {
     id: "ventistudio",
@@ -262,7 +256,6 @@ var glossaryData = [
     related: ["ventistudio"],
     tags: ["communauté", "élite"]
   },
-
 
   {
     id: "scp-fondation",

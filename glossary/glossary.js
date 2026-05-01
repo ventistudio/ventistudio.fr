@@ -229,7 +229,6 @@
     updateStats(data);
   }
 
-
   function checkHash() {
     var hash = window.location.hash;
     if (hash && hash.indexOf('#term-') === 0) {
@@ -238,11 +237,9 @@
     }
   }
 
-
   searchInput.addEventListener('input', function() { activeLetter = null; render(); });
   categoryFilter.addEventListener('change', render);
   universeFilter.addEventListener('change', render);
-
 
   render();
   checkHash();

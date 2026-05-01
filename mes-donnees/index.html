@@ -10,7 +10,7 @@
 <link href="/style.css" rel="stylesheet"/>
 <script>
     (function() {
-      var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      var t; try { t = localStorage.getItem('theme'); } catch (_) {} if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
@@ -458,7 +458,7 @@
 <section class="data-hero">
 <div class="data-hero-badge">
 <span aria-hidden="true">🔒</span>
-          100 % local — rien ne quitte votre navigateur
+          100 % local  rien ne quitte votre navigateur
         </div>
 <h1 data-i18n-html="mes_donnees.data_page_data_hero.h1">Mes <span class="grad">Données</span></h1>
 <p data-i18n="mes_donnees.data_page_data_hero.p">Tout ce que VentiStudio conserve sur cet appareil, classé par emplacement. Vous pouvez consulter, copier, exporter ou effacer chaque entrée à tout moment.</p>
@@ -468,25 +468,25 @@
 <span aria-hidden="true" class="data-notice-icon">ℹ️</span>
 <p data-i18n-html="mes_donnees.data_page_data_notice.p">
 <strong>Toutes les données listées ci-dessous sont stockées localement</strong> dans votre navigateur (sur cet appareil uniquement). VentiStudio n'y accède pas à distance.<br/>
-<small>Les autres données — compte Clerk (authentification), envois e-mail, paiements, journaux serveur — sont gérées par leurs prestataires respectifs et ne sont donc pas visibles ici. Pour ces dernières, voir <a href="/lawful/cookies">Confidentialité</a> et <a href="/contact">Contact</a> pour exercer vos droits.</small>
+<small>Les autres données  compte Clerk (authentification), envois e-mail, paiements, journaux serveur  sont gérées par leurs prestataires respectifs et ne sont donc pas visibles ici. Pour ces dernières, voir <a href="/lawful/cookies">Confidentialité</a> et <a href="/contact">Contact</a> pour exercer vos droits.</small>
 </p>
 </div>
 
 <section aria-label="Statistiques globales" class="data-stats" data-i18n-attr="aria-label:mes_donnees.data_page.aria">
 <div class="data-stat">
-<div class="data-stat-value" id="stat-total">—</div>
+<div class="data-stat-value" id="stat-total"></div>
 <div class="data-stat-label">Entrées totales</div>
 </div>
 <div class="data-stat">
-<div class="data-stat-value" id="stat-size">—</div>
+<div class="data-stat-value" id="stat-size"></div>
 <div class="data-stat-label">Espace utilisé</div>
 </div>
 <div class="data-stat">
-<div class="data-stat-value" id="stat-local">—</div>
+<div class="data-stat-value" id="stat-local"></div>
 <div class="data-stat-label">localStorage</div>
 </div>
 <div class="data-stat">
-<div class="data-stat-value" id="stat-session">—</div>
+<div class="data-stat-value" id="stat-session"></div>
 <div class="data-stat-label">sessionStorage</div>
 </div>
 </section>
@@ -502,7 +502,7 @@
 <div class="data-section-head">
 <h2 data-i18n-html="mes_donnees.section_local_data_section_head.h2">📦 localStorage <span class="data-count" id="count-local">0</span></h2>
 </div>
-<p class="data-section-desc" data-i18n="mes_donnees.section_local.p">Données persistantes — conservées entre les visites jusqu'à effacement manuel ou réinitialisation du navigateur.</p>
+<p class="data-section-desc" data-i18n="mes_donnees.section_local.p">Données persistantes  conservées entre les visites jusqu'à effacement manuel ou réinitialisation du navigateur.</p>
 <div class="data-list" id="list-local"></div>
 </section>
 
@@ -510,7 +510,7 @@
 <div class="data-section-head">
 <h2 data-i18n-html="mes_donnees.section_session_data_section_head.h2">⏱️ sessionStorage <span class="data-count" id="count-session">0</span></h2>
 </div>
-<p class="data-section-desc" data-i18n="mes_donnees.section_session.p">Données temporaires — effacées automatiquement à la fermeture de l'onglet.</p>
+<p class="data-section-desc" data-i18n="mes_donnees.section_session.p">Données temporaires  effacées automatiquement à la fermeture de l'onglet.</p>
 <div class="data-list" id="list-session"></div>
 </section>
 
@@ -901,5 +901,6 @@
     document.addEventListener('DOMContentLoaded', loadAll);
   })();
   </script>
+<script defer src="/antibot.js"></script>
 </body>
 </html>

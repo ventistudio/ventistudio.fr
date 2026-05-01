@@ -33,7 +33,6 @@
     };
   }
 
-
   function render() {
     renderSlide();
     renderSidebar();
@@ -76,7 +75,6 @@
       } else {
         div.textContent = el.content;
       }
-
 
       ['nw', 'ne', 'sw', 'se'].forEach(pos => {
         const handle = document.createElement('div');
@@ -126,7 +124,6 @@
         selectedElement = null;
         render();
       });
-
 
       thumb.addEventListener('contextmenu', (e) => {
         e.preventDefault();
@@ -198,7 +195,6 @@
     if (transSelect) transSelect.value = slide.transition || 'none';
     propsPanel.innerHTML = html;
 
-
     propsPanel.querySelectorAll('.diapo-theme-swatch').forEach(sw => {
       sw.addEventListener('click', () => {
         slide.theme = sw.dataset.theme;
@@ -225,7 +221,6 @@
       });
     });
   }
-
 
   function startDrag(e, el) {
     if (e.target.classList.contains('resize-handle')) return;
@@ -280,7 +275,6 @@
     document.addEventListener('mouseup', onUp);
   }
 
-
   function startEditElement(el) {
     if (el.type === 'image' || el.type === 'shape') return;
     const div = slideContainer.querySelector(`[data-id="${el.id}"]`);
@@ -310,14 +304,12 @@
     });
   }
 
-
   slideContainer.addEventListener('mousedown', (e) => {
     if (e.target === slideContainer) {
       selectedElement = null;
       render();
     }
   });
-
 
   window.diapoAddTitle = function () {
     const slide = slides[activeSlide];
@@ -378,12 +370,10 @@
     render();
   };
 
-
   window.diapoSetTransition = function (t) {
     slides[activeSlide].transition = t;
     scheduleAutoSave();
   };
-
 
   function renderNotes() {
     const textarea = document.getElementById('diapo-notes');
@@ -397,7 +387,6 @@
       scheduleAutoSave();
     });
   }
-
 
   document.addEventListener('keydown', (e) => {
     if (e.target.contentEditable === 'true' || e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
@@ -416,7 +405,6 @@
       render();
     }
   });
-
 
   window.diapoPresent = function () {
     const overlay = document.createElement('div');
@@ -498,12 +486,10 @@
     slide.style.animation = 'diapo-' + type + ' 0.5s ease';
   }
 
-
   function updateStatus() {
     const sEl = document.getElementById('status-slide');
     if (sEl) sEl.textContent = `Diapo ${activeSlide + 1} / ${slides.length}`;
   }
-
 
   function scheduleAutoSave() {
     clearTimeout(autoSaveTimer);
@@ -525,7 +511,6 @@
       }
     }
   }
-
 
   window.diapoNew = function () {
     if (!confirm('Créer une nouvelle présentation ?')) return;
@@ -567,7 +552,6 @@
     VSSuite.exportHTML(slideContainer, docNameInput.value);
   };
 
-
   window.toggleDropdown = function (id) {
     const dd = document.getElementById(id);
     if (!dd) return;
@@ -580,7 +564,6 @@
     }
   });
 
-
   VSSuite.registerShortcuts({
     'ctrl+s': () => diapoSave(),
     'ctrl+o': () => diapoOpen(),
@@ -588,7 +571,6 @@
     'ctrl+p': () => diapoExportPDF(),
     'ctrl+shift+p': () => diapoPresent(),
   });
-
 
   function init() {
     VSSuite.initTheme();

@@ -1,4 +1,4 @@
-# 🚀 VentiStudio v4 — La Nouvelle Ère est Là
+# 🚀 VentiStudio v4  La Nouvelle Ère est Là
 
 > **Bienvenue dans l'expérience VentiStudio, entièrement repensée.**
 
@@ -12,13 +12,13 @@ VentiStudio passe à la **version 4** avec un design **glassmorphism** moderne, 
 ⚡ **+40% de performances** par rapport à la v3
 🌓 **Thème clair / sombre** pour s'adapter à votre style
 ♿ **Accessibilité WCAG 2.1** intégrale
-📱 **100% responsive** — mobile, tablette, desktop
+📱 **100% responsive**  mobile, tablette, desktop
 
 ---
 
 ## 📰 Les Chroniques de VentiStudio
 
-Un **tout nouveau système d'actualités** est désormais en ligne ! Retrouvez les annonces, les événements et les mises à jour directement depuis le site — plus besoin d'aller chercher l'info ailleurs.
+Un **tout nouveau système d'actualités** est désormais en ligne ! Retrouvez les annonces, les événements et les mises à jour directement depuis le site  plus besoin d'aller chercher l'info ailleurs.
 
 - 📢 Annonces officielles
 - 📚 Archive des chroniques avec filtrage avancé
@@ -40,13 +40,13 @@ Découvrez le **nouveau lecteur musical** directement sur VentiStudio :
 
 ## ⭐ +100 Contenus Évalués
 
-Notre catalogue de **contenus approuvés** dépasse les **100 entrées** ! Films, séries, animes, jeux vidéo, applications — tout est noté et certifié.
+Notre catalogue de **contenus approuvés** dépasse les **100 entrées** ! Films, séries, animes, jeux vidéo, applications  tout est noté et certifié.
 
 ### 🎮 Derniers ajouts (Mars 2026)
-- **Final Fantasy VII Rebirth** — RPG Action
-- **Ghostwire: Tokyo** — Action / Horror
-- **Valorant** — Tactical Shooter
-- **Blue Protocol: Star Resonance** — MMORPG
+- **Final Fantasy VII Rebirth**  RPG Action
+- **Ghostwire: Tokyo**  Action / Horror
+- **Valorant**  Tactical Shooter
+- **Blue Protocol: Star Resonance**  MMORPG
 - **Tom Clancy's The Division** (+ DLC)
 - **Mini Metro**, **Fly Corp**, **Bus Simulator 16**…
 
@@ -75,9 +75,9 @@ VentiStudio passe officiellement sur le domaine **.eu** ! Un nouveau chapitre po
 
 ## 👥 Une Communauté de 10 000+
 
-- 💬 **Forum communautaire** en ligne — partagez vos projets, posez vos questions
+- 💬 **Forum communautaire** en ligne  partagez vos projets, posez vos questions
 - 🏆 **Concours créatifs mensuels** avec récompenses Gold
-- 🎮 **Discord** actif — rejoignez la communauté
+- 🎮 **Discord** actif  rejoignez la communauté
 
 ---
 
@@ -91,7 +91,7 @@ Plongez dans le **lore de l'Univers Aoki** et explorez la documentation complèt
 
 | Horizon | Projet |
 |---------|--------|
-| 🤖 **2027** | **v5 — L'IA Créative** : outils d'intelligence artificielle |
+| 🤖 **2027** | **v5  L'IA Créative** : outils d'intelligence artificielle |
 | 🌍 **Bientôt** | Support multilingue complet |
 | 📱 **Bientôt** | Application mobile native iOS & Android |
 | 💰 **Bientôt** | Programme Créateur avec rémunération |
@@ -106,9 +106,9 @@ Plongez dans le **lore de l'Univers Aoki** et explorez la documentation complèt
 
 ---
 
-> **VentiStudio v4 — Plus beau, plus rapide, plus accessible.**
+> **VentiStudio v4  Plus beau, plus rapide, plus accessible.**
 > Rejoignez l'aventure sur [ventistudio.eu](https://ventistudio.eu)
 
 ---
 
-*Version actuelle : v4-stable.26.2 — 21 février 2026*
+*Version actuelle : v4-stable.26.2  21 février 2026*

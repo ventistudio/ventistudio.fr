@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="description" content="Mémori - Jeu de mémoire : retournez les cartes et trouvez toutes les paires identiques.">
+  <meta name="theme-color" content="#6366f1">
+  <title>Mémori | VentiStudio</title>
+
+  <script async crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
+  <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
+
+  <meta property="og:title" content="Mémori | VentiStudio">
+  <meta property="og:description" content="Mémori - Jeu de mémoire : retournez les cartes et trouvez toutes les paires identiques.">
+  <meta property="og:url" content="https://ventistudio.eu/player/game/memory/">
+  <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://ventistudio.eu/player/game/memory/">
+
+  <script>
+    (function() {
+      var t; try { t = localStorage.getItem('theme'); } catch (_) {} if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+  <script src="/i18n.js" defer></script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #1A1B26;
+      color: #e0e0e0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1rem 3rem;
+    }
+
+    .back-btn {
+      align-self: flex-start;
+      background: transparent;
+      border: 1px solid rgba(99,102,241,0.35);
+      color: #6366f1;
+      border-radius: 8px;
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
+      font-family: inherit;
+      cursor: pointer;
+      margin-bottom: 1.5rem;
+      transition: all 0.2s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .back-btn:hover {
+      background: rgba(99,102,241,0.12);
+      border-color: #6366f1;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #6366f1;
+      text-shadow: 0 0 20px rgba(99,102,241,0.4);
+      margin-bottom: 0.4rem;
+      text-align: center;
+    }
+
+    .subtitle {
+      color: #a0a0a0;
+      font-size: 0.9rem;
+      text-align: center;
+      margin-bottom: 1.75rem;
+    }
+
+    .stats {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .stat-box {
+      background: #2A2D3A;
+      border: 2px solid rgba(99,102,241,0.4);
+      border-radius: 10px;
+      padding: 0.65rem 1.25rem;
+      text-align: center;
+      min-width: 90px;
+    }
+
+    .stat-box label {
+      display: block;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #a0a0a0;
+      margin-bottom: 0.2rem;
+    }
+
+    .stat-box span {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #6366f1;
+    }
+
+    .difficulty-select {
+      display: flex;
+      gap: 0.6rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .diff-btn {
+      background: #2A2D3A;
+      color: #e0e0e0;
+      border: 2px solid rgba(99,102,241,0.25);
+      border-radius: 8px;
+      padding: 0.45rem 1.1rem;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+
+    .diff-btn:hover,
+    .diff-btn.active {
+      border-color: #6366f1;
+      background: rgba(99,102,241,0.14);
+      color: #6366f1;
+    }
+
+    .memory-grid {
+      display: grid;
+      gap: 0.6rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .memory-grid.grid-4x4 { grid-template-columns: repeat(4, 1fr); }
+    .memory-grid.grid-5x4 { grid-template-columns: repeat(5, 1fr); }
+    .memory-grid.grid-6x4 { grid-template-columns: repeat(6, 1fr); }
+
+    .memory-card {
+      width: 80px;
+      height: 80px;
+      cursor: pointer;
+      perspective: 700px;
+      user-select: none;
+    }
+
+    .memory-card.matched { pointer-events: none; }
+
+    .card-inner {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+      border-radius: 10px;
+    }
+
+    .memory-card.flipped .card-inner,
+    .memory-card.matched .card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .card-face {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+
+    .card-back-face {
+      background: #1e1f2e;
+      border: 2px solid rgba(99,102,241,0.3);
+      font-size: 1.6rem;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .memory-card:hover:not(.flipped):not(.matched) .card-back-face {
+      border-color: #6366f1;
+      background: rgba(99,102,241,0.08);
+    }
+
+    .card-front-face {
+      background: #2A2D3A;
+      border: 2px solid #6366f1;
+      font-size: 2rem;
+      transform: rotateY(180deg);
+    }
+
+    .memory-card.matched .card-front-face {
+      border-color: #22c55e;
+      background: rgba(34,197,94,0.08);
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn {
+      background: #6366f1;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 0.7rem 1.75rem;
+      font-size: 0.95rem;
+      font-family: inherit;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .btn:hover {
+      opacity: 0.85;
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid #6366f1;
+      color: #6366f1;
+    }
+
+    .btn-outline:hover {
+      background: rgba(99,102,241,0.12);
+      opacity: 1;
+    }
+
+    /* Win overlay */
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.8);
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+    }
+
+    .overlay.show { display: flex; }
+
+    .overlay-card {
+      background: #2A2D3A;
+      border: 3px solid #6366f1;
+      border-radius: 16px;
+      padding: 2rem 2.5rem;
+      text-align: center;
+      max-width: 360px;
+      width: 90%;
+      animation: popIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.85); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    .overlay-card h2 {
+      font-size: 2rem;
+      color: #6366f1;
+      margin-bottom: 1rem;
+    }
+
+    .overlay-card p {
+      color: #a0a0a0;
+      margin-bottom: 0.4rem;
+      font-size: 1rem;
+    }
+
+    .overlay-card .btn { margin-top: 1.25rem; }
+
+    @media (max-width: 520px) {
+      .memory-card { width: 62px; height: 62px; }
+      .card-back-face { font-size: 1.3rem; }
+      .card-front-face { font-size: 1.6rem; }
+    }
+
+    @media (max-width: 420px) {
+      .memory-card { width: 52px; height: 52px; }
+      .card-front-face { font-size: 1.3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <button class="back-btn" onclick="history.back()" data-i18n="games.memory.btn.back">← Retour</button>
+
+  <h1 data-i18n="games.memory.page.title">🃏 Mémori</h1>
+  <p class="subtitle" data-i18n="games.memory.subtitle">Trouvez toutes les paires de cartes identiques</p>
+
+  <div class="stats">
+    <div class="stat-box">
+      <label data-i18n="games.memory.stat.pairs">Paires</label>
+      <span id="pairs-count">0 / 0</span>
+    </div>
+    <div class="stat-box">
+      <label data-i18n="games.memory.stat.moves">Coups</label>
+      <span id="moves-count">0</span>
+    </div>
+    <div class="stat-box">
+      <label data-i18n="games.memory.stat.time">Temps</label>
+      <span id="timer">0:00</span>
+    </div>
+  </div>
+
+  <div class="difficulty-select">
+    <button class="diff-btn active" data-grid="4x4" data-i18n="games.memory.diff.easy">Facile (4×4)</button>
+    <button class="diff-btn" data-grid="5x4" data-i18n="games.memory.diff.medium">Moyen (5×4)</button>
+    <button class="diff-btn" data-grid="6x4" data-i18n="games.memory.diff.hard">Difficile (6×4)</button>
+  </div>
+
+  <div class="memory-grid grid-4x4" id="memory-grid" role="grid" aria-label="Grille du jeu de mémoire"></div>
+
+  <div class="btn-group">
+    <button class="btn" id="restart-btn" data-i18n="games.memory.btn.restart">Nouvelle partie</button>
+    <button class="btn btn-outline" onclick="history.back()" data-i18n="games.memory.btn.back">← Retour</button>
+  </div>
+
+  <div class="overlay" id="win-overlay" role="dialog" aria-modal="true" aria-labelledby="win-title">
+    <div class="overlay-card">
+      <h2 id="win-title" data-i18n="games.memory.win.title">🎉 Bravo !</h2>
+      <p id="win-moves"></p>
+      <p id="win-time"></p>
+      <button class="btn" id="win-restart-btn" data-i18n="games.memory.btn.restart">Nouvelle partie</button>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    'use strict';
+
+    var EMOJIS = [
+      '🐱','🐶','🦊','🐼','🐻','🦁','🐸','🦋',
+      '🌸','🌟','🍀','🎵','🎮','🚀','🌈','⚡',
+      '🔥','💎','🍎','🧩','🏆','🦄','🌙','☀️',
+      '💫','🎯','🍭','🌺','🦚','🐬'
+    ];
+
+    var GRIDS = {
+      '4x4': { cols: 4, rows: 4, pairs: 8 },
+      '5x4': { cols: 5, rows: 4, pairs: 10 },
+      '6x4': { cols: 6, rows: 4, pairs: 12 }
+    };
+
+    var currentGrid = '4x4';
+    var cardEmojis = [];
+    var flipped = [];
+    var matchedCount = 0;
+    var moves = 0;
+    var timerInterval = null;
+    var seconds = 0;
+    var locked = false;
+    var i18nData = {};
+
+    var gridEl      = document.getElementById('memory-grid');
+    var pairsEl     = document.getElementById('pairs-count');
+    var movesEl     = document.getElementById('moves-count');
+    var timerEl     = document.getElementById('timer');
+    var winOverlay  = document.getElementById('win-overlay');
+    var winMovesEl  = document.getElementById('win-moves');
+    var winTimeEl   = document.getElementById('win-time');
+
+    function shuffle(arr) {
+      var a = arr.slice();
+      for (var i = a.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+      }
+      return a;
+    }
+
+    function formatTime(s) {
+      var m = Math.floor(s / 60);
+      var ss = s % 60;
+      return m + ':' + (ss < 10 ? '0' : '') + ss;
+    }
+
+    function t(key, fallback) {
+      return i18nData[key] || fallback;
+    }
+
+    function startTimer() {
+      if (timerInterval) clearInterval(timerInterval);
+      seconds = 0;
+      timerEl.textContent = '0:00';
+      timerInterval = setInterval(function () {
+        seconds++;
+        timerEl.textContent = formatTime(seconds);
+      }, 1000);
+    }
+
+    function stopTimer() {
+      clearInterval(timerInterval);
+      timerInterval = null;
+    }
+
+    function init(gridKey) {
+      if (gridKey) currentGrid = gridKey;
+      var cfg = GRIDS[currentGrid];
+      var pool = shuffle(EMOJIS).slice(0, cfg.pairs);
+      cardEmojis = shuffle(pool.concat(pool));
+
+      matchedCount = 0;
+      moves = 0;
+      flipped = [];
+      locked = false;
+
+      gridEl.className = 'memory-grid grid-' + currentGrid;
+      gridEl.innerHTML = '';
+
+      pairsEl.textContent = '0 / ' + cfg.pairs;
+      movesEl.textContent = '0';
+      timerEl.textContent = '0:00';
+      winOverlay.classList.remove('show');
+
+      startTimer();
+
+      cardEmojis.forEach(function (emoji, idx) {
+        var card = document.createElement('div');
+        card.className = 'memory-card';
+        card.setAttribute('role', 'gridcell');
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('aria-label', t('games.memory.aria.hidden', 'Carte face cachée'));
+        card.dataset.emoji = emoji;
+        card.dataset.index = idx;
+
+        card.innerHTML =
+          '<div class="card-inner">' +
+            '<div class="card-face card-back-face">🎴</div>' +
+            '<div class="card-face card-front-face">' + emoji + '</div>' +
+          '</div>';
+
+        card.addEventListener('click', function () { flipCard(card); });
+        card.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            flipCard(card);
+          }
+        });
+
+        gridEl.appendChild(card);
+      });
+    }
+
+    function flipCard(card) {
+      if (locked) return;
+      if (card.classList.contains('flipped') || card.classList.contains('matched')) return;
+      if (flipped.length >= 2) return;
+
+      card.classList.add('flipped');
+      card.setAttribute('aria-label', card.dataset.emoji);
+      flipped.push(card);
+
+      if (flipped.length === 2) {
+        locked = true;
+        moves++;
+        movesEl.textContent = moves;
+        checkMatch();
+      }
+    }
+
+    function checkMatch() {
+      var a = flipped[0];
+      var b = flipped[1];
+
+      if (a.dataset.emoji === b.dataset.emoji) {
+        a.classList.add('matched');
+        b.classList.add('matched');
+        matchedCount++;
+        var cfg = GRIDS[currentGrid];
+        pairsEl.textContent = matchedCount + ' / ' + cfg.pairs;
+        flipped = [];
+        locked = false;
+        if (matchedCount === cfg.pairs) {
+          stopTimer();
+          setTimeout(showWin, 450);
+        }
+      } else {
+        setTimeout(function () {
+          a.classList.remove('flipped');
+          a.setAttribute('aria-label', t('games.memory.aria.hidden', 'Carte face cachée'));
+          b.classList.remove('flipped');
+          b.setAttribute('aria-label', t('games.memory.aria.hidden', 'Carte face cachée'));
+          flipped = [];
+          locked = false;
+        }, 950);
+      }
+    }
+
+    function showWin() {
+      winMovesEl.textContent = t('games.memory.win.moves', 'Coups :') + ' ' + moves;
+      winTimeEl.textContent  = t('games.memory.win.time', 'Temps :') + ' ' + formatTime(seconds);
+      winOverlay.classList.add('show');
+      document.getElementById('win-restart-btn').focus();
+    }
+
+    document.getElementById('restart-btn').addEventListener('click', function () { init(); });
+    document.getElementById('win-restart-btn').addEventListener('click', function () { init(); });
+
+    document.querySelectorAll('.diff-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        document.querySelectorAll('.diff-btn').forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        init(btn.dataset.grid);
+      });
+    });
+
+    document.addEventListener('i18n:ready', function (e) {
+      i18nData = e.detail.data || {};
+    });
+
+    init();
+  })();
+  </script>
+<script defer src="/antibot.js"></script>
+</body>
+</html>

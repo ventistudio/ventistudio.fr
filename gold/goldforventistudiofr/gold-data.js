@@ -49,7 +49,6 @@ const goldContent = [
     tags: ['code', 'snippets', 'référence']
   },
 
-
   {
     id: 5,
     title: 'Aoki Univers: Prologue',
@@ -87,7 +86,6 @@ const goldContent = [
     tags: ['puzzle', 'réflexion', 'musique']
   },
 
-
   {
     id: 8,
     title: 'Gold Collection Vol. 1',
@@ -124,7 +122,6 @@ const goldContent = [
     size: '180 Mo',
     tags: ['ost', 'aoki', 'bonus']
   },
-
 
   {
     id: 11,

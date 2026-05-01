@@ -1,13 +1,14 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Aoki Univers - Section neutralisée.">
-  <meta name="theme-color" content="#ff4400">
-  <link rel="icon" type="image/avif" href="../favicon.avif">
-  <title>SYSTÈME NEUTRALISÉ // AOKI UNIVERS</title>
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Aoki Univers - Section neutralisée." name="description"/>
+<meta content="#ff4400" name="theme-color"/>
+<link href="../favicon.avif" rel="icon" type="image/avif"/>
+<title>SYSTÈME NEUTRALISÉ // AOKI UNIVERS</title>
+<style>
     @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -193,72 +194,64 @@
       animation: blink 1s step-start infinite;
     }
   </style>
-
-  <meta property="og:title" content="SYSTÈME NEUTRALISÉ // AOKI UNIVERS">
-  <meta property="og:description" content="Cette partie du site a été neutralisée.">
-  <meta property="og:url" content="https://ventistudio.eu/aokiunivers/">
-  <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
-  <meta property="og:type" content="website">
-  <link rel="canonical" href="https://ventistudio.eu/aokiunivers/">
-  <script src="/i18n.js" defer></script>
+<meta content="SYSTÈME NEUTRALISÉ // AOKI UNIVERS" property="og:title"/>
+<meta content="Cette partie du site a été neutralisée." property="og:description"/>
+<meta content="https://ventistudio.eu/aokiunivers/" property="og:url"/>
+<meta content="https://ventistudio.eu/favicon.avif" property="og:image"/>
+<meta content="website" property="og:type"/>
+<link href="https://ventistudio.eu/aokiunivers/" rel="canonical"/>
+<script defer="" src="/i18n.js"></script>
 </head>
 <body>
-
-  <div class="terminal" role="main">
-    <div class="terminal-header">
-      <span>USCSS VENTISTUDIO // UNIT AOKI-UNIVERS</span>
-      <span><span class="status-dot"></span><span class="blink">ALERTE CRITIQUE</span></span>
-    </div>
-
-    <div class="main-warning">
-      <div class="label">// PROTOCOLE DE NEUTRALISATION ACTIVÉ //</div>
-      <h1>
-        CETTE PARTIE<br>
-        DU SITE A ÉTÉ<br>
+<div class="terminal" role="main">
+<div class="terminal-header">
+<span>USCSS VENTISTUDIO // UNIT AOKI-UNIVERS</span>
+<span><span class="status-dot"></span><span class="blink">ALERTE CRITIQUE</span></span>
+</div>
+<div class="main-warning">
+<div class="label">// PROTOCOLE DE NEUTRALISATION ACTIVÉ //</div>
+<h1 data-i18n="aokiunivers.main_warning.h1">
+        CETTE PARTIE<br/>
+        DU SITE A ÉTÉ<br/>
         NEUTRALISÉE
       </h1>
-    </div>
-
-    <hr class="divider">
-
-    <div class="log" aria-label="Journal système">
-      <div class="line dim">INIT SÉQUENCE DE VERROUILLAGE .............. OK</div>
-      <div class="line dim">PURGE DES ACCÈS PUBLICS ..................... OK</div>
-      <div class="line">SYSTÈME AOKI-UNIVERS : <strong>HORS LIGNE</strong></div>
-      <div class="line warn">CONTENU CLASSIFIÉ — ACCÈS NON AUTORISÉ</div>
-      <div class="line">PROTOCOLE M.O.T.H.E.R. : <strong>EN ATTENTE</strong></div>
-      <div class="line dim">—————————————————————————————————</div>
-      <div class="line warn">SÉQUENCE D'AUTO-DESTRUCTION INITIÉE</div>
-      <div class="line">POUR ACCÉDER AU PROTOCOLE COMPLET :<br>&nbsp;&nbsp;&nbsp;→ CONSULTER LE TERMINAL NOSTROMO</div>
-    </div>
-
-    <div class="actions">
-      <button class="btn-nostromo" onclick="window.location.href='/aokiunivers/nostromo/'">
+</div>
+<hr class="divider"/>
+<div aria-label="Journal système" class="log">
+<div class="line dim">INIT SÉQUENCE DE VERROUILLAGE .............. OK</div>
+<div class="line dim">PURGE DES ACCÈS PUBLICS ..................... OK</div>
+<div class="line">SYSTÈME AOKI-UNIVERS : <strong>HORS LIGNE</strong></div>
+<div class="line warn">CONTENU CLASSIFIÉ  ACCÈS NON AUTORISÉ</div>
+<div class="line">PROTOCOLE M.O.T.H.E.R. : <strong>EN ATTENTE</strong></div>
+<div class="line dim"></div>
+<div class="line warn">SÉQUENCE D'AUTO-DESTRUCTION INITIÉE</div>
+<div class="line">POUR ACCÉDER AU PROTOCOLE COMPLET :<br/>   → CONSULTER LE TERMINAL NOSTROMO</div>
+</div>
+<div class="actions">
+<button class="btn-nostromo" data-i18n="aokiunivers.actions.button" onclick="window.location.href='/aokiunivers/nostromo/'">
         ACCÉDER AU TERMINAL NOSTROMO
       </button>
-      <button class="btn-home" onclick="window.location.href='/'">
+<button class="btn-home" data-i18n="aokiunivers.actions.button2" onclick="window.location.href='/'">
         RETOUR ACCUEIL
       </button>
-    </div>
-
-    <div style="margin-top:28px; font-size:0.62em; color:#882200; letter-spacing:0.12em; text-align:center;">
-      VENTISTUDIO CORP. // SECTION AOKI — REF. JAHAAKA-0024 // <span id="ts"></span><span class="cursor"></span>
-    </div>
-  </div>
-
-  <script>
+</div>
+<div style="margin-top:28px; font-size:0.62em; color:#882200; letter-spacing:0.12em; text-align:center;">
+      VENTISTUDIO CORP. // SECTION AOKI  REF. JAHAAKA-0024 // <span id="ts"></span><span class="cursor"></span>
+</div>
+</div>
+<script>
     (function tick() {
       var d = new Date();
       document.getElementById('ts').textContent =
         d.getUTCFullYear() + '.' +
         String(d.getUTCMonth()+1).padStart(2,'0') + '.' +
-        String(d.getUTCDate()).padStart(2,'0') + ' — ' +
+        String(d.getUTCDate()).padStart(2,'0') + '  ' +
         String(d.getUTCHours()).padStart(2,'0') + ':' +
         String(d.getUTCMinutes()).padStart(2,'0') + ':' +
         String(d.getUTCSeconds()).padStart(2,'0') + ' UTC';
       setTimeout(tick, 1000);
     })();
   </script>
-
+<script defer src="/antibot.js"></script>
 </body>
 </html>

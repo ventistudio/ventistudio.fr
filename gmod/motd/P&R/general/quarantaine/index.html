@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="fr" data-theme="dark">
+
+<html data-theme="dark" lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <meta name="description" content="Procédures de Quarantaine de la Fondation SCP | VentiStudio GMod">
-  <meta name="theme-color" content="#6366f1">
-  <title>Procédures de Quarantaine | VentiStudio GMod</title>
-  <link rel="icon" type="image/png" href="/favicon.ico">
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport"/>
+<meta content="Procédures de Quarantaine de la Fondation SCP | VentiStudio GMod" name="description"/>
+<meta content="#6366f1" name="theme-color"/>
+<title>Procédures de Quarantaine | VentiStudio GMod</title>
+<link href="/favicon.ico" rel="icon" type="image/png"/>
+<style>
     :root { --primary:#7B66FF; --secondary:#2A2D3A; --background:#1A1B26; --text:#FFFFFF; --hover:#9F86FF; --accent1:#414868; --accent2:#565f89; }
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap');
     body { margin:0; padding:2rem; font-family:'Inter',sans-serif; background:var(--background); color:var(--text); line-height:1.6; }
@@ -39,266 +40,221 @@
     li { margin-bottom:0.3rem; }
     @media (max-width:768px) { body{padding:1rem;} .container{padding:1rem;} .header h1{font-size:1.8rem;} }
   </style>
-  <script src="/i18n.js" defer></script>
+<script defer="" src="/i18n.js"></script>
 </head>
 <body>
-  <div class="container">
-    <a href="/gmod/motd/P&R/" class="back-link">&larr; Retour à l'accueil</a>
-    <div class="header">
-      <h1>Procédures de Quarantaine</h1>
-      <p>Manuel d'Introduction aux Normes de la Fondation : The Lost Site</p>
+<div class="container">
+<a class="back-link" href="/gmod/motd/P&amp;R/">← Retour à l'accueil</a>
+<div class="header">
+<h1 data-i18n="gmod.motd.pandr.general.quarantaine.header.h1">Procédures de Quarantaine</h1>
+<p data-i18n="gmod.motd.pandr.general.quarantaine.header.p">Manuel d'Introduction aux Normes de la Fondation : The Lost Site</p>
+</div>
+<div class="important">
+<strong>⚠️ Attention :</strong> Le contenu de ce manuel est strictement confidentiel et varie en fonction des spécificités de chaque site. La diffusion de ce document d'un site à l'autre constitue une infraction de Type-3a.
     </div>
-
-    <div class="important">
-      <strong>⚠️ Attention :</strong> Le contenu de ce manuel est strictement confidentiel et varie en fonction des spécificités de chaque site. La diffusion de ce document d'un site à l'autre constitue une infraction de Type-3a.
-    </div>
-
-
-    <div class="section">
-      <h2>Avant-propos</h2>
-      <div class="quote">
+<div class="section">
+<h2 data-i18n="gmod.motd.pandr.general.quarantaine.section.h2">Avant-propos</h2>
+<div class="quote">
         Plus les années passaient, plus nous nous rendions compte qu'un complexe entièrement sécurisé, protégé tant contre les menaces internes qu'externes, représentait un équilibre impossible à atteindre. C'est pourquoi les quarantaines font désormais partie intégrante de notre manière de fonctionner à la Fondation. Se mettre en tête de vouloir exercer un contrôle absolu ne mène à rien. L'important est de comprendre qu'il existe toujours plus de choses qui peuvent mal tourner que de choses qui peuvent bien se passer. Ignorer ces procédures reviendrait à nier complètement l'imprévu. La Fondation est construite sur des bases d'acceptation, pas d'ignorance. Ne restez pas dans l'ignorance.
         <cite>: Dr Sawer, Responsable de la Sécurité des Sites et de la Commission de Réglementation du Confinement.</cite>
+</div>
+</div>
+<div class="section">
+<h2 data-i18n="gmod.motd.pandr.general.quarantaine.section.h22">Vue d'ensemble</h2>
+<p data-i18n-html="gmod.motd.pandr.general.quarantaine.section.p">Une quarantaine est une procédure d'urgence variable selon la menace qui est initiée en réponse à une rupture de confinement ou à une défaillance dans la sécurité. Les quarantaines sont commanditées via un <strong>CRQ</strong> (Code de Réponse à une Quarantaine) et activés par le groupe de communication O4.</p>
+<p data-i18n-html="gmod.motd.pandr.general.quarantaine.section.p2">Après évaluation d'une situation de crise donnée, la quarantaine est déterminée selon un <strong>Degré de Quarantaine</strong> qui transmet des indications préconçues concernant la réponse la plus appropriée à adopter, laquelle peut se traduire par le déploiement d'unités des FIMA et d'Initiatives de Réponse Automatisée (IRA).</p>
+</div>
+<div class="section">
+<h2 data-i18n="gmod.motd.pandr.general.quarantaine.section.h23">Évaluation</h2>
+<h3 data-i18n="gmod.motd.pandr.general.quarantaine.section.h3">Commandement O4</h3>
+<p data-i18n="gmod.motd.pandr.general.quarantaine.section.p3">L'O4 est chargé spécifiquement du traitement des CRQ et des alertes reçus de sites en situation de crise, ainsi que du choix des mesures de réponse à apporter.</p>
+<h3 data-i18n="gmod.motd.pandr.general.quarantaine.section.h32">Codes de Réponse aux Quarantaines (CRQ)</h3>
+<p data-i18n-html="gmod.motd.pandr.general.quarantaine.section.p4">Un CRQ comporte une description très condensée de la situation exprimée par 3 données : le <strong>Numéro du Site</strong>, la <strong>Priorité</strong> et la <strong>Classe</strong>.</p>
+<div class="article">
+<strong>Exemple :</strong> « 15/A/ROUGE-AMBRE » signifie que le Site-15 a besoin de mesures de réponse adaptées et immédiates pour combattre au moins un AGE et d'éventuels agents mémétiques.
       </div>
-    </div>
-
-
-    <div class="section">
-      <h2>Vue d'ensemble</h2>
-      <p>Une quarantaine est une procédure d'urgence variable selon la menace qui est initiée en réponse à une rupture de confinement ou à une défaillance dans la sécurité. Les quarantaines sont commanditées via un <strong>CRQ</strong> (Code de Réponse à une Quarantaine) et activés par le groupe de communication O4.</p>
-      <p>Après évaluation d'une situation de crise donnée, la quarantaine est déterminée selon un <strong>Degré de Quarantaine</strong> qui transmet des indications préconçues concernant la réponse la plus appropriée à adopter, laquelle peut se traduire par le déploiement d'unités des FIMA et d'Initiatives de Réponse Automatisée (IRA).</p>
-    </div>
-
-
-    <div class="section">
-      <h2>Évaluation</h2>
-
-      <h3>Commandement O4</h3>
-      <p>L'O4 est chargé spécifiquement du traitement des CRQ et des alertes reçus de sites en situation de crise, ainsi que du choix des mesures de réponse à apporter.</p>
-
-      <h3>Codes de Réponse aux Quarantaines (CRQ)</h3>
-      <p>Un CRQ comporte une description très condensée de la situation exprimée par 3 données : le <strong>Numéro du Site</strong>, la <strong>Priorité</strong> et la <strong>Classe</strong>.</p>
-      <div class="article">
-        <strong>Exemple :</strong> « 15/A/ROUGE-AMBRE » signifie que le Site-15 a besoin de mesures de réponse adaptées et immédiates pour combattre au moins un AGE et d'éventuels agents mémétiques.
-      </div>
-
-      <p><strong>Personnel autorisé à émettre un CRQ :</strong></p>
-      <ul>
-        <li>Directeurs de Site</li>
-        <li>Coordinateurs du Confinement</li>
-        <li>Équipes de sécurité</li>
-        <li>Membres de l'administration</li>
-      </ul>
-
-      <h3>Niveaux de Priorité</h3>
-      <table>
-        <tr><th>Priorité</th><th>Délai de réponse estimé</th></tr>
-        <tr><td><strong>A</strong></td><td>&lt; 1 heure</td></tr>
-        <tr><td><strong>B</strong></td><td>&lt; 2 heures</td></tr>
-        <tr><td><strong>C</strong></td><td>&lt; 5 heures</td></tr>
-        <tr><td><strong>D</strong></td><td>&lt; 24 heures</td></tr>
-        <tr><td><strong>E</strong></td><td>&lt; 72 heures</td></tr>
-      </table>
-    </div>
-
-
-    <div class="section">
-      <h2>Classifications</h2>
-      <div class="quote">
+<p data-i18n-html="gmod.motd.pandr.general.quarantaine.section.p5"><strong>Personnel autorisé à émettre un CRQ :</strong></p>
+<ul>
+<li data-i18n="gmod.motd.pandr.general.quarantaine.section.li">Directeurs de Site</li>
+<li data-i18n="gmod.motd.pandr.general.quarantaine.section.li2">Coordinateurs du Confinement</li>
+<li data-i18n="gmod.motd.pandr.general.quarantaine.section.li3">Équipes de sécurité</li>
+<li data-i18n="gmod.motd.pandr.general.quarantaine.section.li4">Membres de l'administration</li>
+</ul>
+<h3 data-i18n="gmod.motd.pandr.general.quarantaine.section.h33">Niveaux de Priorité</h3>
+<table>
+<tr><th data-i18n="gmod.motd.pandr.general.quarantaine.section.th">Priorité</th><th data-i18n="gmod.motd.pandr.general.quarantaine.section.th2">Délai de réponse estimé</th></tr>
+<tr><td><strong>A</strong></td><td data-i18n="gmod.motd.pandr.general.quarantaine.section.td">&lt; 1 heure</td></tr>
+<tr><td><strong>B</strong></td><td data-i18n="gmod.motd.pandr.general.quarantaine.section.td2">&lt; 2 heures</td></tr>
+<tr><td><strong>C</strong></td><td data-i18n="gmod.motd.pandr.general.quarantaine.section.td3">&lt; 5 heures</td></tr>
+<tr><td><strong>D</strong></td><td data-i18n="gmod.motd.pandr.general.quarantaine.section.td4">&lt; 24 heures</td></tr>
+<tr><td><strong>E</strong></td><td data-i18n="gmod.motd.pandr.general.quarantaine.section.td5">&lt; 72 heures</td></tr>
+</table>
+</div>
+<div class="section">
+<h2 data-i18n="gmod.motd.pandr.general.quarantaine.section.h24">Classifications</h2>
+<div class="quote">
         Les quarantaines peuvent arriver de nombreuses façons et la quantité d'éléments à prendre en compte pour y répondre est encore plus nombreuse. Séparer les problèmes en catégories permet d'éviter la panique et fournit une description claire, plus rapidement et plus efficacement qu'une conversation.
         <cite>: Dr Hayward, Ancien Responsable de la Commission de Sécurité des Sites.</cite>
+</div>
+<div class="code-card">
+<h4 data-i18n="gmod.motd.pandr.general.quarantaine.section_code_card.h4">Code : AMBRE : Menace Mémétique/Cognitive</h4>
+<p data-i18n="gmod.motd.pandr.general.quarantaine.section_code_card.p">Signale la propagation d'au moins une anomalie mémétique, un danger-info ou un danger cognitif.</p>
+<p data-i18n-html="gmod.motd.pandr.general.quarantaine.section_code_card.p2"><strong>Directive :</strong> Éviter de parler, fermer les yeux et boucher les oreilles. Ne pas chercher à évacuer seul. Attendre l'escorte de la sécurité.</p>
+<p class="fim" data-i18n="gmod.motd.pandr.general.quarantaine.section_code_card.p3">FIM : Êta-10 ("Ne voient pas le Mal"), Êta-11 ("Les Bêtes Sauvages")</p>
+</div>
+<div class="code-card">
+<h4 data-i18n="gmod.motd.pandr.general.quarantaine.section_code_card.h42">Code : BLEU : Objet Intelligent Mineur en Mouvance</h4>
+<p data-i18n="gmod.motd.pandr.general.quarantaine.section_code_card.p4">Évasion d'un objet doté d'une intelligence inférieure à celle de l'Homme et capable de se mouvoir.</p>
+<p data-i18n-html="gmod.motd.pandr.general.quarantaine.section_code_card.p5"><strong>Directive :</strong> Suivre les ordres du personnel de sécurité.</p>
+<p class="fim" data-i18n="gmod.motd.pandr.general.quarantaine.section_code_card.p6">FIM : Epsilon-11 ("Renard à Neuf Queues")</p>
+</div>
+<div class="code-card">
+<h4 data-i18n="gmod.motd.pandr.general.quarantaine.section_code_card.h43">Code : SUPERBLEU : Objet Intelligent Majeur en Mouvance</h4>
+<p data-i18n="gmod.motd.pandr.general.quarantaine.section_code_card.p7">Évasion d'un objet doté d'une intelligence égale ou supérieure à celle de l'homme.</p>
+<p data-i18n-html="gmod.motd.pandr.general.quarantaine.section_code_card.p8"><strong>Directive :</strong> Plan d'évacuation identique au CODE : BLEU.</p>
+<p class="fim" data-i18n="gmod.motd.pandr.general.quarantaine.section_code_card.p9">FIM : Epsilon-11 ("Renard à Neuf Queues")</p>
+</div>
+<div class="code-card">
+<h4 data-i18n="gmod.motd.pandr.general.quarantaine.section_code_card.h44">Code : VERT : Contaminant Biologique Anormal</h4>
+<p data-i18n="gmod.motd.pandr.general.quarantaine.section_code_card.p10">Menace provenant d'une source de contamination biologique dangereuse, infectieuse ou autre.</p>
+<p data-i18n-html="gmod.motd.pandr.general.quarantaine.section_code_card.p11"><strong>Directive :</strong> Éviter tout contact avec les sources de contamination ou les individus contaminés. Ne pas quitter le site. Se préparer à la quarantaine post-événement.</p>
+<p class="fim" data-i18n="gmod.motd.pandr.general.quarantaine.section_code_card.p12">FIM : Bêta-7 ("Les Hazthmatique")</p>
+</div>
+<div class="code-card">
+<h4 data-i18n="gmod.motd.pandr.general.quarantaine.section_code_card.h45">Code : ROUGE : Agresseur de Grande Envergure (AGE)</h4>
+<p data-i18n="gmod.motd.pandr.general.quarantaine.section_code_card.p13">Un AGE tel que SCP-2059 a rompu son confinement et constitue une menace importante.</p>
+<p data-i18n-html="gmod.motd.pandr.general.quarantaine.section_code_card.p14"><strong>Directive :</strong> Suivre les ordres du personnel de sécurité.</p>
+<p class="fim" data-i18n="gmod.motd.pandr.general.quarantaine.section_code_card.p15">FIM : Nu-7 ("Coup de Marteau"), Êta-5 ("Jaeger Bombers"), Gamma-5 ("Harengs Rouges")</p>
+</div>
+<div class="code-card">
+<h4 data-i18n="gmod.motd.pandr.general.quarantaine.section_code_card.h46">Code : NOIR : Menace Non-Éliminable (MNE)</h4>
+<p data-i18n="gmod.motd.pandr.general.quarantaine.section_code_card.p16">Évasion d'une MNE telle que SCP-096, invulnérable à toute forme d'attaque.</p>
+<p data-i18n-html="gmod.motd.pandr.general.quarantaine.section_code_card.p17"><strong>Directive :</strong> Ne surtout pas entrer en confrontation. Ne pas faire feu sauf si cela freine la progression.</p>
+<p class="fim" data-i18n="gmod.motd.pandr.general.quarantaine.section_code_card.p18">FIM : Epsilon-11 ("Renard à Neuf Queues"), Sigma-23 ("Sauvegarde Requise")</p>
+</div>
+<div class="code-card">
+<h4 data-i18n="gmod.motd.pandr.general.quarantaine.section_code_card.h47">Code : BLANC : Assaut Externe Structuré</h4>
+<p data-i18n="gmod.motd.pandr.general.quarantaine.section_code_card.p19">Assaut d'une force majeure/mineure hautement organisée faisant irruption dans le site.</p>
+<p data-i18n-html="gmod.motd.pandr.general.quarantaine.section_code_card.p20"><strong>Directive :</strong> Évacuer immédiatement. Isoler les objets SCP. Bloquer les entrées. Crypter les bases de données. Attendre les FIMA.</p>
+<p class="fim" data-i18n="gmod.motd.pandr.general.quarantaine.section_code_card.p21">FIM : Toutes les FIMA constituant une unité de combat dont Nu-7 ("Coup de Marteau")</p>
+</div>
+<div class="code-card">
+<h4 data-i18n="gmod.motd.pandr.general.quarantaine.section_code_card.h48">Code : GRIS : Menace Interne</h4>
+<p data-i18n="gmod.motd.pandr.general.quarantaine.section_code_card.p22">Identique au CODE : BLANC, mais la force hostile provient de l'intérieur du site (personnels imposteurs).</p>
+<p data-i18n-html="gmod.motd.pandr.general.quarantaine.section_code_card.p23"><strong>Directive :</strong> Plan d'évacuation identique au CODE : BLANC.</p>
+<p class="fim" data-i18n="gmod.motd.pandr.general.quarantaine.section_code_card.p24">FIM : Toutes les FIMA constituant une unité de combat</p>
+</div>
+<div class="code-card">
+<h4 data-i18n="gmod.motd.pandr.general.quarantaine.section_code_card.h49">Code : MAGENTA : Altération Spatio-temporelle</h4>
+<p data-i18n="gmod.motd.pandr.general.quarantaine.section_code_card.p25">Menace dimensionnelle : altération spatio-temporelle, incohérence chronologique, entités transdimensionnelles.</p>
+<p data-i18n-html="gmod.motd.pandr.general.quarantaine.section_code_card.p26"><strong>Directive :</strong> Suivre le plan d'évacuation par défaut sauf consignes adaptées.</p>
+<p class="fim" data-i18n="gmod.motd.pandr.general.quarantaine.section_code_card.p27">FIM : Zêta-9 ("Rats-Taupes"), Lambda-5 ("Les Lapins Blancs"), Mu-13 ("SOS Fantômes")</p>
+</div>
+<div class="code-card">
+<h4 data-i18n="gmod.motd.pandr.general.quarantaine.section_code_card.h410">Code : VIERGE : Menace Non Décrite</h4>
+<p data-i18n="gmod.motd.pandr.general.quarantaine.section_code_card.p28">Menace qu'il a été impossible de décrire.</p>
+<p data-i18n-html="gmod.motd.pandr.general.quarantaine.section_code_card.p29"><strong>Directive :</strong> Suivre les consignes du personnel de sécurité.</p>
+</div>
+<div class="code-card">
+<h4 data-i18n="gmod.motd.pandr.general.quarantaine.section_code_card.h411">Code : SUPERVIERGE : Menace Indescriptible</h4>
+<p data-i18n="gmod.motd.pandr.general.quarantaine.section_code_card.p30">Menace qu'il est impossible de décrire.</p>
+<p data-i18n-html="gmod.motd.pandr.general.quarantaine.section_code_card.p31"><strong>Directive :</strong> Suivre les consignes du personnel de sécurité.</p>
+</div>
+<div class="code-card">
+<h4 data-i18n="gmod.motd.pandr.general.quarantaine.section_code_card.h412">Code : ARGENT FROID : Effondrement Systémique</h4>
+<p data-i18n="gmod.motd.pandr.general.quarantaine.section_code_card.p32">Événement ayant ou devant avoir des conséquences fatales sur le déroulement des opérations de la Fondation.</p>
+<p data-i18n-html="gmod.motd.pandr.general.quarantaine.section_code_card.p33"><strong>Directive :</strong> Suivre les consignes de sécurité. Dissolution éventuelle du département dans des délais imprévisibles.</p>
+</div>
+</div>
+<div class="section">
+<h2 data-i18n="gmod.motd.pandr.general.quarantaine.section.h25">Initiatives de Réponse Automatisée (IRA)</h2>
+<p data-i18n="gmod.motd.pandr.general.quarantaine.section.p6">Systèmes mécanisés prévoyant une mesure spécifique de lutte pour chaque défaillance présumée dans la sécurité. Plus le degré de quarantaine est élevé, plus l'IRA est importante.</p>
+<div class="ira-card">
+<h4 data-i18n="gmod.motd.pandr.general.quarantaine.section_ira_card.h4">RA-1 : « Épingle à Nourrice »</h4>
+<p data-i18n="gmod.motd.pandr.general.quarantaine.section_ira_card.p">Détonation, sous réserve de confirmation manuelle, des ogives Alpha situées à la surface des complexes. Élimine toute forme de vie à proximité de la surface tout en protégeant les sites souterrains. Requiert l'autorisation de l'opérateur O4 en chef. Priorité B minimum.</p>
+</div>
+<div class="ira-card">
+<h4 data-i18n="gmod.motd.pandr.general.quarantaine.section_ira_card.h42">RA-2 : « Retraite Anticipée »</h4>
+<p data-i18n="gmod.motd.pandr.general.quarantaine.section_ira_card.p2">Contrôle partiel de la détonation automatique des ogives cinétiques Omega situées sous le bâtiment principal de chaque complexe. Requiert l'autorisation expresse du Comité d'Éthique.</p>
+</div>
+<div class="ira-card">
+<h4 data-i18n="gmod.motd.pandr.general.quarantaine.section_ira_card.h43">RA-3 : « Mauvais Opticiens »</h4>
+<p data-i18n="gmod.motd.pandr.general.quarantaine.section_ira_card.p3">Dispositifs émettant des lumières stroboscopiques et sons aigus pour désorienter et maîtriser les forces ennemies ou entités réagissant aux stimuli sensoriels.</p>
+</div>
+<div class="ira-card">
+<h4 data-i18n="gmod.motd.pandr.general.quarantaine.section_ira_card.h44">RA-4 : « Grille-Pain Géant »</h4>
+<p data-i18n="gmod.motd.pandr.general.quarantaine.section_ira_card.p4">Portiques Tesla électrostatiques, systèmes d'électrocution ou de paralysie pour neutraliser des entités se déplaçant à vitesse anormale. Utilisé uniquement en quarantaine de Classe C minimum.</p>
+</div>
+<div class="ira-card">
+<h4 data-i18n="gmod.motd.pandr.general.quarantaine.section_ira_card.h45">RA-5 : « Heure de Fermeture »</h4>
+<p data-i18n="gmod.motd.pandr.general.quarantaine.section_ira_card.p5">Fermeture de toutes les portes, systèmes de communication, infrastructures et ventilation. Active le Protocole 15-A pour la sauvegarde des bases de données locales. L'une des IRA les plus indispensables.</p>
+</div>
+<div class="ira-card">
+<h4 data-i18n="gmod.motd.pandr.general.quarantaine.section_ira_card.h46">RA-6 : « Asthme de Grand-Mère »</h4>
+<p data-i18n="gmod.motd.pandr.general.quarantaine.section_ira_card.p6">Libération de produits gazeux dans certains secteurs : sédatifs, agents paralysants réversibles, agents neurotoxiques, vésicants et substances intoxicantes. Le déploiement complet d'agents neurotoxiques nécessite l'autorisation du Comité d'Éthique.</p>
+</div>
+<div class="ira-card">
+<h4 data-i18n="gmod.motd.pandr.general.quarantaine.section_ira_card.h47">RA-7 : « Navire en Naufrage »</h4>
+<p data-i18n="gmod.motd.pandr.general.quarantaine.section_ira_card.p7">Contrôle des « ancres à réalité » influençant les niveaux de Hume pour enfermer les entités dimensionnelles dans un même espace, limitant ainsi les effets d'objets tels que SCP-106.</p>
+</div>
+</div>
+<div class="section">
+<h2 data-i18n="gmod.motd.pandr.general.quarantaine.section.h26">Évacuation</h2>
+<p data-i18n="gmod.motd.pandr.general.quarantaine.section.p7">L'évacuation a lieu pendant les « Phases d'Évacuation », avant que les menaces n'atteignent une ampleur nécessitant la fermeture des abris.</p>
+<div class="article">
+<strong>Directive :</strong> Le personnel doit chercher à évacuer en priorité. Des plans d'évacuation sont disponibles auprès de l'administration et de la sécurité, et dans chaque secteur des complexes.
       </div>
-
-      <div class="code-card">
-        <h4>Code : AMBRE : Menace Mémétique/Cognitive</h4>
-        <p>Signale la propagation d'au moins une anomalie mémétique, un danger-info ou un danger cognitif.</p>
-        <p><strong>Directive :</strong> Éviter de parler, fermer les yeux et boucher les oreilles. Ne pas chercher à évacuer seul. Attendre l'escorte de la sécurité.</p>
-        <p class="fim">FIM : Êta-10 ("Ne voient pas le Mal"), Êta-11 ("Les Bêtes Sauvages")</p>
+<div class="article">
+<strong>Abris d'évacuation :</strong> Peuvent être verrouillés manuellement si la menace est élevée, ou après 2 à 3 minutes. Le personnel non arrivé à temps est placé sous la responsabilité des FIM.
       </div>
-
-      <div class="code-card">
-        <h4>Code : BLEU : Objet Intelligent Mineur en Mouvance</h4>
-        <p>Évasion d'un objet doté d'une intelligence inférieure à celle de l'Homme et capable de se mouvoir.</p>
-        <p><strong>Directive :</strong> Suivre les ordres du personnel de sécurité.</p>
-        <p class="fim">FIM : Epsilon-11 ("Renard à Neuf Queues")</p>
+<div class="important">
+<strong>⚠️ Personnel hors abri :</strong> Il est conseillé de se cacher et de ne pas interagir avec les menaces. Assurer sa propre sécurité avant de veiller sur celle d'autrui. Tout comportement susceptible d'exposer les équipes FIM au danger est à éviter.
       </div>
-
-      <div class="code-card">
-        <h4>Code : SUPERBLEU : Objet Intelligent Majeur en Mouvance</h4>
-        <p>Évasion d'un objet doté d'une intelligence égale ou supérieure à celle de l'homme.</p>
-        <p><strong>Directive :</strong> Plan d'évacuation identique au CODE : BLEU.</p>
-        <p class="fim">FIM : Epsilon-11 ("Renard à Neuf Queues")</p>
+<div class="article">
+<strong>Extraction :</strong> Lancée lorsque toutes les menaces ont été neutralisées ou maîtrisées. Le personnel est inspecté et mis en quarantaine dans l'attente d'inspections supplémentaires (contagions, effets mémétiques, stress post-traumatique).
       </div>
-
-      <div class="code-card">
-        <h4>Code : VERT : Contaminant Biologique Anormal</h4>
-        <p>Menace provenant d'une source de contamination biologique dangereuse, infectieuse ou autre.</p>
-        <p><strong>Directive :</strong> Éviter tout contact avec les sources de contamination ou les individus contaminés. Ne pas quitter le site. Se préparer à la quarantaine post-événement.</p>
-        <p class="fim">FIM : Bêta-7 ("Les Hazthmatique")</p>
+</div>
+<div class="section">
+<h2 data-i18n="gmod.motd.pandr.general.quarantaine.section.h27">Rétablissement</h2>
+<p data-i18n="gmod.motd.pandr.general.quarantaine.section.p8">La phase de rétablissement englobe la restauration du site, l'administration des amnésiques, le reconfinement, le recensement du personnel, l'évaluation des causes et le déblaiement.</p>
+<h3 data-i18n="gmod.motd.pandr.general.quarantaine.section.h34">Évaluation des Causes</h3>
+<ul>
+<li data-i18n="gmod.motd.pandr.general.quarantaine.section.li5">Défaillance des systèmes automatisés (mécanismes, confinement, corruption de données)</li>
+<li data-i18n="gmod.motd.pandr.general.quarantaine.section.li6">Infiltration ou incursion d'un Groupe d'Intérêt hostile</li>
+<li data-i18n="gmod.motd.pandr.general.quarantaine.section.li7">Comportements déloyaux, omissions, erreurs de diagnostic du personnel</li>
+<li data-i18n="gmod.motd.pandr.general.quarantaine.section.li8">Sous-estimation de l'ampleur de la menace</li>
+<li data-i18n="gmod.motd.pandr.general.quarantaine.section.li9">Objets anormaux incontrôlables</li>
+<li data-i18n="gmod.motd.pandr.general.quarantaine.section.li10">Attaques ou assauts provenant de forces extérieures</li>
+<li data-i18n="gmod.motd.pandr.general.quarantaine.section.li11">Effets mémétiques/compulsifs ou possessions subis par le personnel</li>
+</ul>
+<h3 data-i18n="gmod.motd.pandr.general.quarantaine.section.h35">Personnel Impliqué</h3>
+<table>
+<tr><th data-i18n="gmod.motd.pandr.general.quarantaine.section.th3">Symbole</th><th data-i18n="gmod.motd.pandr.general.quarantaine.section.th4">Équipe</th><th data-i18n="gmod.motd.pandr.general.quarantaine.section.th5">Rôle</th></tr>
+<tr><td data-i18n="gmod.motd.pandr.general.quarantaine.section.td6" style="color:#ff6464;">☰ Trois lignes rouges</td><td data-i18n="gmod.motd.pandr.general.quarantaine.section.td7">FIM/FIMA</td><td data-i18n="gmod.motd.pandr.general.quarantaine.section.td8">Protection du complexe, évacuation des survivants</td></tr>
+<tr><td data-i18n="gmod.motd.pandr.general.quarantaine.section.td9" style="color:#6496ff;">◯ Anneau bleu</td><td data-i18n="gmod.motd.pandr.general.quarantaine.section.td10">Recensement</td><td data-i18n="gmod.motd.pandr.general.quarantaine.section.td11">Comptage du personnel, ressources perdues, bilan</td></tr>
+<tr><td data-i18n="gmod.motd.pandr.general.quarantaine.section.td12" style="color:#ffd764;">✚ Croix jaune</td><td data-i18n="gmod.motd.pandr.general.quarantaine.section.td13">Déblaiement</td><td data-i18n="gmod.motd.pandr.general.quarantaine.section.td14">Amnésiques, nettoyage, suivi blessés, évaluation dégâts</td></tr>
+<tr><td data-i18n="gmod.motd.pandr.general.quarantaine.section.td15" style="color:#ff9640;">: Trait orange</td><td data-i18n="gmod.motd.pandr.general.quarantaine.section.td16">Transport des objets</td><td data-i18n="gmod.motd.pandr.general.quarantaine.section.td17">Confinement et transport des anomalies</td></tr>
+<tr><td data-i18n="gmod.motd.pandr.general.quarantaine.section.td18" style="color:#64ff96;">△ Triangle vert</td><td data-i18n="gmod.motd.pandr.general.quarantaine.section.td19">Investigation</td><td data-i18n="gmod.motd.pandr.general.quarantaine.section.td20">Reconstitution des événements, recherche des causes</td></tr>
+</table>
+<h3 data-i18n="gmod.motd.pandr.general.quarantaine.section.h36">Reconfinement</h3>
+<div class="article">
+<strong>AGE (Agresseurs de Grande Envergure) :</strong> Détourner leur attention et les attirer dans des embuscades. Les rediriger loin des zones de populations. Neutralisation totale à envisager.
       </div>
-
-      <div class="code-card">
-        <h4>Code : ROUGE : Agresseur de Grande Envergure (AGE)</h4>
-        <p>Un AGE tel que SCP-2059 a rompu son confinement et constitue une menace importante.</p>
-        <p><strong>Directive :</strong> Suivre les ordres du personnel de sécurité.</p>
-        <p class="fim">FIM : Nu-7 ("Coup de Marteau"), Êta-5 ("Jaeger Bombers"), Gamma-5 ("Harengs Rouges")</p>
+<div class="article">
+<strong>Menaces Dimensionnelles :</strong> Techniques de leurre ou processus d'ancrage de la réalité. Souvent les plus perdues lors de ruptures de confinement si non traitées immédiatement.
       </div>
-
-      <div class="code-card">
-        <h4>Code : NOIR : Menace Non-Éliminable (MNE)</h4>
-        <p>Évasion d'une MNE telle que SCP-096, invulnérable à toute forme d'attaque.</p>
-        <p><strong>Directive :</strong> Ne surtout pas entrer en confrontation. Ne pas faire feu sauf si cela freine la progression.</p>
-        <p class="fim">FIM : Epsilon-11 ("Renard à Neuf Queues"), Sigma-23 ("Sauvegarde Requise")</p>
+<div class="article">
+<strong>MNE (Menaces Non-Éliminables) :</strong> Leur neutralisation n'est jamais une solution. Favoriser un comportement docile (sédation, manipulation, hypnose) pour faciliter la récupération.
       </div>
-
-      <div class="code-card">
-        <h4>Code : BLANC : Assaut Externe Structuré</h4>
-        <p>Assaut d'une force majeure/mineure hautement organisée faisant irruption dans le site.</p>
-        <p><strong>Directive :</strong> Évacuer immédiatement. Isoler les objets SCP. Bloquer les entrées. Crypter les bases de données. Attendre les FIMA.</p>
-        <p class="fim">FIM : Toutes les FIMA constituant une unité de combat dont Nu-7 ("Coup de Marteau")</p>
+<div class="article">
+<strong>Menaces Mémétiques :</strong> Plan d'action minutieux, manipulation par personnel privé de certains sens. Éliminer les moyens de transmission vers les populations civiles.
       </div>
-
-      <div class="code-card">
-        <h4>Code : GRIS : Menace Interne</h4>
-        <p>Identique au CODE : BLANC, mais la force hostile provient de l'intérieur du site (personnels imposteurs).</p>
-        <p><strong>Directive :</strong> Plan d'évacuation identique au CODE : BLANC.</p>
-        <p class="fim">FIM : Toutes les FIMA constituant une unité de combat</p>
+<div class="article">
+<strong>Sources de Contamination :</strong> Traitement rapide et méticuleux. Combinaisons Hazmat adaptées. Isolation de la source et des zones civiles. Quarantaine des individus contagieux.
       </div>
-
-      <div class="code-card">
-        <h4>Code : MAGENTA : Altération Spatio-temporelle</h4>
-        <p>Menace dimensionnelle : altération spatio-temporelle, incohérence chronologique, entités transdimensionnelles.</p>
-        <p><strong>Directive :</strong> Suivre le plan d'évacuation par défaut sauf consignes adaptées.</p>
-        <p class="fim">FIM : Zêta-9 ("Rats-Taupes"), Lambda-5 ("Les Lapins Blancs"), Mu-13 ("SOS Fantômes")</p>
-      </div>
-
-      <div class="code-card">
-        <h4>Code : VIERGE : Menace Non Décrite</h4>
-        <p>Menace qu'il a été impossible de décrire.</p>
-        <p><strong>Directive :</strong> Suivre les consignes du personnel de sécurité.</p>
-      </div>
-
-      <div class="code-card">
-        <h4>Code : SUPERVIERGE : Menace Indescriptible</h4>
-        <p>Menace qu'il est impossible de décrire.</p>
-        <p><strong>Directive :</strong> Suivre les consignes du personnel de sécurité.</p>
-      </div>
-
-      <div class="code-card">
-        <h4>Code : ARGENT FROID : Effondrement Systémique</h4>
-        <p>Événement ayant ou devant avoir des conséquences fatales sur le déroulement des opérations de la Fondation.</p>
-        <p><strong>Directive :</strong> Suivre les consignes de sécurité. Dissolution éventuelle du département dans des délais imprévisibles.</p>
-      </div>
-    </div>
-
-
-    <div class="section">
-      <h2>Initiatives de Réponse Automatisée (IRA)</h2>
-      <p>Systèmes mécanisés prévoyant une mesure spécifique de lutte pour chaque défaillance présumée dans la sécurité. Plus le degré de quarantaine est élevé, plus l'IRA est importante.</p>
-
-      <div class="ira-card">
-        <h4>RA-1 : « Épingle à Nourrice »</h4>
-        <p>Détonation, sous réserve de confirmation manuelle, des ogives Alpha situées à la surface des complexes. Élimine toute forme de vie à proximité de la surface tout en protégeant les sites souterrains. Requiert l'autorisation de l'opérateur O4 en chef. Priorité B minimum.</p>
-      </div>
-
-      <div class="ira-card">
-        <h4>RA-2 : « Retraite Anticipée »</h4>
-        <p>Contrôle partiel de la détonation automatique des ogives cinétiques Omega situées sous le bâtiment principal de chaque complexe. Requiert l'autorisation expresse du Comité d'Éthique.</p>
-      </div>
-
-      <div class="ira-card">
-        <h4>RA-3 : « Mauvais Opticiens »</h4>
-        <p>Dispositifs émettant des lumières stroboscopiques et sons aigus pour désorienter et maîtriser les forces ennemies ou entités réagissant aux stimuli sensoriels.</p>
-      </div>
-
-      <div class="ira-card">
-        <h4>RA-4 : « Grille-Pain Géant »</h4>
-        <p>Portiques Tesla électrostatiques, systèmes d'électrocution ou de paralysie pour neutraliser des entités se déplaçant à vitesse anormale. Utilisé uniquement en quarantaine de Classe C minimum.</p>
-      </div>
-
-      <div class="ira-card">
-        <h4>RA-5 : « Heure de Fermeture »</h4>
-        <p>Fermeture de toutes les portes, systèmes de communication, infrastructures et ventilation. Active le Protocole 15-A pour la sauvegarde des bases de données locales. L'une des IRA les plus indispensables.</p>
-      </div>
-
-      <div class="ira-card">
-        <h4>RA-6 : « Asthme de Grand-Mère »</h4>
-        <p>Libération de produits gazeux dans certains secteurs : sédatifs, agents paralysants réversibles, agents neurotoxiques, vésicants et substances intoxicantes. Le déploiement complet d'agents neurotoxiques nécessite l'autorisation du Comité d'Éthique.</p>
-      </div>
-
-      <div class="ira-card">
-        <h4>RA-7 : « Navire en Naufrage »</h4>
-        <p>Contrôle des « ancres à réalité » influençant les niveaux de Hume pour enfermer les entités dimensionnelles dans un même espace, limitant ainsi les effets d'objets tels que SCP-106.</p>
-      </div>
-    </div>
-
-
-    <div class="section">
-      <h2>Évacuation</h2>
-      <p>L'évacuation a lieu pendant les « Phases d'Évacuation », avant que les menaces n'atteignent une ampleur nécessitant la fermeture des abris.</p>
-
-      <div class="article">
-        <strong>Directive :</strong> Le personnel doit chercher à évacuer en priorité. Des plans d'évacuation sont disponibles auprès de l'administration et de la sécurité, et dans chaque secteur des complexes.
-      </div>
-
-      <div class="article">
-        <strong>Abris d'évacuation :</strong> Peuvent être verrouillés manuellement si la menace est élevée, ou après 2 à 3 minutes. Le personnel non arrivé à temps est placé sous la responsabilité des FIM.
-      </div>
-
-      <div class="important">
-        <strong>⚠️ Personnel hors abri :</strong> Il est conseillé de se cacher et de ne pas interagir avec les menaces. Assurer sa propre sécurité avant de veiller sur celle d'autrui. Tout comportement susceptible d'exposer les équipes FIM au danger est à éviter.
-      </div>
-
-      <div class="article">
-        <strong>Extraction :</strong> Lancée lorsque toutes les menaces ont été neutralisées ou maîtrisées. Le personnel est inspecté et mis en quarantaine dans l'attente d'inspections supplémentaires (contagions, effets mémétiques, stress post-traumatique).
-      </div>
-    </div>
-
-
-    <div class="section">
-      <h2>Rétablissement</h2>
-      <p>La phase de rétablissement englobe la restauration du site, l'administration des amnésiques, le reconfinement, le recensement du personnel, l'évaluation des causes et le déblaiement.</p>
-
-      <h3>Évaluation des Causes</h3>
-      <ul>
-        <li>Défaillance des systèmes automatisés (mécanismes, confinement, corruption de données)</li>
-        <li>Infiltration ou incursion d'un Groupe d'Intérêt hostile</li>
-        <li>Comportements déloyaux, omissions, erreurs de diagnostic du personnel</li>
-        <li>Sous-estimation de l'ampleur de la menace</li>
-        <li>Objets anormaux incontrôlables</li>
-        <li>Attaques ou assauts provenant de forces extérieures</li>
-        <li>Effets mémétiques/compulsifs ou possessions subis par le personnel</li>
-      </ul>
-
-      <h3>Personnel Impliqué</h3>
-      <table>
-        <tr><th>Symbole</th><th>Équipe</th><th>Rôle</th></tr>
-        <tr><td style="color:#ff6464;">☰ Trois lignes rouges</td><td>FIM/FIMA</td><td>Protection du complexe, évacuation des survivants</td></tr>
-        <tr><td style="color:#6496ff;">◯ Anneau bleu</td><td>Recensement</td><td>Comptage du personnel, ressources perdues, bilan</td></tr>
-        <tr><td style="color:#ffd764;">✚ Croix jaune</td><td>Déblaiement</td><td>Amnésiques, nettoyage, suivi blessés, évaluation dégâts</td></tr>
-        <tr><td style="color:#ff9640;">: Trait orange</td><td>Transport des objets</td><td>Confinement et transport des anomalies</td></tr>
-        <tr><td style="color:#64ff96;">△ Triangle vert</td><td>Investigation</td><td>Reconstitution des événements, recherche des causes</td></tr>
-      </table>
-
-      <h3>Reconfinement</h3>
-      <div class="article">
-        <strong>AGE (Agresseurs de Grande Envergure) :</strong> Détourner leur attention et les attirer dans des embuscades. Les rediriger loin des zones de populations. Neutralisation totale à envisager.
-      </div>
-      <div class="article">
-        <strong>Menaces Dimensionnelles :</strong> Techniques de leurre ou processus d'ancrage de la réalité. Souvent les plus perdues lors de ruptures de confinement si non traitées immédiatement.
-      </div>
-      <div class="article">
-        <strong>MNE (Menaces Non-Éliminables) :</strong> Leur neutralisation n'est jamais une solution. Favoriser un comportement docile (sédation, manipulation, hypnose) pour faciliter la récupération.
-      </div>
-      <div class="article">
-        <strong>Menaces Mémétiques :</strong> Plan d'action minutieux, manipulation par personnel privé de certains sens. Éliminer les moyens de transmission vers les populations civiles.
-      </div>
-      <div class="article">
-        <strong>Sources de Contamination :</strong> Traitement rapide et méticuleux. Combinaisons Hazmat adaptées. Isolation de la source et des zones civiles. Quarantaine des individus contagieux.
-      </div>
-    </div>
-
-  </div>
-  <script src="/main.js" defer></script>
+</div>
+</div>
+<script defer="" src="/main.js"></script>
+<script defer src="/antibot.js"></script>
 </body>
 </html>

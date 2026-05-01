@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="fr" data-theme="dark">
+
+<html data-theme="dark" lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Réseaux sociaux de FiTsZ - VentiStudio.">
-  <meta name="theme-color" content="#6366f1">
-  <title>Social | VentiStudio</title>
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Réseaux sociaux de FiTsZ - VentiStudio." name="description"/>
+<meta content="#6366f1" name="theme-color"/>
+<title>Social | VentiStudio</title>
+<style>
     :root {
       --primary: #7B66FF;
       --secondary: #2A2D3A;
@@ -113,32 +114,29 @@
       50% { opacity: 0.2; }
     }
   </style>
-
-  <script async crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
-  <script async crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
-
-  <meta property="og:title" content="Social | VentiStudio">
-  <meta property="og:description" content="Réseaux sociaux de FiTsZ - VentiStudio.">
-  <meta property="og:url" content="https://ventistudio.eu/social/FiTsZ/">
-  <meta property="og:image" content="https://ventistudio.eu/favicon.avif">
-  <meta property="og:type" content="website">
-  <link rel="canonical" href="https://ventistudio.eu/social/FiTsZ/">
-  <script src="/i18n.js" defer></script>
+<script async="" crossorigin="anonymous" src="https://clerk.ventistudio.eu/npm/@clerk/ui@1/dist/ui.browser.js" type="text/javascript"></script>
+<script async="" crossorigin="anonymous" data-clerk-publishable-key="pk_live_Y2xlcmsudmVudGlzdHVkaW8uZXUk" src="https://clerk.ventistudio.eu/npm/@clerk/clerk-js@6/dist/clerk.browser.js" type="text/javascript"></script>
+<meta content="Social | VentiStudio" property="og:title"/>
+<meta content="Réseaux sociaux de FiTsZ - VentiStudio." property="og:description"/>
+<meta content="https://ventistudio.eu/social/FiTsZ/" property="og:url"/>
+<meta content="https://ventistudio.eu/favicon.avif" property="og:image"/>
+<meta content="website" property="og:type"/>
+<link href="https://ventistudio.eu/social/FiTsZ/" rel="canonical"/>
+<script defer="" src="/i18n.js"></script>
 </head>
 <body>
-  <div class="stars" id="starField"></div>
-  <div class="redirect-container">
-    <img src="/favicon.avif" alt="VentiStudio Logo" class="logo">
-    <div class="redirect-text">Initialisation du transfert spatial...</div>
-    <div class="loader">
-      <div class="orbit"></div>
-      <div class="orbit"></div>
-      <div class="orbit"></div>
-    </div>
-    <div class="countdown">Téléportation dans <span id="timer">5</span> secondes</div>
-  </div>
-
-  <script>
+<div class="stars" id="starField"></div>
+<div class="redirect-container">
+<img alt="VentiStudio Logo" class="logo" data-i18n-attr="alt:social.fitsz.page.img_alt" src="/favicon.avif"/>
+<div class="redirect-text">Initialisation du transfert spatial...</div>
+<div class="loader">
+<div class="orbit"></div>
+<div class="orbit"></div>
+<div class="orbit"></div>
+</div>
+<div class="countdown">Téléportation dans <span id="timer">5</span> secondes</div>
+</div>
+<script>
     const starField = document.getElementById('starField');
     for (let i = 0; i < 100; i++) {
       const star = document.createElement('div');
@@ -174,6 +172,6 @@
       document.querySelector('.countdown').style.display = 'none';
     }
   </script>
+<script defer src="/antibot.js"></script>
 </body>
 </html>
-

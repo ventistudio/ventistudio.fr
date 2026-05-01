@@ -323,7 +323,7 @@
 <link href="https://ventistudio.eu/player/story/star-trek-umaishi/" rel="canonical"/>
 <script>
     (function() {
-      var t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      var t; try { t = localStorage.getItem('theme'); } catch (_) {} if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', t);
     })();
   </script>
@@ -670,4 +670,5 @@
 
     document.addEventListener('DOMContentLoaded', initializeBook);
   </script>
+<script defer src="/antibot.js"></script>
 </body></html>

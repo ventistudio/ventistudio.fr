@@ -178,16 +178,12 @@
     return div.innerHTML;
   }
 
-
   renderServices();
   renderIncidents();
 
-
   checkAllServices();
 
-
   setInterval(checkAllServices, 60000);
-
 
   if (refreshBtn) {
     refreshBtn.addEventListener('click', function() {
