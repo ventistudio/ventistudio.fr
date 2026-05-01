@@ -1,5 +1,5 @@
 ﻿# robots.txt for VentiStudio - https://ventistudio.eu
-# Updated: 2026-04-04
+# Updated: 2026-05-01
 # Syntax: https://www.robotstxt.org/
 
 # Default rules for all robots

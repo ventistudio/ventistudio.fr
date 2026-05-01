@@ -1,6 +1,6 @@
 ﻿# llms.txt - AI Access & Training Policy
 # VentiStudio Official LLM Access Control
-# Last Updated: 2026-02-12
+# Last Updated: 2026-05-01
 # Version: 2.0
 
 # PROPERTY INFORMATION
@@ -111,8 +111,8 @@ Non-compliance actions:
 
 # UPDATES & CHANGES
 This policy may be updated without notice
-Last-revision: 2026-02-12
-Next-review: 2026-08-12
+Last-revision: 2026-05-01
+Next-review: 2026-11-01
 
 # FOOTER
 Copyright © 2023-2026 VentiStudio All Rights Reserved
