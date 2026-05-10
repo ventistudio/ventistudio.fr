@@ -18,5 +18,13 @@
 *.mp4
 *.gif
 *.txt
-.htaccess
 *.png
+.htaccess
+
+# Environment variables (never commit real secrets!)
+.env
+.env.local
+.env.*.local
+
+# API config with secrets
+api/config.php
