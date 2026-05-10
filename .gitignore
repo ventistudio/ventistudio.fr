@@ -28,3 +28,4 @@
 
 # API config with secrets
 api/config.php
+.htaccess
